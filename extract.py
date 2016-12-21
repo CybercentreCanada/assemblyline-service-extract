@@ -9,7 +9,7 @@ from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
 from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
 from assemblyline.al.service.base import ServiceBase
-from assemblyline.support.extract.xxxswf import xxxswf
+from al_services.alsvc_extract.ext.xxxswf import xxxswf
 
 chunk_size = 65536
 DEBUG = False
