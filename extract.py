@@ -104,13 +104,11 @@ class Extract(ServiceBase):
     def execute(self, request):
         result = Result()
         if request.tag == 'archive/ace':
-            text = "Unsupported format: %s" % request.tag
+            text = "Uncommon format: %s" % request.tag
             result.add_section(
                 ResultSection(score=SCORE.VHIGH, title_text=text)
             )
             result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-            request.result = result
-            return
 
         continue_after_extract = request.get_param('continue_after_extract', False)
         self._last_password = None
@@ -279,9 +277,59 @@ class Extract(ServiceBase):
 
         return extracted_children
 
+    def extract_ace(self, request, local, encoding):
+        if encoding != 'ace':
+            return [], False
+
+        path = os.path.join(self.working_directory, "ace")
+        env = os.environ
+        env = env.copy()
+        env['LANG'] = 'en_US.UTF-8'
+
+        # noinspection PyBroadException
+        try:
+            proc = subprocess.Popen(
+                ['unace', 'x', '-y', local],
+                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                cwd=path,
+                stderr=subprocess.PIPE)
+
+            proc.stdin.close()
+
+            stdoutput, _ = proc.communicate()
+
+            if stdoutput:
+                if "extracted:" in stdoutput:
+                    lines = stdoutput.splitlines()
+
+                    extracted_children = []
+
+                    for line in lines:
+                        line = line.strip()
+                        m = re.match("  extracting (.+?)[ ]*(CRC OK)?$", line)
+                        if not m:
+                            continue
+
+                        filename = m.group(1)
+                        filepath = os.path.join(path, filename)
+                        if os.path.isdir(filepath):
+                            continue
+                        else:
+                            name = translate_str(filename)
+                            extracted_children.append([filepath, encoding, name['converted']])
+
+                return extracted_children
+
+        except ExtractIgnored:
+            raise
+        except Exception:
+            self.log.exception('While extracting %s with unace', request.srl)
+
+        return [], False
+
     def extract_7zip(self, request, local, encoding):
         password_protected = False
-        if request.tag == 'archive/audiovisual/flash':
+        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace':
             return [], password_protected
         path = os.path.join(self.working_directory, "7zip")
 
