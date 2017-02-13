@@ -4,6 +4,8 @@ import re
 import os
 import subprocess
 import shutil
+import tempfile
+import time
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
@@ -97,6 +99,7 @@ class Extract(ServiceBase):
             self.extract_7zip,
             self.extract_tnef,
             self.extract_swf,
+            self.extract_ace
         ]
         self.anomaly_detections = [self.archive_with_executables]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -282,31 +285,40 @@ class Extract(ServiceBase):
             return [], False
 
         path = os.path.join(self.working_directory, "ace")
-        env = os.environ
-        env = env.copy()
-        env['LANG'] = 'en_US.UTF-8'
+        try:
+            os.mkdir(path)
+        except OSError:
+            pass
 
         # noinspection PyBroadException
         try:
-            proc = subprocess.Popen(
-                ['unace', 'x', '-y', local],
-                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                cwd=path,
-                stderr=subprocess.PIPE)
+            with tempfile.NamedTemporaryFile(suffix=".ace", dir=path) as tf:
+                # unace needs the .ace file extension
+                with open(local, "rb") as fh:
+                    tf.write(fh.read())
+                    tf.flush()
 
-            proc.stdin.close()
+                proc = subprocess.Popen(
+                    '/usr/bin/unace e -y %s' % tf.name,
+                    stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True)
 
-            stdoutput, _ = proc.communicate()
+                # Note, proc.communicate() hangs
+                stdoutput = proc.stdout.read()
+                for i in xrange(20):
+                    stdoutput += proc.stdout.read()
+                    if proc.poll() is not None:
+                        break
+                    time.sleep(0.5)
+                if proc.returncode is None:
+                    proc.terminate()
 
             if stdoutput:
+                extracted_children = []
                 if "extracted:" in stdoutput:
-                    lines = stdoutput.splitlines()
-
-                    extracted_children = []
-
-                    for line in lines:
+                    for line in stdoutput.splitlines():
                         line = line.strip()
-                        m = re.match("  extracting (.+?)[ ]*(CRC OK)?$", line)
+                        m = re.match("extracting (.+?)[ ]*(CRC OK)?$", line)
                         if not m:
                             continue
 
@@ -318,7 +330,7 @@ class Extract(ServiceBase):
                             name = translate_str(filename)
                             extracted_children.append([filepath, encoding, name['converted']])
 
-                return extracted_children
+                return extracted_children, False
 
         except ExtractIgnored:
             raise
