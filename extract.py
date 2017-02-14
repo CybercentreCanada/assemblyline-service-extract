@@ -32,7 +32,7 @@ class Extract(ServiceBase):
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
-    SERVICE_REVISION = ServiceBase.parse_revision('$Id: dac6e84adc7d144ca8a0e00136120180d4fd27c2 $')
+    SERVICE_REVISION = ServiceBase.parse_revision('$Id$')
     SERVICE_STAGE = 'EXTRACT'
     SERVICE_TIMEOUT = 60
     SERVICE_VERSION = '1'
