@@ -4,12 +4,16 @@ import re
 import os
 import subprocess
 import shutil
+import tempfile
+import time
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
 from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
 from assemblyline.al.service.base import ServiceBase
 from al_services.alsvc_extract.ext.xxxswf import xxxswf
+from assemblyline.common.reaper import set_death_signal
+from assemblyline.common.timeout import SubprocessTimer
 
 chunk_size = 65536
 DEBUG = False
@@ -97,20 +101,23 @@ class Extract(ServiceBase):
             self.extract_7zip,
             self.extract_tnef,
             self.extract_swf,
+            self.extract_ace
         ]
         self.anomaly_detections = [self.archive_with_executables]
         self.white_listing_methods = [self.jar_whitelisting]
+        self.st = None
+
+    def start(self):
+        self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
 
     def execute(self, request):
         result = Result()
         if request.tag == 'archive/ace':
-            text = "Unsupported format: %s" % request.tag
+            text = "Uncommon format: %s" % request.tag
             result.add_section(
                 ResultSection(score=SCORE.VHIGH, title_text=text)
             )
             result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-            request.result = result
-            return
 
         continue_after_extract = request.get_param('continue_after_extract', False)
         self._last_password = None
@@ -279,9 +286,67 @@ class Extract(ServiceBase):
 
         return extracted_children
 
+    def extract_ace(self, request, local, encoding):
+        if encoding != 'ace':
+            return [], False
+
+        path = os.path.join(self.working_directory, "ace")
+        try:
+            os.mkdir(path)
+        except OSError:
+            pass
+
+        # noinspection PyBroadException
+        try:
+            with tempfile.NamedTemporaryFile(suffix=".ace", dir=path) as tf:
+                # unace needs the .ace file extension
+                with open(local, "rb") as fh:
+                    tf.write(fh.read())
+                    tf.flush()
+
+                proc = self.st.run(subprocess.Popen(
+                    '/usr/bin/unace e -y %s' % tf.name,
+                    stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
+                    preexec_fn=set_death_signal()))
+
+                # Note, proc.communicate() hangs
+                stdoutput = proc.stdout.read()
+                while True:
+                    stdoutput += proc.stdout.read()
+                    if proc.poll() is not None:
+                        break
+                    time.sleep(0.01)
+
+            if stdoutput:
+                extracted_children = []
+                if "extracted:" in stdoutput:
+                    for line in stdoutput.splitlines():
+                        line = line.strip()
+                        m = re.match("extracting (.+?)[ ]*(CRC OK)?$", line)
+                        if not m:
+                            continue
+
+                        filename = m.group(1)
+                        filepath = os.path.join(path, filename)
+                        if os.path.isdir(filepath):
+                            continue
+                        else:
+                            name = translate_str(filename)
+                            extracted_children.append([filepath, encoding, name['converted']])
+
+                return extracted_children, False
+
+        except ExtractIgnored:
+            raise
+        except Exception:
+            self.log.exception('While extracting %s with unace', request.srl)
+
+        return [], False
+
     def extract_7zip(self, request, local, encoding):
         password_protected = False
-        if request.tag == 'archive/audiovisual/flash':
+        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace':
             return [], password_protected
         path = os.path.join(self.working_directory, "7zip")
 

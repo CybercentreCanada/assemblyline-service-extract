@@ -8,6 +8,6 @@ working after a default installation
 ## Execution
 
 The service mainly uses the 7zip library to extract files out of containers then resubmits them for
-analysis. It will also use the python tnefparse lib to parse tnef files and the xxxswf library to
-extract compressed swf files.
+analysis. It will also use the python tnefparse lib to parse tnef files, the xxxswf library to extract 
+compressed swf files, and unace to extract winace compressed files.
 
