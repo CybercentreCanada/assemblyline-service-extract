@@ -12,6 +12,8 @@ from assemblyline.common.identify import ident
 from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
 from assemblyline.al.service.base import ServiceBase
 from al_services.alsvc_extract.ext.xxxswf import xxxswf
+from assemblyline.common.reaper import set_death_signal
+from assemblyline.common.timeout import SubprocessTimer
 
 chunk_size = 65536
 DEBUG = False
@@ -103,6 +105,10 @@ class Extract(ServiceBase):
         ]
         self.anomaly_detections = [self.archive_with_executables]
         self.white_listing_methods = [self.jar_whitelisting]
+        self.st = None
+
+    def start(self):
+        self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
 
     def execute(self, request):
         result = Result()
@@ -298,20 +304,19 @@ class Extract(ServiceBase):
                     tf.write(fh.read())
                     tf.flush()
 
-                proc = subprocess.Popen(
+                proc = self.st.run(subprocess.Popen(
                     '/usr/bin/unace e -y %s' % tf.name,
                     stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True)
+                    stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
+                    preexec_fn=set_death_signal()))
 
                 # Note, proc.communicate() hangs
                 stdoutput = proc.stdout.read()
-                for i in xrange(20):
+                while True:
                     stdoutput += proc.stdout.read()
                     if proc.poll() is not None:
                         break
-                    time.sleep(0.5)
-                if proc.returncode is None:
-                    proc.terminate()
+                    time.sleep(0.01)
 
             if stdoutput:
                 extracted_children = []
