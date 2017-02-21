@@ -6,6 +6,7 @@ import subprocess
 import shutil
 import tempfile
 import time
+import email
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
@@ -28,7 +29,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -39,7 +40,11 @@ class Extract(ServiceBase):
     SERVICE_CPU_CORES = 0.1
     SERVICE_RAM_MB = 256
 
-    SERVICE_DEFAULT_CONFIG = {"DEFAULT_PW_LIST": ["password", "infected", "add_more_passwords"]}
+    SERVICE_DEFAULT_CONFIG = {
+        "DEFAULT_PW_LIST": ["password", "infected", "add_more_passwords"],
+        "NAMED_EMAIL_ATTACHMENTS_ONLY": True,
+        "MAX_EMAIL_ATTACHMENT_SIZE": 10 * 1024**3,
+    }
     SERVICE_DEFAULT_SUBMISSION_PARAMS = [{"default": "", "name": "password", "type": "str", "value": ""},
                                          {"default": False,
                                           "name": "extract_pe_sections",
@@ -101,14 +106,19 @@ class Extract(ServiceBase):
             self.extract_7zip,
             self.extract_tnef,
             self.extract_swf,
-            self.extract_ace
+            self.extract_ace,
+            self.extract_eml
         ]
         self.anomaly_detections = [self.archive_with_executables]
         self.white_listing_methods = [self.jar_whitelisting]
         self.st = None
+        self.named_attachments_only = None
+        self.max_attachment_size = None
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
+        self.named_attachments_only = self.cfg.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
+        self.max_attachment_size = self.cfg.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
     def execute(self, request):
         result = Result()
@@ -560,3 +570,45 @@ class Extract(ServiceBase):
                 if os.path.splitext(extracted.display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
                     result.add_tag(TAG_TYPE['FILE_SUMMARY'], "Executable Content in Archive", TAG_WEIGHT['MED'])
                     break
+
+    @staticmethod
+    def yield_eml_parts(message):
+        if message.is_multipart():
+            for part in message.walk():
+                p_type = part.get_content_type()
+                p_disp = part.get("Content-Disposition", "")
+                p_load = part.get_payload(decode=True)
+                p_name = part.get_filename(None)
+                yield (p_type, p_disp, p_load, p_name)
+        else:
+            p_type = message.get_content_type()
+            p_disp = message.get("Content-Disposition", "")
+            p_load = message.get_payload(decode=True)
+            p_name = message.get_filename(None)
+            yield (p_type, p_disp, p_load, p_name)
+
+    def extract_eml(self, request, local, encoding):
+        if encoding != "document/email":
+            return [], False
+
+        extracted = []
+
+        with open(local, "r") as fh:
+            message = email.message_from_file(fh)
+            for p_t, p_d, p_l, p_n in self.yield_eml_parts(message):
+                if p_l is None or p_l.strip() == "":
+                    continue
+                if self.max_attachment_size is not None and len(p_l) > self.max_attachment_size:
+                    continue
+                if self.named_attachments_only:
+                    if not p_n or "attachment" not in p_d:
+                        continue
+                elif p_n is None:
+                    p_n = "email_part_%i" % (len(request.extracted))
+
+                ft = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+                ft.write(p_l)
+                name = ft.name
+                ft.close()
+                extracted.append((name, p_t, p_n))
+        return extracted, False
