@@ -55,7 +55,7 @@ class Extract(ServiceBase):
                                           "type": "bool",
                                           "value": False}]
 
-    FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX"]
+    FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
     FORBIDDEN_ELF_EXE = [str(x) for x in xrange(20)]
     MAX_EXTRACT = 500
     MAX_EXTRACT_LIVE = 100
