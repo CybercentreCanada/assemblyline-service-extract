@@ -55,7 +55,7 @@ class Extract(ServiceBase):
                                           "type": "bool",
                                           "value": False}]
 
-    FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata"]
+    FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX"]
     FORBIDDEN_ELF_EXE = [str(x) for x in xrange(20)]
     MAX_EXTRACT = 500
     MAX_EXTRACT_LIVE = 100
@@ -282,9 +282,9 @@ class Extract(ServiceBase):
                 filename = line.split("Extracting  ", 1)[1]
 
                 if not extract_pe_sections and \
-                        ((encoding.startswith("executable") and
+                        ((encoding.startswith("executable/windows") and
                           [f for f in self.FORBIDDEN_EXE if filename.startswith(f)]) or
-                         (encoding == "executable/unknown" and filename in self.FORBIDDEN_ELF_EXE)):
+                         (encoding.startswith("executable/linux")and filename in self.FORBIDDEN_ELF_EXE)):
                     raise ExtractIgnored("Detected extraction of forbidden PE/ELF file sections. "
                                          "No files will be extracted.")
 
@@ -500,8 +500,8 @@ class Extract(ServiceBase):
             whitelisted_fname_regex = [
                 # commonly used libs files
                 re.compile(r'com/google/i18n/phonenumbers/data/(PhoneNumber|ShortNumber)[a-zA-Z]*_[0-9A-Z]{1,3}$'),
-                re.compile(r'looksery/([a-zA-Z_]*/){1,5}[a-zA-Z0-9_\.]*\.glsl$'),
-                re.compile(r'org/apache/commons/codec/language/bm/[a-zA-Z0-9_\.]*\.txt$'),
+                re.compile(r'looksery/([a-zA-Z_]*/){1,5}[a-zA-Z0-9_.]*.glsl$'),
+                re.compile(r'org/apache/commons/codec/language/bm/[a-zA-Z0-9_.]*\.txt$'),
                 re.compile(r'org/joda/time/format/messages([a-zA-Z_]{0,3})\.properties$'),
                 re.compile(r'org/joda/time/tz/data/[a-zA-Z0-9_/\-+]*$'),
                 re.compile(r'sharedassets[0-9]{1,3}\.assets(\.split[0-9]{1,3})?$'),
