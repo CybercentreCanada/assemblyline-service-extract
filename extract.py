@@ -127,11 +127,11 @@ class Extract(ServiceBase):
             passwords = self.get_passwords(request.config)
             out_name = extract_docx(in_name, passwords, self.working_directory)
 
-
             section = ResultSection(SCORE.NULL,
                                     "Successfully extracted 1 password protected document.")
             result.add_section(section)
-            result.add_extracted(out_name, "document/office/unknown")
+            request.result = result
+            request.add_extracted(out_name, "document/office/unknown")
             return True
         except ValueError:
             return False

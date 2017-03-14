@@ -90,16 +90,15 @@ def decode_stream(password, metadata, package, out_file):
     """Structure laid out in MS-OFFCRYPTO 2.3.4.4"""
     decoded_len = struct.unpack("I", package.read(4))[0]
     useless_trash = package.read(4)
-    print decoded_len
+    ks = metadata['enc_header']['KeySize']
 
-    key = generate_enc_key(password, metadata['salt'], metadata['enc_header']['KeySize'])
+    key = generate_enc_key(password, metadata['salt'], ks)
 
     aes = AES.new(key, mode=AES.MODE_ECB)
-    ks = metadata['metadata']
     block_count = int(math.ceil(decoded_len/float(ks)))
     remainder = int(ks - (decoded_len % float(ks)))
     for i in xrange(block_count):
-        cipher_t = package.read(float(ks))
+        cipher_t = package.read(ks)
 
         plain_t = aes.decrypt(cipher_t)
         if i == block_count-1:
@@ -111,7 +110,6 @@ def decode_stream(password, metadata, package, out_file):
 def parse_enc_info(doc):
     """Structures laid out in MS-OFFCRYPTO 2.3.2 and 2.3.3"""
     header = {}
-    flags = {}
     enc_header = {}
 
     fixed = struct.unpack("HHII", doc.read(12))
@@ -165,7 +163,7 @@ def extract_docx(filename, password_list, output_folder):
         raise ValueError("Not OLE")
 
     of = olefile2.OleFileIO(filename)
-    print of.listdir()
+
     if of.exists("WordDocument"):
         # Cannot parse these files yet
         raise ValueError("Legacy Word Document")
@@ -177,7 +175,7 @@ def extract_docx(filename, password_list, output_folder):
 
         password = None
         for pass_try in password_list:
-            if check_password(password, metadata) is True:
+            if check_password(pass_try, metadata) is True:
                 password = pass_try
                 break
 
