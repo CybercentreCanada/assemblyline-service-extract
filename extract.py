@@ -15,6 +15,7 @@ from assemblyline.al.service.base import ServiceBase
 from al_services.alsvc_extract.ext.xxxswf import xxxswf
 from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
+from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
 
 chunk_size = 65536
 DEBUG = False
@@ -29,7 +30,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/office/unknown'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -120,21 +121,49 @@ class Extract(ServiceBase):
         self.named_attachments_only = self.cfg.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
         self.max_attachment_size = self.cfg.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
+    def extract_docx(self, request, in_name):
+        result = Result()
+        try:
+            passwords = self.get_passwords(request.config)
+            out_name = extract_docx(in_name, passwords, self.working_directory)
+
+
+            section = ResultSection(SCORE.NULL,
+                                    "Successfully extracted 1 password protected document.")
+            result.add_section(section)
+            result.add_extracted(out_name, "document/office/unknown")
+            return True
+        except ValueError:
+            return False
+        except ExtractionError:
+            return False
+        except PasswordError:
+            text = "Password protected file, unknown password"
+            result.add_section(
+                ResultSection(score=SCORE.VHIGH, title_text=text)
+            )
+            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
+            return False
+
     def execute(self, request):
         result = Result()
+        continue_after_extract = request.get_param('continue_after_extract', False)
+        self._last_password = None
+        local = request.download()
+        password_protected = False
+        white_listed = 0
+
         if request.tag == 'archive/ace':
             text = "Uncommon format: %s" % request.tag
             result.add_section(
                 ResultSection(score=SCORE.VHIGH, title_text=text)
             )
             result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
+        elif request.tag == "document/office/unknown":
+            if self.extract_docx(request, local) and not continue_after_extract:
+                request.drop()
+            return
 
-        continue_after_extract = request.get_param('continue_after_extract', False)
-        self._last_password = None
-
-        local = request.download()
-        password_protected = False
-        white_listed = 0
         try:
             password_protected, white_listed = self.extract(request, local)
         except ExtractMaxExceeded, e:
