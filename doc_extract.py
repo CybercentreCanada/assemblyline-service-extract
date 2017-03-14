@@ -6,22 +6,19 @@
 import struct
 import hashlib
 import math
+import binascii
 
-from Crypto.Cipher import AES
-from oletools.thirdparty.olefile import olefile2
+from Crypto.Cipher import AES, DES3, ARC2, ARC4, DES
+from lxml import etree
+from oletools.thirdparty.olefile import olefile
 
-# constants from MS-OFFCRYPTO 2.3.4.5
-ALGID_ENUM = {
-    0x00006801: "RC4",
-    0x0000660E: "128-bit AES",
-    0x0000660F: "192-bit AES",
-    0x00006610: "256-bit AES"
-}
 
-ALGIDHASH_ENUM = {
-    0x00000000: 'SHA-1',
-    0x00008004: 'SHA-1'
-}
+class PasswordError(Exception):
+    pass
+
+
+class ExtractionError(Exception):
+    pass
 
 
 def get_bit(i, n, mask = 1):
@@ -29,7 +26,7 @@ def get_bit(i, n, mask = 1):
     return (i >> n) & mask
 
 
-def derive_key(hash_val, key_size):
+def derive_key_v2(hash_val, key_size):
     """Algorithm from MS-OFFCRYPTO 2.3.4.7"""
     tmp_buffer = ['\x36'] * 64
     for i, c in enumerate(hash_val):
@@ -50,7 +47,7 @@ def derive_key(hash_val, key_size):
     return derived_key[:key_size]
 
 
-def generate_enc_key(password, salt, key_size):
+def generate_enc_key_v2(password, salt, key_size):
     """Algorithm from MS-OFFCRYPTO 2.3.4.7"""
     password = password.encode("utf-16")[2:]
     plain_text = salt + password
@@ -61,13 +58,13 @@ def generate_enc_key(password, salt, key_size):
     block = 0
     h_final = hashlib.sha1(h_step + struct.pack("I", block)).digest()
 
-    key = derive_key(h_final, key_size)
+    key = derive_key_v2(h_final, key_size)
     return key
 
 
-def check_password(password, metadata):
+def check_password_v2(password, metadata):
     """Method described in MS-OFFCRYPTO 2.3.4.9"""
-    key = generate_enc_key(password, metadata['salt'], metadata['enc_header']['KeySize'])
+    key = generate_enc_key_v2(password, metadata['salt'], metadata['enc_header']['KeySize'])
 
     aes = AES.new(key, mode=AES.MODE_ECB)
     vhash = aes.decrypt(metadata['verifier_hash'])[:metadata['verifier_len']]
@@ -76,7 +73,96 @@ def check_password(password, metadata):
     return vhash == hash
 
 
-def decode_flags(flags):
+def adjust_buf_len(buffer, length, pad="\x36"):
+    if len(buffer) < length:
+        buffer += pad * (length - len(buffer))
+    elif len(buffer) > length:
+        buffer = buffer[:length]
+    return buffer
+
+
+def generate_enc_key_v4(password, salt, spins, hash, key_size, block_key):
+    """Algorithm from MS-OFFCRYPTO 2.3.4.11"""
+    password = password.encode("utf-16")[2:]
+    plain_text = salt + password
+    h_step = hash(plain_text).digest()
+    for i in xrange(spins):
+        h_step = hash(struct.pack("I", i) + h_step).digest()
+
+    h_final = hash(h_step + block_key).digest()
+    return adjust_buf_len(h_final, key_size, "\x36")
+
+
+def pad_buffer(buffer, block_size, pad="\x00"):
+    return buffer + pad*(block_size - (len(buffer) % block_size))
+
+
+def check_password_v4(password, metadata):
+    """Method described in MS-OFFCRYPTO 2.3.4.9 to 2.3.4.13"""
+
+    # Constants from MS-OFFCRYPTO 2.3.4.10
+    hash_alg = {
+        "SHA-1": hashlib.sha1,
+        "SHA256": hashlib.sha256,
+        "SHA384": hashlib.sha384,
+        "SHA512": hashlib.sha512,
+        "MD5": hashlib.md5
+    }
+    crypto_alg = {
+        "AES": AES,
+        "3DES": DES3,
+        "RC2": ARC2,
+        "RC4": ARC4,
+        "DES": DES
+    }
+
+    chain_mode = {
+        "ChainingModeCBC": "MODE_CBC",
+        "ChainingModeCFB": "MODE_CFB"
+    }
+    try:
+        salt = metadata['encryptedKey']['saltValue']
+        hash = hash_alg[metadata['encryptedKey']['hashAlgorithm']]
+        spin_count = int(metadata['encryptedKey']['spinCount'])
+        key_size = int(metadata['encryptedKey']['keyBits'])/8
+        enc_method = crypto_alg[metadata['encryptedKey']['cipherAlgorithm']]
+        mode = chain_mode[metadata['encryptedKey']['cipherChaining']]
+        mode = getattr(enc_method, mode)
+    except KeyError:
+        raise ExtractionError("Unsupported encryption method used.")
+
+    block_key_1 = "\xfe\xa7\xd2\x76\x3b\x4b\x9e\x79"
+    block_key_2 = "\xd7\xaa\x0f\x6d\x30\x61\x34\x4e"
+    block_key_3 = "\x14\x6e\x0b\xe7\xab\xac\xd0\xd6"
+    key1 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_1)
+    key2 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_2)
+    key3 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_3)
+    iv = adjust_buf_len(salt, enc_method.block_size, "\x36")
+
+    encryptor1 = enc_method.new(key1, mode=mode, IV=iv)
+    encryptor2 = enc_method.new(key2, mode=mode, IV=iv)
+    encryptor3 = enc_method.new(key3, mode=mode, IV=iv)
+
+    v_hash = encryptor2.decrypt(metadata['encryptedKey']['encryptedVerifierHashValue'])
+    e1 = encryptor1.decrypt(metadata['encryptedKey']['encryptedVerifierHashInput'])
+    h1 = hash(e1).digest()
+    if h1 == v_hash:
+        metadata['KeyValue'] = encryptor3.decrypt(metadata['encryptedKey']['encryptedKeyValue'])
+        return True
+    else:
+        return False
+
+
+def check_password(password, metadata):
+    if metadata["ver_maj"] == 4 and metadata["ver_min"] == 4 and metadata["flags"] == 0x40:
+        return check_password_v4(password, metadata)
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
+        pass
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
+        return check_password_v2(password, metadata)
+
+
+def decode_flags_v2(flags):
     """Flags laid out in MS-OFFCRPYTO 2.3.1"""
     out = {
         'fCryptoAPI': get_bit(flags, 2) == 1,
@@ -86,13 +172,13 @@ def decode_flags(flags):
 
     return out
 
-def decode_stream(password, metadata, package, out_file):
+
+def decode_stream_v2(password, metadata, package, out_file):
     """Structure laid out in MS-OFFCRYPTO 2.3.4.4"""
-    decoded_len = struct.unpack("I", package.read(4))[0]
-    useless_trash = package.read(4)
+    decoded_len = struct.unpack("Q", package.read(8))[0]
     ks = metadata['enc_header']['KeySize']
 
-    key = generate_enc_key(password, metadata['salt'], ks)
+    key = generate_enc_key_v2(password, metadata['salt'], ks)
 
     aes = AES.new(key, mode=AES.MODE_ECB)
     block_count = int(math.ceil(decoded_len/float(ks)))
@@ -107,16 +193,85 @@ def decode_stream(password, metadata, package, out_file):
         out_file.write(plain_t)
 
 
-def parse_enc_info(doc):
+def decode_stream_v4(metadata, package, out_file):
+    """Structure laid out in MS-OFFCRYPTO 2.3.4.15"""
+    # Constants from MS-OFFCRYPTO 2.3.4.10
+    hash_alg = {
+        "SHA-1": hashlib.sha1,
+        "SHA256": hashlib.sha256,
+        "SHA384": hashlib.sha384,
+        "SHA512": hashlib.sha512,
+        "MD5": hashlib.md5
+    }
+    crypto_alg = {
+        "AES": AES,
+        "3DES": DES3,
+        "RC2": ARC2,
+        "RC4": ARC4,
+        "DES": DES
+    }
+
+    chain_mode = {
+        "ChainingModeCBC": "MODE_CBC",
+        "ChainingModeCFB": "MODE_CFB"
+    }
+    try:
+        salt = metadata['keyData']['saltValue']
+        hash = hash_alg[metadata['keyData']['hashAlgorithm']]
+        enc_method = crypto_alg[metadata['keyData']['cipherAlgorithm']]
+        mode = chain_mode[metadata['keyData']['cipherChaining']]
+        mode = getattr(enc_method, mode)
+    except KeyError:
+        raise ExtractionError("Unsupported encryption method used.")
+
+    decoded_len = struct.unpack("Q", package.read(8))[0]
+
+    key_value = metadata['KeyValue']
+    block_len = 4096
+
+    block_count = int(math.ceil(decoded_len / float(block_len)))
+    remainder = enc_method.block_size - (decoded_len % enc_method.block_size)
+    for i in xrange(block_count):
+        block = package.read(block_len)
+        iv = hash(salt + struct.pack("I", i)).digest()
+        iv = adjust_buf_len(iv, enc_method.block_size, "\x36")
+        encryptor = enc_method.new(key_value, mode=mode, IV=iv)
+
+        plain_t = encryptor.decrypt(block)
+        if i == block_count - 1:
+            plain_t = plain_t[:-remainder]
+
+        out_file.write(plain_t)
+
+
+def decode_stream(password, metadata, package, out_file):
+    if metadata["ver_maj"] == 4 and metadata["ver_min"] == 4 and metadata["flags"] == 0x40:
+        return decode_stream_v4(metadata, package, out_file)
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
+        pass
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
+        return decode_stream_v2(password, metadata, package, out_file)
+
+
+def parse_enc_info_v2(doc, header):
     """Structures laid out in MS-OFFCRYPTO 2.3.2 and 2.3.3"""
-    header = {}
     enc_header = {}
 
-    fixed = struct.unpack("HHII", doc.read(12))
-    header["ver_maj"] = fixed[0]
-    header["ver_min"] = fixed[1]
-    header["flags"] = fixed[2]
-    header["size"] = fixed[3]
+    # constants from MS-OFFCRYPTO 2.3.4.5
+    ALGID_ENUM = {
+        0x00006801: "RC4",
+        0x0000660E: "128-bit AES",
+        0x0000660F: "192-bit AES",
+        0x00006610: "256-bit AES"
+    }
+
+    ALGIDHASH_ENUM = {
+        0x00000000: 'SHA-1',
+        0x00008004: 'SHA-1'
+    }
+
+    fixed = struct.unpack("I", doc.read(4))
+    header["size"] = fixed[0]
     fixed = struct.unpack("IIIIIIII", doc.read(8*4))
     enc_header['flags'] = fixed[0]
     enc_header['SizeExtra'] = fixed[1]
@@ -127,9 +282,11 @@ def parse_enc_info(doc):
     enc_header['Reserved1'] = fixed[6]
     enc_header['Reserved2'] = fixed[7]
     enc_header['CSPName'] = doc.read(header["size"]-(8*4)).decode("utf-16")
-    enc_header["flags"] = decode_flags(enc_header["flags"])
+    enc_header["flags"] = decode_flags_v2(enc_header["flags"])
     header["enc_header"] = enc_header
-    header["flags"] = decode_flags(header["flags"])
+    header["flags"] = decode_flags_v2(header["flags"])
+    if fixed["enc_header"]['AlgID'] == "RC4":
+        raise ExtractionError("Error, cannot handle RC4")
 
     saltsize = repr(doc.read(4))
     header['salt'] = doc.read(16)
@@ -139,12 +296,49 @@ def parse_enc_info(doc):
     return header
 
 
-class PasswordError(Exception):
-    pass
+def parse_enc_info_v3(doc, header):
+    raise ExtractionError("Unsupported encryption method used")
 
 
-class ExtractionError(Exception):
-    pass
+def parse_enc_info_v4(doc, header):
+    """Structures laid out in MS-OFFCRYPTO 2.3.4.10"""
+    tree = etree.parse(doc)
+    for x in tree.getroot().iter():
+        for suffix in ["keyData", "dataIntegrity", "encryptedKey"]:
+            if x.tag.endswith(suffix):
+                header[suffix] = dict(x.attrib)
+
+    try:
+        header['keyData']['saltValue'] = binascii.a2b_base64(header['keyData']['saltValue'])
+        header["dataIntegrity"]["encryptedHmacValue"] = binascii.a2b_base64(header["dataIntegrity"]["encryptedHmacValue"])
+        header["dataIntegrity"]["encryptedHmacKey"] = binascii.a2b_base64(header["dataIntegrity"]["encryptedHmacKey"])
+        header["encryptedKey"]["encryptedVerifierHashInput"] = binascii.a2b_base64(
+            header["encryptedKey"]["encryptedVerifierHashInput"])
+        header["encryptedKey"]["saltValue"] = binascii.a2b_base64(header["encryptedKey"]["saltValue"])
+        header["encryptedKey"]["encryptedVerifierHashValue"] = binascii.a2b_base64(
+            header["encryptedKey"]["encryptedVerifierHashValue"])
+        header["encryptedKey"]["encryptedKeyValue"] = binascii.a2b_base64(
+            header["encryptedKey"]["encryptedKeyValue"])
+    except KeyError:
+        raise ExtractionError("Unsupported encryption method used")
+    return header
+
+
+def parse_enc_info(doc):
+    header = {}
+
+    fixed = struct.unpack("HHI", doc.read(8))
+    header["ver_maj"] = fixed[0]
+    header["ver_min"] = fixed[1]
+    header["flags"] = fixed[2]
+    if header["ver_maj"] == 4 and header["ver_min"] == 4 and header["flags"] == 0x40:
+        return parse_enc_info_v4(doc, header)
+    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or header["ver_maj"] == 4) and header["ver_min"] == 3:
+        return parse_enc_info_v3(doc, header)
+    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or header["ver_maj"] == 4) and header["ver_min"] == 2:
+        return parse_enc_info_v2(doc, header)
+    else:
+        raise ExtractionError("Unsupported version %i:%i" % (header["ver_maj"], header["ver_min"]))
 
 
 def extract_docx(filename, password_list, output_folder):
@@ -159,10 +353,10 @@ def extract_docx(filename, password_list, output_folder):
     :param output_folder: a path to a directory where we can write to
     :return: The filename we wrote. Else, an exception is thrown.
     """
-    if not olefile2.isOleFile(filename):
+    if not olefile.isOleFile(filename):
         raise ValueError("Not OLE")
 
-    of = olefile2.OleFileIO(filename)
+    of = olefile.OleFileIO(filename)
 
     if of.exists("WordDocument"):
         # Cannot parse these files yet
@@ -170,8 +364,6 @@ def extract_docx(filename, password_list, output_folder):
 
     elif of.exists("EncryptionInfo") and of.exists("EncryptedPackage"):
         metadata = parse_enc_info(of.openstream("EncryptionInfo"))
-        if metadata["enc_header"]['AlgID'] == "RC4":
-            raise ExtractionError("Error, cannot handle RC4")
 
         password = None
         for pass_try in password_list:
@@ -189,3 +381,7 @@ def extract_docx(filename, password_list, output_folder):
         tf.close()
         return name
 
+if __name__ == "__main__":
+    import sys
+    # Usage: file.docx password
+    print extract_docx(sys.argv[1], [sys.argv[2]], ".")
