@@ -10,7 +10,7 @@ import binascii
 
 from Crypto.Cipher import AES, DES3, ARC2, ARC4, DES
 from lxml import etree
-from oletools.thirdparty.olefile import olefile
+from olefile import olefile
 
 
 class PasswordError(Exception):
@@ -115,6 +115,9 @@ def check_password_v4(password, metadata):
         "RC4": ARC4,
         "DES": DES
     }
+    block_key_1 = "\xfe\xa7\xd2\x76\x3b\x4b\x9e\x79"
+    block_key_2 = "\xd7\xaa\x0f\x6d\x30\x61\x34\x4e"
+    block_key_3 = "\x14\x6e\x0b\xe7\xab\xac\xd0\xd6"
 
     chain_mode = {
         "ChainingModeCBC": "MODE_CBC",
@@ -131,9 +134,6 @@ def check_password_v4(password, metadata):
     except KeyError:
         raise ExtractionError("Unsupported encryption method used.")
 
-    block_key_1 = "\xfe\xa7\xd2\x76\x3b\x4b\x9e\x79"
-    block_key_2 = "\xd7\xaa\x0f\x6d\x30\x61\x34\x4e"
-    block_key_3 = "\x14\x6e\x0b\xe7\xab\xac\xd0\xd6"
     key1 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_1)
     key2 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_2)
     key3 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_3)
@@ -157,7 +157,7 @@ def check_password(password, metadata):
     if metadata["ver_maj"] == 4 and metadata["ver_min"] == 4 and metadata["flags"] == 0x40:
         return check_password_v4(password, metadata)
     elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
-        pass
+        raise ExtractionError("Error, unsupported encryption.")
     elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
         return check_password_v2(password, metadata)
 
@@ -270,29 +270,34 @@ def parse_enc_info_v2(doc, header):
         0x00008004: 'SHA-1'
     }
 
-    fixed = struct.unpack("I", doc.read(4))
-    header["size"] = fixed[0]
-    fixed = struct.unpack("IIIIIIII", doc.read(8*4))
-    enc_header['flags'] = fixed[0]
-    enc_header['SizeExtra'] = fixed[1]
-    enc_header['AlgID'] = ALGID_ENUM.get(fixed[2], fixed[2])
-    enc_header['AlgIDHash'] = ALGIDHASH_ENUM.get(fixed[3], fixed[3])
-    enc_header['KeySize'] = fixed[4]/8
-    enc_header['ProviderType'] = fixed[5]
-    enc_header['Reserved1'] = fixed[6]
-    enc_header['Reserved2'] = fixed[7]
-    enc_header['CSPName'] = doc.read(header["size"]-(8*4)).decode("utf-16")
-    enc_header["flags"] = decode_flags_v2(enc_header["flags"])
-    header["enc_header"] = enc_header
-    header["flags"] = decode_flags_v2(header["flags"])
-    if fixed["enc_header"]['AlgID'] == "RC4":
-        raise ExtractionError("Error, cannot handle RC4")
+    # noinspection PyBroadException
+    try:
+        fixed = struct.unpack("I", doc.read(4))
+        header["size"] = fixed[0]
+        fixed = struct.unpack("IIIIIIII", doc.read(8*4))
+        enc_header['flags'] = fixed[0]
+        enc_header['SizeExtra'] = fixed[1]
+        enc_header['AlgID'] = ALGID_ENUM.get(fixed[2], fixed[2])
+        enc_header['AlgIDHash'] = ALGIDHASH_ENUM.get(fixed[3], fixed[3])
+        enc_header['KeySize'] = fixed[4]/8
+        enc_header['ProviderType'] = fixed[5]
+        enc_header['Reserved1'] = fixed[6]
+        enc_header['Reserved2'] = fixed[7]
+        enc_header['CSPName'] = doc.read(header["size"]-(8*4)).decode("utf-16")
+        enc_header["flags"] = decode_flags_v2(enc_header["flags"])
+        header["enc_header"] = enc_header
+        header["flags"] = decode_flags_v2(header["flags"])
+        if fixed["enc_header"]['AlgID'] == "RC4":
+            raise ExtractionError("Error, cannot handle RC4")
 
-    saltsize = repr(doc.read(4))
-    header['salt'] = doc.read(16)
-    header['verifier_data'] = doc.read(16)
-    header['verifier_len'] = struct.unpack("I", doc.read(4))[0]
-    header['verifier_hash'] = doc.read(32)
+        doc.read(4)   # "salt_len" unused, by spec must be 16
+        header['salt'] = doc.read(16)
+        header['verifier_data'] = doc.read(16)
+        header['verifier_len'] = struct.unpack("I", doc.read(4))[0]
+        header['verifier_hash'] = doc.read(32)
+    except:
+        ExtractionError("Error, could not parse file, probably corrupt.")
+
     return header
 
 

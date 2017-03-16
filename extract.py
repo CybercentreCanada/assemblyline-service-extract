@@ -135,10 +135,15 @@ class Extract(ServiceBase):
             return True
         except ValueError:
             return False
-        except ExtractionError:
+        except ExtractionError as ee:
+            text = "Password protected file, could not extract: %s" % ee.message
+            result.add_section(
+                ResultSection(score=SCORE.VHIGH, title_text=text)
+            )
+            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
             return False
-        except PasswordError:
-            text = "Password protected file, unknown password"
+        except PasswordError as pe:
+            text = "Password protected file, unknown password: %s" % pe.message
             result.add_section(
                 ResultSection(score=SCORE.VHIGH, title_text=text)
             )
