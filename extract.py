@@ -7,7 +7,6 @@ import shutil
 import tempfile
 import time
 import email
-from olefile.olefile import isOleFile
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
@@ -635,9 +634,5 @@ class Extract(ServiceBase):
                 name = ft.name
                 ft.close()
                 extracted.append((name, p_t, p_n))
-
-                if isOleFile(p_l):
-                    passwords = self.get_passwords(request.config)
-                    self.extract_docx(request, local, passwords)
 
         return extracted, False
