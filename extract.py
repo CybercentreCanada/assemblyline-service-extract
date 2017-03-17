@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import time
 import email
+from olefile.olefile import isOleFile
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
@@ -108,9 +109,10 @@ class Extract(ServiceBase):
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
-            self.extract_eml
+            self.extract_eml,
+            self.extract_docx
         ]
-        self.anomaly_detections = [self.archive_with_executables]
+        self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
         self.st = None
         self.named_attachments_only = None
@@ -121,35 +123,6 @@ class Extract(ServiceBase):
         self.named_attachments_only = self.cfg.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
         self.max_attachment_size = self.cfg.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
-    def extract_docx(self, request, in_name):
-        result = Result()
-        try:
-            passwords = self.get_passwords(request.config)
-            out_name = extract_docx(in_name, passwords, self.working_directory)
-
-            section = ResultSection(SCORE.NULL,
-                                    "Successfully extracted 1 password protected document.")
-            result.add_section(section)
-            request.result = result
-            request.add_extracted(out_name, "document/office/unknown")
-            return True
-        except ValueError:
-            return False
-        except ExtractionError as ee:
-            text = "Password protected file, could not extract: %s" % ee.message
-            result.add_section(
-                ResultSection(score=SCORE.VHIGH, title_text=text)
-            )
-            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-            return False
-        except PasswordError as pe:
-            text = "Password protected file, unknown password: %s" % pe.message
-            result.add_section(
-                ResultSection(score=SCORE.VHIGH, title_text=text)
-            )
-            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-            return False
-
     def execute(self, request):
         result = Result()
         continue_after_extract = request.get_param('continue_after_extract', False)
@@ -158,24 +131,18 @@ class Extract(ServiceBase):
         password_protected = False
         white_listed = 0
 
-        if request.tag == 'archive/ace':
-            text = "Uncommon format: %s" % request.tag
-            result.add_section(
-                ResultSection(score=SCORE.VHIGH, title_text=text)
-            )
-            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-        elif request.tag == "document/office/unknown":
-            if self.extract_docx(request, local) and not continue_after_extract:
-                request.drop()
-            return
-
         try:
             password_protected, white_listed = self.extract(request, local)
         except ExtractMaxExceeded, e:
             result.add_section(ResultSection(score=SCORE["NULL"], title_text=str(e)))
         except ExtractIgnored, e:
             result.add_section(ResultSection(score=SCORE["NULL"], title_text=str(e)))
-        os.remove(local)
+        except ExtractionError as ee:
+            # If we don't support the encryption method. This will tell us what we need to add support for
+            result.add_section(
+                ResultSection(score=SCORE.VHIGH,
+                              title_text="Password protected file, could not extract: %s" % ee.message)
+            )
 
         num_extracted = len(request.extracted)
 
@@ -207,14 +174,14 @@ class Extract(ServiceBase):
         if section:
             result.add_section(section)
 
-        if num_extracted:
-            for anomaly in self.anomaly_detections:
-                anomaly(request, result)
+        for anomaly in self.anomaly_detections:
+            anomaly(request, result)
 
         if request.extracted \
                 and not request.tag.startswith("executable") \
                 and not request.tag.startswith("java") \
                 and not request.tag.startswith("android") \
+                and not request.tag.startswith("document") \
                 and not continue_after_extract:
             request.drop()
 
@@ -257,6 +224,23 @@ class Extract(ServiceBase):
             if user_supplied:
                 passwords.append(user_supplied)
         return passwords
+
+    def extract_docx(self, request, local, encoding):
+        if request.tag != "document/office/unknown":
+            return [], False
+
+        try:
+            passwords = self.get_passwords(request.config)
+
+            out_name, password = extract_docx(local, passwords, self.working_directory)
+            self._last_password = password
+            return [out_name], True
+        except ValueError:
+            # Not a valid ms-word file
+            return [], False
+        except PasswordError as pe:
+            # Could not guess password
+            return [], True
 
     def extract_libarchive(self, request, local, encoding):
         extracted_children = []
@@ -606,6 +590,12 @@ class Extract(ServiceBase):
                     break
 
     @staticmethod
+    def archive_is_arc(request, result):
+        if request.tag == 'archive/ace':
+            result.add_section(ResultSection(score=SCORE.VHIGH, title_text="Uncommon format: archive/ace"))
+            result.add_tag(TAG_TYPE['FILE_SUMMARY'], "Uncommon format: archive/ace", TAG_WEIGHT['MED'])
+
+    @staticmethod
     def yield_eml_parts(message):
         if message.is_multipart():
             for part in message.walk():
@@ -645,4 +635,9 @@ class Extract(ServiceBase):
                 name = ft.name
                 ft.close()
                 extracted.append((name, p_t, p_n))
+
+                if isOleFile(p_l):
+                    passwords = self.get_passwords(request.config)
+                    self.extract_docx(request, local, passwords)
+
         return extracted, False

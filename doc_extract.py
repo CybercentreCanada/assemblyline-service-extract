@@ -380,11 +380,11 @@ def extract_docx(filename, password_list, output_folder):
             PasswordError("Could not find correct password")
 
         import tempfile
-        tf = tempfile.NamedTemporaryFile(dir=output_folder, delete=False)
+        tf = tempfile.NamedTemporaryFile(dir=output_folder, suffix=".docx", delete=False)
         decode_stream(password, metadata, of.openstream("EncryptedPackage"), tf)
         name = tf.name
         tf.close()
-        return name
+        return name, password
 
 if __name__ == "__main__":
     import sys
