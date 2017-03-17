@@ -12,6 +12,7 @@ def install(alsi):
     alsi.pip_install_all([
         'python-libarchive==3.1.2-1',
         'tnefparse',
+        'olefile'
     ])
 
 if __name__ == '__main__':

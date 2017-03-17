@@ -15,6 +15,7 @@ from assemblyline.al.service.base import ServiceBase
 from al_services.alsvc_extract.ext.xxxswf import xxxswf
 from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
+from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
 
 chunk_size = 65536
 DEBUG = False
@@ -29,7 +30,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/office/unknown'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -107,9 +108,10 @@ class Extract(ServiceBase):
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
-            self.extract_eml
+            self.extract_eml,
+            self.extract_docx
         ]
-        self.anomaly_detections = [self.archive_with_executables]
+        self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
         self.st = None
         self.named_attachments_only = None
@@ -122,26 +124,24 @@ class Extract(ServiceBase):
 
     def execute(self, request):
         result = Result()
-        if request.tag == 'archive/ace':
-            text = "Uncommon format: %s" % request.tag
-            result.add_section(
-                ResultSection(score=SCORE.VHIGH, title_text=text)
-            )
-            result.add_tag(TAG_TYPE['FILE_SUMMARY'], text, TAG_WEIGHT['MED'])
-
         continue_after_extract = request.get_param('continue_after_extract', False)
         self._last_password = None
-
         local = request.download()
         password_protected = False
         white_listed = 0
+
         try:
             password_protected, white_listed = self.extract(request, local)
         except ExtractMaxExceeded, e:
             result.add_section(ResultSection(score=SCORE["NULL"], title_text=str(e)))
         except ExtractIgnored, e:
             result.add_section(ResultSection(score=SCORE["NULL"], title_text=str(e)))
-        os.remove(local)
+        except ExtractionError as ee:
+            # If we don't support the encryption method. This will tell us what we need to add support for
+            result.add_section(
+                ResultSection(score=SCORE.VHIGH,
+                              title_text="Password protected file, could not extract: %s" % ee.message)
+            )
 
         num_extracted = len(request.extracted)
 
@@ -173,14 +173,14 @@ class Extract(ServiceBase):
         if section:
             result.add_section(section)
 
-        if num_extracted:
-            for anomaly in self.anomaly_detections:
-                anomaly(request, result)
+        for anomaly in self.anomaly_detections:
+            anomaly(request, result)
 
         if request.extracted \
                 and not request.tag.startswith("executable") \
                 and not request.tag.startswith("java") \
                 and not request.tag.startswith("android") \
+                and not request.tag.startswith("document") \
                 and not continue_after_extract:
             request.drop()
 
@@ -223,6 +223,23 @@ class Extract(ServiceBase):
             if user_supplied:
                 passwords.append(user_supplied)
         return passwords
+
+    def extract_docx(self, request, local, encoding):
+        if request.tag != "document/office/unknown":
+            return [], False
+
+        try:
+            passwords = self.get_passwords(request.config)
+
+            out_name, password = extract_docx(local, passwords, self.working_directory)
+            self._last_password = password
+            return [out_name], True
+        except ValueError:
+            # Not a valid ms-word file
+            return [], False
+        except PasswordError as pe:
+            # Could not guess password
+            return [], True
 
     def extract_libarchive(self, request, local, encoding):
         extracted_children = []
@@ -572,6 +589,12 @@ class Extract(ServiceBase):
                     break
 
     @staticmethod
+    def archive_is_arc(request, result):
+        if request.tag == 'archive/ace':
+            result.add_section(ResultSection(score=SCORE.VHIGH, title_text="Uncommon format: archive/ace"))
+            result.add_tag(TAG_TYPE['FILE_SUMMARY'], "Uncommon format: archive/ace", TAG_WEIGHT['MED'])
+
+    @staticmethod
     def yield_eml_parts(message):
         if message.is_multipart():
             for part in message.walk():
@@ -611,4 +634,5 @@ class Extract(ServiceBase):
                 name = ft.name
                 ft.close()
                 extracted.append((name, p_t, p_n))
+
         return extracted, False
