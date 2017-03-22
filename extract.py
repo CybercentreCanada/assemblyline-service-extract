@@ -15,7 +15,10 @@ from assemblyline.al.service.base import ServiceBase
 from al_services.alsvc_extract.ext.xxxswf import xxxswf
 from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
-from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
+
+extract_docx = None
+ExtractionError = None
+PasswordError = None
 
 chunk_size = 65536
 DEBUG = False
@@ -116,6 +119,11 @@ class Extract(ServiceBase):
         self.st = None
         self.named_attachments_only = None
         self.max_attachment_size = None
+
+    # noinspection PyUnresolvedReferences
+    def import_service_deps(self):
+        global extract_docx, ExtractionError, PasswordError
+        from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
