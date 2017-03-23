@@ -633,7 +633,7 @@ class Extract(ServiceBase):
                     try:
                         body = unicode(p_l, encoding=encoding)
                         if p_t == "text/html":
-                            body = html.document_fromstring(body)
+                            body = html.document_fromstring(body).text_content()
                         words = re.findall("[^ \n\t\r\xa0]+", body)
                         body_words.update(words)
                     except UnicodeDecodeError:
