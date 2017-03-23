@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import time
 import email
+from lxml import html
 
 from assemblyline.common.charset import translate_str
 from assemblyline.common.identify import ident
@@ -222,6 +223,10 @@ class Extract(ServiceBase):
             user_supplied = config.get('password', None)
             if user_supplied:
                 passwords.append(user_supplied)
+
+        if "email_body" in self.submission_tags:
+            passwords.extend(self.submission_tags["email_body"])
+
         return passwords
 
     def extract_docx(self, request, local, encoding):
@@ -230,7 +235,6 @@ class Extract(ServiceBase):
 
         try:
             passwords = self.get_passwords(request.config)
-
             out_name, password = extract_docx(local, passwords, self.working_directory)
             self._last_password = password
             return [out_name], True
@@ -602,37 +606,50 @@ class Extract(ServiceBase):
                 p_disp = part.get("Content-Disposition", "")
                 p_load = part.get_payload(decode=True)
                 p_name = part.get_filename(None)
-                yield (p_type, p_disp, p_load, p_name)
+                p_cset = part.get_content_charset()
+                yield (p_type, p_disp, p_load, p_name, p_cset)
         else:
             p_type = message.get_content_type()
             p_disp = message.get("Content-Disposition", "")
             p_load = message.get_payload(decode=True)
             p_name = message.get_filename(None)
-            yield (p_type, p_disp, p_load, p_name)
+            p_cset = message.get_content_charset()
+            yield (p_type, p_disp, p_load, p_name, p_cset)
 
     def extract_eml(self, request, local, encoding):
         if encoding != "document/email":
             return [], False
 
         extracted = []
-
+        body_words = set()
         with open(local, "r") as fh:
             message = email.message_from_file(fh)
-            for p_t, p_d, p_l, p_n in self.yield_eml_parts(message):
+            for part_num, (p_t, p_d, p_l, p_n, p_c) in enumerate(self.yield_eml_parts(message)):
+                is_body = not p_n or "attachment" not in p_d
                 if p_l is None or p_l.strip() == "":
                     continue
+                if is_body:
+                    encoding = p_c or "utf-8"
+                    try:
+                        body = unicode(p_l, encoding=encoding)
+                        if p_t == "text/html":
+                            body = html.document_fromstring(body)
+                        words = re.findall("[^ \n\t\r\xa0]+", body)
+                        body_words.update(words)
+                    except UnicodeDecodeError:
+                        pass
+
                 if self.max_attachment_size is not None and len(p_l) > self.max_attachment_size:
                     continue
-                if self.named_attachments_only:
-                    if not p_n or "attachment" not in p_d:
-                        continue
+                if self.named_attachments_only and is_body:
+                    continue
                 elif p_n is None:
-                    p_n = "email_part_%i" % (len(request.extracted))
+                    p_n = "email_part_%i" % part_num
 
                 ft = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                 ft.write(p_l)
                 name = ft.name
                 ft.close()
-                extracted.append((name, p_t, p_n))
+                extracted.append((name, p_t, p_n, self.SERVICE_CLASSIFICATION, {'email_body': list(body_words)}))
 
         return extracted, False
