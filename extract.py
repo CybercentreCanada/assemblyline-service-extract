@@ -245,7 +245,7 @@ class Extract(ServiceBase):
             passwords = self.get_passwords(request.config)
             out_name, password = extract_docx(local, passwords, self.working_directory)
             self._last_password = password
-            return [[out_name, encoding]], True
+            return [[out_name, encoding, out_name]], True
         except ValueError:
             # Not a valid ms-word file
             return [], False
