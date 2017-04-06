@@ -377,7 +377,7 @@ def extract_docx(filename, password_list, output_folder):
                 break
 
         if password is None:
-            PasswordError("Could not find correct password")
+            raise PasswordError("Could not find correct password")
 
         import tempfile
         tf = tempfile.NamedTemporaryFile(dir=output_folder, suffix=".docx", delete=False)
