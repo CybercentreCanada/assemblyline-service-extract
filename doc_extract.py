@@ -102,6 +102,7 @@ def check_password_v4(password, metadata):
 
     # Constants from MS-OFFCRYPTO 2.3.4.10
     hash_alg = {
+        "SHA1": hashlib.sha1,
         "SHA-1": hashlib.sha1,
         "SHA256": hashlib.sha256,
         "SHA384": hashlib.sha384,
@@ -131,6 +132,7 @@ def check_password_v4(password, metadata):
         enc_method = crypto_alg[metadata['encryptedKey']['cipherAlgorithm']]
         mode = chain_mode[metadata['encryptedKey']['cipherChaining']]
         mode = getattr(enc_method, mode)
+        hash_size = int(metadata['encryptedKey']['hashSize'])
     except KeyError:
         raise ExtractionError("Unsupported encryption method used.")
 
@@ -146,7 +148,7 @@ def check_password_v4(password, metadata):
     v_hash = encryptor2.decrypt(metadata['encryptedKey']['encryptedVerifierHashValue'])
     e1 = encryptor1.decrypt(metadata['encryptedKey']['encryptedVerifierHashInput'])
     h1 = hash(e1).digest()
-    if h1 == v_hash:
+    if h1 == v_hash[:hash_size]:
         metadata['KeyValue'] = encryptor3.decrypt(metadata['encryptedKey']['encryptedKeyValue'])
         return True
     else:
