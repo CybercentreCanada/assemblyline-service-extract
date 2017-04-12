@@ -243,7 +243,11 @@ class Extract(ServiceBase):
 
         try:
             passwords = self.get_passwords(request.config)
-            out_name, password = extract_docx(local, passwords, self.working_directory)
+            res = extract_docx(local, passwords, self.working_directory)
+            if res is None:
+                raise ValueError()
+
+            out_name, password = res
             self._last_password = password
             display_name = "_decoded".join(os.path.splitext(os.path.basename(request.path)))
             if not display_name.endswith(".docx"):
