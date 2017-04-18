@@ -185,14 +185,14 @@ class Extract(ServiceBase):
         for anomaly in self.anomaly_detections:
             anomaly(request, result)
 
-        if request.extracted \
-                and not request.tag.startswith("executable") \
-                and not request.tag.startswith("java") \
-                and not request.tag.startswith("android") \
-                and not request.tag.startswith("document") \
-                and not continue_after_extract \
-                or request.tag == "document/email" \
-                and not continue_after_extract:
+        if (request.extracted
+                and not request.tag.startswith("executable")
+                and not request.tag.startswith("java")
+                and not request.tag.startswith("android")
+                and not request.tag.startswith("document")
+                and not continue_after_extract) \
+                or (request.tag == "document/email"
+                    and not continue_after_extract):
             request.drop()
 
         request.result = result
