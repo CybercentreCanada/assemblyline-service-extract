@@ -7,6 +7,7 @@ import struct
 import hashlib
 import math
 import binascii
+import tempfile
 
 from Crypto.Cipher import AES, DES3, ARC2, ARC4, DES
 from lxml import etree
@@ -363,7 +364,10 @@ def extract_docx(filename, password_list, output_folder):
     if not olefile.isOleFile(filename):
         raise ValueError("Not OLE")
 
-    of = olefile.OleFileIO(filename)
+    try:
+        of = olefile.OleFileIO(filename)
+    except IOError:
+        raise ValueError("Corrupted OLE Document")
 
     if of.exists("WordDocument"):
         # Cannot parse these files yet
@@ -381,7 +385,6 @@ def extract_docx(filename, password_list, output_folder):
         if password is None:
             raise PasswordError("Could not find correct password")
 
-        import tempfile
         tf = tempfile.NamedTemporaryFile(dir=output_folder, suffix=".docx", delete=False)
         decode_stream(password, metadata, of.openstream("EncryptedPackage"), tf)
         name = tf.name
