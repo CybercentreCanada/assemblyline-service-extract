@@ -200,6 +200,7 @@ def decode_stream_v4(metadata, package, out_file):
     """Structure laid out in MS-OFFCRYPTO 2.3.4.15"""
     # Constants from MS-OFFCRYPTO 2.3.4.10
     hash_alg = {
+        "SHA1": hashlib.sha1,
         "SHA-1": hashlib.sha1,
         "SHA256": hashlib.sha256,
         "SHA384": hashlib.sha384,
