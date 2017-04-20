@@ -648,12 +648,22 @@ class Extract(ServiceBase):
                 if is_body:
                     encoding = p_c or "utf-8"
                     try:
-                        body = unicode(p_l, encoding=encoding)
+                        try:
+                            body = unicode(p_l, encoding=encoding)
+                        except LookupError:
+                            # This is usually old windows codepages or jibberish
+                            body = unicode(p_l, encoding="utf8", errors="ignore")
+                            self.log.info("Detected non-supported codepage %s" % encoding)
                         if p_t == "text/html":
-                            body = html.document_fromstring(body).text_content()
+                            try:
+                                body = html.document_fromstring(body).text_content()
+                            except ValueError:
+                                # For documents with xml encoding declarations
+                                body = html.document_fromstring(p_l).text_content()
                         words = re.findall("[^ \n\t\r\xa0]+", body)
                         body_words.update(words)
                     except UnicodeDecodeError:
+                        # cannot decode body by specified content
                         pass
 
                 if self.max_attachment_size is not None and len(p_l) > self.max_attachment_size:
