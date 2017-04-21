@@ -50,11 +50,11 @@ def derive_key_v2(hash_val, key_size):
 
 def generate_enc_key_v2(password, salt, key_size):
     """Algorithm from MS-OFFCRYPTO 2.3.4.7"""
-    password = password.encode("utf-16")[2:]
-    plain_text = salt + password
-    h_step = hashlib.sha1(plain_text).digest()
+    h_step = hashlib.sha1(salt + password.encode("utf-16")[2:]).digest()
+    struct_template = "I%is" % hashlib.sha1().digest_size
+
     for i in xrange(50000):
-        h_step = hashlib.sha1(struct.pack("I", i) + h_step).digest()
+        h_step = hashlib.sha1(struct.pack(struct_template, i, h_step)).digest()
 
     block = 0
     h_final = hashlib.sha1(h_step + struct.pack("I", block)).digest()
@@ -84,11 +84,10 @@ def adjust_buf_len(buffer, length, pad="\x36"):
 
 def generate_enc_key_v4(password, salt, spins, hash, key_size, block_key):
     """Algorithm from MS-OFFCRYPTO 2.3.4.11"""
-    password = password.encode("utf-16")[2:]
-    plain_text = salt + password
-    h_step = hash(plain_text).digest()
+    h_step = hash(salt + password.encode("utf-16")[2:]).digest()
+    struct_template = "I%is" % hash().digest_size
     for i in xrange(spins):
-        h_step = hash(struct.pack("I", i) + h_step).digest()
+        h_step = hash(struct.pack(struct_template, i, h_step)).digest()
 
     h_final = hash(h_step + block_key).digest()
     return adjust_buf_len(h_final, key_size, "\x36")
