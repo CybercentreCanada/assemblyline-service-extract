@@ -390,6 +390,8 @@ def extract_docx(filename, password_list, output_folder):
         name = tf.name
         tf.close()
         return name, password
+    else:
+        raise ValueError("Not encrypted")
 
 if __name__ == "__main__":
     import sys
