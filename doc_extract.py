@@ -290,7 +290,7 @@ def parse_enc_info_v2(doc, header):
         enc_header["flags"] = decode_flags_v2(enc_header["flags"])
         header["enc_header"] = enc_header
         header["flags"] = decode_flags_v2(header["flags"])
-        if fixed["enc_header"]['AlgID'] == "RC4":
+        if header["enc_header"]['AlgID'] == "RC4":
             raise ExtractionError("Error, cannot handle RC4")
 
         doc.read(4)   # "salt_len" unused, by spec must be 16
@@ -299,7 +299,7 @@ def parse_enc_info_v2(doc, header):
         header['verifier_len'] = struct.unpack("I", doc.read(4))[0]
         header['verifier_hash'] = doc.read(32)
     except:
-        ExtractionError("Error, could not parse file, probably corrupt.")
+        raise ExtractionError("Error, could not parse file, probably corrupt.")
 
     return header
 
@@ -310,7 +310,12 @@ def parse_enc_info_v3(doc, header):
 
 def parse_enc_info_v4(doc, header):
     """Structures laid out in MS-OFFCRYPTO 2.3.4.10"""
-    tree = etree.parse(doc)
+    # noinspection PyBroadException
+    try:
+        tree = etree.parse(doc)
+    except:
+        raise ExtractionError("Invalid encryption definition")
+
     for x in tree.getroot().iter():
         for suffix in ["keyData", "dataIntegrity", "encryptedKey"]:
             if x.tag.endswith(suffix):
