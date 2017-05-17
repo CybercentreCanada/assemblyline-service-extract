@@ -394,7 +394,7 @@ class Extract(ServiceBase):
 
     def extract_7zip(self, request, local, encoding):
         password_protected = False
-        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document'):
+        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or encoding == 'tnef':
             return [], password_protected
         path = os.path.join(self.working_directory, "7zip")
 
