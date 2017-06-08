@@ -480,7 +480,7 @@ class Extract(ServiceBase):
             # noinspection PyUnresolvedReferences
             from tnefparse import tnef
             tnef_logger = logging.getLogger("tnef-decode")
-            tnef_logger.setLevel(logging.ERROR)
+            tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
             for a in tnef.TNEF(open(file_path).read()).attachments:
