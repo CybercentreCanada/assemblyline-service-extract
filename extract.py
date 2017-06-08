@@ -7,6 +7,8 @@ import shutil
 import tempfile
 import time
 import email
+
+import logging
 from lxml import html
 
 from assemblyline.common.charset import translate_str
@@ -239,6 +241,7 @@ class Extract(ServiceBase):
 
         return passwords
 
+    # noinspection PyCallingNonCallable
     def extract_docx(self, request, local, encoding):
         if request.tag != "document/office/unknown":
             return [], False
@@ -258,7 +261,7 @@ class Extract(ServiceBase):
         except ValueError:
             # Not a valid ms-word file
             return [], False
-        except PasswordError as pe:
+        except PasswordError:
             # Could not guess password
             return [], True
 
@@ -394,7 +397,8 @@ class Extract(ServiceBase):
 
     def extract_7zip(self, request, local, encoding):
         password_protected = False
-        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or encoding == 'tnef':
+        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or \
+                encoding == 'tnef':
             return [], password_protected
         path = os.path.join(self.working_directory, "7zip")
 
@@ -475,6 +479,8 @@ class Extract(ServiceBase):
         try:
             # noinspection PyUnresolvedReferences
             from tnefparse import tnef
+            tnef_logger = logging.getLogger("tnef-decode")
+            tnef_logger.setLevel(logging.ERROR)
 
             count = 0
             for a in tnef.TNEF(open(file_path).read()).attachments:
@@ -633,7 +639,7 @@ class Extract(ServiceBase):
             p_cset = message.get_content_charset()
             yield (p_type, p_disp, p_load, p_name, p_cset)
 
-    def extract_eml(self, request, local, encoding):
+    def extract_eml(self, _, local, encoding):
         if encoding != "document/email":
             return [], False
 
