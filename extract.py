@@ -135,7 +135,7 @@ class Extract(ServiceBase):
 
     def execute(self, request):
         result = Result()
-        continue_after_extract = request.get_param('continue_after_extract', False)
+        continue_after_extract = request.get_param('continue_after_extract')
         self._last_password = None
         local = request.download()
         password_protected = False
@@ -167,7 +167,7 @@ class Extract(ServiceBase):
                                     % (num_extracted, self._last_password))
 
         elif request.extracted and password_protected and self._last_password is None:
-            pwlist = " | ".join(self.get_passwords(request.config))
+            pwlist = " | ".join(self.get_passwords(request))
             section = ResultSection(SCORE.NULL,
                                     "Successfully extracted %s file(s) using one of the following passwords: %s"
                                     % (num_extracted, pwlist))
@@ -226,15 +226,11 @@ class Extract(ServiceBase):
 
         return password_protected, white_listed_count
 
-    def get_config_data(self, task):
-        return self.get_passwords(task.get_service_params(task.service_name))
-
-    def get_passwords(self, config):
+    def get_passwords(self, request):
         passwords = self.cfg.get('DEFAULT_PW_LIST', [])
-        if config:
-            user_supplied = config.get('password', None)
-            if user_supplied:
-                passwords.append(user_supplied)
+        user_supplied = request.get_param('password')
+        if user_supplied:
+            passwords.append(user_supplied)
 
         if "email_body" in self.submission_tags:
             passwords.extend(self.submission_tags["email_body"])
@@ -247,7 +243,7 @@ class Extract(ServiceBase):
             return [], False
 
         try:
-            passwords = self.get_passwords(request.config)
+            passwords = self.get_passwords(request)
             res = extract_docx(local, passwords, self.working_directory)
             if res is None:
                 raise ValueError()
@@ -315,7 +311,7 @@ class Extract(ServiceBase):
         return extracted_children, False
 
     def _7zip_submit_extracted(self, request, lines, path, encoding):
-        extract_pe_sections = request.get_param('extract_pe_sections', False)
+        extract_pe_sections = request.get_param('extract_pe_sections')
         extracted_children = []
 
         for line in lines:
@@ -420,7 +416,7 @@ class Extract(ServiceBase):
             else:
                 if "Wrong password?" in stdoutput:
                     password_protected = True
-                    password_list = self.get_passwords(request.config)
+                    password_list = self.get_passwords(request)
                     for password in password_list:
                         try:
                             shutil.rmtree(path, ignore_errors=True)
