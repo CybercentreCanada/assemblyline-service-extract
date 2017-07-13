@@ -160,6 +160,7 @@ class Extract(ServiceBase):
         if not request.extracted and password_protected:
             section = ResultSection(SCORE.VHIGH,
                                     "Failed to extract password protected file.")
+            result.add_tag(TAG_TYPE['FILE_SUMMARY'], "Archive Unknown Password", TAG_WEIGHT['MED'])
 
         elif request.extracted and password_protected and self._last_password is not None:
             section = ResultSection(SCORE.NULL,
