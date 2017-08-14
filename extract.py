@@ -399,10 +399,8 @@ class Extract(ServiceBase):
 
         # noinspection PyBroadException
         try:
-            env = os.environ
-            if encoding == 'rar':
-                env = env.copy()
-                env['LANG'] = 'en_US.UTF-8'
+            env = os.environ.copy()
+            env['LANG'] = 'en_US.UTF-8'
 
             stdoutput, _ = subprocess.Popen(
                 ['7z', 'x', '-p', '-y', local, '-o%s' % path],
