@@ -11,7 +11,7 @@ import email
 import logging
 from lxml import html
 
-from assemblyline.common.charset import translate_str
+from assemblyline.common.charset import safe_str
 from assemblyline.common.identify import ident
 from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
 from assemblyline.al.service.base import ServiceBase
@@ -275,7 +275,7 @@ class Extract(ServiceBase):
                         count = 0
 
                         for entry in archive:
-                            name = translate_str(entry.pathname)['converted']
+                            name = safe_str(entry.pathname)
                             if entry.isdir():
                                 continue
 
@@ -329,8 +329,7 @@ class Extract(ServiceBase):
                 if os.path.isdir(path + "/" + filename):
                     continue
                 else:
-                    name = translate_str(filename)
-                    extracted_children.append([path + "/" + filename, encoding, name['converted']])
+                    extracted_children.append([path + "/" + filename, encoding, safe_str(filename)])
 
         return extracted_children
 
@@ -380,8 +379,7 @@ class Extract(ServiceBase):
                         if os.path.isdir(filepath):
                             continue
                         else:
-                            name = translate_str(filename)
-                            extracted_children.append([filepath, encoding, name['converted']])
+                            extracted_children.append([filepath, encoding, safe_str(filename)])
 
                 return extracted_children, False
 
@@ -499,7 +497,7 @@ class Extract(ServiceBase):
                     if not name:
                         continue
 
-                    name = translate_str(name)['converted']
+                    name = safe_str(name)
                 except AttributeError:
                     name = 'unknown_tnef_%d' % count
 
