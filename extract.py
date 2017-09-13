@@ -641,7 +641,7 @@ class Extract(ServiceBase):
         with open(local, "r") as fh:
             message = email.message_from_file(fh)
             for part_num, (p_t, p_d, p_l, p_n, p_c) in enumerate(self.yield_eml_parts(message)):
-                is_body = not p_n or "attachment" not in p_d
+                is_body = not p_n and "attachment" not in p_d and p_t != "application/octet-stream"
                 if p_l is None or p_l.strip() == "":
                     continue
                 if is_body:
