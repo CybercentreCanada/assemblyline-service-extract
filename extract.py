@@ -20,6 +20,7 @@ from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
 
 extract_docx = None
+RepairZip = None
 ExtractionError = None
 PasswordError = None
 
@@ -110,6 +111,7 @@ class Extract(ServiceBase):
         super(Extract, self).__init__(cfg)
         self._last_password = None
         self.extract_methods = [
+            self.repair_zip,
             self.extract_7zip,
             self.extract_tnef,
             self.extract_swf,
@@ -127,6 +129,8 @@ class Extract(ServiceBase):
     def import_service_deps(self):
         global extract_docx, ExtractionError, PasswordError
         from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
+        global RepairZip
+        from al_services.alsvc_extract.repair_zip import RepairZip
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
@@ -237,6 +241,20 @@ class Extract(ServiceBase):
             passwords.extend(self.submission_tags["email_body"])
 
         return passwords
+
+    # noinspection PyCallingNonCallable
+    def repair_zip(self, request, local, encoding):
+        try:
+            rz = RepairZip(local)
+        except ValueError:
+            return [], False
+        if rz.broken() is False:
+            return [], False
+
+        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
+            out_name = fh.name
+
+        return [[out_name, encoding, "corrupted_zip_file"]], False
 
     # noinspection PyCallingNonCallable
     def extract_docx(self, request, local, encoding):
