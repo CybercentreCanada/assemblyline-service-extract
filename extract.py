@@ -20,6 +20,7 @@ from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
 
 extract_docx = None
+RepairZip = None
 ExtractionError = None
 PasswordError = None
 
@@ -115,7 +116,8 @@ class Extract(ServiceBase):
             self.extract_swf,
             self.extract_ace,
             self.extract_eml,
-            self.extract_docx
+            self.repair_zip,
+            self.extract_docx,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -127,6 +129,8 @@ class Extract(ServiceBase):
     def import_service_deps(self):
         global extract_docx, ExtractionError, PasswordError
         from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
+        global RepairZip
+        from al_services.alsvc_extract.repair_zip import RepairZip
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
@@ -237,6 +241,27 @@ class Extract(ServiceBase):
             passwords.extend(self.submission_tags["email_body"])
 
         return passwords
+
+    # noinspection PyCallingNonCallable
+    def repair_zip(self, request, local, encoding):
+        try:
+            with RepairZip(local, strict=False) as rz:
+                if not (rz.is_zip and rz.broken):
+                    return [], False
+                rz.fix_zip()
+
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
+                    out_name = fh.name
+                    with RepairZip(fh, "w") as zo:
+                        for path in rz.namelist():
+                            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
+                                tmp_f.write(rz.read(path))
+                                tmp_f.flush()
+                                zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+
+                return [[out_name, encoding, "repaired_zip_file.zip"]], False
+        except ValueError:
+            return [], False
 
     # noinspection PyCallingNonCallable
     def extract_docx(self, request, local, encoding):
