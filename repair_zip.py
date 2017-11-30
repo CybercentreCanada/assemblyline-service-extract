@@ -15,12 +15,7 @@ import string
 import mmap
 import zlib
 
-# Based on zipfile.py
-
-# constants for Zip file compression methods
-ZIP_STORED = 0
-ZIP_DEFLATED = 8
-# Other ZIP compression methods not supported
+# Based on zipfile.py:
 
 # Below are some formats and associated data for reading/writing headers using
 # the struct module.  The names and structures of headers/records are those used
@@ -117,15 +112,19 @@ _CD64_OFFSET_START_CENTDIR = 9
 
 
 class RepairZip(ZipFile):
+    # constants for Zip file compression methods
+    ZIP_STORED = 0
+    ZIP_DEFLATED = 8
+
     def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=False):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):
             raise RuntimeError('ZipFile() requires mode "r", "w", or "a"')
 
-        if compression == ZIP_STORED:
+        if compression == self.ZIP_STORED:
             pass
-        elif compression == ZIP_DEFLATED:
+        elif compression == self.ZIP_DEFLATED:
             if not zlib:
                 raise RuntimeError,\
                       "Compression requires the (missing) zlib module"
@@ -141,12 +140,13 @@ class RepairZip(ZipFile):
         self.mode = key = mode.replace('b', '')[0]
         self.pwd = None
         self._comment = ''
+        self.is_zip = True
 
         # Check if we were passed a file-like object
         if isinstance(filename, basestring):
             self._filePassed = 0
             self.filename = filename
-            modeDict = {'r' : 'rb', 'w': 'wb', 'a' : 'r+b'}
+            modeDict = {'r': 'rb', 'w': 'wb', 'a': 'r+b'}
             try:
                 self.fp = open(filename, modeDict[mode])
             except IOError:
@@ -162,6 +162,9 @@ class RepairZip(ZipFile):
 
         try:
             if key == 'r':
+                self.fp.seek(0)
+                if stringFileHeader not in self.fp.read(1024):
+                    self.is_zip = False
                 self._RealGetContents()
             elif key == 'w':
                 # set the modified flag so central directory gets written
@@ -183,36 +186,26 @@ class RepairZip(ZipFile):
             else:
                 raise RuntimeError('Mode must be "r", "w" or "a"')
             self.broken = False
-        except BadZipfile:
+        except:
             if strict:
-                fp = self.fp
-                self.fp = None
                 if not self._filePassed:
-                    fp.close()
+                    self.fp.close()
+                self.fp = None
                 raise
             else:
                 self.broken = True
-        except:
-            fp = self.fp
-            self.fp = None
-            if not self._filePassed:
-                fp.close()
-            raise
 
-    def is_broken(self):
-        return self.broken
-
-    def fix_zip(self, out_filename):
+    def fix_zip(self):
         if not self.broken:
             return False
-        self.fp.seek(0,2)
+        self.fp.seek(0, 2)
         file_len = self.fp.tell()
         mm = mmap.mmap(self.fp.fileno(), 0, prot=mmap.PROT_READ)
         offset = 0
         file_list = {}
         cd_list = {}
 
-        #pass one, parse the zip file
+        # pass one, parse the zip file
         while offset + 4 < file_len:
             hdr_off = mm.find("PK", offset)
             if hdr_off == -1:
@@ -254,7 +247,8 @@ class RepairZip(ZipFile):
         last_cv = 20
         last_ea = 0
         last_cs = 0
-        last_dt = (0,0)
+        last_dt = (0, 0)
+
         # Pass two, repair
         for filename, (start, end, centdir) in cd_list.iteritems():
             x = ZipInfo(filename)
@@ -285,7 +279,7 @@ class RepairZip(ZipFile):
             self.NameToInfo[x.filename] = x
 
         for filename, (start, end, fheader) in file_list.iteritems():
-            if name in cd_list:
+            if filename in cd_list:
                 continue
 
             x = ZipInfo(filename)
@@ -322,6 +316,23 @@ class RepairZip(ZipFile):
         mm.close()
 
 
-
 if __name__ == "__main__":
     import sys
+    import tempfile
+    if len(sys.argv) != 3:
+        print "Usage: repair_zip.py <in file> <out file>"
+        sys.exit(1)
+
+    with RepairZip(sys.argv[1], strict=False) as rz:
+        if not rz.broken:
+            print "Zip file not broken"
+            sys.exit(0)
+
+        rz.fix_zip()
+        with ZipFile(sys.argv[2], "w") as zo:
+            for path in rz.namelist():
+                with tempfile.NamedTemporaryFile(dir="/tmp", delete=True) as tmp_f:
+                    tmp_f.write(rz.read(path))
+                    tmp_f.flush()
+                    zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+

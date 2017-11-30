@@ -111,13 +111,13 @@ class Extract(ServiceBase):
         super(Extract, self).__init__(cfg)
         self._last_password = None
         self.extract_methods = [
-            self.repair_zip,
             self.extract_7zip,
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
             self.extract_eml,
-            self.extract_docx
+            self.repair_zip,
+            self.extract_docx,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -245,16 +245,23 @@ class Extract(ServiceBase):
     # noinspection PyCallingNonCallable
     def repair_zip(self, request, local, encoding):
         try:
-            rz = RepairZip(local)
+            with RepairZip(local) as rz:
+                if not (rz.is_zip and rz.broken):
+                    return [], False
+            rz.fix_zip()
+
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
+                out_name = fh.name
+                with RepairZip(fh, "w") as zo:
+                    for path in rz.namelist():
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
+                            tmp_f.write(rz.read(path))
+                            tmp_f.flush()
+                            zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+
+            return [[out_name, encoding, "repaired_zip_file.zip"]], False
         except ValueError:
             return [], False
-        if rz.broken() is False:
-            return [], False
-
-        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
-            out_name = fh.name
-
-        return [[out_name, encoding, "corrupted_zip_file"]], False
 
     # noinspection PyCallingNonCallable
     def extract_docx(self, request, local, encoding):
