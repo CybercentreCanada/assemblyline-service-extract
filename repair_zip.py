@@ -116,7 +116,7 @@ class RepairZip(ZipFile):
     ZIP_STORED = 0
     ZIP_DEFLATED = 8
 
-    def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=False):
+    def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=True):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):

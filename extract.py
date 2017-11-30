@@ -245,21 +245,21 @@ class Extract(ServiceBase):
     # noinspection PyCallingNonCallable
     def repair_zip(self, request, local, encoding):
         try:
-            with RepairZip(local) as rz:
+            with RepairZip(local, strict=False) as rz:
                 if not (rz.is_zip and rz.broken):
                     return [], False
-            rz.fix_zip()
+                rz.fix_zip()
 
-            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
-                out_name = fh.name
-                with RepairZip(fh, "w") as zo:
-                    for path in rz.namelist():
-                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
-                            tmp_f.write(rz.read(path))
-                            tmp_f.flush()
-                            zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
+                    out_name = fh.name
+                    with RepairZip(fh, "w") as zo:
+                        for path in rz.namelist():
+                            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
+                                tmp_f.write(rz.read(path))
+                                tmp_f.flush()
+                                zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
 
-            return [[out_name, encoding, "repaired_zip_file.zip"]], False
+                return [[out_name, encoding, "repaired_zip_file.zip"]], False
         except ValueError:
             return [], False
 
