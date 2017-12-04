@@ -7,11 +7,7 @@
 
 
 from zipfile import ZipFile, BadZipfile, ZipInfo
-import struct, os, time, sys, shutil
-import binascii, cStringIO, stat
-import io
-import re
-import string
+import struct
 import mmap
 import zlib
 
@@ -255,7 +251,7 @@ class RepairZip(ZipFile):
             for filename, (start, end, centdir) in cd_list.iteritems():
                 if filename not in file_list:
                     continue
-                    
+
                 x = ZipInfo(filename)
                 extra_off = start + sizeCentralDir
                 x.extra = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
