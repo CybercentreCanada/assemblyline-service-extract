@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import time
 import email
+import zlib
 
 import logging
 from lxml import html
@@ -255,9 +256,13 @@ class Extract(ServiceBase):
                     with RepairZip(fh, "w") as zo:
                         for path in rz.namelist():
                             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
-                                tmp_f.write(rz.read(path))
-                                tmp_f.flush()
-                                zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+                                try:
+                                    tmp_f.write(rz.read(path))
+                                    tmp_f.flush()
+                                    zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+                                except zlib.error:
+                                    # Corrupted file, which is expected
+                                    pass
 
                 return [[out_name, encoding, "repaired_zip_file.zip"]], False
         except ValueError:
