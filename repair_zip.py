@@ -7,11 +7,7 @@
 
 
 from zipfile import ZipFile, BadZipfile, ZipInfo
-import struct, os, time, sys, shutil
-import binascii, cStringIO, stat
-import io
-import re
-import string
+import struct
 import mmap
 import zlib
 
@@ -205,115 +201,120 @@ class RepairZip(ZipFile):
         file_list = {}
         cd_list = {}
 
-        # pass one, parse the zip file
-        while offset + 4 < file_len:
-            hdr_off = mm.find("PK", offset)
-            if hdr_off == -1:
-                 break
-            hdr_type = mm[hdr_off:hdr_off+4]
-            if hdr_type == stringFileHeader:
-                # local file header
-                if offset+sizeFileHeader > file_len:
-                    break
-                fheader = mm[hdr_off:hdr_off+sizeFileHeader]
-                fheader = struct.unpack(structFileHeader, fheader)
-                start = hdr_off
-                size = sizeFileHeader + \
-                    fheader[_FH_COMPRESSED_SIZE] + \
-                    fheader[_FH_FILENAME_LENGTH] + \
-                    fheader[_FH_EXTRA_FIELD_LENGTH]
-                name = mm[hdr_off+sizeFileHeader:hdr_off+sizeFileHeader+fheader[_FH_FILENAME_LENGTH]]
-                file_list[name] = [start, size, fheader]
-                offset += size
-            elif hdr_type == stringCentralDir:
-                if offset+sizeCentralDir > file_len:
-                    break
-                centdir = mm[hdr_off:hdr_off + sizeCentralDir]
-                centdir = struct.unpack(structCentralDir, centdir)
-                start = hdr_off
-                size = sizeCentralDir + \
-                       centdir[_CD_FILENAME_LENGTH] + \
-                       centdir[_CD_EXTRA_FIELD_LENGTH] + \
-                       centdir[_CD_COMMENT_LENGTH]
-                name = mm[hdr_off + sizeCentralDir: hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
-                cd_list[name] = [start, size, centdir]
-                offset += size
-            elif hdr_type == stringEndArchive:
-                offset = hdr_off + sizeEndCentDir
-            else:
-                offset = hdr_off + 1
+        try:
 
-        # Guesses
-        last_cv = 20
-        last_ea = 0
-        last_cs = 0
-        last_dt = (0, 0)
+            # pass one, parse the zip file
+            while offset + 4 < file_len:
+                hdr_off = mm.find("PK", offset)
+                if hdr_off == -1:
+                     break
+                hdr_type = mm[hdr_off:hdr_off+4]
+                if hdr_type == stringFileHeader:
+                    # local file header
+                    if offset+sizeFileHeader > file_len:
+                        break
+                    fheader = mm[hdr_off:hdr_off+sizeFileHeader]
+                    fheader = struct.unpack(structFileHeader, fheader)
+                    start = hdr_off
+                    size = sizeFileHeader + \
+                        fheader[_FH_COMPRESSED_SIZE] + \
+                        fheader[_FH_FILENAME_LENGTH] + \
+                        fheader[_FH_EXTRA_FIELD_LENGTH]
+                    name = mm[hdr_off+sizeFileHeader:hdr_off+sizeFileHeader+fheader[_FH_FILENAME_LENGTH]]
+                    file_list[name] = [start, size, fheader]
+                    offset += size
+                elif hdr_type == stringCentralDir:
+                    if offset+sizeCentralDir > file_len:
+                        break
+                    centdir = mm[hdr_off:hdr_off + sizeCentralDir]
+                    centdir = struct.unpack(structCentralDir, centdir)
+                    start = hdr_off
+                    size = sizeCentralDir + \
+                           centdir[_CD_FILENAME_LENGTH] + \
+                           centdir[_CD_EXTRA_FIELD_LENGTH] + \
+                           centdir[_CD_COMMENT_LENGTH]
+                    name = mm[hdr_off + sizeCentralDir: hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
+                    cd_list[name] = [start, size, centdir]
+                    offset += size
+                elif hdr_type == stringEndArchive:
+                    offset = hdr_off + sizeEndCentDir
+                else:
+                    offset = hdr_off + 1
 
-        # Pass two, repair
-        for filename, (start, end, centdir) in cd_list.iteritems():
-            x = ZipInfo(filename)
-            extra_off = start + sizeCentralDir
-            x.extra = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
-            extra_off += centdir[_CD_EXTRA_FIELD_LENGTH]
-            x.comment = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
+            # Guesses
+            last_cv = 20
+            last_ea = 0
+            last_cs = 0
+            last_dt = (0, 0)
 
-            x.header_offset = file_list[filename][0]  # TODO: Fix
+            # Pass two, repair
+            for filename, (start, end, centdir) in cd_list.iteritems():
+                if filename not in file_list:
+                    continue
 
-            (x.create_version, x.create_system, x.extract_version, x.reserved,
-                x.flag_bits, x.compress_type, t, d,
-                x.CRC, x.compress_size, x.file_size) = centdir[1:12]
-            x.volume, x.internal_attr, x.external_attr = centdir[15:18]
-            # Convert date/time code to (year, month, day, hour, min, sec)
-            x._raw_time = t
-            x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
-                                     t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
+                x = ZipInfo(filename)
+                extra_off = start + sizeCentralDir
+                x.extra = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
+                extra_off += centdir[_CD_EXTRA_FIELD_LENGTH]
+                x.comment = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
 
-            last_ea = x.external_attr
-            last_cs = x.create_system
-            last_cv = x.create_version
-            last_dt = (d, t)
+                x.header_offset = file_list[filename][0]
 
-            x._decodeExtra()
-            x.filename = x._decodeFilename()
-            self.filelist.append(x)
-            self.NameToInfo[x.filename] = x
+                (x.create_version, x.create_system, x.extract_version, x.reserved,
+                    x.flag_bits, x.compress_type, t, d,
+                    x.CRC, x.compress_size, x.file_size) = centdir[1:12]
+                x.volume, x.internal_attr, x.external_attr = centdir[15:18]
+                # Convert date/time code to (year, month, day, hour, min, sec)
+                x._raw_time = t
+                x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
+                                         t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
 
-        for filename, (start, end, fheader) in file_list.iteritems():
-            if filename in cd_list:
-                continue
+                last_ea = x.external_attr
+                last_cs = x.create_system
+                last_cv = x.create_version
+                last_dt = (d, t)
 
-            x = ZipInfo(filename)
-            x.extra = ""
-            x.comment = ""
+                x._decodeExtra()
+                x.filename = x._decodeFilename()
+                self.filelist.append(x)
+                self.NameToInfo[x.filename] = x
 
-            x.header_offset = file_list[filename][0]
+            for filename, (start, end, fheader) in file_list.iteritems():
+                if filename in cd_list:
+                    continue
 
-            x.create_version = last_cv
-            x.create_system = last_cs
-            x.extract_version = fheader[_FH_EXTRACT_VERSION]
-            x.reserved = 0
-            x.flag_bits = fheader[_FH_GENERAL_PURPOSE_FLAG_BITS]
-            x.compress_type = fheader[_FH_COMPRESSION_METHOD]
-            d, t = last_dt
-            x.CRC = fheader[_FH_CRC]
-            x.compress_size = fheader[_FH_COMPRESSED_SIZE]
-            x.file_size = fheader[_FH_UNCOMPRESSED_SIZE]
+                x = ZipInfo(filename)
+                x.extra = ""
+                x.comment = ""
 
-            x.volume = 0
-            x.internal_attr = 0
-            x.external_attr = last_ea
+                x.header_offset = file_list[filename][0]
 
-            # Convert date/time code to (year, month, day, hour, min, sec)
-            x._raw_time = t
-            x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
-                                     t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
+                x.create_version = last_cv
+                x.create_system = last_cs
+                x.extract_version = fheader[_FH_EXTRACT_VERSION]
+                x.reserved = 0
+                x.flag_bits = fheader[_FH_GENERAL_PURPOSE_FLAG_BITS]
+                x.compress_type = fheader[_FH_COMPRESSION_METHOD]
+                d, t = last_dt
+                x.CRC = fheader[_FH_CRC]
+                x.compress_size = fheader[_FH_COMPRESSED_SIZE]
+                x.file_size = fheader[_FH_UNCOMPRESSED_SIZE]
 
-            x._decodeExtra()
-            x.filename = x._decodeFilename()
-            self.filelist.append(x)
-            self.NameToInfo[x.filename] = x
+                x.volume = 0
+                x.internal_attr = 0
+                x.external_attr = last_ea
 
-        mm.close()
+                # Convert date/time code to (year, month, day, hour, min, sec)
+                x._raw_time = t
+                x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
+                                         t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
+
+                x._decodeExtra()
+                x.filename = x._decodeFilename()
+                self.filelist.append(x)
+                self.NameToInfo[x.filename] = x
+        finally:
+            mm.close()
 
 
 if __name__ == "__main__":

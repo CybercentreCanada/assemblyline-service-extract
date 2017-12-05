@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import time
 import email
+import zlib
 
 import logging
 from lxml import html
@@ -21,6 +22,7 @@ from assemblyline.common.timeout import SubprocessTimer
 
 extract_docx = None
 RepairZip = None
+BadZipfile = None
 ExtractionError = None
 PasswordError = None
 
@@ -129,8 +131,8 @@ class Extract(ServiceBase):
     def import_service_deps(self):
         global extract_docx, ExtractionError, PasswordError
         from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
-        global RepairZip
-        from al_services.alsvc_extract.repair_zip import RepairZip
+        global RepairZip, BadZipfile
+        from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
@@ -255,9 +257,16 @@ class Extract(ServiceBase):
                     with RepairZip(fh, "w") as zo:
                         for path in rz.namelist():
                             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
-                                tmp_f.write(rz.read(path))
-                                tmp_f.flush()
-                                zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+                                try:
+                                    tmp_f.write(rz.read(path))
+                                    tmp_f.flush()
+                                    zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
+                                except zlib.error:
+                                    # Corrupted compression, which is expected
+                                    pass
+                                except BadZipfile:
+                                    # Corrupted zip file, also expected
+                                    pass
 
                 return [[out_name, encoding, "repaired_zip_file.zip"]], False
         except ValueError:
