@@ -211,7 +211,7 @@ class RepairZip(ZipFile):
                 hdr_type = mm[hdr_off:hdr_off+4]
                 if hdr_type == stringFileHeader:
                     # local file header
-                    if offset+sizeFileHeader > file_len:
+                    if hdr_off+sizeFileHeader > file_len:
                         break
                     fheader = mm[hdr_off:hdr_off+sizeFileHeader]
                     fheader = struct.unpack(structFileHeader, fheader)
@@ -222,9 +222,9 @@ class RepairZip(ZipFile):
                         fheader[_FH_EXTRA_FIELD_LENGTH]
                     name = mm[hdr_off+sizeFileHeader:hdr_off+sizeFileHeader+fheader[_FH_FILENAME_LENGTH]]
                     file_list[name] = [start, size, fheader]
-                    offset += size
+                    offset = hdr_off + size
                 elif hdr_type == stringCentralDir:
-                    if offset+sizeCentralDir > file_len:
+                    if hdr_off+sizeCentralDir > file_len:
                         break
                     centdir = mm[hdr_off:hdr_off + sizeCentralDir]
                     centdir = struct.unpack(structCentralDir, centdir)
@@ -235,7 +235,7 @@ class RepairZip(ZipFile):
                            centdir[_CD_COMMENT_LENGTH]
                     name = mm[hdr_off + sizeCentralDir: hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
                     cd_list[name] = [start, size, centdir]
-                    offset += size
+                    offset = hdr_off + size
                 elif hdr_type == stringEndArchive:
                     offset = hdr_off + sizeEndCentDir
                 else:
