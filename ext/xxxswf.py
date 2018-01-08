@@ -295,7 +295,7 @@ class xxxswf:
             uncompress_data = self.uncompress_zlib(stream.read())
             if uncompress_data == None:
                 if self.debug:
-                    print '\t\t[DEBUG] Zlib decompession failed',
+                    print '\t\t[DEBUG] Zlib decompression failed',
                 return None
             # set index to version, skipping over the header 
             stream.seek(addr+3)
@@ -306,7 +306,7 @@ class xxxswf:
             uncompress_lzma = self.uncompress_lzma(stream.read())
             if uncompress_lzma == None:
                 if self.debug:
-                    print '\t\t[DEBUG] lzma decompession failed',
+                    print '\t\t[DEBUG] lzma decompression failed',
                 return None
             stream.seek(addr+3)
             return "FWS" + stream.read(5) + uncompress_lzma[:size-8]
@@ -478,7 +478,7 @@ class xxxswf:
                 f = open(sys.argv[len(sys.argv)-1],'rb+')
                 file_name = sys.argv[len(sys.argv)-1]
             except Exception:
-                print '[ERROR] File can not be opended/accessed'
+                print '[ERROR] File can not be opened/accessed'
                 return
             self.process(f, file_name)
             f.close()
@@ -538,7 +538,7 @@ class xxxswf:
         try:
             file = open(file_path, 'rb+')
         except Exception:
-            print '[ERROR] File can not be opended/accessed'
+            print '[ERROR] File can not be opened/accessed'
             return
 
         # search for SWF file headers in the stream
