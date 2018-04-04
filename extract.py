@@ -245,7 +245,7 @@ class Extract(ServiceBase):
         return passwords
 
     # noinspection PyCallingNonCallable
-    def repair_zip(self, request, local, encoding):
+    def repair_zip(self, _, local, encoding):
         try:
             with RepairZip(local, strict=False) as rz:
                 if not (rz.is_zip and rz.broken):
@@ -270,6 +270,9 @@ class Extract(ServiceBase):
 
                 return [[out_name, encoding, "repaired_zip_file.zip"]], False
         except ValueError:
+            return [], False
+        except NotImplementedError:
+            # Compression type 99 is not implemented in python zipfile
             return [], False
 
     # noinspection PyCallingNonCallable
