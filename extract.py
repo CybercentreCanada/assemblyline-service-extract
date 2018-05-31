@@ -126,6 +126,7 @@ class Extract(ServiceBase):
         self.st = None
         self.named_attachments_only = None
         self.max_attachment_size = None
+        self.isipa = False
 
     # noinspection PyUnresolvedReferences
     def import_service_deps(self):
@@ -199,6 +200,7 @@ class Extract(ServiceBase):
                 and not request.tag.startswith("java")
                 and not request.tag.startswith("android")
                 and not request.tag.startswith("document")
+                and not self.isipa
                 and not continue_after_extract) \
                 or (request.tag == "document/email"
                     and not continue_after_extract):
@@ -355,7 +357,8 @@ class Extract(ServiceBase):
         for line in lines:
             if line.startswith("Extracting  "):
                 filename = line.split("Extracting  ", 1)[1]
-
+                if re.match("Payload/[^/]*.app/Info.plist", safe_str(filename)):
+                    self.isipa = True
                 if not extract_pe_sections and \
                         ((encoding.startswith("executable/windows") and
                           [f for f in self.FORBIDDEN_EXE if filename.startswith(f)]) or
