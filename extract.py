@@ -144,6 +144,7 @@ class Extract(ServiceBase):
         result = Result()
         continue_after_extract = request.get_param('continue_after_extract')
         self._last_password = None
+        self.isipa = False
         local = request.download()
         password_protected = False
         white_listed = 0
