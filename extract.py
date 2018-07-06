@@ -239,9 +239,9 @@ class Extract(ServiceBase):
 
     def get_passwords(self, request):
         passwords = self.cfg.get('DEFAULT_PW_LIST', [])
-        user_supplied = request.get_param('password').split("  ")
+        user_supplied = request.get_param('password')
         if user_supplied:
-            passwords.extend(user_supplied)
+            passwords.append(user_supplied)
 
         if "email_body" in self.submission_tags:
             passwords.extend(self.submission_tags["email_body"])
@@ -295,7 +295,7 @@ class Extract(ServiceBase):
             else:
                 try_next = False
                 self.log.warning("Extract service out of date. Reinstall on workers with "
-                                 "/opt/al/assemblyline/al/install/reinstall_service.py Extract")
+                                 "/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract")
                 res = extract_docx(local, passwords, self.working_directory)
 
             if res is None and not try_next:
