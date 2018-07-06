@@ -17,14 +17,17 @@ It will also:
 - Use unace to extract winace compressed files;
 - Use mstools and custom script to attempt to decode MSOffice files;
 - Extract attachments from .eml files;
-- Attempt automatic decoding using a default list of passwords (see configuration section below)
+- Attempt automatic decoding using:
+    - A default list of passwords (see section below)
+    - An optional user-supplied password (see section below)
+    - The body of an .eml file (separated once by whitespace characters and second on [a-zA-Z0-9]+)
 
 
 ## Submission Parameters & Configuration
 
 ### Parameters:
 
-- Password: An additional password list can be provided to the service on submission (separated by two spaces)
+- Password: An additional password can be provided to the service on submission
 
 - Continue After Extract: When true, AL will continue processing sample to other services.
 
