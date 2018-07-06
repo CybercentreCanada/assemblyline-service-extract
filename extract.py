@@ -21,6 +21,7 @@ from assemblyline.common.reaper import set_death_signal
 from assemblyline.common.timeout import SubprocessTimer
 
 extract_docx = None
+msoffice = None
 RepairZip = None
 BadZipfile = None
 ExtractionError = None
@@ -51,7 +52,7 @@ class Extract(ServiceBase):
     SERVICE_RAM_MB = 256
 
     SERVICE_DEFAULT_CONFIG = {
-        "DEFAULT_PW_LIST": ["password", "infected", "add_more_passwords"],
+        "DEFAULT_PW_LIST": ["password", "infected", "VelvetSweatshop", "add_more_passwords"],
         "NAMED_EMAIL_ATTACHMENTS_ONLY": True,
         "MAX_EMAIL_ATTACHMENT_SIZE": 10 * 1024**3,
     }
@@ -119,7 +120,7 @@ class Extract(ServiceBase):
             self.extract_ace,
             self.extract_eml,
             self.repair_zip,
-            self.extract_docx,
+            self.extract_office,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -130,10 +131,10 @@ class Extract(ServiceBase):
 
     # noinspection PyUnresolvedReferences
     def import_service_deps(self):
-        global extract_docx, ExtractionError, PasswordError
-        from al_services.alsvc_extract.doc_extract import extract_docx, ExtractionError, PasswordError
         global RepairZip, BadZipfile
         from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
+        global mstools, extract_docx, ExtractionError, PasswordError
+        from al_services.alsvc_extract.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 
     def start(self):
         self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
@@ -238,9 +239,9 @@ class Extract(ServiceBase):
 
     def get_passwords(self, request):
         passwords = self.cfg.get('DEFAULT_PW_LIST', [])
-        user_supplied = request.get_param('password')
+        user_supplied = request.get_param('password').split("  ")
         if user_supplied:
-            passwords.append(user_supplied)
+            passwords.extend(user_supplied)
 
         if "email_body" in self.submission_tags:
             passwords.extend(self.submission_tags["email_body"])
@@ -279,28 +280,42 @@ class Extract(ServiceBase):
             return [], False
 
     # noinspection PyCallingNonCallable
-    def extract_docx(self, request, local, encoding):
+    def extract_office(self, request, local, encoding):
+        # When encrypted, AL will identify the document as an unknown office type.
         if request.tag != "document/office/unknown":
             return [], False
 
+        passwords = self.get_passwords(request)
         try:
-            passwords = self.get_passwords(request)
-            res = extract_docx(local, passwords, self.working_directory)
-            if res is None:
-                raise ValueError()
+            # Check is msoffice is compiled
+            if os.path.isfile("/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"):
+                # Still going to use extract_docx as a backup for now, so try that module if msoffice fails
+                try_next = True
+                res = mstools(local, passwords, self.working_directory)
+            else:
+                try_next = False
+                self.log.warning("Extract service out of date. Reinstall on workers with "
+                                 "/opt/al/assemblyline/al/install/reinstall_service.py Extract")
+                res = extract_docx(local, passwords, self.working_directory)
 
-            out_name, password = res
-            self._last_password = password
-            display_name = "_decoded".join(os.path.splitext(os.path.basename(request.path)))
-            if not display_name.endswith(".docx"):
-                display_name += ".docx"
-            return [[out_name, encoding, display_name]], True
+            if res is None and not try_next:
+                raise ValueError()
+            # Try old module if msoffice errors
+            if res is None:
+                res = extract_docx(local, passwords, self.working_directory)
+                if res is None:
+                    raise ValueError()
         except ValueError:
-            # Not a valid ms-word file
+            # Not a valid supported/valid file
             return [], False
         except PasswordError:
             # Could not guess password
             return [], True
+
+        out_name, password = res
+        self._last_password = password
+        display_name = "_decoded".join(os.path.splitext(os.path.basename(request.path)))
+        return [[out_name, encoding, display_name]], True
 
     def extract_libarchive(self, request, local, encoding):
         extracted_children = []
@@ -700,7 +715,11 @@ class Extract(ServiceBase):
                             except ValueError:
                                 # For documents with xml encoding declarations
                                 body = html.document_fromstring(p_l).text_content()
+                        # Go through once separating by whitespace
                         words = re.findall("[^ \n\t\r\xa0]+", body)
+                        body_words.update(words)
+                        # Go through again separating by ANY special character
+                        words = re.findall("[A-Za-z0-9]+", body)
                         body_words.update(words)
                     except UnicodeDecodeError:
                         # cannot decode body by specified content
