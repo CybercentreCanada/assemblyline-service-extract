@@ -716,7 +716,7 @@ class Extract(ServiceBase):
                             except ValueError:
                                 # For documents with xml encoding declarations
                                 body = html.document_fromstring(p_l).text_content()
-                            except etree.ParseError:
+                            except etree.ParserError:
                                 # If /body is empty, just grab the text
                                 body = BeautifulSoup(body).text
                         if len(body) > 0:
