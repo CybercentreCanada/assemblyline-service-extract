@@ -10,7 +10,8 @@ import email
 import zlib
 
 import logging
-from lxml import html
+from bs4 import BeautifulSoup
+from lxml import html, etree
 
 from assemblyline.common.charset import safe_str
 from assemblyline.common.identify import ident
@@ -715,12 +716,16 @@ class Extract(ServiceBase):
                             except ValueError:
                                 # For documents with xml encoding declarations
                                 body = html.document_fromstring(p_l).text_content()
-                        # Go through once separating by whitespace
-                        words = re.findall("[^ \n\t\r\xa0]+", body)
-                        body_words.update(words)
-                        # Go through again separating by ANY special character
-                        words = re.findall("[A-Za-z0-9]+", body)
-                        body_words.update(words)
+                            except etree.ParseError:
+                                # If /body is empty, just grab the text
+                                body = BeautifulSoup(body).text
+                        if len(body) > 0:
+                            # Go through once separating by whitespace
+                            words = re.findall("[^ \n\t\r\xa0]+", body)
+                            body_words.update(words)
+                            # Go through again separating by ANY special character
+                            words = re.findall("[A-Za-z0-9]+", body)
+                            body_words.update(words)
                     except UnicodeDecodeError:
                         # cannot decode body by specified content
                         pass
