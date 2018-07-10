@@ -12,7 +12,8 @@ def install(alsi):
     alsi.pip_install_all([
         'python-libarchive==3.1.2-1',
         'tnefparse',
-        'olefile'
+        'olefile',
+        'beautifulsoup4'  # For Ubuntu 14.04
     ])
 
     # MSOffice Tool for better MSOffice decoding support
