@@ -10,7 +10,6 @@ import email
 import zlib
 
 import logging
-from bs4 import BeautifulSoup
 from lxml import html, etree
 
 from assemblyline.common.charset import safe_str
@@ -132,6 +131,8 @@ class Extract(ServiceBase):
 
     # noinspection PyUnresolvedReferences
     def import_service_deps(self):
+        global BeautifulSoup
+        from bs4 import BeautifulSoup
         global RepairZip, BadZipfile
         from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
         global mstools, extract_docx, ExtractionError, PasswordError
