@@ -368,13 +368,15 @@ class Extract(ServiceBase):
 
         return extracted_children, False
 
-    def _7zip_submit_extracted(self, request, lines, path, encoding):
+    def _7zip_submit_extracted(self, request, path, encoding):
         extract_pe_sections = request.get_param('extract_pe_sections')
         extracted_children = []
 
-        for line in lines:
-            if line.startswith("Extracting  "):
-                filename = line.split("Extracting  ", 1)[1]
+        for root, _, files in os.walk(path):
+            for f in files:
+                filename = safe_str(os.path.join(root, f).replace(path, ""))
+                if filename.startswith("/"):
+                    filename = filename[1:]
                 if re.match("Payload/[^/]*.app/Info.plist", safe_str(filename)):
                     self.isipa = True
                 if not extract_pe_sections and \
@@ -384,10 +386,7 @@ class Extract(ServiceBase):
                     raise ExtractIgnored("Detected extraction of forbidden PE/ELF file sections. "
                                          "No files will be extracted.")
 
-                if os.path.isdir(path + "/" + filename):
-                    continue
-                else:
-                    extracted_children.append([path + "/" + filename, encoding, safe_str(filename)])
+                extracted_children.append([os.path.join(root, f), encoding, safe_str(filename)])
 
         return extracted_children
 
@@ -466,8 +465,7 @@ class Extract(ServiceBase):
                 stderr=subprocess.PIPE).communicate()
 
             if stdoutput and stdoutput.strip().find("Everything is Ok") > 0:
-                lines = stdoutput.splitlines()
-                return self._7zip_submit_extracted(request, lines, path, encoding), password_protected
+                return self._7zip_submit_extracted(request, path, encoding), password_protected
             else:
                 if "Wrong password?" in stdoutput:
                     password_protected = True
@@ -483,8 +481,7 @@ class Extract(ServiceBase):
                             stdout = proc.communicate()[0]
                             if "\nEverything is Ok\n" in stdout:
                                 self._last_password = password
-                                lines = str(stdout).splitlines()
-                                return self._7zip_submit_extracted(request, lines, path, encoding), password_protected
+                                return self._7zip_submit_extracted(request, path, encoding), password_protected
 
                         except OSError:
                             pass
