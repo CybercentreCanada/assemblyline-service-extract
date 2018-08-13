@@ -40,7 +40,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/office/unknown'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/pdf|document/office/unknown'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -121,6 +121,7 @@ class Extract(ServiceBase):
             self.extract_eml,
             self.repair_zip,
             self.extract_office,
+            self.extract_pdf,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -446,6 +447,29 @@ class Extract(ServiceBase):
             self.log.exception('While extracting %s with unace', request.srl)
 
         return [], False
+
+    def extract_pdf(self, request, local, encoding):
+        extracted_children = []
+
+        if encoding == 'document/pdf':
+            output_path = os.path.join(self.working_directory, "pdf")
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+
+            env = os.environ.copy()
+            env['LANG'] = 'en_US.UTF-8'
+
+            subprocess.Popen(
+                ['pdftk', local, 'unpack_files', 'output', output_path],
+                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE).communicate()
+
+            files = (filename for filename in os.listdir(output_path) if os.path.isfile(os.path.join(output_path, filename)))
+
+            for filename in files:
+                extracted_children.append([output_path + "/" + filename, encoding, safe_str(filename)])
+
+        return extracted_children, False
 
     def extract_7zip(self, request, local, encoding):
         password_protected = False

@@ -6,6 +6,7 @@ def install(alsi):
         'p7zip-full', 
         'p7zip-rar',
         'libarchive-dev',
+        'pdftk',
         'unace-nonfree'
     ])
 
