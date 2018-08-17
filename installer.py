@@ -5,12 +5,10 @@ def install(alsi):
     alsi.sudo_apt_install([
         'p7zip-full', 
         'p7zip-rar',
-        'libarchive-dev',
         'unace-nonfree'
     ])
 
     alsi.pip_install_all([
-        'python-libarchive==3.1.2-1',
         'tnefparse',
         'olefile',
         'beautifulsoup4'  # For Ubuntu 14.04
