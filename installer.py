@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 import os
+import os.path
 
 def install(alsi):
     alsi.sudo_apt_install([
         'p7zip-full', 
         'p7zip-rar',
         'libarchive-dev',
-        'pdftk',
-        'unace-nonfree'
+        'unace-nonfree',
+        'poppler-utils'
     ])
 
     alsi.pip_install_all([
@@ -25,7 +26,8 @@ def install(alsi):
     local_msoffice = os.path.join(local_support, 'msoffice.tar.gz')
     local_cybozulib = os.path.join(local_support, 'cybozulib.tar.gz')
 
-    os.makedirs(local_work)
+    if not os.path.exists(local_work):
+        os.makedirs(local_work)
     alsi.fetch_package('extract/msoffice.tar.gz', local_msoffice)
     alsi.fetch_package('extract/cybozulib.tar.gz', local_cybozulib)
 
@@ -36,6 +38,7 @@ def install(alsi):
     os.chdir(os.path.join(local_support, "msoffice"))
     alsi.runcmd("make -j RELEASE=1")
     os.chdir(wd)
+
 
 if __name__ == '__main__':
     from assemblyline.al.install import SiteInstaller

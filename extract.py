@@ -452,7 +452,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'document/pdf':
-            output_path = os.path.join(self.working_directory, "pdf")
+            output_path = os.path.join(self.working_directory, "TEST_pdf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -460,11 +460,12 @@ class Extract(ServiceBase):
             env['LANG'] = 'en_US.UTF-8'
 
             subprocess.Popen(
-                ['pdftk', local, 'unpack_files', 'output', output_path],
+                ['pdfdetach', '-saveall', '-o', output_path, local],
                 env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE).communicate()
 
-            files = (filename for filename in os.listdir(output_path) if os.path.isfile(os.path.join(output_path, filename)))
+            files = (filename for filename in os.listdir(output_path) if
+                     os.path.isfile(os.path.join(output_path, filename)))
 
             for filename in files:
                 extracted_children.append([output_path + "/" + filename, encoding, safe_str(filename)])
