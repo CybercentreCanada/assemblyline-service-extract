@@ -6,8 +6,8 @@ def install(alsi):
     alsi.sudo_apt_install([
         'p7zip-full', 
         'p7zip-rar',
-        'libarchive-dev',
         'unace-nonfree',
+        'libarchive-dev',
         'poppler-utils'
     ])
 
