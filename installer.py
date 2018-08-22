@@ -1,18 +1,14 @@
 #!/usr/bin/env python
 import os
-import os.path
 
 def install(alsi):
     alsi.sudo_apt_install([
         'p7zip-full', 
         'p7zip-rar',
-        'unace-nonfree',
-        'libarchive-dev',
-        'poppler-utils'
+        'unace-nonfree'
     ])
 
     alsi.pip_install_all([
-        'python-libarchive==3.1.2-1',
         'tnefparse',
         'olefile',
         'beautifulsoup4'  # For Ubuntu 14.04
@@ -26,8 +22,7 @@ def install(alsi):
     local_msoffice = os.path.join(local_support, 'msoffice.tar.gz')
     local_cybozulib = os.path.join(local_support, 'cybozulib.tar.gz')
 
-    if not os.path.exists(local_work):
-        os.makedirs(local_work)
+    os.makedirs(local_work)
     alsi.fetch_package('extract/msoffice.tar.gz', local_msoffice)
     alsi.fetch_package('extract/cybozulib.tar.gz', local_cybozulib)
 
@@ -38,7 +33,6 @@ def install(alsi):
     os.chdir(os.path.join(local_support, "msoffice"))
     alsi.runcmd("make -j RELEASE=1")
     os.chdir(wd)
-
 
 if __name__ == '__main__':
     from assemblyline.al.install import SiteInstaller

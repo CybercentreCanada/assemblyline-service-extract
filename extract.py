@@ -26,6 +26,8 @@ RepairZip = None
 BadZipfile = None
 ExtractionError = None
 PasswordError = None
+BeautifulSoup = None
+mstools = None
 
 chunk_size = 65536
 DEBUG = False
@@ -132,11 +134,11 @@ class Extract(ServiceBase):
 
     # noinspection PyUnresolvedReferences
     def import_service_deps(self):
-        global BeautifulSoup
+        global BeautifulSoup, RepairZip, BadZipfile, mstools, extract_docx, ExtractionError, PasswordError
+
         from bs4 import BeautifulSoup
-        global RepairZip, BadZipfile
+
         from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
-        global mstools, extract_docx, ExtractionError, PasswordError
         from al_services.alsvc_extract.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 
     def start(self):
@@ -319,55 +321,6 @@ class Extract(ServiceBase):
         self._last_password = password
         display_name = "_decoded".join(os.path.splitext(os.path.basename(request.path)))
         return [[out_name, encoding, display_name]], True
-
-    def extract_libarchive(self, request, local, encoding):
-        extracted_children = []
-
-        try:
-            # noinspection PyUnresolvedReferences
-            from libarchive import Archive
-
-            for file_encoding in ["utf8", "cp437"]:
-                try:
-                    with Archive(local, encoding=file_encoding) as archive:
-                        count = 0
-
-                        for entry in archive:
-                            name = safe_str(entry.pathname)
-                            if entry.isdir():
-                                continue
-
-                            count += 1
-                            path = os.path.join(self.working_directory, str(count))
-
-                            with open(path, 'w') as f:
-                                archive.readpath(f)
-
-                            if os.stat(path).st_size != entry.size:
-                                raise RuntimeError("Extracted file size mismatch, archive is probably "
-                                                   "password protected: %s" % name)
-
-                            extracted_children.append([path, encoding, name])
-
-                    break
-                except RuntimeError:
-                    extracted_children = []
-                except UnicodeDecodeError:
-                    extracted_children = []
-                    self.log.debug("Archive is not using %s charset. Trying another one...", file_encoding)
-                except Exception as e:
-                    extracted_children = []
-                    msg = str(e)
-                    if msg.endswith("Unrecognized archive format."):
-                        return extracted_children, False
-                    elif msg == "Fatal error executing function, message is: None.":
-                        return extracted_children, False
-                    if request.tag != 'archive/cab':
-                        self.log.exception('while extracting (%s) with libarchive', request.srl)
-        except ImportError:
-            self.log.exception("Import error: libarchive library not installed:")
-
-        return extracted_children, False
 
     def _7zip_submit_extracted(self, request, path, encoding):
         extract_pe_sections = request.get_param('extract_pe_sections')
@@ -712,6 +665,7 @@ class Extract(ServiceBase):
             p_cset = message.get_content_charset()
             yield (p_type, p_disp, p_load, p_name, p_cset)
 
+    # noinspection PyCallingNonCallable
     def extract_eml(self, _, local, encoding):
         if encoding != "document/email":
             return [], False
