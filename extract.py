@@ -155,6 +155,11 @@ class Extract(ServiceBase):
         password_protected = False
         white_listed = 0
 
+        # Add warning as new module requires change to service configuration
+        if "pdf" not in request._svc.SERVICE_ACCEPTS:
+            self.log.warning('Extract service cannot run PDF module due to service configuration. Add "document/pdf" to'
+                             'SERVICE_ACCEPTS option to enable')
+
         try:
             password_protected, white_listed = self.extract(request, local)
         except ExtractMaxExceeded, e:
@@ -402,10 +407,11 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_pdf(self, request, local, encoding):
+
         extracted_children = []
 
         if encoding == 'document/pdf':
-            output_path = os.path.join(self.working_directory, "TEST_pdf")
+            output_path = os.path.join(self.working_directory, "pdf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
