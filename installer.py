@@ -23,7 +23,8 @@ def install(alsi):
     local_msoffice = os.path.join(local_support, 'msoffice.tar.gz')
     local_cybozulib = os.path.join(local_support, 'cybozulib.tar.gz')
 
-    os.makedirs(local_work)
+    if not os.path.isdir(local_work):
+        os.makedirs(local_work)
     alsi.fetch_package('extract/msoffice.tar.gz', local_msoffice)
     alsi.fetch_package('extract/cybozulib.tar.gz', local_cybozulib)
 
