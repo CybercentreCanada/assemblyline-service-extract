@@ -5,7 +5,8 @@ def install(alsi):
     alsi.sudo_apt_install([
         'p7zip-full', 
         'p7zip-rar',
-        'unace-nonfree'
+        'unace-nonfree',
+        'poppler-utils'
     ])
 
     alsi.pip_install_all([
