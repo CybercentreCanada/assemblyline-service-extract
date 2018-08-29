@@ -418,10 +418,15 @@ class Extract(ServiceBase):
             env = os.environ.copy()
             env['LANG'] = 'en_US.UTF-8'
 
-            subprocess.Popen(
-                ['pdfdetach', '-saveall', '-o', output_path, local],
-                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE).communicate()
+            try:
+                subprocess.Popen(
+                    ['pdfdetach', '-saveall', '-o', output_path, local],
+                    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE).communicate()
+            except Exception:
+                self.log.error("Extract service needs poppler-utils to extract embedded PDF files. Install on workers "
+                               "with '/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract'")
+                return extracted_children, False
 
             files = (filename for filename in os.listdir(output_path) if
                      os.path.isfile(os.path.join(output_path, filename)))
