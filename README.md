@@ -21,7 +21,7 @@ It will also:
     - A default list of passwords (see section below)
     - An optional user-supplied password (see section below)
     - The body of an .eml file (separated once by whitespace characters and second on [a-zA-Z0-9]+)
-- Use pdfdetach in poppler-utils to extract attachments from pdf samples;
+- Use pdfdetac in poppler-utils to extract attachments from pdf samples;
 
 
 ## Submission Parameters & Configuration
