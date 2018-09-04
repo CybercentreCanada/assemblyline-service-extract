@@ -42,7 +42,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/office/unknown'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|document/email|document/pdf|document/office/unknown'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -123,6 +123,7 @@ class Extract(ServiceBase):
             self.extract_eml,
             self.repair_zip,
             self.extract_office,
+            self.extract_pdf,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
@@ -153,6 +154,11 @@ class Extract(ServiceBase):
         local = request.download()
         password_protected = False
         white_listed = 0
+
+        # Add warning as new module requires change to service configuration
+        if "pdf" not in request._svc.SERVICE_ACCEPTS:
+            self.log.warning('Extract service cannot run PDF module due to service configuration. Add "document/pdf" to'
+                             'SERVICE_ACCEPTS option to enable')
 
         try:
             password_protected, white_listed = self.extract(request, local)
@@ -399,6 +405,36 @@ class Extract(ServiceBase):
             self.log.exception('While extracting %s with unace', request.srl)
 
         return [], False
+
+    def extract_pdf(self, request, local, encoding):
+
+        extracted_children = []
+
+        if encoding == 'document/pdf':
+            output_path = os.path.join(self.working_directory, "pdf")
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+
+            env = os.environ.copy()
+            env['LANG'] = 'en_US.UTF-8'
+
+            try:
+                subprocess.Popen(
+                    ['pdfdetach', '-saveall', '-o', output_path, local],
+                    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE).communicate()
+            except Exception:
+                self.log.error("Extract service needs poppler-utils to extract embedded PDF files. Install on workers "
+                               "with '/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract'")
+                return extracted_children, False
+
+            files = (filename for filename in os.listdir(output_path) if
+                     os.path.isfile(os.path.join(output_path, filename)))
+
+            for filename in files:
+                extracted_children.append([output_path + "/" + filename, encoding, safe_str(filename)])
+
+        return extracted_children, False
 
     def extract_7zip(self, request, local, encoding):
         password_protected = False
