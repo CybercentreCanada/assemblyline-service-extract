@@ -1,6 +1,6 @@
 # Extract Service
 
-This Assemblyline service extracts embedded files from the following file containers (like ZIP, RAR, 7z ...)
+This Assemblyline service extracts embedded files from file containers (like ZIP, RAR, 7z ...)
 
 **NOTE**: This service does not require you to buy any licence and is preinstalled and
 working after a default installation
