@@ -13,6 +13,7 @@ import logging
 from lxml import html, etree
 
 from assemblyline.common.charset import safe_str
+from assemblyline.al.common.heuristics import Heuristic
 from assemblyline.common.identify import ident
 from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
 from assemblyline.al.service.base import ServiceBase
