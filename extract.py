@@ -68,6 +68,47 @@ class Extract(ServiceBase):
                                           "type": "bool",
                                           "value": False}]
 
+    # Heuristics
+    AL_EXTRACT_001 = Heuristic("AL_EXTRACT_001", "archive_extracted", "archive/",
+                               dedent("""\
+                                            Standard archive-type extracted. 
+                                            """))
+    AL_EXTRACT_002 = Heuristic("AL_EXTRACT_002", "executable_extracted", "executable/",
+                               dedent("""\
+                                            Executable sections extracted.
+                                            """))
+    AL_EXTRACT_003 = Heuristic("AL_EXTRACT_003", "jar_extracted", "java/",
+                               dedent("""\
+                                            JAR archive extracted.
+                                            """))
+    AL_EXTRACT_004 = Heuristic("AL_EXTRACT_004", "apk_extracted", "android/",
+                               dedent("""\
+                                            Android APK extracted. 
+                                            """))
+    AL_EXTRACT_005 = Heuristic("AL_EXTRACT_005", "eml_extracted", "document/eml",
+                               dedent("""\
+                                            Attachments extracted from EML. 
+                                            """))
+    AL_EXTRACT_006 = Heuristic("AL_EXTRACT_006", "office_extracted", "document/office/unknown",
+                               dedent("""\
+                                            Password-protected office document extracted. 
+                                            """))
+    AL_EXTRACT_007 = Heuristic("AL_EXTRACT_007", "pdf_extracted", "document/pdf",
+                               dedent("""\
+                                            Attachments extracted from PDF.
+                                            """))
+    AL_EXTRACT_008 = Heuristic("AL_EXTRACT_008", "swf_extracted", "archive/audiovisual/flash",
+                               dedent("""\
+                                            Files extracted from flash container.
+                                            """))
+    AL_EXTRACT_009 = Heuristic("AL_EXTRACT_009", "ipa_extracted", "archive/",
+                               dedent("""\
+                                            Apple IPA extracted. 
+                                            """))
+    AL_EXTRACT_010 = Heuristic("AL_EXTRACT_010", "passprotected_extract", "",
+                               dedent("""\
+                                            Password protected archive successfully extracted. 
+                                            """))
     FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
     FORBIDDEN_ELF_EXE = [str(x) for x in xrange(20)]
     MAX_EXTRACT = 500
@@ -172,6 +213,29 @@ class Extract(ServiceBase):
                 ResultSection(score=SCORE.VHIGH,
                               title_text="Password protected file, could not extract: %s" % ee.message)
             )
+
+        if request.extracted:
+            if request.tag.startswith("executable"):
+                result.report_heuristic(AL_EXTRACT_002)
+            elif request.tag.startswith("java"):
+                result.report_heuristic(AL_EXTRACT_003)
+            elif request.tag.startswith("android"):
+                result.report_heuristic(AL_EXTRACT_004)
+            elif request.tag.startswith("document/email"):
+                result.report_heuristic(AL_EXTRACT_005)
+            elif request.tag.startswith("document/office"):
+                result.report_heuristic(AL_EXTRACT_006)
+            elif request.tag.startswith("document/pdf"):
+                result.report_heuristic(AL_EXTRACT_007)
+            elif request.tag.startswith("archive/audiovisual/flash"):
+                result.report_heuristic(AL_EXTRACT_008)
+            elif self.isipa:
+                result.report_heuristic(AL_EXTRACT_009)
+            else:
+                result.report_heuristic(AL_EXTRACT_001)
+            # Only password protected office documents are extracted by service, so no need to add an extra heuristic
+            if password_protected and not request.tag.startswith("document/office"):
+                result.report_heuristic(AL_EXTRACT_010)
 
         num_extracted = len(request.extracted)
 
