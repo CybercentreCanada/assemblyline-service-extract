@@ -11,6 +11,7 @@ import zlib
 
 import logging
 from lxml import html, etree
+from textwrap import dedent
 
 from assemblyline.common.charset import safe_str
 from assemblyline.al.common.heuristics import Heuristic
@@ -106,7 +107,7 @@ class Extract(ServiceBase):
                                dedent("""\
                                             Apple IPA extracted. 
                                             """))
-    AL_EXTRACT_010 = Heuristic("AL_EXTRACT_010", "passprotected_extract", "",
+    AL_EXTRACT_010 = Heuristic("AL_EXTRACT_010", "password_protected_extracted", "",
                                dedent("""\
                                             Password protected archive successfully extracted. 
                                             """))
@@ -179,7 +180,6 @@ class Extract(ServiceBase):
         global BeautifulSoup, RepairZip, BadZipfile, mstools, extract_docx, ExtractionError, PasswordError
 
         from bs4 import BeautifulSoup
-
         from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
         from al_services.alsvc_extract.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 
@@ -217,26 +217,26 @@ class Extract(ServiceBase):
 
         if request.extracted:
             if request.tag.startswith("executable"):
-                result.report_heuristic(AL_EXTRACT_002)
+                result.report_heuristic(Extract.AL_EXTRACT_002)
             elif request.tag.startswith("java"):
-                result.report_heuristic(AL_EXTRACT_003)
+                result.report_heuristic(Extract.AL_EXTRACT_003)
             elif request.tag.startswith("android"):
-                result.report_heuristic(AL_EXTRACT_004)
+                result.report_heuristic(Extract.AL_EXTRACT_004)
             elif request.tag.startswith("document/email"):
-                result.report_heuristic(AL_EXTRACT_005)
+                result.report_heuristic(Extract.AL_EXTRACT_005)
             elif request.tag.startswith("document/office"):
-                result.report_heuristic(AL_EXTRACT_006)
+                result.report_heuristic(Extract.AL_EXTRACT_006)
             elif request.tag.startswith("document/pdf"):
-                result.report_heuristic(AL_EXTRACT_007)
+                result.report_heuristic(Extract.AL_EXTRACT_007)
             elif request.tag.startswith("archive/audiovisual/flash"):
-                result.report_heuristic(AL_EXTRACT_008)
+                result.report_heuristic(Extract.AL_EXTRACT_008)
             elif self.isipa:
-                result.report_heuristic(AL_EXTRACT_009)
+                result.report_heuristic(Extract.AL_EXTRACT_009)
             else:
-                result.report_heuristic(AL_EXTRACT_001)
+                result.report_heuristic(Extract.AL_EXTRACT_001)
             # Only password protected office documents are extracted by service, so no need to add an extra heuristic
             if password_protected and not request.tag.startswith("document/office"):
-                result.report_heuristic(AL_EXTRACT_010)
+                result.report_heuristic(Extract.AL_EXTRACT_010)
 
         num_extracted = len(request.extracted)
 
