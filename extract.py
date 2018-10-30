@@ -543,6 +543,41 @@ class Extract(ServiceBase):
                         except OSError:
                             pass
 
+            # Try unrar if 7zip fails for rar archives
+            if encoding == 'rar':
+                password_protected = False
+                shutil.rmtree(path, ignore_errors=True)
+                os.mkdir(path)
+                try:
+                    stdoutrar, stderrrar = subprocess.Popen(
+                        ['unrar', 'x', '-y', '-p-', local, path],
+                        env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+                except OSError:
+                    self.log.warning("Error running unrar on sample {}. Extract service may be out of date. Reinstall"
+                                     "with /opt/al/pkg/assemblyline/al/install/reinstall_service Extract"
+                                     .format(self.sha))
+                    stdoutrar = None
+                    stderrrar = None
+                if stdoutrar:
+                    if 'All OK' in stdoutrar:
+                        return self._7zip_submit_extracted(request, path, encoding), password_protected
+                    if 'wrong password' in stderrrar:
+                        password_protected = True
+                        password_list = self.get_passwords(request)
+                        for password in password_list:
+                            try:
+                                shutil.rmtree(path, ignore_errors=True)
+                                os.mkdir(path)
+                                proc, _ = subprocess.Popen(
+                                    ['unrar', 'x', '-y', '-p{}' .format(password), local, path],
+                                    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                    stderr=subprocess.PIPE).communicate()
+                                if "All OK" in proc:
+                                    self._last_password = password
+                                    return self._7zip_submit_extracted(request, path, encoding), password_protected
+                            except OSError:
+                                pass
+
         except ExtractIgnored:
             raise
         except Exception:
