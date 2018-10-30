@@ -6,7 +6,8 @@ def install(alsi):
         'p7zip-full', 
         'p7zip-rar',
         'unace-nonfree',
-        'poppler-utils'
+        'poppler-utils',
+        'unrar'
     ])
 
     alsi.pip_install_all([
