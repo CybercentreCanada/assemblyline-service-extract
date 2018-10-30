@@ -174,11 +174,13 @@ class Extract(ServiceBase):
         self.named_attachments_only = None
         self.max_attachment_size = None
         self.isipa = False
+        self.sha = None
 
     # noinspection PyUnresolvedReferences
     def import_service_deps(self):
-        global BeautifulSoup, RepairZip, BadZipfile, mstools, extract_docx, ExtractionError, PasswordError
+        global deepcopy, BeautifulSoup, RepairZip, BadZipfile, mstools, extract_docx, ExtractionError, PasswordError
 
+        from copy import deepcopy
         from bs4 import BeautifulSoup
         from al_services.alsvc_extract.repair_zip import RepairZip, BadZipfile
         from al_services.alsvc_extract.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
@@ -190,6 +192,7 @@ class Extract(ServiceBase):
 
     def execute(self, request):
         result = Result()
+        self.sha = request.sha256
         continue_after_extract = request.get_param('continue_after_extract')
         self._last_password = None
         self.isipa = False
@@ -313,7 +316,7 @@ class Extract(ServiceBase):
         return password_protected, white_listed_count
 
     def get_passwords(self, request):
-        passwords = self.cfg.get('DEFAULT_PW_LIST', [])
+        passwords = deepcopy(self.cfg.get('DEFAULT_PW_LIST', []))
         user_supplied = request.get_param('password')
         if user_supplied:
             passwords.append(user_supplied)
