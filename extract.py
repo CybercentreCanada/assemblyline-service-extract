@@ -571,7 +571,7 @@ class Extract(ServiceBase):
             return result
 
     def extract_vbe(self, request, local, encoding):
-        if encoding == 'vbe':
+        if encoding == 'code/vbe':
             with open(local, "rb") as fh:
                 text = fh.read()
             try:
