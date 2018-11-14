@@ -111,6 +111,10 @@ class Extract(ServiceBase):
                                dedent("""\
                                             Password protected archive successfully extracted. 
                                             """))
+    AL_EXTRACT_011 = Heuristic("AL_Extract_011", "vbe_decoded", "code/vbe",
+                               dedent("""\
+                                            VBE file decoded. 
+                                            """))
     FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
     FORBIDDEN_ELF_EXE = [str(x) for x in xrange(20)]
     MAX_EXTRACT = 500
@@ -236,6 +240,8 @@ class Extract(ServiceBase):
                 result.report_heuristic(Extract.AL_EXTRACT_007)
             elif request.tag.startswith("archive/audiovisual/flash"):
                 result.report_heuristic(Extract.AL_EXTRACT_008)
+            elif request.tag.startswith("code/vbe"):
+                result.report_heuristic(Extract.AL_EXTRACT_011)
             elif self.isipa:
                 result.report_heuristic(Extract.AL_EXTRACT_009)
             else:
