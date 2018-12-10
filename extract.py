@@ -418,8 +418,8 @@ class Extract(ServiceBase):
                         ((encoding.startswith("executable/windows") and
                           [f for f in self.FORBIDDEN_EXE if filename.startswith(f)]) or
                          (encoding.startswith("executable/linux")and filename in self.FORBIDDEN_ELF_EXE)):
-                    raise ExtractIgnored("Detected extraction of forbidden PE/ELF file sections. "
-                                         "No files will be extracted.")
+                    raise ExtractIgnored("'Extract PE sections' option not selected. PE/ELF file sections will not "
+                                         "be extracted. See service README for more details.")
 
                 extracted_children.append([os.path.join(root, f), encoding, safe_str(filename)])
 
