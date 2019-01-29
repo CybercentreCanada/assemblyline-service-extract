@@ -196,6 +196,7 @@ class Extract(ServiceBase):
         self.max_attachment_size = self.cfg.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
     def execute(self, request):
+        """Main Module. See README for details."""
         result = Result()
         self.sha = request.sha256
         continue_after_extract = request.get_param('continue_after_extract')
@@ -204,7 +205,6 @@ class Extract(ServiceBase):
         local = request.download()
         password_protected = False
         white_listed = 0
-
 
         # Add warning as new module requires change to service configuration
         if "pdf" not in request._svc.SERVICE_ACCEPTS:
@@ -297,6 +297,15 @@ class Extract(ServiceBase):
         request.result = result
 
     def extract(self, request, local):
+        """Iterate through extract methods to extract archive and other contents from a sample.
+
+        Args:
+            request: AL request object.
+            local: File path of AL sample.
+
+        Returns:
+            True if archive is password protected, and number of white-listed embedded files.
+        """
         encoding = request.tag.replace('archive/', '')
         password_protected = False
         white_listed_count = 0
@@ -324,6 +333,16 @@ class Extract(ServiceBase):
         return password_protected, white_listed_count
 
     def get_passwords(self, request):
+        """Create a list of possible password strings to be used against AL sample if encryption is detected.
+        Uses service configuration variable 'DEFAULT_PW_LIST'; submission parameter 'password' (if supplied); and
+        content of email body (if 'email_body' is in submission tags).
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List of strings.
+        """
         passwords = deepcopy(self.cfg.get('DEFAULT_PW_LIST', []))
         user_supplied = request.get_param('password')
         if user_supplied:
@@ -336,6 +355,17 @@ class Extract(ServiceBase):
 
     # noinspection PyCallingNonCallable
     def repair_zip(self, _, local, encoding):
+        """Attempts to use modules in repair_zip.py when a possible corruption of ZIP archive has been detected.
+
+        Args:
+             _: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing file extracted path, encoding, and display name "repaired_zip_file.zip", or a blank list if
+            repair failed; and True if encryption detected.
+        """
         try:
             with RepairZip(local, strict=False) as rz:
                 if not (rz.is_zip and rz.broken):
@@ -367,6 +397,17 @@ class Extract(ServiceBase):
 
     # noinspection PyCallingNonCallable
     def extract_office(self, request, local, encoding):
+        """Will attempt to use modules in doc_extract.py to extract a document from an encrypted Office file.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing file extracted path, encoding, and display name "[orig FH name]_decoded", or a blank list if
+            decryption failed; and True if encryption with password detected.
+        """
         # When encrypted, AL will identify the document as an unknown office type.
         if request.tag != "document/office/unknown":
             return [], False
@@ -404,6 +445,17 @@ class Extract(ServiceBase):
         return [[out_name, encoding, display_name]], True
 
     def _7zip_submit_extracted(self, request, path, encoding):
+        """Will attempt to use 7zip library to extract content from generic archive or PE file.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extraction failed; and True if encryption with password detected.
+        """
         extract_pe_sections = request.get_param('extract_pe_sections')
         extracted_children = []
 
@@ -426,6 +478,17 @@ class Extract(ServiceBase):
         return extracted_children
 
     def extract_ace(self, request, local, encoding):
+        """Will attempt to use unace to extract content from an ACE archive.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extraction failed; and True if encryption with password detected.
+        """
         if encoding != 'ace':
             return [], False
 
@@ -483,7 +546,18 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_pdf(self, request, local, encoding):
+        """Will attempt to use pdfdetach to extract embedded files from a PDF file.
 
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
+            ever be detected.
+        """
         extracted_children = []
 
         if encoding == 'document/pdf':
@@ -514,6 +588,17 @@ class Extract(ServiceBase):
 
     @staticmethod
     def decode_vbe(data):
+        """Will attempt to use unace to extract content from an ACE archive.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extraction failed; and True if encryption detected.
+        """
         """
         Modified code that was written by Didier Stevens
         https://blog.didierstevens.com/2016/03/29/decoding-vbe/
@@ -576,6 +661,17 @@ class Extract(ServiceBase):
             return result
 
     def extract_vbe(self, request, local, encoding):
+        """Will attempt to decode VBA data from a VBE container.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if decode failed; and False (no passwords will ever be detected).
+        """
         if encoding == 'code/vbe':
             with open(local, "rb") as fh:
                 text = fh.read()
@@ -594,6 +690,17 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_7zip(self, request, local, encoding):
+        """Will attempt to use unace to extract content from an ACE archive.
+
+        Args:
+            request AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extraction failed; and True if encryption detected.
+        """
         password_protected = False
         if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or \
                 encoding == 'tnef':
