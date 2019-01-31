@@ -297,7 +297,7 @@ class Extract(ServiceBase):
         request.result = result
 
     def extract(self, request, local):
-        """Iterate through extract methods to extract archive and other contents from a sample.
+        """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
 
         Args:
             request: AL request object.
@@ -333,7 +333,7 @@ class Extract(ServiceBase):
         return password_protected, white_listed_count
 
     def get_passwords(self, request):
-        """Create a list of possible password strings to be used against AL sample if encryption is detected.
+        """Create list of possible password strings to be used against AL sample if encryption is detected.
         Uses service configuration variable 'DEFAULT_PW_LIST'; submission parameter 'password' (if supplied); and
         content of email body (if 'email_body' is in submission tags).
 
@@ -363,8 +363,8 @@ class Extract(ServiceBase):
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing file extracted path, encoding, and display name "repaired_zip_file.zip", or a blank list if
-            repair failed; and True if encryption detected.
+            List containing repaired zip path, encoding, and display name "repaired_zip_file.zip", or a blank list if
+            repair failed; and False as encryption will not be detected.
         """
         try:
             with RepairZip(local, strict=False) as rz:
@@ -405,8 +405,8 @@ class Extract(ServiceBase):
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing file extracted path, encoding, and display name "[orig FH name]_decoded", or a blank list if
-            decryption failed; and True if encryption with password detected.
+            List containing decoded file path, encoding, and display name "[orig FH name]_decoded", or a blank list if
+            decryption failed; and True if encryption successful (indicating encryption detected).
         """
         # When encrypted, AL will identify the document as an unknown office type.
         if request.tag != "document/office/unknown":
@@ -445,7 +445,7 @@ class Extract(ServiceBase):
         return [[out_name, encoding, display_name]], True
 
     def _7zip_submit_extracted(self, request, path, encoding):
-        """Will attempt to use 7zip library to extract content from generic archive or PE file.
+        """Will attempt to use 7zip library to extract content from a generic archive or PE file.
 
         Args:
             request AL request object.
@@ -453,8 +453,8 @@ class Extract(ServiceBase):
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing extracted file information, including: extracted path, encoding, and display name,
-            or a blank list if extraction failed; and True if encryption with password detected.
+            List containing extracted file information, including: extracted path, encoding, and display name
+            or a blank list if extraction failed.
         """
         extract_pe_sections = request.get_param('extract_pe_sections')
         extracted_children = []
@@ -478,7 +478,7 @@ class Extract(ServiceBase):
         return extracted_children
 
     def extract_ace(self, request, local, encoding):
-        """Will attempt to use unace to extract content from an ACE archive.
+        """Will attempt to use command-line tool unace to extract content from an ACE archive.
 
         Args:
             request AL request object.
@@ -546,7 +546,7 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_pdf(self, request, local, encoding):
-        """Will attempt to use pdfdetach to extract embedded files from a PDF file.
+        """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
 
         Args:
             request AL request object.
@@ -588,20 +588,14 @@ class Extract(ServiceBase):
 
     @staticmethod
     def decode_vbe(data):
-        """Will attempt to use unace to extract content from an ACE archive.
+        """Will attempt to decode VBE script. Modified code that was written by Didier Stevens, found here:
+        https://blog.didierstevens.com/2016/03/29/decoding-vbe/
 
         Args:
-            request AL request object.
-            local: File path of AL sample.
-            encoding: AL tag with string 'archive/' replaced.
+            data: VBE content.
 
         Returns:
-            List containing extracted file information, including: extracted path, encoding, and display name,
-            or a blank list if extraction failed; and True if encryption detected.
-        """
-        """
-        Modified code that was written by Didier Stevens
-        https://blog.didierstevens.com/2016/03/29/decoding-vbe/
+            Decoded script if successful, or None.
         """
         try:
             d_decode = {9: '\x57\x6E\x7B', 10: '\x4A\x4C\x41', 11: '\x0B\x0B\x0B', 12: '\x0C\x0C\x0C',
@@ -660,16 +654,16 @@ class Extract(ServiceBase):
             result = None
             return result
 
-    def extract_vbe(self, request, local, encoding):
-        """Will attempt to decode VBA data from a VBE container.
+    def extract_vbe(self, _, local, encoding):
+        """Will attempt to decode VBA code data from a VBE container.
 
         Args:
-            request AL request object.
+            _: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing extracted file information, including: extracted path, encoding, and display name,
+            List containing decoded file information, including: decoded file path, encoding, and display name,
             or a blank list if decode failed; and False (no passwords will ever be detected).
         """
         if encoding == 'code/vbe':
@@ -690,10 +684,11 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_7zip(self, request, local, encoding):
-        """Will attempt to use unace to extract content from an ACE archive.
+        """Will attempt to use 7zip and then unrar to extract content from an archive, or sections from a Windows
+        executable file.
 
         Args:
-            request AL request object.
+            request: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -783,6 +778,17 @@ class Extract(ServiceBase):
         return [], password_protected
 
     def extract_swf(self, _, file_path, encoding):
+        """Will attempt to extract compressed SWF files.
+
+        Args:
+            _: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extract failed; and False (no passwords will ever be detected).
+        """
         extracted_children = []
 
         if encoding == 'audiovisual/flash':
@@ -806,6 +812,17 @@ class Extract(ServiceBase):
         return extracted_children, False
 
     def extract_tnef(self, _, file_path, encoding):
+        """Will attempt to extract data from a TNEF container.
+
+        Args:
+            _: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extract failed; and False (no passwords will ever be detected).
+        """
         children = []
 
         if encoding != 'tnef':
@@ -859,6 +876,16 @@ class Extract(ServiceBase):
 
     @staticmethod
     def jar_whitelisting(extracted, whitelisted_count, encoding):
+        """Filters file paths that are considered whitelisted from a list of extracted JAR files.
+
+        Args:
+            extracted: List of extracted file information, including: extracted path, encoding, and display name.
+            whitelisted_count: Current whitelist count.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List of filtered file names and updated count of whitelisted files.
+        """
         if encoding == "java/jar" or encoding == "android/apk":
             whitelisted_tags_re = [
                 re.compile(r'android/(xml|dex|resource)'),
@@ -938,6 +965,15 @@ class Extract(ServiceBase):
 
     @staticmethod
     def archive_with_executables(request, result):
+        """Detects executable files contained in an archive using the service's LAUNCHABLE_EXTENSIONS list.
+
+        Args:
+            request: AL request object.
+            result: AL result object.
+
+        Returns:
+            Al result object scoring VHIGH if executables detected in container, or None.
+        """
         if len(request.extracted) == 1 and \
                 os.path.splitext(request.extracted[0].display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
 
@@ -953,12 +989,30 @@ class Extract(ServiceBase):
 
     @staticmethod
     def archive_is_arc(request, result):
+        """Uses AL tag to determine if container is an ACE archive.
+
+        Args:
+            request: AL request object.
+            result: AL result object.
+
+        Returns:
+            Al result object scoring VHIGH if sample type is ACE container, or None.
+        """
         if request.tag == 'archive/ace':
             result.add_section(ResultSection(score=SCORE.VHIGH, title_text="Uncommon format: archive/ace"))
             result.add_tag(TAG_TYPE['FILE_SUMMARY'], "Uncommon format: archive/ace", TAG_WEIGHT['MED'])
 
     @staticmethod
     def yield_eml_parts(message):
+        """Parses EML container to collect attachment information and EML body content.
+
+        Args:
+            message: EML container.
+
+        Returns:
+            A tuple of attachment information, including: content type, content disposition, decoded content, filename
+            and content charset.
+        """
         if message.is_multipart():
             for part in message.walk():
                 p_type = part.get_content_type()
@@ -977,6 +1031,17 @@ class Extract(ServiceBase):
 
     # noinspection PyCallingNonCallable
     def extract_eml(self, _, local, encoding):
+        """Will attempt to extract attachments from an EML container. Also collects strings of EML body.
+
+        Args:
+            _: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted attachment information, including: extracted path, encoding, display name,
+            classification and email body strings (as dict); and False (no encryption will be detected).
+        """
         if encoding != "document/email":
             return [], False
 
