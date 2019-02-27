@@ -715,7 +715,7 @@ class Extract(ServiceBase):
             if stdoutput and stdoutput.strip().find("Everything is Ok") > 0:
                 return self._7zip_submit_extracted(request, path, encoding), password_protected
             else:
-                if "Wrong password?" in stdoutput:
+                if "Wrong password" in stdoutput:
                     password_protected = True
                     password_list = self.get_passwords(request)
                     for password in password_list:
