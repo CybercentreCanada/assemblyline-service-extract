@@ -27,7 +27,6 @@ msoffice = None
 RepairZip = None
 BadZipfile = None
 ExtractionError = None
-PasswordError = None
 BeautifulSoup = None
 mstools = None
 
@@ -458,7 +457,6 @@ class Extract(ServiceBase):
         """
         extract_pe_sections = request.get_param('extract_pe_sections')
         extracted_children = []
-
         for root, _, files in os.walk(path):
             for f in files:
                 filename = safe_str(os.path.join(root, f).replace(path, ""))
@@ -697,21 +695,23 @@ class Extract(ServiceBase):
             or a blank list if extraction failed; and True if encryption detected.
         """
         password_protected = False
+
+        # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
+        password_failed = False
         if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or \
                 encoding == 'tnef':
             return [], password_protected
         path = os.path.join(self.working_directory, "7zip")
-
         # noinspection PyBroadException
         try:
             env = os.environ.copy()
             env['LANG'] = 'en_US.UTF-8'
 
-            stdoutput, _ = subprocess.Popen(
+            stdoutput, stderr = subprocess.Popen(
                 ['7z', 'x', '-p', '-y', local, '-o%s' % path],
                 env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE).communicate()
-
+            stdoutput += stderr
             if stdoutput and stdoutput.strip().find("Everything is Ok") > 0:
                 return self._7zip_submit_extracted(request, path, encoding), password_protected
             else:
@@ -721,22 +721,26 @@ class Extract(ServiceBase):
                     for password in password_list:
                         try:
                             shutil.rmtree(path, ignore_errors=True)
-
-                            proc = subprocess.Popen([
+                            stdoutput, stderr = subprocess.Popen([
                                 '7za', 'x', '-p%s' % password,
                                             '-o%s' % path, local
-                            ], env=env, stdout=subprocess.PIPE)
-                            stdout = proc.communicate()[0]
-                            if "\nEverything is Ok\n" in stdout:
+                            ], env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE).communicate()
+                            stdoutput += stderr
+
+                            if stdoutput and"\nEverything is Ok\n" in stdoutput:
                                 self._last_password = password
                                 return self._7zip_submit_extracted(request, path, encoding), password_protected
-
                         except OSError:
                             pass
+                    password_failed = True
 
             # Try unrar if 7zip fails for rar archives
             if encoding == 'rar':
                 password_protected = False
+
+                # Resetting back to False because we are giving it another chance.
+                password_failed = False
                 shutil.rmtree(path, ignore_errors=True)
                 os.mkdir(path)
                 try:
@@ -768,12 +772,15 @@ class Extract(ServiceBase):
                                     return self._7zip_submit_extracted(request, path, encoding), password_protected
                             except OSError:
                                 pass
-
+                    password_failed = True
         except ExtractIgnored:
             raise
         except Exception:
             if request.tag != 'archive/cab':
                 self.log.exception('While extracting %s with 7zip', request.srl)
+        if password_failed:
+            # stop processing the request
+            request.drop()
 
         return [], password_protected
 
