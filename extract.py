@@ -43,7 +43,7 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|code/vbe|document/email|document/pdf|document/office/unknown'
+    SERVICE_ACCEPTS = '(archive|executable|java|android)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown'
     SERVICE_CATEGORY = "Extraction"
     SERVICE_DESCRIPTION = "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...)"
     SERVICE_ENABLED = True
@@ -1049,7 +1049,10 @@ class Extract(ServiceBase):
             List containing extracted attachment information, including: extracted path, encoding, display name,
             classification and email body strings (as dict); and False (no encryption will be detected).
         """
-        if encoding != "document/email":
+        # Allow attachments to be extracted from html emails
+        if encoding == "document/email" or encoding == "code/html":
+            pass
+        else:
             return [], False
 
         extracted = []
