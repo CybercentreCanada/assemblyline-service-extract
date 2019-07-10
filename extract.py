@@ -466,7 +466,7 @@ class Extract(ServiceBase):
                     self.isipa = True
                 if not extract_pe_sections and \
                         ((encoding.startswith("executable/windows") and
-                          [f for f in self.FORBIDDEN_EXE if filename.startswith(f)]) or
+                          [f2 for f2 in self.FORBIDDEN_EXE if filename.startswith(f2)]) or
                          (encoding.startswith("executable/linux")and filename in self.FORBIDDEN_ELF_EXE)):
                     raise ExtractIgnored("'Extract PE sections' option not selected. PE/ELF file sections will not "
                                          "be extracted. See service README for more details.")
