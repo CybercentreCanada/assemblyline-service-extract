@@ -25,15 +25,6 @@ from .doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 from .ext.xxxswf import xxxswf
 from .repair_zip import RepairZip, BadZipfile
 
-extract_docx = None
-msoffice = None
-RepairZip = None
-BadZipfile = None
-ExtractionError = None
-BeautifulSoup = None
-mstools = None
-
-chunk_size = 65536
 DEBUG = False
 
 
@@ -128,11 +119,6 @@ class Extract(ServiceBase):
         password_protected = False
         white_listed = 0
 
-        # Add warning as new module requires change to service configuration
-        if "pdf" not in request._ser.SERVICE_ACCEPTS:
-            self.log.warning('Extract service cannot run PDF module due to service configuration. Add "document/pdf" to'
-                             'SERVICE_ACCEPTS option to enable')
-
         try:
             password_protected, white_listed = self.extract(request, local)
         except ExtractMaxExceeded as e:
@@ -215,7 +201,7 @@ class Extract(ServiceBase):
 
         request.result = result
 
-    def extract(self, request, local):
+    def extract(self, request: ServiceRequest, local):
         """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
 
         Args:
@@ -225,7 +211,7 @@ class Extract(ServiceBase):
         Returns:
             True if archive is password protected, and number of white-listed embedded files.
         """
-        encoding = request.tag.replace('archive/', '')
+        encoding = request.file_type.replace('archive/', '')
         password_protected = False
         white_listed_count = 0
         extracted = []
@@ -245,9 +231,9 @@ class Extract(ServiceBase):
 
         for child in extracted:
             if not request.add_extracted(*child):
-                raise ExtractMaxExceeded("This file contains more files than the maximum embedded number of %s. "
-                                         "None of the %s files where extracted."
-                                         % (str(request.max_extracted), str(len(extracted))))
+                raise ExtractMaxExceeded(f"This file contains {len(extracted)} extracted files, exceeding the maximum "
+                                         f"of {request.max_extracted} extracted files allowed. "
+                                         "None of the files were extracted.")
 
         return password_protected, white_listed_count
 
@@ -273,11 +259,11 @@ class Extract(ServiceBase):
         return passwords
 
     # noinspection PyCallingNonCallable
-    def repair_zip(self, _, local, encoding):
+    def repair_zip(self, request: ServiceRequest, local, encoding):
         """Attempts to use modules in repair_zip.py when a possible corruption of ZIP archive has been detected.
 
         Args:
-             _: Unused AL request object.
+            request: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -291,11 +277,11 @@ class Extract(ServiceBase):
                     return [], False
                 rz.fix_zip()
 
-                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
+                with tempfile.NamedTemporaryFile(dir=request.working_directory, delete=False) as fh:
                     out_name = fh.name
                     with RepairZip(fh, "w") as zo:
                         for path in rz.namelist():
-                            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
+                            with tempfile.NamedTemporaryFile(dir=request.working_directory, delete=True) as tmp_f:
                                 try:
                                     tmp_f.write(rz.read(path))
                                     tmp_f.flush()
@@ -328,7 +314,7 @@ class Extract(ServiceBase):
             decryption failed; and True if encryption successful (indicating encryption detected).
         """
         # When encrypted, AL will identify the document as an unknown office type.
-        if request.tag != "document/office/unknown":
+        if request.file_type != "document/office/unknown":
             return [], False
 
         passwords = self.get_passwords(request)
@@ -337,18 +323,18 @@ class Extract(ServiceBase):
             if os.path.isfile("/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"):
                 # Still going to use extract_docx as a backup for now, so try that module if msoffice fails
                 try_next = True
-                res = mstools(local, passwords, self.working_directory)
+                res = mstools(local, passwords, request.working_directory)
             else:
                 try_next = False
                 self.log.warning("Extract service out of date. Reinstall on workers with "
                                  "/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract")
-                res = extract_docx(local, passwords, self.working_directory)
+                res = extract_docx(local, passwords, request.working_directory)
 
             if res is None and not try_next:
                 raise ValueError()
             # Try old module if msoffice errors
             if res is None:
-                res = extract_docx(local, passwords, self.working_directory)
+                res = extract_docx(local, passwords, request.working_directory)
                 if res is None:
                     raise ValueError()
         except ValueError:
@@ -410,7 +396,7 @@ class Extract(ServiceBase):
         if encoding != 'ace':
             return [], False
 
-        path = os.path.join(self.working_directory, "ace")
+        path = os.path.join(request.working_directory, "ace")
         try:
             os.mkdir(path)
         except OSError:
@@ -479,7 +465,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'document/pdf':
-            output_path = os.path.join(self.working_directory, "pdf")
+            output_path = os.path.join(request.working_directory, "pdf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -618,7 +604,7 @@ class Extract(ServiceBase):
 
         # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
         password_failed = False
-        if request.tag == 'archive/audiovisual/flash' or encoding == 'ace' or request.tag.startswith('document') or \
+        if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or request.file_type.startswith('document') or \
                 encoding == 'tnef':
             return [], password_protected
         path = os.path.join(request.working_directory, "7zip")
@@ -696,7 +682,7 @@ class Extract(ServiceBase):
         except ExtractIgnored:
             raise
         except Exception:
-            if request.tag != 'archive/cab':
+            if request.file_type != 'archive/cab':
                 self.log.exception('While extracting %s with 7zip', request.srl)
         if password_failed:
             # stop processing the request
@@ -925,7 +911,7 @@ class Extract(ServiceBase):
         Returns:
             Al result object scoring VHIGH if sample type is ACE container, or None.
         """
-        if request.tag == 'archive/ace':
+        if request.file_type == 'archive/ace':
             result.add_section(ResultSection(score=SCORE.VHIGH, title_text="Uncommon format: archive/ace"))
             result.add_tag('file.behavior', "Uncommon format: archive/ace", TAG_WEIGHT['MED'])
 
