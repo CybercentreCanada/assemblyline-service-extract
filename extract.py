@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import email
 import logging
 import os
@@ -19,17 +17,13 @@ from lxml import html, etree
 from assemblyline.common.identify import ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
-from assemblyline_v4_service.common.result import Result, ResultSection
-from assemblyline_v4_service.common.request import ServiceRequest
+from assemblyline_v4_service.common.request import ServiceRequest, MaxExtractedExceeded
+from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
 from .doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 from .ext.xxxswf import xxxswf
 from .repair_zip import RepairZip, BadZipfile
 
 DEBUG = False
-
-
-class ExtractMaxExceeded(Exception):
-    pass
 
 
 class ExtractIgnored(Exception):
@@ -104,11 +98,11 @@ class Extract(ServiceBase):
         self.sha = None
 
     def start(self):
-        self.st = SubprocessTimer(2*self.SERVICE_TIMEOUT/3)
+        self.st = SubprocessTimer(2*self.service_attributes.timeout/3)
         self.named_attachments_only = self.config.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
         self.max_attachment_size = self.config.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
-    def execute(self, request):
+    def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
         result = Result()
         self.sha = request.sha256
@@ -121,69 +115,66 @@ class Extract(ServiceBase):
 
         try:
             password_protected, white_listed = self.extract(request, local)
-        except ExtractMaxExceeded as e:
+        except MaxExtractedExceeded as e:
             result.add_section(ResultSection(str(e)))
         except ExtractIgnored as e:
             result.add_section(ResultSection(str(e)))
         except ExtractionError as ee:
             # If we don't support the encryption method. This will tell us what we need to add support for
             result.add_section(
-                ResultSection(score=SCORE.VHIGH,
-                              title_text="Password protected file, could not extract: %s" % ee.message)
+                ResultSection(f"Password protected file, could not extract: {str(ee)}", heuristic=Heuristic(12))
             )
-
-        if request.extracted:
-            if request.tag.startswith("executable"):
-                result.report_heuristic(Extract.AL_EXTRACT_002)
-            elif request.tag.startswith("java"):
-                result.report_heuristic(Extract.AL_EXTRACT_003)
-            elif request.tag.startswith("android"):
-                result.report_heuristic(Extract.AL_EXTRACT_004)
-            elif request.tag.startswith("document/email"):
-                result.report_heuristic(Extract.AL_EXTRACT_005)
-            elif request.tag.startswith("document/office"):
-                result.report_heuristic(Extract.AL_EXTRACT_006)
-            elif request.tag.startswith("document/pdf"):
-                result.report_heuristic(Extract.AL_EXTRACT_007)
-            elif request.tag.startswith("archive/audiovisual/flash"):
-                result.report_heuristic(Extract.AL_EXTRACT_008)
-            elif request.tag.startswith("code/vbe"):
-                result.report_heuristic(Extract.AL_EXTRACT_011)
-            elif self.is_ipa:
-                result.report_heuristic(Extract.AL_EXTRACT_009)
-            else:
-                result.report_heuristic(Extract.AL_EXTRACT_001)
-            # Only password protected office documents are extracted by service, so no need to add an extra heuristic
-            if password_protected and not request.tag.startswith("document/office"):
-                result.report_heuristic(Extract.AL_EXTRACT_010)
 
         num_extracted = len(request.extracted)
 
         section = None
-        if not request.extracted and password_protected:
-            section = ResultSection(SCORE.VHIGH,
-                                    "Failed to extract password protected file.")
-            section.add_tag('file.behavior', "Archive Unknown Password", TAG_WEIGHT['MED'])
+        if num_extracted == 0 and password_protected:
+            section = ResultSection("Failed to extract password protected file.", heuristic=Heuristic(12))
+            section.add_tag('file.behavior', "Archive Unknown Password")
 
-        elif request.extracted and password_protected and self._last_password is not None:
-            section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
-                                    f"using password: {self._last_password}")
+        else:  # num_extracted != 0
+            if password_protected and self._last_password is not None:
+                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                                        f"using password: {self._last_password}")
 
-        elif request.extracted and password_protected and self._last_password is None:
-            pw_list = " | ".join(self.get_passwords(request))
-            section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
-                                    f"using one of the following passwords: {pw_list}")
+            elif password_protected and self._last_password is None:
+                pw_list = " | ".join(self.get_passwords(request))
+                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                                        f"using one of the following passwords: {pw_list}")
 
-        elif num_extracted != 0 and white_listed != 0:
-            section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
-                                    f"out of {white_listed + num_extracted}. The other {white_listed} "
-                                    f"file{'s' if white_listed > 0 else ''} were whitelisted")
+            elif white_listed != 0:
+                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                                        f"out of {white_listed + num_extracted}. The other {white_listed} "
+                                        f"file{'s' if white_listed > 0 else ''} were whitelisted")
 
-        elif num_extracted != 0:
-            section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''}")
+            else:
+                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''}")
 
-        if section:
-            result.add_section(section)
+            if request.file_type.startswith("executable"):
+                section.set_heuristic(2)
+            elif request.file_type.startswith("java"):
+                section.set_heuristic(3)
+            elif request.file_type.startswith("android"):
+                section.set_heuristic(4)
+            elif request.file_type.startswith("document/email"):
+                section.set_heuristic(5)
+            elif request.file_type.startswith("document/office"):
+                section.set_heuristic(6)
+            elif request.file_type.startswith("document/pdf"):
+                section.set_heuristic(7)
+            elif request.file_type.startswith("archive/audiovisual/flash"):
+                section.set_heuristic(8)
+            elif request.file_type.startswith("code/vbe"):
+                section.set_heuristic(11)
+            elif self.is_ipa:
+                section.set_heuristic(9)
+            else:
+                section.set_heuristic(1)
+            # Only password protected office documents are extracted by service, so no need to add an extra heuristic
+            if password_protected and not request.file_type.startswith("document/office"):
+                section.set_heuristic(10)
+
+        result.add_section(section)
 
         for anomaly in self.anomaly_detections:
             anomaly(request, result)
@@ -201,7 +192,7 @@ class Extract(ServiceBase):
 
         request.result = result
 
-    def extract(self, request: ServiceRequest, local):
+    def extract(self, request: ServiceRequest, local: str):
         """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
 
         Args:
@@ -229,11 +220,15 @@ class Extract(ServiceBase):
             for white_listing_method in self.white_listing_methods:
                 extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
 
-        for child in extracted:
-            if not request.add_extracted(*child):
-                raise ExtractMaxExceeded(f"This file contains {len(extracted)} extracted files, exceeding the maximum "
-                                         f"of {request.max_extracted} extracted files allowed. "
-                                         "None of the files were extracted.")
+        for i, child in enumerate(extracted):
+            try:
+                # If the file is not successfully added as extracted, then pop it from the list of extracted
+                if not request.add_extracted(*child):
+                    extracted.pop(i)
+            except MaxExtractedExceeded:
+                raise MaxExtractedExceeded(f"This file contains {len(extracted)} extracted files, exceeding the maximum "
+                                           f"of {request.max_extracted} extracted files allowed. "
+                                           "None of the files were extracted.")
 
         return password_protected, white_listed_count
 
@@ -248,7 +243,7 @@ class Extract(ServiceBase):
         Returns:
             List of strings.
         """
-        passwords = deepcopy(self.cfg.get('DEFAULT_PW_LIST', []))
+        passwords = deepcopy(self.config.get('DEFAULT_PW_LIST', []))
         user_supplied = request.get_param('password')
         if user_supplied:
             passwords.append(user_supplied)
@@ -259,7 +254,7 @@ class Extract(ServiceBase):
         return passwords
 
     # noinspection PyCallingNonCallable
-    def repair_zip(self, request: ServiceRequest, local, encoding):
+    def repair_zip(self, request: ServiceRequest, local: str, encoding: str):
         """Attempts to use modules in repair_zip.py when a possible corruption of ZIP archive has been detected.
 
         Args:
@@ -301,11 +296,11 @@ class Extract(ServiceBase):
             return [], False
 
     # noinspection PyCallingNonCallable
-    def extract_office(self, request: ServiceRequest, local, encoding):
+    def extract_office(self, request: ServiceRequest, local, encoding: str):
         """Will attempt to use modules in doc_extract.py to extract a document from an encrypted Office file.
 
         Args:
-            request AL request object.
+            request: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -346,15 +341,15 @@ class Extract(ServiceBase):
 
         out_name, password = res
         self._last_password = password
-        display_name = "_decoded".join(os.path.splitext(os.path.basename(request.path)))
+        display_name = "_decoded".join(os.path.splitext(os.path.basename(request.file_path)))
         return [[out_name, encoding, display_name]], True
 
-    def _7zip_submit_extracted(self, request : ServiceRequest, path, encoding):
+    def _7zip_submit_extracted(self, request: ServiceRequest, path: str, encoding: str):
         """Will attempt to use 7zip library to extract content from a generic archive or PE file.
 
         Args:
             request AL request object.
-            local: File path of AL sample.
+            path: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
@@ -385,7 +380,7 @@ class Extract(ServiceBase):
         """Will attempt to use command-line tool unace to extract content from an ACE archive.
 
         Args:
-            request AL request object.
+            request: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -411,7 +406,7 @@ class Extract(ServiceBase):
                     tf.flush()
 
                 proc = self.st.run(subprocess.Popen(
-                    '/usr/bin/unace e -y %s' % tf.name,
+                    f'/usr/bin/unace e -y {tf.name}',
                     stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
                     preexec_fn=set_death_signal()))
@@ -445,7 +440,7 @@ class Extract(ServiceBase):
         except ExtractIgnored:
             raise
         except Exception:
-            self.log.exception('While extracting %s with unace', request.srl)
+            self.log.exception(f'While extracting {request.sha256} with unace')
 
         return [], False
 
@@ -453,7 +448,7 @@ class Extract(ServiceBase):
         """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
 
         Args:
-            request AL request object.
+            request: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -478,8 +473,7 @@ class Extract(ServiceBase):
                     env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE).communicate()
             except Exception:
-                self.log.error("Extract service needs poppler-utils to extract embedded PDF files. Install on workers "
-                               "with '/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract'")
+                self.log.error("Extract service needs poppler-utils to extract embedded PDF files.")
                 return extracted_children, False
 
             files = (filename for filename in os.listdir(output_path) if
@@ -558,11 +552,11 @@ class Extract(ServiceBase):
             result = None
             return result
 
-    def extract_vbe(self, _, local, encoding):
+    def extract_vbe(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to decode VBA code data from a VBE container.
 
         Args:
-            _: Unused AL request object.
+            request: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -571,7 +565,7 @@ class Extract(ServiceBase):
             or a blank list if decode failed; and False (no passwords will ever be detected).
         """
         if encoding == 'code/vbe':
-            with open(local, "rb") as fh:
+            with open(local, "r") as fh:
                 text = fh.read()
             try:
                 # Ensure file format is correct via regex
@@ -579,15 +573,15 @@ class Extract(ServiceBase):
                 evbe_present = re.search(evbe_regex, text)
                 evbe_res = self.decode_vbe(evbe_present.groups()[0])
                 if evbe_res and evbe_present != text:
-                    path = os.path.join(self.working_directory, 'vbe_decoded')
-                    with open(path, 'wb') as f:
+                    path = os.path.join(request.working_directory, 'vbe_decoded')
+                    with open(path, 'w') as f:
                         f.write(evbe_res)
                     return [[path, encoding, 'vbe_decoded']], False
             except Exception:
                 pass
         return [], False
 
-    def extract_7zip(self, request: ServiceRequest, local, encoding):
+    def extract_7zip(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to use 7zip and then unrar to extract content from an archive, or sections from a Windows
         executable file.
 
@@ -604,8 +598,8 @@ class Extract(ServiceBase):
 
         # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
         password_failed = False
-        if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or request.file_type.startswith('document') or \
-                encoding == 'tnef':
+        if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
+                request.file_type.startswith('document') or encoding == 'tnef':
             return [], password_protected
         path = os.path.join(request.working_directory, "7zip")
         # noinspection PyBroadException
@@ -614,7 +608,7 @@ class Extract(ServiceBase):
             env['LANG'] = 'en_US.UTF-8'
 
             stdoutput, stderr = subprocess.Popen(
-                ['7z', 'x', '-p', '-y', local, '-o%s' % path],
+                ['7z', 'x', '-p', '-y', local, f'-o{path}'],
                 env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE).communicate()
             stdoutput += stderr
@@ -627,11 +621,10 @@ class Extract(ServiceBase):
                     for password in password_list:
                         try:
                             shutil.rmtree(path, ignore_errors=True)
-                            stdoutput, stderr = subprocess.Popen([
-                                '7za', 'x', '-p%s' % password,
-                                            '-o%s' % path, local
-                            ], env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE).communicate()
+                            stdoutput, stderr = subprocess.Popen(
+                                ['7za', 'x', f'-p{password}', f'-o{path}', local],
+                                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE).communicate()
                             stdoutput += stderr
 
                             if stdoutput and"\nEverything is Ok\n" in stdoutput:
@@ -650,19 +643,18 @@ class Extract(ServiceBase):
                 shutil.rmtree(path, ignore_errors=True)
                 os.mkdir(path)
                 try:
-                    stdoutrar, stderrrar = subprocess.Popen(
+                    stdout_rar, stderr_rar = subprocess.Popen(
                         ['unrar', 'x', '-y', '-p-', local, path],
                         env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
                 except OSError:
-                    self.log.warning("Error running unrar on sample {}. Extract service may be out of date. Reinstall"
-                                     "with /opt/al/pkg/assemblyline/al/install/reinstall_service Extract"
-                                     .format(self.sha))
-                    stdoutrar = None
-                    stderrrar = None
-                if stdoutrar:
-                    if 'All OK' in stdoutrar:
+                    self.log.warning(f"Error running unrar on sample {request.sha256}. "
+                                     "Extract service may be out of date.")
+                    stdout_rar = None
+                    stderr_rar = None
+                if stdout_rar:
+                    if 'All OK' in stdout_rar:
                         return self._7zip_submit_extracted(request, path, encoding), password_protected
-                    if 'wrong password' in stderrrar:
+                    if 'wrong password' in stderr_rar:
                         password_protected = True
                         password_list = self.get_passwords(request)
                         for password in password_list:
@@ -670,7 +662,7 @@ class Extract(ServiceBase):
                                 shutil.rmtree(path, ignore_errors=True)
                                 os.mkdir(path)
                                 proc, _ = subprocess.Popen(
-                                    ['unrar', 'x', '-y', '-p{}' .format(password), local, path],
+                                    ['unrar', 'x', '-y', f'-p{password}', local, path],
                                     env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE).communicate()
                                 if "All OK" in proc:
@@ -683,14 +675,14 @@ class Extract(ServiceBase):
             raise
         except Exception:
             if request.file_type != 'archive/cab':
-                self.log.exception('While extracting %s with 7zip', request.srl)
+                self.log.exception(f'While extracting {request.sha256} with 7zip')
         if password_failed:
             # stop processing the request
             request.drop()
 
         return [], password_protected
 
-    def extract_swf(self, request: ServiceRequest, file_path, encoding):
+    def extract_swf(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract compressed SWF files.
 
         Args:
@@ -713,7 +705,7 @@ class Extract(ServiceBase):
             # noinspection PyBroadException
             try:
                 swf = xxxswf()
-                files_found = swf.extract(file_path, output_path)
+                files_found = swf.extract(local, output_path)
             except ImportError:
                 self.log.exception("Import error: pylzma library not installed.")
             except Exception:
@@ -724,11 +716,11 @@ class Extract(ServiceBase):
 
         return extracted_children, False
 
-    def extract_tnef(self, request: ServiceRequest, file_path, encoding):
+    def extract_tnef(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract data from a TNEF container.
 
         Args:
-            _: Unused AL request object.
+            request: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -749,7 +741,7 @@ class Extract(ServiceBase):
             tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
-            for a in tnef.TNEF(open(file_path).read()).attachments:
+            for a in tnef.TNEF(open(local).read()).attachments:
                 # This may not exist so try to access it and deal the
                 # possible AttributeError, by skipping this entry as
                 # there is no point if there is no data.
@@ -770,7 +762,7 @@ class Extract(ServiceBase):
 
                     name = safe_str(name)
                 except AttributeError:
-                    name = 'unknown_tnef_%d' % count
+                    name = f'unknown_tnef_{count}'
 
                 if not name:
                     continue
@@ -788,7 +780,7 @@ class Extract(ServiceBase):
         return children, False
 
     @staticmethod
-    def jar_whitelisting(extracted, whitelisted_count, encoding):
+    def jar_whitelisting(extracted, whitelisted_count: int, encoding: str):
         """Filters file paths that are considered whitelisted from a list of extracted JAR files.
 
         Args:
@@ -877,7 +869,7 @@ class Extract(ServiceBase):
             return extracted, whitelisted_count
 
     @staticmethod
-    def archive_with_executables(request: ServiceRequest, result):
+    def archive_with_executables(request: ServiceRequest, result: Result):
         """Detects executable files contained in an archive using the service's LAUNCHABLE_EXTENSIONS list.
 
         Args:
@@ -890,14 +882,16 @@ class Extract(ServiceBase):
         if len(request.extracted) == 1 and \
                 os.path.splitext(request.extracted[0].display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
 
-            new_section = ResultSection(SCORE.VHIGH,
-                                        "Archive file with single executable inside. Potentially malicious...")
+            new_section = ResultSection("Archive file with single executable inside. Potentially malicious...")
+            new_section.set_heuristic(13)
+            new_section.add_tag('file.behavior', "Archived Single Executable")
             result.add_section(new_section)
-            result.add_tag('file.behavior', "Archived Single Executable", TAG_WEIGHT['MED'])
         else:
             for extracted in request.extracted:
                 if os.path.splitext(extracted.display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
-                    result.add_tag('file.behavior', "Executable Content in Archive", TAG_WEIGHT['MED'])
+                    new_section = ResultSection("Executable Content in Archive. Potentially malicious...")
+                    new_section.add_tag('file.behavior', "Executable Content in Archive")
+                    result.add_section(new_section)
                     break
 
     @staticmethod
@@ -912,8 +906,10 @@ class Extract(ServiceBase):
             Al result object scoring VHIGH if sample type is ACE container, or None.
         """
         if request.file_type == 'archive/ace':
-            result.add_section(ResultSection(score=SCORE.VHIGH, title_text="Uncommon format: archive/ace"))
-            result.add_tag('file.behavior', "Uncommon format: archive/ace", TAG_WEIGHT['MED'])
+            new_section = ResultSection("Uncommon format: archive/ace")
+            new_section.set_heuristic(14)
+            new_section.add_tag('file.behavior', "Uncommon format: archive/ace")
+            result.add_section(new_section)
 
     @staticmethod
     def yield_eml_parts(message):
@@ -943,7 +939,7 @@ class Extract(ServiceBase):
             yield (p_type, p_disp, p_load, p_name, p_cset)
 
     # noinspection PyCallingNonCallable
-    def extract_eml(self, request: ServiceRequest, local, encoding):
+    def extract_eml(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract attachments from an EML container. Also collects strings of EML body.
 
         Args:
@@ -973,11 +969,11 @@ class Extract(ServiceBase):
                     encoding = p_c or "utf-8"
                     try:
                         try:
-                            body = unicode(p_l, encoding=encoding)
+                            body = str(p_l, encoding=encoding)
                         except LookupError:
                             # This is usually old windows codepages or jibberish
-                            body = unicode(p_l, encoding="utf8", errors="ignore")
-                            self.log.info("Detected non-supported codepage %s" % encoding)
+                            body = str(p_l, encoding="utf8", errors="ignore")
+                            self.log.info(f"Detected non-supported codepage {encoding}")
                         if p_t == "text/html":
                             try:
                                 body = html.document_fromstring(body).text_content()
@@ -1003,12 +999,13 @@ class Extract(ServiceBase):
                 if self.named_attachments_only and is_body:
                     continue
                 elif p_n is None:
-                    p_n = "email_part_%i" % part_num
+                    p_n = f"email_part_{part_num}"
 
                 ft = tempfile.NamedTemporaryFile(dir=request.working_directory, delete=False)
                 ft.write(p_l)
                 name = ft.name
                 ft.close()
-                extracted.append((name, p_t, p_n, self.SERVICE_CLASSIFICATION, {'email_body': list(body_words)}))
+                extracted.append((name, p_t, p_n, self.service_attributes.default_result_classification,
+                                  {'email_body': list(body_words)}))
 
         return extracted, False

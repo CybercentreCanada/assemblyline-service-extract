@@ -39,69 +39,87 @@ submission_params:
 heuristics:
   - heur_id: 1
     name: Archive Extracted
-    score:
+    score: 0
     filetype: archive/
     description: Standard archive-type extracted.
 
   - heur_id: 2
     name: Executable Extracted
-    score:
+    score: 0
     filetype: executable/
     description: Executable sections extracted.
 
   - heur_id: 3
     name: JAR Extracted
-    score:
+    score: 0
     filetype: java/
     description: JAR archive extracted.
 
   - heur_id: 4
     name: APK Extracted
-    score:
+    score: 0
     filetype: android/
     description: Android APK extracted.
 
   - heur_id: 5
     name: EML Extracted
-    score:
+    score: 0
     filetype: document/eml
     description: Attachments extracted from EML.
 
   - heur_id: 6
     name: Office Extracted
-    score:
+    score: 0
     filetype: document/office/unknown
     description: Password-protected office document extracted.
 
   - heur_id: 7
     name: PDF Extracted
-    score:
+    score: 0
     filetype: document/pdf
     description: Attachments extracted from PDF.
 
   - heur_id: 8
     name: SWF Extracted
-    score:
+    score: 0
     filetype: archive/audiovisual/flash
     description: Files extracted from flash container.
 
   - heur_id: 9
     name: IPA Extracted
-    score:
+    score: 0
     filetype: archive/
     description: Apple IPA extracted.
 
   - heur_id: 10
     name: Password Protected Extracted
-    score:
+    score: 0
     filetype: *
     description: Password protected archive successfully extracted.
 
   - heur_id: 11
     name: VBE Decoded
-    score:
+    score: 0
     filetype: code/vbe
     description: VBE file decoded.
+
+  - heur_id: 12
+    name: Password Protected File Extraction Failed
+    score: 500
+    filetype: *
+    description: Failed to extract password protected file.
+
+  - heur_id: 13
+    name: Single Executable Inside Archive File
+    score: 500
+    filetype: *
+    description: Archive file with single executable inside. Potentially malicious.
+
+  - heur_id: 14
+    name: "Uncommon format: archive/ace"
+    score: 500
+    filetype: archive/ace
+    description: "Uncommon format: archive/ace"
 
 docker_config:
   image: cccs/assemblyline-service-extract:latest
