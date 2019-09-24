@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.7
 # Note:
 # PKZIP format taken from:
 #    https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html
@@ -122,10 +122,10 @@ class RepairZip(ZipFile):
             pass
         elif compression == self.ZIP_DEFLATED:
             if not zlib:
-                raise RuntimeError,\
-                      "Compression requires the (missing) zlib module"
+                raise RuntimeError("Compression requires the (missing) zlib module")
+
         else:
-            raise RuntimeError, "That compression method is not supported"
+            raise RuntimeError("That compression method is not supported")
 
         self._allowZip64 = allowZip64
         self._didModify = False
@@ -139,7 +139,7 @@ class RepairZip(ZipFile):
         self.is_zip = True
 
         # Check if we were passed a file-like object
-        if isinstance(filename, basestring):
+        if isinstance(filename, str):
             self._filePassed = 0
             self.filename = filename
             modeDict = {'r': 'rb', 'w': 'wb', 'a': 'r+b'}
@@ -248,7 +248,7 @@ class RepairZip(ZipFile):
             last_dt = (0, 0)
 
             # Pass two, repair
-            for filename, (start, end, centdir) in cd_list.iteritems():
+            for filename, (start, end, centdir) in cd_list.items():
                 if filename not in file_list:
                     continue
 
@@ -279,7 +279,7 @@ class RepairZip(ZipFile):
                 self.filelist.append(x)
                 self.NameToInfo[x.filename] = x
 
-            for filename, (start, end, fheader) in file_list.iteritems():
+            for filename, (start, end, fheader) in file_list.items():
                 if filename in cd_list:
                     continue
 
@@ -321,12 +321,12 @@ if __name__ == "__main__":
     import sys
     import tempfile
     if len(sys.argv) != 3:
-        print "Usage: repair_zip.py <in file> <out file>"
+        print("Usage: repair_zip.py <in file> <out file>")
         sys.exit(1)
 
     with RepairZip(sys.argv[1], strict=False) as rz:
         if not rz.broken:
-            print "Zip file not broken"
+            print("Zip file not broken")
             sys.exit(0)
 
         rz.fix_zip()
@@ -336,4 +336,3 @@ if __name__ == "__main__":
                     tmp_f.write(rz.read(path))
                     tmp_f.flush()
                     zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
-

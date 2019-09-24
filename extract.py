@@ -9,8 +9,6 @@ import time
 import zlib
 from copy import deepcopy
 
-from assemblyline.common.reaper import set_death_signal
-from assemblyline.common.timeout import SubprocessTimer
 from bs4 import BeautifulSoup
 from lxml import html, etree
 
@@ -19,6 +17,7 @@ from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import ServiceRequest, MaxExtractedExceeded
 from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
+from assemblyline_v4_service.common.utils import set_death_signal
 from .doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 from .ext.xxxswf import xxxswf
 from .repair_zip import RepairZip, BadZipfile
@@ -91,14 +90,12 @@ class Extract(ServiceBase):
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting]
-        self.st = None
         self.named_attachments_only = None
         self.max_attachment_size = None
         self.is_ipa = False
         self.sha = None
 
     def start(self):
-        self.st = SubprocessTimer(2*self.service_attributes.timeout/3)
         self.named_attachments_only = self.config.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
         self.max_attachment_size = self.config.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
@@ -222,12 +219,16 @@ class Extract(ServiceBase):
 
         for i, child in enumerate(extracted):
             try:
+                for path, subdirs, files in os.walk(request.working_directory):
+                    for name in files:
+                        self.log.info(os.path.join(path, name))
+
                 # If the file is not successfully added as extracted, then pop it from the list of extracted
                 if not request.add_extracted(*child):
                     extracted.pop(i)
             except MaxExtractedExceeded:
-                raise MaxExtractedExceeded(f"This file contains {len(extracted)} extracted files, exceeding the maximum "
-                                           f"of {request.max_extracted} extracted files allowed. "
+                raise MaxExtractedExceeded(f"This file contains {len(extracted)} extracted files, exceeding the "
+                                           f"maximum of {request.max_extracted} extracted files allowed. "
                                            "None of the files were extracted.")
 
         return password_protected, white_listed_count
@@ -248,8 +249,8 @@ class Extract(ServiceBase):
         if user_supplied:
             passwords.append(user_supplied)
 
-        if "email_body" in self.submission_tags:
-            passwords.extend(self.submission_tags["email_body"])
+        if "email_body" in request.temp_submission_data:
+            passwords.extend(request.temp_submission_data["email_body"])
 
         return passwords
 
@@ -288,7 +289,7 @@ class Extract(ServiceBase):
                                     # Corrupted zip file, also expected
                                     pass
 
-                return [[out_name, encoding, "repaired_zip_file.zip"]], False
+                return [[out_name, "repaired_zip_file.zip", encoding]], False
         except ValueError:
             return [], False
         except NotImplementedError:
@@ -342,7 +343,7 @@ class Extract(ServiceBase):
         out_name, password = res
         self._last_password = password
         display_name = "_decoded".join(os.path.splitext(os.path.basename(request.file_path)))
-        return [[out_name, encoding, display_name]], True
+        return [[out_name, display_name, encoding]], True
 
     def _7zip_submit_extracted(self, request: ServiceRequest, path: str, encoding: str):
         """Will attempt to use 7zip library to extract content from a generic archive or PE file.
@@ -372,7 +373,7 @@ class Extract(ServiceBase):
                     raise ExtractIgnored("'Extract PE sections' option not selected. PE/ELF file sections will not "
                                          "be extracted. See service README for more details.")
 
-                extracted_children.append([os.path.join(root, f), encoding, safe_str(filename)])
+                extracted_children.append([os.path.join(root, f), safe_str(filename), encoding])
 
         return extracted_children
 
@@ -391,7 +392,7 @@ class Extract(ServiceBase):
         if encoding != 'ace':
             return [], False
 
-        path = os.path.join(request.working_directory, "ace")
+        path = os.path.join(request.working_directory)
         try:
             os.mkdir(path)
         except OSError:
@@ -405,19 +406,11 @@ class Extract(ServiceBase):
                     tf.write(fh.read())
                     tf.flush()
 
-                proc = self.st.run(subprocess.Popen(
-                    f'/usr/bin/unace e -y {tf.name}',
-                    stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
-                    preexec_fn=set_death_signal()))
-
-                # Note, proc.communicate() hangs
+                proc = subprocess.run(f'/usr/bin/unace e -y {tf.name}', timeout=2*self.service_attributes.timeout/3,
+                                      stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                      stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
+                                      preexec_fn=set_death_signal())
                 stdoutput = proc.stdout.read()
-                while True:
-                    stdoutput += proc.stdout.read()
-                    if proc.poll() is not None:
-                        break
-                    time.sleep(0.01)
 
             if stdoutput:
                 extracted_children = []
@@ -433,7 +426,7 @@ class Extract(ServiceBase):
                         if os.path.isdir(filepath):
                             continue
                         else:
-                            extracted_children.append([filepath, encoding, safe_str(filename)])
+                            extracted_children.append([filepath, safe_str(filename), encoding])
 
                 return extracted_children, False
 
@@ -460,7 +453,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'document/pdf':
-            output_path = os.path.join(request.working_directory, "pdf")
+            output_path = os.path.join(request.working_directory)
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -480,7 +473,7 @@ class Extract(ServiceBase):
                      os.path.isfile(os.path.join(output_path, filename)))
 
             for filename in files:
-                extracted_children.append([output_path + "/" + filename, encoding, safe_str(filename)])
+                extracted_children.append([output_path + "/" + filename, safe_str(filename), encoding])
 
         return extracted_children, False
 
@@ -573,10 +566,10 @@ class Extract(ServiceBase):
                 evbe_present = re.search(evbe_regex, text)
                 evbe_res = self.decode_vbe(evbe_present.groups()[0])
                 if evbe_res and evbe_present != text:
-                    path = os.path.join(request.working_directory, 'vbe_decoded')
+                    path = os.path.join(request.working_directory)
                     with open(path, 'w') as f:
                         f.write(evbe_res)
-                    return [[path, encoding, 'vbe_decoded']], False
+                    return [[path, 'vbe_decoded', encoding]], False
             except Exception:
                 pass
         return [], False
@@ -601,7 +594,7 @@ class Extract(ServiceBase):
         if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
                 request.file_type.startswith('document') or encoding == 'tnef':
             return [], password_protected
-        path = os.path.join(request.working_directory, "7zip")
+        path = os.path.join(request.working_directory)
         # noinspection PyBroadException
         try:
             env = os.environ.copy()
@@ -612,10 +605,10 @@ class Extract(ServiceBase):
                 env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE).communicate()
             stdoutput += stderr
-            if stdoutput and stdoutput.strip().find("Everything is Ok") > 0:
+            if stdoutput and stdoutput.strip().find(b"Everything is Ok") > 0:
                 return self._7zip_submit_extracted(request, path, encoding), password_protected
             else:
-                if "Wrong password" in stdoutput:
+                if b"Wrong password" in stdoutput:
                     password_protected = True
                     password_list = self.get_passwords(request)
                     for password in password_list:
@@ -697,7 +690,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'audiovisual/flash':
-            output_path = os.path.join(request.working_directory, "swf")
+            output_path = os.path.join(request.working_directory)
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -712,7 +705,7 @@ class Extract(ServiceBase):
                 self.log.exception("Error occurred while trying to decompress swf...")
 
             for child in files_found:
-                extracted_children.append([output_path + "/" + child, encoding, child])
+                extracted_children.append([output_path + "/" + child, child, encoding])
 
         return extracted_children, False
 
@@ -767,11 +760,11 @@ class Extract(ServiceBase):
                 if not name:
                     continue
 
-                path = os.path.join(request.working_directory, str(count))
+                path = os.path.join(request.working_directory)
                 with open(path, 'w') as f:
                     f.write(data)
 
-                children.append([path, encoding, name])
+                children.append([path, name, encoding])
         except ImportError:
             self.log.exception("Import error: tnefparse library not installed:")
         except Exception:
@@ -839,9 +832,9 @@ class Extract(ServiceBase):
                 to_add = True
                 file_info = ident(byte_block, len(byte_block))
                 for exp in whitelisted_tags_re:
-                    if exp.search(file_info['tag']):
+                    if exp.search(file_info['type']):
                         if DEBUG:
-                            print("T", file_info['tag'], file_info['ascii'], cur_file[0])
+                            print("T", file_info['type'], file_info['ascii'], cur_file[0])
                         to_add = False
                         jar_filter_count += 1
 
@@ -880,7 +873,7 @@ class Extract(ServiceBase):
             Al result object scoring VHIGH if executables detected in container, or None.
         """
         if len(request.extracted) == 1 and \
-                os.path.splitext(request.extracted[0].display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
+                os.path.splitext(request.extracted[0]['name'])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
 
             new_section = ResultSection("Archive file with single executable inside. Potentially malicious...")
             new_section.set_heuristic(13)
@@ -888,7 +881,7 @@ class Extract(ServiceBase):
             result.add_section(new_section)
         else:
             for extracted in request.extracted:
-                if os.path.splitext(extracted.display_name)[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
+                if os.path.splitext(extracted['name'])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
                     new_section = ResultSection("Executable Content in Archive. Potentially malicious...")
                     new_section.add_tag('file.behavior', "Executable Content in Archive")
                     result.add_section(new_section)
@@ -1003,9 +996,11 @@ class Extract(ServiceBase):
 
                 ft = tempfile.NamedTemporaryFile(dir=request.working_directory, delete=False)
                 ft.write(p_l)
-                name = ft.name
+                path = ft.name
                 ft.close()
-                extracted.append((name, p_t, p_n, self.service_attributes.default_result_classification,
-                                  {'email_body': list(body_words)}))
+                extracted.append((path, p_n, p_t, self.service_attributes.default_result_classification))
+
+        # Add all words from the email body to temporary submission data, which will be available to all child tasks
+        request.temp_submission_data['email_body'] = list(body_words)
 
         return extracted, False

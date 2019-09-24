@@ -94,7 +94,7 @@ heuristics:
   - heur_id: 10
     name: Password Protected Extracted
     score: 0
-    filetype: *
+    filetype: '*'
     description: Password protected archive successfully extracted.
 
   - heur_id: 11
@@ -106,13 +106,13 @@ heuristics:
   - heur_id: 12
     name: Password Protected File Extraction Failed
     score: 500
-    filetype: *
+    filetype: '*'
     description: Failed to extract password protected file.
 
   - heur_id: 13
     name: Single Executable Inside Archive File
     score: 500
-    filetype: *
+    filetype: '*'
     description: Archive file with single executable inside. Potentially malicious.
 
   - heur_id: 14

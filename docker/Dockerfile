@@ -13,11 +13,12 @@ RUN apt-get update && apt-get install -y \
   python-lxml \
   unrar
 
-RUN pip3 install \
+RUN pip install \
   tnefparse \
   olefile \
   beautifulsoup4 \
-  pylzma
+  pylzma \
+  lxml
 
 # Download the support files from Amazon S3
 RUN aws s3 cp s3://assemblyline-support/msoffice.tar.gz /tmp
