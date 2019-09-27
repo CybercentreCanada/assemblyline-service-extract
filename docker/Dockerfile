@@ -1,6 +1,6 @@
 FROM cccs/assemblyline-v4-service-base:latest
 
-ENV SERVICE_PATH alsvc_extract.extract.Extract
+ENV SERVICE_PATH extract.Extract
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
@@ -37,5 +37,5 @@ RUN rm -rf /tmp
 USER assemblyline
 
 # Clone Extract service code
-WORKDIR /opt/al/al_services/alsvc_extract
+WORKDIR /opt/al_service
 COPY . .
