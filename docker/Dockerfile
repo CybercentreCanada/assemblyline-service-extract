@@ -31,7 +31,7 @@ RUN tar -zxf /tmp/cybozulib.tar.gz -C /opt/al/support/extract
 RUN make -C /opt/al/support/extract/msoffice -j RELEASE=1
 
 # Cleanup
-RUN rm -rf /tmp
+RUN rm -rf /tmp/*
 
 # Switch to assemblyline user
 USER assemblyline

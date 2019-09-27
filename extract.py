@@ -5,7 +5,6 @@ import re
 import shutil
 import subprocess
 import tempfile
-import time
 import zlib
 from copy import deepcopy
 
@@ -219,10 +218,6 @@ class Extract(ServiceBase):
 
         for i, child in enumerate(extracted):
             try:
-                for path, subdirs, files in os.walk(request.working_directory):
-                    for name in files:
-                        self.log.info(os.path.join(path, name))
-
                 # If the file is not successfully added as extracted, then pop it from the list of extracted
                 if not request.add_extracted(*child):
                     extracted.pop(i)
@@ -273,11 +268,11 @@ class Extract(ServiceBase):
                     return [], False
                 rz.fix_zip()
 
-                with tempfile.NamedTemporaryFile(dir=request.working_directory, delete=False) as fh:
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
                     out_name = fh.name
                     with RepairZip(fh, "w") as zo:
                         for path in rz.namelist():
-                            with tempfile.NamedTemporaryFile(dir=request.working_directory, delete=True) as tmp_f:
+                            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
                                 try:
                                     tmp_f.write(rz.read(path))
                                     tmp_f.flush()
@@ -319,18 +314,18 @@ class Extract(ServiceBase):
             if os.path.isfile("/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"):
                 # Still going to use extract_docx as a backup for now, so try that module if msoffice fails
                 try_next = True
-                res = mstools(local, passwords, request.working_directory)
+                res = mstools(local, passwords, self.working_directory)
             else:
                 try_next = False
                 self.log.warning("Extract service out of date. Reinstall on workers with "
                                  "/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract")
-                res = extract_docx(local, passwords, request.working_directory)
+                res = extract_docx(local, passwords, self.working_directory)
 
             if res is None and not try_next:
                 raise ValueError()
             # Try old module if msoffice errors
             if res is None:
-                res = extract_docx(local, passwords, request.working_directory)
+                res = extract_docx(local, passwords, self.working_directory)
                 if res is None:
                     raise ValueError()
         except ValueError:
@@ -392,7 +387,7 @@ class Extract(ServiceBase):
         if encoding != 'ace':
             return [], False
 
-        path = os.path.join(request.working_directory)
+        path = os.path.join(self.working_directory)
         try:
             os.mkdir(path)
         except OSError:
@@ -453,7 +448,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'document/pdf':
-            output_path = os.path.join(request.working_directory)
+            output_path = os.path.join(self.working_directory)
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -566,7 +561,7 @@ class Extract(ServiceBase):
                 evbe_present = re.search(evbe_regex, text)
                 evbe_res = self.decode_vbe(evbe_present.groups()[0])
                 if evbe_res and evbe_present != text:
-                    path = os.path.join(request.working_directory)
+                    path = os.path.join(self.working_directory)
                     with open(path, 'w') as f:
                         f.write(evbe_res)
                     return [[path, 'vbe_decoded', encoding]], False
@@ -594,7 +589,7 @@ class Extract(ServiceBase):
         if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
                 request.file_type.startswith('document') or encoding == 'tnef':
             return [], password_protected
-        path = os.path.join(request.working_directory)
+        path = os.path.join(self.working_directory)
         # noinspection PyBroadException
         try:
             env = os.environ.copy()
@@ -690,7 +685,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == 'audiovisual/flash':
-            output_path = os.path.join(request.working_directory)
+            output_path = os.path.join(self.working_directory)
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -760,7 +755,7 @@ class Extract(ServiceBase):
                 if not name:
                     continue
 
-                path = os.path.join(request.working_directory)
+                path = os.path.join(self.working_directory)
                 with open(path, 'w') as f:
                     f.write(data)
 
@@ -994,7 +989,7 @@ class Extract(ServiceBase):
                 elif p_n is None:
                     p_n = f"email_part_{part_num}"
 
-                ft = tempfile.NamedTemporaryFile(dir=request.working_directory, delete=False)
+                ft = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                 ft.write(p_l)
                 path = ft.name
                 ft.close()
