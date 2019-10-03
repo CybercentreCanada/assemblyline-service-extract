@@ -1,0 +1,127 @@
+name: Extract
+version: 1
+description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
+
+accepts: (archive|executable|java|android)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown
+rejects: empty|metadata/.*
+
+stage: EXTRACT
+category: Extraction
+
+file_required: true
+timeout: 60
+disable_cache: false
+
+enabled: true
+is_external: false
+licence_count: 0
+supported_platforms: [linux]
+
+config:
+  default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
+  named_email_attachments_only: true
+  max_email_attachment_size: 10 * 1024**3
+
+submission_params:
+  - default: ''
+    name: password
+    type: str
+    value: ''
+  - default: false
+    name: extract_pe_sections
+    type: bool
+    value: false
+  - default: false
+    name: continue_after_extract
+    type: bool
+    value: false
+
+heuristics:
+  - heur_id: 1
+    name: Archive Extracted
+    score: 0
+    filetype: archive/
+    description: Standard archive-type extracted.
+
+  - heur_id: 2
+    name: Executable Extracted
+    score: 0
+    filetype: executable/
+    description: Executable sections extracted.
+
+  - heur_id: 3
+    name: JAR Extracted
+    score: 0
+    filetype: java/
+    description: JAR archive extracted.
+
+  - heur_id: 4
+    name: APK Extracted
+    score: 0
+    filetype: android/
+    description: Android APK extracted.
+
+  - heur_id: 5
+    name: EML Extracted
+    score: 0
+    filetype: document/eml
+    description: Attachments extracted from EML.
+
+  - heur_id: 6
+    name: Office Extracted
+    score: 0
+    filetype: document/office/unknown
+    description: Password-protected office document extracted.
+
+  - heur_id: 7
+    name: PDF Extracted
+    score: 0
+    filetype: document/pdf
+    description: Attachments extracted from PDF.
+
+  - heur_id: 8
+    name: SWF Extracted
+    score: 0
+    filetype: archive/audiovisual/flash
+    description: Files extracted from flash container.
+
+  - heur_id: 9
+    name: IPA Extracted
+    score: 0
+    filetype: archive/
+    description: Apple IPA extracted.
+
+  - heur_id: 10
+    name: Password Protected Extracted
+    score: 0
+    filetype: '*'
+    description: Password protected archive successfully extracted.
+
+  - heur_id: 11
+    name: VBE Decoded
+    score: 0
+    filetype: code/vbe
+    description: VBE file decoded.
+
+  - heur_id: 12
+    name: Password Protected File Extraction Failed
+    score: 500
+    filetype: '*'
+    description: Failed to extract password protected file.
+
+  - heur_id: 13
+    name: Single Executable Inside Archive File
+    score: 500
+    filetype: '*'
+    description: Archive file with single executable inside. Potentially malicious.
+
+  - heur_id: 14
+    name: "Uncommon format: archive/ace"
+    score: 500
+    filetype: archive/ace
+    description: "Uncommon format: archive/ace"
+
+docker_config:
+  image: cccs/assemblyline-service-extract:latest
+  cpu_cores: 0.1
+  ram_mb: 256

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.7
 # Note:
 # All algorithms, constants, etc taken from:
 #  https://msdn.microsoft.com/en-us/library/cc313071(v=office.12).aspx
@@ -23,7 +23,7 @@ class ExtractionError(Exception):
     pass
 
 
-def get_bit(i, n, mask = 1):
+def get_bit(i, n, mask=1):
     """Helper function, extract bits from a bitmask"""
     return (i >> n) & mask
 
@@ -54,7 +54,7 @@ def generate_enc_key_v2(password, salt, key_size):
     h_step = hashlib.sha1(salt + password.encode("utf-16")[2:]).digest()
     struct_template = "I%is" % hashlib.sha1().digest_size
 
-    for i in xrange(50000):
+    for i in range(50000):
         h_step = hashlib.sha1(struct.pack(struct_template, i, h_step)).digest()
 
     block = 0
@@ -87,7 +87,7 @@ def generate_enc_key_v4(password, salt, spins, hash, key_size, block_key):
     """Algorithm from MS-OFFCRYPTO 2.3.4.11"""
     h_step = hash(salt + password.encode("utf-16")[2:]).digest()
     struct_template = "I%is" % hash().digest_size
-    for i in xrange(spins):
+    for i in range(spins):
         h_step = hash(struct.pack(struct_template, i, h_step)).digest()
 
     h_final = hash(h_step + block_key).digest()
@@ -186,7 +186,7 @@ def decode_stream_v2(password, metadata, package, out_file):
     aes = AES.new(key, mode=AES.MODE_ECB)
     block_count = int(math.ceil(decoded_len/float(ks)))
     remainder = int(ks - (decoded_len % float(ks)))
-    for i in xrange(block_count):
+    for i in range(block_count):
         cipher_t = package.read(ks)
 
         plain_t = aes.decrypt(cipher_t)
@@ -235,7 +235,7 @@ def decode_stream_v4(metadata, package, out_file):
 
     block_count = int(math.ceil(decoded_len / float(block_len)))
     remainder = enc_method.block_size - (decoded_len % enc_method.block_size)
-    for i in xrange(block_count):
+    for i in range(block_count):
         block = package.read(block_len)
         iv = hash(salt + struct.pack("I", i)).digest()
         iv = adjust_buf_len(iv, enc_method.block_size, "\x36")
@@ -427,9 +427,9 @@ def mstools(filename, password_list, output_folder):
         password = None
         for pass_try in password_list:
             msoffice = "/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"
-            stdout, stderr = subprocess.Popen([msoffice, "-d", "-p", "{}".format(pass_try), filename, output_name],
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.PIPE).communicate()
+            stdout, stderr = subprocess.Popen([msoffice, "-d", "-p", f"{pass_try}", filename, output_name],
+                                              stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE).communicate()
             if "bad password" in stdout:
                 continue
             elif "not support format" in stdout or "exception:" in stdout or stderr != "":
@@ -449,4 +449,4 @@ def mstools(filename, password_list, output_folder):
 if __name__ == "__main__":
     import sys
     # Usage: file.docx password
-    print extract_docx(sys.argv[1], [sys.argv[2]], ".")
+    print(extract_docx(sys.argv[1], [sys.argv[2]], "."))
