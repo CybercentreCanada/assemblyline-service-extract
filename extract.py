@@ -250,11 +250,11 @@ class Extract(ServiceBase):
         return passwords
 
     # noinspection PyCallingNonCallable
-    def repair_zip(self, request: ServiceRequest, local: str, encoding: str):
+    def repair_zip(self, _: ServiceRequest, local: str, encoding: str):
         """Attempts to use modules in repair_zip.py when a possible corruption of ZIP archive has been detected.
 
         Args:
-            request: Unused AL request object.
+            _: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -432,11 +432,11 @@ class Extract(ServiceBase):
 
         return [], False
 
-    def extract_pdf(self, request: ServiceRequest, local, encoding):
+    def extract_pdf(self, _: ServiceRequest, local, encoding):
         """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
 
         Args:
-            request: AL request object.
+            _: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -540,11 +540,11 @@ class Extract(ServiceBase):
             result = None
             return result
 
-    def extract_vbe(self, request: ServiceRequest, local: str, encoding: str):
+    def extract_vbe(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to decode VBA code data from a VBE container.
 
         Args:
-            request: Unused AL request object.
+            _: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -670,11 +670,11 @@ class Extract(ServiceBase):
 
         return [], password_protected
 
-    def extract_swf(self, request: ServiceRequest, local: str, encoding: str):
+    def extract_swf(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract compressed SWF files.
 
         Args:
-            request: Unused AL request object.
+            _: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -704,11 +704,11 @@ class Extract(ServiceBase):
 
         return extracted_children, False
 
-    def extract_tnef(self, request: ServiceRequest, local: str, encoding: str):
+    def extract_tnef(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract data from a TNEF container.
 
         Args:
-            request: Unused AL request object.
+            _: Unused AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
