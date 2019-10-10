@@ -9,10 +9,7 @@ import zlib
 from copy import deepcopy
 
 from bs4 import BeautifulSoup
-from ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
-from ext.xxxswf import xxxswf
 from lxml import html, etree
-from ext.repair_zip import RepairZip, BadZipfile
 
 from assemblyline.common.identify import ident
 from assemblyline.common.str_utils import safe_str
@@ -20,6 +17,9 @@ from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import ServiceRequest, MaxExtractedExceeded
 from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
 from assemblyline_v4_service.common.utils import set_death_signal
+from extract.ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
+from extract.ext.repair_zip import RepairZip, BadZipfile
+from extract.ext.xxxswf import xxxswf
 
 DEBUG = False
 
