@@ -137,6 +137,7 @@ class RepairZip(ZipFile):
         self.pwd = None
         self._comment = ''
         self.is_zip = True
+        self._writing = False
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
