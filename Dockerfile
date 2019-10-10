@@ -1,6 +1,6 @@
 FROM cccs/assemblyline-v4-service-base:latest
 
-ENV SERVICE_PATH extract.Extract
+ENV SERVICE_PATH extract.extract.Extract
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
