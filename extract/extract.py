@@ -9,10 +9,10 @@ import zlib
 from copy import deepcopy
 
 from bs4 import BeautifulSoup
-from doc_extract import mstools, extract_docx, ExtractionError, PasswordError
+from ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
 from ext.xxxswf import xxxswf
 from lxml import html, etree
-from repair_zip import RepairZip, BadZipfile
+from ext.repair_zip import RepairZip, BadZipfile
 
 from assemblyline.common.identify import ident
 from assemblyline.common.str_utils import safe_str
