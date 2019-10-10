@@ -9,6 +9,9 @@ import zlib
 from copy import deepcopy
 
 from bs4 import BeautifulSoup
+from extract.ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
+from extract.ext.repair_zip import RepairZip, BadZipfile
+from extract.ext.xxxswf import xxxswf
 from lxml import html, etree
 
 from assemblyline.common.identify import ident
@@ -17,9 +20,6 @@ from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import ServiceRequest, MaxExtractedExceeded
 from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
 from assemblyline_v4_service.common.utils import set_death_signal
-from extract.ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
-from extract.ext.repair_zip import RepairZip, BadZipfile
-from extract.ext.xxxswf import xxxswf
 
 DEBUG = False
 
@@ -82,7 +82,7 @@ class Extract(ServiceBase):
             self.extract_swf,
             self.extract_ace,
             self.extract_eml,
-            self.repair_zip,
+            # self.repair_zip,
             self.extract_office,
             self.extract_pdf,
             self.extract_vbe,

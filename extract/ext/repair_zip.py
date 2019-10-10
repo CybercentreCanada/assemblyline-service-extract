@@ -4,12 +4,11 @@
 #    https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html
 # Constants taken from zipfile.py, part of Python, which in turn sources:
 #    http://www.pkware.com/documents/casestudies/APPNOTE.TXT
-
-
-from zipfile import ZipFile, BadZipfile, ZipInfo
-import struct
 import mmap
+import struct
+import threading
 import zlib
+from zipfile import ZipFile, BadZipfile, ZipInfo
 
 # Based on zipfile.py:
 
@@ -114,8 +113,6 @@ class RepairZip(ZipFile):
 
     def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=True):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
-        super(RepairZip, self).__init__(filename, mode=mode, compression=compression, allowZip64=allowZip64)
-
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):
             raise RuntimeError('ZipFile() requires mode "r", "w", or "a"')
@@ -137,8 +134,13 @@ class RepairZip(ZipFile):
         self.compression = compression  # Method of compression
         self.mode = key = mode.replace('b', '')[0]
         self.pwd = None
-        self._comment = ''
+        self._comment = b''
         self.is_zip = True
+
+        self._fileRefCnt = 1
+        self._lock = threading.RLock()
+        self._seekable = True
+        self._writing = False
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
@@ -168,6 +170,19 @@ class RepairZip(ZipFile):
                 # set the modified flag so central directory gets written
                 # even if no files are added to the archive
                 self._didModify = True
+                try:
+                    self.start_dir = self.fp.tell()
+                except (AttributeError, OSError):
+                    # self.fp = _Tellable(self.fp)
+                    self.start_dir = 0
+                    self._seekable = False
+                else:
+                    # Some file-like objects can provide tell() but not seek()
+                    try:
+                        self.fp.seek(self.start_dir)
+                    except (AttributeError, OSError):
+                        self._seekable = False
+
             elif key == 'a':
                 try:
                     # See if file is a zip file
@@ -207,7 +222,7 @@ class RepairZip(ZipFile):
 
             # pass one, parse the zip file
             while offset + 4 < file_len:
-                hdr_off = mm.find("PK", offset)
+                hdr_off = mm.find(b"PK", offset)
                 if hdr_off == -1:
                     break
                 hdr_type = mm[hdr_off:hdr_off+4]
