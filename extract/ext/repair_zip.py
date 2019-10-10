@@ -114,6 +114,8 @@ class RepairZip(ZipFile):
 
     def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=True):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
+        super(RepairZip, self).__init__(filename, mode=mode, compression=compression, allowZip64=allowZip64)
+
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):
             raise RuntimeError('ZipFile() requires mode "r", "w", or "a"')
@@ -137,7 +139,6 @@ class RepairZip(ZipFile):
         self.pwd = None
         self._comment = ''
         self.is_zip = True
-        self._writing = False
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
