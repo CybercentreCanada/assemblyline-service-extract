@@ -207,7 +207,7 @@ class RepairZip(ZipFile):
             while offset + 4 < file_len:
                 hdr_off = mm.find("PK", offset)
                 if hdr_off == -1:
-                     break
+                    break
                 hdr_type = mm[hdr_off:hdr_off+4]
                 if hdr_type == stringFileHeader:
                     # local file header
@@ -275,7 +275,7 @@ class RepairZip(ZipFile):
                 last_dt = (d, t)
 
                 x._decodeExtra()
-                x.filename = x._decodeFilename()
+                # x.filename = x._decodeFilename()
                 self.filelist.append(x)
                 self.NameToInfo[x.filename] = x
 
@@ -306,11 +306,10 @@ class RepairZip(ZipFile):
 
                 # Convert date/time code to (year, month, day, hour, min, sec)
                 x._raw_time = t
-                x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
-                                         t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
+                x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F, t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
 
                 x._decodeExtra()
-                x.filename = x._decodeFilename()
+                # x.filename = x._decodeFilename()
                 self.filelist.append(x)
                 self.NameToInfo[x.filename] = x
         finally:
