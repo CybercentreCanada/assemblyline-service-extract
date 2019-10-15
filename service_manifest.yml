@@ -15,7 +15,6 @@ disable_cache: false
 enabled: true
 is_external: false
 licence_count: 0
-supported_platforms: [linux]
 
 config:
   default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
