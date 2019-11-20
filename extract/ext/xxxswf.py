@@ -44,7 +44,7 @@ import re
 import struct
 import sys
 import zlib
-from io import StringIO, BytesIO
+from io import BytesIO
 from optparse import OptionParser
 
 import pylzma
@@ -69,34 +69,39 @@ class BitStream(object):
         return retval
 
 
+# noinspection PyBroadException
 class SwfHeader(object):
     def __init__(self, swf):
         self.header = self.header_info(swf)
         self.print_header()
 
-    def read_ui8(self, c):
+    @staticmethod
+    def read_ui8(c):
         return struct.unpack('<B', c)[0]
 
-    def read_ui16(self, c):
+    @staticmethod
+    def read_ui16(c):
         return struct.unpack('<H', c)[0]
 
-    def read_ui32(self, c):
+    @staticmethod
+    def read_ui32(c):
         return struct.unpack('<I', c)[0]
 
-    def check_type(self, swf):
-        if type(swf) is str:
-            swf = StringIO(swf)
+    @staticmethod
+    def check_type(swf):
+        if type(swf) is bytes:
+            swf = BytesIO(swf)
         return swf
 
     def header_info(self, swf):
         try:
             swf = self.check_type(swf)
             header = {'signature': swf.read(3)}
-            if header['signature'] == "FWS":
+            if header['signature'] == b"FWS":
                 header['compression'] = None
-            elif header['signature'] == "CWS":
+            elif header['signature'] == b"CWS":
                 header['compression'] = "zlib"
-            elif header['signature'] == "ZWS":
+            elif header['signature'] == b"ZWS":
                 header['compression'] = "lzma"
             header['version'] = self.read_ui8(swf.read(1))
             header['file_length'] = self.read_ui32(swf.read(4))
@@ -105,13 +110,13 @@ class SwfHeader(object):
                 swf.seek(3)
                 vfl = swf.read(5)
                 swf.read(4)
-                swf = "FWS" + vfl + pylzma.decompress(swf.read())
+                swf = b"FWS" + vfl + pylzma.decompress(swf.read())
                 swf = self.check_type(swf)
                 swf.seek(8)
             elif header['compression'] == 'zlib':
                 swf.seek(3)
                 vfl = swf.read(5)
-                swf = "FWS" + vfl + zlib.decompress(swf.read())
+                swf = b"FWS" + vfl + zlib.decompress(swf.read())
                 swf = self.check_type(swf)
                 swf.seek(8)
             tmp = swf.tell()
@@ -127,7 +132,7 @@ class SwfHeader(object):
             header['frame_rate'] = self.read_ui16(swf.read(2)) >> 8
             header['frame_count'] = self.read_ui16(swf.read(2))
             header['header_end'] = int(swf.tell())
-        except:
+        except Exception:
             return None
         return header
 
@@ -152,6 +157,7 @@ class SwfHeader(object):
         print('\t[HEADER] Frace Count: %i' % header['frame_count'])
 
 
+# noinspection PyBroadException,PyPep8Naming
 class xxxswf:
     def __init__(self):
         self.show_errors = True
@@ -178,12 +184,14 @@ class xxxswf:
         except ImportError:
             self.lzma_install = False
 
-    def find_swf(self, data_stream):
-        'searches a data stream for the headers of SWF files'
-        return [tmp.start() for tmp in re.finditer('CWS|FWS|ZWS', data_stream.read())]
+    @staticmethod
+    def find_swf(data_stream):
+        """searches a data stream for the headers of SWF files"""
+        data = data_stream.read()
+        return [tmp.start() for tmp in re.finditer(b'CWS|FWS|ZWS', data)]
 
     def walk_path_find_swf(self, file_path):
-        'returns a [path, [address, address]]'
+        """returns a [path, [address, address]]"""
         path_addr = ['', []]
         r = path_addr * 0
         if not os.path.isdir(file_path) and file_path != '':
@@ -199,8 +207,7 @@ class xxxswf:
                             path_addr[1] = swf_addr
                             r.append(path_addr)
                             path_addr = ['', []]
-                            y = ''
-                except:
+                except Exception:
                     if self.show_errors:
                         print("\t[ERROR] Could not open file %s " % os.path.join(root, name))
         return r
@@ -221,26 +228,27 @@ class xxxswf:
             try:
                 import pylzma
                 return pylzma.decompress(data)
-            except:
+            except Exception:
                 return None
 
-    def uncompress_zlib(self, data):
+    @staticmethod
+    def uncompress_zlib(data):
         """uncompress zlib compressed stream"""
         try:
             return zlib.decompress(data)
-        except:
+        except Exception:
             return None
 
     def verify_swf(self, stream, addr):
         """carve and verify embedded SWF"""
-        if type(stream) is str:
+        if type(stream) is bytes:
             stream = BytesIO(stream)
         # set index to address of the header
         stream.seek(addr)
         # read the header. index is address of version
         header = stream.read(3)
         # verify header. Should never happen but will test anyway
-        if header not in ["FWS", "CWS", "ZWS"]:
+        if header not in [b"FWS", b"CWS", b"ZWS"]:
             if self.debug:
                 print('\t\t[DEBUG] Header not found', )
             return None
@@ -254,7 +262,7 @@ class xxxswf:
         # read size
         size = struct.unpack("<i", stream.read(4))[0]
         # len(header) =  3, len(version) = 1, len(size) = 4, Total 8
-        if header == "FWS":
+        if header == b"FWS":
             if self.cmd_run:
                 print("- FWS Header")
             if size < 10:
@@ -264,11 +272,11 @@ class xxxswf:
             stream.seek(addr)
             try:
                 return stream.read(size)
-            except:
+            except Exception:
                 if self.debug:
                     print('\t\t[DEBUG] FWS Size Invalid', )
                 return None
-        elif header == "CWS":
+        elif header == b"CWS":
             if self.cmd_run:
                 print("- CWS Header")
             uncompress_data = self.uncompress_zlib(stream.read())
@@ -278,8 +286,8 @@ class xxxswf:
                 return None
             # set index to version, skipping over the header
             stream.seek(addr + 3)
-            return "FWS" + str(stream.read(5)) + uncompress_data[:size - 8]
-        elif header == "ZWS":
+            return b"FWS" + stream.read(5) + uncompress_data[:size - 8]
+        elif header == b"ZWS":
             if self.cmd_run:
                 print("- ZWS Header")
             uncompress_lzma = self.uncompress_lzma(stream.read())
@@ -288,7 +296,7 @@ class xxxswf:
                     print('\t\t[DEBUG] lzma decompession failed', )
                 return None
             stream.seek(addr + 3)
-            return "FWS" + str(stream.read(5)) + uncompress_lzma[:size - 8]
+            return b"FWS" + stream.read(5) + uncompress_lzma[:size - 8]
         return None
 
     def yara_scan(self, _data):
@@ -301,12 +309,12 @@ class xxxswf:
             return None
         try:
             rule = yara.compile(r'rules.yara')
-        except:
+        except Exception:
             if self.show_errors:
                 print("\t[ERROR] Yara compile error - aborting scan")
             return None
         matches = rule.match(data=_data)
-        for each in rule:
+        for each in matches:
             print('\t[BAD] Yara Signature Hit:', each)
 
     def yara_md5_scan(self, _data):
@@ -319,21 +327,21 @@ class xxxswf:
             return None
         try:
             rule = yara.compile(r'md5.yara')
-        except:
+        except Exception:
             if self.show_errors:
                 print("\t[ERROR] Yara compile error - aborting scan")
             return None
         matches = rule.match(data=hashed)
-        for each in rule:
+        for each in matches:
             print('\t[BAD] Yara MD5 Hit:', each)
 
     def pre_file_scan(self, data, file_scan):
         """executes a user defined function"""
-        for func in self.file_scan:
+        for func in file_scan:
             modified = None
             try:
                 modified = func(data)
-            except:
+            except Exception:
                 if self.show_errors:
                     print("\t[ERROR] Could not call pre-file-scan function")
                     return None
@@ -349,10 +357,10 @@ class xxxswf:
             if self.show_errors:
                 print("\t[ERROR] SWF-scan functions not a list")
             return None
-        for func in self.data:
+        for func in data:
             try:
                 modified = func(data)
-            except:
+            except Exception:
                 if self.show_errors:
                     print("\t[ERROR] Could not call SWF-scan function")
                 return None
@@ -364,8 +372,8 @@ class xxxswf:
 
     def compress_lzma(self, swf):
         """compress a SWF with LZMA"""
-        if type(swf) is str:
-            swf = StringIO(swf)
+        if type(swf) is bytes:
+            swf = BytesIO(swf)
         if not self.lzma_install:
             if self.show_errors:
                 print("\t[ERROR] pylzma module not installed - aborting validation/decompression")
@@ -382,13 +390,13 @@ class xxxswf:
                 # TEST
                 import pylzma
                 lzma_data = pylzma.compress(swf.read())
-                return "ZWS" + vfl + str(struct.pack("<I", len(lzma_data) - 5)) + lzma_data
-        except:
+                return b"ZWS" + vfl + struct.pack("<I", len(lzma_data) - 5) + lzma_data
+        except Exception:
             return None
 
     def compress_zlib(self, swf):
-        if type(swf) is str:
-            swf = StringIO(swf)
+        if type(swf) is bytes:
+            swf = BytesIO(swf)
         self.show_errors = True
         try:
             signature = swf.read(3)
@@ -397,22 +405,24 @@ class xxxswf:
                     print("\t[ERROR] FWS Header not found, aborting zlib compression")
                 return None
             vfl = swf.read(5)
-            return 'CWS' + vfl + zlib.compress(swf.read())
-        except:
+            return b'CWS' + vfl + zlib.compress(swf.read())
+        except Exception:
             if self.show_errors:
                 print("\t[ERROR] Zlib compression failed")
             return None
 
     def get_arguments(self):
-        parser = OptionParser()
         usage = 'usage: %prog [options] <file.bad>'
         parser = OptionParser(usage=usage)
         parser.add_option('-x', '--extract', action='store_true', dest='extract',
-                          help='Extracts the embedded SWF(s), names it MD5HASH.swf & saves it in the working dir. No addition args needed')
+                          help='Extracts the embedded SWF(s), names it MD5HASH.swf & saves '
+                               'it in the working dir. No addition args needed')
         parser.add_option('-y', '--yara', action='store_true', dest='yara',
-                          help='Scans the SWF(s) with yara. If the SWF(s) is compressed it will be deflated. No addition args needed')
+                          help='Scans the SWF(s) with yara. If the SWF(s) is compressed it '
+                               'will be deflated. No addition args needed')
         parser.add_option('-s', '--md5scan', action='store_true', dest='md5scan',
-                          help='Scans the SWF(s) for MD5 signatures. Please see func checkMD5 to define hashes. No addition args needed')
+                          help='Scans the SWF(s) for MD5 signatures. Please see func check '
+                               'MD5 to define hashes. No addition args needed')
         parser.add_option('-H', '--header', action='store_true', dest='header',
                           help='Displays the SWFs file header. No addition args needed')
         parser.add_option('-d', '--decompress', action='store_true', dest='decompress',
@@ -485,8 +495,8 @@ class xxxswf:
 
     def md5_hash_buffer(self, data):
         """MD5 hashes a buffer"""
-        if type(data) is str:
-            data = StringIO(data)
+        if type(data) is bytes:
+            data = BytesIO(data)
         if data is None or data == '':
             if self.show_errors:
                 print('\t[ERROR] Empty buffer, hashing exiting')
@@ -499,20 +509,48 @@ class xxxswf:
             md5.update(hasher)
         return md5.hexdigest()
 
-    def write_swf(self, swf):
+    def write_swf(self, swf, output_path=None):
         name = self.create_unique_name(self.md5_hash_buffer(swf), "swf")
         if name is None:
             return
         if self.cmd_run:
             print('\t\t[FILE] Carved SWF MD5: %s' % name)
         try:
-            o = open(name, 'wb+')
+            if output_path:
+                o = open(output_path + '/' + name, 'wb+')
+            else:
+                o = open(name, 'wb+')
             o.write(swf)
             o.close()
         except IOError as e:
             if self.cmd_run:
                 print('\t[ERROR] Could Not Create %s ' % e)
-        return
+        return name
+
+    def extract(self, file_path, output_path):
+        try:
+            file = open(file_path, 'rb+')
+        except Exception:
+            print('[ERROR] File can not be opened/accessed')
+            return
+
+        # search for SWF file headers in the stream
+        swf_data = self.find_swf(file)
+
+        swf_found = []
+
+        # print the number of found SWF Headers, FPs included
+        for index, swf_addr in enumerate(swf_data):
+            # set read to the address of the SWF header found
+            file.seek(swf_addr)
+            # verify and extract SWF.
+            swf = self.verify_swf(file, swf_addr)
+            if swf is None:
+                continue
+            name = self.write_swf(swf, output_path)
+            if name:
+                swf_found.append(name)
+        return swf_found
 
     def process(self, stream, file_name=None):
         # compress first
@@ -542,7 +580,7 @@ class xxxswf:
         # print the number of found SWF Headers, FPs included
         if self.cmd_run:
             print("\n[SUMMARY] Potentially %d SWF(s) in MD5 %s:%s" % (
-            len(swf_data), self.md5_hash_buffer(stream), file_name))
+                len(swf_data), self.md5_hash_buffer(stream), file_name))
         # for each SWF in the file
         for index, swf_addr in enumerate(swf_data):
             if self.cmd_run:
