@@ -21,7 +21,7 @@ from zipfile import ZipFile, BadZipfile, ZipInfo
 # The "end of central directory" structure, magic number, size, and indices
 # (section V.I in the format document)
 structEndArchive = "<4s4H2LH"
-stringEndArchive = "PK\005\006"
+stringEndArchive = b"PK\005\006"
 sizeEndCentDir = struct.calcsize(structEndArchive)
 
 _ECD_SIGNATURE = 0
@@ -40,7 +40,7 @@ _ECD_LOCATION = 9
 # The "central directory" structure, magic number, size, and indices
 # of entries in the structure (section V.F in the format document)
 structCentralDir = "<4s4B4HL2L5H2L"
-stringCentralDir = "PK\001\002"
+stringCentralDir = b"PK\001\002"
 sizeCentralDir = struct.calcsize(structCentralDir)
 
 # indexes of entries in the central directory structure
@@ -67,7 +67,7 @@ _CD_LOCAL_HEADER_OFFSET = 18
 # The "local file header" structure, magic number, size, and indices
 # (section V.A in the format document)
 structFileHeader = "<4s2B4HL2L2H"
-stringFileHeader = "PK\003\004"
+stringFileHeader = b"PK\003\004"
 sizeFileHeader = struct.calcsize(structFileHeader)
 
 _FH_SIGNATURE = 0
@@ -111,7 +111,7 @@ class RepairZip(ZipFile):
     ZIP_STORED = 0
     ZIP_DEFLATED = 8
 
-    def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, strict=True):
+    def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, compresslevel=None, strict=True):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):
@@ -132,6 +132,7 @@ class RepairZip(ZipFile):
         self.NameToInfo = {}    # Find file info given name
         self.filelist = []      # List of ZipInfo instances for archive
         self.compression = compression  # Method of compression
+        self.compresslevel = compresslevel
         self.mode = key = mode.replace('b', '')[0]
         self.pwd = None
         self._comment = b''
@@ -300,7 +301,7 @@ class RepairZip(ZipFile):
                 if filename in cd_list:
                     continue
 
-                x = ZipInfo(filename)
+                x = ZipInfo(filename.decode('utf-8', 'backslashreplace'))
                 x.extra = ""
                 x.comment = ""
 

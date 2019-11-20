@@ -82,7 +82,7 @@ class Extract(ServiceBase):
             self.extract_swf,
             self.extract_ace,
             self.extract_eml,
-            # self.repair_zip,
+            self.repair_zip,
             self.extract_office,
             self.extract_pdf,
             self.extract_vbe,
@@ -477,6 +477,7 @@ class Extract(ServiceBase):
 
         return extracted_children, False
 
+    # noinspection PyBroadException
     @staticmethod
     def decode_vbe(data):
         """Will attempt to decode VBE script. Modified code that was written by Didier Stevens, found here:
@@ -545,6 +546,7 @@ class Extract(ServiceBase):
             result = None
             return result
 
+    # noinspection PyBroadException
     def extract_vbe(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to decode VBA code data from a VBE container.
 
