@@ -37,70 +37,70 @@ submission_params:
 
 heuristics:
   - heur_id: 1
-    name: Archive Extracted
+    name: Extracted from archive
     score: 0
     filetype: archive/
-    description: Standard archive-type extracted.
+    description: Files were extracted from a standard archive file
 
   - heur_id: 2
-    name: Executable Extracted
+    name: Extracted from executable
     score: 0
     filetype: executable/
-    description: Executable sections extracted.
+    description: Files were extracted from an executable file
 
   - heur_id: 3
-    name: JAR Extracted
+    name: Extracted from JAR
     score: 0
     filetype: java/
-    description: JAR archive extracted.
+    description: Files were extracted from a JAR file
 
   - heur_id: 4
-    name: APK Extracted
+    name: Extracted from APK
     score: 0
     filetype: android/
-    description: Android APK extracted.
+    description: Files were extracted from an APK file
 
   - heur_id: 5
-    name: EML Extracted
+    name: Attachements extracted
     score: 0
     filetype: document/eml
-    description: Attachments extracted from EML.
+    description: Attachments were extracted from EML file
 
   - heur_id: 6
-    name: Office Extracted
+    name: Office password removed
     score: 0
     filetype: document/office/unknown
-    description: Password-protected office document extracted.
+    description: Password removed from password-protected office document
 
   - heur_id: 7
-    name: PDF Extracted
+    name: Extracted from PDF
     score: 0
     filetype: document/pdf
-    description: Attachments extracted from PDF.
+    description: Files were extracted from a PDF document
 
   - heur_id: 8
-    name: SWF Extracted
+    name: Extracted from SWF
     score: 0
     filetype: archive/audiovisual/flash
-    description: Files extracted from flash container.
+    description: Files were extracted from flash container.
 
   - heur_id: 9
-    name: IPA Extracted
+    name: Extracted from IPA
     score: 0
     filetype: archive/
-    description: Apple IPA extracted.
+    description: Files were extracted from apple IPA file
 
   - heur_id: 10
-    name: Password Protected Extracted
+    name: Extracted from Protected Archive
     score: 0
     filetype: '*'
-    description: Password protected archive successfully extracted.
+    description: Password protected archive successfully extracted
 
   - heur_id: 11
     name: VBE Decoded
     score: 0
     filetype: code/vbe
-    description: VBE file decoded.
+    description: VBE file was decoded
 
   - heur_id: 12
     name: Password Protected File Extraction Failed
