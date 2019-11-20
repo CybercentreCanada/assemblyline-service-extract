@@ -128,23 +128,27 @@ class Extract(ServiceBase):
             section = ResultSection("Failed to extract password protected file.", heuristic=Heuristic(12))
             section.add_tag('file.behavior', "Archive Unknown Password")
 
-        else:  # num_extracted != 0
+        elif num_extracted != 0:
             if password_protected and self._last_password is not None:
-                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                section = ResultSection(f"Successfully extracted {num_extracted} "
+                                        f"file{'s' if num_extracted > 0 else ''} "
                                         f"using password: {self._last_password}")
 
             elif password_protected and self._last_password is None:
                 pw_list = " | ".join(self.get_passwords(request))
-                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                section = ResultSection(f"Successfully extracted {num_extracted} "
+                                        f"file{'s' if num_extracted > 0 else ''} "
                                         f"using one of the following passwords: {pw_list}")
 
             elif white_listed != 0:
-                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''} "
+                section = ResultSection(f"Successfully extracted {num_extracted} "
+                                        f"file{'s' if num_extracted > 0 else ''} "
                                         f"out of {white_listed + num_extracted}. The other {white_listed} "
                                         f"file{'s' if white_listed > 0 else ''} were whitelisted")
 
             else:
-                section = ResultSection(f"Successfully extracted {num_extracted} file{'s' if num_extracted > 0 else ''}")
+                section = ResultSection(f"Successfully extracted {num_extracted} "
+                                        f"file{'s' if num_extracted > 0 else ''}")
 
             if request.file_type.startswith("executable"):
                 section.set_heuristic(2)
@@ -170,21 +174,21 @@ class Extract(ServiceBase):
             if password_protected and not request.file_type.startswith("document/office"):
                 section.set_heuristic(10)
 
-        result.add_section(section)
-
-        for anomaly in self.anomaly_detections:
-            anomaly(request, result)
-
-        if (request.extracted
-                and not request.file_type.startswith("executable")
+            if (not request.file_type.startswith("executable")
                 and not request.file_type.startswith("java")
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
                 and not self.is_ipa
                 and not continue_after_extract) \
-                or (request.file_type == "document/email"
-                    and not continue_after_extract):
-            request.drop()
+                    or (request.file_type == "document/email"
+                        and not continue_after_extract):
+                request.drop()
+
+        if section is not None:
+            result.add_section(section)
+
+        for anomaly in self.anomaly_detections:
+            anomaly(request, result)
 
         request.result = result
 
@@ -455,6 +459,7 @@ class Extract(ServiceBase):
             env = os.environ.copy()
             env['LANG'] = 'en_US.UTF-8'
 
+            # noinspection PyBroadException
             try:
                 subprocess.Popen(
                     ['pdfdetach', '-saveall', '-o', output_path, local],
