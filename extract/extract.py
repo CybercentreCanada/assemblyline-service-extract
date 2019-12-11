@@ -671,7 +671,7 @@ class Extract(ServiceBase):
         except Exception:
             if request.file_type != 'archive/cab':
                 self.log.exception(f'While extracting {request.sha256} with 7zip')
-        if password_failed:
+        if password_failed and request.file_type.startswith('archive'):
             # stop processing the request
             request.drop()
 
