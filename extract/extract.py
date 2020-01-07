@@ -127,6 +127,7 @@ class Extract(ServiceBase):
         if num_extracted == 0 and password_protected:
             section = ResultSection("Failed to extract password protected file.", heuristic=Heuristic(12))
             section.add_tag('file.behavior', "Archive Unknown Password")
+            request.drop()
 
         elif num_extracted != 0:
             if password_protected and self._last_password is not None:
