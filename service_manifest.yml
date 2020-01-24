@@ -123,4 +123,4 @@ heuristics:
 docker_config:
   image: cccs/assemblyline-service-extract:latest
   cpu_cores: 1
-  ram_mb: 256
+  ram_mb: 384
