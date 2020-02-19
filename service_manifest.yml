@@ -2,7 +2,7 @@ name: Extract
 version: 1
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java|android)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown
+accepts: (archive|executable|java)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -27,7 +27,7 @@ submission_params:
     type: str
     value: ''
   - default: false
-    name: extract_pe_sections
+    name: extract_executable_sections
     type: bool
     value: false
   - default: false

@@ -29,8 +29,10 @@ class ExtractIgnored(Exception):
 
 
 class Extract(ServiceBase):
-    FORBIDDEN_EXE = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
-    FORBIDDEN_ELF_EXE = [str(x) for x in range(20)]
+    FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
+    FORBIDDEN_ELF = [str(x) for x in range(20)]
+    FORBIDDEN_ELF_SW = ["."]
+    FORBIDDEN_MACH = ["__DATA__", "__LINKEDIT", "__TEXT__", "__PAGEZERO"]
     MAX_EXTRACT = 500
     MAX_EXTRACT_LIVE = 100
 
@@ -88,7 +90,7 @@ class Extract(ServiceBase):
             self.extract_vbe,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
-        self.white_listing_methods = [self.jar_whitelisting]
+        self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
         self.named_attachments_only = None
         self.max_attachment_size = None
         self.is_ipa = False
@@ -104,7 +106,6 @@ class Extract(ServiceBase):
         self.sha = request.sha256
         continue_after_extract = request.get_param('continue_after_extract')
         self._last_password = None
-        self.is_ipa = False
         local = request.file_path
         password_protected = False
         white_listed = 0
@@ -167,7 +168,7 @@ class Extract(ServiceBase):
                 section.set_heuristic(8)
             elif request.file_type.startswith("code/vbe"):
                 section.set_heuristic(11)
-            elif self.is_ipa:
+            elif request.file_type.startswith("ios/ipa"):
                 section.set_heuristic(9)
             else:
                 section.set_heuristic(1)
@@ -179,7 +180,7 @@ class Extract(ServiceBase):
                 and not request.file_type.startswith("java")
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
-                and not self.is_ipa
+                and not request.file_type.startswith("ios/ipa")
                 and not continue_after_extract) \
                     or (request.file_type == "document/email"
                         and not continue_after_extract):
@@ -357,23 +358,38 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path, encoding, and display name
             or a blank list if extraction failed.
         """
-        extract_pe_sections = request.get_param('extract_pe_sections')
+        extract_executable_sections = request.get_param('extract_executable_sections')
         extracted_children = []
         for root, _, files in os.walk(path):
             for f in files:
+                skip = False
                 filename = safe_str(os.path.join(root, f).replace(path, ""))
                 if filename.startswith("/"):
                     filename = filename[1:]
-                if re.match("Payload/[^/]*.app/Info.plist", safe_str(filename)):
-                    self.is_ipa = True
-                if not extract_pe_sections and \
-                        ((encoding.startswith("executable/windows") and
-                          [f2 for f2 in self.FORBIDDEN_EXE if filename.startswith(f2)]) or
-                         (encoding.startswith("executable/linux")and filename in self.FORBIDDEN_ELF_EXE)):
-                    raise ExtractIgnored("'Extract PE sections' option not selected. PE/ELF file sections will not "
-                                         "be extracted. See service README for more details.")
+                if not extract_executable_sections and encoding.startswith("executable"):
+                    if "windows" in encoding:
+                        for forbidden in self.FORBIDDEN_WIN:
+                            if filename.startswith(forbidden):
+                                skip = True
+                                break
 
-                extracted_children.append([os.path.join(root, f), safe_str(filename), encoding])
+                    elif "linux" in encoding:
+                        if filename in self.FORBIDDEN_ELF:
+                            skip = True
+                        for forbidden in self.FORBIDDEN_ELF_SW:
+                            if filename.startswith(forbidden):
+                                skip = True
+                                break
+
+                    elif "mach-o" in encoding:
+                        for forbidden in self.FORBIDDEN_MACH:
+                            if filename.startswith(forbidden):
+                                skip = True
+                                break
+                if not skip:
+                    extracted_children.append([os.path.join(root, f), safe_str(filename), encoding])
+                else:
+                    self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
 
         return extracted_children
 
@@ -774,6 +790,42 @@ class Extract(ServiceBase):
             self.log.exception("Error extracting from tnef file:")
 
         return children, False
+
+    @staticmethod
+    def ipa_whitelisting(extracted, whitelisted_count: int, encoding: str):
+        """Filters file paths that are considered whitelisted from a list of extracted IPA files.
+
+        Args:
+            extracted: List of extracted file information, including: extracted path, encoding, and display name.
+            whitelisted_count: Current whitelist count.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List of filtered file names and updated count of whitelisted files.
+        """
+        if encoding == "ios/ipa":
+            whitelisted_fname_regex = [
+                re.compile(r'.app/.*\.plist$'),
+                re.compile(r'.app/.*\.nib$'),
+                re.compile(r'.app/.*/PkgInfo$'),
+            ]
+
+            ipa_filter_count = whitelisted_count
+            tmp_new_files = []
+
+            for cur_file in extracted:
+                to_add = True
+                for ext in whitelisted_fname_regex:
+                    if ext.search(cur_file[0]):
+                        to_add = False
+                        ipa_filter_count += 1
+
+                if to_add:
+                    tmp_new_files.append(cur_file)
+
+            return tmp_new_files, ipa_filter_count
+        else:
+            return extracted, whitelisted_count
 
     @staticmethod
     def jar_whitelisting(extracted, whitelisted_count: int, encoding: str):
