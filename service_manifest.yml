@@ -121,6 +121,6 @@ heuristics:
     description: "Uncommon format: archive/ace"
 
 docker_config:
-  image: cccs/assemblyline-service-extract:latest
+  image: ${REGISTRY}cccs/assemblyline-service-extract:latest
   cpu_cores: 1
   ram_mb: 384
