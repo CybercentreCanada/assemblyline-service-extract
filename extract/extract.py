@@ -245,7 +245,7 @@ class Extract(ServiceBase):
         Returns:
             List of strings.
         """
-        passwords = deepcopy(self.config.get('DEFAULT_PW_LIST', []))
+        passwords = deepcopy(self.config.get('default_pw_list', []))
         user_supplied = request.get_param('password')
         if user_supplied:
             passwords.append(user_supplied)
@@ -639,7 +639,7 @@ class Extract(ServiceBase):
                                 stderr=subprocess.PIPE).communicate()
                             stdoutput += stderr
 
-                            if stdoutput and"\nEverything is Ok\n" in stdoutput:
+                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
                                 self._last_password = password
                                 return self._7zip_submit_extracted(request, path, encoding), password_protected
                         except OSError:
@@ -664,9 +664,9 @@ class Extract(ServiceBase):
                     stdout_rar = None
                     stderr_rar = None
                 if stdout_rar:
-                    if 'All OK' in stdout_rar:
+                    if b'All OK' in stdout_rar:
                         return self._7zip_submit_extracted(request, path, encoding), password_protected
-                    if 'wrong password' in stderr_rar:
+                    if b'wrong password' in stderr_rar:
                         password_protected = True
                         password_list = self.get_passwords(request)
                         for password in password_list:
@@ -677,7 +677,7 @@ class Extract(ServiceBase):
                                     ['unrar', 'x', '-y', f'-p{password}', local, path],
                                     env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE).communicate()
-                                if "All OK" in proc:
+                                if b"All OK" in proc:
                                     self._last_password = password
                                     return self._7zip_submit_extracted(request, path, encoding), password_protected
                             except OSError:
@@ -685,9 +685,9 @@ class Extract(ServiceBase):
                     password_failed = True
         except ExtractIgnored:
             raise
-        except Exception:
+        except Exception as e:
             if request.file_type != 'archive/cab':
-                self.log.exception(f'While extracting {request.sha256} with 7zip')
+                self.log.exception(f'While extracting {request.sha256} with 7zip: {str(e)}')
         if password_failed and request.file_type.startswith('archive'):
             # stop processing the request
             request.drop()
