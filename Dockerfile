@@ -6,7 +6,7 @@ USER root
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y make libssl-dev p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libssl-dev p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
 USER assemblyline
 
