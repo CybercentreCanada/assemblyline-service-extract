@@ -2,11 +2,11 @@ FROM cccs/assemblyline-v4-service-base:latest
 
 ENV SERVICE_PATH extract.extract.Extract
 
+USER root
+
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y libssl-dev p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
-
-RUN pip install tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN aws s3 cp s3://assemblyline-support/msoffice.tar.gz /tmp
@@ -23,6 +23,9 @@ RUN rm -rf /tmp/*
 
 # Switch to assemblyline user
 USER assemblyline
+
+# Install pip packages
+RUN pip install --user tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
 
 # Clone Extract service code
 WORKDIR /opt/al_service
