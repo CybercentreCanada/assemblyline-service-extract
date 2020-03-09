@@ -8,9 +8,13 @@ RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >>
 
 RUN apt-get update && apt-get install -y libssl-dev p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
+USER assemblyline
+
 # Download the support files from Amazon S3
 RUN aws s3 cp s3://assemblyline-support/msoffice.tar.gz /tmp
 RUN aws s3 cp s3://assemblyline-support/cybozulib.tar.gz /tmp
+
+USER root
 
 # Extract the tar files and make msoffice
 RUN mkdir -p /opt/al/support/extract
