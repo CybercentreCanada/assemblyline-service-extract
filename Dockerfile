@@ -17,7 +17,7 @@ USER assemblyline
 
 # Install pip packages
 RUN touch /tmp/before-pip
-RUN pip install --user tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN aws s3 cp s3://assemblyline-support/msoffice.tar.gz /tmp
