@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y libssl1.1 p7zip-full p7zip-rar unace-no
 
 FROM base AS build
 
-RUN apt-get update && apt-get install -y build-essential libssl-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libssl-dev wget && rm -rf /var/lib/apt/lists/*
 
 USER assemblyline
 
@@ -20,8 +20,8 @@ RUN touch /tmp/before-pip
 RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
-RUN aws s3 cp s3://assemblyline-support/msoffice.tar.gz /tmp
-RUN aws s3 cp s3://assemblyline-support/cybozulib.tar.gz /tmp
+RUN wget -O /tmp/msoffice.tar.gz https://assemblyline-support.s3.amazonaws.com/msoffice.tar.gz
+RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
 
 # Extract the tar files and make msoffice
 USER root
