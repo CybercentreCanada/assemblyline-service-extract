@@ -35,22 +35,13 @@ identified as the following file types:
 
 ### Parameters:
 
-- Password: An additional password can be provided to the service on submission to decode a container.
-
-- Extract PE Sections: Using the 7zip library, the service will extract sections from an executable file.
-
-- Continue After Extract: When true, AL will continue processing an eml sample to other services after any attachments 
+- `Password`: An additional password can be provided to the service on submission to decode a container.
+- `Extract PE Sections`: Using the 7zip library, the service will extract sections from an executable file.
+- `Continue After Extract`: When true, AL will continue processing an eml sample to other services after any attachments 
 have been extracted. 
 
 ### Config (set by administrator):
 
-DEFAULT_PW_LIST: List of passwords used when attempting to extract from protected archives.
-
-MAX_EMAIL_ATTACHMENT_SIZE:	Maximum size attachment to extract from a .eml file.
-
-NAMED_EMAIL_ATTACHMENTS_ONLY: When true, the service will only extract attachment files from .eml when the file name is provided.
-
-
-
-
-
+- `default_pw_list`: List of passwords used when attempting to extract from protected archives.
+- `max_email_attachment_size`:	Maximum size attachment to extract from a .eml file.
+- `named_email_attachments_only`: When true, the service will only extract attachment files from .eml when the file name is provided.

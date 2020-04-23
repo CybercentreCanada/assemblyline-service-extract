@@ -30,19 +30,19 @@ def get_bit(i, n, mask=1):
 
 def derive_key_v2(hash_val, key_size):
     """Algorithm from MS-OFFCRYPTO 2.3.4.7"""
-    tmp_buffer = ['\x36'] * 64
+    tmp_buffer = [54] * 64  # ord('\x36')
     for i, c in enumerate(hash_val):
-        tmp_buffer[i] = chr(ord(tmp_buffer[i]) ^ ord(hash_val[i]))
+        tmp_buffer[i] = tmp_buffer[i] ^ ord(hash_val[i])
 
-    x1 = hashlib.sha1("".join(tmp_buffer)).digest()
+    x1 = hashlib.sha1(bytes(tmp_buffer)).digest()
     derived_key = x1
 
     if key_size >= len(derived_key):
-        tmp_buffer = ['\x5C'] * 64
+        tmp_buffer = [92] * 64  # ord('\x5c')
         for i, c in enumerate(hash_val):
-            tmp_buffer[i] = chr(ord(tmp_buffer[i]) ^ ord(hash_val[i]))
+            tmp_buffer[i] = tmp_buffer[i] ^ ord(hash_val[i])
 
-        x2 = hashlib.sha1("".join(tmp_buffer)).digest()
+        x2 = hashlib.sha1(bytes(tmp_buffer)).digest()
 
         derived_key += x2
 
@@ -71,8 +71,8 @@ def check_password_v2(password, metadata):
     aes = AES.new(key, mode=AES.MODE_ECB)
     vhash = aes.decrypt(metadata['verifier_hash'])[:metadata['verifier_len']]
     vdata = aes.decrypt(metadata['verifier_data'])
-    hash = hashlib.sha1(vdata).digest()
-    return vhash == hash
+    p_hash = hashlib.sha1(vdata).digest()
+    return vhash == p_hash
 
 
 def adjust_buf_len(buffer, length, pad="\x36"):
@@ -83,14 +83,14 @@ def adjust_buf_len(buffer, length, pad="\x36"):
     return buffer
 
 
-def generate_enc_key_v4(password, salt, spins, hash, key_size, block_key):
+def generate_enc_key_v4(password, salt, spins, k_hash, key_size, block_key):
     """Algorithm from MS-OFFCRYPTO 2.3.4.11"""
-    h_step = hash(salt + password.encode("utf-16")[2:]).digest()
-    struct_template = "I%is" % hash().digest_size
+    h_step = k_hash(salt + password.encode("utf-16")[2:]).digest()
+    struct_template = "I%is" % k_hash().digest_size
     for i in range(spins):
-        h_step = hash(struct.pack(struct_template, i, h_step)).digest()
+        h_step = k_hash(struct.pack(struct_template, i, h_step)).digest()
 
-    h_final = hash(h_step + block_key).digest()
+    h_final = k_hash(h_step + block_key).digest()
     return adjust_buf_len(h_final, key_size, "\x36")
 
 
@@ -127,7 +127,7 @@ def check_password_v4(password, metadata):
     }
     try:
         salt = metadata['encryptedKey']['saltValue']
-        hash = hash_alg[metadata['encryptedKey']['hashAlgorithm']]
+        hash_algo = hash_alg[metadata['encryptedKey']['hashAlgorithm']]
         spin_count = int(metadata['encryptedKey']['spinCount'])
         key_size = int(metadata['encryptedKey']['keyBits'])/8
         enc_method = crypto_alg[metadata['encryptedKey']['cipherAlgorithm']]
@@ -137,9 +137,9 @@ def check_password_v4(password, metadata):
     except KeyError:
         raise ExtractionError("Unsupported encryption method used.")
 
-    key1 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_1)
-    key2 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_2)
-    key3 = generate_enc_key_v4(password, salt, spin_count, hash, key_size, block_key_3)
+    key1 = generate_enc_key_v4(password, salt, spin_count, hash_algo, key_size, block_key_1)
+    key2 = generate_enc_key_v4(password, salt, spin_count, hash_algo, key_size, block_key_2)
+    key3 = generate_enc_key_v4(password, salt, spin_count, hash_algo, key_size, block_key_3)
     iv = adjust_buf_len(salt, enc_method.block_size, "\x36")
 
     encryptor1 = enc_method.new(key1, mode=mode, IV=iv)
@@ -148,7 +148,7 @@ def check_password_v4(password, metadata):
 
     v_hash = encryptor2.decrypt(metadata['encryptedKey']['encryptedVerifierHashValue'])
     e1 = encryptor1.decrypt(metadata['encryptedKey']['encryptedVerifierHashInput'])
-    h1 = hash(e1).digest()
+    h1 = hash_algo(e1).digest()
     if h1 == v_hash[:hash_size]:
         metadata['KeyValue'] = encryptor3.decrypt(metadata['encryptedKey']['encryptedKeyValue'])
         return True
@@ -159,9 +159,11 @@ def check_password_v4(password, metadata):
 def check_password(password, metadata):
     if metadata["ver_maj"] == 4 and metadata["ver_min"] == 4 and metadata["flags"] == 0x40:
         return check_password_v4(password, metadata)
-    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or
+          metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
         raise ExtractionError("Error, unsupported encryption.")
-    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or
+          metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
         return check_password_v2(password, metadata)
 
 
@@ -221,7 +223,7 @@ def decode_stream_v4(metadata, package, out_file):
     }
     try:
         salt = metadata['keyData']['saltValue']
-        hash = hash_alg[metadata['keyData']['hashAlgorithm']]
+        hash_algo = hash_alg[metadata['keyData']['hashAlgorithm']]
         enc_method = crypto_alg[metadata['keyData']['cipherAlgorithm']]
         mode = chain_mode[metadata['keyData']['cipherChaining']]
         mode = getattr(enc_method, mode)
@@ -237,7 +239,7 @@ def decode_stream_v4(metadata, package, out_file):
     remainder = enc_method.block_size - (decoded_len % enc_method.block_size)
     for i in range(block_count):
         block = package.read(block_len)
-        iv = hash(salt + struct.pack("I", i)).digest()
+        iv = hash_algo(salt + struct.pack("I", i)).digest()
         iv = adjust_buf_len(iv, enc_method.block_size, "\x36")
         encryptor = enc_method.new(key_value, mode=mode, IV=iv)
 
@@ -251,9 +253,11 @@ def decode_stream_v4(metadata, package, out_file):
 def decode_stream(password, metadata, package, out_file):
     if metadata["ver_maj"] == 4 and metadata["ver_min"] == 4 and metadata["flags"] == 0x40:
         return decode_stream_v4(metadata, package, out_file)
-    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or
+          metadata["ver_maj"] == 4) and metadata["ver_min"] == 3:
         pass
-    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
+    elif (metadata["ver_maj"] == 2 or metadata["ver_maj"] == 3 or
+          metadata["ver_maj"] == 4) and metadata["ver_min"] == 2:
         return decode_stream_v2(password, metadata, package, out_file)
 
 
@@ -262,14 +266,14 @@ def parse_enc_info_v2(doc, header):
     enc_header = {}
 
     # constants from MS-OFFCRYPTO 2.3.4.5
-    ALGID_ENUM = {
+    algid_enum = {
         0x00006801: "RC4",
         0x0000660E: "128-bit AES",
         0x0000660F: "192-bit AES",
         0x00006610: "256-bit AES"
     }
 
-    ALGIDHASH_ENUM = {
+    algidhash_enum = {
         0x00000000: 'SHA-1',
         0x00008004: 'SHA-1'
     }
@@ -281,8 +285,8 @@ def parse_enc_info_v2(doc, header):
         fixed = struct.unpack("IIIIIIII", doc.read(8*4))
         enc_header['flags'] = fixed[0]
         enc_header['SizeExtra'] = fixed[1]
-        enc_header['AlgID'] = ALGID_ENUM.get(fixed[2], fixed[2])
-        enc_header['AlgIDHash'] = ALGIDHASH_ENUM.get(fixed[3], fixed[3])
+        enc_header['AlgID'] = algid_enum.get(fixed[2], fixed[2])
+        enc_header['AlgIDHash'] = algidhash_enum.get(fixed[3], fixed[3])
         enc_header['KeySize'] = fixed[4]/8
         enc_header['ProviderType'] = fixed[5]
         enc_header['Reserved1'] = fixed[6]
@@ -299,13 +303,13 @@ def parse_enc_info_v2(doc, header):
         header['verifier_data'] = doc.read(16)
         header['verifier_len'] = struct.unpack("I", doc.read(4))[0]
         header['verifier_hash'] = doc.read(32)
-    except:
+    except Exception:
         raise ExtractionError("Error, could not parse file, probably corrupt.")
 
     return header
 
 
-def parse_enc_info_v3(doc, header):
+def parse_enc_info_v3(*_):
     raise ExtractionError("Unsupported encryption method used")
 
 
@@ -314,7 +318,7 @@ def parse_enc_info_v4(doc, header):
     # noinspection PyBroadException
     try:
         tree = etree.parse(doc)
-    except:
+    except Exception:
         raise ExtractionError("Invalid encryption definition")
 
     for x in tree.getroot().iter():
@@ -324,7 +328,8 @@ def parse_enc_info_v4(doc, header):
 
     try:
         header['keyData']['saltValue'] = binascii.a2b_base64(header['keyData']['saltValue'])
-        header["dataIntegrity"]["encryptedHmacValue"] = binascii.a2b_base64(header["dataIntegrity"]["encryptedHmacValue"])
+        header["dataIntegrity"]["encryptedHmacValue"] = \
+            binascii.a2b_base64(header["dataIntegrity"]["encryptedHmacValue"])
         header["dataIntegrity"]["encryptedHmacKey"] = binascii.a2b_base64(header["dataIntegrity"]["encryptedHmacKey"])
         header["encryptedKey"]["encryptedVerifierHashInput"] = binascii.a2b_base64(
             header["encryptedKey"]["encryptedVerifierHashInput"])
@@ -347,9 +352,11 @@ def parse_enc_info(doc):
     header["flags"] = fixed[2]
     if header["ver_maj"] == 4 and header["ver_min"] == 4 and header["flags"] == 0x40:
         return parse_enc_info_v4(doc, header)
-    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or header["ver_maj"] == 4) and header["ver_min"] == 3:
+    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or
+          header["ver_maj"] == 4) and header["ver_min"] == 3:
         return parse_enc_info_v3(doc, header)
-    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or header["ver_maj"] == 4) and header["ver_min"] == 2:
+    elif (header["ver_maj"] == 2 or header["ver_maj"] == 3 or
+          header["ver_maj"] == 4) and header["ver_min"] == 2:
         return parse_enc_info_v2(doc, header)
     else:
         raise ExtractionError("Unsupported version %i:%i" % (header["ver_maj"], header["ver_min"]))
@@ -430,9 +437,9 @@ def mstools(filename, password_list, output_folder):
             stdout, stderr = subprocess.Popen([msoffice, "-d", "-p", f"{pass_try}", filename, output_name],
                                               stdout=subprocess.PIPE,
                                               stderr=subprocess.PIPE).communicate()
-            if "bad password" in stdout:
+            if b"bad password" in stdout:
                 continue
-            elif "not support format" in stdout or "exception:" in stdout or stderr != "":
+            elif b"not support format" in stdout or b"exception:" in stdout or stderr != "":
                 # For some reason msoffice cannot process file
                 return
             else:

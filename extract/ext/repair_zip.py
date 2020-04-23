@@ -111,6 +111,7 @@ class RepairZip(ZipFile):
     ZIP_STORED = 0
     ZIP_DEFLATED = 8
 
+    # noinspection PyMissingConstructor,PyPep8Naming
     def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, compresslevel=None, strict=True):
         """Open the ZIP file with mode read "r", write "w" or append "a"."""
         # Mostly from zipfile.py
@@ -129,8 +130,8 @@ class RepairZip(ZipFile):
         self._allowZip64 = allowZip64
         self._didModify = False
         self.debug = 0  # Level of printing: 0 through 3
-        self.NameToInfo = {}    # Find file info given name
-        self.filelist = []      # List of ZipInfo instances for archive
+        self.NameToInfo = {}  # Find file info given name
+        self.filelist = []  # List of ZipInfo instances for archive
         self.compression = compression  # Method of compression
         self.compresslevel = compresslevel
         self.mode = key = mode.replace('b', '')[0]
@@ -147,13 +148,13 @@ class RepairZip(ZipFile):
         if isinstance(filename, str):
             self._filePassed = 0
             self.filename = filename
-            modeDict = {'r': 'rb', 'w': 'wb', 'a': 'r+b'}
+            mode_dict = {'r': 'rb', 'w': 'wb', 'a': 'r+b'}
             try:
-                self.fp = open(filename, modeDict[mode])
+                self.fp = open(filename, mode_dict[mode])
             except IOError:
                 if mode == 'a':
                     mode = key = 'w'
-                    self.fp = open(filename, modeDict[mode])
+                    self.fp = open(filename, mode_dict[mode])
                 else:
                     raise
         else:
@@ -161,6 +162,7 @@ class RepairZip(ZipFile):
             self.fp = filename
             self.filename = getattr(filename, 'name', None)
 
+        # noinspection PyBroadException
         try:
             if key == 'r':
                 self.fp.seek(0)
@@ -200,7 +202,7 @@ class RepairZip(ZipFile):
             else:
                 raise RuntimeError('Mode must be "r", "w" or "a"')
             self.broken = False
-        except:
+        except Exception:
             if strict:
                 if not self._filePassed:
                     self.fp.close()
@@ -214,7 +216,7 @@ class RepairZip(ZipFile):
             return False
         self.fp.seek(0, 2)
         file_len = self.fp.tell()
-        mm = mmap.mmap(self.fp.fileno(), 0, prot=mmap.PROT_READ)
+        mm = mmap.mmap(self.fp.fileno(), 0, access=mmap.ACCESS_READ)
         offset = 0
         file_list = {}
         cd_list = {}
@@ -226,31 +228,27 @@ class RepairZip(ZipFile):
                 hdr_off = mm.find(b"PK", offset)
                 if hdr_off == -1:
                     break
-                hdr_type = mm[hdr_off:hdr_off+4]
+                hdr_type = mm[hdr_off:hdr_off + 4]
                 if hdr_type == stringFileHeader:
                     # local file header
-                    if hdr_off+sizeFileHeader > file_len:
+                    if hdr_off + sizeFileHeader > file_len:
                         break
-                    fheader = mm[hdr_off:hdr_off+sizeFileHeader]
+                    fheader = mm[hdr_off:hdr_off + sizeFileHeader]
                     fheader = struct.unpack(structFileHeader, fheader)
                     start = hdr_off
-                    size = sizeFileHeader + \
-                        fheader[_FH_COMPRESSED_SIZE] + \
-                        fheader[_FH_FILENAME_LENGTH] + \
+                    size = sizeFileHeader + fheader[_FH_COMPRESSED_SIZE] + fheader[_FH_FILENAME_LENGTH] + \
                         fheader[_FH_EXTRA_FIELD_LENGTH]
-                    name = mm[hdr_off+sizeFileHeader:hdr_off+sizeFileHeader+fheader[_FH_FILENAME_LENGTH]]
+                    name = mm[hdr_off + sizeFileHeader:hdr_off + sizeFileHeader + fheader[_FH_FILENAME_LENGTH]]
                     file_list[name] = [start, size, fheader]
                     offset = hdr_off + size
                 elif hdr_type == stringCentralDir:
-                    if hdr_off+sizeCentralDir > file_len:
+                    if hdr_off + sizeCentralDir > file_len:
                         break
                     centdir = mm[hdr_off:hdr_off + sizeCentralDir]
                     centdir = struct.unpack(structCentralDir, centdir)
                     start = hdr_off
-                    size = sizeCentralDir + \
-                           centdir[_CD_FILENAME_LENGTH] + \
-                           centdir[_CD_EXTRA_FIELD_LENGTH] + \
-                           centdir[_CD_COMMENT_LENGTH]
+                    size = sizeCentralDir + centdir[_CD_FILENAME_LENGTH] + centdir[_CD_EXTRA_FIELD_LENGTH] + \
+                        centdir[_CD_COMMENT_LENGTH]
                     name = mm[hdr_off + sizeCentralDir: hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
                     cd_list[name] = [start, size, centdir]
                     offset = hdr_off + size
@@ -279,19 +277,20 @@ class RepairZip(ZipFile):
                 x.header_offset = file_list[filename][0]
 
                 (x.create_version, x.create_system, x.extract_version, x.reserved,
-                    x.flag_bits, x.compress_type, t, d,
-                    x.CRC, x.compress_size, x.file_size) = centdir[1:12]
+                 x.flag_bits, x.compress_type, t, d,
+                 x.CRC, x.compress_size, x.file_size) = centdir[1:12]
                 x.volume, x.internal_attr, x.external_attr = centdir[15:18]
                 # Convert date/time code to (year, month, day, hour, min, sec)
                 x._raw_time = t
-                x.date_time = ( (d>>9)+1980, (d>>5)&0xF, d&0x1F,
-                                         t>>11, (t>>5)&0x3F, (t&0x1F) * 2 )
+                x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F,
+                               t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
 
                 last_ea = x.external_attr
                 last_cs = x.create_system
                 last_cv = x.create_version
                 last_dt = (d, t)
 
+                # noinspection PyProtectedMember
                 x._decodeExtra()
                 # x.filename = x._decodeFilename()
                 self.filelist.append(x)
@@ -326,6 +325,7 @@ class RepairZip(ZipFile):
                 x._raw_time = t
                 x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F, t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
 
+                # noinspection PyProtectedMember
                 x._decodeExtra()
                 # x.filename = x._decodeFilename()
                 self.filelist.append(x)
@@ -337,6 +337,7 @@ class RepairZip(ZipFile):
 if __name__ == "__main__":
     import sys
     import tempfile
+
     if len(sys.argv) != 3:
         print("Usage: repair_zip.py <in file> <out file>")
         sys.exit(1)

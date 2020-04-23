@@ -211,6 +211,7 @@ class Extract(ServiceBase):
 
         # Try all extracting methods
         for extract_method in self.extract_methods:
+            # noinspection PyArgumentList
             extracted, temp_password_protected = extract_method(request, local, encoding)
             if temp_password_protected:
                 password_protected = temp_password_protected
@@ -426,14 +427,14 @@ class Extract(ServiceBase):
                                       stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                       stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
                                       preexec_fn=set_death_signal())
-                stdoutput = proc.stdout.read()
+                stdoutput = proc.stdout
 
             if stdoutput:
                 extracted_children = []
-                if "extracted:" in stdoutput:
+                if b"extracted:" in stdoutput:
                     for line in stdoutput.splitlines():
                         line = line.strip()
-                        m = re.match("extracting (.+?)[ ]*(CRC OK)?$", line)
+                        m = re.match(b"extracting (.+?)[ ]*(CRC OK)?$", line)
                         if not m:
                             continue
 
@@ -442,7 +443,7 @@ class Extract(ServiceBase):
                         if os.path.isdir(filepath):
                             continue
                         else:
-                            extracted_children.append([filepath, safe_str(filename), encoding])
+                            extracted_children.append([safe_str(filepath), safe_str(filename), encoding])
 
                 return extracted_children, False
 
@@ -977,14 +978,14 @@ class Extract(ServiceBase):
                 p_load = part.get_payload(decode=True)
                 p_name = part.get_filename(None)
                 p_cset = part.get_content_charset()
-                yield (p_type, p_disp, p_load, p_name, p_cset)
+                yield p_type, p_disp, p_load, p_name, p_cset
         else:
             p_type = message.get_content_type()
             p_disp = message.get("Content-Disposition", "")
             p_load = message.get_payload(decode=True)
             p_name = message.get_filename(None)
             p_cset = message.get_content_charset()
-            yield (p_type, p_disp, p_load, p_name, p_cset)
+            yield p_type, p_disp, p_load, p_name, p_cset
 
     # noinspection PyCallingNonCallable
     def extract_eml(self, request: ServiceRequest, local: str, encoding: str):

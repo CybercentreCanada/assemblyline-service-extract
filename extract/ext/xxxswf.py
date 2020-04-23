@@ -226,7 +226,6 @@ class xxxswf:
         else:
             data = data[4:]
             try:
-                import pylzma
                 return pylzma.decompress(data)
             except Exception:
                 return None
@@ -388,7 +387,6 @@ class xxxswf:
                 vfl = swf.read(5)
                 # "ZWS" | version | len | compressed len | lzma compressed data
                 # TEST
-                import pylzma
                 lzma_data = pylzma.compress(swf.read())
                 return b"ZWS" + vfl + struct.pack("<I", len(lzma_data) - 5) + lzma_data
         except Exception:
