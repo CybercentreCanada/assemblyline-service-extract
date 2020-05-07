@@ -170,11 +170,10 @@ class Extract(ServiceBase):
                 section.set_heuristic(11)
             elif request.file_type.startswith("ios/ipa"):
                 section.set_heuristic(9)
+            elif password_protected:
+                section.set_heuristic(10)
             else:
                 section.set_heuristic(1)
-            # Only password protected office documents are extracted by service, so no need to add an extra heuristic
-            if password_protected and not request.file_type.startswith("document/office"):
-                section.set_heuristic(10)
 
             if (not request.file_type.startswith("executable")
                 and not request.file_type.startswith("java")
