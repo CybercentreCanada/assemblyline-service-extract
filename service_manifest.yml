@@ -1,5 +1,5 @@
 name: Extract
-version: 1
+version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
 accepts: (archive|executable|java)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown|android/apk|ios/ipa
@@ -121,6 +121,6 @@ heuristics:
     description: "Uncommon format: archive/ace"
 
 docker_config:
-  image: ${REGISTRY}cccs/assemblyline-service-extract:latest
+  image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
   ram_mb: 384
