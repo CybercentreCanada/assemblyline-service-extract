@@ -32,7 +32,7 @@ def derive_key_v2(hash_val, key_size):
     """Algorithm from MS-OFFCRYPTO 2.3.4.7"""
     tmp_buffer = [54] * 64  # ord('\x36')
     for i, c in enumerate(hash_val):
-        tmp_buffer[i] = tmp_buffer[i] ^ ord(hash_val[i])
+        tmp_buffer[i] = tmp_buffer[i] ^ hash_val[i]
 
     x1 = hashlib.sha1(bytes(tmp_buffer)).digest()
     derived_key = x1
@@ -40,13 +40,13 @@ def derive_key_v2(hash_val, key_size):
     if key_size >= len(derived_key):
         tmp_buffer = [92] * 64  # ord('\x5c')
         for i, c in enumerate(hash_val):
-            tmp_buffer[i] = tmp_buffer[i] ^ ord(hash_val[i])
+            tmp_buffer[i] = tmp_buffer[i] ^ hash_val[i]
 
         x2 = hashlib.sha1(bytes(tmp_buffer)).digest()
 
         derived_key += x2
 
-    return derived_key[:key_size]
+    return derived_key[:int(key_size)]
 
 
 def generate_enc_key_v2(password, salt, key_size):
@@ -79,7 +79,7 @@ def adjust_buf_len(buffer, length, pad="\x36"):
     if len(buffer) < length:
         buffer += pad * (length - len(buffer))
     elif len(buffer) > length:
-        buffer = buffer[:length]
+        buffer = buffer[:int(length)]
     return buffer
 
 
@@ -117,9 +117,9 @@ def check_password_v4(password, metadata):
         "RC4": ARC4,
         "DES": DES
     }
-    block_key_1 = "\xfe\xa7\xd2\x76\x3b\x4b\x9e\x79"
-    block_key_2 = "\xd7\xaa\x0f\x6d\x30\x61\x34\x4e"
-    block_key_3 = "\x14\x6e\x0b\xe7\xab\xac\xd0\xd6"
+    block_key_1 = b"\xfe\xa7\xd2\x76\x3b\x4b\x9e\x79"
+    block_key_2 = b"\xd7\xaa\x0f\x6d\x30\x61\x34\x4e"
+    block_key_3 = b"\x14\x6e\x0b\xe7\xab\xac\xd0\xd6"
 
     chain_mode = {
         "ChainingModeCBC": "MODE_CBC",
@@ -181,7 +181,7 @@ def decode_flags_v2(flags):
 def decode_stream_v2(password, metadata, package, out_file):
     """Structure laid out in MS-OFFCRYPTO 2.3.4.4"""
     decoded_len = struct.unpack("Q", package.read(8))[0]
-    ks = metadata['enc_header']['KeySize']
+    ks = int(metadata['enc_header']['KeySize'])
 
     key = generate_enc_key_v2(password, metadata['salt'], ks)
 
