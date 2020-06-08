@@ -439,7 +439,7 @@ def mstools(filename, password_list, output_folder):
                                               stderr=subprocess.PIPE).communicate()
             if b"bad password" in stdout:
                 continue
-            elif b"not support format" in stdout or b"exception:" in stdout or stderr != "":
+            elif b"not support format" in stdout or b"exception:" in stdout or stderr != b"":
                 # For some reason msoffice cannot process file
                 return
             else:
