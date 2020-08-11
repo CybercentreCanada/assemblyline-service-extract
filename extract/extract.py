@@ -885,7 +885,7 @@ class Extract(ServiceBase):
                 f.close()
 
                 to_add = True
-                file_info = ident(byte_block, len(byte_block))
+                file_info = ident(byte_block, len(byte_block), cur_file[0])
                 for exp in whitelisted_tags_re:
                     if exp.search(file_info['type']):
                         if DEBUG:
