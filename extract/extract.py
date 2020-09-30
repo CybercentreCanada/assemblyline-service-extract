@@ -893,7 +893,7 @@ class Extract(ServiceBase):
                         to_add = False
                         jar_filter_count += 1
 
-                if to_add:
+                if to_add and file_info['mime']:
                     for exp in whitelisted_mime_re:
                         if exp.search(file_info['mime']):
                             if DEBUG:
