@@ -289,6 +289,9 @@ class Extract(ServiceBase):
                                 except BadZipfile:
                                     # Corrupted zip file, also expected
                                     pass
+                                except EOFError:
+                                    # Unable to read path
+                                    pass
 
                 return [[out_name, "repaired_zip_file.zip", encoding]], False
         except ValueError:
