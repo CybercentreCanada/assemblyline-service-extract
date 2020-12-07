@@ -268,7 +268,10 @@ class RepairZip(ZipFile):
                 if filename not in file_list:
                     continue
 
-                x = ZipInfo(filename)
+                if isinstance(filename, bytes):
+                    x = ZipInfo(filename.decode('utf-8', 'backslashreplace'))
+                else:
+                    x = ZipInfo(filename)
                 extra_off = start + sizeCentralDir
                 x.extra = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
                 extra_off += centdir[_CD_EXTRA_FIELD_LENGTH]
