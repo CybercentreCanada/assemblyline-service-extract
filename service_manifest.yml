@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|document/email|document/pdf|document/office/unknown|android/apk|ios/ipa
+accepts: (archive|executable|java)/.*|code/vbe|code/html|document/email|document/pdf|document/office/passwordprotected|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -17,6 +17,7 @@ is_external: false
 licence_count: 0
 
 config:
+  # Must be all strings
   default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
   named_email_attachments_only: true
   max_email_attachment_size: 10737418240
@@ -69,7 +70,7 @@ heuristics:
   - heur_id: 6
     name: Office password removed
     score: 0
-    filetype: document/office/unknown
+    filetype: document/office/passwordprotected
     description: Password removed from password-protected office document
 
   - heur_id: 7
