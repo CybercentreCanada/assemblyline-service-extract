@@ -9,7 +9,7 @@ import zlib
 from copy import deepcopy
 
 from bs4 import BeautifulSoup
-from extract.ext.doc_extract import mstools, extract_docx, ExtractionError, PasswordError
+from extract.ext.office_extract import mstools, extract_office_docs, ExtractionError, PasswordError
 from extract.ext.repair_zip import RepairZip, BadZipfile
 from extract.ext.xxxswf import xxxswf
 from lxml import html, etree
@@ -304,7 +304,7 @@ class Extract(ServiceBase):
 
     # noinspection PyCallingNonCallable
     def extract_office(self, request: ServiceRequest, local, encoding: str):
-        """Will attempt to use modules in doc_extract.py to extract a document from an encrypted Office file.
+        """Will attempt to use modules in office_extract.py to extract a document from an encrypted Office file.
 
         Args:
             request: AL request object.
@@ -316,12 +316,12 @@ class Extract(ServiceBase):
             decryption failed; and True if encryption successful (indicating encryption detected).
         """
         # When encrypted, AL will identify the document as an unknown office type.
-        if request.file_type != "document/office/unknown":
+        if request.file_type != "document/office/passwordprotected":
             return [], False
 
         passwords = self.get_passwords(request)
         try:
-            # Check is msoffice is compiled
+            # Check if msoffice is compiled
             if os.path.isfile("/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"):
                 # Still going to use extract_docx as a backup for now, so try that module if msoffice fails
                 try_next = True
@@ -330,13 +330,13 @@ class Extract(ServiceBase):
                 try_next = False
                 self.log.warning("Extract service out of date. Reinstall on workers with "
                                  "/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract")
-                res = extract_docx(local, passwords, self.working_directory)
+                res = extract_office_docs(local, passwords, self.working_directory)
 
             if res is None and not try_next:
                 raise ValueError()
             # Try old module if msoffice errors
             if res is None:
-                res = extract_docx(local, passwords, self.working_directory)
+                res = extract_office_docs(local, passwords, self.working_directory)
                 if res is None:
                     raise ValueError()
         except ValueError:

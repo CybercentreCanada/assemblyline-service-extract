@@ -9,6 +9,7 @@ import hashlib
 import math
 import binascii
 import tempfile
+import msoffcrypto
 
 from Crypto.Cipher import AES, DES3, ARC2, ARC4, DES
 from lxml import etree
@@ -362,7 +363,7 @@ def parse_enc_info(doc):
         raise ExtractionError("Unsupported version %i:%i" % (header["ver_maj"], header["ver_min"]))
 
 
-def extract_docx(filename, password_list, output_folder):
+def extract_office_docs(filename, password_list, output_folder):
     """
     Exceptions:
      - ValueError: Document is an unsupported format.
@@ -381,30 +382,40 @@ def extract_docx(filename, password_list, output_folder):
         of = olefile.OleFileIO(filename)
     except IOError:
         raise ValueError("Corrupted OLE Document")
+    password = None
 
-    if of.exists("WordDocument"):
-        # Cannot parse these files yet
-        raise ValueError("Legacy Word Document")
-
-    elif of.exists("EncryptionInfo") and of.exists("EncryptedPackage"):
+    # checks new versions of office docs .***x i.e. .xlsx, .docx, etc.
+    if of.exists("EncryptionInfo") and of.exists("EncryptedPackage"):
         metadata = parse_enc_info(of.openstream("EncryptionInfo"))
-
-        password = None
+        # From the provided passwords, check the password and break if it's correct
         for pass_try in password_list:
             if check_password(pass_try, metadata) is True:
                 password = pass_try
                 break
+    # open the file in read-binary, assign value to file variable
+    file = msoffcrypto.OfficeFile(open(filename, "rb"))
+    if not password:
+        # re: older versions, such as xls, doc, ppt
+        for password in password_list:
+            try:
+                # use the provided password, if correct, break.
+                file.load_key(password=password)
+                break
+            except Exception as e:
+                e_repr = repr(e)
+                if "Failed to verify password" in e_repr:
+                    continue
 
-        if password is None:
-            raise PasswordError("Could not find correct password")
-
-        tf = tempfile.NamedTemporaryFile(dir=output_folder, suffix=".docx", delete=False)
-        decode_stream(password, metadata, of.openstream("EncryptedPackage"), tf)
-        name = tf.name
-        tf.close()
-        return name, password
     else:
-        raise ValueError("Not encrypted")
+        # use the provided password
+        file.load_key(password=password)
+    if password is None:
+        raise PasswordError("Could not find correct password")
+    tf = tempfile.NamedTemporaryFile(dir=output_folder, delete=False)
+    name = tf.name
+    file.decrypt(open(name, "wb"))
+    tf.close()
+    return name, password
 
 
 def mstools(filename, password_list, output_folder):
