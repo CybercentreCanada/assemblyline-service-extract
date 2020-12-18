@@ -17,18 +17,15 @@ USER assemblyline
 
 # Install pip packages
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
-RUN wget -O /tmp/msoffice.tar.gz https://assemblyline-support.s3.amazonaws.com/msoffice.tar.gz
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
 
 # Extract the tar files and make msoffice
 USER root
 RUN mkdir -p /opt/al/support/extract
-RUN tar -zxf /tmp/msoffice.tar.gz -C /opt/al/support/extract
 RUN tar -zxf /tmp/cybozulib.tar.gz -C /opt/al/support/extract
-RUN make -C /opt/al/support/extract/msoffice -j RELEASE=1
 
 # Remove files that existed before the pip install so that our copy command below doesn't take a snapshot of
 # files that already exist in the base image
