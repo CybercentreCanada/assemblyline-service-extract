@@ -9,7 +9,7 @@ import zlib
 from copy import deepcopy
 
 from bs4 import BeautifulSoup
-from extract.ext.office_extract import mstools, extract_office_docs, ExtractionError, PasswordError
+from extract.ext.office_extract import extract_office_docs, ExtractionError, PasswordError
 from extract.ext.repair_zip import RepairZip, BadZipfile
 from extract.ext.xxxswf import xxxswf
 from lxml import html, etree
@@ -315,30 +315,16 @@ class Extract(ServiceBase):
             List containing decoded file path, encoding, and display name "[orig FH name]_decoded", or a blank list if
             decryption failed; and True if encryption successful (indicating encryption detected).
         """
-        # When encrypted, AL will identify the document as an unknown office type.
+        # When encrypted, AL will identify the document as a passwordprotected office type.
         if request.file_type != "document/office/passwordprotected":
             return [], False
 
         passwords = self.get_passwords(request)
         try:
-            # Check if msoffice is compiled
-            if os.path.isfile("/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"):
-                # Still going to use extract_docx as a backup for now, so try that module if msoffice fails
-                try_next = True
-                res = mstools(local, passwords, self.working_directory)
-            else:
-                try_next = False
-                self.log.warning("Extract service out of date. Reinstall on workers with "
-                                 "/opt/al/pkg/assemblyline/al/install/reinstall_service.py Extract")
-                res = extract_office_docs(local, passwords, self.working_directory)
+            res = extract_office_docs(local, passwords, self.working_directory)
 
-            if res is None and not try_next:
-                raise ValueError()
-            # Try old module if msoffice errors
             if res is None:
-                res = extract_office_docs(local, passwords, self.working_directory)
-                if res is None:
-                    raise ValueError()
+                raise ValueError()
         except ValueError:
             # Not a valid supported/valid file
             return [], False

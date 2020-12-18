@@ -4,7 +4,6 @@
 #  https://msdn.microsoft.com/en-us/library/cc313071(v=office.12).aspx
 
 import struct
-import subprocess
 import hashlib
 import math
 import binascii
@@ -383,18 +382,19 @@ def extract_office_docs(filename, password_list, output_folder):
     except IOError:
         raise ValueError("Corrupted OLE Document")
     password = None
-
-    # checks new versions of office docs .***x i.e. .xlsx, .docx, etc.
+    new_office = False
+    # Checks parameters "EncryptionInfo" and "EncryptedPackage" in OLE file, which indicates the office file version
     if of.exists("EncryptionInfo") and of.exists("EncryptedPackage"):
+        new_office = True
         metadata = parse_enc_info(of.openstream("EncryptionInfo"))
         # From the provided passwords, check the password and break if it's correct
         for pass_try in password_list:
             if check_password(pass_try, metadata) is True:
                 password = pass_try
                 break
-    # open the file in read-binary, assign value to file variable
+
     file = msoffcrypto.OfficeFile(open(filename, "rb"))
-    if not password:
+    if not new_office and not password:
         # re: older versions, such as xls, doc, ppt
         for password in password_list:
             try:
@@ -405,7 +405,8 @@ def extract_office_docs(filename, password_list, output_folder):
                 e_repr = repr(e)
                 if "Failed to verify password" in e_repr:
                     continue
-
+                else:
+                    raise
     else:
         # use the provided password
         file.load_key(password=password)
@@ -418,53 +419,7 @@ def extract_office_docs(filename, password_list, output_folder):
     return name, password
 
 
-def mstools(filename, password_list, output_folder):
-    """
-    Exceptions:
-     - ValueError: Document is an unsupported format.
-     - PasswordError: Document is a supported format, but the password is unknown.
-     - ExtractionError: Document is encrypted but not in a supported format.
-
-    :param filename: Name of the potential office file
-    :param password_list: a list of password strings, ascii or unicode
-    :param output_folder: a path to a directory where we can write to
-    :return: The filename we wrote. Else, an exception is thrown.
-    """
-    if not olefile.isOleFile(filename):
-        raise ValueError("Not OLE")
-
-    try:
-        of = olefile.OleFileIO(filename)
-    except IOError:
-        raise ValueError("Corrupted OLE Document")
-
-    # Start with msoffice binary
-    if of.exists("EncryptionInfo") and of.exists("EncryptedPackage"):
-        with tempfile.NamedTemporaryFile(dir=output_folder, delete=False) as tf:
-            output_name = tf.name
-        password = None
-        for pass_try in password_list:
-            msoffice = "/opt/al/support/extract/msoffice/bin/msoffice-crypt.exe"
-            stdout, stderr = subprocess.Popen([msoffice, "-d", "-p", f"{pass_try}", filename, output_name],
-                                              stdout=subprocess.PIPE,
-                                              stderr=subprocess.PIPE).communicate()
-            if b"bad password" in stdout:
-                continue
-            elif b"not support format" in stdout or b"exception:" in stdout or stderr != b"":
-                # For some reason msoffice cannot process file
-                return
-            else:
-                password = pass_try
-                break
-        if password is not None:
-            return output_name, password
-        else:
-            raise PasswordError("Could not find correct password")
-    else:
-        raise ValueError("Not encrypted")
-
-
 if __name__ == "__main__":
     import sys
     # Usage: file.docx password
-    print(extract_docx(sys.argv[1], [sys.argv[2]], "."))
+    print(extract_office_docs(sys.argv[1], [sys.argv[2]], "."))
