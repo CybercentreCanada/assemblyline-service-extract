@@ -71,7 +71,7 @@ heuristics:
     name: Office password removed
     score: 0
     filetype: document/office/passwordprotected
-    description: Password removed from password-protected office document
+    description: Extracted from protected office document
 
   - heur_id: 7
     name: Extracted from PDF
