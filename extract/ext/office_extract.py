@@ -396,10 +396,11 @@ def extract_office_docs(filename, password_list, output_folder):
     file = msoffcrypto.OfficeFile(open(filename, "rb"))
     if not new_office and not password:
         # re: older versions, such as xls, doc, ppt
-        for password in password_list:
+        for pass_try in password_list:
             try:
                 # use the provided password, if correct, break.
-                file.load_key(password=password)
+                file.load_key(password=pass_try)
+                password = pass_try
                 break
             except Exception as e:
                 e_repr = repr(e)
