@@ -312,7 +312,7 @@ class Extract(ServiceBase):
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing decoded file path, encoding, and display name "[orig FH name]_decoded", or a blank list if
+            List containing decoded file path, encoding, and display name "[orig FH name]", or a blank list if
             decryption failed; and True if encryption successful (indicating encryption detected).
         """
         # When encrypted, AL will identify the document as a passwordprotected office type.
@@ -334,7 +334,7 @@ class Extract(ServiceBase):
 
         out_name, password = res
         self._last_password = password
-        display_name = "_decoded".join(os.path.splitext(os.path.basename(request.file_path)))
+        display_name = request.file_name
         return [[out_name, display_name, encoding]], True
 
     def _7zip_submit_extracted(self, request: ServiceRequest, path: str, encoding: str):
