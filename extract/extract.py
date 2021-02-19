@@ -326,7 +326,7 @@ class Extract(ServiceBase):
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List containing decoded file path, encoding, and display name "[orig FH name]_decoded", or a blank list if
+            List containing decoded file path, encoding, and display name "[orig FH name]", or a blank list if
             decryption failed; and True if encryption successful (indicating encryption detected).
         """
         # When encrypted, AL will identify the document as a passwordprotected office type.
