@@ -334,7 +334,7 @@ class Extract(ServiceBase):
 
         out_name, password = res
         self._last_password = password
-        display_name = "_decoded".join(os.path.splitext(os.path.basename(request.file_path)))
+        display_name = request.file_name
         return [[out_name, display_name, encoding]], True
 
     def _7zip_submit_extracted(self, request: ServiceRequest, path: str, encoding: str):
