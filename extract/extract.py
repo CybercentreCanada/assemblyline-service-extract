@@ -6,15 +6,16 @@ import shutil
 import subprocess
 import tempfile
 import zlib
-from copy import deepcopy
 
 from bs4 import BeautifulSoup
+from cart import get_metadata_only, unpack_stream
+from copy import deepcopy
 from extract.ext.office_extract import extract_office_docs, ExtractionError, PasswordError
 from extract.ext.repair_zip import RepairZip, BadZipfile
 from extract.ext.xxxswf import xxxswf
 from lxml import html, etree
 
-from assemblyline.common.identify import ident
+from assemblyline.common.identify import fileinfo, ident, cart_ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import ServiceRequest, MaxExtractedExceeded
@@ -109,6 +110,19 @@ class Extract(ServiceBase):
         local = request.file_path
         password_protected = False
         white_listed = 0
+
+        #Check if the file itself is archive/cart
+        if cart_ident(request.file_path) != 'corrupted/cart':
+            self.log.info("File is cARTed. Will be un-cARTed and processed")
+            uncart_output = tempfile.NamedTemporaryFile()
+
+            with open(request.file_path, 'rb') as ifile, open(uncart_output.name, 'wb') as ofile:
+                unpack_stream(ifile, ofile)
+
+            #Proceed extract process as uncarted file
+            request.file_name = get_metadata_only(request.file_path)['name']
+            request.file_type = fileinfo(uncart_output.name)['type']
+            local = uncart_output.name
 
         try:
             password_protected, white_listed = self.extract(request, local)
