@@ -113,7 +113,7 @@ class Extract(ServiceBase):
 
         #Check if the file itself is archive/cart
         if cart_ident(request.file_path) != 'corrupted/cart':
-            self.log.info("File is cARTed. Will be un-cARTed and appended to result")
+            self.log.info("File is cARTed. Will be un-cARTed and processed")
             uncart_output = tempfile.NamedTemporaryFile()
 
             with open(request.file_path, 'rb') as ifile, open(uncart_output.name, 'wb') as ofile:
@@ -333,7 +333,6 @@ class Extract(ServiceBase):
         if request.file_type != "document/office/passwordprotected":
             return [], False
 
-        self.log.info(request.task.__dict__)
         passwords = self.get_passwords(request)
         try:
             res = extract_office_docs(local, passwords, self.working_directory)
