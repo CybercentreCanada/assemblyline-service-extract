@@ -5,7 +5,9 @@ import re
 import shutil
 import subprocess
 import tempfile
+import zipfile
 import zlib
+
 
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
@@ -612,47 +614,32 @@ class Extract(ServiceBase):
             or a blank list if extraction failed; and True if encryption detected.
         """
         password_protected = False
-
+        password_failed = False
         # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
         password_failed = False
         if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
                 request.file_type.startswith('document') or encoding == 'tnef':
             return [], password_protected
         path = os.path.join(self.working_directory)
-        # noinspection PyBroadException
+
         try:
-            env = os.environ.copy()
-            env['LANG'] = 'en_US.UTF-8'
-
-            stdoutput, stderr = subprocess.Popen(
-                ['7z', 'x', '-p', '-y', local, f'-o{path}'],
-                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE).communicate()
-            stdoutput += stderr
-            if stdoutput and stdoutput.strip().find(b"Everything is Ok") > 0:
-                return self._7zip_submit_extracted(request, path, encoding), password_protected
-            else:
-                if b"Wrong password" in stdoutput:
-                    password_protected = True
-                    password_list = self.get_passwords(request)
-                    for password in password_list:
-                        try:
-                            shutil.rmtree(path, ignore_errors=True)
-                            stdoutput, stderr = subprocess.Popen(
-                                ['7za', 'x', f'-p{password}', f'-o{path}', local],
-                                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE).communicate()
-                            stdoutput += stderr
-
-                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
-                                self._last_password = password
-                                return self._7zip_submit_extracted(request, path, encoding), password_protected
-                        except OSError:
-                            pass
-                    password_failed = True
+            # Attempt extraction of zip
+            try:
+                # with 7z
+                extracted_files, password_protected, password_failed = self.extract_7zip_7z(request, local, encoding, path)
+                if extracted_files:
+                    return extracted_files, password_protected
+            except UnicodeEncodeError:
+                # with zipfile
+                extracted_files, password_protected, password_failed = self.extract_7zip_zipfile(request, local, encoding, path)
+                if extracted_files:
+                    return extracted_files, password_protected
 
             # Try unrar if 7zip fails for rar archives
             if encoding == 'rar':
+                env = os.environ.copy()
+                env['LANG'] = 'en_US.UTF-8'
+
                 password_protected = False
 
                 # Resetting back to False because we are giving it another chance.
@@ -698,6 +685,66 @@ class Extract(ServiceBase):
             request.drop()
 
         return [], password_protected
+
+    def extract_7zip_7z(self, request: ServiceRequest, local: str, encoding: str, path: str):
+        password_protected = False
+        env = os.environ.copy()
+        env['LANG'] = 'en_US.UTF-8'
+
+        try:
+            stdoutput, stderr = subprocess.Popen(
+                ['7z', 'x', '-p', '-y', local, f'-o{path}'],
+                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE).communicate()
+            stdoutput += stderr
+            if stdoutput and stdoutput.strip().find(b"Everything is Ok") > 0:
+                return self._7zip_submit_extracted(request, path, encoding), password_protected, False
+            else:
+                if b"Wrong password" in stdoutput:
+                    password_protected = True
+                    password_list = self.get_passwords(request)
+                    for password in password_list:
+                        try:
+                            shutil.rmtree(path, ignore_errors=True)
+                            stdoutput, stderr = subprocess.Popen(
+                                ['7za', 'x', f'-p{password}', f'-o{path}', local],
+                                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE).communicate()
+                            stdoutput += stderr
+
+                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
+                                self._last_password = password
+                                return self._7zip_submit_extracted(request, path, encoding), password_protected, False
+                        except OSError:
+                            pass
+                    return None, password_protected, True
+        except UnicodeEncodeError:
+            raise
+
+    def extract_7zip_zipfile(self, request: ServiceRequest, local: str, encoding: str, path: str):
+        shutil.rmtree(path, ignore_errors=True)
+        password_protected = False
+        try:
+            with zipfile.ZipFile(local, 'r') as zipped_file:
+                zipped_file.extractall(path=path)
+            return self._7zip_submit_extracted(request, path, encoding), password_protected, False
+        except RuntimeError as e:
+            if any("password required for extraction" in event for event in e.args):
+                # Try with available passwords
+                password_protected = True
+                password_list = self.get_passwords(request)
+                for password in password_list:
+                    try:
+                        shutil.rmtree(path, ignore_errors=True)
+                        with zipfile.ZipFile(local, 'r') as zipped_file:
+                            zipped_file.extractall(path=path, pwd=password.encode())
+                        return self._7zip_submit_extracted(request, path, encoding), password_protected, False
+                    except RuntimeError:
+                        pass
+                return None, password_protected, True
+        except BadZipfile:
+            self.log.warning("A non-zip file was passed to zipfile library")
+            return None, password_protected, False
 
     def extract_swf(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract compressed SWF files.
