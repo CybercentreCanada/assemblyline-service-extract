@@ -82,7 +82,7 @@ class Extract(ServiceBase):
         super(Extract, self).__init__(config)
         self._last_password = None
         self.extract_methods = [
-            self.extract_7zip,
+            self.extract_zip,
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
@@ -600,8 +600,8 @@ class Extract(ServiceBase):
                 pass
         return [], False
 
-    def extract_7zip(self, request: ServiceRequest, local: str, encoding: str):
-        """Will attempt to use 7zip and then unrar to extract content from an archive, or sections from a Windows
+    def extract_zip(self, request: ServiceRequest, local: str, encoding: str):
+        """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive, or sections from a Windows
         executable file.
 
         Args:
@@ -614,7 +614,6 @@ class Extract(ServiceBase):
             or a blank list if extraction failed; and True if encryption detected.
         """
         password_protected = False
-        password_failed = False
         # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
         password_failed = False
         if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
@@ -626,12 +625,12 @@ class Extract(ServiceBase):
             # Attempt extraction of zip
             try:
                 # with 7z
-                extracted_files, password_protected, password_failed = self.extract_7zip_7z(request, local, encoding, path)
+                extracted_files, password_protected, password_failed = self.extract_zip_7zip(request, local, encoding, path)
                 if extracted_files:
                     return extracted_files, password_protected
             except UnicodeEncodeError:
                 # with zipfile
-                extracted_files, password_protected, password_failed = self.extract_7zip_zipfile(request, local, encoding, path)
+                extracted_files, password_protected, password_failed = self.extract_zip_zipfile(request, local, encoding, path)
                 if extracted_files:
                     return extracted_files, password_protected
 
@@ -686,7 +685,7 @@ class Extract(ServiceBase):
 
         return [], password_protected
 
-    def extract_7zip_7z(self, request: ServiceRequest, local: str, encoding: str, path: str):
+    def extract_zip_7zip(self, request: ServiceRequest, local: str, encoding: str, path: str):
         password_protected = False
         env = os.environ.copy()
         env['LANG'] = 'en_US.UTF-8'
@@ -721,7 +720,7 @@ class Extract(ServiceBase):
         except UnicodeEncodeError:
             raise
 
-    def extract_7zip_zipfile(self, request: ServiceRequest, local: str, encoding: str, path: str):
+    def extract_zip_zipfile(self, request: ServiceRequest, local: str, encoding: str, path: str):
         shutil.rmtree(path, ignore_errors=True)
         password_protected = False
         try:
