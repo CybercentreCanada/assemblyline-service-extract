@@ -617,7 +617,7 @@ class Extract(ServiceBase):
         # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
         password_failed = False
         if request.file_type == 'archive/audiovisual/flash' or encoding == 'ace' or \
-                request.file_type.startswith('document') or encoding == 'tnef':
+                request.file_type.startswith('document') or encoding == 'tnef' or request.file_type.startswith('code'):
             return [], password_protected
         path = os.path.join(self.working_directory)
 
