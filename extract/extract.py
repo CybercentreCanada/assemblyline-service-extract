@@ -633,6 +633,8 @@ class Extract(ServiceBase):
                 extracted_files, password_protected, password_failed = self.extract_zip_zipfile(request, local, encoding, path)
                 if extracted_files:
                     return extracted_files, password_protected
+            except TypeError:
+                pass
 
             # Try unrar if 7zip fails for rar archives
             if encoding == 'rar':
@@ -717,6 +719,8 @@ class Extract(ServiceBase):
                         except OSError:
                             pass
                     return None, password_protected, True
+                elif b'Can not open the file as archive' in stdoutput:
+                    raise TypeError
         except UnicodeEncodeError:
             raise
 
