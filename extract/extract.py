@@ -801,16 +801,19 @@ class Extract(ServiceBase):
         if request.file_type != "metadata/sysmon":
             return [], False
 
-        output_path = os.path.join(self.working_directory)
-        file_path = output_path + local[4:]
+        path = os.path.join(self.working_directory)
+        try:
+            if not os.path.exists(path):
+                os.makedirs(path)
+        except OSError:
+            pass
 
-        with open(local, "rb") as fr:
-            uncarted_data = fr.read()
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
-        with open(file_path, 'wb') as fw:
-            fw.write(uncarted_data)
-        return [[file_path, request.file_name, encoding]], False
+        with tempfile.NamedTemporaryFile(dir=path, delete=False) as tmp_file:
+            out_name = tmp_file.name
+            with open(local, "rb") as f:
+                tmp_file.write(f.read())
+
+        return [[out_name, request.file_name, encoding]], False
 
 
     def extract_tnef(self, _: ServiceRequest, local: str, encoding: str):
