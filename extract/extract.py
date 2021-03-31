@@ -91,6 +91,7 @@ class Extract(ServiceBase):
             self.extract_office,
             self.extract_pdf,
             self.extract_vbe,
+            self.extract_sysmon,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
@@ -782,6 +783,35 @@ class Extract(ServiceBase):
                 extracted_children.append([output_path + "/" + child, child, encoding])
 
         return extracted_children, False
+
+    def extract_sysmon(self, request: ServiceRequest, local: str, encoding: str):
+        """Extracts symon log file from carted format and save file contents.
+
+        Args:
+            request:  AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extract failed; and False (no passwords will ever be detected) .
+        """
+        if cart_ident(request.file_path) == 'corrupted/cart':
+            return [], False
+        if request.file_type != "metadata/sysmon":
+            return [], False
+
+        output_path = os.path.join(self.working_directory)
+        file_path = output_path + local[4:]
+
+        with open(local, "rb") as fr:
+            uncarted_data = fr.read()
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+        with open(file_path, 'wb') as fw:
+            fw.write(uncarted_data)
+        return [[file_path, request.file_name, encoding]], False
+
 
     def extract_tnef(self, _: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract data from a TNEF container.
