@@ -785,7 +785,7 @@ class Extract(ServiceBase):
         return extracted_children, False
 
     def extract_sysmon(self, request: ServiceRequest, local: str, encoding: str):
-        """Extracts symon log file from carted format and save file contents.
+        """Extracts sysmon log file from carted format and saves file contents.
 
         Args:
             request:  AL request object.
