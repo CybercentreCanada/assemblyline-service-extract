@@ -113,7 +113,7 @@ class Extract(ServiceBase):
         password_protected = False
         white_listed = 0
 
-        #Check if the file itself is archive/cart
+        # Check if the file itself is archive/cart
         if cart_ident(request.file_path) != 'corrupted/cart':
             self.log.info("File is cARTed. Will be un-cARTed and processed")
             uncart_output = tempfile.NamedTemporaryFile()
@@ -121,7 +121,7 @@ class Extract(ServiceBase):
             with open(request.file_path, 'rb') as ifile, open(uncart_output.name, 'wb') as ofile:
                 unpack_stream(ifile, ofile)
 
-            #Proceed extract process as uncarted file
+            # Proceed extract process as uncarted file
             request.file_name = get_metadata_only(request.file_path)['name']
             request.file_type = fileinfo(uncart_output.name)['type']
             local = uncart_output.name
@@ -444,12 +444,12 @@ class Extract(ServiceBase):
                         if not m:
                             continue
 
-                        filename = m.group(1)
-                        filepath = os.path.join(path, filename)
+                        filename = safe_str(m.group(1))
+                        filepath = safe_str(os.path.join(path, filename))
                         if os.path.isdir(filepath):
                             continue
                         else:
-                            extracted_children.append([safe_str(filepath), safe_str(filename), encoding])
+                            extracted_children.append([filepath, filename, encoding])
 
                 return extracted_children, False
 
@@ -625,12 +625,14 @@ class Extract(ServiceBase):
             # Attempt extraction of zip
             try:
                 # with 7z
-                extracted_files, password_protected, password_failed = self.extract_zip_7zip(request, local, encoding, path)
+                extracted_files, password_protected, password_failed = \
+                    self.extract_zip_7zip(request, local, encoding, path)
                 if extracted_files:
                     return extracted_files, password_protected
             except UnicodeEncodeError:
                 # with zipfile
-                extracted_files, password_protected, password_failed = self.extract_zip_zipfile(request, local, encoding, path)
+                extracted_files, password_protected, password_failed = \
+                    self.extract_zip_zipfile(request, local, encoding, path)
                 if extracted_files:
                     return extracted_files, password_protected
             except TypeError:
