@@ -430,8 +430,7 @@ class Extract(ServiceBase):
                     tf.flush()
 
                 proc = subprocess.run(f'/usr/bin/unace e -y {tf.name}', timeout=2*self.service_attributes.timeout/3,
-                                      stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                      stderr=subprocess.STDOUT, cwd=path, env=os.environ, shell=True,
+                                      capture_output=True, cwd=path, env=os.environ, shell=True,
                                       preexec_fn=set_death_signal())
                 stdoutput = proc.stdout
 
@@ -485,10 +484,7 @@ class Extract(ServiceBase):
 
             # noinspection PyBroadException
             try:
-                subprocess.Popen(
-                    ['pdfdetach', '-saveall', '-o', output_path, local],
-                    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE).communicate()
+                subprocess.run(['pdfdetach', '-saveall', '-o', output_path, local], env=env, capture_output=True)
             except Exception:
                 self.log.error("Extract service needs poppler-utils to extract embedded PDF files.")
                 return extracted_children, False
@@ -650,9 +646,8 @@ class Extract(ServiceBase):
                 shutil.rmtree(path, ignore_errors=True)
                 os.mkdir(path)
                 try:
-                    stdout_rar, stderr_rar = subprocess.Popen(
-                        ['unrar', 'x', '-y', '-p-', local, path],
-                        env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+                    p = subprocess.run(['unrar', 'x', '-y', '-p-', local, path], env=env, capture_output=True)
+                    stdout_rar, stderr_rar = p.stdout, p.stderr
                 except OSError:
                     self.log.warning(f"Error running unrar on sample {request.sha256}. "
                                      "Extract service may be out of date.")
@@ -668,10 +663,8 @@ class Extract(ServiceBase):
                             try:
                                 shutil.rmtree(path, ignore_errors=True)
                                 os.mkdir(path)
-                                proc, _ = subprocess.Popen(
-                                    ['unrar', 'x', '-y', f'-p{password}', local, path],
-                                    env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE).communicate()
+                                proc = subprocess.run(['unrar', 'x', '-y', f'-p{password}', local, path],
+                                                      env=env, capture_output=True).stdout
                                 if b"All OK" in proc:
                                     self._last_password = password
                                     return self._7zip_submit_extracted(request, path, encoding), password_protected
@@ -695,11 +688,8 @@ class Extract(ServiceBase):
         env['LANG'] = 'en_US.UTF-8'
 
         try:
-            stdoutput, stderr = subprocess.Popen(
-                ['7z', 'x', '-p', '-y', local, f'-o{path}'],
-                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE).communicate()
-            stdoutput += stderr
+            p = subprocess.run(['7z', 'x', '-p', '-y', local, f'-o{path}'], env=env, capture_output=True)
+            stdoutput = p.stdout + p.stderr
             if stdoutput and stdoutput.strip().find(b"Everything is Ok") > 0:
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
             else:
@@ -709,11 +699,9 @@ class Extract(ServiceBase):
                     for password in password_list:
                         try:
                             shutil.rmtree(path, ignore_errors=True)
-                            stdoutput, stderr = subprocess.Popen(
-                                ['7za', 'x', f'-p{password}', f'-o{path}', local],
-                                env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE).communicate()
-                            stdoutput += stderr
+                            p = subprocess.run(['7za', 'x', f'-p{password}', f'-o{path}', local],
+                                               env=env, capture_output=True)
+                            stdoutput = p.stdout + p.stderr
 
                             if stdoutput and b"\nEverything is Ok\n" in stdoutput:
                                 self._last_password = password
