@@ -663,9 +663,9 @@ class Extract(ServiceBase):
                             try:
                                 shutil.rmtree(path, ignore_errors=True)
                                 os.mkdir(path)
-                                proc = subprocess.run(['unrar', 'x', '-y', f'-p{password}', local, path],
-                                                      env=env, capture_output=True).stdout
-                                if b"All OK" in proc:
+                                stdout = subprocess.run(['unrar', 'x', '-y', f'-p{password}', local, path],
+                                                        env=env, capture_output=True).stdout
+                                if b"All OK" in stdout:
                                     self._last_password = password
                                     return self._7zip_submit_extracted(request, path, encoding), password_protected
                             except OSError:
@@ -689,11 +689,11 @@ class Extract(ServiceBase):
 
         try:
             p = subprocess.run(['7z', 'x', '-p', '-y', local, f'-o{path}'], env=env, capture_output=True)
-            stdoutput = p.stdout + p.stderr
+            stdoutput, stderr = p.stdout, p.stderr
             if stdoutput and stdoutput.strip().find(b"Everything is Ok") > 0:
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
             else:
-                if b"Wrong password" in stdoutput:
+                if b"Wrong password" in stderr:
                     password_protected = True
                     password_list = self.get_passwords(request)
                     for password in password_list:
@@ -702,7 +702,6 @@ class Extract(ServiceBase):
                             p = subprocess.run(['7za', 'x', f'-p{password}', f'-o{path}', local],
                                                env=env, capture_output=True)
                             stdoutput = p.stdout + p.stderr
-
                             if stdoutput and b"\nEverything is Ok\n" in stdoutput:
                                 self._last_password = password
                                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
