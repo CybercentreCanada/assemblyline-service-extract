@@ -240,13 +240,14 @@ class Extract(ServiceBase):
             for white_listing_method in self.white_listing_methods:
                 extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
 
-        for i, child in enumerate(extracted):
+        extracted_count = len(extracted)
+        for child in extracted:
             try:
-                # If the file is not successfully added as extracted, then pop it from the list of extracted
+                # If the file is not successfully added as extracted, then decrease the extracted file counter
                 if not request.add_extracted(*child):
-                    extracted.pop(i)
+                    extracted_count -= 1
             except MaxExtractedExceeded:
-                raise MaxExtractedExceeded(f"This file contains {len(extracted)} extracted files, exceeding the "
+                raise MaxExtractedExceeded(f"This file contains {extracted_count} extracted files, exceeding the "
                                            f"maximum of {request.max_extracted} extracted files allowed. "
                                            "None of the files were extracted.")
 
