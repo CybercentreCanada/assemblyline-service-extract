@@ -798,7 +798,7 @@ class Extract(ServiceBase):
             tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
-            for a in tnef.TNEF(open(local).read()).attachments:
+            for a in tnef.TNEF(open(local, "rb").read()).attachments:
                 # This may not exist so try to access it and deal the
                 # possible AttributeError, by skipping this entry as
                 # there is no point if there is no data.
@@ -824,11 +824,9 @@ class Extract(ServiceBase):
                 if not name:
                     continue
 
-                path = os.path.join(self.working_directory)
-                with open(path, 'w') as f:
-                    f.write(data)
-
-                children.append([path, name, encoding])
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                    tmp_f.write(data)
+                children.append([tmp_f.name, name, encoding])
         except ImportError:
             self.log.exception("Import error: tnefparse library not installed:")
         except Exception:
