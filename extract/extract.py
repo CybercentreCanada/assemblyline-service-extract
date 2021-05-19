@@ -144,6 +144,15 @@ class Extract(ServiceBase):
         if num_extracted == 0 and password_protected:
             section = ResultSection("Failed to extract password protected file.", heuristic=Heuristic(12))
             section.add_tag('file.behavior', "Archive Unknown Password")
+            if zipfile.is_zipfile(request.file_path):
+                try:
+                    with zipfile.ZipFile(request.file_path, 'r') as z:
+                        section.add_line("Files in password protected zip archive:")
+                        for name in z.namelist():
+                            section.add_line(name)
+                            section.add_tag('file.name.extracted', name)
+                except Exception:
+                    pass
             if not request.file_type.startswith("executable"):
                 # Don't drop executables that contain password protected zip sections
                 request.drop()
