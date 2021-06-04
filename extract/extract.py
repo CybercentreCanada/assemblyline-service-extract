@@ -687,7 +687,7 @@ class Extract(ServiceBase):
             # Try unrar if 7zip fails for rar archives
             if encoding == 'rar':
                 env = os.environ.copy()
-                env['LANG'] = 'en_US.UTF-8'
+                env['LANG'] = 'C.UTF-8'
 
                 password_protected = False
 
@@ -735,7 +735,7 @@ class Extract(ServiceBase):
     def extract_zip_7zip(self, request: ServiceRequest, local: str, encoding: str, path: str):
         password_protected = False
         env = os.environ.copy()
-        env['LANG'] = 'en_US.UTF-8'
+        env['LANG'] = 'C.UTF-8'
 
         try:
             p = subprocess.run(['7z', 'x', '-p', '-y', local, f'-o{path}'], env=env, capture_output=True)
