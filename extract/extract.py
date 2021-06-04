@@ -1,8 +1,10 @@
 import email
 import logging
 import os
+import random
 import re
 import shutil
+import string
 import subprocess
 import tempfile
 import zipfile
@@ -375,8 +377,47 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path, encoding, and display name
             or a blank list if extraction failed.
         """
+        def ascii_sanitize(input: str):
+            split_input = input.split('/')
+            if len(split_input) > 1:
+                for index in range(len(split_input)):
+                    split_input[index] = ascii_sanitize(split_input[index])
+                return '/'.join(split_input)
+            else:
+                ext = f".{input.split('.')[1]}" if len(input.split('.')) > 1 else ''
+                try:
+                    return input.encode('ascii').decode()
+                except UnicodeEncodeError:
+                    return f"{''.join([random.choice(string.ascii_lowercase) for _ in range(len(input))])}{ext}"
+
         extract_executable_sections = request.get_param('extract_executable_sections')
         extracted_children = []
+
+        # Fix problems with directory
+        changes_made = True
+        while changes_made:
+            for root, _, files in os.walk(path):
+                # Sanitize root
+                new_root = ascii_sanitize(root)
+                if new_root != root:
+                    # Implies there was a correction made to path, copy contents to new directory
+                    shutil.copytree(root, new_root)
+                    shutil.rmtree(root)
+                    changes_made = True
+                    break
+                for f in files:
+                    # Sanitize filename
+                    file_path = safe_str(os.path.join(root, f))
+                    new_file_path = ascii_sanitize(file_path)
+
+                    if file_path != new_file_path:
+                        # Python can't read the 'dirty' path, leave it to the OS
+                        subprocess.run(['cp', file_path.encode(), new_file_path.encode()], encoding="C.UTF-8")
+                        subprocess.run(['rm', file_path.encode()], encoding="C.UTF-8")
+                        file_path = new_file_path
+                changes_made = False
+
+        # Add Extracted
         for root, _, files in os.walk(path):
             for f in files:
                 skip = False
@@ -626,7 +667,6 @@ class Extract(ServiceBase):
                 request.file_type.startswith('document') or encoding == 'tnef' or request.file_type.startswith('code'):
             return [], password_protected
         path = os.path.join(self.working_directory)
-
         try:
             # Attempt extraction of zip
             try:
@@ -647,7 +687,7 @@ class Extract(ServiceBase):
             # Try unrar if 7zip fails for rar archives
             if encoding == 'rar':
                 env = os.environ.copy()
-                env['LANG'] = 'en_US.UTF-8'
+                env['LANG'] = 'C.UTF-8'
 
                 password_protected = False
 
@@ -695,7 +735,7 @@ class Extract(ServiceBase):
     def extract_zip_7zip(self, request: ServiceRequest, local: str, encoding: str, path: str):
         password_protected = False
         env = os.environ.copy()
-        env['LANG'] = 'en_US.UTF-8'
+        env['LANG'] = 'C.UTF-8'
 
         try:
             p = subprocess.run(['7z', 'x', '-p', '-y', local, f'-o{path}'], env=env, capture_output=True)
@@ -807,7 +847,11 @@ class Extract(ServiceBase):
             tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
-            for a in tnef.TNEF(open(local, "rb").read()).attachments:
+            content = open(local, "rb").read()
+            if not content:
+                return children, False
+
+            for a in tnef.TNEF(content).attachments:
                 # This may not exist so try to access it and deal the
                 # possible AttributeError, by skipping this entry as
                 # there is no point if there is no data.
@@ -827,7 +871,7 @@ class Extract(ServiceBase):
                         continue
 
                     name = safe_str(name)
-                except AttributeError:
+                except (AttributeError, UnicodeDecodeError):
                     name = f'unknown_tnef_{count}'
 
                 if not name:

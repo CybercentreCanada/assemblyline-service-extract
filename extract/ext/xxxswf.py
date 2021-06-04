@@ -30,7 +30,7 @@ General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see
 <http://www.gnu.org/licenses/>.
-        
+
 """
 
 __author__ = "Alexander Hanel"
@@ -144,7 +144,7 @@ class SwfHeader(object):
         print('\t[HEADER] File Header: %s' % header['signature'])
         if header['compression'] is not None:
             print('\t[HEADER] Compression Type: %s' % header['compression'])
-        if header['compression'] is 'lzma':
+        if header['compression'] == 'lzma':
             print('\t[HEADER] Compressed Data Length: %s' % header['compressed_len'])
         print('\t[HEADER] File Veader: %i' % header['version'])
         print('\t[HEADER] File Size: %i' % header['file_length'])
@@ -168,7 +168,7 @@ class xxxswf:
         self.stream_swf = []
         self.lzma_install = False
         self.lzma_installed()
-        # user defined options 
+        # user defined options
         self.opt_extract = None
         self.opt_yara = None
         self.opt_md5_scan = None
