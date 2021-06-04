@@ -847,7 +847,11 @@ class Extract(ServiceBase):
             tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
-            for a in tnef.TNEF(open(local, "rb").read()).attachments:
+            content = open(local, "rb").read()
+            if not content:
+                return children, False
+
+            for a in tnef.TNEF(content).attachments:
                 # This may not exist so try to access it and deal the
                 # possible AttributeError, by skipping this entry as
                 # there is no point if there is no data.
@@ -867,7 +871,7 @@ class Extract(ServiceBase):
                         continue
 
                     name = safe_str(name)
-                except AttributeError:
+                except (AttributeError, UnicodeDecodeError):
                     name = f'unknown_tnef_{count}'
 
                 if not name:
