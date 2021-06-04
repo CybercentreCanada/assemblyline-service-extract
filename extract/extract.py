@@ -1,4 +1,5 @@
 import email
+import hashlib
 import logging
 import os
 import random
@@ -93,6 +94,7 @@ class Extract(ServiceBase):
             self.extract_office,
             self.extract_pdf,
             self.extract_vbe,
+            self.extract_onenote
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
@@ -1154,4 +1156,34 @@ class Extract(ServiceBase):
         # Add all words from the email body to temporary submission data, which will be available to all child tasks
         request.temp_submission_data['email_body'] = list(body_words)
 
+        return extracted, False
+
+    def extract_onenote(self, request: ServiceRequest, local: str, encoding: str):
+        """ Extract embedded files from OneNote (.one) files
+
+        Args:
+            request: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted attachment information, including: extracted path, display name, encoding;
+            and False (no encryption will be detected).
+        """
+        if encoding != 'document/office/onenote':
+            return [], False
+        with open(local, 'rb') as f:
+            data = f.read()
+        # From MS-ONESTORE FileDataStoreObject definition
+        # https://docs.microsoft.com/en-us/openspecs/office_file_formats/ms-onestore/8806fd18-6735-4874-b111-227b83eaac26
+        # guidHeader:  {BDE316E7-2665-4511-A4C4-8D4D0B7A9EAC}
+        # guidFooter:  {71FBA722-0F79-4A0B-BB13-899256426B24}
+        # Note: the first 3 fields are stored little-endian so the bytes are in reverse order in the document.
+        embedded_files = re.findall(b'(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC'
+                b'.{20}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24', data)
+        extracted = []
+        for embedded in embedded_files:
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                out.write(embedded)
+            extracted.append((out.name, hashlib.sha256(embedded).hexdigest(), encoding))
         return extracted, False
