@@ -61,12 +61,6 @@ heuristics:
     filetype: android/
     description: Files were extracted from an APK file
 
-  - heur_id: 5
-    name: Attachements extracted
-    score: 0
-    filetype: document/eml
-    description: Attachments were extracted from EML file
-
   - heur_id: 6
     name: Office password removed
     score: 0

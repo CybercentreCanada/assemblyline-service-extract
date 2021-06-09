@@ -1,4 +1,3 @@
-import email
 import hashlib
 import logging
 import os
@@ -12,13 +11,11 @@ import zipfile
 import zlib
 
 
-from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
 from copy import deepcopy
 from extract.ext.office_extract import extract_office_docs, ExtractionError, PasswordError
 from extract.ext.repair_zip import RepairZip, BadZipfile
 from extract.ext.xxxswf import xxxswf
-from lxml import html, etree
 
 from assemblyline.common.identify import fileinfo, ident, cart_ident
 from assemblyline.common.str_utils import safe_str
@@ -89,7 +86,6 @@ class Extract(ServiceBase):
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
-            self.extract_eml,
             self.repair_zip,
             self.extract_office,
             self.extract_pdf,
@@ -189,8 +185,6 @@ class Extract(ServiceBase):
                 section.set_heuristic(3)
             elif request.file_type.startswith("android"):
                 section.set_heuristic(4)
-            elif request.file_type.startswith("document/email"):
-                section.set_heuristic(5)
             elif request.file_type.startswith("document/office"):
                 section.set_heuristic(6)
             elif request.file_type.startswith("document/pdf"):
@@ -211,9 +205,7 @@ class Extract(ServiceBase):
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
                 and not request.file_type.startswith("ios/ipa")
-                and not continue_after_extract) \
-                    or (request.file_type == "document/email"
-                        and not continue_after_extract):
+                and not continue_after_extract):
                 request.drop()
 
         if section is not None:
@@ -1056,107 +1048,6 @@ class Extract(ServiceBase):
             new_section.set_heuristic(14)
             new_section.add_tag('file.behavior', "Uncommon format: archive/ace")
             result.add_section(new_section)
-
-    @staticmethod
-    def yield_eml_parts(message):
-        """Parses EML container to collect attachment information and EML body content.
-
-        Args:
-            message: EML container.
-
-        Returns:
-            A tuple of attachment information, including: content type, content disposition, decoded content, filename
-            and content charset.
-        """
-        if message.is_multipart():
-            for part in message.walk():
-                p_type = part.get_content_type()
-                p_disp = part.get("Content-Disposition", "")
-                p_load = part.get_payload(decode=True)
-                p_name = part.get_filename(None)
-                p_cset = part.get_content_charset()
-                yield p_type, p_disp, p_load, p_name, p_cset
-        else:
-            p_type = message.get_content_type()
-            p_disp = message.get("Content-Disposition", "")
-            p_load = message.get_payload(decode=True)
-            p_name = message.get_filename(None)
-            p_cset = message.get_content_charset()
-            yield p_type, p_disp, p_load, p_name, p_cset
-
-    # noinspection PyCallingNonCallable
-    def extract_eml(self, request: ServiceRequest, local: str, encoding: str):
-        """Will attempt to extract attachments from an EML container. Also collects strings of EML body.
-
-        Args:
-            request: Unused AL request object.
-            local: File path of AL sample.
-            encoding: AL tag with string 'archive/' replaced.
-
-        Returns:
-            List containing extracted attachment information, including: extracted path, encoding, display name,
-            classification and email body strings (as dict); and False (no encryption will be detected).
-        """
-        # Allow attachments to be extracted from html emails
-        if encoding == "document/email" or encoding == "code/html":
-            pass
-        else:
-            return [], False
-
-        extracted = []
-        body_words = set()
-        with open(local, "rb") as fh:
-            message = email.message_from_binary_file(fh)
-            for part_num, (p_t, p_d, p_l, p_n, p_c) in enumerate(self.yield_eml_parts(message)):
-                is_body = not p_n and "attachment" not in p_d and p_t != "application/octet-stream"
-                if p_l is None or p_l.strip() == "":
-                    continue
-                if is_body:
-                    encoding = p_c or "utf-8"
-                    try:
-                        try:
-                            body = str(p_l, encoding=encoding)
-                        except LookupError:
-                            # This is usually old windows codepages or jibberish
-                            body = str(p_l, encoding="utf8", errors="ignore")
-                            self.log.info(f"Detected non-supported codepage {encoding}")
-                        if p_t == "text/html":
-                            try:
-                                body = html.document_fromstring(body).text_content()
-                            except ValueError:
-                                # For documents with xml encoding declarations
-                                body = html.document_fromstring(p_l).text_content()
-                            except etree.ParserError:
-                                # If /body is empty, just grab the text
-                                body = BeautifulSoup(body).text
-                        if len(body) > 0:
-                            # Go through once separating by whitespace
-                            words = re.findall("[^ \n\t\r\xa0]+", body)
-                            body_words.update(words)
-                            # Go through again separating by ANY special character
-                            words = re.findall("[A-Za-z0-9]+", body)
-                            body_words.update(words)
-                    except UnicodeDecodeError:
-                        # cannot decode body by specified content
-                        pass
-
-                if self.max_attachment_size is not None and len(p_l) > self.max_attachment_size:
-                    continue
-                if self.named_attachments_only and is_body:
-                    continue
-                elif p_n is None:
-                    p_n = f"email_part_{part_num}"
-
-                ft = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                ft.write(p_l)
-                path = ft.name
-                ft.close()
-                extracted.append((path, p_n, p_t, self.service_attributes.default_result_classification))
-
-        # Add all words from the email body to temporary submission data, which will be available to all child tasks
-        request.temp_submission_data['email_body'] = list(body_words)
-
-        return extracted, False
 
     def extract_onenote(self, request: ServiceRequest, local: str, encoding: str):
         """ Extract embedded files from OneNote (.one) files
