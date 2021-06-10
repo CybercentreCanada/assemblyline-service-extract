@@ -19,8 +19,6 @@ licence_count: 0
 config:
   # Must be all strings
   default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
-  named_email_attachments_only: true
-  max_email_attachment_size: 10737418240
 
 submission_params:
   - default: ''
@@ -60,12 +58,6 @@ heuristics:
     score: 0
     filetype: android/
     description: Files were extracted from an APK file
-
-  - heur_id: 5
-    name: Attachements extracted
-    score: 0
-    filetype: document/eml
-    description: Attachments were extracted from EML file
 
   - heur_id: 6
     name: Office password removed
