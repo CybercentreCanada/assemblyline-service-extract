@@ -94,14 +94,8 @@ class Extract(ServiceBase):
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
-        self.named_attachments_only = None
-        self.max_attachment_size = None
         self.is_ipa = False
         self.sha = None
-
-    def start(self):
-        self.named_attachments_only = self.config.get('NAMED_EMAIL_ATTACHMENTS_ONLY', True)
-        self.max_attachment_size = self.config.get('MAX_EMAIL_ATTACHMENT_SIZE', None)
 
     def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
