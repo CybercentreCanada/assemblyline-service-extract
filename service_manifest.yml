@@ -113,6 +113,12 @@ heuristics:
     filetype: archive/ace
     description: "Uncommon format: archive/ace"
 
+  - heur_id: 15
+    name: "Extracted symlink(s)"
+    score: 0
+    filetype: "*"
+    description: "File(s) extracted contain one or many symbolic links to an expected file on the host"
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
