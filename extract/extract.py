@@ -121,7 +121,7 @@ class Extract(ServiceBase):
             local = uncart_output.name
 
         try:
-            password_protected, white_listed = self.extract(request, local)
+            password_protected, white_listed, symlinks = self.extract(request, local)
         except MaxExtractedExceeded as e:
             result.add_section(ResultSection(str(e)))
         except ExtractIgnored as e:
@@ -203,6 +203,10 @@ class Extract(ServiceBase):
                 request.drop()
 
         if section is not None:
+            if symlinks:
+                section.add_subsection(
+                    ResultSection(f"{len(symlinks)} Symlinks Extracted", body='\n'.join(symlinks),
+                                  heuristic=Heuristic(15)))
             result.add_section(section)
 
         for anomaly in self.anomaly_detections:
@@ -240,17 +244,23 @@ class Extract(ServiceBase):
                 extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
 
         extracted_count = len(extracted)
+        symlinks = []
         for child in extracted:
             try:
+                if os.path.islink(child[0]):
+                    link_desc = f"{child[1]} -> {os.readlink(child[0])}"
+                    symlinks.append(link_desc)
+                    self.log.info(f"Symlink detected: {link_desc}")
+                    extracted_count -= 1
                 # If the file is not successfully added as extracted, then decrease the extracted file counter
-                if os.path.islink(child[0]) or not request.add_extracted(*child):
+                elif not request.add_extracted(*child):
                     extracted_count -= 1
             except MaxExtractedExceeded:
                 raise MaxExtractedExceeded(f"This file contains {extracted_count} extracted files, exceeding the "
                                            f"maximum of {request.max_extracted} extracted files allowed. "
                                            "None of the files were extracted.")
 
-        return password_protected, white_listed_count
+        return password_protected, white_listed_count, symlinks
 
     def get_passwords(self, request: ServiceRequest):
         """Create list of possible password strings to be used against AL sample if encryption is detected.
