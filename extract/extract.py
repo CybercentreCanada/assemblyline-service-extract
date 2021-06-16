@@ -205,7 +205,7 @@ class Extract(ServiceBase):
         if section is not None:
             if symlinks:
                 section.add_subsection(
-                    ResultSection(f"{len(symlinks)} Symlinks Extracted", body='\n'.join(symlinks),
+                    ResultSection(f"{len(symlinks)} Symlink(s) Found", body='\n'.join(symlinks),
                                   heuristic=Heuristic(15)))
             result.add_section(section)
 

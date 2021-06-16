@@ -114,7 +114,7 @@ heuristics:
     description: "Uncommon format: archive/ace"
 
   - heur_id: 15
-    name: "Extracted symlink(s)"
+    name: "Symlink(s) Found"
     score: 0
     filetype: "*"
     description: "File(s) extracted contain one or many symbolic links to an expected file on the host"
