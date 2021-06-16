@@ -199,7 +199,7 @@ class Extract(ServiceBase):
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
                 and not request.file_type.startswith("ios/ipa")
-                and not continue_after_extract):
+                    and not continue_after_extract):
                 request.drop()
 
         if section is not None:
@@ -243,7 +243,7 @@ class Extract(ServiceBase):
         for child in extracted:
             try:
                 # If the file is not successfully added as extracted, then decrease the extracted file counter
-                if not request.add_extracted(*child):
+                if os.path.islink(child[0]) or not request.add_extracted(*child):
                     extracted_count -= 1
             except MaxExtractedExceeded:
                 raise MaxExtractedExceeded(f"This file contains {extracted_count} extracted files, exceeding the "
@@ -376,7 +376,7 @@ class Extract(ServiceBase):
                 try:
                     return input.encode('ascii').decode()
                 except UnicodeEncodeError:
-                    return f"{''.join([random.choice(string.ascii_lowercase) for _ in range(len(input))])}{ext}"
+                    return f"{''.join([random.choice(string.ascii_lowercase) for _ in range(5)])}{ext}"
 
         extract_executable_sections = request.get_param('extract_executable_sections')
         extracted_children = []
@@ -1064,8 +1064,9 @@ class Extract(ServiceBase):
         # guidHeader:  {BDE316E7-2665-4511-A4C4-8D4D0B7A9EAC}
         # guidFooter:  {71FBA722-0F79-4A0B-BB13-899256426B24}
         # Note: the first 3 fields are stored little-endian so the bytes are in reverse order in the document.
-        embedded_files = re.findall(b'(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC'
-                b'.{20}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24', data)
+        embedded_files = re.findall(
+            b'(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC'
+            b'.{20}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24', data)
         extracted = []
         for embedded in embedded_files:
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
