@@ -106,6 +106,7 @@ class Extract(ServiceBase):
         local = request.file_path
         password_protected = False
         white_listed = 0
+        symlinks = []
 
         # Check if the file itself is archive/cart
         if cart_ident(request.file_path) != 'corrupted/cart':
