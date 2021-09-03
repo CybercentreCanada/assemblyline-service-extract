@@ -264,9 +264,13 @@ class Extract(ServiceBase):
         return password_protected, white_listed_count, symlinks
 
     def get_passwords(self, request: ServiceRequest):
-        """Create list of possible password strings to be used against AL sample if encryption is detected.
-        Uses service configuration variable 'DEFAULT_PW_LIST'; submission parameter 'password' (if supplied); and
-        content of email body (if 'email_body' is in submission tags).
+        """
+        Create list of possible password strings to be used against AL sample if encryption is detected.
+
+        Uses service configuration variable 'DEFAULT_PW_LIST';
+        submission parameter 'password' (if supplied);
+        content of email body (if 'email_body' is in submission tags);
+        and any passwords passed by other services in the submission tags.
 
         Args:
             request: AL request object.
@@ -281,6 +285,8 @@ class Extract(ServiceBase):
 
         if "email_body" in request.temp_submission_data:
             passwords.extend(request.temp_submission_data["email_body"])
+        if "passwords" in request.temp_submission_data:
+            passwords.extend(request.temp_submission_data["passwords"])
 
         return passwords
 
