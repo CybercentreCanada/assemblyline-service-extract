@@ -143,6 +143,7 @@ class RepairZip(ZipFile):
         self._lock = threading.RLock()
         self._seekable = True
         self._writing = False
+        self._strict_timestamps = True
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
