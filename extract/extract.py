@@ -10,7 +10,7 @@ import tempfile
 import zipfile
 import zlib
 
-
+from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
 from copy import deepcopy
 from extract.ext.office_extract import extract_office_docs, ExtractionError, PasswordError
@@ -90,7 +90,8 @@ class Extract(ServiceBase):
             self.extract_office,
             self.extract_pdf,
             self.extract_vbe,
-            self.extract_onenote
+            self.extract_onenote,
+            self.extract_script,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
@@ -1089,4 +1090,31 @@ class Extract(ServiceBase):
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
             extracted.append((out.name, hashlib.sha256(embedded).hexdigest(), encoding))
+        return extracted, False
+
+    def extract_script(self, request: ServiceRequest, local: str, encoding: str):
+        """ Extract embedded scripts from HTML documents
+
+        Args:
+            request: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted script information, including: extracted path, display name, encoding;
+            and False (no encryption will be detected).
+        """
+        if encoding not in ['code/hta', 'code/html']:
+            return [], False
+        with open(local, 'rb') as f:
+            data = f.read()
+
+        soup = BeautifulSoup(data, features='lxml')
+        scripts = soup.findAll("script")
+        extracted = []
+        for script in scripts:
+            encoded_script = str(script.string).encode()
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                out.write(encoded_script)
+            extracted.append((out.name, hashlib.sha256(encoded_script).hexdigest(), encoding))
         return extracted, False
