@@ -1113,6 +1113,8 @@ class Extract(ServiceBase):
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
+            if script.string is None:
+                continue
             encoded_script = str(script.string).encode()
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(encoded_script)
