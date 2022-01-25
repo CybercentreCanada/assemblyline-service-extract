@@ -18,7 +18,7 @@ USER assemblyline
 
 # Install pip packages
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool html5lib && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz

@@ -1109,7 +1109,7 @@ class Extract(ServiceBase):
         with open(local, 'rb') as f:
             data = f.read()
 
-        soup = BeautifulSoup(data, features='lxml')
+        soup = BeautifulSoup(data, features='html5lib')
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
