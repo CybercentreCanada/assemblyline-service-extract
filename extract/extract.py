@@ -1110,10 +1110,12 @@ class Extract(ServiceBase):
         with open(local, 'rb') as f:
             data = f.read()
 
-        soup = BeautifulSoup(data, features='lxml')
+        soup = BeautifulSoup(data, features='html5lib')
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
+            if script.string is None:
+                continue
             encoded_script = str(script.string).encode()
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(encoded_script)
