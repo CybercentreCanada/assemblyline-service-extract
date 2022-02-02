@@ -480,7 +480,7 @@ class Extract(ServiceBase):
 
         # noinspection PyBroadException
         try:
-            with tempfile.NamedTemporaryFile(suffix=".ace", dir=path) as tf:
+            with tempfile.NamedTemporaryFile(suffix=".ace", dir=path, delete=False) as tf:
                 # unace needs the .ace file extension
                 with open(local, "rb") as fh:
                     tf.write(fh.read())
