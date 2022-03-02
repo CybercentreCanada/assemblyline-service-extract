@@ -21,6 +21,9 @@ uses_temp_submission_data: true
 config:
   # Must be all strings
   default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
+  small_size_bypass_drop: 10485760
+  max_file_count_bypass_drop: 5
+  heur16_max_file_count: 5
 
 submission_params:
   - default: ""
@@ -116,10 +119,17 @@ heuristics:
     description: "Uncommon format: archive/ace"
 
   - heur_id: 15
-    name: "Symlink(s) Found"
+    name: Symlink(s) Found
     score: 0
     filetype: "*"
-    description: "File(s) extracted contain one or many symbolic links to an expected file on the host"
+    description: File(s) extracted contain one or many symbolic links to an expected file on the host
+
+  - heur_id: 16
+    name: Suspicious combination of executables in Archive File
+    score: 500
+    filetype: "*"
+    description: Suspicious combination of executables. Potentially malicious.
+
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
