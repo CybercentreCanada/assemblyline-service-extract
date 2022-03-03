@@ -210,7 +210,7 @@ class Extract(ServiceBase):
             else:
                 section.set_heuristic(1)
 
-            few_small_files_only = request.file_size > self.config.get(
+            few_small_files_only = os.path.getsize(request.file_path) > self.config.get(
                 "small_size_bypass_drop", 10485760
             ) and num_extracted <= self.config.get("max_file_count_bypass_drop", 5)
 
