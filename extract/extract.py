@@ -1155,7 +1155,7 @@ class Extract(ServiceBase):
         for embedded in embedded_files:
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
-            extracted.append((out.name, hashlib.sha256(embedded).hexdigest(), encoding))
+            extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), encoding])
         return extracted, False
 
     def extract_script(self, request: ServiceRequest, local: str, encoding: str):
@@ -1184,5 +1184,5 @@ class Extract(ServiceBase):
             encoded_script = str(script.string).encode()
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(encoded_script)
-            extracted.append((out.name, hashlib.sha256(encoded_script).hexdigest(), encoding))
+            extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
         return extracted, False
