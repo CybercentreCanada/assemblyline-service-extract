@@ -408,7 +408,7 @@ def extract_office_docs(filename, password_list, output_folder):
                     continue
                 else:
                     raise
-    else:
+    elif password:
         # use the provided password
         file.load_key(password=password)
     if password is None:
