@@ -15,7 +15,7 @@ from assemblyline.common.identify import cart_ident, fileinfo, ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
-from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection
+from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection, ResultTextSection
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
@@ -142,7 +142,7 @@ class Extract(ServiceBase):
 
         section = None
         if num_extracted == 0 and password_protected:
-            section = ResultSection("Failed to extract password protected file.", heuristic=Heuristic(12))
+            section = ResultTextSection("Failed to extract password protected file.", heuristic=Heuristic(12))
             section.add_tag("file.behavior", "Archive Unknown Password")
             if zipfile.is_zipfile(request.file_path):
                 try:
@@ -182,7 +182,7 @@ class Extract(ServiceBase):
                 )
 
             else:
-                section = ResultSection(
+                section = ResultTextSection(
                     f"Successfully extracted {num_extracted} file{'s' if num_extracted > 1 else ''}"
                 )
                 for extracted in request.extracted:
@@ -228,11 +228,10 @@ class Extract(ServiceBase):
 
         if section is not None:
             if symlinks:
-                section.add_subsection(
-                    ResultSection(
-                        f"{len(symlinks)} Symlink(s) Found", body="\n".join(symlinks), heuristic=Heuristic(15)
-                    )
-                )
+                syslink_section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found")
+                syslink_section.add_lines(symlinks)
+                syslink_section.set_heuristic(15)
+                section.add_subsection(syslink_section)
             result.add_section(section)
 
         for anomaly in self.anomaly_detections:
@@ -1087,7 +1086,7 @@ class Extract(ServiceBase):
             and os.path.splitext(request.extracted[0]["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS
         ):
 
-            new_section = ResultSection("Archive file with single executable inside. Potentially malicious...")
+            new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
             new_section.add_line(request.extracted[0]["name"])
             new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
             new_section.set_heuristic(13)
@@ -1099,7 +1098,7 @@ class Extract(ServiceBase):
                 if os.path.splitext(extracted["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
                     lunchable_extracted.append(extracted)
             if lunchable_extracted:
-                new_section = ResultSection("Executable Content in Archive. Potentially malicious...")
+                new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
                 new_section.add_tag("file.behavior", "Executable Content in Archive")
                 for extracted in lunchable_extracted:
                     new_section.add_line(extracted["name"])
