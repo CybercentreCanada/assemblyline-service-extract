@@ -440,15 +440,11 @@ class Extract(ServiceBase):
                     changes_made = True
                     break
                 for f in files:
+                    file_path = os.path.join(root, f)
                     # Sanitize filename
-                    file_path = safe_str(os.path.join(root, f))
                     new_file_path = ascii_sanitize(file_path)
-
                     if file_path != new_file_path:
-                        # Python can't read the 'dirty' path, leave it to the OS
-                        subprocess.run(["cp", file_path.encode(), new_file_path.encode()], encoding="C.UTF-8")
-                        subprocess.run(["rm", file_path.encode()], encoding="C.UTF-8")
-                        file_path = new_file_path
+                        shutil.move(file_path, new_file_path)
                 changes_made = False
 
         # Add Extracted
@@ -799,8 +795,9 @@ class Extract(ServiceBase):
         try:
             p = subprocess.run(["7z", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
-            if stdoutput and any(stdoutput.strip().find(msg) > 0
-                                 for msg in [b"Everything is Ok", b"ERRORS:\nHeaders Error"]):
+            if stdoutput and any(
+                stdoutput.strip().find(msg) > 0 for msg in [b"Everything is Ok", b"ERRORS:\nHeaders Error"]
+            ):
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
             else:
                 if b"Wrong password" in stderr:
