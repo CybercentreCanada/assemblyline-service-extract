@@ -883,11 +883,11 @@ class Extract(ServiceBase):
 
         return extracted_children, False
 
-    def extract_tnef(self, _: ServiceRequest, local: str, encoding: str):
+    def extract_tnef(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract data from a TNEF container.
 
         Args:
-            _: Unused AL request object.
+            request: AL request object.
             local: File path of AL sample.
             encoding: AL tag with string 'archive/' replaced.
 
@@ -912,8 +912,13 @@ class Extract(ServiceBase):
             content = open(local, "rb").read()
             if not content:
                 return children, False
+            parsed_tnef = tnef.TNEF(content)
+            if parsed_tnef.body:
+                temp_data_email_body = request.temp_submission_data.get('email_body', [])
+                temp_data_email_body.extend(parsed_tnef.body.split())
+                request.temp_submission_data['email_body'] = temp_data_email_body
 
-            for a in tnef.TNEF(content).attachments:
+            for a in parsed_tnef.attachments:
                 # This may not exist so try to access it and deal the
                 # possible AttributeError, by skipping this entry as
                 # there is no point if there is no data.
