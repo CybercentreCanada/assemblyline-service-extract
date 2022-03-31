@@ -1,4 +1,5 @@
 import hashlib
+import json
 import logging
 import os
 import random
@@ -15,7 +16,12 @@ from assemblyline.common.identify import cart_ident, fileinfo, ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
-from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection, ResultTextSection
+from assemblyline_v4_service.common.result import (
+    Heuristic,
+    Result,
+    ResultSection,
+    ResultTextSection,
+)
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
@@ -238,6 +244,12 @@ class Extract(ServiceBase):
             anomaly(request, result)
 
         request.result = result
+
+        # Temporary debugging to see which potential passwords are sent to the submission data
+        temp_path = os.path.join(self.working_directory, "potential_passwords.json")
+        with open(temp_path, "w") as f:
+            f.write(json.dumps(self.get_passwords(request)))
+        request.add_supplementary(temp_path, "potential_passwords.json", "Potential passwords used")
 
     def extract(self, request: ServiceRequest, local: str):
         """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
@@ -911,9 +923,9 @@ class Extract(ServiceBase):
                 return children, False
             parsed_tnef = tnef.TNEF(content)
             if parsed_tnef.body:
-                temp_data_email_body = request.temp_submission_data.get('email_body', [])
+                temp_data_email_body = request.temp_submission_data.get("email_body", [])
                 temp_data_email_body.extend(parsed_tnef.body.split())
-                request.temp_submission_data['email_body'] = temp_data_email_body
+                request.temp_submission_data["email_body"] = temp_data_email_body
 
             for a in parsed_tnef.attachments:
                 # This may not exist so try to access it and deal the
