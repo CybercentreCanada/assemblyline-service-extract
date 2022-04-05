@@ -496,7 +496,7 @@ class Extract(ServiceBase):
         if encoding != "ace":
             return [], False
 
-        path = os.path.join(self.working_directory)
+        path = os.path.join(self.working_directory, "extracted_ace")
         try:
             os.mkdir(path)
         except OSError:
@@ -562,7 +562,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == "document/pdf":
-            output_path = os.path.join(self.working_directory)
+            output_path = os.path.join(self.working_directory, "extracted_pdf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
@@ -685,7 +685,7 @@ class Extract(ServiceBase):
                 evbe_present = re.search(evbe_regex, text)
                 evbe_res = self.decode_vbe(evbe_present.groups()[0])
                 if evbe_res and evbe_present != text:
-                    path = os.path.join(self.working_directory)
+                    path = os.path.join(self.working_directory, "extracted_vbe")
                     with open(path, "w") as f:
                         f.write(evbe_res)
                     return [[path, "vbe_decoded", encoding]], False
@@ -717,7 +717,7 @@ class Extract(ServiceBase):
             or request.file_type.startswith("code")
         ):
             return [], password_protected
-        path = os.path.join(self.working_directory)
+        path = os.path.join(self.working_directory, "extracted_zip")
         try:
             # Attempt extraction of zip
             try:
@@ -861,7 +861,7 @@ class Extract(ServiceBase):
         extracted_children = []
 
         if encoding == "audiovisual/flash":
-            output_path = os.path.join(self.working_directory)
+            output_path = os.path.join(self.working_directory, "extracted_swf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
 
