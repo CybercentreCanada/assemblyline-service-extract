@@ -1194,7 +1194,7 @@ class Extract(ServiceBase):
             if body is None:
                 continue
             body = str(body).strip()  # Remove whitespace
-            if len(body) == 0:
+            if len(body) <= 2:  # We can treat 2 character scripts as empty
                 continue
 
             # Save the script and attach it as extracted
