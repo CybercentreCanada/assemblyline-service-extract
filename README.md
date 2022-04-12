@@ -22,7 +22,7 @@ It will also:
     - The body of an .eml file (separated once by whitespace characters and second on [a-zA-Z0-9]+)
 - Use pdfdetach in poppler-utils to extract attachments from pdf samples;
 
-Once this service has completed its processing, it will block samples from continuing to other services unless they are 
+Once this service has completed its processing, it will block samples from continuing to other services unless they are
 identified as the following file types:
 
     - Executables
@@ -31,14 +31,17 @@ identified as the following file types:
     - Document files (i.e. Microsoft Office and PDF)
     - Apple/IPA packages
 
+**NOTE**: This service will avoid adding unnecessary files if the files are known to the system to be safe. This can be
+overridden by running the service task with `deep_scan` enabled.
+
 ## Submission Parameters & Configuration
 
 ### Parameters:
 
 - `Password`: An additional password can be provided to the service on submission to decode a container.
 - `Extract PE Sections`: Using the 7zip library, the service will extract sections from an executable file.
-- `Continue After Extract`: When true, AL will continue processing an eml sample to other services after any attachments 
-have been extracted. 
+- `Continue After Extract`: When true, AL will continue processing an eml sample to other services after any attachments
+have been extracted.
 
 ### Config (set by administrator):
 
