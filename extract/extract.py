@@ -275,14 +275,18 @@ class Extract(ServiceBase):
         symlinks = []
         for child in extracted:
             try:
-                is_safelisted = self.api_interface.lookup_safelist(child[0])
+                sha256 = hashlib.sha256()
+                sha256.update(open(child[0], 'rb').read())
+                sha256_hash = sha256.hexdigest()
+                is_safelisted = self.api_interface.lookup_safelist(sha256_hash)
                 if os.path.islink(child[0]):
                     link_desc = f"{child[1]} -> {os.readlink(child[0])}"
                     symlinks.append(link_desc)
                     self.log.info(f"Symlink detected: {link_desc}")
                     extracted_count -= 1
                 # Not including files that are system-safelisted (takes up extracted_files allocation of submission)
-                elif not request.deep_scan and is_safelisted and is_safelisted['enabled'] and is_safelisted['tag'] == 'file':
+                elif not request.deep_scan and is_safelisted and is_safelisted['enabled'] and is_safelisted['type'] == 'file':
+                    self.log.info("File hash found in safelist. Not including in extracted_files list of submission..")
                     extracted_count -= 1
                 # If the file is not successfully added as extracted, then decrease the extracted file counter
                 elif not request.add_extracted(*child):
