@@ -1189,9 +1189,16 @@ class Extract(ServiceBase):
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
-            if script.string is None:
+            # Make sure there is actually a body to the script
+            body = script.string
+            if body is None:
                 continue
-            encoded_script = str(script.string).encode()
+            body = str(body).strip()  # Remove whitespace
+            if len(body) == 0:
+                continue
+
+            # Save the script and attach it as extracted
+            encoded_script = body.encode()
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(encoded_script)
             extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
