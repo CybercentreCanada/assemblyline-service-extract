@@ -267,7 +267,7 @@ class Extract(ServiceBase):
                 break
 
         # Perform needed white listing
-        if extracted:
+        if extracted and request.get_param('use_custom_safelisting'):
             for white_listing_method in self.white_listing_methods:
                 extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
 
