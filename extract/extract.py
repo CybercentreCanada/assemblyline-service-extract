@@ -98,7 +98,7 @@ class Extract(ServiceBase):
             self.extract_script,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
-        self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
+        self.white_listing_methods = [self.jar_safelisting, self.ipa_safelisting]
         self.is_ipa = False
         self.sha = None
         self.api_interface = self.get_api_interface()
@@ -179,7 +179,7 @@ class Extract(ServiceBase):
                     f"Successfully extracted {num_extracted} "
                     f"file{'s' if num_extracted > 1 else ''} "
                     f"out of {white_listed + num_extracted}. The other {white_listed} "
-                    f"file{'s' if white_listed > 1 else ''} were whitelisted"
+                    f"file{'s' if white_listed > 1 else ''} were safelisted"
                 )
 
             else:
@@ -266,7 +266,7 @@ class Extract(ServiceBase):
                     extracted_file[-1] = f"Extracted using {extract_method.__name__}"
                 break
 
-        # Perform whitelisting on request
+        # Perform safelisting on request
         if extracted and request.get_param('use_custom_safelisting'):
             for white_listing_method in self.white_listing_methods:
                 extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
@@ -960,30 +960,30 @@ class Extract(ServiceBase):
 
         return children, False
 
-    def ipa_whitelisting(self, extracted, whitelisted_count: int, encoding: str):
-        """Filters file paths that are considered whitelisted from a list of extracted IPA files.
+    def ipa_safelisting(self, extracted, safelisted_count: int, encoding: str):
+        """Filters file paths that are considered safelisted from a list of extracted IPA files.
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
-            whitelisted_count: Current whitelist count.
+            safelisted_count: Current safelist count.
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List of filtered file names and updated count of whitelisted files.
+            List of filtered file names and updated count of safelisted files.
         """
         if encoding == "ios/ipa":
-            whitelisted_fname_regex = [
+            safelisted_fname_regex = [
                 re.compile(r".app/.*\.plist$"),
                 re.compile(r".app/.*\.nib$"),
                 re.compile(r".app/.*/PkgInfo$"),
             ]
 
-            ipa_filter_count = whitelisted_count
+            ipa_filter_count = safelisted_count
             tmp_new_files = []
 
             for cur_file in extracted:
                 to_add = True
-                for ext in whitelisted_fname_regex:
+                for ext in safelisted_fname_regex:
                     if ext.search(cur_file[0]):
                         to_add = False
                         ipa_filter_count += 1
@@ -993,21 +993,21 @@ class Extract(ServiceBase):
 
             return tmp_new_files, ipa_filter_count
         else:
-            return extracted, whitelisted_count
+            return extracted, safelisted_count
 
-    def jar_whitelisting(self, extracted, whitelisted_count: int, encoding: str):
-        """Filters file paths that are considered whitelisted from a list of extracted JAR files.
+    def jar_safelisting(self, extracted, safelisted_count: int, encoding: str):
+        """Filters file paths that are considered safelisted from a list of extracted JAR files.
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
-            whitelisted_count: Current whitelist count.
+            safelisted_count: Current safelist count.
             encoding: AL tag with string 'archive/' replaced.
 
         Returns:
-            List of filtered file names and updated count of whitelisted files.
+            List of filtered file names and updated count of safelisted files.
         """
         if encoding == "java/jar" or encoding == "android/apk":
-            whitelisted_tags_re = [
+            safelisted_tags_re = [
                 re.compile(r"android/(xml|dex|resource)"),
                 re.compile(r"audiovisual/.*"),
                 re.compile(r"certificate/rsa"),
@@ -1019,12 +1019,12 @@ class Extract(ServiceBase):
                 re.compile(r"resource/.*"),
             ]
 
-            whitelisted_mime_re = [
+            safelisted_mime_re = [
                 re.compile(r"text/plain"),
                 re.compile(r"text/x-c"),
             ]
 
-            whitelisted_fname_regex = [
+            safelisted_fname_regex = [
                 # commonly used libs files
                 re.compile(r"com/google/i18n/phonenumbers/data/(PhoneNumber|ShortNumber)[a-zA-Z]*_[0-9A-Z]{1,3}$"),
                 re.compile(r"looksery/([a-zA-Z_]*/){1,5}[a-zA-Z0-9_.]*.glsl$"),
@@ -1042,7 +1042,7 @@ class Extract(ServiceBase):
                 re.compile(r"assets/.*\.pf$"),
             ]
 
-            jar_filter_count = whitelisted_count
+            jar_filter_count = safelisted_count
             tmp_new_files = []
 
             for cur_file in extracted:
@@ -1052,7 +1052,7 @@ class Extract(ServiceBase):
 
                 to_add = True
                 file_info = ident(byte_block, len(byte_block), cur_file[0])
-                for exp in whitelisted_tags_re:
+                for exp in safelisted_tags_re:
                     if exp.search(file_info["type"]):
                         if DEBUG:
                             print("T", file_info["type"], file_info["ascii"], cur_file[0])
@@ -1060,7 +1060,7 @@ class Extract(ServiceBase):
                         jar_filter_count += 1
 
                 if to_add and file_info["mime"]:
-                    for exp in whitelisted_mime_re:
+                    for exp in safelisted_mime_re:
                         if exp.search(file_info["mime"]):
                             if DEBUG:
                                 print("M", file_info["mime"], file_info["ascii"], cur_file[0])
@@ -1068,7 +1068,7 @@ class Extract(ServiceBase):
                             jar_filter_count += 1
 
                 if to_add:
-                    for ext in whitelisted_fname_regex:
+                    for ext in safelisted_fname_regex:
                         if ext.search(cur_file[0]):
                             if DEBUG:
                                 print("F", ext.pattern, file_info["ascii"], cur_file[0])
@@ -1080,7 +1080,7 @@ class Extract(ServiceBase):
 
             return tmp_new_files, jar_filter_count
         else:
-            return extracted, whitelisted_count
+            return extracted, safelisted_count
 
     def archive_with_executables(self, request: ServiceRequest, result: Result):
         """Detects executable files contained in an archive using the service's LAUNCHABLE_EXTENSIONS list.
