@@ -101,7 +101,6 @@ class Extract(ServiceBase):
         self.white_listing_methods = [self.jar_whitelisting, self.ipa_whitelisting]
         self.is_ipa = False
         self.sha = None
-        self.api_interface = self.get_api_interface()
 
     def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
@@ -111,7 +110,7 @@ class Extract(ServiceBase):
         self._last_password = None
         local = request.file_path
         password_protected = False
-        white_listed = 0
+        safelisted = 0
         symlinks = []
 
         # Check if the file itself is archive/cart
@@ -128,7 +127,7 @@ class Extract(ServiceBase):
             local = uncart_output.name
 
         try:
-            password_protected, white_listed, symlinks = self.extract(request, local)
+            password_protected, safelisted, symlinks = self.extract(request, local)
         except MaxExtractedExceeded as e:
             result.add_section(ResultSection(str(e)))
         except ExtractIgnored as e:
@@ -174,12 +173,12 @@ class Extract(ServiceBase):
                     f"using one of the following passwords: {pw_list}"
                 )
 
-            elif white_listed != 0:
+            elif safelisted != 0:
                 section = ResultSection(
                     f"Successfully extracted {num_extracted} "
                     f"file{'s' if num_extracted > 1 else ''} "
-                    f"out of {white_listed + num_extracted}. The other {white_listed} "
-                    f"file{'s' if white_listed > 1 else ''} were whitelisted"
+                    f"out of {safelisted + num_extracted}. The other {safelisted} "
+                    f"file{'s' if safelisted > 1 else ''} were whitelisted"
                 )
 
             else:
@@ -252,7 +251,7 @@ class Extract(ServiceBase):
         """
         encoding = request.file_type.replace("archive/", "")
         password_protected = False
-        white_listed_count = 0
+        safelisted_count = 0
         extracted = []
 
         # Try all extracting methods
@@ -269,28 +268,21 @@ class Extract(ServiceBase):
         # Perform needed white listing
         if extracted:
             for white_listing_method in self.white_listing_methods:
-                extracted, white_listed_count = white_listing_method(extracted, white_listed_count, encoding)
+                extracted, safelisted_count = white_listing_method(extracted, safelisted_count, encoding)
 
         extracted_count = len(extracted)
         symlinks = []
         for child in extracted:
             try:
-                sha256 = hashlib.sha256()
-                sha256.update(open(child[0], 'rb').read())
-                sha256_hash = sha256.hexdigest()
-                is_safelisted = self.api_interface.lookup_safelist(sha256_hash)
                 if os.path.islink(child[0]):
                     link_desc = f"{child[1]} -> {os.readlink(child[0])}"
                     symlinks.append(link_desc)
                     self.log.info(f"Symlink detected: {link_desc}")
                     extracted_count -= 1
-                # Not including files that are system-safelisted (takes up extracted_files allocation of submission)
-                elif not request.deep_scan and is_safelisted and is_safelisted['enabled'] and is_safelisted['type'] == 'file':
-                    self.log.info("File hash found in safelist. Not including in extracted_files list of submission..")
-                    extracted_count -= 1
                 # If the file is not successfully added as extracted, then decrease the extracted file counter
-                elif not request.add_extracted(*child):
+                elif not request.add_extracted(*child, safelist_interface=self.api_interface):
                     extracted_count -= 1
+                    safelisted_count += 1
             except MaxExtractedExceeded:
                 raise MaxExtractedExceeded(
                     f"This file contains {extracted_count} extracted files, exceeding the "
@@ -298,7 +290,7 @@ class Extract(ServiceBase):
                     "None of the files were extracted."
                 )
 
-        return password_protected, white_listed_count, symlinks
+        return password_protected, safelisted_count, symlinks
 
     def get_passwords(self, request: ServiceRequest):
         """
