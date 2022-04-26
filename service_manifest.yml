@@ -38,6 +38,10 @@ submission_params:
     name: continue_after_extract
     type: bool
     value: false
+  - default: true
+    name: use_custom_safelisting
+    type: bool
+    value: true
 
 heuristics:
   - heur_id: 1
