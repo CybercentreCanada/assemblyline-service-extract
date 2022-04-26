@@ -289,8 +289,9 @@ class Extract(ServiceBase):
                     self.log.info("File hash found in safelist. Not including in extracted_files list of submission..")
                     extracted_count -= 1
                 # If the file is not successfully added as extracted, then decrease the extracted file counter
-                elif not request.add_extracted(*child):
+                elif not request.add_extracted(*child, safelist_interface=self.api_interface):
                     extracted_count -= 1
+                    safelisted_count += 1
             except MaxExtractedExceeded:
                 raise MaxExtractedExceeded(
                     f"This file contains {extracted_count} extracted files, exceeding the "
