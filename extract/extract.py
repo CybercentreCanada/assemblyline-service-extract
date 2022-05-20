@@ -15,7 +15,12 @@ from assemblyline.common.identify import cart_ident, fileinfo, ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
-from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection, ResultTextSection
+from assemblyline_v4_service.common.result import (
+    Heuristic,
+    Result,
+    ResultSection,
+    ResultTextSection,
+)
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
@@ -83,7 +88,7 @@ class Extract(ServiceBase):
     ]
 
     def __init__(self, config=None):
-        super(Extract, self).__init__(config)
+        super().__init__(config)
         self._last_password = None
         self.extract_methods = [
             self.extract_zip,
@@ -164,6 +169,7 @@ class Extract(ServiceBase):
                     f"file{'s' if num_extracted > 1 else ''} "
                     f"using password: {self._last_password}"
                 )
+                section.add_tag("info.password", self._last_password)
 
             elif password_protected and self._last_password is None:
                 pw_list = " | ".join(self.get_passwords(request))
@@ -266,7 +272,7 @@ class Extract(ServiceBase):
                 break
 
         # Perform safelisting on request
-        if extracted and request.get_param('use_custom_safelisting'):
+        if extracted and request.get_param("use_custom_safelisting"):
             for safelisting_method in self.safelisting_methods:
                 extracted, safelisted_count = safelisting_method(extracted, safelisted_count, encoding)
 
@@ -907,14 +913,15 @@ class Extract(ServiceBase):
             tnef_logger.setLevel(60)  # This completely turns off the TNEF logger
 
             count = 0
-            content = open(local, "rb").read()
+            with open(local, "rb") as f:
+                content = f.read()
             if not content:
                 return children, False
             parsed_tnef = tnef.TNEF(content)
             if parsed_tnef.body:
-                temp_data_email_body = request.temp_submission_data.get('email_body', [])
+                temp_data_email_body = request.temp_submission_data.get("email_body", [])
                 temp_data_email_body.extend(parsed_tnef.body.split())
-                request.temp_submission_data['email_body'] = temp_data_email_body
+                request.temp_submission_data["email_body"] = temp_data_email_body
 
             for a in parsed_tnef.attachments:
                 # This may not exist so try to access it and deal the
