@@ -437,6 +437,7 @@ class Extract(ServiceBase):
         # Fix problems with directory
         changes_made = True
         while changes_made:
+            changes_made = False
             for root, _, files in os.walk(path):
                 # Sanitize root
                 new_root = ascii_sanitize(root)
@@ -452,7 +453,6 @@ class Extract(ServiceBase):
                     new_file_path = ascii_sanitize(file_path)
                     if file_path != new_file_path:
                         shutil.move(file_path, new_file_path)
-                changes_made = False
 
         # Add Extracted
         for root, _, files in os.walk(path):
