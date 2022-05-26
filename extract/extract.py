@@ -369,6 +369,11 @@ class Extract(ServiceBase):
         except NotImplementedError:
             # Compression type 99 is not implemented in python zipfile
             return [], False
+        except RuntimeError:
+            # Probably a corrupted passworded file.
+            # Since we have no examples of good usage of repair_zip, we'll just make sure it won't error out.
+            # We won't support repairing corrupted passworded files for now.
+            return [], False
 
     # noinspection PyCallingNonCallable
     def extract_office(self, request: ServiceRequest, local, encoding: str):
