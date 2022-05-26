@@ -373,6 +373,9 @@ class Extract(ServiceBase):
             # Probably a corrupted passworded file.
             # Since we have no examples of good usage of repair_zip, we'll just make sure it won't error out.
             # We won't support repairing corrupted passworded files for now.
+            self.log.warning(
+                "RuntimeError detected. Is the corrupted file password protected? That is usually the cause."
+            )
             return [], False
 
     # noinspection PyCallingNonCallable
