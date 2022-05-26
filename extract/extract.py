@@ -11,7 +11,8 @@ import zipfile
 import zlib
 from copy import deepcopy
 
-from assemblyline.common.identify import cart_ident, fileinfo, ident
+from assemblyline.common import forge
+from assemblyline.common.identify import cart_ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
@@ -106,6 +107,7 @@ class Extract(ServiceBase):
         self.safelisting_methods = [self.jar_safelisting, self.ipa_safelisting]
         self.is_ipa = False
         self.sha = None
+        self.identify = forge.get_identify(use_cache=os.environ.get('PRIVILEGED', 'false').lower() == 'true')
 
     def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
@@ -128,7 +130,7 @@ class Extract(ServiceBase):
 
             # Proceed extract process as uncarted file
             request.file_name = get_metadata_only(request.file_path)["name"]
-            request.file_type = fileinfo(uncart_output.name)["type"]
+            request.file_type = self.identify.fileinfo(uncart_output.name)["type"]
             local = uncart_output.name
 
         try:
@@ -1050,7 +1052,7 @@ class Extract(ServiceBase):
                 f.close()
 
                 to_add = True
-                file_info = ident(byte_block, len(byte_block), cur_file[0])
+                file_info = self.identify.ident(byte_block, len(byte_block), cur_file[0])
                 for exp in safelisted_tags_re:
                     if exp.search(file_info["type"]):
                         if DEBUG:
