@@ -20,7 +20,8 @@ uses_temp_submission_data: true
 
 config:
   # Must be all strings
-  default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
+  default_pw_list: [password, infected, VelvetSweatshop, '/01Hannes Ruescher/01',
+                    '123', '1234', '12345', '123456', '4321']
   small_size_bypass_drop: 10485760
   max_file_count_bypass_drop: 5
   heur16_max_file_count: 5
