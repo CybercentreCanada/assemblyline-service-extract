@@ -579,19 +579,10 @@ class Extract(ServiceBase):
             ever be detected.
         """
         extracted_children = []
-        password = None
-        passwords = [""]
-        if encoding == "document/pdf/passwordprotected":
-            passwords = self.get_passwords(request)
+        passwords = [""] if encoding != "document/pdf/passwordprotected" else self.get_passwords(request)
         for password in passwords:
             try:
                 pdf = Pdf.open(local, password=password)
-                for key, value in pdf.attachments.items():
-                    fd = tempfile.NamedTemporaryFile(delete=False)
-                    fd.write(value.get_file().read_bytes())
-                    fd.seek(0)
-                    extracted_children.append([fd.name, key, "Embedded content in PDF"])
-
                 # If we extracted the contents from a password protected file, drop the unlocked file as well
                 if password:
                     fd = tempfile.NamedTemporaryFile(delete=False)
@@ -599,11 +590,22 @@ class Extract(ServiceBase):
                     fd.seek(0)
                     extracted_children.append([fd.name, request.file_name, "Decrypted PDF"])
                     self._last_password = password
-                return extracted_children, bool(password)
+
+                    # We'll extract the embedded contents when the unlocked file gets re-processed
+                    return extracted_children, True
+
+                for key, value in pdf.attachments.items():
+                    fd = tempfile.NamedTemporaryFile(delete=False)
+                    fd.write(value.get_file().read_bytes())
+                    fd.seek(0)
+                    extracted_children.append([fd.name, key, "Embedded content in PDF"])
+
+                return extracted_children, False
+
             except PDFPasswordError:
                 continue
 
-        return extracted_children, False
+        return [], False
 
     # noinspection PyBroadException
     def decode_vbe(self, data):
