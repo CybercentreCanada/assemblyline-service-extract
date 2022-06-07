@@ -271,7 +271,6 @@ class Extract(ServiceBase):
             if temp_password_protected:
                 password_protected = temp_password_protected
             if extracted:
-                self.log.info(extracted)
                 for extracted_file in extracted:
                     extracted_file[-1] = f"Extracted using {extract_method.__name__}"
                 break
