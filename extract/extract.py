@@ -583,11 +583,9 @@ class Extract(ServiceBase):
         passwords = [""]
         if encoding == "document/pdf/passwordprotected":
             passwords = self.get_passwords(request)
-        for pw in passwords:
+        for password in passwords:
             try:
-                pdf = Pdf.open(local, password=pw)
-                password = pw
-
+                pdf = Pdf.open(local, password=password)
                 for key, value in pdf.attachments.items():
                     fd = tempfile.NamedTemporaryFile(delete=False)
                     fd.write(value.get_file().read_bytes())
