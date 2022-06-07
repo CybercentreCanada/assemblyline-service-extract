@@ -7,7 +7,7 @@ USER root
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y libssl1.1 p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libssl1.1 p7zip-full p7zip-rar unace-nonfree python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
 
 FROM base AS build
@@ -18,7 +18,7 @@ USER assemblyline
 
 # Install pip packages
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool html5lib && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool html5lib pikepdf && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
