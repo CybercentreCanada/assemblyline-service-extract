@@ -9,7 +9,9 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
+
 from copy import deepcopy
+from pikepdf import Pdf, PasswordError as PDFPasswordError
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -269,6 +271,7 @@ class Extract(ServiceBase):
             if temp_password_protected:
                 password_protected = temp_password_protected
             if extracted:
+                self.log.info(extracted)
                 for extracted_file in extracted:
                     extracted_file[-1] = f"Extracted using {extract_method.__name__}"
                 break
@@ -370,6 +373,14 @@ class Extract(ServiceBase):
             return [], False
         except NotImplementedError:
             # Compression type 99 is not implemented in python zipfile
+            return [], False
+        except RuntimeError:
+            # Probably a corrupted passworded file.
+            # Since we have no examples of good usage of repair_zip, we'll just make sure it won't error out.
+            # We won't support repairing corrupted passworded files for now.
+            self.log.warning(
+                "RuntimeError detected. Is the corrupted file password protected? That is usually the cause."
+            )
             return [], False
 
     # noinspection PyCallingNonCallable
@@ -555,7 +566,7 @@ class Extract(ServiceBase):
 
         return [], False
 
-    def extract_pdf(self, _: ServiceRequest, local, encoding):
+    def extract_pdf(self, request: ServiceRequest, local, encoding):
         """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
 
         Args:
@@ -569,28 +580,31 @@ class Extract(ServiceBase):
             ever be detected.
         """
         extracted_children = []
-
-        if encoding == "document/pdf":
-            output_path = os.path.join(self.working_directory, "extracted_pdf")
-            if not os.path.exists(output_path):
-                os.makedirs(output_path)
-
-            env = os.environ.copy()
-            env["LANG"] = "en_US.UTF-8"
-
-            # noinspection PyBroadException
+        password = None
+        passwords = [""]
+        if encoding == "document/pdf/passwordprotected":
+            passwords = self.get_passwords(request)
+        for pw in passwords:
             try:
-                subprocess.run(["pdfdetach", "-saveall", "-o", output_path, local], env=env, capture_output=True)
-            except Exception:
-                self.log.error("Extract service needs poppler-utils to extract embedded PDF files.")
-                return extracted_children, False
+                pdf = Pdf.open(local, password=pw)
+                password = pw
 
-            files = (
-                filename for filename in os.listdir(output_path) if os.path.isfile(os.path.join(output_path, filename))
-            )
+                for key, value in pdf.attachments.items():
+                    fd = tempfile.NamedTemporaryFile(delete=False)
+                    fd.write(value.get_file().read_bytes())
+                    fd.seek(0)
+                    extracted_children.append([fd.name, key, "Embedded content in PDF"])
 
-            for filename in files:
-                extracted_children.append([output_path + "/" + filename, safe_str(filename), encoding])
+                # If we extracted the contents from a password protected file, drop the unlocked file as well
+                if password:
+                    fd = tempfile.NamedTemporaryFile(delete=False)
+                    pdf.save(fd)
+                    fd.seek(0)
+                    extracted_children.append([fd.name, request.file_name, "Decrypted PDF"])
+                    self._last_password = password
+                return extracted_children, bool(password)
+            except PDFPasswordError:
+                continue
 
         return extracted_children, False
 

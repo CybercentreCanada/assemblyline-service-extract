@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|document/email|document/pdf|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|document/email|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -20,7 +20,8 @@ uses_temp_submission_data: true
 
 config:
   # Must be all strings
-  default_pw_list: [password, infected, VelvetSweatshop, add_more_passwords]
+  default_pw_list: [password, infected, VelvetSweatshop, '/01Hannes Ruescher/01',
+                    '123', '1234', '12345', '123456', '4321']
   small_size_bypass_drop: 10485760
   max_file_count_bypass_drop: 5
   heur16_max_file_count: 5
