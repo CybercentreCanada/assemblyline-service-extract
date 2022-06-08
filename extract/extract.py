@@ -271,7 +271,6 @@ class Extract(ServiceBase):
             if temp_password_protected:
                 password_protected = temp_password_protected
             if extracted:
-                self.log.info(extracted)
                 for extracted_file in extracted:
                     extracted_file[-1] = f"Extracted using {extract_method.__name__}"
                 break
@@ -567,7 +566,7 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_pdf(self, request: ServiceRequest, local, encoding):
-        """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
+        """Will attempt to use pikepdf to extract embedded files from a PDF sample.
 
         Args:
             _: AL request object.
@@ -579,34 +578,34 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-        extracted_children = []
-        password = None
-        passwords = [""]
         if encoding == "document/pdf/passwordprotected":
-            passwords = self.get_passwords(request)
-        for pw in passwords:
-            try:
-                pdf = Pdf.open(local, password=pw)
-                password = pw
-
-                for key, value in pdf.attachments.items():
-                    fd = tempfile.NamedTemporaryFile(delete=False)
-                    fd.write(value.get_file().read_bytes())
-                    fd.seek(0)
-                    extracted_children.append([fd.name, key, "Embedded content in PDF"])
-
-                # If we extracted the contents from a password protected file, drop the unlocked file as well
-                if password:
+            # Dealing with locked PDF
+            for password in self.get_passwords(request):
+                try:
+                    pdf = Pdf.open(local, password=password)
+                    # If we're able to unlock the PDF, drop the unlocked version for analysis
                     fd = tempfile.NamedTemporaryFile(delete=False)
                     pdf.save(fd)
                     fd.seek(0)
-                    extracted_children.append([fd.name, request.file_name, "Decrypted PDF"])
                     self._last_password = password
-                return extracted_children, bool(password)
-            except PDFPasswordError:
-                continue
+                    return [[fd.name, request.file_name, "Decrypted PDF"]], True
+                except PDFPasswordError:
+                    continue
 
-        return extracted_children, False
+        elif encoding == "document/pdf":
+            # Dealing with unlocked PDF
+            extracted_children = list()
+            pdf = Pdf.open(local)
+            # Extract embedded contents in PDF
+            for key, value in pdf.attachments.items():
+                fd = tempfile.NamedTemporaryFile(delete=False)
+                fd.write(value.get_file().read_bytes())
+                fd.seek(0)
+                extracted_children.append([fd.name, key, "Embedded content in PDF"])
+
+            return extracted_children, False
+
+        return [], False
 
     # noinspection PyBroadException
     def decode_vbe(self, data):
