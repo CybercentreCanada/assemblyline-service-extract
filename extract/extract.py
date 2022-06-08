@@ -9,7 +9,9 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
+
 from copy import deepcopy
+from pikepdf import Pdf, PasswordError as PDFPasswordError
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -563,8 +565,8 @@ class Extract(ServiceBase):
 
         return [], False
 
-    def extract_pdf(self, _: ServiceRequest, local, encoding):
-        """Will attempt to use command-line tool pdfdetach to extract embedded files from a PDF sample.
+    def extract_pdf(self, request: ServiceRequest, local, encoding):
+        """Will attempt to use pikepdf to extract embedded files from a PDF sample.
 
         Args:
             _: AL request object.
@@ -576,31 +578,34 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-        extracted_children = []
+        if encoding == "document/pdf/passwordprotected":
+            # Dealing with locked PDF
+            for password in self.get_passwords(request):
+                try:
+                    pdf = Pdf.open(local, password=password)
+                    # If we're able to unlock the PDF, drop the unlocked version for analysis
+                    fd = tempfile.NamedTemporaryFile(delete=False)
+                    pdf.save(fd)
+                    fd.seek(0)
+                    self._last_password = password
+                    return [[fd.name, request.file_name, "Decrypted PDF"]], True
+                except PDFPasswordError:
+                    continue
 
-        if encoding == "document/pdf":
-            output_path = os.path.join(self.working_directory, "extracted_pdf")
-            if not os.path.exists(output_path):
-                os.makedirs(output_path)
+        elif encoding == "document/pdf":
+            # Dealing with unlocked PDF
+            extracted_children = list()
+            pdf = Pdf.open(local)
+            # Extract embedded contents in PDF
+            for key, value in pdf.attachments.items():
+                fd = tempfile.NamedTemporaryFile(delete=False)
+                fd.write(value.get_file().read_bytes())
+                fd.seek(0)
+                extracted_children.append([fd.name, key, "Embedded content in PDF"])
 
-            env = os.environ.copy()
-            env["LANG"] = "en_US.UTF-8"
+            return extracted_children, False
 
-            # noinspection PyBroadException
-            try:
-                subprocess.run(["pdfdetach", "-saveall", "-o", output_path, local], env=env, capture_output=True)
-            except Exception:
-                self.log.error("Extract service needs poppler-utils to extract embedded PDF files.")
-                return extracted_children, False
-
-            files = (
-                filename for filename in os.listdir(output_path) if os.path.isfile(os.path.join(output_path, filename))
-            )
-
-            for filename in files:
-                extracted_children.append([output_path + "/" + filename, safe_str(filename), encoding])
-
-        return extracted_children, False
+        return [], False
 
     # noinspection PyBroadException
     def decode_vbe(self, data):
