@@ -890,7 +890,7 @@ class Extract(ServiceBase):
             files_found = []
             # noinspection PyBroadException
             try:
-                swf = xxxswf()
+                swf = xxxswf(self.log)
                 files_found = swf.extract(local, output_path)
             except ImportError:
                 self.log.exception("Import error: pylzma library not installed.")
