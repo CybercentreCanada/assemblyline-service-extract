@@ -418,9 +418,3 @@ def extract_office_docs(filename, password_list, output_folder):
     file.decrypt(open(name, "wb"))
     tf.close()
     return name, password
-
-
-if __name__ == "__main__":
-    import sys
-    # Usage: file.docx password
-    print(extract_office_docs(sys.argv[1], [sys.argv[2]], "."))
