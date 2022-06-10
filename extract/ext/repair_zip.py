@@ -336,25 +336,3 @@ class RepairZip(ZipFile):
                 self.NameToInfo[x.filename] = x
         finally:
             mm.close()
-
-
-if __name__ == "__main__":
-    import sys
-    import tempfile
-
-    if len(sys.argv) != 3:
-        print("Usage: repair_zip.py <in file> <out file>")
-        sys.exit(1)
-
-    with RepairZip(sys.argv[1], strict=False) as rz:
-        if not rz.broken:
-            print("Zip file not broken")
-            sys.exit(0)
-
-        rz.fix_zip()
-        with ZipFile(sys.argv[2], "w") as zo:
-            for path in rz.namelist():
-                with tempfile.NamedTemporaryFile(dir="/tmp", delete=True) as tmp_f:
-                    tmp_f.write(rz.read(path))
-                    tmp_f.flush()
-                    zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)

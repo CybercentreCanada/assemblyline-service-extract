@@ -606,12 +606,3 @@ class xxxswf:
                 self.write_swf(swf)
             if self.opt_header is not None:
                 SwfHeader(swf, self.log)
-
-
-def main():
-    xxx = xxxswf()
-    xxx.cmd()
-
-
-if __name__ == "__main__":
-    main()
