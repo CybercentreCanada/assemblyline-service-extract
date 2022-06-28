@@ -817,9 +817,8 @@ class Extract(ServiceBase):
         try:
             p = subprocess.run(["7z", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
-            if stdoutput and any(
-                stdoutput.strip().find(msg) > 0 for msg in [b"Everything is Ok", b"ERRORS:\nHeaders Error"]
-            ):
+            # If we extract anything into the destination directory, we consider it of interest
+            if os.listdir(path):
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
             else:
                 if b"Wrong password" in stderr:
