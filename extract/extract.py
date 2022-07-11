@@ -818,7 +818,7 @@ class Extract(ServiceBase):
             p = subprocess.run(["7z", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
             # If we extract anything into the destination directory, we consider it of interest
-            if any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
+            if os.path.exists(path) and any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
             else:
                 if b"Wrong password" in stderr:
