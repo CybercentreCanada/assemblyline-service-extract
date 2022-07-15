@@ -817,28 +817,27 @@ class Extract(ServiceBase):
         try:
             p = subprocess.run(["7z", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
-            # If we extract anything into the destination directory, we consider it of interest
-            if os.path.exists(path) and any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
+            if b"Wrong password" in stderr:
+                password_protected = True
+                password_list = self.get_passwords(request)
+                for password in password_list:
+                    try:
+                        shutil.rmtree(path, ignore_errors=True)
+                        p = subprocess.run(
+                            ["7za", "x", f"-p{password}", f"-o{path}", local], env=env, capture_output=True
+                        )
+                        stdoutput = p.stdout + p.stderr
+                        if stdoutput and b"\nEverything is Ok\n" in stdoutput:
+                            self._last_password = password
+                            return self._7zip_submit_extracted(request, path, encoding), password_protected, False
+                    except OSError:
+                        pass
+                return None, password_protected, True
+            elif b"Can not open the file as archive" in stdoutput:
+                raise TypeError
+            elif os.path.exists(path) and any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
+                # If we extract anything into the destination directory, we consider it of interest
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
-            else:
-                if b"Wrong password" in stderr:
-                    password_protected = True
-                    password_list = self.get_passwords(request)
-                    for password in password_list:
-                        try:
-                            shutil.rmtree(path, ignore_errors=True)
-                            p = subprocess.run(
-                                ["7za", "x", f"-p{password}", f"-o{path}", local], env=env, capture_output=True
-                            )
-                            stdoutput = p.stdout + p.stderr
-                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
-                                self._last_password = password
-                                return self._7zip_submit_extracted(request, path, encoding), password_protected, False
-                        except OSError:
-                            pass
-                    return None, password_protected, True
-                elif b"Can not open the file as archive" in stdoutput:
-                    raise TypeError
         except UnicodeEncodeError:
             raise
 
