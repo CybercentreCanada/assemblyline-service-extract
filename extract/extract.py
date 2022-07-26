@@ -1222,7 +1222,7 @@ class Extract(ServiceBase):
                             out.write(encoded_evbe_res)
                         extracted.append([out.name, hashlib.sha256(encoded_evbe_res).hexdigest(), encoding])
                 except Exception as e:
-                self.log.debug(f"Exception during jscript.encode decoding: {str(e)}")
+                    self.log.debug(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
