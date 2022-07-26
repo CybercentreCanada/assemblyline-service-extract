@@ -1217,10 +1217,10 @@ class Extract(ServiceBase):
                     evbe_present = re.search(EVBE_REGEX, body)
                     evbe_res = self.decode_vbe(evbe_present.groups()[0])
                     if evbe_res and evbe_present != body:
-                        path = os.path.join(self.working_directory, "extracted_encoded_js")
-                        with open(path, "w") as f:
-                            f.write(evbe_res)
-                        extracted.append([path, hashlib.sha256(evbe_res.encode()).hexdigest(), encoding])
+                        encoded_evbe_res = evbe_res.encode()
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                            out.write(encoded_evbe_res)
+                        extracted.append([out.name, hashlib.sha256(encoded_evbe_res).hexdigest(), encoding])
                 except Exception:
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
