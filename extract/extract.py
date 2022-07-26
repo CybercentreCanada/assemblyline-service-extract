@@ -713,8 +713,8 @@ class Extract(ServiceBase):
                     with open(path, "w") as f:
                         f.write(evbe_res)
                     return [[path, "vbe_decoded", encoding]], False
-            except Exception:
-                pass
+            except Exception as e:
+                self.log.debug(f"Error during vbe decoding: {str(e)}")
         return [], False
 
     def extract_zip(self, request: ServiceRequest, local: str, encoding: str):
@@ -1221,7 +1221,8 @@ class Extract(ServiceBase):
                         with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                             out.write(encoded_evbe_res)
                         extracted.append([out.name, hashlib.sha256(encoded_evbe_res).hexdigest(), encoding])
-                except Exception:
+                except Exception as e:
+                self.log.debug(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
