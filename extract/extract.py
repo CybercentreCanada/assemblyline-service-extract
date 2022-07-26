@@ -1220,7 +1220,7 @@ class Extract(ServiceBase):
                         path = os.path.join(self.working_directory, "extracted_encoded_js")
                         with open(path, "w") as f:
                             f.write(evbe_res)
-                        extracted.append([path, hashlib.sha256(body).hexdigest(), encoding])
+                        extracted.append([path, hashlib.sha256(evbe_res.encode()).hexdigest(), encoding])
                 except Exception:
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
