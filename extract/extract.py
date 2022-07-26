@@ -9,9 +9,7 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
-
 from copy import deepcopy
-from pikepdf import Pdf, PasswordError as PDFPasswordError
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -27,6 +25,8 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf
 
 from extract.ext.office_extract import (
     ExtractionError,
@@ -37,6 +37,8 @@ from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxxswf import xxxswf
 
 DEBUG = False
+
+EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
 
 class ExtractIgnored(Exception):
@@ -81,6 +83,7 @@ class Extract(ServiceBase):
         ".sct",
         ".shb",
         ".sys",
+        ".url",  # Windows URL Shortcut
         ".vb",  # VB Script
         ".vbe",  # Encrypted VB script
         ".vbs",  # VB Script
@@ -109,7 +112,7 @@ class Extract(ServiceBase):
         self.safelisting_methods = [self.jar_safelisting, self.ipa_safelisting]
         self.is_ipa = False
         self.sha = None
-        self.identify = forge.get_identify(use_cache=os.environ.get('PRIVILEGED', 'false').lower() == 'true')
+        self.identify = forge.get_identify(use_cache=os.environ.get("PRIVILEGED", "false").lower() == "true")
 
     def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
@@ -703,8 +706,7 @@ class Extract(ServiceBase):
                 text = fh.read()
             try:
                 # Ensure file format is correct via regex
-                evbe_regex = re.compile(r"#@~\^......==(.+)......==\^#~@")
-                evbe_present = re.search(evbe_regex, text)
+                evbe_present = re.search(EVBE_REGEX, text)
                 evbe_res = self.decode_vbe(evbe_present.groups()[0])
                 if evbe_res and evbe_present != text:
                     path = os.path.join(self.working_directory, "extracted_vbe")
@@ -1209,9 +1211,26 @@ class Extract(ServiceBase):
             if len(body) <= 2:  # We can treat 2 character scripts as empty
                 continue
 
-            # Save the script and attach it as extracted
-            encoded_script = body.encode()
-            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
-                out.write(encoded_script)
-            extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+            if script.get("language").lower() == "jscript.encode":
+                try:
+                    # The encoded VB technique can be used to encode javascript
+                    evbe_present = re.search(EVBE_REGEX, body)
+                    evbe_res = self.decode_vbe(evbe_present.groups()[0])
+                    if evbe_res and evbe_present != body:
+                        encoded_evbe_res = evbe_res.encode()
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                            out.write(encoded_evbe_res)
+                        extracted.append([out.name, hashlib.sha256(encoded_evbe_res).hexdigest(), encoding])
+                except Exception:
+                    # Something went wrong, still add the file as is
+                    encoded_script = body.encode()
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(encoded_script)
+                    extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+            else:
+                # Save the script and attach it as extracted
+                encoded_script = body.encode()
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                    out.write(encoded_script)
+                extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
         return extracted, False
