@@ -135,6 +135,12 @@ heuristics:
     filetype: "*"
     description: Suspicious combination of executables. Potentially malicious.
 
+  - heur_id: 17
+    name: Encoded JScript used in html page
+    score: 500
+    filetype: "code/*"
+    description: Encoded JScript is ancient and shouldn't be used anymore. The odds of a legitimate use are abysmally low.
+
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
