@@ -117,6 +117,7 @@ class Extract(ServiceBase):
     def execute(self, request: ServiceRequest):
         """Main Module. See README for details."""
         result = Result()
+        request.result = result
         self.sha = request.sha256
         continue_after_extract = request.get_param("continue_after_extract")
         self._last_password = None
@@ -249,8 +250,6 @@ class Extract(ServiceBase):
 
         for anomaly in self.anomaly_detections:
             anomaly(request, result)
-
-        request.result = result
 
     def extract(self, request: ServiceRequest, local: str):
         """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
@@ -713,8 +712,8 @@ class Extract(ServiceBase):
                     with open(path, "w") as f:
                         f.write(evbe_res)
                     return [[path, "vbe_decoded", encoding]], False
-            except Exception:
-                pass
+            except Exception as e:
+                self.log.warning(f"Error during vbe decoding: {str(e)}")
         return [], False
 
     def extract_zip(self, request: ServiceRequest, local: str, encoding: str):
@@ -1220,8 +1219,13 @@ class Extract(ServiceBase):
                         encoded_evbe_res = evbe_res.encode()
                         with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                             out.write(encoded_evbe_res)
-                        extracted.append([out.name, hashlib.sha256(encoded_evbe_res).hexdigest(), encoding])
-                except Exception:
+                        file_hash = hashlib.sha256(encoded_evbe_res).hexdigest()
+                        extracted.append([out.name, file_hash, encoding])
+                        heur = Heuristic(17)
+                        heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                        heur_section.add_line(f"{file_hash}")
+                except Exception as e:
+                    self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
