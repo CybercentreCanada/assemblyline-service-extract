@@ -1257,7 +1257,10 @@ class Extract(ServiceBase):
         if encoding != "xxe":
             return [], False
 
-        output_file, s = xxcode_from_file(local)
-        with open(os.path.join(self.working_directory, output_file), "wb") as f:
-            f.write(bytes(s))
-        return [[os.path.join(self.working_directory, output_file), output_file, encoding]], False
+        files = xxcode_from_file(local)
+        for output_file, ans in files:
+            with open(os.path.join(self.working_directory, output_file), "wb") as f:
+                f.write(bytes(ans))
+        return [
+            [os.path.join(self.working_directory, output_file), output_file, encoding] for output_file, _ in files
+        ], False
