@@ -1,9 +1,11 @@
+consts = "+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+ord_0 = ord("0")
+
+
 # Modified from https://github.com/ezeeo/ctf-tools/blob/master/tools/coded/str/xx/xxdecode.py
 def xxcode(s):
-    ord_0 = ord("0")
     flag = ""
     ans = []
-    consts = "+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     k = -1
     for i in s:
         oldk = k
@@ -36,13 +38,22 @@ def xxcode(s):
 def xxcode_from_file(file_path):
     with open(file_path, "r") as f:
         lines = f.readlines()
-    if lines[0].startswith("XXEncode  "):
-        lines = lines[1:]
-    assert lines[0].strip().startswith("begin")
-    output_file = lines[0].split(" ", 2)[-1].strip()
-    assert lines[-1].strip() == "end"
-    s = "".join(x.strip()[1:] for x in lines[1:-1])
-    return (output_file, xxcode(s))
+    files = []
+    ans = []
+    for line in lines:
+        line = line.strip()
+        if line == "" or line.startswith("XXEncode  "):
+            continue
+        if line.startswith("begin "):
+            output_file = line.split(" ", 2)[-1].strip()
+            continue
+        if line == "end":
+            files.append((output_file, ans))
+            ans = []
+            del output_file
+            continue
+        ans.extend(xxcode(line[1:])[: consts.index(line[0])])
+    return files
 
 
 if __name__ == "__main__":
@@ -53,6 +64,7 @@ if __name__ == "__main__":
         print(f"Usage : {Path(__file__).name} <filename.xxe>")
         exit(1)
     file_path = sys.argv[1]
-    output_file, s = xxcode_from_file(file_path)
-    with open(output_file, "wb") as f:
-        f.write(bytes(s))
+    files = xxcode_from_file(file_path)
+    for output_file, ans in files:
+        with open(output_file, "wb") as f:
+            f.write(bytes(ans))
