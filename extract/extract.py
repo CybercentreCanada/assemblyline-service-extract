@@ -34,6 +34,7 @@ from extract.ext.office_extract import (
     extract_office_docs,
 )
 from extract.ext.repair_zip import BadZipfile, RepairZip
+from extract.ext.xxdecode import xxcode_from_file
 from extract.ext.xxxswf import xxxswf
 
 DEBUG = False
@@ -107,6 +108,7 @@ class Extract(ServiceBase):
             self.extract_vbe,
             self.extract_onenote,
             self.extract_script,
+            self.extract_xxe,
         ]
         self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
         self.safelisting_methods = [self.jar_safelisting, self.ipa_safelisting]
@@ -1238,3 +1240,27 @@ class Extract(ServiceBase):
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
         return extracted, False
+
+    def extract_xxe(self, request: ServiceRequest, local: str, encoding: str):
+        """Extract embedded scripts from XX encoded archives
+
+        Args:
+            request: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted information, including: extracted path, display name, encoding;
+            and False (no encryption will be detected).
+        """
+
+        if encoding != "xxe":
+            return [], False
+
+        files = xxcode_from_file(local)
+        for output_file, ans in files:
+            with open(os.path.join(self.working_directory, output_file), "wb") as f:
+                f.write(bytes(ans))
+        return [
+            [os.path.join(self.working_directory, output_file), output_file, encoding] for output_file, _ in files
+        ], False
