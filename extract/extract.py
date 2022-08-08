@@ -1212,7 +1212,7 @@ class Extract(ServiceBase):
             if len(body) <= 2:  # We can treat 2 character scripts as empty
                 continue
 
-            if script.get("language").lower() == "jscript.encode":
+            if script.get("language", "").lower() == "jscript.encode":
                 try:
                     # The encoded VB technique can be used to encode javascript
                     evbe_present = re.search(EVBE_REGEX, body)
