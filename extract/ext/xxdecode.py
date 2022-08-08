@@ -42,7 +42,7 @@ def xxcode_from_file(file_path):
     ans = []
     for line in lines:
         line = line.strip()
-        if line == "" or line.startswith("XXEncode  "):
+        if line == "" or line.startswith("XXEncode  ") or line.endswith(" bytes"):
             continue
         if line.startswith("begin "):
             output_file = line.split(" ", 2)[-1].strip()
