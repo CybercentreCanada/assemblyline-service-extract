@@ -7,8 +7,7 @@ USER root
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y libssl1.1 p7zip-full p7zip-rar unace-nonfree python-lxml unrar && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
 FROM base AS build
 
@@ -40,6 +39,9 @@ FROM base
 
 COPY --from=build /opt/al/support /opt/al/support
 COPY --chown=assemblyline:assemblyline --from=build /var/lib/assemblyline/.local /var/lib/assemblyline/.local
+
+ADD https://www.7-zip.org/a/7z2201-linux-x86.tar.xz /7z2201-linux-x86.tar.xz
+RUN mkdir /7z && tar -xf /7z2201-linux-x86.tar.xz -C /7z
 
 # Switch to assemblyline user
 USER assemblyline

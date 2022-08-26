@@ -598,7 +598,7 @@ class Extract(ServiceBase):
 
         elif encoding == "document/pdf":
             # Dealing with unlocked PDF
-            extracted_children = list()
+            extracted_children = []
             pdf = Pdf.open(local)
             # Extract embedded contents in PDF
             for key, value in pdf.attachments.items():
@@ -818,7 +818,7 @@ class Extract(ServiceBase):
         env["LANG"] = "C.UTF-8"
 
         try:
-            p = subprocess.run(["7z", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
+            p = subprocess.run(["/7z/7zzs", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
             if b"Wrong password" in stderr:
                 password_protected = True
