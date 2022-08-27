@@ -827,7 +827,7 @@ class Extract(ServiceBase):
                     try:
                         shutil.rmtree(path, ignore_errors=True)
                         p = subprocess.run(
-                            ["7za", "x", f"-p{password}", f"-o{path}", local], env=env, capture_output=True
+                            ["/7z/7zzs", "x", f"-p{password}", f"-o{path}", local], env=env, capture_output=True
                         )
                         stdoutput = p.stdout + p.stderr
                         if stdoutput and b"\nEverything is Ok\n" in stdoutput:
