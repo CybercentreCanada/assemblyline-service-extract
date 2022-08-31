@@ -1,0 +1,30 @@
+{
+    "response": {
+        "supplementary": [],
+        "extracted": []
+    },
+    "result": {
+        "heuristics": [
+            12
+        ],
+        "tags": {
+            "file.name.extracted": [
+                "GeoIP.dat",
+                "Plugin/",
+                "Plugin/cam.dll",
+                "Plugin/ch.dll",
+                "Plugin/mic.dll",
+                "Plugin/plg.dll",
+                "Plugin/pw.dll",
+                "Plugin/sc2.dll",
+                "Stub.manifest",
+                "WinMM.Net.dll",
+                "njRAT v0.7d.exe",
+                "stub.il"
+            ],
+            "file.behavior": [
+                "Archive Unknown Password"
+            ]
+        }
+    }
+}

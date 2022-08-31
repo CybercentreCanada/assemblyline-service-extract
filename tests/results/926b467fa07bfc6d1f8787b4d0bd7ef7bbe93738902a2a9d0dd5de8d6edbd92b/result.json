@@ -1,0 +1,22 @@
+{
+    "response": {
+        "supplementary": [],
+        "extracted": [
+            {
+                "name": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+                "sha256": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+            }
+        ]
+    },
+    "result": {
+        "heuristics": [
+            1,
+            17
+        ],
+        "tags": {
+            "file.name.extracted": [
+                "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+            ]
+        }
+    }
+}

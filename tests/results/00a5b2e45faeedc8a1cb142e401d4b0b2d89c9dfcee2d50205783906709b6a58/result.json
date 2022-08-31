@@ -1,0 +1,32 @@
+{
+    "response": {
+        "supplementary": [],
+        "extracted": [
+            {
+                "name": "ScannedDocuments_4602944.lnk",
+                "sha256": "8c1771c049cf36eecc7a37f207536a1a5fc2ca074c26e8c8c4e9dc167b8b3415"
+            },
+            {
+                "name": "local.dll",
+                "sha256": "f4fbc3206a37b6309e79de9e63f94c7e6ebadcfbf2929bdc17c85ec4541da64f"
+            }
+        ]
+    },
+    "result": {
+        "heuristics": [
+            1,
+            16
+        ],
+        "tags": {
+            "file.name.extracted": [
+                "ScannedDocuments_4602944.lnk",
+                "ScannedDocuments_4602944.lnk",
+                "local.dll",
+                "local.dll"
+            ],
+            "file.behavior": [
+                "Executable Content in Archive"
+            ]
+        }
+    }
+}
