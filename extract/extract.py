@@ -236,10 +236,10 @@ class Extract(ServiceBase):
                 and not request.file_type.startswith("java")
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
-                and not request.file_type.startswith("ios/ipa")
-                and not request.file_type.startswith("code/html")
-                and not request.file_type.startswith("archive/iso")
-                and not request.file_type.startswith("archive/udf")
+                and request.file_type != "ios/ipa"
+                and request.file_type != "code/html"
+                and request.file_type != "archive/iso"
+                and request.file_type != "archive/udf"
                 and not continue_after_extract
             ):
                 request.drop()
