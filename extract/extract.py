@@ -236,8 +236,10 @@ class Extract(ServiceBase):
                 and not request.file_type.startswith("java")
                 and not request.file_type.startswith("android")
                 and not request.file_type.startswith("document")
-                and not request.file_type.startswith("ios/ipa")
-                and not request.file_type.startswith("code/html")
+                and request.file_type != "ios/ipa"
+                and request.file_type != "code/html"
+                and request.file_type != "archive/iso"
+                and request.file_type != "archive/udf"
                 and not continue_after_extract
             ):
                 request.drop()
@@ -818,17 +820,24 @@ class Extract(ServiceBase):
         env["LANG"] = "C.UTF-8"
 
         try:
-            p = subprocess.run(["/7z/7zzs", "x", "-p", "-y", local, f"-o{path}"], env=env, capture_output=True)
+            popenargs = ["/7z/7zzs", "x", "-p", "-y", local, f"-o{path}"]
+            # Some UDF samples were wrongly identified as plain ISO by 7z.
+            # By adding the .iso extension, it somehow made 7z identify it as UDF.
+            # Our Identify was also identifying it as "iso", so we can't only rely on "udf".
+            if encoding in ["iso", "udf"]:
+                temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
+                shutil.copy2(local, temp_path)
+                popenargs[4] = temp_path
+            p = subprocess.run(popenargs, env=env, capture_output=True)
             stdoutput, stderr = p.stdout, p.stderr
             if b"Wrong password" in stderr:
                 password_protected = True
                 password_list = self.get_passwords(request)
                 for password in password_list:
                     try:
+                        popenargs[2] = f"-p{password}"
                         shutil.rmtree(path, ignore_errors=True)
-                        p = subprocess.run(
-                            ["/7z/7zzs", "x", f"-p{password}", f"-o{path}", local], env=env, capture_output=True
-                        )
+                        p = subprocess.run(popenargs, env=env, capture_output=True)
                         stdoutput = p.stdout + p.stderr
                         if stdoutput and b"\nEverything is Ok\n" in stdoutput:
                             self._last_password = password
@@ -843,6 +852,9 @@ class Extract(ServiceBase):
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
         except UnicodeEncodeError:
             raise
+        finally:
+            if encoding in ["iso", "udf"] and os.path.exists(temp_path):
+                os.remove(temp_path)
 
     def extract_zip_zipfile(self, request: ServiceRequest, local: str, encoding: str, path: str):
         shutil.rmtree(path, ignore_errors=True)

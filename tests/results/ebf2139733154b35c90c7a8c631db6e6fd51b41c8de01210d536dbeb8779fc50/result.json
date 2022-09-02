@@ -1,0 +1,21 @@
+{
+    "response": {
+        "supplementary": [],
+        "extracted": [
+            {
+                "name": "text.txt",
+                "sha256": "dadc624d4454e10293dbd1b701b9ee9f99ef83b4cd07b695111d37eb95abcff8"
+            }
+        ]
+    },
+    "result": {
+        "heuristics": [
+            1
+        ],
+        "tags": {
+            "file.name.extracted": [
+                "text.txt"
+            ]
+        }
+    }
+}

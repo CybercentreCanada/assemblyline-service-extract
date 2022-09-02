@@ -1,0 +1,26 @@
+{
+    "response": {
+        "supplementary": [],
+        "extracted": [
+            {
+                "name": "Pepsico LLC RFQ Information.com",
+                "sha256": "c8b9df067d8ce54ce2c376ad20bd6130dc1f3d4feac573da798e68a202b2ef6f"
+            }
+        ]
+    },
+    "result": {
+        "heuristics": [
+            1,
+            13
+        ],
+        "tags": {
+            "file.name.extracted": [
+                "Pepsico LLC RFQ Information.com",
+                "Pepsico LLC RFQ Information.com"
+            ],
+            "file.behavior": [
+                "Archived Single Executable"
+            ]
+        }
+    }
+}
