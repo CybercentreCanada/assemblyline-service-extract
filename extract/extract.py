@@ -25,7 +25,7 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
-from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import PasswordError as PDFPasswordError, PdfError
 from pikepdf import Pdf
 
 from extract.ext.office_extract import (
@@ -597,6 +597,11 @@ class Extract(ServiceBase):
                     return [[fd.name, request.file_name, "Decrypted PDF"]], True
                 except PDFPasswordError:
                     continue
+                except PdfError as e:
+                    if "unsupported encryption filter" in str(e):
+                        # Known limitation of QPDF for signed documents: https://github.com/qpdf/qpdf/issues/53
+                        break
+                    self.log.warning(e)
 
         elif encoding == "document/pdf":
             # Dealing with unlocked PDF
