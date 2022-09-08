@@ -603,18 +603,24 @@ class Extract(ServiceBase):
                     if "unsupported encryption filter" in str(e):
                         # Known limitation of QPDF for signed documents: https://github.com/qpdf/qpdf/issues/53
                         break
+                    # Damaged PDF, typically extracted from another service like OLETools
                     self.log.warning(e)
 
         elif encoding == "document/pdf":
-            # Dealing with unlocked PDF
-            extracted_children = []
-            pdf = Pdf.open(BytesIO(pdf_content))
-            # Extract embedded contents in PDF
-            for key, value in pdf.attachments.items():
-                fd = tempfile.NamedTemporaryFile(delete=False)
-                fd.write(value.get_file().read_bytes())
-                fd.seek(0)
-                extracted_children.append([fd.name, key, "Embedded content in PDF"])
+            try:
+                # Dealing with unlocked PDF
+                extracted_children = []
+                pdf = Pdf.open(BytesIO(pdf_content))
+                # Extract embedded contents in PDF
+                for key in pdf.attachments.keys():
+                    if pdf.attachments.get(key):
+                        fd = tempfile.NamedTemporaryFile(delete=False)
+                        fd.write(pdf.attachments[key].get_file().read_bytes())
+                        fd.seek(0)
+                        extracted_children.append([fd.name, key, "Embedded content in PDF"])
+            except PdfError as e:
+                # Damaged PDF, typically extracted from another service like OLETools
+                self.log.warning(e)
 
             return extracted_children, False
 
