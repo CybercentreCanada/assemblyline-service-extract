@@ -9,7 +9,6 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
-from copy import deepcopy
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -25,6 +24,8 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
+from copy import deepcopy
+from io import BytesIO
 from pikepdf import PasswordError as PDFPasswordError, PdfError
 from pikepdf import Pdf
 
@@ -584,11 +585,12 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
+        pdf_content = request.file_contents[request.file_contents.find(b'%PDF-'):]
         if encoding == "document/pdf/passwordprotected":
             # Dealing with locked PDF
             for password in self.get_passwords(request):
                 try:
-                    pdf = Pdf.open(local, password=password)
+                    pdf = Pdf.open(BytesIO(pdf_content), password=password)
                     # If we're able to unlock the PDF, drop the unlocked version for analysis
                     fd = tempfile.NamedTemporaryFile(delete=False)
                     pdf.save(fd)
@@ -606,7 +608,7 @@ class Extract(ServiceBase):
         elif encoding == "document/pdf":
             # Dealing with unlocked PDF
             extracted_children = []
-            pdf = Pdf.open(local)
+            pdf = Pdf.open(BytesIO(pdf_content))
             # Extract embedded contents in PDF
             for key, value in pdf.attachments.items():
                 fd = tempfile.NamedTemporaryFile(delete=False)
