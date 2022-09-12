@@ -9,7 +9,6 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
-from copy import deepcopy
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -25,7 +24,9 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
-from pikepdf import PasswordError as PDFPasswordError
+from copy import deepcopy
+from io import BytesIO
+from pikepdf import PasswordError as PDFPasswordError, PdfError
 from pikepdf import Pdf
 
 from extract.ext.office_extract import (
@@ -584,11 +585,12 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
+        pdf_content = request.file_contents[request.file_contents.find(b'%PDF-'):]
         if encoding == "document/pdf/passwordprotected":
             # Dealing with locked PDF
             for password in self.get_passwords(request):
                 try:
-                    pdf = Pdf.open(local, password=password)
+                    pdf = Pdf.open(BytesIO(pdf_content), password=password)
                     # If we're able to unlock the PDF, drop the unlocked version for analysis
                     fd = tempfile.NamedTemporaryFile(delete=False)
                     pdf.save(fd)
@@ -597,17 +599,28 @@ class Extract(ServiceBase):
                     return [[fd.name, request.file_name, "Decrypted PDF"]], True
                 except PDFPasswordError:
                     continue
+                except PdfError as e:
+                    if "unsupported encryption filter" in str(e):
+                        # Known limitation of QPDF for signed documents: https://github.com/qpdf/qpdf/issues/53
+                        break
+                    # Damaged PDF, typically extracted from another service like OLETools
+                    self.log.warning(e)
 
         elif encoding == "document/pdf":
-            # Dealing with unlocked PDF
-            extracted_children = []
-            pdf = Pdf.open(local)
-            # Extract embedded contents in PDF
-            for key, value in pdf.attachments.items():
-                fd = tempfile.NamedTemporaryFile(delete=False)
-                fd.write(value.get_file().read_bytes())
-                fd.seek(0)
-                extracted_children.append([fd.name, key, "Embedded content in PDF"])
+            try:
+                # Dealing with unlocked PDF
+                extracted_children = []
+                pdf = Pdf.open(BytesIO(pdf_content))
+                # Extract embedded contents in PDF
+                for key in pdf.attachments.keys():
+                    if pdf.attachments.get(key):
+                        fd = tempfile.NamedTemporaryFile(delete=False)
+                        fd.write(pdf.attachments[key].get_file().read_bytes())
+                        fd.seek(0)
+                        extracted_children.append([fd.name, key, "Embedded content in PDF"])
+            except PdfError as e:
+                # Damaged PDF, typically extracted from another service like OLETools
+                self.log.warning(e)
 
             return extracted_children, False
 
@@ -1215,6 +1228,7 @@ class Extract(ServiceBase):
         soup = BeautifulSoup(data, features="html5lib")
         scripts = soup.findAll("script")
         extracted = []
+        aggregated_js_script = None
         for script in scripts:
             # Make sure there is actually a body to the script
             body = script.string
@@ -1242,15 +1256,24 @@ class Extract(ServiceBase):
                     self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
-                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
-                        out.write(encoded_script)
-                    extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+            elif script.get("type", "").lower() in ["", "text/javascript"]:
+                # If there is no "type" attribute specified in a script element, then the default assumption is
+                # that the body of the element is Javascript
+                # Save the script and attach it as extracted
+                encoded_script = body.encode()
+                if not aggregated_js_script:
+                    aggregated_js_script = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False, mode="ab")
+                aggregated_js_script.write(encoded_script + b"\n")
             else:
                 # Save the script and attach it as extracted
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+
+        if aggregated_js_script:
+            extracted.append([aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+
         return extracted, False
 
     def extract_xxe(self, request: ServiceRequest, local: str, encoding: str):
