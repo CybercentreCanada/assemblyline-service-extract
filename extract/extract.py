@@ -1228,6 +1228,7 @@ class Extract(ServiceBase):
         soup = BeautifulSoup(data, features="html5lib")
         scripts = soup.findAll("script")
         extracted = []
+        aggregated_js_script = None
         for script in scripts:
             # Make sure there is actually a body to the script
             body = script.string
@@ -1255,15 +1256,24 @@ class Extract(ServiceBase):
                     self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
-                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
-                        out.write(encoded_script)
-                    extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+            elif script.get("type", "").lower() in ["", "text/javascript"]:
+                # If there is no "type" attribute specified in a script element, then the default assumption is
+                # that the body of the element is Javascript
+                # Save the script and attach it as extracted
+                encoded_script = body.encode()
+                if not aggregated_js_script:
+                    aggregated_js_script = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False, mode="ab")
+                aggregated_js_script.write(encoded_script + b"\n")
             else:
                 # Save the script and attach it as extracted
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+
+        if aggregated_js_script:
+            extracted.append([aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+
         return extracted, False
 
     def extract_xxe(self, request: ServiceRequest, local: str, encoding: str):
