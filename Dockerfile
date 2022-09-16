@@ -41,7 +41,8 @@ COPY --from=build /opt/al/support /opt/al/support
 COPY --chown=assemblyline:assemblyline --from=build /var/lib/assemblyline/.local /var/lib/assemblyline/.local
 
 ADD https://www.7-zip.org/a/7z2201-linux-x86.tar.xz /7z2201-linux-x86.tar.xz
-RUN mkdir /7z && tar -xf /7z2201-linux-x86.tar.xz -C /7z
+RUN mkdir /opt/7z && tar -xf /7z2201-linux-x86.tar.xz -C /opt/7z
+RUN ln -s /opt/7z/7zzs /usr/bin/7zzs
 
 # Switch to assemblyline user
 USER assemblyline
