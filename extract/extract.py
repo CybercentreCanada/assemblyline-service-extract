@@ -41,6 +41,7 @@ from extract.ext.xxxswf import xxxswf
 DEBUG = False
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
+HTML_PASS_REGEX = re.compile(b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\s]*([a-zA-Z0-9]+)(?:<\/[a-zA-Z]+>)?", re.IGNORECASE)
 
 
 class ExtractIgnored(Exception):
@@ -108,6 +109,7 @@ class Extract(ServiceBase):
             self.extract_pdf,
             self.extract_vbe,
             self.extract_onenote,
+            self.extract_html_passwords,
             self.extract_script,
             self.extract_xxe,
         ]
@@ -367,8 +369,9 @@ class Extract(ServiceBase):
                                 except zlib.error:
                                     # Corrupted compression, which is expected
                                     pass
-                                except BadZipfile:
+                                except BadZipfile as e:
                                     # Corrupted zip file, also expected
+                                    self.log.debug(f"The zip file is corrupted due to '{e}'")
                                     pass
                                 except EOFError:
                                     # Unable to read path
@@ -1207,6 +1210,34 @@ class Extract(ServiceBase):
                 out.write(embedded)
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), encoding])
         return extracted, False
+
+    def extract_html_passwords(self, request: ServiceRequest, local: str, encoding: str):
+        """Extract passwords from HTML documents
+
+        Args:
+            request: Unused AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            Empty values, we are only looking for the passwords in this method.
+        """
+        if encoding not in ["code/hta", "code/html"]:
+            return [], False
+
+        with open(local, "rb") as f:
+            data = f.readlines()
+
+        for line in data:
+            matches = re.search(HTML_PASS_REGEX, line)
+            if matches:
+                password = matches.group(1).decode()
+                self.log.debug(f"Found a password in the HTML doc: {password}")
+                if "passwords" in request.temp_submission_data:
+                    request.temp_submission_data["passwords"].append(password)
+                else:
+                    request.temp_submission_data["passwords"] = [password]
+        return [], False
 
     def extract_script(self, request: ServiceRequest, local: str, encoding: str):
         """Extract embedded scripts from HTML documents

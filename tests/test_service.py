@@ -210,3 +210,25 @@ class TestServiceWithCustomConfig:
                 "Plugin/mic.dll",
             ],
         }
+
+
+class TestServiceWithRequestTempSubmissionData:
+    @classmethod
+    def setup_class(cls):
+        # Setup where the samples can be found
+        cls.locations = [SELF_LOCATION, SAMPLES_LOCATION]
+
+    @staticmethod
+    @pytest.mark.parametrize(
+        "sample", ["1b61b16dd4b7f6203d742b47411ca679f1f5734ed01534a37a126263f84396c0"], indirect=True
+    )
+    # @pytest.mark.skip() # Can remove the skip since there is no test pipeline.
+    def test_html_file_with_password(sample):
+        cls = Extract()
+        cls.start()
+
+        task = Task(create_service_task(sample=sample))
+        service_request = ServiceRequest(task)
+
+        cls.execute(service_request)
+        assert service_request.temp_submission_data["passwords"] == ["U523"]
