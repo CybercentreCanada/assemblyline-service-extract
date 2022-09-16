@@ -1231,12 +1231,12 @@ class Extract(ServiceBase):
         for line in data:
             matches = re.search(HTML_PASS_REGEX, line)
             if matches:
-                password = matches.group(1)
+                password = matches.group(1).decode()
                 self.log.debug(f"Found a password in the HTML doc: {password}")
                 if "passwords" in request.temp_submission_data:
-                    request.temp_submission_data["passwords"].append(password.decode())
+                    request.temp_submission_data["passwords"].append(password)
                 else:
-                    request.temp_submission_data["passwords"] = [password.decode()]
+                    request.temp_submission_data["passwords"] = [password]
         return [], False
 
     def extract_script(self, request: ServiceRequest, local: str, encoding: str):
