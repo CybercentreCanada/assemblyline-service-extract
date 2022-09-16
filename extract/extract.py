@@ -41,7 +41,8 @@ from extract.ext.xxxswf import xxxswf
 DEBUG = False
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
-HTML_PASS_REGEX = re.compile(b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\s]*([a-zA-Z0-9]+)(?:<\/[a-zA-Z]+>)?", re.IGNORECASE)
+HTML_PASS_REGEX = re.compile(
+    b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\\s]*([a-zA-Z0-9]+)(?:<\\/[a-zA-Z]+>)?", re.IGNORECASE)
 
 
 class ExtractIgnored(Exception):
@@ -836,7 +837,7 @@ class Extract(ServiceBase):
         env["LANG"] = "C.UTF-8"
 
         try:
-            popenargs = ["/7z/7zzs", "x", "-p", "-y", local, f"-o{path}"]
+            popenargs = ["7zzs", "x", "-p", "-y", local, f"-o{path}"]
             # Some UDF samples were wrongly identified as plain ISO by 7z.
             # By adding the .iso extension, it somehow made 7z identify it as UDF.
             # Our Identify was also identifying it as "iso", so we can't only rely on "udf".
@@ -1051,7 +1052,7 @@ class Extract(ServiceBase):
         """
         if encoding == "java/jar" or encoding == "android/apk":
             safelisted_tags_re = [
-                re.compile(r"android/(xml|dex|resource)"),
+                re.compile(r"android/(xml|resource)"),
                 re.compile(r"audiovisual/.*"),
                 re.compile(r"certificate/rsa"),
                 re.compile(r"code/.*"),
@@ -1293,7 +1294,8 @@ class Extract(ServiceBase):
                 # Save the script and attach it as extracted
                 encoded_script = body.encode()
                 if not aggregated_js_script:
-                    aggregated_js_script = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False, mode="ab")
+                    aggregated_js_script = tempfile.NamedTemporaryFile(
+                        dir=self.working_directory, delete=False, mode="ab")
                 aggregated_js_script.write(encoded_script + b"\n")
             else:
                 # Save the script and attach it as extracted
