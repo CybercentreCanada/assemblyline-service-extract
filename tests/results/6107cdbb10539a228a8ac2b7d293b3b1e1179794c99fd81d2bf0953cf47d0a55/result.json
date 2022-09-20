@@ -1,26 +1,108 @@
 {
-    "response": {
-        "supplementary": [],
-        "extracted": [
-            {
-                "name": "Pepsico LLC RFQ Information.com",
-                "sha256": "c8b9df067d8ce54ce2c376ad20bd6130dc1f3d4feac573da798e68a202b2ef6f"
-            }
-        ]
-    },
-    "result": {
-        "heuristics": [
-            1,
-            13
-        ],
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Pepsico LLC RFQ Information.com",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
         "tags": {
-            "file.name.extracted": [
-                "Pepsico LLC RFQ Information.com",
+          "file": {
+            "name": {
+              "extracted": [
                 "Pepsico LLC RFQ Information.com"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Pepsico LLC RFQ Information.com",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
             ],
-            "file.behavior": [
-                "Archived Single Executable"
-            ]
+            "name": {
+              "extracted": [
+                "Pepsico LLC RFQ Information.com"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Pepsico LLC RFQ Information.com",
+        "sha256": "c8b9df067d8ce54ce2c376ad20bd6130dc1f3d4feac573da798e68a202b2ef6f"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
         }
-    }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Pepsico LLC RFQ Information.com"
+        },
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Pepsico LLC RFQ Information.com"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
 }
