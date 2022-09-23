@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 import zipfile
 import zlib
+from copy import deepcopy
+from io import BytesIO
 
 from assemblyline.common import forge
 from assemblyline.common.identify import cart_ident
@@ -24,10 +26,8 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
-from copy import deepcopy
-from io import BytesIO
-from pikepdf import PasswordError as PDFPasswordError, PdfError
-from pikepdf import Pdf
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
 
 from extract.ext.office_extract import (
     ExtractionError,
@@ -42,7 +42,8 @@ DEBUG = False
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 HTML_PASS_REGEX = re.compile(
-    b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\\s]*([a-zA-Z0-9]+)(?:<\\/[a-zA-Z]+>)?", re.IGNORECASE)
+    b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\\s]*([a-zA-Z0-9]+)(?:<\\/[a-zA-Z]+>)?", re.IGNORECASE
+)
 
 
 class ExtractIgnored(Exception):
@@ -110,7 +111,6 @@ class Extract(ServiceBase):
             self.extract_pdf,
             self.extract_vbe,
             self.extract_onenote,
-            self.extract_html_passwords,
             self.extract_script,
             self.extract_xxe,
         ]
@@ -244,6 +244,7 @@ class Extract(ServiceBase):
                 and request.file_type != "code/html"
                 and request.file_type != "archive/iso"
                 and request.file_type != "archive/udf"
+                and request.file_type != "archive/vhd"
                 and not continue_after_extract
             ):
                 request.drop()
@@ -589,7 +590,7 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-        pdf_content = request.file_contents[request.file_contents.find(b'%PDF-'):]
+        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
         if encoding == "document/pdf/passwordprotected":
             # Dealing with locked PDF
             for password in self.get_passwords(request):
@@ -1212,36 +1213,8 @@ class Extract(ServiceBase):
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), encoding])
         return extracted, False
 
-    def extract_html_passwords(self, request: ServiceRequest, local: str, encoding: str):
-        """Extract passwords from HTML documents
-
-        Args:
-            request: Unused AL request object.
-            local: File path of AL sample.
-            encoding: AL tag with string 'archive/' replaced.
-
-        Returns:
-            Empty values, we are only looking for the passwords in this method.
-        """
-        if encoding not in ["code/hta", "code/html"]:
-            return [], False
-
-        with open(local, "rb") as f:
-            data = f.readlines()
-
-        for line in data:
-            matches = re.search(HTML_PASS_REGEX, line)
-            if matches:
-                password = matches.group(1).decode()
-                self.log.debug(f"Found a password in the HTML doc: {password}")
-                if "passwords" in request.temp_submission_data:
-                    request.temp_submission_data["passwords"].append(password)
-                else:
-                    request.temp_submission_data["passwords"] = [password]
-        return [], False
-
     def extract_script(self, request: ServiceRequest, local: str, encoding: str):
-        """Extract embedded scripts from HTML documents
+        """Extract embedded content from HTML documents
 
         Args:
             request: Unused AL request object.
@@ -1295,7 +1268,8 @@ class Extract(ServiceBase):
                 encoded_script = body.encode()
                 if not aggregated_js_script:
                     aggregated_js_script = tempfile.NamedTemporaryFile(
-                        dir=self.working_directory, delete=False, mode="ab")
+                        dir=self.working_directory, delete=False, mode="ab"
+                    )
                 aggregated_js_script.write(encoded_script + b"\n")
             else:
                 # Save the script and attach it as extracted
@@ -1306,6 +1280,17 @@ class Extract(ServiceBase):
 
         if aggregated_js_script:
             extracted.append([aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
+
+        # Extract password from text
+        for line in data.split(b"\n"):
+            matches = re.search(HTML_PASS_REGEX, line)
+            if matches:
+                password = matches.group(1).decode()
+                self.log.debug(f"Found a password in the HTML doc: {password}")
+                if "passwords" in request.temp_submission_data:
+                    request.temp_submission_data["passwords"].append(password)
+                else:
+                    request.temp_submission_data["passwords"] = [password]
 
         return extracted, False
 

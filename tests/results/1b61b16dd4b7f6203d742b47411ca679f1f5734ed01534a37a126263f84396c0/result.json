@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "text.txt",
+        "body": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,7 +21,7 @@
           "file": {
             "name": {
               "extracted": [
-                "text.txt"
+                "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
               ]
             }
           }
@@ -34,8 +34,8 @@
   "files": {
     "extracted": [
       {
-        "name": "text.txt",
-        "sha256": "dadc624d4454e10293dbd1b701b9ee9f99ef83b4cd07b695111d37eb95abcff8"
+        "name": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
+        "sha256": "fdb599ee616fa643820cfaeb9afe561fe5915447ccc80f7d63d85573f0440237"
       }
     ],
     "supplementary": []
@@ -53,10 +53,14 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "text.txt"
+          "value": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
         }
       ]
     },
-    "temp_submission_data": {}
+    "temp_submission_data": {
+      "passwords": [
+        "U523"
+      ]
+    }
   }
 }
