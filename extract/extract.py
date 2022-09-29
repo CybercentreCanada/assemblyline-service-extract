@@ -41,9 +41,36 @@ from extract.ext.xxxswf import xxxswf
 DEBUG = False
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
-HTML_PASS_REGEX = re.compile(
-    b"(?:<[a-zA-Z]+>)?(?:Password of file:|Password:)[\\s]*([a-zA-Z0-9]+)(?:<\\/[a-zA-Z]+>)?", re.IGNORECASE
-)
+
+# TODO: Remove this and the same in emlparser to put it in the core
+# Arabic, Chinese Simplified, Chinese Traditional, English, French, German, Italian, Portuguese, Russian, Spanish
+PASSWORD_WORDS = [
+    "كلمه السر",
+    "密码",
+    "密碼",
+    "password",
+    "mot de passe",
+    "passwort",
+    "parola d'ordine",
+    "senha",
+    "пароль",
+    "contraseña",
+]
+PASSWORD_REGEXES = [re.compile(fr".*{p}:(.+)", re.I) for p in PASSWORD_WORDS]
+
+
+def extract_passwords(text):
+    passwords = set()
+    passwords.update(text.split())
+    passwords.update(re.split(r"\W+", text))
+    for r in PASSWORD_REGEXES:
+        for line in text.split():
+            passwords.update(re.split(r, line))
+        for line in text.split("\n"):
+            passwords.update(re.split(r, line))
+    for p in list(passwords):
+        passwords.update([p.strip(), p.strip().strip('"'), p.strip().strip("'")])
+    return passwords
 
 
 class ExtractIgnored(Exception):
@@ -1282,15 +1309,18 @@ class Extract(ServiceBase):
             extracted.append([aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest(), encoding])
 
         # Extract password from text
-        for line in data.split(b"\n"):
-            matches = re.search(HTML_PASS_REGEX, line)
-            if matches:
-                password = matches.group(1).decode()
-                self.log.debug(f"Found a password in the HTML doc: {password}")
-                if "passwords" in request.temp_submission_data:
-                    request.temp_submission_data["passwords"].append(password)
-                else:
-                    request.temp_submission_data["passwords"] = [password]
+        new_passwords = set()
+        for line in [p.get_text() for p in soup.find_all("p")]:
+            if any([WORD in line.lower() for WORD in PASSWORD_WORDS]):
+                new_passwords.update(set(extract_passwords(line)))
+        if new_passwords:
+            self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
+            if "passwords" in request.temp_submission_data:
+                request.temp_submission_data["passwords"] = list(
+                    set(request.temp_submission_data["passwords"]).update(new_passwords)
+                )
+            else:
+                request.temp_submission_data["passwords"] = list(new_passwords)
 
         return extracted, False
 
