@@ -26,6 +26,7 @@ from assemblyline_v4_service.common.result import (
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
 from cart import get_metadata_only, unpack_stream
+from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 
@@ -130,6 +131,7 @@ class Extract(ServiceBase):
         self._last_password = None
         self.extract_methods = [
             self.extract_zip,
+            self.extract_nsis,
             self.extract_tnef,
             self.extract_swf,
             self.extract_ace,
@@ -783,9 +785,8 @@ class Extract(ServiceBase):
         password_failed = False
         if (
             request.file_type == "archive/audiovisual/flash"
-            or encoding == "ace"
+            or encoding in ["ace", "tnef", "nsis"]
             or (request.file_type.startswith("document") and not request.file_type.startswith("document/installer"))
-            or encoding == "tnef"
             or request.file_type.startswith("code")
         ):
             return [], password_protected
@@ -959,6 +960,32 @@ class Extract(ServiceBase):
                 extracted_children.append([output_path + "/" + child, child, encoding])
 
         return extracted_children, False
+
+    def extract_nsis(self, request: ServiceRequest, local: str, encoding: str):
+        """Will attempt to extract data from a TNEF container.
+
+        Args:
+            request: AL request object.
+            local: File path of AL sample.
+            encoding: AL tag with string 'archive/' replaced.
+
+        Returns:
+            List containing extracted file information, including: extracted path, encoding, and display name,
+            or a blank list if extract failed; and False (no passwords will ever be detected).
+        """
+        if encoding != "nsis":
+            return [], False
+
+        output_path = os.path.join(self.working_directory, "SETUP.nsi")
+        try:
+            extractor = NSIExtractor.from_path(local)
+            extractor.generate_setup_file()
+            extractor.save_setup_file(output_path)
+        except Exception:
+            # The NSIS Setup.nsi file extraction is a best effort
+            return [], False
+
+        return [[output_path, "SETUP.nsi", encoding]], False
 
     def extract_tnef(self, request: ServiceRequest, local: str, encoding: str):
         """Will attempt to extract data from a TNEF container.
