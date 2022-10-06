@@ -21,7 +21,9 @@ from assemblyline_v4_service.common.result import (
     Heuristic,
     Result,
     ResultSection,
+    ResultTableSection,
     ResultTextSection,
+    TableRow,
 )
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
@@ -868,6 +870,37 @@ class Extract(ServiceBase):
 
         return [], password_protected
 
+    def check_7z_hidden_file(self, request: ServiceRequest, popenargs):
+        env = os.environ.copy()
+        env["LANG"] = "C.UTF-8"
+        popenargs[1] = "l"  # Change the command to list
+        popenargs = popenargs[:-1]  # Drop the destination output
+        p = subprocess.run(popenargs, env=env, capture_output=True)
+        separator = None
+        header = []
+        hidden_files = []
+        for line in p.stdout.split(b"\n"):
+            if line.lstrip().startswith(b"Date"):
+                header = [x.decode() for x in line.split()]
+                continue
+            if header and separator is None:
+                separator = line
+                continue
+            if line == separator:
+                break
+            if separator:
+                data = [x.decode() for x in line.split()]
+                if data[2][2] == "H":
+                    hidden_files.append(data)
+
+        if hidden_files:
+            heur = Heuristic(18)
+            res = ResultTableSection(heur.name, heuristic=heur)
+            for data in hidden_files:
+                res.add_row(TableRow(dict(zip(header, data))))
+                res.add_tag("file.name.extracted", data[-1])
+            request.result.add_section(res)
+
     def extract_zip_7zip(self, request: ServiceRequest, local: str, encoding: str, path: str):
         password_protected = False
         env = os.environ.copy()
@@ -895,6 +928,7 @@ class Extract(ServiceBase):
                         stdoutput = p.stdout + p.stderr
                         if stdoutput and b"\nEverything is Ok\n" in stdoutput:
                             self._last_password = password
+                            self.check_7z_hidden_file(request, popenargs)
                             return self._7zip_submit_extracted(request, path, encoding), password_protected, False
                     except OSError:
                         pass
@@ -903,6 +937,7 @@ class Extract(ServiceBase):
                 raise TypeError
             elif os.path.exists(path) and any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
                 # If we extract anything into the destination directory, we consider it of interest
+                self.check_7z_hidden_file(request, popenargs)
                 return self._7zip_submit_extracted(request, path, encoding), password_protected, False
         except UnicodeEncodeError:
             raise

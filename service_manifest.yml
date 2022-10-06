@@ -141,6 +141,11 @@ heuristics:
     filetype: "code/*"
     description: Encoded JScript is ancient and shouldn't be used anymore. The odds of a legitimate use are abysmally low.
 
+  - heur_id: 18
+    name: Hidden files found in archive
+    score: 0
+    filetype: "*"
+    description: Some files in the archive were found with the Hidden attribute on.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
