@@ -125,6 +125,15 @@ class Extract(ServiceBase):
         ".wsh",
     ]
 
+    LAUNCHABLE_TYPE = [
+        "code/batch",
+        "code/ps1",
+        "code/python",
+        "code/vbs",
+    ]
+
+    LAUNCHABLE_TYPE_SW = ["executable/", "shortcut/"]
+
     def __init__(self, config=None):
         super().__init__(config)
         self._last_password = None
@@ -1164,11 +1173,16 @@ class Extract(ServiceBase):
         Returns:
             Al result object scoring VHIGH if executables detected in container, or None.
         """
-        if (
-            len(request.extracted) == 1
-            and os.path.splitext(request.extracted[0]["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS
-        ):
 
+        def is_launchable(file):
+            if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
+                return True
+            file_type = self.identify.fileinfo(file["path"])["type"]
+            if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
+                return True
+            return False
+
+        if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
             new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
             new_section.add_line(request.extracted[0]["name"])
             new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
@@ -1176,14 +1190,14 @@ class Extract(ServiceBase):
             new_section.add_tag("file.behavior", "Archived Single Executable")
             result.add_section(new_section)
         else:
-            lunchable_extracted = []
+            launchable_extracted = []
             for extracted in request.extracted:
-                if os.path.splitext(extracted["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
-                    lunchable_extracted.append(extracted)
-            if lunchable_extracted:
+                if is_launchable(extracted):
+                    launchable_extracted.append(extracted)
+            if launchable_extracted:
                 new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
                 new_section.add_tag("file.behavior", "Executable Content in Archive")
-                for extracted in lunchable_extracted:
+                for extracted in launchable_extracted:
                     new_section.add_line(extracted["name"])
                     new_section.add_tag("file.name.extracted", extracted["name"])
                 if len(request.extracted) <= self.config.get("heur16_max_file_count", 5):
