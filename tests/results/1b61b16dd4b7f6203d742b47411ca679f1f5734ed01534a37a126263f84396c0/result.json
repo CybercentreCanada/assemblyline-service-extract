@@ -60,11 +60,11 @@
     "temp_submission_data": {
       "passwords": [
         "Password",
+        "Password of file: U523",
         "U523",
-        "file:",
         "file",
-        "of",
-        "Password of file: U523"
+        "file:",
+        "of"
       ]
     }
   }
