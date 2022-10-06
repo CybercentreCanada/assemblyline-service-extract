@@ -1350,12 +1350,13 @@ class Extract(ServiceBase):
                 new_passwords.update(set(extract_passwords(line)))
         if new_passwords:
             self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
+            # It is technically not required to sort them, but it makes the output of the module predictable
             if "passwords" in request.temp_submission_data:
-                request.temp_submission_data["passwords"] = list(
-                    set(request.temp_submission_data["passwords"]).update(new_passwords)
+                request.temp_submission_data["passwords"] = sorted(
+                    list(set(request.temp_submission_data["passwords"]).update(new_passwords))
                 )
             else:
-                request.temp_submission_data["passwords"] = list(new_passwords)
+                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
         return extracted, False
 
