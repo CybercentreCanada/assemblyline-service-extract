@@ -1,0 +1,9 @@
+tnefparse
+olefile
+beautifulsoup4
+pylzma
+lxml
+msoffcrypto-tool
+html5lib
+pikepdf
+https://github.com/gdesmar/nrs/archive/nsi-script.zip
