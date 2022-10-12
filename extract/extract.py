@@ -139,7 +139,7 @@ class Extract(ServiceBase):
 
     def __init__(self, config=None):
         super().__init__(config)
-        self._last_password = None
+        self.password_used = []
         self.extract_methods = [
             self.extract_zip,
             self.extract_nsis,
@@ -155,16 +155,14 @@ class Extract(ServiceBase):
             self.extract_xxe,
             self.extract_cart,
         ]
-        self.anomaly_detections = [self.archive_with_executables, self.archive_is_arc]
+        self.anomaly_detections = [self.archive_with_executables, self.archive_is_ace]
         self.safelisting_methods = [self.jar_safelisting, self.ipa_safelisting]
         self.identify = forge.get_identify(use_cache=os.environ.get("PRIVILEGED", "false").lower() == "true")
 
     def execute(self, request: ServiceRequest):
-        """Main Module. See README for details."""
         result = Result()
         request.result = result
-        continue_after_extract = request.get_param("continue_after_extract")
-        self._last_password = None
+        self.password_used = []
         password_protected = False
         safelisted = 0
         symlinks = []
@@ -184,37 +182,23 @@ class Extract(ServiceBase):
         num_extracted = len(request.extracted)
 
         section = None
-        if num_extracted == 0 and password_protected:
-            section = ResultTextSection("Failed to extract password protected file.", heuristic=Heuristic(12))
-            section.add_tag("file.behavior", "Archive Unknown Password")
-            if zipfile.is_zipfile(request.file_path):
-                try:
-                    with zipfile.ZipFile(request.file_path, "r") as z:
-                        section.add_line("Files in password protected zip archive:")
-                        for name in z.namelist():
-                            section.add_line(name)
-                            section.add_tag("file.name.extracted", name)
-                except Exception:
-                    pass
-            if not request.file_type.startswith("executable"):
-                # Don't drop executables that contain password protected zip sections
-                request.drop()
-
-        elif num_extracted != 0:
-            if password_protected and self._last_password is not None:
+        if num_extracted != 0:
+            if password_protected and self.password_used:
+                pw_list = " | ".join(self.password_used)
                 section = ResultSection(
                     f"Successfully extracted {num_extracted} "
                     f"file{'s' if num_extracted > 1 else ''} "
-                    f"using password: {self._last_password}"
+                    f"using password{'s' if len(self.password_used) > 1 else ''}: {pw_list}"
                 )
-                section.add_tag("info.password", self._last_password)
+                for p in self.password_used:
+                    section.add_tag("info.password", p)
 
-            elif password_protected and self._last_password is None:
+            elif password_protected and not self.password_used:
                 pw_list = " | ".join(self.get_passwords(request))
                 section = ResultSection(
                     f"Successfully extracted {num_extracted} "
                     f"file{'s' if num_extracted > 1 else ''} "
-                    f"using one of the following passwords: {pw_list}"
+                    f"using one or more of the following passwords: {pw_list}"
                 )
 
             elif safelisted != 0:
@@ -269,7 +253,7 @@ class Extract(ServiceBase):
                 and request.file_type != "archive/iso"
                 and request.file_type != "archive/udf"
                 and request.file_type != "archive/vhd"
-                and not continue_after_extract
+                and not request.get_param("continue_after_extract")
             ):
                 request.drop()
 
@@ -294,24 +278,19 @@ class Extract(ServiceBase):
             True if archive is password protected, and number of white-listed embedded files.
         """
         password_protected = False
-        safelisted_count = 0
         extracted = []
 
         # Try all extracting methods
         for extract_method in self.extract_methods:
             extracted_files, temp_password_protected = extract_method(request)
-            if temp_password_protected:
-                password_protected = temp_password_protected
+            password_protected |= temp_password_protected
             if extracted_files:
                 for extracted_file in extracted_files:
                     extracted_file.append(f"Extracted using {extract_method.__name__}")
                     extracted.append(extracted_file)
                 break
 
-        # Perform safelisting on request
-        if extracted and request.get_param("use_custom_safelisting"):
-            for safelisting_method in self.safelisting_methods:
-                extracted, safelisted_count = safelisting_method(extracted, safelisted_count, request.file_type)
+        extracted, safelisted_count = self.apply_custom_safelisting(request, extracted)
 
         extracted_count = len(extracted)
         symlinks = []
@@ -334,6 +313,15 @@ class Extract(ServiceBase):
                 )
 
         return password_protected, safelisted_count, symlinks
+
+    def apply_custom_safelisting(self, request: ServiceRequest, extracted):
+        safelisted_count = 0
+        # Perform safelisting on request
+        if extracted and request.get_param("use_custom_safelisting"):
+            for safelisting_method in self.safelisting_methods:
+                extracted, safelisted_count = safelisting_method(extracted, safelisted_count, request.file_type)
+
+        return extracted, safelisted_count
 
     def get_passwords(self, request: ServiceRequest):
         """
@@ -438,24 +426,30 @@ class Extract(ServiceBase):
             return [], False
         except PasswordError:
             # Could not guess password
+            self.raise_failed_passworded_extraction(request, [], [])
             return [], True
 
         out_name, password = res
-        self._last_password = password
+        self.password_used.append(password)
         display_name = request.file_name
         return [[out_name, display_name]], True
 
-    def _7zip_submit_extracted(self, request: ServiceRequest, path: str):
-        """Will attempt to use 7zip library to extract content from a generic archive or PE file.
+    def _zip_submit_extracted(self, request: ServiceRequest, folder_path: str):
+        """Go over a folder, sanitize file/folder names and return a list of filtered files
 
         Args:
             request AL request object.
-            path: File path of AL sample.
+            folder_path: Folder to look into.
 
         Returns:
             List containing extracted file information, including: extracted path, encoding, and display name
             or a blank list if extraction failed.
         """
+
+        if not any(os.path.getsize(os.path.join(folder_path, file)) for file in os.listdir(folder_path)):
+            # No non-empty file found
+            return []
+        # If we extract anything into the destination directory, we consider it of interest
 
         def ascii_sanitize(input: str):
             split_input = input.split("/")
@@ -477,7 +471,7 @@ class Extract(ServiceBase):
         changes_made = True
         while changes_made:
             changes_made = False
-            for root, _, files in os.walk(path):
+            for root, _, files in os.walk(folder_path):
                 # Sanitize root
                 new_root = ascii_sanitize(root)
                 if new_root != root:
@@ -494,10 +488,17 @@ class Extract(ServiceBase):
                         shutil.move(file_path, new_file_path)
 
         # Add Extracted
-        for root, _, files in os.walk(path):
+        extracted_path = os.path.join(self.working_directory, "extracted_zip")
+        if not os.path.exists(extracted_path):
+            os.mkdir(extracted_path)
+
+        for root, _, files in os.walk(folder_path):
             for f in files:
+                if not os.path.getsize(os.path.join(root, f)):
+                    continue
+
                 skip = False
-                filename = safe_str(os.path.join(root, f).replace(path, ""))
+                filename = safe_str(os.path.join(root, f).replace(folder_path, ""))
                 if filename.startswith("/"):
                     filename = filename[1:]
                 if not extract_executable_sections and request.file_type.startswith("executable"):
@@ -521,7 +522,8 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
                 if not skip:
-                    extracted_children.append([os.path.join(root, f), safe_str(filename)])
+                    shutil.move(os.path.join(root, f), os.path.join(extracted_path, f))
+                    extracted_children.append([os.path.join(extracted_path, f), safe_str(filename)])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
 
@@ -611,7 +613,7 @@ class Extract(ServiceBase):
                     fd = tempfile.NamedTemporaryFile(delete=False)
                     pdf.save(fd)
                     fd.seek(0)
-                    self._last_password = password
+                    self.password_used.append(password)
                     return [[fd.name, request.file_name]], True
                 except PDFPasswordError:
                     continue
@@ -756,27 +758,28 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path and display name,
             or a blank list if extraction failed; and True if encryption detected.
         """
-        password_protected = False
-        # If we cannot extract the file, we shouldn't pass it around. Let keep track of if we can't.
-        password_failed = False
+
         if (
             request.file_type == "archive/audiovisual/flash"
-            or request.file_type in ["archive/ace", "archive/tnef", "archive/nsis"]
+            or request.file_type in ["archive/ace", "archive/tnef", "archive/nsis", "archive/cart"]
             or (request.file_type.startswith("document") and not request.file_type.startswith("document/installer"))
             or request.file_type.startswith("code")
         ):
-            return [], password_protected
-        path = os.path.join(self.working_directory, "extracted_zip")
+            return [], False
+
+        extracted_files = []
+        password_protected = False
+
         try:
             # Attempt extraction of zip
             try:
                 # with 7z
-                extracted_files, password_protected, password_failed = self.extract_zip_7zip(request, path)
+                extracted_files, password_protected = self.extract_zip_7zip(request)
                 if extracted_files:
                     return extracted_files, password_protected
             except UnicodeEncodeError:
                 # with zipfile
-                extracted_files, password_protected, password_failed = self.extract_zip_zipfile(request, path)
+                extracted_files, password_protected = self.extract_zip_zipfile(request)
                 if extracted_files:
                     return extracted_files, password_protected
             except TypeError:
@@ -784,69 +787,24 @@ class Extract(ServiceBase):
 
             # Try unrar if 7zip fails for rar archives
             if request.file_type == "archive/rar":
-                env = os.environ.copy()
-                env["LANG"] = "C.UTF-8"
-
-                password_protected = False
-
-                # Resetting back to False because we are giving it another chance.
-                password_failed = False
-                shutil.rmtree(path, ignore_errors=True)
-                os.mkdir(path)
-                try:
-                    p = subprocess.run(
-                        ["unrar", "x", "-y", "-p-", request.file_path, path], env=env, capture_output=True
-                    )
-                    stdout_rar, stderr_rar = p.stdout, p.stderr
-                except OSError:
-                    self.log.warning(
-                        f"Error running unrar on sample {request.sha256}. Extract service may be out of date."
-                    )
-                    stdout_rar = None
-                    stderr_rar = None
-                if stdout_rar:
-                    if b"All OK" in stdout_rar:
-                        return self._7zip_submit_extracted(request, path), password_protected
-                    if b"wrong password" in stderr_rar:
-                        password_protected = True
-                        password_list = self.get_passwords(request)
-                        for password in password_list:
-                            try:
-                                shutil.rmtree(path, ignore_errors=True)
-                                os.mkdir(path)
-                                stdout = subprocess.run(
-                                    ["unrar", "x", "-y", f"-p{password}", request.file_path, path],
-                                    env=env,
-                                    capture_output=True,
-                                ).stdout
-                                if b"All OK" in stdout:
-                                    self._last_password = password
-                                    return self._7zip_submit_extracted(request, path), password_protected
-                            except OSError:
-                                pass
-                    password_failed = True
+                extracted_files, password_protected = self.extract_zip_unrar(request)
+                if extracted_files:
+                    return extracted_files, password_protected
         except ExtractIgnored:
             raise
         except Exception as e:
             if request.file_type != "archive/cab":
                 self.log.exception(f"While extracting {request.sha256} with 7zip: {str(e)}")
-        if password_failed and request.file_type.startswith("archive"):
-            # stop processing the request
-            request.drop()
 
-        return [], password_protected
+        return extracted_files, password_protected
 
-    def check_7z_hidden_file(self, request: ServiceRequest, popenargs):
-        env = os.environ.copy()
-        env["LANG"] = "C.UTF-8"
-        popenargs[1] = "l"  # Change the command to list
-        popenargs = popenargs[:-1]  # Drop the destination output
+    def parse_archive_listing(self, popenargs, env, first_header_title):
         p = subprocess.run(popenargs, env=env, capture_output=True)
         separator = None
         header = []
-        hidden_files = []
+        data = []
         for line in p.stdout.split(b"\n"):
-            if line.lstrip().startswith(b"Date"):
+            if line.lstrip().startswith(first_header_title):
                 header = [x.decode() for x in line.split()]
                 continue
             if header and separator is None:
@@ -855,86 +813,181 @@ class Extract(ServiceBase):
             if line == separator:
                 break
             if separator:
-                data = [x.decode() for x in line.split()]
-                if data[2][2] == "H":
-                    hidden_files.append(data)
+                data.append([x.decode() for x in line.split()])
+        return header, data
 
-        if hidden_files:
-            heur = Heuristic(18)
-            res = ResultTableSection(heur.name, heuristic=heur)
-            for data in hidden_files:
-                res.add_row(TableRow(dict(zip(header, data))))
-                res.add_tag("file.name.extracted", data[-1])
-            request.result.add_section(res)
+    def raise_failed_passworded_extraction(self, request: ServiceRequest, extracted_files, expected_files):
+        section = ResultTextSection(
+            "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
+        )
+        section.add_tag("file.behavior", "Archive Unknown Password")
+        if expected_files:
+            section.add_line("Unextracted files in password protected archive:")
+            extracted_file_names = [x[1] for x in extracted_files]
+            for name in expected_files:
+                if name not in extracted_file_names:
+                    section.add_line(name)
+                    section.add_tag("file.name.extracted", name)
 
-    def extract_zip_7zip(self, request: ServiceRequest, path: str):
+        if not request.file_type.startswith("executable"):
+            # Don't drop executables that contain password protected zip sections
+            request.drop()
+
+    def extract_zip_7zip(self, request: ServiceRequest):
         password_protected = False
+
         env = os.environ.copy()
         env["LANG"] = "C.UTF-8"
 
-        try:
-            popenargs = ["7zzs", "x", "-p", "-y", request.file_path, f"-o{path}"]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            extracted_files = []
+
+            popenargs = ["7zzs", "x", "-p", "-y", request.file_path, f"-o{temp_dir}"]
             # Some UDF samples were wrongly identified as plain ISO by 7z.
             # By adding the .iso extension, it somehow made 7z identify it as UDF.
-            # Our Identify was also identifying it as "iso", so we can't only rely on "udf".
+            # Our Identify was also identifying it as "iso", so we can't only rely on "archive/udf".
             if request.file_type in ["archive/iso", "archive/udf"]:
                 temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
                 shutil.copy2(request.file_path, temp_path)
                 popenargs[4] = temp_path
-            p = subprocess.run(popenargs, env=env, capture_output=True)
-            stdoutput, stderr = p.stdout, p.stderr
-            if b"Wrong password" in stderr:
+
+            try:
+                p = subprocess.run(popenargs, env=env, capture_output=True)
+                stdoutput, stderr = p.stdout, p.stderr
+
+                extracted_files.extend(self._zip_submit_extracted(request, temp_dir))
+
+                if b"Wrong password" in stderr:
+                    password_protected = True
+                    password_list = self.get_passwords(request)
+                    for password in password_list:
+                        try:
+                            popenargs[2] = f"-p{password}"
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                            p = subprocess.run(popenargs, env=env, capture_output=True)
+                            stdoutput = p.stdout + p.stderr
+                            extracted_children = self._zip_submit_extracted(request, temp_dir)
+                            if extracted_children:
+                                self.password_used.append(password)
+                                extracted_files.extend(extracted_children)
+                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
+                                break
+                        except OSError:
+                            pass
+                elif b"Can not open the file as archive" in stdoutput:
+                    raise TypeError
+                popenargs[1] = "l"  # Change the command to list
+                popenargs = popenargs[:-1]  # Drop the destination output
+                header, data = self.parse_archive_listing(popenargs, env, b"Date")
+                hidden_files = [x for x in data if x[2][2] == "H"]
+
+                if hidden_files:
+                    heur = Heuristic(18)
+                    res = ResultTableSection(heur.name, heuristic=heur)
+                    for data in hidden_files:
+                        res.add_row(TableRow(dict(zip(header, data))))
+                        res.add_tag("file.name.extracted", data[-1])
+                    request.result.add_section(res)
+
+                # x[3] is the size, so ignore empty files/folders
+                expected_files = [" ".join(x[5:]) for x in data if x[3] != "0"]
+                if password_protected and len(extracted_files) != len(expected_files):
+                    # If we extracted no files, and it is an archive/rar, we'll rely on unrar to populate the section
+                    if extracted_files or request.file_type != "archive/rar":
+                        self.raise_failed_passworded_extraction(request, extracted_files, expected_files)
+            except UnicodeEncodeError:
+                raise
+            finally:
+                if request.file_type in ["archive/iso", "archive/udf"] and os.path.exists(temp_path):
+                    os.remove(temp_path)
+
+        return extracted_files, password_protected
+
+    def extract_zip_zipfile(self, request: ServiceRequest):
+        password_protected = False
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            extracted_files = []
+
+            try:
+                with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                    zipped_file.extractall(path=temp_dir)
+                extracted_files.extend(self._zip_submit_extracted(request, temp_dir))
+            except RuntimeError as e:
+                if any("password required for extraction" in event for event in e.args):
+                    # Try with available passwords
+                    password_protected = True
+                    password_list = self.get_passwords(request)
+                    for password in password_list:
+                        try:
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                            with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                                zipped_file.extractall(path=temp_dir, pwd=password.encode())
+                            extracted_children = self._zip_submit_extracted(request, temp_dir)
+                            if extracted_children:
+                                self.password_used.append(password)
+                                extracted_files.extend(extracted_children)
+                            break
+                        except RuntimeError:
+                            pass
+
+                    with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                        namelist = zipped_file.namelist()
+                    if len(extracted_files) != len(namelist):
+                        self.raise_failed_passworded_extraction(request, extracted_files, namelist)
+            except BadZipfile:
+                self.log.warning("A non-zip file was passed to zipfile library")
+
+        return extracted_files, password_protected
+
+    def extract_zip_unrar(self, request: ServiceRequest):
+        password_protected = False
+
+        env = os.environ.copy()
+        env["LANG"] = "C.UTF-8"
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            extracted_files = []
+
+            try:
+                p = subprocess.run(
+                    ["unrar", "x", "-y", "-p-", request.file_path, temp_dir], env=env, capture_output=True
+                )
+                stdout_rar, stderr_rar = p.stdout, p.stderr
+            except OSError:
+                self.log.warning(f"Error running unrar on sample {request.sha256}. Extract service may be out of date.")
+                return extracted_files, password_protected
+
+            if b"All OK" in stdout_rar:
+                extracted_files.extend(self._zip_submit_extracted(request, temp_dir))
+            elif b"password is incorrect" in stderr_rar:
                 password_protected = True
                 password_list = self.get_passwords(request)
                 for password in password_list:
                     try:
-                        popenargs[2] = f"-p{password}"
-                        shutil.rmtree(path, ignore_errors=True)
-                        p = subprocess.run(popenargs, env=env, capture_output=True)
-                        stdoutput = p.stdout + p.stderr
-                        if stdoutput and b"\nEverything is Ok\n" in stdoutput:
-                            self._last_password = password
-                            self.check_7z_hidden_file(request, popenargs)
-                            return self._7zip_submit_extracted(request, path), password_protected, False
+                        shutil.rmtree(temp_dir, ignore_errors=True)
+                        os.mkdir(temp_dir)
+                        stdout = subprocess.run(
+                            ["unrar", "x", "-y", f"-p{password}", request.file_path, temp_dir],
+                            env=env,
+                            capture_output=True,
+                        ).stdout
+                        if b"All OK" in stdout:
+                            extracted_children = self._zip_submit_extracted(request, temp_dir)
+                            if extracted_children:
+                                self.password_used.append(password)
+                                extracted_files.extend(extracted_children)
                     except OSError:
                         pass
-                return None, password_protected, True
-            elif b"Can not open the file as archive" in stdoutput:
-                raise TypeError
-            elif os.path.exists(path) and any(os.path.getsize(os.path.join(path, file)) for file in os.listdir(path)):
-                # If we extract anything into the destination directory, we consider it of interest
-                self.check_7z_hidden_file(request, popenargs)
-                return self._7zip_submit_extracted(request, path), password_protected, False
-        except UnicodeEncodeError:
-            raise
-        finally:
-            if request.file_type in ["archive/iso", "archive/udf"] and os.path.exists(temp_path):
-                os.remove(temp_path)
 
-    def extract_zip_zipfile(self, request: ServiceRequest, path: str):
-        shutil.rmtree(path, ignore_errors=True)
-        password_protected = False
-        try:
-            with zipfile.ZipFile(request.file_path, "r") as zipped_file:
-                zipped_file.extractall(path=path)
-            return self._7zip_submit_extracted(request, path), password_protected, False
-        except RuntimeError as e:
-            if any("password required for extraction" in event for event in e.args):
-                # Try with available passwords
-                password_protected = True
-                password_list = self.get_passwords(request)
-                for password in password_list:
-                    try:
-                        shutil.rmtree(path, ignore_errors=True)
-                        with zipfile.ZipFile(request.file_path, "r") as zipped_file:
-                            zipped_file.extractall(path=path, pwd=password.encode())
-                        return self._7zip_submit_extracted(request, path), password_protected, False
-                    except RuntimeError:
-                        pass
-                return None, password_protected, True
-        except BadZipfile:
-            self.log.warning("A non-zip file was passed to zipfile library")
-            return None, password_protected, False
+        if password_protected:
+            header, data = self.parse_archive_listing(["unrar", "l", "-y", request.file_path], env, b"Attributes")
+            # x[1] is the size, so ignore empty files/folders
+            expected_files = [" ".join(x[4:]) for x in data if x[1] != "0"]
+            if len(extracted_files) != len(expected_files):
+                self.raise_failed_passworded_extraction(request, extracted_files, expected_files)
+
+        return extracted_files, password_protected
 
     def extract_swf(self, request: ServiceRequest):
         """Will attempt to extract compressed SWF files.
@@ -1062,18 +1115,18 @@ class Extract(ServiceBase):
 
         return children, False
 
-    def ipa_safelisting(self, extracted, safelisted_count: int, encoding: str):
+    def ipa_safelisting(self, extracted, safelisted_count: int, file_type: str):
         """Filters file paths that are considered safelisted from a list of extracted IPA files.
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
             safelisted_count: Current safelist count.
-            encoding: File type of the original file analyze
+            file_type: File type of the original file analyze
 
         Returns:
             List of filtered file names and updated count of safelisted files.
         """
-        if encoding != "ios/ipa":
+        if file_type != "ios/ipa":
             return extracted, safelisted_count
 
         safelisted_fname_regex = [
@@ -1097,92 +1150,92 @@ class Extract(ServiceBase):
 
         return tmp_new_files, ipa_filter_count
 
-    def jar_safelisting(self, extracted, safelisted_count: int, encoding: str):
+    def jar_safelisting(self, extracted, safelisted_count: int, file_type: str):
         """Filters file paths that are considered safelisted from a list of extracted JAR files.
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
             safelisted_count: Current safelist count.
-            encoding: AL tag with string 'archive/' replaced.
+            file_type: File type of the original file analyze
 
         Returns:
             List of filtered file names and updated count of safelisted files.
         """
-        if encoding == "java/jar" or encoding == "android/apk":
-            safelisted_tags_re = [
-                re.compile(r"android/(xml|resource)"),
-                re.compile(r"audiovisual/.*"),
-                re.compile(r"certificate/rsa"),
-                re.compile(r"code/.*"),
-                re.compile(r"db/.*"),
-                re.compile(r"font/.*"),
-                re.compile(r"image/.*"),
-                re.compile(r"java/(class|manifest|jbdiff|signature)"),
-                re.compile(r"resource/.*"),
-            ]
+        if file_type not in ["java/jar", "android/apk"]:
+            return extracted, safelisted_count
 
-            safelisted_mime_re = [
-                re.compile(r"text/plain"),
-                re.compile(r"text/x-c"),
-            ]
+        safelisted_tags_re = [
+            re.compile(r"android/(xml|resource)"),
+            re.compile(r"audiovisual/.*"),
+            re.compile(r"certificate/rsa"),
+            re.compile(r"code/.*"),
+            re.compile(r"db/.*"),
+            re.compile(r"font/.*"),
+            re.compile(r"image/.*"),
+            re.compile(r"java/(class|manifest|jbdiff|signature)"),
+            re.compile(r"resource/.*"),
+        ]
 
-            safelisted_fname_regex = [
-                # commonly used libs files
-                re.compile(r"com/google/i18n/phonenumbers/data/(PhoneNumber|ShortNumber)[a-zA-Z]*_[0-9A-Z]{1,3}$"),
-                re.compile(r"looksery/([a-zA-Z_]*/){1,5}[a-zA-Z0-9_.]*.glsl$"),
-                re.compile(r"org/apache/commons/codec/language/bm/[a-zA-Z0-9_.]*\.txt$"),
-                re.compile(r"org/joda/time/format/messages([a-zA-Z_]{0,3})\.properties$"),
-                re.compile(r"org/joda/time/tz/data/[a-zA-Z0-9_/\-+]*$"),
-                re.compile(r"sharedassets[0-9]{1,3}\.assets(\.split[0-9]{1,3})?$"),
-                re.compile(r"zoneinfo(-global)?/([a-zA-Z_\-]*/){1,2}[a-zA-Z_\-]*\.ics$"),
-                # noisy files
-                re.compile(r"assets/.*\.atf$"),
-                re.compile(r"assets/.*\.ffa$"),
-                re.compile(r"assets/.*\.ffm$"),
-                re.compile(r"assets/.*\.jsa$"),
-                re.compile(r"assets/.*\.lua$"),
-                re.compile(r"assets/.*\.pf$"),
-            ]
+        safelisted_mime_re = [
+            re.compile(r"text/plain"),
+            re.compile(r"text/x-c"),
+        ]
 
-            jar_filter_count = safelisted_count
-            tmp_new_files = []
+        safelisted_fname_regex = [
+            # commonly used libs files
+            re.compile(r"com/google/i18n/phonenumbers/data/(PhoneNumber|ShortNumber)[a-zA-Z]*_[0-9A-Z]{1,3}$"),
+            re.compile(r"looksery/([a-zA-Z_]*/){1,5}[a-zA-Z0-9_.]*.glsl$"),
+            re.compile(r"org/apache/commons/codec/language/bm/[a-zA-Z0-9_.]*\.txt$"),
+            re.compile(r"org/joda/time/format/messages([a-zA-Z_]{0,3})\.properties$"),
+            re.compile(r"org/joda/time/tz/data/[a-zA-Z0-9_/\-+]*$"),
+            re.compile(r"sharedassets[0-9]{1,3}\.assets(\.split[0-9]{1,3})?$"),
+            re.compile(r"zoneinfo(-global)?/([a-zA-Z_\-]*/){1,2}[a-zA-Z_\-]*\.ics$"),
+            # noisy files
+            re.compile(r"assets/.*\.atf$"),
+            re.compile(r"assets/.*\.ffa$"),
+            re.compile(r"assets/.*\.ffm$"),
+            re.compile(r"assets/.*\.jsa$"),
+            re.compile(r"assets/.*\.lua$"),
+            re.compile(r"assets/.*\.pf$"),
+        ]
 
-            for cur_file in extracted:
-                f = open(cur_file[0], "rb")
-                byte_block = f.read(65535 * 2)
-                f.close()
+        jar_filter_count = safelisted_count
+        tmp_new_files = []
 
-                to_add = True
-                file_info = self.identify.ident(byte_block, len(byte_block), cur_file[0])
-                for exp in safelisted_tags_re:
-                    if exp.search(file_info["type"]):
+        for cur_file in extracted:
+            f = open(cur_file[0], "rb")
+            byte_block = f.read(65535 * 2)
+            f.close()
+
+            to_add = True
+            file_info = self.identify.ident(byte_block, len(byte_block), cur_file[0])
+            for exp in safelisted_tags_re:
+                if exp.search(file_info["type"]):
+                    if DEBUG:
+                        print("T", file_info["type"], file_info["ascii"], cur_file[0])
+                    to_add = False
+                    jar_filter_count += 1
+
+            if to_add and file_info["mime"]:
+                for exp in safelisted_mime_re:
+                    if exp.search(file_info["mime"]):
                         if DEBUG:
-                            print("T", file_info["type"], file_info["ascii"], cur_file[0])
+                            print("M", file_info["mime"], file_info["ascii"], cur_file[0])
                         to_add = False
                         jar_filter_count += 1
 
-                if to_add and file_info["mime"]:
-                    for exp in safelisted_mime_re:
-                        if exp.search(file_info["mime"]):
-                            if DEBUG:
-                                print("M", file_info["mime"], file_info["ascii"], cur_file[0])
-                            to_add = False
-                            jar_filter_count += 1
+            if to_add:
+                for ext in safelisted_fname_regex:
+                    if ext.search(cur_file[0]):
+                        if DEBUG:
+                            print("F", ext.pattern, file_info["ascii"], cur_file[0])
+                        to_add = False
+                        jar_filter_count += 1
 
-                if to_add:
-                    for ext in safelisted_fname_regex:
-                        if ext.search(cur_file[0]):
-                            if DEBUG:
-                                print("F", ext.pattern, file_info["ascii"], cur_file[0])
-                            to_add = False
-                            jar_filter_count += 1
+            if to_add:
+                tmp_new_files.append(cur_file)
 
-                if to_add:
-                    tmp_new_files.append(cur_file)
-
-            return tmp_new_files, jar_filter_count
-        else:
-            return extracted, safelisted_count
+        return tmp_new_files, jar_filter_count
 
     def archive_with_executables(self, request: ServiceRequest):
         """Detects executable files contained in an archive using the service's LAUNCHABLE_EXTENSIONS list.
@@ -1225,7 +1278,7 @@ class Extract(ServiceBase):
 
                 request.result.add_section(new_section)
 
-    def archive_is_arc(self, request: ServiceRequest):
+    def archive_is_ace(self, request: ServiceRequest):
         """Uses AL tag to determine if container is an ACE archive.
 
         Args:

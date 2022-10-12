@@ -1,0 +1,75 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "info": {
+            "password": [
+              "AA",
+              "BB"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 2 files using passwords: AA | BB",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "file2.txt",
+        "sha256": "124323c57d74fb8944c98fb69ce67a41a107cb6d2ed304cf50c8529cc137aafd"
+      },
+      {
+        "name": "file1.txt",
+        "sha256": "6a5f56e842f62a8e1e5adf1059d135b6f0df231db78c6f42d25da14f70746181"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "AA"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "BB"
+        }
+      ]
+    },
+    "temp_submission_data": {
+      "passwords": [
+        "AA",
+        "BB"
+      ]
+    }
+  }
+}
