@@ -1252,14 +1252,14 @@ class Extract(ServiceBase):
             new_section.add_tag("file.behavior", "Archived Single Executable")
             result.add_section(new_section)
         else:
-            lunchable_extracted = []
+            launchable_extracted = []
             for extracted in request.extracted:
                 if is_launchable(extracted):
-                    lunchable_extracted.append(extracted)
-            if lunchable_extracted:
+                    launchable_extracted.append(extracted)
+            if launchable_extracted:
                 new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
                 new_section.add_tag("file.behavior", "Executable Content in Archive")
-                for extracted in lunchable_extracted:
+                for extracted in launchable_extracted:
                     new_section.add_line(extracted["name"])
                     new_section.add_tag("file.name.extracted", extracted["name"])
                 if len(request.extracted) <= self.config.get("heur16_max_file_count", 5):
