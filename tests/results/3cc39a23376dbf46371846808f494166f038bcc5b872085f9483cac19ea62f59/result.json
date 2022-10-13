@@ -1,0 +1,60 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 6,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "info": {
+            "password": [
+              "2281337"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 1 file using password: 2281337",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59",
+        "sha256": "0da89654a0de2e8742a8390c2b5f43187791b66bf500bca1be4b264afa1fa9d9"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 6,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "info.password": [
+        {
+          "heur_id": 6,
+          "signatures": [],
+          "value": "2281337"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

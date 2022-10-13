@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Files in password protected zip archive:\nGeoIP.dat\nnjRAT v0.7d.exe\nPlugin/\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nstub.il\nStub.manifest\nWinMM.Net.dll",
+        "body": "Unextracted files in password protected archive:\nGeoIP.dat\nnjRAT v0.7d.exe\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nstub.il\nStub.manifest\nWinMM.Net.dll",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -26,7 +26,6 @@
               "extracted": [
                 "GeoIP.dat",
                 "njRAT v0.7d.exe",
-                "Plugin/",
                 "Plugin/cam.dll",
                 "Plugin/ch.dll",
                 "Plugin/mic.dll",
@@ -70,11 +69,6 @@
           "heur_id": 12,
           "signatures": [],
           "value": "GeoIP.dat"
-        },
-        {
-          "heur_id": 12,
-          "signatures": [],
-          "value": "Plugin/"
         },
         {
           "heur_id": 12,
