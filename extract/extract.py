@@ -1001,7 +1001,7 @@ class Extract(ServiceBase):
         """
         extracted_children = []
 
-        if request.file_type in ["archive/audiovisual/flash", "audiovisual/flash"]:
+        if request.file_type == "archive/audiovisual/flash":
             output_path = os.path.join(self.working_directory, "extracted_swf")
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
@@ -1055,10 +1055,11 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path and display name,
             or a blank list if extract failed; and False (no passwords will ever be detected).
         """
-        children = []
 
         if request.file_type != "archive/tnef":
-            return children, False
+            return [], False
+
+        children = []
 
         # noinspection PyBroadException
         try:
