@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
+        "body": "d746c14038d7b336b281b81df48e6bb17fcfe8b3405e2a67b546fbbc0e3d7be5",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,7 +21,7 @@
           "file": {
             "name": {
               "extracted": [
-                "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
+                "d746c14038d7b336b281b81df48e6bb17fcfe8b3405e2a67b546fbbc0e3d7be5"
               ]
             }
           }
@@ -34,8 +34,8 @@
   "files": {
     "extracted": [
       {
-        "name": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
-        "sha256": "fdb599ee616fa643820cfaeb9afe561fe5915447ccc80f7d63d85573f0440237"
+        "name": "d746c14038d7b336b281b81df48e6bb17fcfe8b3405e2a67b546fbbc0e3d7be5",
+        "sha256": "740440a64bba44761eef87e0f8755e9df4cb5075c8a7caa938f1571c304edb05"
       }
     ],
     "supplementary": []
@@ -53,7 +53,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
+          "value": "d746c14038d7b336b281b81df48e6bb17fcfe8b3405e2a67b546fbbc0e3d7be5"
         }
       ]
     },
@@ -61,19 +61,13 @@
       "passwords": [
         "",
         "\t",
-        "Download",
-        "Download-completed",
-        "Password",
-        "Password of file: U523",
-        "Successfully",
-        "Successfully downloaded.",
-        "U523",
-        "completed",
-        "downloaded",
-        "downloaded.",
-        "file",
-        "file:",
-        "of"
+        "\t\t",
+        "\t\tDocument password:",
+        "Document",
+        "Document password:",
+        "abc555",
+        "password",
+        "password:"
       ]
     }
   }

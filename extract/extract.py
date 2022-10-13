@@ -27,6 +27,7 @@ from assemblyline_v4_service.common.result import (
 )
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
+from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
@@ -1390,22 +1391,37 @@ class Extract(ServiceBase):
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest()])
 
         if aggregated_js_script:
+            onloads = soup.body.get_attribute_list("onload")
+            for onload in onloads:
+                if onload:
+                    aggregated_js_script.write(b"\n" + onload.encode() + b"\n")
             extracted.append([aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest()])
 
-        # Extract password from text
-        new_passwords = set()
-        for line in [p.get_text() for p in soup.find_all("p")]:
-            if any([WORD in line.lower() for WORD in PASSWORD_WORDS]):
+        # Extract password from visible text, taken from https://stackoverflow.com/a/1983219
+        def tag_visible(element):
+            if element.parent.name in ["style", "script", "head", "title", "meta", "[document]"]:
+                return False
+            if isinstance(element, Comment):
+                return False
+            return True
+
+        visible_texts = [x for x in filter(tag_visible, soup.findAll(text=True))]
+
+        if any(any(WORD in line.lower() for WORD in PASSWORD_WORDS) for line in visible_texts):
+            new_passwords = set()
+
+            for line in visible_texts:
                 new_passwords.update(set(extract_passwords(line)))
-        if new_passwords:
-            self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
-            # It is technically not required to sort them, but it makes the output of the module predictable
-            if "passwords" in request.temp_submission_data:
-                request.temp_submission_data["passwords"] = sorted(
-                    list(set(request.temp_submission_data["passwords"]).update(new_passwords))
-                )
-            else:
-                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
+
+            if new_passwords:
+                self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
+                # It is technically not required to sort them, but it makes the output of the module predictable
+                if "passwords" in request.temp_submission_data:
+                    request.temp_submission_data["passwords"] = sorted(
+                        list(set(request.temp_submission_data["passwords"]).update(new_passwords))
+                    )
+                else:
+                    request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
         return extracted, False
 
