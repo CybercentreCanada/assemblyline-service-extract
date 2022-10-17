@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|document/email|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -146,6 +146,12 @@ heuristics:
     score: 0
     filetype: "*"
     description: Some files in the archive were found with the Hidden attribute on.
+
+  - heur_id: 19
+    name: Unexpected type
+    score: 0
+    filetype: "*"
+    description: Files were extracted from flash container.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG

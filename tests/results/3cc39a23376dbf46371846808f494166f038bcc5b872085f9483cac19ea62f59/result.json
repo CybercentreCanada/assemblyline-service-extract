@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -18,6 +18,13 @@
           "signatures": {}
         },
         "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59"
+              ]
+            }
+          },
           "info": {
             "password": [
               "2281337"
@@ -47,6 +54,13 @@
       }
     ],
     "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 6,
+          "signatures": [],
+          "value": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59"
+        }
+      ],
       "info.password": [
         {
           "heur_id": 6,
