@@ -1,0 +1,62 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "fdb5e7e1-54a9-4e68-8515-08daa85e3e0f",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "fdb5e7e1-54a9-4e68-8515-08daa85e3e0f"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "fdb5e7e1-54a9-4e68-8515-08daa85e3e0f",
+        "sha256": "e01a0441c5228c4543ff0b434665ef6dd4f8e178aea35da63d7111b9b761a447"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "fdb5e7e1-54a9-4e68-8515-08daa85e3e0f"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

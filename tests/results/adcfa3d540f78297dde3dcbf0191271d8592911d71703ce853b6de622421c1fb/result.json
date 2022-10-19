@@ -1,0 +1,586 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "iTunesArtwork\niTunesMetadata.plist\nPayload/PGDribbble.app/LaunchImage-700-568h@2x.png\nPayload/PGDribbble.app/AppIcon40x40@3x.png\nPayload/PGDribbble.app/pgloader.x\nPayload/PGDribbble.app/AppIcon40x40@2x.png\nPayload/PGDribbble.app/lookup_soft_elegance_2.png\nPayload/PGDribbble.app/PkgInfo\nPayload/PGDribbble.app/AppIcon29x29~ipad.png\nPayload/PGDribbble.app/AppIcon76x76@2x~ipad.png\nPayload/PGDribbble.app/lookup_miss_etikate.png\nPayload/PGDribbble.app/AppIcon40x40~ipad.png\nPayload/PGDribbble.app/LaunchImage-700@2x.png\nPayload/PGDribbble.app/AppIcon60x60@3x.png\nPayload/PGDribbble.app/lookup_soft_elegance_1.png\nPayload/PGDribbble.app/AppIcon29x29@2x.png\nPayload/PGDribbble.app/AppIcon60x60@2x.png\nPayload/PGDribbble.app/AppIcon76x76~ipad.png\nPayload/PGDribbble.app/AppIcon29x29@2x~ipad.png\nPayload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png\nPayload/PGDribbble.app/Info.plist\nPayload/PGDribbble.app/AppIcon40x40@2x~ipad.png\nPayload/PGDribbble.app/PGDribbble\nPayload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png\nPayload/PGDribbble.app/LaunchImage-800-667h@2x.png\nPayload/PGDribbble.app/Assets.car\nPayload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png\nPayload/PGDribbble.app/lookup.png\nPayload/PGDribbble.app/AppIcon29x29@3x.png\nPayload/PGDribbble.app/lookup_amatorka.png\nPayload/PGDribbble.app/Base.lproj/Main.storyboardc/UIViewController-wok-KP-MBA.nib\nPayload/PGDribbble.app/Base.lproj/Main.storyboardc/Info.plist\nPayload/PGDribbble.app/Base.lproj/Main.storyboardc/wok-KP-MBA-view-0rF-UW-y8B.nib\nPayload/PGDribbble.app/Base.lproj/Main.storyboardc/contentViewController.nib\nPayload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/Info.plist\nPayload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib\nPayload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib\nPayload/PGDribbble.app/AWFileHash.bundle/Info.plist\nPayload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings\nPayload/PGDribbble.app/en.lproj/InfoPlist.strings\nPayload/PGDribbble.app/SC_Info/Manifest.plist\nPayload/PGDribbble.app/SC_Info/PGDribbble.sinf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supp\nPayload/PGDribbble.app/JBMain.storyboardc/Info.plist\nPayload/PGDribbble.app/JBMain.storyboardc/6jL-jZ-Uk8-view-5ie-Jc-Kyv.nib\nPayload/PGDribbble.app/JBMain.storyboardc/UIViewController-6jL-jZ-Uk8.nib\nPayload/PGDribbble.app/_CodeSignature/CodeResources\nMETA-INF/com.apple.ZipMetadata.plist\nMETA-INF/com.apple.FixedZipMetadata.bin",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 9,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "iTunesArtwork",
+                "iTunesMetadata.plist",
+                "Payload/PGDribbble.app/LaunchImage-700-568h@2x.png",
+                "Payload/PGDribbble.app/AppIcon40x40@3x.png",
+                "Payload/PGDribbble.app/pgloader.x",
+                "Payload/PGDribbble.app/AppIcon40x40@2x.png",
+                "Payload/PGDribbble.app/lookup_soft_elegance_2.png",
+                "Payload/PGDribbble.app/PkgInfo",
+                "Payload/PGDribbble.app/AppIcon29x29~ipad.png",
+                "Payload/PGDribbble.app/AppIcon76x76@2x~ipad.png",
+                "Payload/PGDribbble.app/lookup_miss_etikate.png",
+                "Payload/PGDribbble.app/AppIcon40x40~ipad.png",
+                "Payload/PGDribbble.app/LaunchImage-700@2x.png",
+                "Payload/PGDribbble.app/AppIcon60x60@3x.png",
+                "Payload/PGDribbble.app/lookup_soft_elegance_1.png",
+                "Payload/PGDribbble.app/AppIcon29x29@2x.png",
+                "Payload/PGDribbble.app/AppIcon60x60@2x.png",
+                "Payload/PGDribbble.app/AppIcon76x76~ipad.png",
+                "Payload/PGDribbble.app/AppIcon29x29@2x~ipad.png",
+                "Payload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png",
+                "Payload/PGDribbble.app/Info.plist",
+                "Payload/PGDribbble.app/AppIcon40x40@2x~ipad.png",
+                "Payload/PGDribbble.app/PGDribbble",
+                "Payload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png",
+                "Payload/PGDribbble.app/LaunchImage-800-667h@2x.png",
+                "Payload/PGDribbble.app/Assets.car",
+                "Payload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png",
+                "Payload/PGDribbble.app/lookup.png",
+                "Payload/PGDribbble.app/AppIcon29x29@3x.png",
+                "Payload/PGDribbble.app/lookup_amatorka.png",
+                "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/UIViewController-wok-KP-MBA.nib",
+                "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/Info.plist",
+                "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/wok-KP-MBA-view-0rF-UW-y8B.nib",
+                "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/contentViewController.nib",
+                "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/Info.plist",
+                "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib",
+                "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib",
+                "Payload/PGDribbble.app/AWFileHash.bundle/Info.plist",
+                "Payload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings",
+                "Payload/PGDribbble.app/en.lproj/InfoPlist.strings",
+                "Payload/PGDribbble.app/SC_Info/Manifest.plist",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.sinf",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.supf",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.supp",
+                "Payload/PGDribbble.app/JBMain.storyboardc/Info.plist",
+                "Payload/PGDribbble.app/JBMain.storyboardc/6jL-jZ-Uk8-view-5ie-Jc-Kyv.nib",
+                "Payload/PGDribbble.app/JBMain.storyboardc/UIViewController-6jL-jZ-Uk8.nib",
+                "Payload/PGDribbble.app/_CodeSignature/CodeResources",
+                "META-INF/com.apple.ZipMetadata.plist",
+                "META-INF/com.apple.FixedZipMetadata.bin"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 50 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Payload/PGDribbble.app/PGDribbble",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Payload/PGDribbble.app/PGDribbble"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib",
+        "sha256": "05f782a8faeab6ba035d0299171245aecf874050285cb282005e8f266a662b91"
+      },
+      {
+        "name": "Payload/PGDribbble.app/LaunchImage-700-568h@2x.png",
+        "sha256": "088e6d2965a218de667ae84675a6e5104c14946b68f5999b55335e472df2930c"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon40x40@2x.png",
+        "sha256": "09e003717995f863b1cd81e54ff5a4eccd9639efdeda57edfb627f8ffb80798d"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon40x40@2x~ipad.png",
+        "sha256": "09e003717995f863b1cd81e54ff5a4eccd9639efdeda57edfb627f8ffb80798d"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png",
+        "sha256": "0cf43697d038dea9944afa0e9e8f72c88a121b512102acfb96fdbf12571cf194"
+      },
+      {
+        "name": "Payload/PGDribbble.app/SC_Info/PGDribbble.sinf",
+        "sha256": "11adcd1f597bb85bc4e0db8bac82067cf98bdfdc0f1f6ee874a56a61fa1d53f1"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Info.plist",
+        "sha256": "1a2257ed5da7f0d6f98d70636b170f909c293ed99795589e5a72e75ec9715247"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/Info.plist",
+        "sha256": "1a2257ed5da7f0d6f98d70636b170f909c293ed99795589e5a72e75ec9715247"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/Info.plist",
+        "sha256": "1a2257ed5da7f0d6f98d70636b170f909c293ed99795589e5a72e75ec9715247"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AWFileHash.bundle/Info.plist",
+        "sha256": "1a2257ed5da7f0d6f98d70636b170f909c293ed99795589e5a72e75ec9715247"
+      },
+      {
+        "name": "Payload/PGDribbble.app/JBMain.storyboardc/Info.plist",
+        "sha256": "1a2257ed5da7f0d6f98d70636b170f909c293ed99795589e5a72e75ec9715247"
+      },
+      {
+        "name": "Payload/PGDribbble.app/lookup_soft_elegance_1.png",
+        "sha256": "1e0556751e57234032a036c55b0e321e758d00db8321f1f985dee49d625582de"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon40x40~ipad.png",
+        "sha256": "1e3e18cfca33d2bffab24b01b134e851b96f87671c7b0c2e1bf9f618984b6c45"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon60x60@3x.png",
+        "sha256": "2aa340fd9974cff6b09717b669ce860f7d77f3e75d8475ec9989967ae70da850"
+      },
+      {
+        "name": "Payload/PGDribbble.app/lookup_soft_elegance_2.png",
+        "sha256": "2b5203c2ca83632b99d831f995be0165fbcf7fb5fd96612ddf04d07fe23405ce"
+      },
+      {
+        "name": "Payload/PGDribbble.app/pgloader.x",
+        "sha256": "34178d83c7dc02ef9c388ff082ca2189d53b837981aa1d3239f4e386abb4c546"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon29x29@2x.png",
+        "sha256": "37b2b6fae0aeaae72d77e67124902d19a31e5d822f2bf020ae153d132694b712"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon29x29@2x~ipad.png",
+        "sha256": "37b2b6fae0aeaae72d77e67124902d19a31e5d822f2bf020ae153d132694b712"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Assets.car",
+        "sha256": "421f03d9673023c64ac608184bd599445b579114c6a4ce4ae4d03529cb30adb8"
+      },
+      {
+        "name": "Payload/PGDribbble.app/_CodeSignature/CodeResources",
+        "sha256": "4eb3dac37e3732350f75bd2b73afbdf4167310fda0a168f1c15288a52db5d191"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon29x29@3x.png",
+        "sha256": "6bbbd8cf6ff005c7d59f5d870d92670d7b6e98bc721d57b514798e7ded479691"
+      },
+      {
+        "name": "Payload/PGDribbble.app/SC_Info/PGDribbble.supf",
+        "sha256": "7a370d9f7b06726799a6402324b637accebaff179bceab0d149a2eede77e0fe7"
+      },
+      {
+        "name": "Payload/PGDribbble.app/JBMain.storyboardc/UIViewController-6jL-jZ-Uk8.nib",
+        "sha256": "7d4beab35357aad3f860ae1894abad9b40e17bf1aebc11799b04bd4615b4018f"
+      },
+      {
+        "name": "iTunesMetadata.plist",
+        "sha256": "7edb63a5c6df7e3a0c7fa4f2b3106885894ced3ee7128dbd85ffac4005b4e5a7"
+      },
+      {
+        "name": "Payload/PGDribbble.app/lookup_amatorka.png",
+        "sha256": "81191b72c638c1d3cca1f52ae0b89c84334123b764cee9a501cdc31c3d0707cc"
+      },
+      {
+        "name": "Payload/PGDribbble.app/SC_Info/PGDribbble.supp",
+        "sha256": "822516ecd156cbd49ce1e989306f4e16f465f2ce983c1fa66cf66637c75b7a41"
+      },
+      {
+        "name": "Payload/PGDribbble.app/PkgInfo",
+        "sha256": "82502191c9484b04d685374f9879a0066069c49b8acae7a04b01d38d07e8eca0"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib",
+        "sha256": "840f6f0d9f8956eabc12dbcaf713157188e084b4028a30f8876a3a9c2f7c6b53"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon60x60@2x.png",
+        "sha256": "8ab1bab7c896172014ad04a46c046427cc376be4149fcbe601e9f66fbf1cc4d6"
+      },
+      {
+        "name": "Payload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png",
+        "sha256": "8e22e524915dcb6fc87a8494cdb8482eec2f85be752f6941e19281e358336730"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon40x40@3x.png",
+        "sha256": "9469d12fdbdfe7f8027dd7ece09955fcc747bae64a8a83c4a3420dfcdf35d230"
+      },
+      {
+        "name": "META-INF/com.apple.FixedZipMetadata.bin",
+        "sha256": "974290d9b22bcaba75114a2b9b91f263b1e90a721438adc099c134b814d2f932"
+      },
+      {
+        "name": "Payload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings",
+        "sha256": "97b08b4ddd7174577a774483ace952b058ffd34767a0fb9901d2cd38b4a982ab"
+      },
+      {
+        "name": "Payload/PGDribbble.app/en.lproj/InfoPlist.strings",
+        "sha256": "97b08b4ddd7174577a774483ace952b058ffd34767a0fb9901d2cd38b4a982ab"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/UIViewController-wok-KP-MBA.nib",
+        "sha256": "9ee68d72ba69392a6b424e8300960257d2bc9cb0059e2e09ae65b4e2f702f926"
+      },
+      {
+        "name": "Payload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png",
+        "sha256": "a038d61dcc49d2f44376a85dd9c2906e0138573a249e47794bc4c3ea47db6270"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/wok-KP-MBA-view-0rF-UW-y8B.nib",
+        "sha256": "afe7a9e6cd4aafa75c9cf6e6af66ef1f67b1b34466458abd72d02f3967013cff"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon29x29~ipad.png",
+        "sha256": "b748c25929931048aa5793ceab80e061865ec9a29eb5d7afb877442774e27a8b"
+      },
+      {
+        "name": "Payload/PGDribbble.app/JBMain.storyboardc/6jL-jZ-Uk8-view-5ie-Jc-Kyv.nib",
+        "sha256": "b94c4f9c5222d9cb21f93b6ba13fae6146c94bd70dedc2eaf14a967e7bf075b7"
+      },
+      {
+        "name": "iTunesArtwork",
+        "sha256": "c6be9150f292dec603352c593d85b583dcaf1bd946627be8b7103b69bdded0c7"
+      },
+      {
+        "name": "Payload/PGDribbble.app/lookup.png",
+        "sha256": "c7e00507981bc06c2dded864c622fbadaae8e189cb64055c08606f2ce0cc4771"
+      },
+      {
+        "name": "Payload/PGDribbble.app/SC_Info/Manifest.plist",
+        "sha256": "cf16e58b156012ad01b8dc1c7aec02d2a750b34bbc3d616b108873f0ea96e160"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon76x76~ipad.png",
+        "sha256": "d197244c52d657f8b390675c11239048e709a4ebc33cb531354520f786d41916"
+      },
+      {
+        "name": "META-INF/com.apple.ZipMetadata.plist",
+        "sha256": "dc2cd983eafbcae888db9a6eeb05b586df6b20bee24ac3c6f330b1808411dfbd"
+      },
+      {
+        "name": "Payload/PGDribbble.app/AppIcon76x76@2x~ipad.png",
+        "sha256": "de1984b69f020f5d2b9af39ad765cd7a8a1e9b09a89e08715ac2f6edca4ddad4"
+      },
+      {
+        "name": "Payload/PGDribbble.app/LaunchImage-700@2x.png",
+        "sha256": "e06ff3da9aca45ab4eda6facb4c780bbd24fb5ebfabc51a6ab5596d125b9a9dd"
+      },
+      {
+        "name": "Payload/PGDribbble.app/PGDribbble",
+        "sha256": "ef59df1ec0e25fac2254c937597adbaabb4738fb11e73b2874d915c46c4686b2"
+      },
+      {
+        "name": "Payload/PGDribbble.app/LaunchImage-800-667h@2x.png",
+        "sha256": "fb8df3b2bfb6728b1f07e94fba610b4a112b85eaf269cdcb9c88433d1c9bea8c"
+      },
+      {
+        "name": "Payload/PGDribbble.app/lookup_miss_etikate.png",
+        "sha256": "fc528090e8ad6a66cf5fc4d8b4ae2a5ce1c8711733ed52e7fdb724756125ccce"
+      },
+      {
+        "name": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/contentViewController.nib",
+        "sha256": "ff3dd4fd0d314472d790428e72035d4467dafac31aeb36d163dd0a5a824e8832"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 9,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "META-INF/com.apple.FixedZipMetadata.bin"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "META-INF/com.apple.ZipMetadata.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AWFileHash.bundle/Info.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon29x29@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon29x29@2x~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon29x29@3x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon29x29~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon40x40@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon40x40@2x~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon40x40@3x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon40x40~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon60x60@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon60x60@3x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon76x76@2x~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon76x76~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Assets.car"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/Info.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/Info.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/UIViewController-wok-KP-MBA.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/contentViewController.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Base.lproj/Main.storyboardc/wok-KP-MBA-view-0rF-UW-y8B.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/Info.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/JBMain.storyboardc/6jL-jZ-Uk8-view-5ie-Jc-Kyv.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/JBMain.storyboardc/Info.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/JBMain.storyboardc/UIViewController-6jL-jZ-Uk8.nib"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/LaunchImage-700-568h@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/LaunchImage-700@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/LaunchImage-800-667h@2x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/PGDribbble"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/PGDribbble"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/PkgInfo"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/SC_Info/Manifest.plist"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/SC_Info/PGDribbble.sinf"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/SC_Info/PGDribbble.supf"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/SC_Info/PGDribbble.supp"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/_CodeSignature/CodeResources"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/en.lproj/InfoPlist.strings"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/lookup.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/lookup_amatorka.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/lookup_miss_etikate.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/lookup_soft_elegance_1.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/lookup_soft_elegance_2.png"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/pgloader.x"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "Payload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "iTunesArtwork"
+        },
+        {
+          "heur_id": 9,
+          "signatures": [],
+          "value": "iTunesMetadata.plist"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
