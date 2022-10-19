@@ -189,8 +189,6 @@ class Extract(ServiceBase):
             extracted, password_protected = self.extract_zip(request)
         elif request.file_type in ["archive/zip", "archive/7-zip"]:
             extracted, password_protected = self.extract_zip(request)
-            if not extracted:
-                extracted = self.repair_zip(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 9
@@ -214,6 +212,10 @@ class Extract(ServiceBase):
         else:
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 19
+
+        # For the time being, always try repair_zip, and see if we have any results
+        if not extracted:
+            extracted = self.repair_zip(request)
 
         extracted_files = []
         for child in extracted:
