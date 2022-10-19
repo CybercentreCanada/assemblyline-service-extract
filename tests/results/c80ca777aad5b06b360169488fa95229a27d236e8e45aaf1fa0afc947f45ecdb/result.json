@@ -1,0 +1,108 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "vbe_decoded",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 11,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "vbe_decoded"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "vbe_decoded",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
+            ],
+            "name": {
+              "extracted": [
+                "vbe_decoded"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "vbe_decoded",
+        "sha256": "79d29ccfcb181a332ab0f83052a3e18ea850ab5df25df4e44d86283bb2024ff2"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 11,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 11,
+          "signatures": [],
+          "value": "vbe_decoded"
+        },
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "vbe_decoded"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

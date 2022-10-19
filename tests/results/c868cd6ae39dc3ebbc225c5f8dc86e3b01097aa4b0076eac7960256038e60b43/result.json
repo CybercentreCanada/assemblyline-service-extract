@@ -1,0 +1,108 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "README",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 7,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "README"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "README",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
+            ],
+            "name": {
+              "extracted": [
+                "README"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "README",
+        "sha256": "2d8e4c402e9bf45658eeca445f3410a320f73e3a43caf778a9f1187b6dc41ab2"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 7,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 7,
+          "signatures": [],
+          "value": "README"
+        },
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "README"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
