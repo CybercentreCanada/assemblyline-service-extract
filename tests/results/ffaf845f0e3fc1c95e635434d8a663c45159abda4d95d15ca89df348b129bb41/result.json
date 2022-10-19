@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "classes.dex\njadx/core/clsp/core.jcst\nassets/aaptz\nassets/http.zip\nassets/patch_my_font.zip\nassets/mycp\nassets/patch_mem_editor.zip\nassets/android.zip\nassets/patch_data_editor.zip\nassets/aapt\nassets/patch_launcher_toast.zip\nassets/patch_script_example.zip\nassets/viewsource.css\nassets/patch_bypass_sigcheck.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/testkey.pk8\nassets/patch_new_entrance.zip\nassets/patch_app_rename.zip\nassets/editorkey.pk8\nres/raw-v22/md_sans.ttf\nres/raw/oldhelp.htm\nres/raw/editor_help.htm\nres/raw/pngeditor_help.htm\nres/raw/help.htm\nres/raw/about_patch.htm\nres/raw/about_translate_plugin.htm\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -17,8 +17,55 @@
           "score_map": {},
           "signatures": {}
         },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "classes.dex",
+                "jadx/core/clsp/core.jcst",
+                "assets/aaptz",
+                "assets/http.zip",
+                "assets/patch_my_font.zip",
+                "assets/mycp",
+                "assets/patch_mem_editor.zip",
+                "assets/android.zip",
+                "assets/patch_data_editor.zip",
+                "assets/aapt",
+                "assets/patch_launcher_toast.zip",
+                "assets/patch_script_example.zip",
+                "assets/viewsource.css",
+                "assets/patch_bypass_sigcheck.zip",
+                "assets/patch_bypass_sigcheck.old.zip",
+                "assets/testkey.pk8",
+                "assets/patch_new_entrance.zip",
+                "assets/patch_app_rename.zip",
+                "assets/editorkey.pk8",
+                "res/raw-v22/md_sans.ttf",
+                "res/raw/oldhelp.htm",
+                "res/raw/editor_help.htm",
+                "res/raw/pngeditor_help.htm",
+                "res/raw/help.htm",
+                "res/raw/about_patch.htm",
+                "res/raw/about_translate_plugin.htm",
+                "lib/arm64-v8a/libsyscheck.so",
+                "lib/armeabi-v7a/libsyscheck.so",
+                "lib/armeabi/libsyscheck.so"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 29 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "resources.arsc\nAndroidManifest.xml\nsmali.properties\nbaksmali.properties\nandroid/attrs.xml\nandroid/attrs_manifest.xml\norg/antlr/stringtemplate/language/TemplateParserTokenTypes.txt\norg/antlr/stringtemplate/language/AngleBracketTemplateLexerTokenTypes.txt\norg/antlr/stringtemplate/language/ActionParserTokenTypes.txt\norg/antlr/stringtemplate/language/GroupParserTokenTypes.txt\norg/antlr/stringtemplate/language/InterfaceParserTokenTypes.txt\norg/antlr/stringtemplate/language/ActionEvaluatorTokenTypes.txt\norg/jf/smali/smaliParser.tokens\norg/jf/smali/smaliTreeWalker.tokens\nassets/editorkey.x509.pem\nassets/smali-NOTICE\nassets/dummy_jpg.jpg\nassets/dummy.9.png\nassets/patch_example\nassets/testkey.x509.pem\nassets/LICENSE.txt\nassets/dummy_png.png\nassets/syntax/smali.xml\nassets/syntax/txt.xml\nassets/syntax/js.xml\n...",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
         "tags": {},
-        "title_text": "Successfully extracted 29 files out of 1307. The other 1278 files were safelisted",
+        "title_text": "Successfully extracted 1278 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -189,9 +236,19 @@
       ],
       "file.name.extracted": [
         {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/aapt"
+        },
+        {
           "heur_id": null,
           "signatures": [],
           "value": "assets/aapt"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/aaptz"
         },
         {
           "heur_id": null,
@@ -199,9 +256,99 @@
           "value": "assets/aaptz"
         },
         {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/android.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/editorkey.pk8"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/http.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/mycp"
+        },
+        {
           "heur_id": null,
           "signatures": [],
           "value": "assets/mycp"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_app_rename.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_bypass_sigcheck.old.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_bypass_sigcheck.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_data_editor.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_launcher_toast.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_mem_editor.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_my_font.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_new_entrance.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_script_example.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/testkey.pk8"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/viewsource.css"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "classes.dex"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "jadx/core/clsp/core.jcst"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "lib/arm64-v8a/libsyscheck.so"
         },
         {
           "heur_id": null,
@@ -209,14 +356,59 @@
           "value": "lib/arm64-v8a/libsyscheck.so"
         },
         {
-          "heur_id": null,
+          "heur_id": 4,
           "signatures": [],
           "value": "lib/armeabi-v7a/libsyscheck.so"
         },
         {
           "heur_id": null,
           "signatures": [],
+          "value": "lib/armeabi-v7a/libsyscheck.so"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
           "value": "lib/armeabi/libsyscheck.so"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lib/armeabi/libsyscheck.so"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw-v22/md_sans.ttf"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/about_patch.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/about_translate_plugin.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/editor_help.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/help.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/oldhelp.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/pngeditor_help.htm"
         }
       ]
     },

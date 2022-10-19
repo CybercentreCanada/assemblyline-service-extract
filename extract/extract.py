@@ -43,7 +43,6 @@ from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxdecode import xxcode_from_file
 from extract.ext.xxxswf import xxxswf
 
-DEBUG = False
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
@@ -231,9 +230,10 @@ class Extract(ServiceBase):
                     ResultSection(
                         f"This file contains a total of {len(extracted)} extracted files, "
                         f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
-                        "None of the files were extracted."
+                        "Some files where not extracted."
                     )
                 )
+                break
 
         if extracted_files:
             if password_protected:
@@ -275,14 +275,17 @@ class Extract(ServiceBase):
                 section.add_tag("file.name.extracted", extracted_file)
 
         if safelisted_extracted:
+            MAX_SAFELISTED_SHOW = 25
             section = ResultSection(
                 f"Successfully extracted {len(safelisted_extracted)} "
                 f"file{'s' if len(safelisted_extracted) > 1 else ''} "
                 f"that were safelisted.",
                 parent=request.result,
             )
-            for f in safelisted_extracted:
-                section.add_line(safelisted_extracted)
+            for f in safelisted_extracted[:MAX_SAFELISTED_SHOW]:
+                section.add_line(f)
+            if len(safelisted_extracted) > MAX_SAFELISTED_SHOW:
+                section.add_line("...")
 
         if symlinks:
             section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found")
@@ -589,8 +592,9 @@ class Extract(ServiceBase):
             try:
                 pdf = Pdf.open(BytesIO(pdf_content), password=password)
                 # If we're able to unlock the PDF, drop the unlocked version for analysis
-                fd = tempfile.NamedTemporaryFile(delete=False)
-                pdf.save(fd)
+                fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+                # We can't re-use the original IDs, but we'll use a static one (PI) for the last modified timestamp
+                pdf.save(fd, static_id=True)
                 fd.seek(0)
                 self.password_used.append(password)
                 return [[fd.name, request.file_name, sys._getframe().f_code.co_name]], True
@@ -624,7 +628,7 @@ class Extract(ServiceBase):
             # Extract embedded contents in PDF
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
-                    fd = tempfile.NamedTemporaryFile(delete=False)
+                    fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                     fd.write(pdf.attachments[key].get_file().read_bytes())
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
@@ -995,8 +999,6 @@ class Extract(ServiceBase):
         try:
             swf = xxxswf(self.log)
             files_found = swf.extract(request.file_path, output_path)
-        except ImportError:
-            self.log.exception("Import error: pylzma library not installed.")
         except Exception:
             self.log.exception("Error occurred while trying to decompress swf...")
 
@@ -1183,24 +1185,18 @@ class Extract(ServiceBase):
             file_info = self.identify.ident(byte_block, len(byte_block), cur_file[0])
             for exp in safelisted_tags_re:
                 if exp.search(file_info["type"]):
-                    if DEBUG:
-                        print("T", file_info["type"], file_info["ascii"], cur_file[0])
                     to_add = False
                     safelisted_extracted.append(cur_file[1])
 
             if to_add and file_info["mime"]:
                 for exp in safelisted_mime_re:
                     if exp.search(file_info["mime"]):
-                        if DEBUG:
-                            print("M", file_info["mime"], file_info["ascii"], cur_file[0])
                         to_add = False
                         safelisted_extracted.append(cur_file[1])
 
             if to_add:
                 for ext in safelisted_fname_regex:
                     if ext.search(cur_file[0]):
-                        if DEBUG:
-                            print("F", ext.pattern, file_info["ascii"], cur_file[0])
                         to_add = False
                         safelisted_extracted.append(cur_file[1])
 
@@ -1369,13 +1365,8 @@ class Extract(ServiceBase):
                 self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
                 # It is technically not required to sort them, but it makes the output of the module predictable
                 if "passwords" in request.temp_submission_data:
-                    if request.temp_submission_data["passwords"] is None:
-                        request.temp_submission_data["passwords"] = []
-                    request.temp_submission_data["passwords"] = sorted(
-                        list(set(request.temp_submission_data["passwords"]).update(new_passwords))
-                    )
-                else:
-                    request.temp_submission_data["passwords"] = sorted(list(new_passwords))
+                    new_passwords.update(set(request.temp_submission_data["passwords"]))
+                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
         return extracted
 
