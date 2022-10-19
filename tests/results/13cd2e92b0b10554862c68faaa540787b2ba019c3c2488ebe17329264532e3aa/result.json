@@ -1,0 +1,62 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "af89e5aec0dd6ea307f9eafe06badd3a.swf",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 8,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "af89e5aec0dd6ea307f9eafe06badd3a.swf"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "af89e5aec0dd6ea307f9eafe06badd3a.swf",
+        "sha256": "d7459fdef409c7183d3064fd9218d0e1b9f9ea69ec7f2a31d2e7a031e19c5a2a"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 8,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 8,
+          "signatures": [],
+          "value": "af89e5aec0dd6ea307f9eafe06badd3a.swf"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
