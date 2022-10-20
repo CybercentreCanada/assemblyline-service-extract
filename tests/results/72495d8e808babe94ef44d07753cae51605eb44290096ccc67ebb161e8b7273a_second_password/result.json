@@ -34,7 +34,7 @@
       },
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "file2.txt",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -47,6 +47,13 @@
           "signatures": {}
         },
         "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "file2.txt"
+              ]
+            }
+          },
           "info": {
             "password": [
               "BB"
@@ -93,6 +100,11 @@
           "heur_id": 12,
           "signatures": [],
           "value": "file1.txt"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "file2.txt"
         }
       ],
       "info.password": [

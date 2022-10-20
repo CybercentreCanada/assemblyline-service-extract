@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "mcmod.info\ndummyThing\ngg/essential/loader/stage0/stage1.jar",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -17,8 +17,29 @@
           "score_map": {},
           "signatures": {}
         },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "mcmod.info",
+                "dummyThing",
+                "gg/essential/loader/stage0/stage1.jar"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "LICENSE\nclub/thom/tfm/TFM.class\nclub/thom/tfm/packets/ChatMessageSendHandler.class\nclub/thom/tfm/models/Reason.class\nclub/thom/tfm/models/UltimateEnchant.class\nclub/thom/tfm/models/AuctionData.class\nclub/thom/tfm/models/LastAuctionReason.class\nclub/thom/tfm/models/messages/Public$UltiEnchantWithLevel$Builder.class\nclub/thom/tfm/models/messages/Public$UltiEnchantWithLevelOrBuilder.class\nclub/thom/tfm/models/messages/Public$UltiEnchantWithLevel$1.class\nclub/thom/tfm/models/messages/Public$ServerMessageOrBuilder.class\nclub/thom/tfm/models/messages/Public$AuthResponse.class\nclub/thom/tfm/models/messages/Public$ChatServerMessage$MessageCase.class\nclub/thom/tfm/models/messages/Public$ChatMessage$Builder.class\nclub/thom/tfm/models/messages/Public$InternalData$1.class\nclub/thom/tfm/models/messages/Public$ServerMessage$1.class\nclub/thom/tfm/models/messages/Public$ServerMessage.class\nclub/thom/tfm/models/messages/Public$InternalData$Builder.class\nclub/thom/tfm/models/messages/Public$UltiEnchantWithLevel.class\nclub/thom/tfm/models/messages/Public$ChatServerMessage$1.class\nclub/thom/tfm/models/messages/Public$AuthResponseOrBuilder.class\nclub/thom/tfm/models/messages/Public$ClientMessage$1.class\nclub/thom/tfm/models/messages/Public$ClientMessageOrBuilder.class\nclub/thom/tfm/models/messages/Public$AuthRequest$1.class\nclub/thom/tfm/models/messages/Public$ChatServerMessage.class\n...",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
         "tags": {},
-        "title_text": "Successfully extracted 3 files out of 871. The other 868 files were safelisted",
+        "title_text": "Successfully extracted 868 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -92,9 +113,24 @@
       ],
       "file.name.extracted": [
         {
+          "heur_id": 3,
+          "signatures": [],
+          "value": "dummyThing"
+        },
+        {
+          "heur_id": 3,
+          "signatures": [],
+          "value": "gg/essential/loader/stage0/stage1.jar"
+        },
+        {
           "heur_id": 16,
           "signatures": [],
           "value": "gg/essential/loader/stage0/stage1.jar"
+        },
+        {
+          "heur_id": 3,
+          "signatures": [],
+          "value": "mcmod.info"
         }
       ]
     },
