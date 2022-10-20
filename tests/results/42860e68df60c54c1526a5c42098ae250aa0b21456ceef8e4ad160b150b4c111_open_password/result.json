@@ -5,14 +5,14 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59",
+        "body": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 6,
+          "heur_id": 7,
           "score": 0,
           "score_map": {},
           "signatures": {}
@@ -21,17 +21,17 @@
           "file": {
             "name": {
               "extracted": [
-                "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59"
+                "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111"
               ]
             }
           },
           "info": {
             "password": [
-              "2281337"
+              "openpass"
             ]
           }
         },
-        "title_text": "Successfully extracted 1 file using password: 2281337",
+        "title_text": "Successfully extracted 1 file using password: openpass",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -39,8 +39,8 @@
   "files": {
     "extracted": [
       {
-        "name": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59",
-        "sha256": "0da89654a0de2e8742a8390c2b5f43187791b66bf500bca1be4b264afa1fa9d9"
+        "name": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111",
+        "sha256": "1f8dc7a7393e06d6b2bb02eed5413a06b0b78bab671beda39d71dc0e45dc119e"
       }
     ],
     "supplementary": []
@@ -49,23 +49,23 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 6,
+        "heur_id": 7,
         "signatures": []
       }
     ],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 6,
+          "heur_id": 7,
           "signatures": [],
-          "value": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59"
+          "value": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111"
         }
       ],
       "info.password": [
         {
-          "heur_id": 6,
+          "heur_id": 7,
           "signatures": [],
-          "value": "2281337"
+          "value": "openpass"
         }
       ]
     },

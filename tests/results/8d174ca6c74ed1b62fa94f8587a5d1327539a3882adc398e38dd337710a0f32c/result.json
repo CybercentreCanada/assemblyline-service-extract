@@ -5,6 +5,30 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": null,
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 14,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Uncommon format: archive/ace"
+            ]
+          }
+        },
+        "title_text": "Uncommon format: archive/ace",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": "Order_list001.exe",
         "body_format": "TEXT",
         "classification": "TLP:W",
@@ -56,30 +80,6 @@
           }
         },
         "title_text": "Archive file with single executable inside. Potentially malicious...",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": null,
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 14,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
-        "tags": {
-          "file": {
-            "behavior": [
-              "Uncommon format: archive/ace"
-            ]
-          }
-        },
-        "title_text": "Uncommon format: archive/ace",
         "zeroize_on_tag_safe": false
       }
     ]

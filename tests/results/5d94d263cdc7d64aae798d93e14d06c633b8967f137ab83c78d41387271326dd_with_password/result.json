@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "WinMM.Net.dll\nGeoIP.dat\nnjRAT v0.7d.exe\nStub.manifest\nstub.il\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/sc2.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/mic.dll",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -18,6 +18,23 @@
           "signatures": {}
         },
         "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "WinMM.Net.dll",
+                "GeoIP.dat",
+                "njRAT v0.7d.exe",
+                "Stub.manifest",
+                "stub.il",
+                "Plugin/cam.dll",
+                "Plugin/ch.dll",
+                "Plugin/sc2.dll",
+                "Plugin/plg.dll",
+                "Plugin/pw.dll",
+                "Plugin/mic.dll"
+              ]
+            }
+          },
           "info": {
             "password": [
               "rekings.com"
@@ -126,9 +143,24 @@
       ],
       "file.name.extracted": [
         {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "GeoIP.dat"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/cam.dll"
+        },
+        {
           "heur_id": null,
           "signatures": [],
           "value": "Plugin/cam.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/ch.dll"
         },
         {
           "heur_id": null,
@@ -136,9 +168,19 @@
           "value": "Plugin/ch.dll"
         },
         {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/mic.dll"
+        },
+        {
           "heur_id": null,
           "signatures": [],
           "value": "Plugin/mic.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/plg.dll"
         },
         {
           "heur_id": null,
@@ -146,9 +188,19 @@
           "value": "Plugin/plg.dll"
         },
         {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/pw.dll"
+        },
+        {
           "heur_id": null,
           "signatures": [],
           "value": "Plugin/pw.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/sc2.dll"
         },
         {
           "heur_id": null,
@@ -156,14 +208,34 @@
           "value": "Plugin/sc2.dll"
         },
         {
-          "heur_id": null,
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Stub.manifest"
+        },
+        {
+          "heur_id": 10,
           "signatures": [],
           "value": "WinMM.Net.dll"
         },
         {
           "heur_id": null,
           "signatures": [],
+          "value": "WinMM.Net.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
           "value": "njRAT v0.7d.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "njRAT v0.7d.exe"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "stub.il"
         },
         {
           "heur_id": null,

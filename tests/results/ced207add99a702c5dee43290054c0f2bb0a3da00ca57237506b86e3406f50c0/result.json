@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": null,
+        "body": "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -18,6 +18,13 @@
           "signatures": {}
         },
         "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0"
+              ]
+            }
+          },
           "info": {
             "password": [
               "VelvetSweatshop"
@@ -47,6 +54,13 @@
       }
     ],
     "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 6,
+          "signatures": [],
+          "value": "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0"
+        }
+      ],
       "info.password": [
         {
           "heur_id": 6,
