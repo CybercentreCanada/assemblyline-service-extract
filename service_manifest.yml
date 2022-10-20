@@ -148,10 +148,10 @@ heuristics:
     description: Some files in the archive were found with the Hidden attribute on.
 
   - heur_id: 19
-    name: Unexpected type
+    name: Unexpected container
     score: 0
     filetype: "*"
-    description: Files were extracted from flash container.
+    description: Files were extracted from an unexpected container.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
