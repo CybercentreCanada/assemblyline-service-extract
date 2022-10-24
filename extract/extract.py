@@ -1279,7 +1279,7 @@ class Extract(ServiceBase):
         for embedded in embedded_files:
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
-            if self.identify.fileinfo(out.name)["type"] == "image/png":
+            if self.identify.fileinfo(out.name)["type"].startswith("image/"):
                 if image_section is None:
                     image_section = ResultImageSection(request, "OneNote images", parent=request.result)
                 image_section.add_image(out.name, hashlib.sha256(embedded).hexdigest(), "Extracted image")
