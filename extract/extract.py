@@ -21,6 +21,7 @@ from assemblyline_v4_service.common.request import MaxExtractedExceeded, Service
 from assemblyline_v4_service.common.result import (
     Heuristic,
     Result,
+    ResultImageSection,
     ResultSection,
     ResultTableSection,
     ResultTextSection,
@@ -1274,9 +1275,15 @@ class Extract(ServiceBase):
             data,
         )
         extracted = []
+        image_section = None
         for embedded in embedded_files:
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
+            if self.identify.fileinfo(out.name)["type"] == "image/png":
+                if image_section is None:
+                    image_section = ResultImageSection(request, "OneNote images", parent=request.result)
+                image_section.add_image(out.name, hashlib.sha256(embedded).hexdigest(), "Extracted image")
+                continue
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), sys._getframe().f_code.co_name])
         return extracted
 
