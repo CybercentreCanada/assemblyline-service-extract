@@ -28,7 +28,6 @@ from assemblyline_v4_service.common.result import (
 )
 from assemblyline_v4_service.common.utils import set_death_signal
 from bs4 import BeautifulSoup
-from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
@@ -185,7 +184,7 @@ class Extract(ServiceBase):
             extracted = self.extract_pdf(request)
             summary_section_heuristic = 7
         elif request.file_type in ["code/hta", "code/html"]:
-            extracted = self.extract_script(request)
+            extracted = self.extract_jscript(request)
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
         elif request.file_type == "archive/rar":
@@ -423,8 +422,7 @@ class Extract(ServiceBase):
 
         out_name, password = res
         self.password_used.append(password)
-        display_name = request.file_name
-        return [[out_name, display_name, sys._getframe().f_code.co_name]], True
+        return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
     def _zip_submit_extracted(self, request: ServiceRequest, folder_path: str, caller: str):
         """Go over a folder, sanitize file/folder names and return a list of filtered files
@@ -1280,7 +1278,7 @@ class Extract(ServiceBase):
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), sys._getframe().f_code.co_name])
         return extracted
 
-    def extract_script(self, request: ServiceRequest):
+    def extract_jscript(self, request: ServiceRequest):
         """Extract embedded content from HTML documents
 
         Args:
@@ -1296,7 +1294,6 @@ class Extract(ServiceBase):
         soup = BeautifulSoup(data, features="html5lib")
         scripts = soup.findAll("script")
         extracted = []
-        aggregated_js_script = None
         for script in scripts:
             # Make sure there is actually a body to the script
             body = script.string
@@ -1324,54 +1321,14 @@ class Extract(ServiceBase):
                     self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
-            elif script.get("type", "").lower() in ["", "text/javascript"]:
+            elif script.get("type", "").lower() not in ["", "text/javascript"]:
                 # If there is no "type" attribute specified in a script element, then the default assumption is
                 # that the body of the element is Javascript
-                # Save the script and attach it as extracted
-                encoded_script = body.encode()
-                if not aggregated_js_script:
-                    aggregated_js_script = tempfile.NamedTemporaryFile(
-                        dir=self.working_directory, delete=False, mode="ab"
-                    )
-                aggregated_js_script.write(encoded_script + b"\n")
-            else:
-                # Save the script and attach it as extracted
+                # We don't want to handle those, but any other special type, we can extract
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), sys._getframe().f_code.co_name])
-
-        if aggregated_js_script:
-            onloads = soup.body.get_attribute_list("onload")
-            for onload in onloads:
-                if onload:
-                    aggregated_js_script.write(b"\n" + onload.encode() + b"\n")
-            extracted.append(
-                [aggregated_js_script.name, hashlib.sha256(encoded_script).hexdigest(), sys._getframe().f_code.co_name]
-            )
-
-        # Extract password from visible text, taken from https://stackoverflow.com/a/1983219
-        def tag_visible(element):
-            if element.parent.name in ["style", "script", "head", "title", "meta", "[document]"]:
-                return False
-            if isinstance(element, Comment):
-                return False
-            return True
-
-        visible_texts = [x for x in filter(tag_visible, soup.findAll(text=True))]
-
-        if any(any(WORD in line.lower() for WORD in PASSWORD_WORDS) for line in visible_texts):
-            new_passwords = set()
-
-            for line in visible_texts:
-                new_passwords.update(set(extract_passwords(line)))
-
-            if new_passwords:
-                self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
-                # It is technically not required to sort them, but it makes the output of the module predictable
-                if "passwords" in request.temp_submission_data:
-                    new_passwords.update(set(request.temp_submission_data["passwords"]))
-                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
         return extracted
 

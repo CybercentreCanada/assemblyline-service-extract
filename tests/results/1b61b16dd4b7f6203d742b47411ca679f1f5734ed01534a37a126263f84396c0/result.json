@@ -2,77 +2,15 @@
   "extra": {
     "drop_file": false,
     "score": 0,
-    "sections": [
-      {
-        "auto_collapse": false,
-        "body": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 1,
-          "score": 0,
-          "score_map": {},
-          "signatures": {}
-        },
-        "tags": {
-          "file": {
-            "name": {
-              "extracted": [
-                "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
-              ]
-            }
-          }
-        },
-        "title_text": "Successfully extracted 1 file",
-        "zeroize_on_tag_safe": false
-      }
-    ]
+    "sections": []
   },
   "files": {
-    "extracted": [
-      {
-        "name": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57",
-        "sha256": "fdb599ee616fa643820cfaeb9afe561fe5915447ccc80f7d63d85573f0440237"
-      }
-    ],
+    "extracted": [],
     "supplementary": []
   },
   "results": {
-    "heuristics": [
-      {
-        "attack_ids": [],
-        "heur_id": 1,
-        "signatures": []
-      }
-    ],
-    "tags": {
-      "file.name.extracted": [
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "9e04c68dc1f01b89dc43873476fa5aab105bf675e1a53e6e838055ee9915ba57"
-        }
-      ]
-    },
-    "temp_submission_data": {
-      "passwords": [
-        "",
-        "Download",
-        "Download-completed",
-        "Password",
-        "Password of file: U523",
-        "Successfully",
-        "U523",
-        "completed",
-        "downloaded",
-        "downloaded.",
-        "file",
-        "file:",
-        "of"
-      ]
-    }
+    "heuristics": [],
+    "tags": {},
+    "temp_submission_data": {}
   }
 }
