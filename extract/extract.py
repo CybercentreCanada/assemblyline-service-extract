@@ -1242,6 +1242,7 @@ class Extract(ServiceBase):
             launchable_extracted = []
             for extracted in request.extracted:
                 if is_launchable(extracted):
+                    print(f"{extracted['name']} : {extracted['sha256']}")
                     launchable_extracted.append(extracted)
             if launchable_extracted:
                 new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
