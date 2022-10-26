@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "WinMM.Net.dll\nGeoIP.dat\nnjRAT v0.7d.exe\nStub.manifest\nstub.il\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/sc2.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/mic.dll",
+        "body": "GeoIP.dat\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nStub.manifest\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,17 +21,17 @@
           "file": {
             "name": {
               "extracted": [
-                "WinMM.Net.dll",
                 "GeoIP.dat",
-                "njRAT v0.7d.exe",
-                "Stub.manifest",
-                "stub.il",
                 "Plugin/cam.dll",
                 "Plugin/ch.dll",
-                "Plugin/sc2.dll",
+                "Plugin/mic.dll",
                 "Plugin/plg.dll",
                 "Plugin/pw.dll",
-                "Plugin/mic.dll"
+                "Plugin/sc2.dll",
+                "Stub.manifest",
+                "WinMM.Net.dll",
+                "njRAT v0.7d.exe",
+                "stub.il"
               ]
             }
           },
@@ -46,7 +46,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "WinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/sc2.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/mic.dll",
+        "body": "Plugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -58,15 +58,15 @@
             ],
             "name": {
               "extracted": [
-                "WinMM.Net.dll",
-                "njRAT v0.7d.exe",
-                "stub.il",
                 "Plugin/cam.dll",
                 "Plugin/ch.dll",
-                "Plugin/sc2.dll",
+                "Plugin/mic.dll",
                 "Plugin/plg.dll",
                 "Plugin/pw.dll",
-                "Plugin/mic.dll"
+                "Plugin/sc2.dll",
+                "WinMM.Net.dll",
+                "njRAT v0.7d.exe",
+                "stub.il"
               ]
             }
           }

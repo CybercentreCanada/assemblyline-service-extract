@@ -220,7 +220,7 @@ class Extract(ServiceBase):
             extracted = self.repair_zip(request)
 
         extracted_files = []
-        for child in extracted:
+        for child in sorted(extracted, key=lambda x: x[1]):
             try:
                 if os.path.islink(child[0]):
                     link_desc = f"{child[1]} -> {os.readlink(child[0])}"
