@@ -225,7 +225,12 @@ class Extract(ServiceBase):
                 if os.path.islink(child[0]):
                     link_desc = f"{child[1]} -> {os.readlink(child[0])}"
                     symlinks.append(link_desc)
-                elif request.add_extracted(*child, safelist_interface=self.api_interface):
+                elif request.add_extracted(
+                    path=child[0],
+                    name=child[1],
+                    description=f"Extracted using {child[2]}",
+                    safelist_interface=self.api_interface,
+                ):
                     extracted_files.append(child[1])
                 else:
                     safelisted_extracted.append(child[1])
