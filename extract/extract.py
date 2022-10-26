@@ -518,8 +518,11 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
                 if not skip:
-                    shutil.move(os.path.join(root, f), os.path.join(extracted_path, f))
-                    extracted_children.append([os.path.join(extracted_path, f), safe_str(filename), caller])
+                    target_folder = os.path.join(extracted_path, root.lstrip(folder_path))
+                    os.makedirs(target_folder, exist_ok=True)
+                    target_path = os.path.join(target_folder, f)
+                    shutil.move(os.path.join(root, f), target_path)
+                    extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
 
@@ -1242,7 +1245,6 @@ class Extract(ServiceBase):
             launchable_extracted = []
             for extracted in request.extracted:
                 if is_launchable(extracted):
-                    print(f"{extracted['name']} : {extracted['sha256']}")
                     launchable_extracted.append(extracted)
             if launchable_extracted:
                 new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
