@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "ReleaseNotes.txt\nOperations.pdf\nSetup.exe\nAaaTeXMeterBilling.exe\nReadMe.pdf",
+        "body": "AaaTeXMeterBilling.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt\nSetup.exe",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,11 +21,11 @@
           "file": {
             "name": {
               "extracted": [
-                "ReleaseNotes.txt",
-                "Operations.pdf",
-                "Setup.exe",
                 "AaaTeXMeterBilling.exe",
-                "ReadMe.pdf"
+                "Operations.pdf",
+                "ReadMe.pdf",
+                "ReleaseNotes.txt",
+                "Setup.exe"
               ]
             }
           }
@@ -35,7 +35,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Setup.exe\nAaaTeXMeterBilling.exe",
+        "body": "AaaTeXMeterBilling.exe\nSetup.exe",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -54,8 +54,8 @@
             ],
             "name": {
               "extracted": [
-                "Setup.exe",
-                "AaaTeXMeterBilling.exe"
+                "AaaTeXMeterBilling.exe",
+                "Setup.exe"
               ]
             }
           }

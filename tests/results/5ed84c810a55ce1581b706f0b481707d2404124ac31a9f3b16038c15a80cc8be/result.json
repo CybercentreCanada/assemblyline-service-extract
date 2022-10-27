@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "mcmod.info\ndummyThing\ngg/essential/loader/stage0/stage1.jar",
+        "body": "dummyThing\ngg/essential/loader/stage0/stage1.jar\nmcmod.info",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,9 +21,9 @@
           "file": {
             "name": {
               "extracted": [
-                "mcmod.info",
                 "dummyThing",
-                "gg/essential/loader/stage0/stage1.jar"
+                "gg/essential/loader/stage0/stage1.jar",
+                "mcmod.info"
               ]
             }
           }

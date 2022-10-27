@@ -220,12 +220,17 @@ class Extract(ServiceBase):
             extracted = self.repair_zip(request)
 
         extracted_files = []
-        for child in extracted:
+        for child in sorted(extracted, key=lambda x: x[1]):
             try:
                 if os.path.islink(child[0]):
                     link_desc = f"{child[1]} -> {os.readlink(child[0])}"
                     symlinks.append(link_desc)
-                elif request.add_extracted(*child, safelist_interface=self.api_interface):
+                elif request.add_extracted(
+                    path=child[0],
+                    name=child[1],
+                    description=f"Extracted using {child[2]}",
+                    safelist_interface=self.api_interface,
+                ):
                     extracted_files.append(child[1])
                 else:
                     safelisted_extracted.append(child[1])
@@ -513,8 +518,11 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
                 if not skip:
-                    shutil.move(os.path.join(root, f), os.path.join(extracted_path, f))
-                    extracted_children.append([os.path.join(extracted_path, f), safe_str(filename), caller])
+                    target_folder = os.path.join(extracted_path, root.lstrip(folder_path))
+                    os.makedirs(target_folder, exist_ok=True)
+                    target_path = os.path.join(target_folder, f)
+                    shutil.move(os.path.join(root, f), target_path)
+                    extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
 
