@@ -54,6 +54,13 @@ jobs:
           [ ! -d "$(pwd)/tests" ] && echo "No tests found" && exit
           sudo apt-get update
           sudo apt-get install -y libfuzzy-dev libfuzzy2
+          sudo apt-get install -y libssl1.1 unace-nonfree python-lxml unrar build-essential libssl-dev wget swig
+          wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
+          mkdir -p /opt/al/support/extract
+          tar -zxf /tmp/cybozulib.tar.gz -C /opt/al/support/extract
+          wget -O /tmp/7z2201-linux-x86.tar.xz https://www.7-zip.org/a/7z2201-linux-x86.tar.xz
+          sudo mkdir /opt/7z && sudo tar -xf /tmp/7z2201-linux-x86.tar.xz -C /opt/7z
+          sudo ln -s /opt/7z/7zzs /usr/bin/7zzs
           if [[ -f "$(pwd)/pkglist.txt" ]]; then
             grep -vE '^#' "$(pwd)/pkglist.txt" | xargs sudo apt install -y
           fi

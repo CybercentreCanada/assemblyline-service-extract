@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Reports.lnk\nDocuments.dll\nICA-declass.pdf",
+        "body": "Documents.dll\nICA-declass.pdf\nReports.lnk",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,9 +21,9 @@
           "file": {
             "name": {
               "extracted": [
-                "Reports.lnk",
                 "Documents.dll",
-                "ICA-declass.pdf"
+                "ICA-declass.pdf",
+                "Reports.lnk"
               ]
             }
           }
@@ -33,7 +33,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Reports.lnk\nDocuments.dll",
+        "body": "Documents.dll\nReports.lnk",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -52,8 +52,8 @@
             ],
             "name": {
               "extracted": [
-                "Reports.lnk",
-                "Documents.dll"
+                "Documents.dll",
+                "Reports.lnk"
               ]
             }
           }
