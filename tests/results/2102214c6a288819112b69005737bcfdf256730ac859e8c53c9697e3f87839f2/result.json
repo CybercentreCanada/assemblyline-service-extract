@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[{\"Date Time\": \"2022-09-06 14:35:50\", \"Attr\": \"..H.A\", \"Size\": \"1206\", \"Compressed\": \"619\", \"Name\": \"hit/hanging.bat\"}, {\"Date Time\": \"2022-09-06 14:32:02\", \"Attr\": \"..H.A\", \"Size\": \"101376\", \"Compressed\": \"57805\", \"Name\": \"hit/overgoverning.dll\"}]",
+        "body": "[{\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"D.HS.\", \"Size\": \"\", \"Compressed\": \"\", \"Name\": \"System Volume Information\"}, {\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"..H.A\", \"Size\": \"1986766\", \"Compressed\": \"1990656\", \"Name\": \"imagedata.ps1\"}]",
         "body_format": "TABLE",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,8 +21,7 @@
           "file": {
             "name": {
               "extracted": [
-                "hit/hanging.bat",
-                "hit/overgoverning.dll"
+                "imagedata.ps1"
               ]
             }
           }
@@ -32,7 +31,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body": "Quote.lnk\nSystem Volume Information/WPSettings.dat\nimagedata.ps1",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -48,9 +47,9 @@
           "file": {
             "name": {
               "extracted": [
-                "document.lnk",
-                "hit/hanging.bat",
-                "hit/overgoverning.dll"
+                "Quote.lnk",
+                "System Volume Information/WPSettings.dat",
+                "imagedata.ps1"
               ]
             }
           }
@@ -60,7 +59,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body": "Quote.lnk\nimagedata.ps1",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -79,9 +78,8 @@
             ],
             "name": {
               "extracted": [
-                "document.lnk",
-                "hit/hanging.bat",
-                "hit/overgoverning.dll"
+                "Quote.lnk",
+                "imagedata.ps1"
               ]
             }
           }
@@ -94,16 +92,16 @@
   "files": {
     "extracted": [
       {
-        "name": "document.lnk",
-        "sha256": "9e8769dc355770d26719c28573cb357ba624f5654b83f2c31bef03018d301252"
+        "name": "imagedata.ps1",
+        "sha256": "0ff8988d76fc6bd764a70a7a4f07a15b2b2c604138d9aadc784c9aeb6b77e275"
       },
       {
-        "name": "hit/hanging.bat",
-        "sha256": "b88ac19c153d44c1ad19a4f4ff006f1dec5b9bec50d002b15964728d0647800f"
+        "name": "Quote.lnk",
+        "sha256": "1285f03b8dbe35c82feef0cb57b3e9b24e75efabba0589752c2256a8da00ad85"
       },
       {
-        "name": "hit/overgoverning.dll",
-        "sha256": "eb7649af98573b5fcf29393e9d1ecc9a8991d69a3a8db687de7d93766009eb11"
+        "name": "System Volume Information/WPSettings.dat",
+        "sha256": "1decafebc53ba0e67f782770587a40178f83a8f2cc0fd808dc56813b61be6815"
       }
     ],
     "supplementary": []
@@ -138,42 +136,32 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "document.lnk"
+          "value": "Quote.lnk"
         },
         {
           "heur_id": 16,
           "signatures": [],
-          "value": "document.lnk"
-        },
-        {
-          "heur_id": 18,
-          "signatures": [],
-          "value": "hit/hanging.bat"
+          "value": "Quote.lnk"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "hit/hanging.bat"
-        },
-        {
-          "heur_id": 16,
-          "signatures": [],
-          "value": "hit/hanging.bat"
+          "value": "System Volume Information/WPSettings.dat"
         },
         {
           "heur_id": 18,
           "signatures": [],
-          "value": "hit/overgoverning.dll"
+          "value": "imagedata.ps1"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "hit/overgoverning.dll"
+          "value": "imagedata.ps1"
         },
         {
           "heur_id": 16,
           "signatures": [],
-          "value": "hit/overgoverning.dll"
+          "value": "imagedata.ps1"
         }
       ]
     },
