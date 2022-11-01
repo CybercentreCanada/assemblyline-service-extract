@@ -1,10 +1,8 @@
 import hashlib
 import logging
 import os
-import random
 import re
 import shutil
-import string
 import subprocess
 import sys
 import tempfile
@@ -447,19 +445,6 @@ class Extract(ServiceBase):
             return []
         # If we extract anything into the destination directory, we consider it of interest
 
-        def ascii_sanitize(input: str):
-            split_input = input.split("/")
-            if len(split_input) > 1:
-                for index in range(len(split_input)):
-                    split_input[index] = ascii_sanitize(split_input[index])
-                return "/".join(split_input)
-            else:
-                ext = f".{input.split('.')[1]}" if len(input.split(".")) > 1 else ""
-                try:
-                    return input.encode("ascii").decode()
-                except UnicodeEncodeError:
-                    return f"{''.join([random.choice(string.ascii_lowercase) for _ in range(5)])}{ext}"
-
         extract_executable_sections = request.get_param("extract_executable_sections")
         extracted_children = []
 
@@ -469,7 +454,7 @@ class Extract(ServiceBase):
             changes_made = False
             for root, _, files in os.walk(folder_path):
                 # Sanitize root
-                new_root = ascii_sanitize(root)
+                new_root = safe_str(root)
                 if new_root != root:
                     # Implies there was a correction made to path, copy contents to new directory
                     shutil.copytree(root, new_root)
@@ -479,8 +464,12 @@ class Extract(ServiceBase):
                 for f in files:
                     file_path = os.path.join(root, f)
                     # Sanitize filename
-                    new_file_path = ascii_sanitize(file_path)
+                    new_file_path = safe_str(file_path)
                     if file_path != new_file_path:
+                        if os.path.exists(new_file_path):
+                            raise FileExistsError(
+                                f"Trying to move {file_path} to {new_file_path}, but file exists already"
+                            )
                         shutil.move(file_path, new_file_path)
 
         # Add Extracted
