@@ -778,6 +778,7 @@ class Extract(ServiceBase):
             parsed_data.append([d[c[0] : c[1]].strip().decode() for c in col_len])
             if len(separator) < len(d):
                 parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{d[len(separator) :].decode()}"
+            parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
 
         return header, parsed_data
 
