@@ -11,6 +11,16 @@
   "results": {
     "heuristics": [],
     "tags": {},
-    "temp_submission_data": {}
+    "temp_submission_data": {
+      "passwords": [
+        "",
+        "\t\tDocument password:",
+        "Document",
+        "Document password:",
+        "abc555",
+        "password",
+        "password:"
+      ]
+    }
   }
 }
