@@ -24,8 +24,13 @@ from assemblyline_v4_service.common.result import (
     ResultTextSection,
     TableRow,
 )
-from assemblyline_v4_service.common.utils import set_death_signal
+from assemblyline_v4_service.common.utils import (
+    PASSWORD_WORDS,
+    extract_passwords,
+    set_death_signal,
+)
 from bs4 import BeautifulSoup
+from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
@@ -43,39 +48,6 @@ from extract.ext.xxxswf import xxxswf
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
-
-# TODO: Remove this and the same in emlparser to put it in the core
-# Arabic, Chinese Simplified, Chinese Traditional, English, French, German, Italian, Portuguese, Russian, Spanish
-PASSWORD_WORDS = [
-    "كلمه السر",
-    "密码",
-    "密碼",
-    "password",
-    "mot de passe",
-    "passwort",
-    "parola d'ordine",
-    "senha",
-    "пароль",
-    "contraseña",
-]
-PASSWORD_REGEXES = [re.compile(fr".*{p}:(.+)", re.I) for p in PASSWORD_WORDS]
-
-
-def extract_passwords(text):
-    passwords = set()
-    text_split, text_split_n = set(text.split()), set(text.split("\n"))
-    passwords.update(text_split)
-    passwords.update(re.split(r"\W+", text))
-    for i, r in enumerate(PASSWORD_REGEXES):
-        for line in text_split:
-            if PASSWORD_WORDS[i] in line.lower():
-                passwords.update(re.split(r, line))
-        for line in text_split_n:
-            if PASSWORD_WORDS[i] in line.lower():
-                passwords.update(re.split(r, line))
-    for p in list(passwords):
-        passwords.update([p.strip(), p.strip().strip('"'), p.strip().strip("'")])
-    return passwords
 
 
 class Extract(ServiceBase):
@@ -1338,6 +1310,36 @@ class Extract(ServiceBase):
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), sys._getframe().f_code.co_name])
+
+        # Extraction of passwords was previously done in JsJaws, the analyzer for HTML/Javascript.
+        # To speed up processing, Assemblyline is running services in phases. Each services from the same phase are
+        # running concurrently. This is causing a situation where another service could extract a zip file that needs
+        # the list of passwords from the html page, before the html page is completely analyzed by JsJaws. The new
+        # analysis would start on the new zip file too fast, and Extract would not have the full list of passwords.
+        # Bringing the extraction of passwords in a module from an earlier phase should solve those specific cases.
+
+        # Extract password from visible text, taken from https://stackoverflow.com/a/1983219
+        def tag_visible(element):
+            if element.parent.name in ["style", "script", "head", "title", "meta", "[document]"]:
+                return False
+            if isinstance(element, Comment):
+                return False
+            return True
+
+        visible_texts = [x for x in filter(tag_visible, soup.findAll(text=True))]
+
+        if any(any(WORD in line.lower() for WORD in PASSWORD_WORDS) for line in visible_texts):
+            new_passwords = set()
+
+            for line in visible_texts:
+                new_passwords.update(set(extract_passwords(line)))
+
+            if new_passwords:
+                self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
+                # It is technically not required to sort them, but it makes the output of the module predictable
+                if "passwords" in request.temp_submission_data:
+                    new_passwords.update(set(request.temp_submission_data["passwords"]))
+                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
         return extracted
 
