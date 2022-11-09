@@ -32,6 +32,7 @@ from assemblyline_v4_service.common.utils import (
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
+from msoffcrypto import exceptions as msoffcryptoexceptions
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
@@ -387,7 +388,7 @@ class Extract(ServiceBase):
 
             if res is None:
                 raise ValueError()
-        except ValueError:
+        except (ValueError, OSError, msoffcryptoexceptions.FileFormatError):
             # Not a valid supported/valid file
             return [], False
         except (PasswordError, ExtractionError):
