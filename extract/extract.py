@@ -399,7 +399,7 @@ class Extract(ServiceBase):
         self.password_used.append(password)
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
-    def _zip_submit_extracted(self, request: ServiceRequest, folder_path: str, caller: str):
+    def _submit_extracted(self, request: ServiceRequest, folder_path: str, caller: str):
         """Go over a folder, sanitize file/folder names and return a list of filtered files
 
         Args:
@@ -445,7 +445,7 @@ class Extract(ServiceBase):
                         shutil.move(file_path, new_file_path)
 
         # Add Extracted
-        extracted_path = os.path.join(self.working_directory, "extracted_zip")
+        extracted_path = os.path.join(self.working_directory, "extracted_files")
         if not os.path.exists(extracted_path):
             os.mkdir(extracted_path)
 
@@ -500,48 +500,24 @@ class Extract(ServiceBase):
             or a blank list if extraction failed
         """
 
-        path = os.path.join(self.working_directory, "extracted_ace")
         try:
-            os.mkdir(path)
-        except OSError:
-            pass
+            with tempfile.TemporaryDirectory() as temp_dir:
+                with tempfile.NamedTemporaryFile(suffix=".ace", dir=temp_dir) as tf:
+                    # unace needs the .ace file extension
+                    with open(request.file_path, "rb") as fh:
+                        tf.write(fh.read())
+                        tf.flush()
 
-        # noinspection PyBroadException
-        try:
-            with tempfile.NamedTemporaryFile(suffix=".ace", dir=path, delete=False) as tf:
-                # unace needs the .ace file extension
-                with open(request.file_path, "rb") as fh:
-                    tf.write(fh.read())
-                    tf.flush()
-
-                proc = subprocess.run(
-                    f"/usr/bin/unace e -y {tf.name}",
-                    timeout=2 * self.service_attributes.timeout / 3,
-                    capture_output=True,
-                    cwd=path,
-                    env=os.environ,
-                    shell=True,
-                    preexec_fn=set_death_signal(),
-                )
-                stdoutput = proc.stdout
-
-            if stdoutput:
-                extracted_children = []
-                if b"extracted:" in stdoutput:
-                    for line in stdoutput.splitlines():
-                        line = line.strip()
-                        m = re.match(b"extracting (.+?)[ ]*(CRC OK)?$", line)
-                        if not m:
-                            continue
-
-                        filename = safe_str(m.group(1))
-                        filepath = safe_str(os.path.join(path, filename))
-                        if os.path.isdir(filepath):
-                            continue
-                        else:
-                            extracted_children.append([filepath, filename, sys._getframe().f_code.co_name])
-
-                return extracted_children
+                    subprocess.run(
+                        f"/usr/bin/unace e -y {tf.name}",
+                        timeout=2 * self.service_attributes.timeout / 3,
+                        capture_output=True,
+                        cwd=temp_dir,
+                        env=os.environ,
+                        shell=True,
+                        preexec_fn=set_death_signal(),
+                    )
+                return self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name)
         except Exception:
             self.log.exception(f"While extracting {request.sha256} with unace")
 
@@ -821,7 +797,7 @@ class Extract(ServiceBase):
                 p = subprocess.run(popenargs, env=env, capture_output=True)
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_files.extend(self._zip_submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
 
                 if b"Wrong password" in stderr:
                     password_protected = True
@@ -832,7 +808,7 @@ class Extract(ServiceBase):
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             p = subprocess.run(popenargs, env=env, capture_output=True)
                             stdoutput = p.stdout + p.stderr
-                            extracted_children = self._zip_submit_extracted(
+                            extracted_children = self._submit_extracted(
                                 request, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
@@ -881,7 +857,7 @@ class Extract(ServiceBase):
             try:
                 with zipfile.ZipFile(request.file_path, "r") as zipped_file:
                     zipped_file.extractall(path=temp_dir)
-                extracted_files.extend(self._zip_submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
             except RuntimeError as e:
                 if any("password required for extraction" in event for event in e.args):
                     # Try with available passwords
@@ -892,7 +868,7 @@ class Extract(ServiceBase):
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             with zipfile.ZipFile(request.file_path, "r") as zipped_file:
                                 zipped_file.extractall(path=temp_dir, pwd=password.encode())
-                            extracted_children = self._zip_submit_extracted(
+                            extracted_children = self._submit_extracted(
                                 request, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
@@ -930,7 +906,7 @@ class Extract(ServiceBase):
                 return extracted_files, password_protected
 
             if b"All OK" in stdout_rar:
-                extracted_files.extend(self._zip_submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
             elif b"password is incorrect" in stderr_rar:
                 password_protected = True
                 password_list = self.get_passwords(request)
@@ -944,7 +920,7 @@ class Extract(ServiceBase):
                             capture_output=True,
                         ).stdout
                         if b"All OK" in stdout:
-                            extracted_children = self._zip_submit_extracted(
+                            extracted_children = self._submit_extracted(
                                 request, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
