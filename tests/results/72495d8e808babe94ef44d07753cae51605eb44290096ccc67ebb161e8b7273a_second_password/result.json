@@ -72,7 +72,12 @@
         "sha256": "124323c57d74fb8944c98fb69ce67a41a107cb6d2ed304cf50c8529cc137aafd"
       }
     ],
-    "supplementary": []
+    "supplementary": [
+      {
+        "name": "password_tested.json",
+        "sha256": "a0975c31a2ace0aadd09126abdc7cf97cce61020f0bec29ad9fbceb3454b791b"
+      }
+    ]
   },
   "results": {
     "heuristics": [

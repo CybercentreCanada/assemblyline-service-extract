@@ -36,7 +36,12 @@
   },
   "files": {
     "extracted": [],
-    "supplementary": []
+    "supplementary": [
+      {
+        "name": "password_tested.json",
+        "sha256": "0cfcecc2075bbf5e4b634a78f2499ef09f4b3d731d8581d8cdfacaa4c35d0da2"
+      }
+    ]
   },
   "results": {
     "heuristics": [
