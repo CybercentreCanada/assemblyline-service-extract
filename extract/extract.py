@@ -1324,7 +1324,11 @@ class Extract(ServiceBase):
             new_passwords = set()
 
             for line in visible_texts:
-                new_passwords.update(set(extract_passwords(line)))
+                for password in extract_passwords(line):
+                    if len(password) > 30:
+                        # We assume that passwords won't be that long.
+                        continue
+                    new_passwords.add(password)
 
             if new_passwords:
                 self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
