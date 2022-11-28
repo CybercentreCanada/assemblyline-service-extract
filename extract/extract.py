@@ -51,6 +51,8 @@ DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
+DYNAMIC_ANALYSIS_FILETYPES = ['archive/iso']
+
 
 class Extract(ServiceBase):
     FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
@@ -202,6 +204,7 @@ class Extract(ServiceBase):
                     name=child[1],
                     description=f"Extracted using {child[2]}",
                     safelist_interface=self.api_interface,
+                    allow_dynamic_recursion=bool(self.identify.fileinfo(child[0])['type'] in DYNAMIC_ANALYSIS_FILETYPES)
                 ):
                     extracted_files.append(child[1])
                 else:
@@ -537,7 +540,7 @@ class Extract(ServiceBase):
             ever be detected.
         """
 
-        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
+        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-"):]
         for password in self.get_passwords(request):
             try:
                 pdf = Pdf.open(BytesIO(pdf_content), password=password)
@@ -570,7 +573,7 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
+        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-"):]
 
         try:
             extracted_children = []
@@ -750,10 +753,10 @@ class Extract(ServiceBase):
         # Now that we have headers and data, we need to parse them
         col_len = [(m.start(), m.end()) for m in re.finditer(rb"\S+", separator)]
 
-        header = [b" ".join(header[c[0] : c[1]].split()).decode() for c in col_len]
+        header = [b" ".join(header[c[0]: c[1]].split()).decode() for c in col_len]
         parsed_data = []
         for d in data:
-            parsed_data.append([d[c[0] : c[1]].strip().decode() for c in col_len])
+            parsed_data.append([d[c[0]: c[1]].strip().decode() for c in col_len])
             if len(separator) < len(d):
                 parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{d[len(separator) :].decode()}"
             parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
