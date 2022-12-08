@@ -285,6 +285,7 @@ class Extract(ServiceBase):
             and not request.file_type.startswith("document")
             and request.file_type != "ios/ipa"
             and request.file_type != "code/html"
+            and request.file_type != "code/hta"
             and request.file_type != "archive/iso"
             and request.file_type != "archive/udf"
             and request.file_type != "archive/vhd"
