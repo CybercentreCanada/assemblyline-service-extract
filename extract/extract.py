@@ -1,4 +1,5 @@
 import hashlib
+import json
 import logging
 import os
 import re
@@ -32,11 +33,6 @@ from assemblyline_v4_service.common.utils import (
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
-from msoffcrypto import exceptions as msoffcryptoexceptions
-from nrs.nsi.extractor import Extractor as NSIExtractor
-from pikepdf import PasswordError as PDFPasswordError
-from pikepdf import Pdf, PdfError
-
 from extract.ext.office_extract import (
     ExtractionError,
     PasswordError,
@@ -45,6 +41,11 @@ from extract.ext.office_extract import (
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxdecode import xxcode_from_file
 from extract.ext.xxxswf import xxxswf
+from msoffcrypto import exceptions as msoffcryptoexceptions
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
+
+from nrs.nsi.extractor import Extractor as NSIExtractor
 
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
@@ -262,7 +263,7 @@ class Extract(ServiceBase):
                 f"that were safelisted.",
                 parent=request.result,
             )
-            for f in safelisted_extracted[:MAX_SAFELISTED_SHOW]:
+            for f in sorted(safelisted_extracted)[:MAX_SAFELISTED_SHOW]:
                 section.add_line(f)
             if len(safelisted_extracted) > MAX_SAFELISTED_SHOW:
                 section.add_line("...")
@@ -284,6 +285,7 @@ class Extract(ServiceBase):
             and not request.file_type.startswith("document")
             and request.file_type != "ios/ipa"
             and request.file_type != "code/html"
+            and request.file_type != "code/hta"
             and request.file_type != "archive/iso"
             and request.file_type != "archive/udf"
             and request.file_type != "archive/vhd"
@@ -393,7 +395,7 @@ class Extract(ServiceBase):
             return [], False
         except (PasswordError, ExtractionError):
             # Could not guess password
-            self.raise_failed_passworded_extraction(request, [], [])
+            self.raise_failed_passworded_extraction(request, [], [], passwords)
             return [], True
 
         out_name, password = res
@@ -759,7 +761,9 @@ class Extract(ServiceBase):
 
         return header, parsed_data
 
-    def raise_failed_passworded_extraction(self, request: ServiceRequest, extracted_files, expected_files):
+    def raise_failed_passworded_extraction(
+        self, request: ServiceRequest, extracted_files, expected_files, password_tested
+    ):
         section = ResultTextSection(
             "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
         )
@@ -776,8 +780,16 @@ class Extract(ServiceBase):
             # Don't drop executables that contain password protected zip sections
             request.drop()
 
+        # Add the list of password tested as supplementary, for information to the user and debugging
+        if password_tested:
+            password_tested_path = os.path.join(self.working_directory, "password_tested.json")
+            with open(password_tested_path, "w") as f:
+                json.dump(password_tested, f)
+            request.add_supplementary(password_tested_path, "password_tested.json", "Passwords used that failed")
+
     def extract_zip_7zip(self, request: ServiceRequest):
         password_protected = False
+        password_list = []
 
         env = os.environ.copy()
         env["LANG"] = "C.UTF-8"
@@ -840,7 +852,7 @@ class Extract(ServiceBase):
                 if password_protected and len(extracted_files) != len(expected_files):
                     # If we extracted no files, and it is an archive/rar, we'll rely on unrar to populate the section
                     if extracted_files or request.file_type != "archive/rar":
-                        self.raise_failed_passworded_extraction(request, extracted_files, expected_files)
+                        self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
             except UnicodeEncodeError:
                 raise
             finally:
@@ -851,6 +863,7 @@ class Extract(ServiceBase):
 
     def extract_zip_zipfile(self, request: ServiceRequest):
         password_protected = False
+        password_list = []
 
         with tempfile.TemporaryDirectory() as temp_dir:
             extracted_files = []
@@ -882,7 +895,7 @@ class Extract(ServiceBase):
                     with zipfile.ZipFile(request.file_path, "r") as zipped_file:
                         namelist = zipped_file.namelist()
                     if len(extracted_files) != len(namelist):
-                        self.raise_failed_passworded_extraction(request, extracted_files, namelist)
+                        self.raise_failed_passworded_extraction(request, extracted_files, namelist, password_list)
             except BadZipfile:
                 self.log.warning("A non-zip file was passed to zipfile library")
 
@@ -890,6 +903,7 @@ class Extract(ServiceBase):
 
     def extract_zip_unrar(self, request: ServiceRequest):
         password_protected = False
+        password_list = []
 
         env = os.environ.copy()
         env["LANG"] = "C.UTF-8"
@@ -908,7 +922,8 @@ class Extract(ServiceBase):
 
             if b"All OK" in stdout_rar:
                 extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
-            elif b"password is incorrect" in stderr_rar:
+            # "password is incorrect" in unrar 5.6.6, "Incorrect password" in unrar 6.0.3
+            elif b"password is incorrect" in stderr_rar or b"Incorrect password" in stderr_rar:
                 password_protected = True
                 password_list = self.get_passwords(request)
                 for password in password_list:
@@ -935,7 +950,7 @@ class Extract(ServiceBase):
             # x[1] is the size, so ignore empty files/folders
             expected_files = [x[4] for x in data if x[1] != "0"]
             if len(extracted_files) != len(expected_files):
-                self.raise_failed_passworded_extraction(request, extracted_files, expected_files)
+                self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
 
         return extracted_files, password_protected
 
@@ -1310,7 +1325,11 @@ class Extract(ServiceBase):
             new_passwords = set()
 
             for line in visible_texts:
-                new_passwords.update(set(extract_passwords(line)))
+                for password in extract_passwords(line):
+                    if len(password) > 30:
+                        # We assume that passwords won't be that long.
+                        continue
+                    new_passwords.add(password)
 
             if new_passwords:
                 self.log.debug(f"Found password(s) in the HTML doc: {new_passwords}")
