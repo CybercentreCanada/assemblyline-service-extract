@@ -163,6 +163,8 @@ class Extract(ServiceBase):
             extracted, password_protected = self.extract_zip(request)
         elif request.file_type in ["archive/zip", "archive/7-zip"]:
             extracted, password_protected = self.extract_zip(request)
+        elif request.file_type == "archive/zlib":
+            extracted = self.extract_zlib(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 9
@@ -689,6 +691,23 @@ class Extract(ServiceBase):
                 return [[path, "vbe_decoded", sys._getframe().f_code.co_name]]
         except Exception as e:
             self.log.warning(f"Error during vbe decoding: {str(e)}")
+        return []
+
+    def extract_zlib(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as fh:
+            data = fh.read()
+
+        try:
+            decoder = zlib.decompressobj()
+            uncompress_data = decoder.decompress(data)
+            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
+            path = os.path.join(self.working_directory, sha256hash)
+            with open(path, "wb") as f:
+                f.write(uncompress_data)
+            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+        except Exception:
+            pass
+
         return []
 
     def extract_zip(self, request: ServiceRequest):
