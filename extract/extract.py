@@ -1371,7 +1371,7 @@ class Extract(ServiceBase):
 
         soup = BeautifulSoup(data, features="html.parser")
         scripts = soup.findAll("script")
-        languages = set([script.get("language", "").lower() for script in scripts])
+        languages = sorted(list(set([script.get("language", "").lower() for script in scripts])))
         if len(languages) > 1:
             heur = Heuristic(20)
             heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
@@ -1379,7 +1379,7 @@ class Extract(ServiceBase):
             return []
 
         extracted = []
-        aggregated_script = None
+        aggregated_script = b""
         external_loaded_script = []
         for script in scripts:
             # Make sure there is actually a body to the script
@@ -1420,17 +1420,17 @@ class Extract(ServiceBase):
                 # that the body of the element is Javascript
                 # We don't want to handle those, but any other special type, we can extract
                 encoded_script = body.encode()
-                if aggregated_script is None:
-                    aggregated_script = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False, mode="wb")
-                else:
-                    aggregated_script.write(b"\n\n")
+                if aggregated_script:
+                    aggregated_script += b"\n\n"
 
-                aggregated_script.write(encoded_script)
+                aggregated_script += encoded_script
 
-        if aggregated_script is not None:
-            aggregated_script.close()
+        if aggregated_script:
+            file_hash = hashlib.sha256(aggregated_script).hexdigest()
+            with open(os.path.join(self.working_directory, file_hash), "wb") as f:
+                f.write(aggregated_script)
             extracted.append(
-                [aggregated_script.name, os.path.basename(aggregated_script.name), sys._getframe().f_code.co_name]
+                [os.path.join(self.working_directory, file_hash), file_hash, sys._getframe().f_code.co_name]
             )
 
         if external_loaded_script:
