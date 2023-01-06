@@ -157,6 +157,8 @@ class Extract(ServiceBase):
             summary_section_heuristic = 7
         elif request.file_type in ["code/hta", "code/html"]:
             extracted = self.extract_jscript(request)
+        elif request.file_type == "code/wsf":
+            extracted = self.extract_wsf(request)
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
         elif request.file_type == "archive/rar":
@@ -1314,6 +1316,10 @@ class Extract(ServiceBase):
                     self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(encoded_script)
+                    file_hash = hashlib.sha256(encoded_script).hexdigest()
+                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
             elif script.get("type", "").lower() not in ["", "text/javascript"]:
                 # If there is no "type" attribute specified in a script element, then the default assumption is
                 # that the body of the element is Javascript
@@ -1357,6 +1363,92 @@ class Extract(ServiceBase):
                     new_passwords.update(set(request.temp_submission_data["passwords"]))
                 request.temp_submission_data["passwords"] = sorted(list(new_passwords))
 
+        return extracted
+
+    def extract_wsf(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as f:
+            data = f.read()
+
+        soup = BeautifulSoup(data, features="html.parser")
+        scripts = soup.findAll("script")
+        languages = set([script.get("language", "").lower() for script in scripts])
+        if len(languages) > 1:
+            heur = Heuristic(20)
+            heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+            heur_section.add_line(", ".join(languages))
+            return []
+
+        extracted = []
+        aggregated_script = None
+        external_loaded_script = []
+        for script in scripts:
+            # Make sure there is actually a body to the script
+            src = script.get("src", "")
+            if src:
+                external_loaded_script.append(src)
+            body = script.string
+            if body is None:
+                continue
+            body = str(body).strip()  # Remove whitespace
+            if len(body) <= 2:  # We can treat 2 character scripts as empty
+                continue
+
+            if script.get("language", "").lower() == "jscript.encode":
+                try:
+                    # The encoded VB technique can be used to encode javascript
+                    evbe_present = re.search(EVBE_REGEX, body)
+                    evbe_res = self.decode_vbe(evbe_present.groups()[0])
+                    if evbe_res and evbe_present != body:
+                        encoded_evbe_res = evbe_res.encode()
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                            out.write(encoded_evbe_res)
+                        file_hash = hashlib.sha256(encoded_evbe_res).hexdigest()
+                        extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                        heur = Heuristic(17)
+                        heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                        heur_section.add_line(f"{file_hash}")
+                except Exception as e:
+                    self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
+                    # Something went wrong, still add the file as is
+                    encoded_script = body.encode()
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(encoded_script)
+                    file_hash = hashlib.sha256(encoded_script).hexdigest()
+                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+            elif script.get("language", "").lower() not in ["", "javascript", "jscript"]:
+                # If there is no "type" attribute specified in a script element, then the default assumption is
+                # that the body of the element is Javascript
+                # We don't want to handle those, but any other special type, we can extract
+                encoded_script = body.encode()
+                if aggregated_script is None:
+                    aggregated_script = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False, mode="wb")
+                else:
+                    aggregated_script.write(b"\n\n")
+
+                aggregated_script.write(encoded_script)
+
+        if aggregated_script is not None:
+            aggregated_script.close()
+            extracted.append(
+                [aggregated_script.name, os.path.basename(aggregated_script.name), sys._getframe().f_code.co_name]
+            )
+
+        if external_loaded_script:
+            local = None
+            web = None
+            for src in external_loaded_script:
+                if src.startswith("http://") or src.startswith("https://"):
+                    if web is None:
+                        heur = Heuristic(21)
+                        heur.add_signature_id("web")
+                        web = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    web.add_line(f"{src}")
+                else:
+                    if local is None:
+                        heur = Heuristic(21)
+                        heur.add_signature_id("local")
+                        local = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    local.add_line(f"{src}")
         return extracted
 
     def extract_xxe(self, request: ServiceRequest):
