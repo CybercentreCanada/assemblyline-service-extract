@@ -1369,7 +1369,7 @@ class Extract(ServiceBase):
         with open(request.file_path, "rb") as f:
             data = f.read()
 
-        soup = BeautifulSoup(data, features="html.parser")
+        soup = BeautifulSoup(data, features="lxml")
         scripts = soup.findAll("script")
         languages = sorted(list(set([script.get("language", "").lower() for script in scripts])))
         if len(languages) > 1:
