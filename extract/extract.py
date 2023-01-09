@@ -1,4 +1,5 @@
 import hashlib
+import itertools
 import json
 import logging
 import os
@@ -872,6 +873,14 @@ class Extract(ServiceBase):
                     # If we extracted no files, and it is an archive/rar, we'll rely on unrar to populate the section
                     if extracted_files or request.file_type != "archive/rar":
                         self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+
+                error_res = None
+                for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
+                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
+                        if error_res is None:
+                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
+                        error_res.add_line(line)
+
             except UnicodeEncodeError:
                 raise
             finally:
