@@ -5,6 +5,17 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "ERROR: Data Error : Screenshot.png",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": "ProgramList.txt\nProsessList.txt\nScreenshot.png\ninfo.txt",
         "body_format": "TEXT",
         "classification": "TLP:W",
