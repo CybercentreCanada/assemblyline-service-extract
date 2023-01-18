@@ -1,0 +1,45 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 25,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "https://pastebin.mozilla.org/kzDpA2Bq/raw",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 21,
+          "score": 25,
+          "score_map": {},
+          "signatures": {
+            "web": 1
+          }
+        },
+        "tags": {},
+        "title_text": "External script loading",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 21,
+        "signatures": [
+          "web"
+        ]
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

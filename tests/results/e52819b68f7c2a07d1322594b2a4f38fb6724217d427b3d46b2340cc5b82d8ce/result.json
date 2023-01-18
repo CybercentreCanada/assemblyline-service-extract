@@ -1,0 +1,108 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
+            ],
+            "name": {
+              "extracted": [
+                "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5",
+        "sha256": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5"
+        },
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
