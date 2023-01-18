@@ -1540,3 +1540,5 @@ class Extract(ServiceBase):
                 heur_section.add_line(f"{file_name} is safelisted")
 
             return True
+
+        return False
