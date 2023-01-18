@@ -7,4 +7,3 @@ msoffcrypto-tool
 html5lib
 pikepdf
 https://github.com/gdesmar/nrs/archive/nsi-script.zip
-lief==0.12.2

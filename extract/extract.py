@@ -13,9 +13,9 @@ import zlib
 from copy import deepcopy
 from io import BytesIO
 
-import lief
+import pefile
 from assemblyline.common import forge
-from assemblyline.common.entropy import calculate_entropy
+from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
@@ -49,9 +49,6 @@ from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 
 from nrs.nsi.extractor import Extractor as NSIExtractor
-
-# Disable logging from LIEF
-lief.logging.disable()
 
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
@@ -1497,19 +1494,29 @@ class Extract(ServiceBase):
 
     def strip_overlay(self, request: ServiceRequest):
         try:
-            binary = lief.parse(request.file_path)
-        except (lief.bad_format, lief.read_out_of_bound):
-            return
+            binary = pefile.PE(request.file_path, fast_load=True)
+        except Exception:
+            return False
 
-        overlay = bytearray(binary.overlay)
-        overlay_size = len(overlay)
-        if overlay_size == 0:
-            return
+        file_size = os.path.getsize(request.file_path)
+        overlay_offset = binary.get_overlay_data_start_offset()
+        if overlay_offset is None:
+            return False
+        overlay_size = file_size - overlay_offset
+        if overlay_size < self.config.get("heur22_min_overlay_size", 31457280):
+            return False
 
-        entropy = calculate_entropy(overlay)
-        if overlay_size > self.config.get("heur22_min_overlay_size", 31457280) and entropy < self.config.get(
-            "heur22_min_overlay_entropy", 0.5
-        ):
+        calculator = BufferedCalculator()
+        with open(request.file_path, "rb") as f:
+            f.seek(overlay_offset)
+            while True:
+                data = f.read(1024)
+                if not data:
+                    break
+                calculator.update(data)
+        entropy = calculator.entropy()
+
+        if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
             heur = Heuristic(22)
             heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
             heur_section.add_line(f"Overlay Size: {overlay_size}")
@@ -1517,9 +1524,8 @@ class Extract(ServiceBase):
 
             file_name = "pe_without_overlay"
             temp_path = os.path.join(self.working_directory, file_name)
-            data_len = os.path.getsize(request.file_path) - overlay_size
             with open(request.file_path, "rb") as f:
-                data = bytearray(f.read(data_len))
+                data = f.read(overlay_offset)
             with open(temp_path, "wb") as f:
                 f.write(data)
 
