@@ -1500,7 +1500,7 @@ class Extract(ServiceBase):
 
         file_size = os.path.getsize(request.file_path)
         overlay_offset = binary.get_overlay_data_start_offset()
-        if overlay_offset is None:
+        if overlay_offset is None or overlay_offset == 0:
             return False
         overlay_size = file_size - overlay_offset
         if overlay_size < self.config.get("heur22_min_overlay_size", 31457280):
