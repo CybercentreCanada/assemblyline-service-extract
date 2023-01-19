@@ -13,7 +13,9 @@ import zlib
 from copy import deepcopy
 from io import BytesIO
 
+import pefile
 from assemblyline.common import forge
+from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
@@ -186,6 +188,9 @@ class Extract(ServiceBase):
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request)
         elif request.file_type.startswith("executable/"):
+            if self.strip_overlay(request):
+                # We already added the file and heuristic
+                return
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 2
         else:
@@ -1486,3 +1491,54 @@ class Extract(ServiceBase):
             unpack_stream(ifile, ofile)
 
         return [[output_path, cart_name, sys._getframe().f_code.co_name]]
+
+    def strip_overlay(self, request: ServiceRequest):
+        try:
+            binary = pefile.PE(request.file_path, fast_load=True)
+        except Exception:
+            return False
+
+        file_size = os.path.getsize(request.file_path)
+        overlay_offset = binary.get_overlay_data_start_offset()
+        if overlay_offset is None or overlay_offset == 0:
+            return False
+        overlay_size = file_size - overlay_offset
+        if overlay_size < self.config.get("heur22_min_overlay_size", 31457280):
+            return False
+
+        calculator = BufferedCalculator()
+        with open(request.file_path, "rb") as f:
+            f.seek(overlay_offset)
+            while True:
+                data = f.read(1024)
+                if not data:
+                    break
+                calculator.update(data)
+        entropy = calculator.entropy()
+
+        if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
+            heur = Heuristic(22)
+            heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
+            heur_section.add_line(f"Overlay Size: {overlay_size}")
+            heur_section.add_line(f"Overlay Entropy: {entropy}")
+
+            file_name = "pe_without_overlay"
+            temp_path = os.path.join(self.working_directory, file_name)
+            with open(request.file_path, "rb") as f:
+                data = f.read(overlay_offset)
+            with open(temp_path, "wb") as f:
+                f.write(data)
+
+            # Drop the request so that no other module are going to analyze it.
+            request.drop()
+
+            added = request.add_extracted(
+                temp_path, file_name, f"{file_name} stripped from original file", safelist_interface=self.api_interface
+            )
+
+            if not added:
+                heur_section.add_line(f"{file_name} is safelisted")
+
+            return True
+
+        return False
