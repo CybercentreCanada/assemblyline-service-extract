@@ -794,6 +794,8 @@ class Extract(ServiceBase):
         section = ResultTextSection(
             "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
         )
+        if request.get_param("score_failed_password"):
+            section.heuristic.add_signature_id("raise_score")
         section.add_tag("file.behavior", "Archive Unknown Password")
         if expected_files:
             section.add_line("Unextracted files in password protected archive:")
