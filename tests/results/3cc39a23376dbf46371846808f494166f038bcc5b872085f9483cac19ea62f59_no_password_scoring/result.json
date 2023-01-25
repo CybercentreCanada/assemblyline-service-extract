@@ -1,11 +1,11 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 0,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Unextracted files in password protected archive:\nfile1.txt",
+        "body": null,
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -13,20 +13,17 @@
           "attack_ids": [],
           "frequency": 1,
           "heur_id": 12,
-          "score": 0,
+          "score": 500,
           "score_map": {},
-          "signatures": {}
+          "signatures": {
+            "raise_score": 1
+          }
         },
         "tags": {
           "file": {
             "behavior": [
               "Archive Unknown Password"
-            ],
-            "name": {
-              "extracted": [
-                "file1.txt"
-              ]
-            }
+            ]
           }
         },
         "title_text": "Failed to extract password protected file.",
@@ -48,22 +45,19 @@
       {
         "attack_ids": [],
         "heur_id": 12,
-        "signatures": []
+        "signatures": [
+          "raise_score"
+        ]
       }
     ],
     "tags": {
       "file.behavior": [
         {
           "heur_id": 12,
-          "signatures": [],
+          "signatures": [
+            "raise_score"
+          ],
           "value": "Archive Unknown Password"
-        }
-      ],
-      "file.name.extracted": [
-        {
-          "heur_id": 12,
-          "signatures": [],
-          "value": "file1.txt"
         }
       ]
     },

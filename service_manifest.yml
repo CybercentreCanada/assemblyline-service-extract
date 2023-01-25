@@ -46,6 +46,10 @@ submission_params:
     name: use_custom_safelisting
     type: bool
     value: true
+  - default: false
+    name: score_failed_password
+    type: bool
+    value: false
 
 heuristics:
   - heur_id: 1
@@ -110,7 +114,9 @@ heuristics:
 
   - heur_id: 12
     name: Password Protected File Extraction Failed
-    score: 500
+    score: 0
+    signature_score_map:
+      raise_score: 500
     filetype: "*"
     description: Failed to extract password protected file.
 
