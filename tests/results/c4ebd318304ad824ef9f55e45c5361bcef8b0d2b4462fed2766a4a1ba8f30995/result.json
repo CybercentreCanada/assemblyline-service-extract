@@ -1,36 +1,29 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 0,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body": "ERROR: Data Error in encrypted file. Wrong password? : DocumentsFolder 6987584 12202022.img",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 17,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
+        "heuristic": null,
         "tags": {},
-        "title_text": "Encoded JScript used",
+        "title_text": "Errors in 7z",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body": "DocumentsFolder 6987584 12202022.img",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 1,
+          "heur_id": 10,
           "score": 0,
           "score_map": {},
           "signatures": {}
@@ -39,12 +32,17 @@
           "file": {
             "name": {
               "extracted": [
-                "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+                "DocumentsFolder 6987584 12202022.img"
               ]
             }
+          },
+          "info": {
+            "password": [
+              "s1835"
+            ]
           }
         },
-        "title_text": "Successfully extracted 1 file",
+        "title_text": "Successfully extracted 1 file using password: s1835",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -52,8 +50,8 @@
   "files": {
     "extracted": [
       {
-        "name": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
-        "sha256": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+        "name": "DocumentsFolder 6987584 12202022.img",
+        "sha256": "839d3facf28a17e206fa682f639f77d86536de2f6bf1e33a8f62334000befd58"
       }
     ],
     "supplementary": []
@@ -62,21 +60,23 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 1,
-        "signatures": []
-      },
-      {
-        "attack_ids": [],
-        "heur_id": 17,
+        "heur_id": 10,
         "signatures": []
       }
     ],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 1,
+          "heur_id": 10,
           "signatures": [],
-          "value": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+          "value": "DocumentsFolder 6987584 12202022.img"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "s1835"
         }
       ]
     },

@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -16,6 +16,7 @@ enabled: true
 is_external: false
 licence_count: 0
 
+privileged: true
 uses_temp_submission_data: true
 
 config:
@@ -25,6 +26,8 @@ config:
   small_size_bypass_drop: 10485760
   max_file_count_bypass_drop: 5
   heur16_max_file_count: 5
+  heur22_min_overlay_size: 31457280
+  heur22_min_overlay_entropy: 0.5
 
 submission_params:
   - default: ""
@@ -43,6 +46,10 @@ submission_params:
     name: use_custom_safelisting
     type: bool
     value: true
+  - default: false
+    name: score_failed_password
+    type: bool
+    value: false
 
 heuristics:
   - heur_id: 1
@@ -107,7 +114,9 @@ heuristics:
 
   - heur_id: 12
     name: Password Protected File Extraction Failed
-    score: 500
+    score: 0
+    signature_score_map:
+      raise_score: 500
     filetype: "*"
     description: Failed to extract password protected file.
 
@@ -136,7 +145,7 @@ heuristics:
     description: Suspicious combination of executables. Potentially malicious.
 
   - heur_id: 17
-    name: Encoded JScript used in html page
+    name: Encoded JScript used
     score: 500
     filetype: "code/*"
     description: Encoded JScript is ancient and shouldn't be used anymore. The odds of a legitimate use are abysmally low.
@@ -152,6 +161,28 @@ heuristics:
     score: 0
     filetype: "*"
     description: Files were extracted from an unexpected container.
+
+  - heur_id: 20
+    name: Multilingual WSF script
+    score: 0
+    filetype: "code/wsf"
+    description: A WSF script with multiple languages was found. Static analysis is going to be hard to apply on that sample.
+
+  - heur_id: 21
+    name: External script loading
+    score: 0
+    signature_score_map:
+      local: 0
+      web: 25
+    filetype: "code/wsf"
+    description: A WSF script with multiple languages was found. Static analysis is going to be hard to apply on that sample.
+
+  - heur_id: 22
+    name: Big overlay with very low entropy
+    score: 500
+    filetype: "executable/windows"
+    description: >-
+       The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG

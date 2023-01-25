@@ -1,4 +1,5 @@
 import hashlib
+import itertools
 import json
 import logging
 import os
@@ -12,7 +13,9 @@ import zlib
 from copy import deepcopy
 from io import BytesIO
 
+import pefile
 from assemblyline.common import forge
+from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
@@ -157,12 +160,16 @@ class Extract(ServiceBase):
             summary_section_heuristic = 7
         elif request.file_type in ["code/hta", "code/html"]:
             extracted = self.extract_jscript(request)
+        elif request.file_type == "code/wsf":
+            extracted = self.extract_wsf(request)
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
         elif request.file_type == "archive/rar":
             extracted, password_protected = self.extract_zip(request)
         elif request.file_type in ["archive/zip", "archive/7-zip"]:
             extracted, password_protected = self.extract_zip(request)
+        elif request.file_type == "archive/zlib":
+            extracted = self.extract_zlib(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 9
@@ -181,6 +188,9 @@ class Extract(ServiceBase):
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request)
         elif request.file_type.startswith("executable/"):
+            if self.strip_overlay(request):
+                # We already added the file and heuristic
+                return
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 2
         else:
@@ -691,6 +701,23 @@ class Extract(ServiceBase):
             self.log.warning(f"Error during vbe decoding: {str(e)}")
         return []
 
+    def extract_zlib(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as fh:
+            data = fh.read()
+
+        try:
+            decoder = zlib.decompressobj()
+            uncompress_data = decoder.decompress(data)
+            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
+            path = os.path.join(self.working_directory, sha256hash)
+            with open(path, "wb") as f:
+                f.write(uncompress_data)
+            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+        except Exception:
+            pass
+
+        return []
+
     def extract_zip(self, request: ServiceRequest):
         """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive,
         or sections from a Windows executable file.
@@ -767,6 +794,8 @@ class Extract(ServiceBase):
         section = ResultTextSection(
             "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
         )
+        if request.get_param("score_failed_password"):
+            section.heuristic.add_signature_id("raise_score")
         section.add_tag("file.behavior", "Archive Unknown Password")
         if expected_files:
             section.add_line("Unextracted files in password protected archive:")
@@ -853,6 +882,14 @@ class Extract(ServiceBase):
                     # If we extracted no files, and it is an archive/rar, we'll rely on unrar to populate the section
                     if extracted_files or request.file_type != "archive/rar":
                         self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+
+                error_res = None
+                for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
+                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
+                        if error_res is None:
+                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
+                        error_res.add_line(line)
+
             except UnicodeEncodeError:
                 raise
             finally:
@@ -1295,6 +1332,10 @@ class Extract(ServiceBase):
                     self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
                     # Something went wrong, still add the file as is
                     encoded_script = body.encode()
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(encoded_script)
+                    file_hash = hashlib.sha256(encoded_script).hexdigest()
+                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
             elif script.get("type", "").lower() not in ["", "text/javascript"]:
                 # If there is no "type" attribute specified in a script element, then the default assumption is
                 # that the body of the element is Javascript
@@ -1340,6 +1381,92 @@ class Extract(ServiceBase):
 
         return extracted
 
+    def extract_wsf(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as f:
+            data = f.read()
+
+        soup = BeautifulSoup(data, features="lxml")
+        scripts = soup.findAll("script")
+        languages = sorted(list(set([script.get("language", "").lower() for script in scripts])))
+        if len(languages) > 1:
+            heur = Heuristic(20)
+            heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+            heur_section.add_line(", ".join(languages))
+            return []
+
+        extracted = []
+        aggregated_script = b""
+        external_loaded_script = []
+        for script in scripts:
+            # Make sure there is actually a body to the script
+            src = script.get("src", "")
+            if src:
+                external_loaded_script.append(src)
+            body = script.string
+            if body is None:
+                continue
+            body = str(body).strip()  # Remove whitespace
+            if len(body) <= 2:  # We can treat 2 character scripts as empty
+                continue
+
+            if script.get("language", "").lower() == "jscript.encode":
+                try:
+                    # The encoded VB technique can be used to encode javascript
+                    evbe_present = re.search(EVBE_REGEX, body)
+                    evbe_res = self.decode_vbe(evbe_present.groups()[0])
+                    if evbe_res and evbe_present != body:
+                        encoded_evbe_res = evbe_res.encode()
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                            out.write(encoded_evbe_res)
+                        file_hash = hashlib.sha256(encoded_evbe_res).hexdigest()
+                        extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                        heur = Heuristic(17)
+                        heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                        heur_section.add_line(f"{file_hash}")
+                except Exception as e:
+                    self.log.warning(f"Exception during jscript.encode decoding: {str(e)}")
+                    # Something went wrong, still add the file as is
+                    encoded_script = body.encode()
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(encoded_script)
+                    file_hash = hashlib.sha256(encoded_script).hexdigest()
+                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+            elif script.get("language", "").lower() not in ["", "javascript", "jscript"]:
+                # If there is no "type" attribute specified in a script element, then the default assumption is
+                # that the body of the element is Javascript
+                # We don't want to handle those, but any other special type, we can extract
+                encoded_script = body.encode()
+                if aggregated_script:
+                    aggregated_script += b"\n\n"
+
+                aggregated_script += encoded_script
+
+        if aggregated_script:
+            file_hash = hashlib.sha256(aggregated_script).hexdigest()
+            with open(os.path.join(self.working_directory, file_hash), "wb") as f:
+                f.write(aggregated_script)
+            extracted.append(
+                [os.path.join(self.working_directory, file_hash), file_hash, sys._getframe().f_code.co_name]
+            )
+
+        if external_loaded_script:
+            local = None
+            web = None
+            for src in external_loaded_script:
+                if src.startswith("http://") or src.startswith("https://"):
+                    if web is None:
+                        heur = Heuristic(21)
+                        heur.add_signature_id("web")
+                        web = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    web.add_line(f"{src}")
+                else:
+                    if local is None:
+                        heur = Heuristic(21)
+                        heur.add_signature_id("local")
+                        local = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    local.add_line(f"{src}")
+        return extracted
+
     def extract_xxe(self, request: ServiceRequest):
         """Extract embedded scripts from XX encoded archives
 
@@ -1366,3 +1493,54 @@ class Extract(ServiceBase):
             unpack_stream(ifile, ofile)
 
         return [[output_path, cart_name, sys._getframe().f_code.co_name]]
+
+    def strip_overlay(self, request: ServiceRequest):
+        try:
+            binary = pefile.PE(request.file_path, fast_load=True)
+        except Exception:
+            return False
+
+        file_size = os.path.getsize(request.file_path)
+        overlay_offset = binary.get_overlay_data_start_offset()
+        if overlay_offset is None or overlay_offset == 0:
+            return False
+        overlay_size = file_size - overlay_offset
+        if overlay_size < self.config.get("heur22_min_overlay_size", 31457280):
+            return False
+
+        calculator = BufferedCalculator()
+        with open(request.file_path, "rb") as f:
+            f.seek(overlay_offset)
+            while True:
+                data = f.read(1024)
+                if not data:
+                    break
+                calculator.update(data)
+        entropy = calculator.entropy()
+
+        if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
+            heur = Heuristic(22)
+            heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
+            heur_section.add_line(f"Overlay Size: {overlay_size}")
+            heur_section.add_line(f"Overlay Entropy: {entropy}")
+
+            file_name = "pe_without_overlay"
+            temp_path = os.path.join(self.working_directory, file_name)
+            with open(request.file_path, "rb") as f:
+                data = f.read(overlay_offset)
+            with open(temp_path, "wb") as f:
+                f.write(data)
+
+            # Drop the request so that no other module are going to analyze it.
+            request.drop()
+
+            added = request.add_extracted(
+                temp_path, file_name, f"{file_name} stripped from original file", safelist_interface=self.api_interface
+            )
+
+            if not added:
+                heur_section.add_line(f"{file_name} is safelisted")
+
+            return True
+
+        return False
