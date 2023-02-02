@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import zipfile
 import zlib
@@ -740,7 +741,8 @@ class Extract(ServiceBase):
                 extracted_files, password_protected = self.extract_zip_7zip(request)
                 if extracted_files:
                     return extracted_files, password_protected
-            except (UnicodeDecodeError, UnicodeEncodeError):
+            except (UnicodeDecodeError, UnicodeEncodeError) as e:
+                self.log.debug(f"While extracting {request.sha256} with 7zip: {str(e)}")
                 # with zipfile
                 extracted_files, password_protected = self.extract_zip_zipfile(request)
                 if extracted_files:
@@ -753,8 +755,13 @@ class Extract(ServiceBase):
                 extracted_files, password_protected = self.extract_zip_unrar(request)
                 if extracted_files:
                     return extracted_files, password_protected
+            # If we cannot extract the tar file, try a custom method
+            elif request.file_type == "archive/tar":
+                extracted_files, password_protected = self.extract_tarfile(request)
+                if extracted_files:
+                    return extracted_files, password_protected
         except Exception as e:
-            self.log.exception(f"While extracting {request.sha256} with 7zip: {str(e)}")
+            self.log.exception(f"While extracting {request.sha256} with 7zip or zipfile: {str(e)}")
 
         return extracted_files, password_protected
 
@@ -988,6 +995,25 @@ class Extract(ServiceBase):
             expected_files = [x[4] for x in data if x[1] != "0"]
             if len(extracted_files) != len(expected_files):
                 self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+
+        return extracted_files, password_protected
+
+    def extract_tarfile(self, request: ServiceRequest):
+        password_protected = False
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            extracted_files = []
+
+            try:
+                tar_obj = tarfile.open(request.file_path)
+                tar_obj.extractall(temp_dir)
+                tar_obj.close()
+
+            except Exception as e:
+                self.log.exception(f"Error using tarfile to extract sample {request.sha256}: {str(e)}.")
+                return extracted_files, password_protected
+
+            extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
 
         return extracted_files, password_protected
 
