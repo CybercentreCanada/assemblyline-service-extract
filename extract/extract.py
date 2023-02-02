@@ -740,7 +740,7 @@ class Extract(ServiceBase):
                 extracted_files, password_protected = self.extract_zip_7zip(request)
                 if extracted_files:
                     return extracted_files, password_protected
-            except UnicodeEncodeError:
+            except (UnicodeDecodeError, UnicodeEncodeError):
                 # with zipfile
                 extracted_files, password_protected = self.extract_zip_zipfile(request)
                 if extracted_files:
