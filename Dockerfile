@@ -11,13 +11,14 @@ RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unr
 
 FROM base AS build
 
-RUN apt-get update && apt-get install -y build-essential libssl-dev wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libssl-dev wget swig && rm -rf /var/lib/apt/lists/*
 
 USER assemblyline
 
 # Install pip packages
+COPY requirements.txt /tmp/requirements.txt
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool html5lib pikepdf && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz

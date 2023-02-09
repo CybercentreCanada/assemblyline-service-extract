@@ -1,0 +1,182 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "[{\"Date Time\": \"2022-09-06 14:35:50\", \"Attr\": \"..H.A\", \"Size\": \"1206\", \"Compressed\": \"619\", \"Name\": \"hit/hanging.bat\"}, {\"Date Time\": \"2022-09-06 14:32:02\", \"Attr\": \"..H.A\", \"Size\": \"101376\", \"Compressed\": \"57805\", \"Name\": \"hit/overgoverning.dll\"}]",
+        "body_format": "TABLE",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 18,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "hit/hanging.bat",
+                "hit/overgoverning.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Hidden files found in archive",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "document.lnk",
+                "hit/hanging.bat",
+                "hit/overgoverning.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "document.lnk",
+                "hit/hanging.bat",
+                "hit/overgoverning.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "document.lnk",
+        "sha256": "9e8769dc355770d26719c28573cb357ba624f5654b83f2c31bef03018d301252"
+      },
+      {
+        "name": "hit/hanging.bat",
+        "sha256": "b88ac19c153d44c1ad19a4f4ff006f1dec5b9bec50d002b15964728d0647800f"
+      },
+      {
+        "name": "hit/overgoverning.dll",
+        "sha256": "eb7649af98573b5fcf29393e9d1ecc9a8991d69a3a8db687de7d93766009eb11"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 18,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "document.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "document.lnk"
+        },
+        {
+          "heur_id": 18,
+          "signatures": [],
+          "value": "hit/hanging.bat"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "hit/hanging.bat"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "hit/hanging.bat"
+        },
+        {
+          "heur_id": 18,
+          "signatures": [],
+          "value": "hit/overgoverning.dll"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "hit/overgoverning.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "hit/overgoverning.dll"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

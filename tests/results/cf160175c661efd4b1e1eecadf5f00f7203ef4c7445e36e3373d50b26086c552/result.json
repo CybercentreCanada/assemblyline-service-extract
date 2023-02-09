@@ -1,0 +1,140 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "7za.dll",
+                "november_schedul\u202d\u202e\u202e\u202efdp.exe",
+                "vcruntime140.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "7za.dll",
+                "november_schedul\u202d\u202e\u202e\u202efdp.exe",
+                "vcruntime140.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "7za.dll",
+        "sha256": "381a3c6c7e119f58dfde6f03a9890353a20badfa1bfa7c38ede62c6b0692103c"
+      },
+      {
+        "name": "november_schedul\u202d\u202e\u202e\u202efdp.exe",
+        "sha256": "844e902977b478eace8568f49dd9e5c91db8e534f3c5410ee663d0be02bdf7e3"
+      },
+      {
+        "name": "vcruntime140.dll",
+        "sha256": "a0c3e6cd167b93f4646a7a3f2d46ed8bd4888d861b533662a66ca9711d49db1f"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "7za.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "7za.dll"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "november_schedul\u202d\u202e\u202e\u202efdp.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "november_schedul\u202d\u202e\u202e\u202efdp.exe"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "vcruntime140.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "vcruntime140.dll"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

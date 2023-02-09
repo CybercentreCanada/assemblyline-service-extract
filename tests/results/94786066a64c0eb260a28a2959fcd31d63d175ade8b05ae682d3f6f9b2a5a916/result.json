@@ -1,37 +1,134 @@
 {
-    "response": {
-        "supplementary": [],
-        "extracted": [
-            {
-                "name": "Reports.lnk",
-                "sha256": "48b5fb3fa3ea67c2bc0086c41ec755c39d748a7100d71b81f618e82bf1c479f0"
-            },
-            {
-                "name": "ICA-declass.pdf",
-                "sha256": "7d34f25ad8099bd069c5a04799299f17d127a3866b77ee34ffb59cfd36e29673"
-            },
-            {
-                "name": "Documents.dll",
-                "sha256": "ee42ddacbd202008bcc1312e548e1d9ac670dd3d86c999606a3a01d464a2a330"
-            }
-        ]
-    },
-    "result": {
-        "heuristics": [
-            1,
-            16
-        ],
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Documents.dll\nICA-declass.pdf\nReports.lnk",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
         "tags": {
-            "file.name.extracted": [
-                "Documents.dll",
+          "file": {
+            "name": {
+              "extracted": [
                 "Documents.dll",
                 "ICA-declass.pdf",
-                "Reports.lnk",
                 "Reports.lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Documents.dll\nReports.lnk",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
             ],
-            "file.behavior": [
-                "Executable Content in Archive"
-            ]
+            "name": {
+              "extracted": [
+                "Documents.dll",
+                "Reports.lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Reports.lnk",
+        "sha256": "48b5fb3fa3ea67c2bc0086c41ec755c39d748a7100d71b81f618e82bf1c479f0"
+      },
+      {
+        "name": "ICA-declass.pdf",
+        "sha256": "7d34f25ad8099bd069c5a04799299f17d127a3866b77ee34ffb59cfd36e29673"
+      },
+      {
+        "name": "Documents.dll",
+        "sha256": "ee42ddacbd202008bcc1312e548e1d9ac670dd3d86c999606a3a01d464a2a330"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
         }
-    }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Documents.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Documents.dll"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ICA-declass.pdf"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Reports.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Reports.lnk"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
 }

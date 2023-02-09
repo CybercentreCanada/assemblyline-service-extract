@@ -1,22 +1,85 @@
 {
-    "response": {
-        "supplementary": [],
-        "extracted": [
-            {
-                "name": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
-                "sha256": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
-            }
-        ]
-    },
-    "result": {
-        "heuristics": [
-            1,
-            17
-        ],
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 17,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Encoded JScript used",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
         "tags": {
-            "file.name.extracted": [
+          "file": {
+            "name": {
+              "extracted": [
                 "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
-            ]
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "sha256": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 17,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
         }
-    }
+      ]
+    },
+    "temp_submission_data": {}
+  }
 }

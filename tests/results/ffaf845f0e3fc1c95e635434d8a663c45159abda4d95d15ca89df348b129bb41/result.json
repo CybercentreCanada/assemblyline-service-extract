@@ -1,0 +1,417 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf\nres/raw/about_patch.htm\nres/raw/about_translate_plugin.htm\nres/raw/editor_help.htm\nres/raw/help.htm\nres/raw/oldhelp.htm\nres/raw/pngeditor_help.htm",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 4,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "assets/aapt",
+                "assets/aaptz",
+                "assets/android.zip",
+                "assets/editorkey.pk8",
+                "assets/http.zip",
+                "assets/mycp",
+                "assets/patch_app_rename.zip",
+                "assets/patch_bypass_sigcheck.old.zip",
+                "assets/patch_bypass_sigcheck.zip",
+                "assets/patch_data_editor.zip",
+                "assets/patch_launcher_toast.zip",
+                "assets/patch_mem_editor.zip",
+                "assets/patch_my_font.zip",
+                "assets/patch_new_entrance.zip",
+                "assets/patch_script_example.zip",
+                "assets/testkey.pk8",
+                "assets/viewsource.css",
+                "classes.dex",
+                "jadx/core/clsp/core.jcst",
+                "lib/arm64-v8a/libsyscheck.so",
+                "lib/armeabi-v7a/libsyscheck.so",
+                "lib/armeabi/libsyscheck.so",
+                "res/raw-v22/md_sans.ttf",
+                "res/raw/about_patch.htm",
+                "res/raw/about_translate_plugin.htm",
+                "res/raw/editor_help.htm",
+                "res/raw/help.htm",
+                "res/raw/oldhelp.htm",
+                "res/raw/pngeditor_help.htm"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 29 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "AndroidManifest.xml\nMETA-INF/CERT.RSA\nMETA-INF/CERT.SF\nMETA-INF/INDEX.LIST\nMETA-INF/LICENSE\nMETA-INF/MANIFEST.MF\nMETA-INF/android.arch.core_runtime.version\nMETA-INF/android.arch.lifecycle_livedata-core.version\nMETA-INF/android.arch.lifecycle_livedata.version\nMETA-INF/android.arch.lifecycle_runtime.version\nMETA-INF/android.arch.lifecycle_viewmodel.version\nMETA-INF/androidx.appcompat_appcompat.version\nMETA-INF/androidx.asynclayoutinflater_asynclayoutinflater.version\nMETA-INF/androidx.coordinatorlayout_coordinatorlayout.version\nMETA-INF/androidx.core_core.version\nMETA-INF/androidx.cursoradapter_cursoradapter.version\nMETA-INF/androidx.customview_customview.version\nMETA-INF/androidx.documentfile_documentfile.version\nMETA-INF/androidx.drawerlayout_drawerlayout.version\nMETA-INF/androidx.fragment_fragment.version\nMETA-INF/androidx.interpolator_interpolator.version\nMETA-INF/androidx.legacy_legacy-support-core-ui.version\nMETA-INF/androidx.legacy_legacy-support-core-utils.version\nMETA-INF/androidx.loader_loader.version\nMETA-INF/androidx.localbroadcastmanager_localbroadcastmanager.version\n...",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1278 files that were safelisted.",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "assets/aapt\nassets/aaptz\nassets/mycp\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "assets/aapt",
+                "assets/aaptz",
+                "assets/mycp",
+                "lib/arm64-v8a/libsyscheck.so",
+                "lib/armeabi-v7a/libsyscheck.so",
+                "lib/armeabi/libsyscheck.so"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "assets/aaptz",
+        "sha256": "11fd748879af68a62ec09f294a2857d09d7af3b23425571746cd2ae2fc9c95e3"
+      },
+      {
+        "name": "lib/armeabi/libsyscheck.so",
+        "sha256": "16f3fd699f30a3372bc85144ffbe9ab96e2322d04ffc4f13cf0501f669bad7e5"
+      },
+      {
+        "name": "jadx/core/clsp/core.jcst",
+        "sha256": "20c98a106b848d7e025634fa83daeeb10f7e83290a956764afbf2e64925e25f7"
+      },
+      {
+        "name": "assets/patch_mem_editor.zip",
+        "sha256": "28a3a55b22cd078a1df94c3b6d2e1235e2f5badff0af85ef8c4bfa62c88d2072"
+      },
+      {
+        "name": "assets/patch_app_rename.zip",
+        "sha256": "37b5e3130b058a396320c74e287ac3367b1f2683e3679aab82946345891cd52f"
+      },
+      {
+        "name": "assets/editorkey.pk8",
+        "sha256": "4521b30fb44c2d3e92e535b4605571dbcfbfcdfd060c0a3f5295e2dd9ebf92ea"
+      },
+      {
+        "name": "assets/testkey.pk8",
+        "sha256": "495675d32e89a149d5abe191f4e9c0e218b9068714e9b53a7c91e164a0741a23"
+      },
+      {
+        "name": "lib/arm64-v8a/libsyscheck.so",
+        "sha256": "4f09cbbbe788acb243f3092bcf0553725832c1cabb76f76a7cf7f82b2e46a976"
+      },
+      {
+        "name": "assets/android.zip",
+        "sha256": "51b57eb021c92f84569f44e7b952ad05acfa9306d3e7842c750f6f54d7464cb9"
+      },
+      {
+        "name": "assets/patch_bypass_sigcheck.zip",
+        "sha256": "68c2c7b546cc86768fd266be9c62df250374dded162b9f5aaa06bcc01b7b99ae"
+      },
+      {
+        "name": "res/raw/about_patch.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "res/raw/about_translate_plugin.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "res/raw/editor_help.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "res/raw/help.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "res/raw/oldhelp.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "res/raw/pngeditor_help.htm",
+        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
+      },
+      {
+        "name": "lib/armeabi-v7a/libsyscheck.so",
+        "sha256": "87e21f5e2db9bdedfe121b5fa24ce4cd66654de595cd6e2b93a53cd13a394b6a"
+      },
+      {
+        "name": "assets/mycp",
+        "sha256": "91ce9d7824908beebeff6d3177d07e52a8f6069ba0926e084c2e6d4444053eff"
+      },
+      {
+        "name": "assets/patch_bypass_sigcheck.old.zip",
+        "sha256": "9499865770d3d41a85a429ae322b861fb3d23197628563a39d2f4202f3136f23"
+      },
+      {
+        "name": "res/raw-v22/md_sans.ttf",
+        "sha256": "974ee8402aed7391f8ed35155db12950697bcbbe3ad01abfb81718b65cb1960d"
+      },
+      {
+        "name": "assets/aapt",
+        "sha256": "985eb36c327c8e8a617df14e62b1bf46d0abe2895c5ca5f025e74be41285f0f3"
+      },
+      {
+        "name": "assets/patch_data_editor.zip",
+        "sha256": "a454670e8a201a5c3257968e6c147e8853012a39527a68bd22f3d1eb50c3e9ce"
+      },
+      {
+        "name": "assets/http.zip",
+        "sha256": "aa4c0ef0bc27ebe82fb52adb97fcd8bdfeb5c7b3288f1bb9ee8336237e503c84"
+      },
+      {
+        "name": "assets/patch_my_font.zip",
+        "sha256": "aab687094191c6aafd37c17d9c55c36370b43acaddd8a651426af80e65a6bf3a"
+      },
+      {
+        "name": "assets/viewsource.css",
+        "sha256": "abf2ba175851a4f777263960edc00f556a5bd32bc0bc4ecae375c217c55c870b"
+      },
+      {
+        "name": "assets/patch_script_example.zip",
+        "sha256": "ac920419dfe59e7765b831761eb413533bfac2d8b14cfa1aa82c3c0c69bd9fcf"
+      },
+      {
+        "name": "classes.dex",
+        "sha256": "af90c50d40aedf35acb34e3eaddad075c78840111505f2d3b1a7fd9bf0024388"
+      },
+      {
+        "name": "assets/patch_launcher_toast.zip",
+        "sha256": "ce3a483528891a3634f1dece34cb443373a98f89adb94a32b64fa62b27be011a"
+      },
+      {
+        "name": "assets/patch_new_entrance.zip",
+        "sha256": "dff811c2fdd666f1b63d40a32d2c591a1694b902e12eecf79672d4dc063840c2"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 4,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/aapt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "assets/aapt"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/aaptz"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "assets/aaptz"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/android.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/editorkey.pk8"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/http.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/mycp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "assets/mycp"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_app_rename.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_bypass_sigcheck.old.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_bypass_sigcheck.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_data_editor.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_launcher_toast.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_mem_editor.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_my_font.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_new_entrance.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/patch_script_example.zip"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/testkey.pk8"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/viewsource.css"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "classes.dex"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "jadx/core/clsp/core.jcst"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "lib/arm64-v8a/libsyscheck.so"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lib/arm64-v8a/libsyscheck.so"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "lib/armeabi-v7a/libsyscheck.so"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lib/armeabi-v7a/libsyscheck.so"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "lib/armeabi/libsyscheck.so"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lib/armeabi/libsyscheck.so"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw-v22/md_sans.ttf"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/about_patch.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/about_translate_plugin.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/editor_help.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/help.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/oldhelp.htm"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "res/raw/pngeditor_help.htm"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

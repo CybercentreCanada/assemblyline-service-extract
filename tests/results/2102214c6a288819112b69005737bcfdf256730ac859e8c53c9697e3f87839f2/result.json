@@ -1,0 +1,170 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "[{\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"D.HS.\", \"Size\": \"\", \"Compressed\": \"\", \"Name\": \"System Volume Information\"}, {\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"..H.A\", \"Size\": \"1986766\", \"Compressed\": \"1990656\", \"Name\": \"imagedata.ps1\"}]",
+        "body_format": "TABLE",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 18,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "imagedata.ps1"
+              ]
+            }
+          }
+        },
+        "title_text": "Hidden files found in archive",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Quote.lnk\nSystem Volume Information/WPSettings.dat\nimagedata.ps1",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Quote.lnk",
+                "System Volume Information/WPSettings.dat",
+                "imagedata.ps1"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Quote.lnk\nimagedata.ps1",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Quote.lnk",
+                "imagedata.ps1"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "imagedata.ps1",
+        "sha256": "0ff8988d76fc6bd764a70a7a4f07a15b2b2c604138d9aadc784c9aeb6b77e275"
+      },
+      {
+        "name": "Quote.lnk",
+        "sha256": "1285f03b8dbe35c82feef0cb57b3e9b24e75efabba0589752c2256a8da00ad85"
+      },
+      {
+        "name": "System Volume Information/WPSettings.dat",
+        "sha256": "1decafebc53ba0e67f782770587a40178f83a8f2cc0fd808dc56813b61be6815"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 18,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Quote.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Quote.lnk"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "System Volume Information/WPSettings.dat"
+        },
+        {
+          "heur_id": 18,
+          "signatures": [],
+          "value": "imagedata.ps1"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "imagedata.ps1"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "imagedata.ps1"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

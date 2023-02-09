@@ -1,0 +1,32 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": []
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {},
+    "temp_submission_data": {
+      "passwords": [
+        "",
+        "Download",
+        "Download-completed",
+        "Password",
+        "Password of file: U523",
+        "Successfully",
+        "U523",
+        "completed",
+        "downloaded",
+        "downloaded.",
+        "file",
+        "file:",
+        "of"
+      ]
+    }
+  }
+}

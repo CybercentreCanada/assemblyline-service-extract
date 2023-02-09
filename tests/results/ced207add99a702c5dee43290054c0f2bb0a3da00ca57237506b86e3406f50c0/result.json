@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 6,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "VelvetSweatshop"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 1 file using password: VelvetSweatshop",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0",
+        "sha256": "3f7545374991c6b78c06f1eeb0a9c4e2b0e18e1fd0bf3053299289cecef0e7e5"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 6,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 6,
+          "signatures": [],
+          "value": "ced207add99a702c5dee43290054c0f2bb0a3da00ca57237506b86e3406f50c0"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 6,
+          "signatures": [],
+          "value": "VelvetSweatshop"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

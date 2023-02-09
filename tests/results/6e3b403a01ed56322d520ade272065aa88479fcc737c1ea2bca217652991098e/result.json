@@ -1,0 +1,154 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "AaaTeXMeterBilling.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt\nSetup.exe",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "AaaTeXMeterBilling.exe",
+                "Operations.pdf",
+                "ReadMe.pdf",
+                "ReleaseNotes.txt",
+                "Setup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 5 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "AaaTeXMeterBilling.exe\nSetup.exe",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "AaaTeXMeterBilling.exe",
+                "Setup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ReadMe.pdf",
+        "sha256": "22390232ada73d34e09ef2e78137f02d720e1d05812e3fb88f8758adaa97d43f"
+      },
+      {
+        "name": "Setup.exe",
+        "sha256": "2af8cb325afe1f51394627b4cb353057670970b35ddc2c3c7e6a40ed2007ec61"
+      },
+      {
+        "name": "ReleaseNotes.txt",
+        "sha256": "47b23a72c38a421bdca85774c343d38d541b128900fc89d6f9392ae0ccc54c55"
+      },
+      {
+        "name": "Operations.pdf",
+        "sha256": "9933be3ed0b7d5007a28529f3e628006b3e91d404265e3efe1893a5a7ed643cf"
+      },
+      {
+        "name": "AaaTeXMeterBilling.exe",
+        "sha256": "f4c958524d2e9968ab32ef1ebb4536cfb3831ca8ed55f35a27fc45eaa37a0a4a"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "AaaTeXMeterBilling.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "AaaTeXMeterBilling.exe"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Operations.pdf"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ReadMe.pdf"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ReleaseNotes.txt"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Setup.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Setup.exe"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

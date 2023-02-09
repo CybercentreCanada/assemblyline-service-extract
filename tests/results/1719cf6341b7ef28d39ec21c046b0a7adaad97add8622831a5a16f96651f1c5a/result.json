@@ -1,0 +1,85 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 17,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Encoded JScript used",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e",
+        "sha256": "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 17,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "f4d25238bce7b3f1718dbe2c1ec73a9b56b221b2aeff2fb9c96afa98fa67ee1e"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

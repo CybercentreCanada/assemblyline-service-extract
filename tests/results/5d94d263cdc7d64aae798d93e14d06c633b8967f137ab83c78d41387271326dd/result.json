@@ -1,30 +1,132 @@
 {
-    "response": {
-        "supplementary": [],
-        "extracted": []
-    },
-    "result": {
-        "heuristics": [
-            12
-        ],
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Unextracted files in password protected archive:\nGeoIP.dat\nnjRAT v0.7d.exe\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nstub.il\nStub.manifest\nWinMM.Net.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 12,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
         "tags": {
-            "file.name.extracted": [
+          "file": {
+            "behavior": [
+              "Archive Unknown Password"
+            ],
+            "name": {
+              "extracted": [
                 "GeoIP.dat",
-                "Plugin/",
+                "njRAT v0.7d.exe",
                 "Plugin/cam.dll",
                 "Plugin/ch.dll",
                 "Plugin/mic.dll",
                 "Plugin/plg.dll",
                 "Plugin/pw.dll",
                 "Plugin/sc2.dll",
+                "stub.il",
                 "Stub.manifest",
-                "WinMM.Net.dll",
-                "njRAT v0.7d.exe",
-                "stub.il"
-            ],
-            "file.behavior": [
-                "Archive Unknown Password"
-            ]
+                "WinMM.Net.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Failed to extract password protected file.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": [
+      {
+        "name": "password_tested.json",
+        "sha256": "0cfcecc2075bbf5e4b634a78f2499ef09f4b3d731d8581d8cdfacaa4c35d0da2"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 12,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Archive Unknown Password"
         }
-    }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "GeoIP.dat"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/cam.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/ch.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/mic.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/plg.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/pw.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Plugin/sc2.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Stub.manifest"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "WinMM.Net.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "njRAT v0.7d.exe"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "stub.il"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
 }
