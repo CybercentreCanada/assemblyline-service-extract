@@ -1,0 +1,256 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "GeoIP.dat\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nStub.manifest\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "GeoIP.dat",
+                "Plugin/cam.dll",
+                "Plugin/ch.dll",
+                "Plugin/mic.dll",
+                "Plugin/plg.dll",
+                "Plugin/pw.dll",
+                "Plugin/sc2.dll",
+                "Stub.manifest",
+                "WinMM.Net.dll",
+                "njRAT v0.7d.exe",
+                "stub.il"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "rekings.com"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 11 files using password: rekings.com",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Plugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Plugin/cam.dll",
+                "Plugin/ch.dll",
+                "Plugin/mic.dll",
+                "Plugin/plg.dll",
+                "Plugin/pw.dll",
+                "Plugin/sc2.dll",
+                "WinMM.Net.dll",
+                "njRAT v0.7d.exe",
+                "stub.il"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Plugin/sc2.dll",
+        "sha256": "3e5141c75b7746c0eb2b332082a165deacb943cef26bd84668e6b79b47bdfd93"
+      },
+      {
+        "name": "WinMM.Net.dll",
+        "sha256": "59e2ac1b79840274bdfcef412a10058654e42f4285d732d1487e65e60ffbfb46"
+      },
+      {
+        "name": "Plugin/ch.dll",
+        "sha256": "6e31148cc1b3235b71731c3944a7b06f861e104e978708d12c695ec09b5b3760"
+      },
+      {
+        "name": "Plugin/cam.dll",
+        "sha256": "7a4977b024d048b71bcc8f1cc65fb06e4353821323f852dc6740b79b9ab75c98"
+      },
+      {
+        "name": "Stub.manifest",
+        "sha256": "835a00d6e7c43db49ae7b3fa12559f23c2920b7530f4d3f960fd285b42b1efb5"
+      },
+      {
+        "name": "GeoIP.dat",
+        "sha256": "8a0675001b5bc63d8389fc7ed80b4a7b0f9538c744350f00162533519e106426"
+      },
+      {
+        "name": "Plugin/pw.dll",
+        "sha256": "a3e4bee1b6944aa9266bd58de3f534a4c1896df621881a5252a0d355a6e67c70"
+      },
+      {
+        "name": "Plugin/mic.dll",
+        "sha256": "b6fb6b66821e70a27a4750b0cd0393e4ee2603a47feac48d6a3d66d1c1cb56d5"
+      },
+      {
+        "name": "njRAT v0.7d.exe",
+        "sha256": "bf853789b938bdc5da8aaeb52511379a332c7cf238266a21bfcb0318a62e85cb"
+      },
+      {
+        "name": "stub.il",
+        "sha256": "daa4362a762a472f717a480102883382b41dc5c17484f649272c5bdb5142917c"
+      },
+      {
+        "name": "Plugin/plg.dll",
+        "sha256": "ea9ecf8723788feef6492bf938cdfab1266a1558dffe75e1f78a998320f96e39"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "GeoIP.dat"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/cam.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/cam.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/ch.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/ch.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/mic.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/mic.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/plg.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/plg.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/pw.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/pw.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Plugin/sc2.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Plugin/sc2.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Stub.manifest"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "WinMM.Net.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "WinMM.Net.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "njRAT v0.7d.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "njRAT v0.7d.exe"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "stub.il"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "stub.il"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "rekings.com"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

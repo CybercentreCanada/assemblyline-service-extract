@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 7,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "permpass"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 1 file using password: permpass",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111",
+        "sha256": "1f8dc7a7393e06d6b2bb02eed5413a06b0b78bab671beda39d71dc0e45dc119e"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 7,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 7,
+          "signatures": [],
+          "value": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 7,
+          "signatures": [],
+          "value": "permpass"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

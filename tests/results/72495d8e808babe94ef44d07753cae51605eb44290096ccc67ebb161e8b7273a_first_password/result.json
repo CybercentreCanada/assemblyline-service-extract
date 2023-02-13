@@ -1,0 +1,129 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Unextracted files in password protected archive:\nfile2.txt",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 12,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archive Unknown Password"
+            ],
+            "name": {
+              "extracted": [
+                "file2.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Failed to extract password protected file.",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "file1.txt",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "file1.txt"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "AA"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 1 file using password: AA",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "file1.txt",
+        "sha256": "6a5f56e842f62a8e1e5adf1059d135b6f0df231db78c6f42d25da14f70746181"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "password_tested.json",
+        "sha256": "860231afc573ac23529da57462571d314a100fa4a0db1f15241d1f21b03cc31b"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 12,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Archive Unknown Password"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "file1.txt"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "file2.txt"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "AA"
+        }
+      ]
+    },
+    "temp_submission_data": {
+      "passwords": [
+        "AA"
+      ]
+    }
+  }
+}

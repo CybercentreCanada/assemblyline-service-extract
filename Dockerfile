@@ -7,18 +7,18 @@ USER root
 
 RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y libssl1.1 p7zip-full p7zip-rar unace-nonfree poppler-utils python-lxml unrar && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
 FROM base AS build
 
-RUN apt-get update && apt-get install -y build-essential libssl-dev wget && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libssl-dev wget swig && rm -rf /var/lib/apt/lists/*
 
 USER assemblyline
 
 # Install pip packages
+COPY requirements.txt /tmp/requirements.txt
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user tnefparse olefile beautifulsoup4 pylzma lxml msoffcrypto-tool html5lib && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
@@ -40,6 +40,10 @@ FROM base
 
 COPY --from=build /opt/al/support /opt/al/support
 COPY --chown=assemblyline:assemblyline --from=build /var/lib/assemblyline/.local /var/lib/assemblyline/.local
+
+ADD https://www.7-zip.org/a/7z2201-linux-x86.tar.xz /7z2201-linux-x86.tar.xz
+RUN mkdir /opt/7z && tar -xf /7z2201-linux-x86.tar.xz -C /opt/7z
+RUN ln -s /opt/7z/7zzs /usr/bin/7zzs
 
 # Switch to assemblyline user
 USER assemblyline

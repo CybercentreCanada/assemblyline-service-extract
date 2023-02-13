@@ -1,0 +1,103 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: Data Error : Screenshot.png",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "ProgramList.txt\nProsessList.txt\nScreenshot.png\ninfo.txt",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "ProgramList.txt",
+                "ProsessList.txt",
+                "Screenshot.png",
+                "info.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 4 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ProgramList.txt",
+        "sha256": "07e0a9ece3bd72439242148e2e531c9acdd2313c06aa9cd97cbe8a0ad45775d8"
+      },
+      {
+        "name": "ProsessList.txt",
+        "sha256": "0dd9d16a87690a396f192ea173864197b95efd1189c4c835a075536ccb0091ed"
+      },
+      {
+        "name": "Screenshot.png",
+        "sha256": "221c702abda4f33f9a9f0c13ec8cc5da9c1189296578cfc816738e768c9796f7"
+      },
+      {
+        "name": "info.txt",
+        "sha256": "88085833fd7636e662f8d35723cb0338cb576a3e5f5ae65af426c480c1463ded"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ProgramList.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ProsessList.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Screenshot.png"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "info.txt"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

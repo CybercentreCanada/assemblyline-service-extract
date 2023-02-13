@@ -1,0 +1,40 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": []
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {},
+    "temp_submission_data": {
+      "passwords": [
+        "",
+        "            Document password:",
+        "23357",
+        "Document",
+        "Document password:",
+        "Please",
+        "Please,",
+        "This",
+        "WLMP1sCg",
+        "correctly",
+        "displayed",
+        "downloaded",
+        "file",
+        "file.",
+        "is",
+        "local",
+        "not",
+        "password",
+        "password:",
+        "use",
+        "your"
+      ]
+    }
+  }
+}

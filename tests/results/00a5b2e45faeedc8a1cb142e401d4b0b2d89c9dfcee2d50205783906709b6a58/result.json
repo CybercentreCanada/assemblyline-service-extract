@@ -1,0 +1,124 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ScannedDocuments_4602944.lnk\nlocal.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "ScannedDocuments_4602944.lnk",
+                "local.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "ScannedDocuments_4602944.lnk\nlocal.dll",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "ScannedDocuments_4602944.lnk",
+                "local.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ScannedDocuments_4602944.lnk",
+        "sha256": "8c1771c049cf36eecc7a37f207536a1a5fc2ca074c26e8c8c4e9dc167b8b3415"
+      },
+      {
+        "name": "local.dll",
+        "sha256": "f4fbc3206a37b6309e79de9e63f94c7e6ebadcfbf2929bdc17c85ec4541da64f"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ScannedDocuments_4602944.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "ScannedDocuments_4602944.lnk"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "local.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "local.dll"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
