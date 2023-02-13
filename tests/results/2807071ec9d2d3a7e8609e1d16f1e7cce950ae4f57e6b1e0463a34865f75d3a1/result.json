@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "2807071ec9d2d3a7e8609e1d16f1e7cce950ae4f57e6b1e0463a34865f75d3a1",
+        "body": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,7 +21,7 @@
           "file": {
             "name": {
               "extracted": [
-                "2807071ec9d2d3a7e8609e1d16f1e7cce950ae4f57e6b1e0463a34865f75d3a1"
+                "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
               ]
             }
           }
@@ -34,8 +34,8 @@
   "files": {
     "extracted": [
       {
-        "name": "2807071ec9d2d3a7e8609e1d16f1e7cce950ae4f57e6b1e0463a34865f75d3a1",
-        "sha256": "2807071ec9d2d3a7e8609e1d16f1e7cce950ae4f57e6b1e0463a34865f75d3a1"
+        "name": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3",
+        "sha256": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
       }
     ],
     "supplementary": []
@@ -53,7 +53,7 @@
         {
           "heur_id": 6,
           "signatures": [],
-          "value": "2807071ec9d2d3a7e8609e1d16f1e7cce950ae4f57e6b1e0463a34865f75d3a1"
+          "value": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
         }
       ]
     },
