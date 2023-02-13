@@ -1284,6 +1284,10 @@ class Extract(ServiceBase):
                 if len(request.extracted) <= self.config.get("heur16_max_file_count", 5):
                     new_section.set_heuristic(16)
 
+                if request.file_type == "document/office/onenote":
+                    heur = Heuristic(23)
+                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
+
                 request.result.add_section(new_section)
 
     def extract_onenote(self, request: ServiceRequest):
