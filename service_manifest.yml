@@ -184,6 +184,12 @@ heuristics:
     description: >-
        The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
 
+  - heur_id: 23
+    name: Executable File(s) found in Office Document
+    score: 1000
+    filetype: "document/office/*"
+    description: Office document with executable(s) inside. Malicious!
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
