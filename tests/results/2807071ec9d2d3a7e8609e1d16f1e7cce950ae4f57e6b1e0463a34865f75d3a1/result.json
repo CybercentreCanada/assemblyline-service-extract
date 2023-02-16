@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37",
+        "body": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,7 +21,7 @@
           "file": {
             "name": {
               "extracted": [
-                "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37"
+                "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
               ]
             }
           }
@@ -34,8 +34,8 @@
   "files": {
     "extracted": [
       {
-        "name": "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37",
-        "sha256": "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37"
+        "name": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3",
+        "sha256": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
       }
     ],
     "supplementary": []
@@ -53,7 +53,7 @@
         {
           "heur_id": 6,
           "signatures": [],
-          "value": "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37"
+          "value": "3e774647cfdd0522eb134e7391c2331fbab7fcd35ab6788ba2054b814a35bfe3"
         }
       ]
     },
