@@ -1,0 +1,75 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 24,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Unable to recover file listing",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "ERROR: /tmp/528414eb0f12057ea762b3134085b4f144170673a385c33265fe64569f5afd54\nERROR: /tmp/528414eb0f12057ea762b3134085b4f144170673a385c33265fe64569f5afd54",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 24,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Unable to recover file listing",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 24,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 24,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}
