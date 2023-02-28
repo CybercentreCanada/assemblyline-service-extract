@@ -190,6 +190,12 @@ heuristics:
     filetype: "document/office/*"
     description: Office document with executable(s) inside. Malicious!
 
+  - heur_id: 24
+    name: Unable to recover file listing
+    score: 0
+    filetype: "*"
+    description: File listing is probably stored in an encrypted header, so we can't recover the expected files.
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1

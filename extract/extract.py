@@ -782,6 +782,10 @@ class Extract(ServiceBase):
             if separator:
                 data.append(line)
 
+        if separator is None:
+            # The command probably returned without being able to parse the listing
+            return [], []
+
         # Now that we have headers and data, we need to parse them
         col_len = [(m.start(), m.end()) for m in re.finditer(rb"\S+", separator)]
 
@@ -872,23 +876,31 @@ class Extract(ServiceBase):
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                hidden_files = [x for x in data if x[1][2] == "H"]
+                if not data:
+                    # No listing could be extracted.
+                    heur = Heuristic(24)
+                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                else:
+                    hidden_files = [x for x in data if x[1][2] == "H"]
 
-                if hidden_files:
-                    heur = Heuristic(18)
-                    res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
-                    for hf in hidden_files:
-                        res.add_row(TableRow(dict(zip(header, hf))))
-                        # Do not add Directories to filename extracted
-                        if hf[1][0] != "D":
-                            res.add_tag("file.name.extracted", hf[-1])
+                    if hidden_files:
+                        heur = Heuristic(18)
+                        res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
+                        for hf in hidden_files:
+                            res.add_row(TableRow(dict(zip(header, hf))))
+                            # Do not add Directories to filename extracted
+                            if hf[1][0] != "D":
+                                res.add_tag("file.name.extracted", hf[-1])
 
-                # x[2] is the size, so ignore empty files/folders
-                expected_files = [x[4] for x in data if x[2] != "0"]
-                if password_protected and len(extracted_files) != len(expected_files):
-                    # If we extracted no files, and it is an archive/rar, we'll rely on unrar to populate the section
-                    if extracted_files or request.file_type != "archive/rar":
-                        self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+                    # x[2] is the size, so ignore empty files/folders
+                    expected_files = [x[4] for x in data if x[2] != "0"]
+                    if password_protected and len(extracted_files) != len(expected_files):
+                        # If we extracted no files, and it is an archive/rar,
+                        # we'll rely on unrar to populate the section
+                        if extracted_files or request.file_type != "archive/rar":
+                            self.raise_failed_passworded_extraction(
+                                request, extracted_files, expected_files, password_list
+                            )
 
                 error_res = None
                 for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
@@ -990,11 +1002,20 @@ class Extract(ServiceBase):
                         pass
 
         if password_protected:
-            header, data = self.parse_archive_listing(["unrar", "l", "-y", request.file_path], env, b"Attributes")
-            # x[1] is the size, so ignore empty files/folders
-            expected_files = [x[4] for x in data if x[1] != "0"]
-            if len(extracted_files) != len(expected_files):
-                self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+            if self.password_used:
+                popenargs = ["unrar", "l", "-y", f"-p{self.password_used[-1]}", request.file_path]
+            else:
+                popenargs = ["unrar", "l", "-y", "-p-", request.file_path]
+            header, data = self.parse_archive_listing(popenargs, env, b"Attributes")
+            if not data:
+                # No listing could be extracted.
+                heur = Heuristic(24)
+                _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+            else:
+                # x[1] is the size, so ignore empty files/folders
+                expected_files = [x[4] for x in data if x[1] != "0"]
+                if len(extracted_files) != len(expected_files):
+                    self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
 
         return extracted_files, password_protected
 
