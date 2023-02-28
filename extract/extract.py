@@ -1238,12 +1238,8 @@ class Extract(ServiceBase):
         tmp_new_files = []
 
         for cur_file in extracted:
-            f = open(cur_file[0], "rb")
-            byte_block = f.read(65535 * 2)
-            f.close()
-
             to_add = True
-            file_info = self.identify.ident(byte_block, len(byte_block), cur_file[0])
+            file_info = self.identify.fileinfo(cur_file[0])
             for exp in safelisted_tags_re:
                 if exp.search(file_info["type"]):
                     to_add = False
