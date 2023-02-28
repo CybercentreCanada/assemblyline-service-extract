@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "META-INF/maven/com.google.protobuf/protobuf-java/pom.xml\ndummyThing\ngg/essential/loader/stage0/stage1.jar\nmcmod.info",
+        "body": "dummyThing\ngg/essential/loader/stage0/stage1.jar\nmcmod.info",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -21,7 +21,6 @@
           "file": {
             "name": {
               "extracted": [
-                "META-INF/maven/com.google.protobuf/protobuf-java/pom.xml",
                 "dummyThing",
                 "gg/essential/loader/stage0/stage1.jar",
                 "mcmod.info"
@@ -29,18 +28,18 @@
             }
           }
         },
-        "title_text": "Successfully extracted 4 files",
+        "title_text": "Successfully extracted 3 files",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "LICENSE\nMETA-INF/MANIFEST.MF\nMETA-INF/TFM.RSA\nMETA-INF/TFM.SF\nMETA-INF/maven/com.google.protobuf/protobuf-java/pom.properties\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.properties\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.xml\nclub/thom/tfm/TFM.class\nclub/thom/tfm/backend/ChatSocketHandler$1.class\nclub/thom/tfm/backend/ChatSocketHandler.class\nclub/thom/tfm/backend/ConnectionHandler$FormedBytesWithAddress.class\nclub/thom/tfm/backend/ConnectionHandler.class\nclub/thom/tfm/backend/ServerMessageHandler$1.class\nclub/thom/tfm/backend/ServerMessageHandler.class\nclub/thom/tfm/blacklist/Blacklist$1.class\nclub/thom/tfm/blacklist/Blacklist.class\nclub/thom/tfm/blacklist/TailRender.class\nclub/thom/tfm/blacklist/handlers/EnchantBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/ItemBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/UserBlacklistHandler.class\nclub/thom/tfm/commands/BlacklistCommand.class\nclub/thom/tfm/commands/FlipperChatCommand.class\nclub/thom/tfm/commands/TFMCommand.class\nclub/thom/tfm/commands/ThresholdCommand.class\nclub/thom/tfm/commands/ViewAuctionCommand.class\n...",
+        "body": "LICENSE\nMETA-INF/MANIFEST.MF\nMETA-INF/TFM.RSA\nMETA-INF/TFM.SF\nMETA-INF/maven/com.google.protobuf/protobuf-java/pom.properties\nMETA-INF/maven/com.google.protobuf/protobuf-java/pom.xml\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.properties\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.xml\nclub/thom/tfm/TFM.class\nclub/thom/tfm/backend/ChatSocketHandler$1.class\nclub/thom/tfm/backend/ChatSocketHandler.class\nclub/thom/tfm/backend/ConnectionHandler$FormedBytesWithAddress.class\nclub/thom/tfm/backend/ConnectionHandler.class\nclub/thom/tfm/backend/ServerMessageHandler$1.class\nclub/thom/tfm/backend/ServerMessageHandler.class\nclub/thom/tfm/blacklist/Blacklist$1.class\nclub/thom/tfm/blacklist/Blacklist.class\nclub/thom/tfm/blacklist/TailRender.class\nclub/thom/tfm/blacklist/handlers/EnchantBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/ItemBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/UserBlacklistHandler.class\nclub/thom/tfm/commands/BlacklistCommand.class\nclub/thom/tfm/commands/FlipperChatCommand.class\nclub/thom/tfm/commands/TFMCommand.class\nclub/thom/tfm/commands/ThresholdCommand.class\n...",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
         "heuristic": null,
         "tags": {},
-        "title_text": "Successfully extracted 867 files that were safelisted.",
+        "title_text": "Successfully extracted 868 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -76,10 +75,6 @@
   },
   "files": {
     "extracted": [
-      {
-        "name": "META-INF/maven/com.google.protobuf/protobuf-java/pom.xml",
-        "sha256": "77c8d851cc762882af58530d23fb4a618260c12df02b4703e6f4e3ddcc8b923e"
-      },
       {
         "name": "dummyThing",
         "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
@@ -117,11 +112,6 @@
         }
       ],
       "file.name.extracted": [
-        {
-          "heur_id": 3,
-          "signatures": [],
-          "value": "META-INF/maven/com.google.protobuf/protobuf-java/pom.xml"
-        },
         {
           "heur_id": 3,
           "signatures": [],
