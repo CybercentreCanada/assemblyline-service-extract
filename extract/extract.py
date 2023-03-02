@@ -876,10 +876,10 @@ class Extract(ServiceBase):
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data:
+                if not data and request.file_type != "archive/rar":
                     # No listing could be extracted.
                     heur = Heuristic(24)
-                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
                 else:
                     hidden_files = [x for x in data if x[1][2] == "H"]
 
@@ -1010,7 +1010,7 @@ class Extract(ServiceBase):
             if not data:
                 # No listing could be extracted.
                 heur = Heuristic(24)
-                _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
             else:
                 # x[1] is the size, so ignore empty files/folders
                 expected_files = [x[4] for x in data if x[1] != "0"]
