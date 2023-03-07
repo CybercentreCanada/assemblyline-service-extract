@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
+        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -39,6 +39,7 @@
                 "assets/testkey.pk8",
                 "assets/viewsource.css",
                 "classes.dex",
+                "jadx/core/clsp/core.jcst",
                 "lib/arm64-v8a/libsyscheck.so",
                 "lib/armeabi-v7a/libsyscheck.so",
                 "lib/armeabi/libsyscheck.so",
@@ -47,7 +48,7 @@
             }
           }
         },
-        "title_text": "Successfully extracted 22 files",
+        "title_text": "Successfully extracted 23 files",
         "zeroize_on_tag_safe": false
       },
       {
@@ -58,7 +59,7 @@
         "depth": 0,
         "heuristic": null,
         "tags": {},
-        "title_text": "Successfully extracted 1285 files that were safelisted.",
+        "title_text": "Successfully extracted 1284 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -99,6 +100,10 @@
       {
         "name": "lib/armeabi/libsyscheck.so",
         "sha256": "16f3fd699f30a3372bc85144ffbe9ab96e2322d04ffc4f13cf0501f669bad7e5"
+      },
+      {
+        "name": "jadx/core/clsp/core.jcst",
+        "sha256": "20c98a106b848d7e025634fa83daeeb10f7e83290a956764afbf2e64925e25f7"
       },
       {
         "name": "assets/patch_mem_editor.zip",
@@ -304,6 +309,11 @@
           "heur_id": 4,
           "signatures": [],
           "value": "classes.dex"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "jadx/core/clsp/core.jcst"
         },
         {
           "heur_id": 4,
