@@ -49,7 +49,8 @@ from extract.ext.office_extract import (
     extract_office_docs,
 )
 from extract.ext.repair_zip import BadZipfile, RepairZip
-from extract.ext.xxdecode import xxcode_from_file
+from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
+from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
 
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
@@ -145,6 +146,8 @@ class Extract(ServiceBase):
             summary_section_heuristic = 8
         elif request.file_type == "archive/xxe":
             extracted = self.extract_xxe(request)
+        elif request.file_type == "archive/uue":
+            extracted = self.extract_uue(request)
         elif request.file_type == "code/vbe":
             extracted = self.extract_vbe(request)
             summary_section_heuristic = 11
@@ -1615,14 +1618,35 @@ class Extract(ServiceBase):
             List containing extracted information, including: extracted path, display name
         """
 
-        files = xxcode_from_file(request.file_path)
+        files = xxuu_decode_from_file(request.file_path, xx_character)
+        extracted = []
         for output_file, ans in files:
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-        return [
-            [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            for output_file, _ in files
-        ]
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
+
+    def extract_uue(self, request: ServiceRequest):
+        """Extract embedded scripts from UU encoded archives
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List containing extracted information, including: extracted path, display name
+        """
+
+        files = xxuu_decode_from_file(request.file_path, uu_character)
+        extracted = []
+        for output_file, ans in files:
+            with open(os.path.join(self.working_directory, output_file), "wb") as f:
+                f.write(bytes(ans))
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
 
     def extract_cart(self, request: ServiceRequest):
         cart_name = get_metadata_only(request.file_path)["name"]
