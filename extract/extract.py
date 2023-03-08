@@ -1619,13 +1619,14 @@ class Extract(ServiceBase):
         """
 
         files = xxuu_decode_from_file(request.file_path, xx_character)
+        extracted = []
         for output_file, ans in files:
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-        return [
-            [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            for output_file, _ in files
-        ]
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
 
     def extract_uue(self, request: ServiceRequest):
         """Extract embedded scripts from UU encoded archives
@@ -1638,13 +1639,14 @@ class Extract(ServiceBase):
         """
 
         files = xxuu_decode_from_file(request.file_path, uu_character)
+        extracted = []
         for output_file, ans in files:
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-        return [
-            [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            for output_file, _ in files
-        ]
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
 
     def extract_cart(self, request: ServiceRequest):
         cart_name = get_metadata_only(request.file_path)["name"]
