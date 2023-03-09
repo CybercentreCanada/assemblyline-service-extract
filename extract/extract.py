@@ -260,14 +260,15 @@ class Extract(ServiceBase):
                                     if not data:
                                         break
                                     calculator.update(data)
-                                    last_data = data
                             entropy = calculator.entropy()
 
                             if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
                                 # Padding detected in a general file, determine byte-padding
                                 with open(file_path, "rb") as f:
                                     f.seek(-1024, os.SEEK_END)
-                                    last_position_jumps = 1
+                                    last_data = f.read(1024)
+                                    last_position_jumps = 2
+                                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
                                     while f.read(1024) == last_data:
                                         last_position_jumps += 1
                                         f.seek(-1024 * last_position_jumps, os.SEEK_END)
@@ -276,7 +277,7 @@ class Extract(ServiceBase):
                                     while precise_offset >= 0:
                                         f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
                                         data = f.read(1)
-                                        if data[0] != last_data[0]:
+                                        if data and data[0] != last_data[0]:
                                             break
                                         precise_offset -= 1
                                     overlay_size = 1024 * last_position_jumps - precise_offset - 1
@@ -685,7 +686,10 @@ class Extract(ServiceBase):
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                    fd.write(pdf.attachments[key].get_file().read_bytes())
+                    attachment = pdf.attachments[key]
+                    if not attachment.filename:
+                        continue
+                    fd.write(attachment.get_file().read_bytes())
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
         except PdfError as e:
@@ -1418,13 +1422,15 @@ class Extract(ServiceBase):
         # guidHeader:  {BDE316E7-2665-4511-A4C4-8D4D0B7A9EAC}
         # guidFooter:  {71FBA722-0F79-4A0B-BB13-899256426B24}
         # Note: the first 3 fields are stored little-endian so the bytes are in reverse order in the document.
-        embedded_files = re.findall(
+        embedded_files: list[tuple[bytes, bytes]] = re.findall(
             b"(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC"
-            b".{20}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24",
+            b"(.{8}).{12}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24",
             data,
         )
         extracted = []
-        for embedded in embedded_files:
+        for cb_length_bytes, embedded in embedded_files:
+            cb_length = int.from_bytes(cb_length_bytes, 'little')
+            embedded = embedded[:cb_length]  # Remove padding
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), sys._getframe().f_code.co_name])
