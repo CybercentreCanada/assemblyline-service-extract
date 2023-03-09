@@ -260,14 +260,15 @@ class Extract(ServiceBase):
                                     if not data:
                                         break
                                     calculator.update(data)
-                                    last_data = data
                             entropy = calculator.entropy()
 
                             if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
                                 # Padding detected in a general file, determine byte-padding
                                 with open(file_path, "rb") as f:
                                     f.seek(-1024, os.SEEK_END)
-                                    last_position_jumps = 1
+                                    last_data = f.read(1024)
+                                    last_position_jumps = 2
+                                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
                                     while f.read(1024) == last_data:
                                         last_position_jumps += 1
                                         f.seek(-1024 * last_position_jumps, os.SEEK_END)
@@ -276,7 +277,7 @@ class Extract(ServiceBase):
                                     while precise_offset >= 0:
                                         f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
                                         data = f.read(1)
-                                        if data[0] != last_data[0]:
+                                        if data and data[0] != last_data[0]:
                                             break
                                         precise_offset -= 1
                                     overlay_size = 1024 * last_position_jumps - precise_offset - 1
@@ -685,7 +686,10 @@ class Extract(ServiceBase):
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                    fd.write(pdf.attachments[key].get_file().read_bytes())
+                    attachment = pdf.attachments[key]
+                    if not attachment.filename:
+                        continue
+                    fd.write(attachment.get_file().read_bytes())
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
         except PdfError as e:
