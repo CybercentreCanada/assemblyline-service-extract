@@ -1422,13 +1422,15 @@ class Extract(ServiceBase):
         # guidHeader:  {BDE316E7-2665-4511-A4C4-8D4D0B7A9EAC}
         # guidFooter:  {71FBA722-0F79-4A0B-BB13-899256426B24}
         # Note: the first 3 fields are stored little-endian so the bytes are in reverse order in the document.
-        embedded_files = re.findall(
+        embedded_files: list[tuple[bytes, bytes]] = re.findall(
             b"(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC"
-            b".{20}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24",
+            b"(.{8}).{12}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24",
             data,
         )
         extracted = []
-        for embedded in embedded_files:
+        for cb_length_bytes, embedded in embedded_files:
+            cb_length = int.from_bytes(cb_length_bytes, 'little')
+            embedded = embedded[:cb_length]  # Remove padding
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
             extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), sys._getframe().f_code.co_name])
