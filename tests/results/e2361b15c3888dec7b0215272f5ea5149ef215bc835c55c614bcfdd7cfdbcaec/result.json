@@ -12,7 +12,7 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 6,
+          "heur_id": 1,
           "score": 0,
           "score_map": {},
           "signatures": {}
@@ -149,119 +149,119 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 6,
+        "heur_id": 1,
         "signatures": []
       }
     ],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "0bb4a074dda7d8fd627d557d5f411cfeb29820030a03ec334336f725294bc912"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "0e99ea113e67a36fb4516edc1f86a0f8f2fd9bcf5fe96c2c9264468a3ea37fc6"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "1646474ecd98e295eb88c18ac44f493c05808a7f1601e0e233083b9b71a29c9b"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "186a0f4948bb00b2e48e48fc888d45aa69e7c209941f2a820525a74f9fe3ad38"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "21947b8e0f4dc8454447b95dc5d2579c2b2e1bec8ece8709fa4da126a574d888"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "2e718842b3af107f28f488cdaee6bc19c869eab3c2cc3da230465b1c329f9564"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "5646dc8a2014dcf858553c1c1147598b42bf27623b55696dd11bfa9357ca9d8e"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "5665cfb571a002f3ab662958024debc25f4528208e9ea22d589cab432eb14b02"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "66076583f503cbc946bc63e051e16c1a93a595d79f332d598a2e408cf11e6754"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "66ef8fdc4773f7573e6a1220fb141e8aa2309319322c09d2d7dc0eb06afec207"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "75ba0b6f39e9adadc64ef27a607f12eef5854288c2fcf78477d8be5a325b356f"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "88521890ecb86ad64c3dc8f11c9abc8bf698de704f43d9806278c18251af1d60"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "a349a700a96c3f7763c6a6c79e38e5cb3caf1c00e8b1a72eb2904a5af2cea49d"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "b947ed1a4bc8b3f4622d493955230765d367bb605b3f86fa5a2ea015fb000b2f"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "bc44d3dc0c8c8a775464695b53480a5695128c008efa03ee43cf779d7712ee83"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "bda64a6d8844665a77240d5c60193445d741068e48acdf9de294b7ea22771ef9"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "c874b805702ea73937bf0d2bbee1017595b6063efdfc2c2e8f70ac6e12857121"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "d869412b24bb6199c3b8712603418b12596c005e387443095d3d86be7b2dad6c"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "e2aa66fb8e6db08d9101e72fa6fdd6b23f015964a0f067400eb5c44acb90569b"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "e41bc8eefaba42388c4e612de5c6773478621bf084428a18dcd96eed1b5d10b6"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "e6931e63d44e28146c044bcb31a8f907d168bf8d1942d5f633d4bade22dbc46f"
         },
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "f61d319b31b576130229f131040205be7a47326bfd2d12f373338c8d4f2b27a6"
         }

@@ -153,10 +153,10 @@ class Extract(ServiceBase):
             summary_section_heuristic = 11
         elif request.file_type == "document/office/onenote":
             extracted = self.extract_onenote(request)
-            summary_section_heuristic = 6
         elif request.file_type == "document/office/passwordprotected":
             extracted, password_protected = self.extract_office(request)
-            summary_section_heuristic = 6
+            if password_protected:
+                summary_section_heuristic = 6
         elif request.file_type == "document/pdf/passwordprotected":
             extracted, password_protected = self.extract_pdf_passwordprotected(request)
             summary_section_heuristic = 7

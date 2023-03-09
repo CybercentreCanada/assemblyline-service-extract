@@ -12,7 +12,7 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 6,
+          "heur_id": 1,
           "score": 0,
           "score_map": {},
           "signatures": {}
@@ -44,14 +44,14 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 6,
+        "heur_id": 1,
         "signatures": []
       }
     ],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 6,
+          "heur_id": 1,
           "signatures": [],
           "value": "9c9c9c56eeb99314f74bc99cbb1454d32a691f390b3f32a7472f270bbce0ea37"
         }
