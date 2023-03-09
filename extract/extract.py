@@ -50,8 +50,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
 from msoffcrypto import exceptions as msoffcryptoexceptions
-NSIExtractor = None
-
+from nrs.nsi.extractor import Extractor as NSIExtractor
 
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
@@ -685,10 +684,10 @@ class Extract(ServiceBase):
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                    file = pdf.attachments[key].get_file()
-                    if not file.obj:
+                    attachment = pdf.attachments[key]
+                    if not attachment.filename:
                         continue
-                    fd.write(file.read_bytes())
+                    fd.write(attachment.get_file().read_bytes())
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
         except PdfError as e:
