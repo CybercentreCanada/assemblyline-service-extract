@@ -1,14 +1,3 @@
-from extract.ext.xxxswf import xxxswf
-from extract.ext.xxuudecode import uu_character, xx_character
-from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
-from extract.ext.repair_zip import BadZipfile, RepairZip
-from extract.ext.office_extract import (
-    ExtractionError,
-    PasswordError,
-    extract_office_docs,
-)
-from pikepdf import Pdf, PdfError
-from pikepdf import PasswordError as PDFPasswordError
 import hashlib
 import itertools
 import json
@@ -51,6 +40,18 @@ from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
 from msoffcrypto import exceptions as msoffcryptoexceptions
 from nrs.nsi.extractor import Extractor as NSIExtractor
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
+
+from extract.ext.office_extract import (
+    ExtractionError,
+    PasswordError,
+    extract_office_docs,
+)
+from extract.ext.repair_zip import BadZipfile, RepairZip
+from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
+from extract.ext.xxuudecode import uu_character, xx_character
+from extract.ext.xxxswf import xxxswf
 
 DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
@@ -259,14 +260,15 @@ class Extract(ServiceBase):
                                     if not data:
                                         break
                                     calculator.update(data)
-                                    last_data = data
                             entropy = calculator.entropy()
 
                             if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
                                 # Padding detected in a general file, determine byte-padding
                                 with open(file_path, "rb") as f:
                                     f.seek(-1024, os.SEEK_END)
-                                    last_position_jumps = 1
+                                    last_data = f.read(1024)
+                                    last_position_jumps = 2
+                                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
                                     while f.read(1024) == last_data:
                                         last_position_jumps += 1
                                         f.seek(-1024 * last_position_jumps, os.SEEK_END)
@@ -642,7 +644,7 @@ class Extract(ServiceBase):
             ever be detected.
         """
 
-        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-"):]
+        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
         for password in self.get_passwords(request):
             try:
                 pdf = Pdf.open(BytesIO(pdf_content), password=password)
@@ -675,7 +677,7 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-"):]
+        pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
 
         try:
             extracted_children = []
@@ -885,10 +887,10 @@ class Extract(ServiceBase):
         # Now that we have headers and data, we need to parse them
         col_len = [(m.start(), m.end()) for m in re.finditer(rb"\S+", separator)]
 
-        header = [b" ".join(header[c[0]: c[1]].split()).decode() for c in col_len]
+        header = [b" ".join(header[c[0] : c[1]].split()).decode() for c in col_len]
         parsed_data = []
         for d in data:
-            parsed_data.append([d[c[0]: c[1]].strip().decode() for c in col_len])
+            parsed_data.append([d[c[0] : c[1]].strip().decode() for c in col_len])
             if len(separator) < len(d):
                 parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{d[len(separator) :].decode()}"
             parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
