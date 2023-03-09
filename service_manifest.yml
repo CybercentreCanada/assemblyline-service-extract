@@ -28,6 +28,7 @@ config:
   heur16_max_file_count: 5
   heur22_min_overlay_size: 31457280
   heur22_min_overlay_entropy: 0.5
+  heur22_min_general_bloat_entropy: 0.2
 
 submission_params:
   - default: ""
@@ -180,9 +181,21 @@ heuristics:
   - heur_id: 22
     name: Big overlay with very low entropy
     score: 500
-    filetype: "executable/windows"
+    filetype: "*"
     description: >-
        The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
+
+  - heur_id: 23
+    name: Executable File(s) found in Office Document
+    score: 1000
+    filetype: "document/office/*"
+    description: Office document with executable(s) inside. Malicious!
+
+  - heur_id: 24
+    name: Unable to recover file listing
+    score: 0
+    filetype: "*"
+    description: File listing is probably stored in an encrypted header, so we can't recover the expected files.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG

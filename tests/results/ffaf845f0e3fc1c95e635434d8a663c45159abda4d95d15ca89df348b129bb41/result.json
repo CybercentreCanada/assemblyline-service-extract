@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf\nres/raw/about_patch.htm\nres/raw/about_translate_plugin.htm\nres/raw/editor_help.htm\nres/raw/help.htm\nres/raw/oldhelp.htm\nres/raw/pngeditor_help.htm",
+        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -43,18 +43,12 @@
                 "lib/arm64-v8a/libsyscheck.so",
                 "lib/armeabi-v7a/libsyscheck.so",
                 "lib/armeabi/libsyscheck.so",
-                "res/raw-v22/md_sans.ttf",
-                "res/raw/about_patch.htm",
-                "res/raw/about_translate_plugin.htm",
-                "res/raw/editor_help.htm",
-                "res/raw/help.htm",
-                "res/raw/oldhelp.htm",
-                "res/raw/pngeditor_help.htm"
+                "res/raw-v22/md_sans.ttf"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 29 files",
+        "title_text": "Successfully extracted 23 files",
         "zeroize_on_tag_safe": false
       },
       {
@@ -65,7 +59,7 @@
         "depth": 0,
         "heuristic": null,
         "tags": {},
-        "title_text": "Successfully extracted 1278 files that were safelisted.",
+        "title_text": "Successfully extracted 1284 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -138,30 +132,6 @@
       {
         "name": "assets/patch_bypass_sigcheck.zip",
         "sha256": "68c2c7b546cc86768fd266be9c62df250374dded162b9f5aaa06bcc01b7b99ae"
-      },
-      {
-        "name": "res/raw/about_patch.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
-      },
-      {
-        "name": "res/raw/about_translate_plugin.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
-      },
-      {
-        "name": "res/raw/editor_help.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
-      },
-      {
-        "name": "res/raw/help.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
-      },
-      {
-        "name": "res/raw/oldhelp.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
-      },
-      {
-        "name": "res/raw/pngeditor_help.htm",
-        "sha256": "7240dbe69152f10043c7c51fdbdffc7e0a0dcf0cca1f61be6bbf6215c5d9ff42"
       },
       {
         "name": "lib/armeabi-v7a/libsyscheck.so",
@@ -379,36 +349,6 @@
           "heur_id": 4,
           "signatures": [],
           "value": "res/raw-v22/md_sans.ttf"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/about_patch.htm"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/about_translate_plugin.htm"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/editor_help.htm"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/help.htm"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/oldhelp.htm"
-        },
-        {
-          "heur_id": 4,
-          "signatures": [],
-          "value": "res/raw/pngeditor_help.htm"
         }
       ]
     },
