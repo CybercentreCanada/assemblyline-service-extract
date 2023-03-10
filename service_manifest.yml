@@ -200,4 +200,4 @@ heuristics:
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
-  ram_mb: 384
+  ram_mb: 1024
