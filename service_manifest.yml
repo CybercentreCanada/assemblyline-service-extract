@@ -98,13 +98,13 @@ heuristics:
   - heur_id: 9
     name: Extracted from IPA
     score: 0
-    filetype: archive/
+    filetype: ios/ipa
     description: Files were extracted from apple IPA file
 
   - heur_id: 10
     name: Extracted from Protected Archive
     score: 0
-    filetype: "*"
+    filetype: "archive/.*"
     description: Password protected archive successfully extracted
 
   - heur_id: 11
@@ -118,13 +118,13 @@ heuristics:
     score: 0
     signature_score_map:
       raise_score: 500
-    filetype: "*"
+    filetype: ".*"
     description: Failed to extract password protected file.
 
   - heur_id: 13
     name: Single Executable Inside Archive File
     score: 500
-    filetype: "*"
+    filetype: ".*"
     description: Archive file with single executable inside. Potentially malicious.
 
   - heur_id: 14
@@ -136,31 +136,31 @@ heuristics:
   - heur_id: 15
     name: Symlink(s) Found
     score: 0
-    filetype: "*"
+    filetype: ".*"
     description: File(s) extracted contain one or many symbolic links to an expected file on the host
 
   - heur_id: 16
     name: Suspicious combination of executables in Archive File
     score: 500
-    filetype: "*"
+    filetype: ".*"
     description: Suspicious combination of executables. Potentially malicious.
 
   - heur_id: 17
     name: Encoded JScript used
     score: 500
-    filetype: "code/*"
+    filetype: "code/.*"
     description: Encoded JScript is ancient and shouldn't be used anymore. The odds of a legitimate use are abysmally low.
 
   - heur_id: 18
     name: Hidden files found in archive
     score: 0
-    filetype: "*"
+    filetype: ".*"
     description: Some files in the archive were found with the Hidden attribute on.
 
   - heur_id: 19
     name: Unexpected container
     score: 0
-    filetype: "*"
+    filetype: ".*"
     description: Files were extracted from an unexpected container.
 
   - heur_id: 20
@@ -180,24 +180,24 @@ heuristics:
 
   - heur_id: 22
     name: Big overlay with very low entropy
-    score: 500
-    filetype: "*"
+    score: 1000
+    filetype: ".*"
     description: >-
        The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
 
   - heur_id: 23
     name: Executable File(s) found in Office Document
     score: 1000
-    filetype: "document/office/*"
+    filetype: "document/office/.*"
     description: Office document with executable(s) inside. Malicious!
 
   - heur_id: 24
     name: Unable to recover file listing
     score: 0
-    filetype: "*"
+    filetype: ".*"
     description: File listing is probably stored in an encrypted header, so we can't recover the expected files.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
-  ram_mb: 384
+  ram_mb: 1024
