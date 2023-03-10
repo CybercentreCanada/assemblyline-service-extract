@@ -181,6 +181,7 @@ class Extract(ServiceBase):
             summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
+            summary_section_heuristic = 1
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 9
