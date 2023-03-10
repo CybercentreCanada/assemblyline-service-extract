@@ -53,8 +53,6 @@ from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
 
-DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
-
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
 
@@ -128,14 +126,17 @@ class Extract(ServiceBase):
         safelisted_extracted = []
         symlinks = []
         extracted = []
-        summary_section_heuristic = DEFAULT_SUMMARY_SECTION_HEURISTIC
+        summary_section_heuristic = None
 
         if request.file_type == "archive/nsis":
             extracted = self.extract_nsis(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/tnef":
             extracted = self.extract_tnef(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/ace":
             extracted = self.extract_ace(request)
+            summary_section_heuristic = 1
 
             new_section = ResultSection("Uncommon format: archive/ace")
             new_section.set_heuristic(14)
@@ -146,8 +147,10 @@ class Extract(ServiceBase):
             summary_section_heuristic = 8
         elif request.file_type == "archive/xxe":
             extracted = self.extract_xxe(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/uue":
             extracted = self.extract_uue(request)
+            summary_section_heuristic = 1
         elif request.file_type == "code/vbe":
             extracted = self.extract_vbe(request)
             summary_section_heuristic = 11
@@ -169,10 +172,13 @@ class Extract(ServiceBase):
             extracted = self.extract_wsf(request)
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/rar":
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type in ["archive/zip", "archive/7-zip"]:
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
         elif request.file_type == "ios/ipa":
@@ -192,6 +198,7 @@ class Extract(ServiceBase):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type.startswith("executable/"):
             strip_overlay_result = self.strip_overlay(request.file_path)
             if strip_overlay_result:
@@ -324,7 +331,7 @@ class Extract(ServiceBase):
 
         if extracted_files:
             if password_protected:
-                if summary_section_heuristic == DEFAULT_SUMMARY_SECTION_HEURISTIC:
+                if summary_section_heuristic == 1:
                     summary_section_heuristic = 10
 
                 # If successful known password
@@ -355,7 +362,8 @@ class Extract(ServiceBase):
                     parent=request.result,
                 )
 
-            section.set_heuristic(summary_section_heuristic)
+            if summary_section_heuristic:
+                section.set_heuristic(summary_section_heuristic)
 
             for extracted_file in extracted_files:
                 section.add_line(extracted_file)
@@ -1429,7 +1437,7 @@ class Extract(ServiceBase):
         )
         extracted = []
         for cb_length_bytes, embedded in embedded_files:
-            cb_length = int.from_bytes(cb_length_bytes, 'little')
+            cb_length = int.from_bytes(cb_length_bytes, "little")
             embedded = embedded[:cb_length]  # Remove padding
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)

@@ -27,14 +27,7 @@
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 1,
-          "score": 0,
-          "score_map": {},
-          "signatures": {}
-        },
+        "heuristic": null,
         "tags": {
           "file": {
             "name": {
@@ -62,11 +55,6 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 1,
-        "signatures": []
-      },
-      {
-        "attack_ids": [],
         "heur_id": 17,
         "signatures": []
       }
@@ -74,7 +62,7 @@
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 1,
+          "heur_id": null,
           "signatures": [],
           "value": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2"
         }
