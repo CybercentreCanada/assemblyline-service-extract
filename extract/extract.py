@@ -980,6 +980,14 @@ class Extract(ServiceBase):
                             pass
                 elif b"Can not open the file as archive" in stdoutput:
                     raise TypeError
+
+                error_res = None
+                for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
+                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
+                        if error_res is None:
+                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
+                        error_res.add_line(line)
+
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
@@ -988,8 +996,10 @@ class Extract(ServiceBase):
                     heur = Heuristic(24)
                     _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
                 else:
-                    hidden_files = [x for x in data if x[1][2] == "H"]
+                    # Data should be:
+                    # Date Time, Attr, Size, Compressed, Name
 
+                    hidden_files = [x for x in data if x[1][2] == "H"]
                     if hidden_files:
                         heur = Heuristic(18)
                         res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
@@ -1009,12 +1019,28 @@ class Extract(ServiceBase):
                                 request, extracted_files, expected_files, password_list
                             )
 
-                error_res = None
-                for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
-                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
-                        if error_res is None:
-                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
-                        error_res.add_line(line)
+                    # Only trigger on certain conditions, else rely on checking the
+                    # actual file to determine if it is bloated
+                    if error_res or (password_protected and len(extracted_files) != len(expected_files)):
+                        very_compressed = []
+                        for x in data:
+                            if (
+                                x[2] not in ["0", ""]
+                                and x[3] != ""
+                                and int(x[2]) > self.config.get("heur22_min_overlay_size", 31457280)
+                                and int(x[3]) / int(x[2]) < self.config.get("heur22_max_compression_ratio", 0.1)
+                            ):
+                                very_compressed.append(x)
+                        if very_compressed:
+                            heur = Heuristic(22)
+                            res = ResultSection(heur.name, heuristic=heur, parent=request.result)
+                            for vcf in very_compressed:
+                                res.add_line(
+                                    (
+                                        f"{vcf[-1]} has a compression ratio of "
+                                        f"{int(vcf[3]) / int(vcf[2])} ({vcf[3]}/{vcf[2]})"
+                                    )
+                                )
 
             except UnicodeEncodeError:
                 raise
