@@ -1,0 +1,96 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 1000,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: Data Error : SCAN-14032023.doc",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "SCAN-14032023.doc has a compression ratio of 0.0013461774134231744 (757156/562448896)",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 1000,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Big overlay with very low entropy",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "SCAN-14032023.doc",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "SCAN-14032023.doc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "SCAN-14032023.doc",
+        "sha256": "132dc39ec3a1fa9ada33c19626682bf75bcf6dd7cc7c6fde7372eb3f220488e3"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 22,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "SCAN-14032023.doc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
