@@ -1,40 +1,45 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 1500,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "ZTIUtility.vbs",
+        "body": "[[\"Target file\", \"view.exe\"], [\"Overlay Size\", 523266048], [\"Overlay Entropy\", 0.0], [\"SHA256\", \"c3bbcf49833323978f3df6a3ae4d27cd278930ca78c5b178d6c7558c0b6210a2\"], [\"SHA1\", \"9fb39d298a16798c144813d440bcdbb28b2f2464\"], [\"MD5\", \"17beeecdd8a676132dfa178a1cb90161\"], [\"SSDEEP\", \"6144:UahORp0yN90QESEsORO87HLlkMSwxRopaCYPaT8PE54X:UiVy90sND8DytwxRoqKy\"], [\"Total Size\", 524288000]]",
+        "body_format": "ORDERED_KEY_VALUE",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 1000,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Big overlay with very low entropy",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "view.exe",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 21,
+          "heur_id": 1,
           "score": 0,
           "score_map": {},
-          "signatures": {
-            "local": 1
-          }
+          "signatures": {}
         },
-        "tags": {},
-        "title_text": "External script loading",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": null,
         "tags": {
           "file": {
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "view.exe"
               ]
             }
           }
@@ -44,7 +49,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body": "view.exe",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -63,7 +68,7 @@
             ],
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "view.exe"
               ]
             }
           }
@@ -76,8 +81,8 @@
   "files": {
     "extracted": [
       {
-        "name": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
-        "sha256": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+        "name": "view.exe",
+        "sha256": "cf584107e0ab266da8232e29f90129c091154c3e607b9eb7079b7294212b849c"
       }
     ],
     "supplementary": []
@@ -86,15 +91,18 @@
     "heuristics": [
       {
         "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
         "heur_id": 13,
         "signatures": []
       },
       {
         "attack_ids": [],
-        "heur_id": 21,
-        "signatures": [
-          "local"
-        ]
+        "heur_id": 22,
+        "signatures": []
       }
     ],
     "tags": {
@@ -107,14 +115,14 @@
       ],
       "file.name.extracted": [
         {
-          "heur_id": null,
+          "heur_id": 1,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "view.exe"
         },
         {
           "heur_id": 13,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "view.exe"
         }
       ]
     },

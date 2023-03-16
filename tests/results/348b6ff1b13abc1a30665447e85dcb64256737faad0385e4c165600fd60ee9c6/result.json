@@ -1,0 +1,85 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 1000,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "[[\"Target file\", \"Form.doc\"], [\"Overlay Size\", 552599962], [\"Overlay Entropy\", 0.0], [\"SHA256\", \"87942501af3e7ac7e2c2957b53081c26a38cf53bd81f981a051e337309a2be78\"], [\"SHA1\", \"5b8b9e95b9d6e97261526a86ba780bd58b536314\"], [\"MD5\", \"275353a6dc348d9dc9336bbf718a8b1d\"], [\"SSDEEP\", \"3072:2JX29m8QBUoItA/leC6gSJ+2JiclnUOvrRxqmLcHeNJxPkdVdTRcDK6:2EmleC6gSJWclU0RxVLcHe5cdTR\"], [\"Total Size\", 552930816]]",
+        "body_format": "ORDERED_KEY_VALUE",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 1000,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Big overlay with very low entropy",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Form.doc",
+        "body_format": "TEXT",
+        "classification": "TLP:W",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Form.doc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Form.doc",
+        "sha256": "9d4b7901527462dc2cbe16787956c9d9a602adffe6b65d75e3104159ee7fd154"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 22,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Form.doc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

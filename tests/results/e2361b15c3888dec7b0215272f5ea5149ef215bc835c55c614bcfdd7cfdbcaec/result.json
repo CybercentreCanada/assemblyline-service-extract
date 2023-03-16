@@ -9,14 +9,7 @@
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 6,
-          "score": 0,
-          "score_map": {},
-          "signatures": {}
-        },
+        "heuristic": null,
         "tags": {
           "file": {
             "name": {
@@ -146,122 +139,116 @@
     "supplementary": []
   },
   "results": {
-    "heuristics": [
-      {
-        "attack_ids": [],
-        "heur_id": 6,
-        "signatures": []
-      }
-    ],
+    "heuristics": [],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "2729992f490452276ef0de9aab872548749ca507143ee608d8fe31a3b8c77a8f"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "2bbc23d08f8d11134a6a787d2042c1584d4502ec8c3ef9b07696a04cff92cbc0"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "2d441a951f51f7af69c7b6cf065610a1588fa11dc150eeee17fe15cc39c55021"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "2dbd1017cdf266b65562634cd7d8ef5e714bb6284fba553f68fb0daaaadca9ab"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "4bdb0d4fc943a25723b50cc8fb25cef8626cc5b8bfb273e87c2f14aab90a138c"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "4d2ed441ef151c50d3b503f619a1cbc84ab3307c0f7121c3b0434399482f63a4"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "59934fa6f602fb69ff128d2dcd358fac674d709a126109df10cf42ac7b6539be"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "64dfbc968a7982c0e7e466bf7da59b20498e5da1c9e7a08942caa8024b474829"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "66ef8fdc4773f7573e6a1220fb141e8aa2309319322c09d2d7dc0eb06afec207"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "67643e5a4793e2eefd85a7126d7934d13b589916a9ba096a02b4245c93a4f8bc"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "774626d1dd0c3bfdece40413f670eb0c1b8bf7e8dd580a5928fdf153e5f9fde8"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "79cecf0a1094d5d82d6fac69a1ad7183d90a77612029390bfb1adf5dbec9bb7e"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "80c9b592599e771eb69d7c1862d35602545806a3fab895a53a3947be21b1b38f"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "850b5775eaf899d1673372e6bfb5f5a27b369a06ba0004fd9e2ad9ad0c1a758e"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "8c92ee0be9660ebe7dd28ac05096da715f4f55132ae5d78679ea00f8931db5ae"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "9ee4912fc02340a771c00cf483003272283f28a6f69b016ca8b40600a031372d"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "ae4ff57f646318e426a053eabeea5d7f8f41a03e444187396339b1b739379106"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "b947ed1a4bc8b3f4622d493955230765d367bb605b3f86fa5a2ea015fb000b2f"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "c32146ad751378bc3e5efb4057bbd56282c807c160f1c44678f249d131dd9568"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "d1acb4c65260810f953a1d082846fdb677847751c3da17a0a038e3cd54bd44c0"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "e2e74cfd0ff30d154a0e96d964437fff3e5bd48538ca008776bbfc52c1ad4edb"
         },
         {
-          "heur_id": 6,
+          "heur_id": null,
           "signatures": [],
           "value": "ebf6b6cc3d8ebb3d66bd7d26f24886dfcdbc85af6d6f4e8d508c73a2bdcd32dd"
         }

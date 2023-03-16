@@ -5,36 +5,23 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "ZTIUtility.vbs",
+        "body": "DHL-CUSTOMS-REQUEST-802487487001.vbs",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 21,
+          "heur_id": 1,
           "score": 0,
           "score_map": {},
-          "signatures": {
-            "local": 1
-          }
+          "signatures": {}
         },
-        "tags": {},
-        "title_text": "External script loading",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": null,
         "tags": {
           "file": {
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "DHL-CUSTOMS-REQUEST-802487487001.vbs"
               ]
             }
           }
@@ -44,7 +31,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body": "DHL-CUSTOMS-REQUEST-802487487001.vbs",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
@@ -63,7 +50,7 @@
             ],
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "DHL-CUSTOMS-REQUEST-802487487001.vbs"
               ]
             }
           }
@@ -76,8 +63,8 @@
   "files": {
     "extracted": [
       {
-        "name": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
-        "sha256": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+        "name": "DHL-CUSTOMS-REQUEST-802487487001.vbs",
+        "sha256": "fd0b02703d5e977c8231a392c40f5db08bb1e582b7ba525ecd6981951c8b0592"
       }
     ],
     "supplementary": []
@@ -86,15 +73,13 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 13,
+        "heur_id": 1,
         "signatures": []
       },
       {
         "attack_ids": [],
-        "heur_id": 21,
-        "signatures": [
-          "local"
-        ]
+        "heur_id": 13,
+        "signatures": []
       }
     ],
     "tags": {
@@ -107,14 +92,14 @@
       ],
       "file.name.extracted": [
         {
-          "heur_id": null,
+          "heur_id": 1,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "DHL-CUSTOMS-REQUEST-802487487001.vbs"
         },
         {
           "heur_id": 13,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "DHL-CUSTOMS-REQUEST-802487487001.vbs"
         }
       ]
     },

@@ -24,6 +24,7 @@ from assemblyline_v4_service.common.request import MaxExtractedExceeded, Service
 from assemblyline_v4_service.common.result import (
     Heuristic,
     Result,
+    ResultOrderedKeyValueSection,
     ResultSection,
     ResultTableSection,
     ResultTextSection,
@@ -37,21 +38,20 @@ from assemblyline_v4_service.common.utils import (
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
+from msoffcrypto import exceptions as msoffcryptoexceptions
+from nrs.nsi.extractor import Extractor as NSIExtractor
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
+
 from extract.ext.office_extract import (
     ExtractionError,
     PasswordError,
     extract_office_docs,
 )
 from extract.ext.repair_zip import BadZipfile, RepairZip
-from extract.ext.xxdecode import xxcode_from_file
+from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
+from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
-from msoffcrypto import exceptions as msoffcryptoexceptions
-from pikepdf import PasswordError as PDFPasswordError
-from pikepdf import Pdf, PdfError
-
-from nrs.nsi.extractor import Extractor as NSIExtractor
-
-DEFAULT_SUMMARY_SECTION_HEURISTIC = 1
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -126,14 +126,17 @@ class Extract(ServiceBase):
         safelisted_extracted = []
         symlinks = []
         extracted = []
-        summary_section_heuristic = DEFAULT_SUMMARY_SECTION_HEURISTIC
+        summary_section_heuristic = None
 
         if request.file_type == "archive/nsis":
             extracted = self.extract_nsis(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/tnef":
             extracted = self.extract_tnef(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/ace":
             extracted = self.extract_ace(request)
+            summary_section_heuristic = 1
 
             new_section = ResultSection("Uncommon format: archive/ace")
             new_section.set_heuristic(14)
@@ -144,15 +147,19 @@ class Extract(ServiceBase):
             summary_section_heuristic = 8
         elif request.file_type == "archive/xxe":
             extracted = self.extract_xxe(request)
+            summary_section_heuristic = 1
+        elif request.file_type == "archive/uue":
+            extracted = self.extract_uue(request)
+            summary_section_heuristic = 1
         elif request.file_type == "code/vbe":
             extracted = self.extract_vbe(request)
             summary_section_heuristic = 11
         elif request.file_type == "document/office/onenote":
             extracted = self.extract_onenote(request)
-            summary_section_heuristic = 6
         elif request.file_type == "document/office/passwordprotected":
             extracted, password_protected = self.extract_office(request)
-            summary_section_heuristic = 6
+            if password_protected:
+                summary_section_heuristic = 6
         elif request.file_type == "document/pdf/passwordprotected":
             extracted, password_protected = self.extract_pdf_passwordprotected(request)
             summary_section_heuristic = 7
@@ -165,12 +172,16 @@ class Extract(ServiceBase):
             extracted = self.extract_wsf(request)
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/rar":
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type in ["archive/zip", "archive/7-zip"]:
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
+            summary_section_heuristic = 1
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 9
@@ -188,9 +199,26 @@ class Extract(ServiceBase):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request)
+            summary_section_heuristic = 1
         elif request.file_type.startswith("executable/"):
-            if self.strip_overlay(request):
-                # We already added the file and heuristic
+            strip_overlay_result = self.strip_overlay(request.file_path)
+            if strip_overlay_result:
+                temp_path, overlay_size, entropy = strip_overlay_result
+                added = request.add_extracted(
+                    temp_path,
+                    os.path.basename(request.file_path),
+                    f"Executable bloat stripped from original file {os.path.basename(request.file_path)}",
+                    safelist_interface=self.api_interface,
+                )
+
+                heur = Heuristic(22)
+                heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
+                heur_section.add_line(f"Overlay Size: {overlay_size}")
+                heur_section.add_line(f"Overlay Entropy: {entropy}")
+                if not added:
+                    heur_section.add_line(f"{os.path.basename(request.file_path)} is safelisted once de-bloated")
+                # Drop the request so that no other module are going to analyze it.
+                request.drop()
                 return
             extracted, password_protected = self.extract_zip(request)
             summary_section_heuristic = 2
@@ -205,18 +233,93 @@ class Extract(ServiceBase):
         extracted_files = []
         for child in sorted(extracted, key=lambda x: x[1]):
             try:
-                if os.path.islink(child[0]):
-                    link_desc = f"{child[1]} -> {os.readlink(child[0])}"
+                file_path = child[0]
+                if os.path.islink(file_path):
+                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
                     symlinks.append(link_desc)
-                elif request.add_extracted(
-                    path=child[0],
-                    name=child[1],
-                    description=f"Extracted using {child[2]}",
-                    safelist_interface=self.api_interface,
-                ):
-                    extracted_files.append(child[1])
                 else:
-                    safelisted_extracted.append(child[1])
+                    # Start by stripping the file.
+                    if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
+                        extracted_file_info = self.identify.fileinfo(file_path)
+                        # TODO: KEEP THE ORIGINAL FILE HASH
+                        if extracted_file_info["type"].startswith("executable/windows"):
+                            strip_overlay_result = self.strip_overlay(file_path)
+                            if strip_overlay_result:
+                                file_path, overlay_size, entropy = strip_overlay_result
+                                heur = Heuristic(22)
+                                heur_section = ResultOrderedKeyValueSection(
+                                    heur.name, heuristic=heur, parent=request.result
+                                )
+                                heur_section.add_item("Target file", child[1])
+                                heur_section.add_item("Overlay Size", overlay_size)
+                                heur_section.add_item("Overlay Entropy", entropy)
+                                heur_section.add_item("SHA256", extracted_file_info["sha256"])
+                                heur_section.add_item("SHA1", extracted_file_info["sha1"])
+                                heur_section.add_item("MD5", extracted_file_info["md5"])
+                                heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
+                                heur_section.add_item("Total Size", extracted_file_info["size"])
+                        else:
+                            # Reuse the target overlay size to check for general bloating
+                            calculator = BufferedCalculator()
+                            with open(file_path, "rb") as f:
+                                f.seek(os.path.getsize(file_path) // 2)
+                                while True:
+                                    data = f.read(1024)
+                                    if not data:
+                                        break
+                                    calculator.update(data)
+                            entropy = calculator.entropy()
+
+                            if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
+                                # Padding detected in a general file, determine byte-padding
+                                with open(file_path, "rb") as f:
+                                    f.seek(-1024, os.SEEK_END)
+                                    last_data = f.read(1024)
+                                    last_position_jumps = 2
+                                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                                    while f.read(1024) == last_data:
+                                        last_position_jumps += 1
+                                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                                    # Time to find exactly where to stop the stripping
+                                    precise_offset = 1024
+                                    while precise_offset >= 0:
+                                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                                        data = f.read(1)
+                                        if data and data[0] != last_data[0]:
+                                            break
+                                        precise_offset -= 1
+                                    overlay_size = 1024 * last_position_jumps - precise_offset - 1
+
+                                    f.seek(0)
+                                    data = f.read(os.path.getsize(file_path) - overlay_size)
+
+                                sha256hash = hashlib.sha256(data).hexdigest()
+                                file_path = os.path.join(self.working_directory, sha256hash)
+                                with open(file_path, "wb") as f:
+                                    f.write(data)
+
+                                heur = Heuristic(22)
+                                heur_section = ResultOrderedKeyValueSection(
+                                    heur.name, heuristic=heur, parent=request.result
+                                )
+                                heur_section.add_item("Target file", child[1])
+                                heur_section.add_item("Overlay Size", overlay_size)
+                                heur_section.add_item("Overlay Entropy", entropy)
+                                heur_section.add_item("SHA256", extracted_file_info["sha256"])
+                                heur_section.add_item("SHA1", extracted_file_info["sha1"])
+                                heur_section.add_item("MD5", extracted_file_info["md5"])
+                                heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
+                                heur_section.add_item("Total Size", extracted_file_info["size"])
+
+                    if request.add_extracted(
+                        path=file_path,
+                        name=child[1],
+                        description=f"Extracted using {child[2]}",
+                        safelist_interface=self.api_interface,
+                    ):
+                        extracted_files.append(child[1])
+                    else:
+                        safelisted_extracted.append(child[1])
             except MaxExtractedExceeded:
                 request.result.add_section(
                     ResultSection(
@@ -229,7 +332,7 @@ class Extract(ServiceBase):
 
         if extracted_files:
             if password_protected:
-                if summary_section_heuristic == DEFAULT_SUMMARY_SECTION_HEURISTIC:
+                if summary_section_heuristic == 1:
                     summary_section_heuristic = 10
 
                 # If successful known password
@@ -260,7 +363,8 @@ class Extract(ServiceBase):
                     parent=request.result,
                 )
 
-            section.set_heuristic(summary_section_heuristic)
+            if summary_section_heuristic:
+                section.set_heuristic(summary_section_heuristic)
 
             for extracted_file in extracted_files:
                 section.add_line(extracted_file)
@@ -284,12 +388,12 @@ class Extract(ServiceBase):
             section.add_lines(symlinks)
             section.set_heuristic(15)
 
-        few_small_files_only = os.path.getsize(request.file_path) > self.config.get(
-            "small_size_bypass_drop", 10485760
-        ) and len(extracted_files) <= self.config.get("max_file_count_bypass_drop", 5)
+        big_file = os.path.getsize(request.file_path) > self.config.get("small_size_bypass_drop", 10485760)
+        few_files_extracted = len(extracted_files) <= self.config.get("max_file_count_bypass_drop", 5)
+        big_file_with_few_extracted_files_only = big_file and few_files_extracted
 
         if (
-            not few_small_files_only
+            not big_file_with_few_extracted_files_only
             and not request.file_type.startswith("executable")
             and not request.file_type.startswith("java")
             and not request.file_type.startswith("android")
@@ -591,7 +695,10 @@ class Extract(ServiceBase):
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                    fd.write(pdf.attachments[key].get_file().read_bytes())
+                    attachment = pdf.attachments[key]
+                    if not attachment.filename:
+                        continue
+                    fd.write(attachment.get_file().read_bytes())
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
         except PdfError as e:
@@ -876,10 +983,10 @@ class Extract(ServiceBase):
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data:
+                if not data and request.file_type != "archive/rar":
                     # No listing could be extracted.
                     heur = Heuristic(24)
-                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
                 else:
                     hidden_files = [x for x in data if x[1][2] == "H"]
 
@@ -1010,7 +1117,7 @@ class Extract(ServiceBase):
             if not data:
                 # No listing could be extracted.
                 heur = Heuristic(24)
-                _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
+                _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
             else:
                 # x[1] is the size, so ignore empty files/folders
                 expected_files = [x[4] for x in data if x[1] != "0"]
@@ -1331,7 +1438,7 @@ class Extract(ServiceBase):
         )
         extracted = []
         for cb_length_bytes, embedded in embedded_files:
-            cb_length = int.from_bytes(cb_length_bytes, 'little')
+            cb_length = int.from_bytes(cb_length_bytes, "little")
             embedded = embedded[:cb_length]  # Remove padding
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
@@ -1526,14 +1633,35 @@ class Extract(ServiceBase):
             List containing extracted information, including: extracted path, display name
         """
 
-        files = xxcode_from_file(request.file_path)
+        files = xxuu_decode_from_file(request.file_path, xx_character)
+        extracted = []
         for output_file, ans in files:
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-        return [
-            [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            for output_file, _ in files
-        ]
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
+
+    def extract_uue(self, request: ServiceRequest):
+        """Extract embedded scripts from UU encoded archives
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List containing extracted information, including: extracted path, display name
+        """
+
+        files = xxuu_decode_from_file(request.file_path, uu_character)
+        extracted = []
+        for output_file, ans in files:
+            with open(os.path.join(self.working_directory, output_file), "wb") as f:
+                f.write(bytes(ans))
+            extracted.append(
+                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
+            )
+        return extracted
 
     def extract_cart(self, request: ServiceRequest):
         cart_name = get_metadata_only(request.file_path)["name"]
@@ -1543,13 +1671,13 @@ class Extract(ServiceBase):
 
         return [[output_path, cart_name, sys._getframe().f_code.co_name]]
 
-    def strip_overlay(self, request: ServiceRequest):
+    def strip_overlay(self, file_path):
         try:
-            binary = pefile.PE(request.file_path, fast_load=True)
+            binary = pefile.PE(file_path, fast_load=True)
         except Exception:
             return False
 
-        file_size = os.path.getsize(request.file_path)
+        file_size = os.path.getsize(file_path)
         overlay_offset = binary.get_overlay_data_start_offset()
         if overlay_offset is None or overlay_offset == 0:
             return False
@@ -1558,7 +1686,7 @@ class Extract(ServiceBase):
             return False
 
         calculator = BufferedCalculator()
-        with open(request.file_path, "rb") as f:
+        with open(file_path, "rb") as f:
             f.seek(overlay_offset)
             while True:
                 data = f.read(1024)
@@ -1568,28 +1696,13 @@ class Extract(ServiceBase):
         entropy = calculator.entropy()
 
         if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
-            heur = Heuristic(22)
-            heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
-            heur_section.add_line(f"Overlay Size: {overlay_size}")
-            heur_section.add_line(f"Overlay Entropy: {entropy}")
-
-            file_name = "pe_without_overlay"
-            temp_path = os.path.join(self.working_directory, file_name)
-            with open(request.file_path, "rb") as f:
+            with open(file_path, "rb") as f:
                 data = f.read(overlay_offset)
+            sha256hash = hashlib.sha256(data).hexdigest()
+            temp_path = os.path.join(self.working_directory, sha256hash)
             with open(temp_path, "wb") as f:
                 f.write(data)
 
-            # Drop the request so that no other module are going to analyze it.
-            request.drop()
-
-            added = request.add_extracted(
-                temp_path, file_name, f"{file_name} stripped from original file", safelist_interface=self.api_interface
-            )
-
-            if not added:
-                heur_section.add_line(f"{file_name} is safelisted")
-
-            return True
+            return (temp_path, overlay_size, entropy)
 
         return False

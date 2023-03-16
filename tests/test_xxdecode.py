@@ -2,7 +2,7 @@ import tempfile
 
 import pytest
 
-import extract.ext.xxdecode
+import extract.ext.xxuudecode
 
 
 @pytest.mark.parametrize(
@@ -37,7 +37,7 @@ def test_xxcode_from_file(body_content, result):
     with tempfile.NamedTemporaryFile() as f:
         f.write(body_content.encode())
         f.flush()
-        files = extract.ext.xxdecode.xxcode_from_file(f.name)
+        files = extract.ext.xxuudecode.decode_from_file(f.name, extract.ext.xxuudecode.xx_character)
         assert len(files) == 1
         assert files[0][0] == "testfile"
         assert files[0][1] == [ord(x) for x in result]
@@ -48,7 +48,7 @@ def test_xxcode_2_files_from_file():
     with tempfile.NamedTemporaryFile() as f:
         f.write(body_content.encode())
         f.flush()
-        files = extract.ext.xxdecode.xxcode_from_file(f.name)
+        files = extract.ext.xxuudecode.decode_from_file(f.name, extract.ext.xxuudecode.xx_character)
         assert len(files) == 2
         assert files[0][0] == "testfile"
         assert files[0][1] == [ord(x) for x in "1"]
