@@ -12,6 +12,7 @@ import tempfile
 import zipfile
 import zlib
 from copy import deepcopy
+from datetime import datetime
 from io import BytesIO
 
 import pefile
@@ -24,6 +25,7 @@ from assemblyline_v4_service.common.request import MaxExtractedExceeded, Service
 from assemblyline_v4_service.common.result import (
     Heuristic,
     Result,
+    ResultKeyValueSection,
     ResultOrderedKeyValueSection,
     ResultSection,
     ResultTableSection,
@@ -1202,7 +1204,7 @@ class Extract(ServiceBase):
         return extracted_children
 
     def extract_nsis(self, request: ServiceRequest):
-        """Will attempt to extract data from a TNEF container.
+        """Will attempt to extract data from a NSIS container.
 
         Args:
             request: AL request object.
@@ -1254,6 +1256,25 @@ class Extract(ServiceBase):
                 temp_data_email_body = request.temp_submission_data.get("email_body", [])
                 temp_data_email_body.extend(parsed_tnef.body.split())
                 request.temp_submission_data["email_body"] = temp_data_email_body
+
+            tnef_dump = parsed_tnef.dump()
+            kv_section = ResultKeyValueSection("Attributes", parent=request.result)
+            for k, v in tnef_dump["attributes"].items():
+                if isinstance(v, datetime):
+                    v = v.isoformat()
+                kv_section.set_item(k, str(v))
+
+            kv_section = ResultKeyValueSection("Extended Attributes", parent=request.result)
+            for k, v in tnef_dump["extended_attributes"].items():
+                if isinstance(v, datetime):
+                    v = v.isoformat()
+                kv_section.set_item(k, str(v))
+
+            if "0x851f" in tnef_dump["extended_attributes"]:
+                heur_section = ResultKeyValueSection("CVE-2023-23397", parent=request.result)
+                heur_section.add_tag("attribution.exploit", "CVE-2023-23397")
+                heur_section.set_heuristic(25)
+                heur_section.set_item("extended_attributes 0x851f", tnef_dump["extended_attributes"]["0x851f"])
 
             for a in parsed_tnef.attachments:
                 # This may not exist so try to access it and deal the

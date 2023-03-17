@@ -198,6 +198,12 @@ heuristics:
     filetype: ".*"
     description: File listing is probably stored in an encrypted header, so we can't recover the expected files.
 
+  - heur_id: 25
+    name: CVE-2023-23397 exploit vector found
+    score: 1000
+    filetype: "archive/tnef"
+    description: A tnef archive with the 0x851f extended attribute set could hide a password credential theft attempt.
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
