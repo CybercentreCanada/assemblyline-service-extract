@@ -1272,8 +1272,7 @@ class Extract(ServiceBase):
 
             if (
                 "0x851f" in tnef_dump["extended_attributes"]
-                and tnef_dump["extended_attributes"]["0x851f"] is not None
-                and str(tnef_dump["extended_attributes"]["0x851f"]).strip() != ""
+                and str(tnef_dump["extended_attributes"]["0x851f"]).startswith("\\\\")
             ):
                 heur_section = ResultKeyValueSection("CVE-2023-23397", parent=request.result)
                 heur_section.add_tag("attribution.exploit", "CVE-2023-23397")
