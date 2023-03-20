@@ -1277,6 +1277,7 @@ class Extract(ServiceBase):
             ):
                 heur_section = ResultKeyValueSection("CVE-2023-23397", parent=request.result)
                 heur_section.add_tag("attribution.exploit", "CVE-2023-23397")
+                heur_section.add_tag("network.static.unc_path", tnef_dump["extended_attributes"]["0x851f"])
                 heur_section.set_heuristic(25)
                 heur_section.set_item("extended_attributes 0x851f", tnef_dump["extended_attributes"]["0x851f"])
 
