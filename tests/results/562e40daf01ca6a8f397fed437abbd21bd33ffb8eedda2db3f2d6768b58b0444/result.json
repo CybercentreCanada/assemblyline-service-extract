@@ -44,6 +44,13 @@
             "exploit": [
               "CVE-2023-23397"
             ]
+          },
+          "network": {
+            "static": {
+              "unc_path": [
+                "\\\\85.195.206.7\\lrmng"
+              ]
+            }
           }
         },
         "title_text": "CVE-2023-23397",
@@ -69,6 +76,13 @@
           "heur_id": 25,
           "signatures": [],
           "value": "CVE-2023-23397"
+        }
+      ],
+      "network.static.unc_path": [
+        {
+          "heur_id": 25,
+          "signatures": [],
+          "value": "\\\\85.195.206.7\\lrmng"
         }
       ]
     },
