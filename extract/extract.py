@@ -377,7 +377,7 @@ class Extract(ServiceBase):
             section = ResultSection(
                 f"Successfully extracted {len(safelisted_extracted)} "
                 f"file{'s' if len(safelisted_extracted) > 1 else ''} "
-                f"that were safelisted.",
+                f"that {'were' if len(safelisted_extracted) > 1 else 'was'} safelisted.",
                 parent=request.result,
             )
             for f in sorted(safelisted_extracted)[:MAX_SAFELISTED_SHOW]:
@@ -1270,9 +1270,14 @@ class Extract(ServiceBase):
                     v = v.isoformat()
                 kv_section.set_item(k, str(v))
 
-            if "0x851f" in tnef_dump["extended_attributes"]:
+            if (
+                "0x851f" in tnef_dump["extended_attributes"]
+                and tnef_dump["extended_attributes"]["0x851f"] is not None
+                and str(tnef_dump["extended_attributes"]["0x851f"]).strip() != ""
+            ):
                 heur_section = ResultKeyValueSection("CVE-2023-23397", parent=request.result)
                 heur_section.add_tag("attribution.exploit", "CVE-2023-23397")
+                heur_section.add_tag("network.static.unc_path", tnef_dump["extended_attributes"]["0x851f"])
                 heur_section.set_heuristic(25)
                 heur_section.set_item("extended_attributes 0x851f", tnef_dump["extended_attributes"]["0x851f"])
 
