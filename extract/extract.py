@@ -1040,7 +1040,7 @@ class Extract(ServiceBase):
                                 res.add_line(
                                     (
                                         f"{vcf[-1]} has a compression ratio of "
-                                        f"{int(vcf[3]) / int(vcf[2])} ({vcf[3]}/{vcf[2]})"
+                                        f"{int(vcf[3]) / int(vcf[2]):0.02%} ({vcf[3]}/{vcf[2]})"
                                     )
                                 )
 
@@ -1270,10 +1270,9 @@ class Extract(ServiceBase):
                     v = v.isoformat()
                 kv_section.set_item(k, str(v))
 
-            if (
-                "0x851f" in tnef_dump["extended_attributes"]
-                and str(tnef_dump["extended_attributes"]["0x851f"]).startswith("\\\\")
-            ):
+            if "0x851f" in tnef_dump["extended_attributes"] and str(
+                tnef_dump["extended_attributes"]["0x851f"]
+            ).startswith("\\\\"):
                 heur_section = ResultKeyValueSection("CVE-2023-23397", parent=request.result)
                 heur_section.add_tag("attribution.exploit", "CVE-2023-23397")
                 heur_section.add_tag("network.static.unc_path", tnef_dump["extended_attributes"]["0x851f"])

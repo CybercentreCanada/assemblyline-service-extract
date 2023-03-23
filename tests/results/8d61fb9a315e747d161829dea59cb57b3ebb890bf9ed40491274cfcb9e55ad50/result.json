@@ -16,7 +16,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "SCAN-14032023.doc has a compression ratio of 0.0013461774134231744 (757156/562448896)",
+        "body": "SCAN-14032023.doc has a compression ratio of 0.13% (757156/562448896)",
         "body_format": "TEXT",
         "classification": "TLP:W",
         "depth": 0,
