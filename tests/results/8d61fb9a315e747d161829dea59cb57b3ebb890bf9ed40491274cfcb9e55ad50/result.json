@@ -1,13 +1,13 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 1000,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
         "body": "ERROR: Data Error : SCAN-14032023.doc",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {},
@@ -18,13 +18,13 @@
         "auto_collapse": false,
         "body": "SCAN-14032023.doc has a compression ratio of 0.13% (757156/562448896)",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
           "heur_id": 22,
-          "score": 1000,
+          "score": 500,
           "score_map": {},
           "signatures": {}
         },
@@ -36,7 +36,7 @@
         "auto_collapse": false,
         "body": "SCAN-14032023.doc",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

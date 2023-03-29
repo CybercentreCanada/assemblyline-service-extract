@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "ERROR: Data Error : cursor.dat\nERROR: Data Error : DocumentsFolder 6987584 12202022.lnk",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {},
@@ -18,7 +18,7 @@
         "auto_collapse": false,
         "body": "cursor.dat",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -44,7 +44,7 @@
         "auto_collapse": false,
         "body": "cursor.dat",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

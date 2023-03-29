@@ -1,19 +1,19 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 1500,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
         "body": "[[\"Target file\", \"fresh.bat\"], [\"Overlay Size\", 508279325], [\"Overlay Entropy\", 0.0], [\"SHA256\", \"4168ac633ae6db261836cdcc2da97795386cf10ee31fb72e26f2c5d0d16d9201\"], [\"SHA1\", \"29ea4648ed9ccf834c482245a839e87e92172a7f\"], [\"MD5\", \"63ac7e7bafbe4a52e10d0ae1d1a44da0\"], [\"SSDEEP\", \"6144:K+Hn1UVzVtPs0CpvH04haQ2fGnxOW6y1vA:K+VUVzVFEpf04h+esWT1\"], [\"Total Size\", 508559360]]",
         "body_format": "ORDERED_KEY_VALUE",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
           "heur_id": 22,
-          "score": 1000,
+          "score": 500,
           "score_map": {},
           "signatures": {}
         },
@@ -25,7 +25,7 @@
         "auto_collapse": false,
         "body": "fresh.bat",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -45,35 +45,6 @@
           }
         },
         "title_text": "Successfully extracted 1 file",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "fresh.bat",
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 13,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
-        "tags": {
-          "file": {
-            "behavior": [
-              "Archived Single Executable"
-            ],
-            "name": {
-              "extracted": [
-                "fresh.bat"
-              ]
-            }
-          }
-        },
-        "title_text": "Archive file with single executable inside. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -96,31 +67,14 @@
       },
       {
         "attack_ids": [],
-        "heur_id": 13,
-        "signatures": []
-      },
-      {
-        "attack_ids": [],
         "heur_id": 22,
         "signatures": []
       }
     ],
     "tags": {
-      "file.behavior": [
-        {
-          "heur_id": 13,
-          "signatures": [],
-          "value": "Archived Single Executable"
-        }
-      ],
       "file.name.extracted": [
         {
           "heur_id": 2,
-          "signatures": [],
-          "value": "fresh.bat"
-        },
-        {
-          "heur_id": 13,
           "signatures": [],
           "value": "fresh.bat"
         }

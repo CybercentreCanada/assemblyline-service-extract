@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "Documents.dll\nICA-declass.pdf\nReports.lnk",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -35,7 +35,7 @@
         "auto_collapse": false,
         "body": "Documents.dll\nReports.lnk",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

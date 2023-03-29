@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "Unextracted files in password protected archive:\nGeoIP.dat\nnjRAT v0.7d.exe\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nstub.il\nStub.manifest\nWinMM.Net.dll",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

@@ -410,7 +410,9 @@ class Extract(ServiceBase):
         ):
             request.drop()
 
-        self.archive_with_executables(request)
+        if not request.file_type.startswith("executable"):
+            # Executable causes false positive, bundling other executables is often seen
+            self.archive_with_executables(request)
 
     def get_passwords(self, request: ServiceRequest):
         """
@@ -1686,6 +1688,7 @@ class Extract(ServiceBase):
         files = xxuu_decode_from_file(request.file_path, xx_character)
         extracted = []
         for output_file, ans in files:
+            output_file = output_file.lstrip("/")
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
             extracted.append(
@@ -1706,6 +1709,7 @@ class Extract(ServiceBase):
         files = xxuu_decode_from_file(request.file_path, uu_character)
         extracted = []
         for output_file, ans in files:
+            output_file = output_file.lstrip("/")
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
             extracted.append(
@@ -1715,7 +1719,7 @@ class Extract(ServiceBase):
 
     def extract_cart(self, request: ServiceRequest):
         cart_name = get_metadata_only(request.file_path)["name"]
-        output_path = os.path.join(self.working_directory, cart_name)
+        output_path = os.path.join(self.working_directory, cart_name.lstrip("/"))
         with open(request.file_path, "rb") as ifile, open(output_path, "wb") as ofile:
             unpack_stream(ifile, ofile)
 

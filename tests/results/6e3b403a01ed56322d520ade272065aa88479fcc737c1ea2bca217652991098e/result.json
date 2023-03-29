@@ -1,13 +1,13 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 0,
     "sections": [
       {
         "auto_collapse": false,
         "body": "AaaTeXMeterBilling.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt\nSetup.exe",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -31,36 +31,6 @@
           }
         },
         "title_text": "Successfully extracted 5 files",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "AaaTeXMeterBilling.exe\nSetup.exe",
-        "body_format": "TEXT",
-        "classification": "TLP:W",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 16,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
-        "tags": {
-          "file": {
-            "behavior": [
-              "Executable Content in Archive"
-            ],
-            "name": {
-              "extracted": [
-                "AaaTeXMeterBilling.exe",
-                "Setup.exe"
-              ]
-            }
-          }
-        },
-        "title_text": "Executable Content in Archive. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -96,29 +66,12 @@
         "attack_ids": [],
         "heur_id": 2,
         "signatures": []
-      },
-      {
-        "attack_ids": [],
-        "heur_id": 16,
-        "signatures": []
       }
     ],
     "tags": {
-      "file.behavior": [
-        {
-          "heur_id": 16,
-          "signatures": [],
-          "value": "Executable Content in Archive"
-        }
-      ],
       "file.name.extracted": [
         {
           "heur_id": 2,
-          "signatures": [],
-          "value": "AaaTeXMeterBilling.exe"
-        },
-        {
-          "heur_id": 16,
           "signatures": [],
           "value": "AaaTeXMeterBilling.exe"
         },
@@ -139,11 +92,6 @@
         },
         {
           "heur_id": 2,
-          "signatures": [],
-          "value": "Setup.exe"
-        },
-        {
-          "heur_id": 16,
           "signatures": [],
           "value": "Setup.exe"
         }
