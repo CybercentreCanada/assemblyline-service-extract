@@ -1,7 +1,7 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 1000,
     "sections": [
       {
         "auto_collapse": false,
@@ -46,6 +46,35 @@
         },
         "title_text": "Successfully extracted 1 file",
         "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "fresh.bat",
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
+            ],
+            "name": {
+              "extracted": [
+                "fresh.bat"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
       }
     ]
   },
@@ -67,14 +96,31 @@
       },
       {
         "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
         "heur_id": 22,
         "signatures": []
       }
     ],
     "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
+        }
+      ],
       "file.name.extracted": [
         {
           "heur_id": 2,
+          "signatures": [],
+          "value": "fresh.bat"
+        },
+        {
+          "heur_id": 13,
           "signatures": [],
           "value": "fresh.bat"
         }

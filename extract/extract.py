@@ -115,6 +115,11 @@ class Extract(ServiceBase):
 
     LAUNCHABLE_TYPE_SW = ["executable/", "shortcut/"]
 
+    LAUNCHABLE_TYPE_FP = [
+        "executable/windows/com",
+        "executable/windows/dos",
+    ]
+
     def __init__(self, config=None):
         super().__init__(config)
         self.password_used = []
@@ -410,9 +415,7 @@ class Extract(ServiceBase):
         ):
             request.drop()
 
-        if not request.file_type.startswith("executable"):
-            # Executable causes false positive, bundling other executables is often seen
-            self.archive_with_executables(request)
+        self.archive_with_executables(request)
 
     def get_passwords(self, request: ServiceRequest):
         """
@@ -1436,7 +1439,7 @@ class Extract(ServiceBase):
                 return True
             file_type = self.identify.fileinfo(file["path"])["type"]
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                return True
+                return file_type not in Extract.LAUNCHABLE_TYPE_FP
             return False
 
         if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
