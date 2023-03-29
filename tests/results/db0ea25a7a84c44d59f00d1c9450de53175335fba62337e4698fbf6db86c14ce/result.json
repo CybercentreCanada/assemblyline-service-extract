@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "HSBC Customer Information.com\nHSBC Payment Advice.com",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -34,7 +34,7 @@
         "auto_collapse": false,
         "body": "HSBC Customer Information.com\nHSBC Payment Advice.com",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

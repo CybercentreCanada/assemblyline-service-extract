@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {
@@ -26,7 +26,7 @@
         "auto_collapse": false,
         "body": "a7fab0ec9220e558e974e9e99110e2a66c24532d3006ef6618c09e5031ce18d5",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

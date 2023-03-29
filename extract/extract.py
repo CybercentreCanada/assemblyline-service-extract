@@ -410,7 +410,9 @@ class Extract(ServiceBase):
         ):
             request.drop()
 
-        self.archive_with_executables(request)
+        if not request.file_type.startswith("executable"):
+            # Executable causes false positive, bundling other executables is often seen
+            self.archive_with_executables(request)
 
     def get_passwords(self, request: ServiceRequest):
         """

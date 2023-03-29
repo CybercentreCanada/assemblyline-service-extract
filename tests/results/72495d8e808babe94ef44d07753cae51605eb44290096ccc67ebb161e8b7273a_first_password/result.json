@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "Unextracted files in password protected archive:\nfile2.txt",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -36,7 +36,7 @@
         "auto_collapse": false,
         "body": "file1.txt",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

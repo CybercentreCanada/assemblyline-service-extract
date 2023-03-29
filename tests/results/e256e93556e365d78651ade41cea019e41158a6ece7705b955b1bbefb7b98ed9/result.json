@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "U`j=\\x02\\x0e\\x0b~\ne256e93556e365d78651ade41cea019e41158a6ece7705b955b1bbefb7b98ed9~",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

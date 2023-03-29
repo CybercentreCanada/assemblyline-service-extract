@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -55,7 +55,7 @@
         "auto_collapse": false,
         "body": "AndroidManifest.xml\nMETA-INF/CERT.RSA\nMETA-INF/CERT.SF\nMETA-INF/INDEX.LIST\nMETA-INF/LICENSE\nMETA-INF/MANIFEST.MF\nMETA-INF/android.arch.core_runtime.version\nMETA-INF/android.arch.lifecycle_livedata-core.version\nMETA-INF/android.arch.lifecycle_livedata.version\nMETA-INF/android.arch.lifecycle_runtime.version\nMETA-INF/android.arch.lifecycle_viewmodel.version\nMETA-INF/androidx.appcompat_appcompat.version\nMETA-INF/androidx.asynclayoutinflater_asynclayoutinflater.version\nMETA-INF/androidx.coordinatorlayout_coordinatorlayout.version\nMETA-INF/androidx.core_core.version\nMETA-INF/androidx.cursoradapter_cursoradapter.version\nMETA-INF/androidx.customview_customview.version\nMETA-INF/androidx.documentfile_documentfile.version\nMETA-INF/androidx.drawerlayout_drawerlayout.version\nMETA-INF/androidx.fragment_fragment.version\nMETA-INF/androidx.interpolator_interpolator.version\nMETA-INF/androidx.legacy_legacy-support-core-ui.version\nMETA-INF/androidx.legacy_legacy-support-core-utils.version\nMETA-INF/androidx.loader_loader.version\nMETA-INF/androidx.localbroadcastmanager_localbroadcastmanager.version\n...",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {},
@@ -66,7 +66,7 @@
         "auto_collapse": false,
         "body": "assets/aapt\nassets/aaptz\nassets/mycp\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {

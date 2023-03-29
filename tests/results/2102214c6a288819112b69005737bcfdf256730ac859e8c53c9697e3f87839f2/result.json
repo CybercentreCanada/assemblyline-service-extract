@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "[{\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"D.HS.\", \"Size\": \"\", \"Compressed\": \"\", \"Name\": \"System Volume Information\"}, {\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"..H.A\", \"Size\": \"1986766\", \"Compressed\": \"1990656\", \"Name\": \"imagedata.ps1\"}]",
         "body_format": "TABLE",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -33,7 +33,7 @@
         "auto_collapse": false,
         "body": "Quote.lnk\nSystem Volume Information/WPSettings.dat\nimagedata.ps1",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -61,7 +61,7 @@
         "auto_collapse": false,
         "body": "Quote.lnk\nimagedata.ps1",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

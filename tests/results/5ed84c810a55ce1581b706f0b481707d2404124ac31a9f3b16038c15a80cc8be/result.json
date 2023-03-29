@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "dummyThing\ngg/essential/loader/stage0/stage1.jar\nmcmod.info",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -35,7 +35,7 @@
         "auto_collapse": false,
         "body": "LICENSE\nMETA-INF/MANIFEST.MF\nMETA-INF/TFM.RSA\nMETA-INF/TFM.SF\nMETA-INF/maven/com.google.protobuf/protobuf-java/pom.properties\nMETA-INF/maven/com.google.protobuf/protobuf-java/pom.xml\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.properties\nMETA-INF/maven/com.neovisionaries/nv-websocket-client/pom.xml\nclub/thom/tfm/TFM.class\nclub/thom/tfm/backend/ChatSocketHandler$1.class\nclub/thom/tfm/backend/ChatSocketHandler.class\nclub/thom/tfm/backend/ConnectionHandler$FormedBytesWithAddress.class\nclub/thom/tfm/backend/ConnectionHandler.class\nclub/thom/tfm/backend/ServerMessageHandler$1.class\nclub/thom/tfm/backend/ServerMessageHandler.class\nclub/thom/tfm/blacklist/Blacklist$1.class\nclub/thom/tfm/blacklist/Blacklist.class\nclub/thom/tfm/blacklist/TailRender.class\nclub/thom/tfm/blacklist/handlers/EnchantBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/ItemBlacklistHandler.class\nclub/thom/tfm/blacklist/handlers/UserBlacklistHandler.class\nclub/thom/tfm/commands/BlacklistCommand.class\nclub/thom/tfm/commands/FlipperChatCommand.class\nclub/thom/tfm/commands/TFMCommand.class\nclub/thom/tfm/commands/ThresholdCommand.class\n...",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {},
@@ -46,7 +46,7 @@
         "auto_collapse": false,
         "body": "gg/essential/loader/stage0/stage1.jar",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

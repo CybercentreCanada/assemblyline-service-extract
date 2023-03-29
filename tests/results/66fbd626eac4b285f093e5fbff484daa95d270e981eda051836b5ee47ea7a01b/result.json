@@ -1,19 +1,19 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 1500,
+    "score": 1000,
     "sections": [
       {
         "auto_collapse": false,
         "body": "[[\"Target file\", \"view.exe\"], [\"Overlay Size\", 523266048], [\"Overlay Entropy\", 0.0], [\"SHA256\", \"c3bbcf49833323978f3df6a3ae4d27cd278930ca78c5b178d6c7558c0b6210a2\"], [\"SHA1\", \"9fb39d298a16798c144813d440bcdbb28b2f2464\"], [\"MD5\", \"17beeecdd8a676132dfa178a1cb90161\"], [\"SSDEEP\", \"6144:UahORp0yN90QESEsORO87HLlkMSwxRopaCYPaT8PE54X:UiVy90sND8DytwxRoqKy\"], [\"Total Size\", 524288000]]",
         "body_format": "ORDERED_KEY_VALUE",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
           "heur_id": 22,
-          "score": 1000,
+          "score": 500,
           "score_map": {},
           "signatures": {}
         },
@@ -25,7 +25,7 @@
         "auto_collapse": false,
         "body": "view.exe",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -51,7 +51,7 @@
         "auto_collapse": false,
         "body": "view.exe",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

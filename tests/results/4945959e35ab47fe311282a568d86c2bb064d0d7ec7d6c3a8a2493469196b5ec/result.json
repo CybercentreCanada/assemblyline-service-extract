@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": null,
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -31,7 +31,7 @@
         "auto_collapse": false,
         "body": "Shipment Document BL,INV and Packing list Attached.exe",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -57,7 +57,7 @@
         "auto_collapse": false,
         "body": "Shipment Document BL,INV and Packing list Attached.exe",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

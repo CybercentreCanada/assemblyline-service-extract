@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "3cc39a23376dbf46371846808f494166f038bcc5b872085f9483cac19ea62f59",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

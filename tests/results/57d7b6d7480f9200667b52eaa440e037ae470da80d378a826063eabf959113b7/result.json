@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "DHL-CUSTOMS-REQUEST-802487487001.vbs",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -33,7 +33,7 @@
         "auto_collapse": false,
         "body": "DHL-CUSTOMS-REQUEST-802487487001.vbs",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
