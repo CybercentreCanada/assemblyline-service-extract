@@ -111,14 +111,23 @@ class Extract(ServiceBase):
         "code/ps1",
         "code/python",
         "code/vbs",
+        "shortcut/windows",
     ]
 
-    LAUNCHABLE_TYPE_SW = ["executable/", "shortcut/"]
+    LAUNCHABLE_TYPE_SW = ["executable/"]
 
-    LAUNCHABLE_TYPE_FP = [
-        "executable/windows/com",
-        "executable/windows/dos",
-    ]
+    LAUNCHABLE_TYPE_FP_FROM_SW = {
+        "executable/windows": [
+            "executable/windows/com",
+            "executable/windows/dos",
+        ],
+        "java/jar": [
+            "java/jar",
+        ],
+        "code/vbe": [
+            "code/vbs",
+        ],
+    }
 
     def __init__(self, config=None):
         super().__init__(config)
@@ -1439,7 +1448,10 @@ class Extract(ServiceBase):
                 return True
             file_type = self.identify.fileinfo(file["path"])["type"]
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                return file_type not in Extract.LAUNCHABLE_TYPE_FP
+                for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
+                    if request.file_type.startswith(k) and file_type in v:
+                        return False
+                return True
             return False
 
         if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
