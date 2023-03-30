@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "GeoIP.dat\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nStub.manifest\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -48,7 +48,7 @@
         "auto_collapse": false,
         "body": "Plugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {

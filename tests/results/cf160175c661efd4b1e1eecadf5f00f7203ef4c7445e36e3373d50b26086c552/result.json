@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],
@@ -35,7 +35,7 @@
         "auto_collapse": false,
         "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

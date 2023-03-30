@@ -7,7 +7,7 @@
         "auto_collapse": false,
         "body": "ERROR: Data Error in encrypted file. Wrong password? : DocumentsFolder 6987584 12202022.img",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
         "tags": {},
@@ -18,7 +18,7 @@
         "auto_collapse": false,
         "body": "DocumentsFolder 6987584 12202022.img",
         "body_format": "TEXT",
-        "classification": "TLP:W",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

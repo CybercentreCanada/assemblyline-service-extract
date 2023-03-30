@@ -181,7 +181,7 @@ heuristics:
 
   - heur_id: 22
     name: Big overlay with very low entropy
-    score: 1000
+    score: 500
     filetype: ".*"
     description: >-
        The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
