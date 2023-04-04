@@ -25,13 +25,16 @@ from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
 from assemblyline_v4_service.common.result import (
     Heuristic,
+    OrderedKVSectionBody,
     Result,
     ResultKeyValueSection,
+    ResultMultiSection,
     ResultOrderedKeyValueSection,
     ResultSection,
     ResultTableSection,
     ResultTextSection,
     TableRow,
+    TextSectionBody,
 )
 from assemblyline_v4_service.common.utils import (
     PASSWORD_WORDS,
@@ -190,32 +193,43 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/cart" and cart_ident(request.file_path) != "corrupted/cart":
             extracted = self.extract_cart(request)
             summary_section_heuristic = 1
-        elif request.file_type == "archive/rar":
-            extracted, password_protected = self.extract_zip(request)
-            summary_section_heuristic = 1
-        elif request.file_type in ["archive/zip", "archive/7-zip"]:
-            extracted, password_protected = self.extract_zip(request)
-            summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
             summary_section_heuristic = 1
         elif request.file_type == "ios/ipa":
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 9
             if extracted and request.get_param("use_custom_safelisting"):
                 extracted, safelisted_extracted = self.ipa_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("java/"):
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 3
             if request.file_type == "java/jar" and extracted and request.get_param("use_custom_safelisting"):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("android"):
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 4
             if request.file_type == "android/apk" and extracted and request.get_param("use_custom_safelisting"):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("archive/"):
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+            if request.file_type == "archive/gzip" and not password_protected and len(extracted) == 1:
+                subfile_info = self.identify.fileinfo(extracted[0][0])
+                if subfile_info["type"] == "archive/tar":
+                    tgz_section = ResultMultiSection("GZipped Tar file extracted", parent=request.result)
+                    tgz_textbody = TextSectionBody(
+                        "The following tar file was extracted from the gzip, and further extracted"
+                    )
+                    tgz_section.add_section_part(tgz_textbody)
+                    tgz_kvbody = OrderedKVSectionBody()
+                    tgz_kvbody.add_item("Name", extracted[0][1])
+                    tgz_kvbody.add_item("SHA256", subfile_info["sha256"])
+                    tgz_kvbody.add_item("SHA1", subfile_info["sha1"])
+                    tgz_kvbody.add_item("MD5", subfile_info["md5"])
+                    tgz_kvbody.add_item("SSDEEP", subfile_info["ssdeep"])
+                    tgz_kvbody.add_item("Total Size", subfile_info["size"])
+                    tgz_section.add_section_part(tgz_kvbody)
+                    extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
             summary_section_heuristic = 1
         elif request.file_type.startswith("executable/"):
             strip_overlay_result = self.strip_overlay(request.file_path)
@@ -237,10 +251,10 @@ class Extract(ServiceBase):
                 # Drop the request so that no other module are going to analyze it.
                 request.drop()
                 return
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 2
         else:
-            extracted, password_protected = self.extract_zip(request)
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
 
         # For the time being, always try repair_zip, and see if we have any results
@@ -258,7 +272,6 @@ class Extract(ServiceBase):
                     # Start by stripping the file.
                     if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
                         extracted_file_info = self.identify.fileinfo(file_path)
-                        # TODO: KEEP THE ORIGINAL FILE HASH
                         if extracted_file_info["type"].startswith("executable/windows"):
                             strip_overlay_result = self.strip_overlay(file_path)
                             if strip_overlay_result:
@@ -310,23 +323,24 @@ class Extract(ServiceBase):
                                     f.seek(0)
                                     data = f.read(os.path.getsize(file_path) - overlay_size)
 
-                                sha256hash = hashlib.sha256(data).hexdigest()
-                                file_path = os.path.join(self.working_directory, sha256hash)
-                                with open(file_path, "wb") as f:
-                                    f.write(data)
+                                if overlay_size > self.config.get("heur22_min_overlay_size", 31457280):
+                                    sha256hash = hashlib.sha256(data).hexdigest()
+                                    file_path = os.path.join(self.working_directory, sha256hash)
+                                    with open(file_path, "wb") as f:
+                                        f.write(data)
 
-                                heur = Heuristic(22)
-                                heur_section = ResultOrderedKeyValueSection(
-                                    heur.name, heuristic=heur, parent=request.result
-                                )
-                                heur_section.add_item("Target file", child[1])
-                                heur_section.add_item("Overlay Size", overlay_size)
-                                heur_section.add_item("Overlay Entropy", entropy)
-                                heur_section.add_item("SHA256", extracted_file_info["sha256"])
-                                heur_section.add_item("SHA1", extracted_file_info["sha1"])
-                                heur_section.add_item("MD5", extracted_file_info["md5"])
-                                heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
-                                heur_section.add_item("Total Size", extracted_file_info["size"])
+                                    heur = Heuristic(22)
+                                    heur_section = ResultOrderedKeyValueSection(
+                                        heur.name, heuristic=heur, parent=request.result
+                                    )
+                                    heur_section.add_item("Target file", child[1])
+                                    heur_section.add_item("Overlay Size", overlay_size)
+                                    heur_section.add_item("Overlay Entropy", entropy)
+                                    heur_section.add_item("SHA256", extracted_file_info["sha256"])
+                                    heur_section.add_item("SHA1", extracted_file_info["sha1"])
+                                    heur_section.add_item("MD5", extracted_file_info["md5"])
+                                    heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
+                                    heur_section.add_item("Total Size", extracted_file_info["size"])
 
                     if request.add_extracted(
                         path=file_path,
@@ -527,14 +541,14 @@ class Extract(ServiceBase):
             return [], False
         except (PasswordError, ExtractionError):
             # Could not guess password
-            self.raise_failed_passworded_extraction(request, [], [], passwords)
+            self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
             return [], True
 
         out_name, password = res
         self.password_used.append(password)
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
-    def _submit_extracted(self, request: ServiceRequest, folder_path: str, caller: str):
+    def _submit_extracted(self, request: ServiceRequest, file_type: str, folder_path: str, caller: str):
         """Go over a folder, sanitize file/folder names and return a list of filtered files
 
         Args:
@@ -593,14 +607,14 @@ class Extract(ServiceBase):
                 filename = safe_str(os.path.join(root, f).replace(folder_path, ""))
                 if filename.startswith("/"):
                     filename = filename[1:]
-                if not extract_executable_sections and request.file_type.startswith("executable"):
-                    if "windows" in request.file_type:
+                if not extract_executable_sections and file_type.startswith("executable"):
+                    if "windows" in file_type:
                         for forbidden in self.FORBIDDEN_WIN:
                             if filename.startswith(forbidden):
                                 skip = True
                                 break
 
-                    elif "linux" in request.file_type:
+                    elif "linux" in file_type:
                         if filename in self.FORBIDDEN_ELF:
                             skip = True
                         for forbidden in self.FORBIDDEN_ELF_SW:
@@ -608,7 +622,7 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
 
-                    elif "mach-o" in request.file_type:
+                    elif "mach-o" in file_type:
                         for forbidden in self.FORBIDDEN_MACH:
                             if filename.startswith(forbidden):
                                 skip = True
@@ -652,7 +666,7 @@ class Extract(ServiceBase):
                         shell=True,
                         preexec_fn=set_death_signal(),
                     )
-                return self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name)
+                return self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
         except Exception:
             self.log.exception(f"While extracting {request.sha256} with unace")
 
@@ -843,16 +857,9 @@ class Extract(ServiceBase):
 
         return []
 
-    def extract_zip(self, request: ServiceRequest):
+    def extract_zip(self, request: ServiceRequest, file_path: str, file_type: str):
         """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive,
         or sections from a Windows executable file.
-
-        Args:
-            request: AL request object.
-
-        Returns:
-            List containing extracted file information, including: extracted path and display name,
-            or a blank list if extraction failed; and True if encryption detected.
         """
 
         extracted_files = []
@@ -862,30 +869,30 @@ class Extract(ServiceBase):
             # Attempt extraction of zip
             try:
                 # with 7z
-                extracted_files, password_protected = self.extract_zip_7zip(request)
+                extracted_files, password_protected = self.extract_zip_7zip(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
             except (UnicodeDecodeError, UnicodeEncodeError) as e:
-                self.log.debug(f"While extracting {request.sha256} with 7zip: {str(e)}")
+                self.log.debug(f"While extracting {request.sha256} ({file_path}) with 7zip: {str(e)}")
                 # with zipfile
-                extracted_files, password_protected = self.extract_zip_zipfile(request)
+                extracted_files, password_protected = self.extract_zip_zipfile(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
             except TypeError:
                 pass
 
             # Try unrar if 7zip fails for rar archives
-            if request.file_type == "archive/rar":
-                extracted_files, password_protected = self.extract_zip_unrar(request)
+            if file_type == "archive/rar":
+                extracted_files, password_protected = self.extract_zip_unrar(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
             # If we cannot extract the tar file, try a custom method
-            elif request.file_type == "archive/tar":
-                extracted_files, password_protected = self.extract_tarfile(request)
+            elif file_type == "archive/tar":
+                extracted_files, password_protected = self.extract_tarfile(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
         except Exception as e:
-            self.log.exception(f"While extracting {request.sha256} with 7zip or zipfile: {str(e)}")
+            self.log.exception(f"While extracting {request.sha256} ({file_path}) with 7zip or zipfile: {str(e)}")
 
         return extracted_files, password_protected
 
@@ -924,7 +931,7 @@ class Extract(ServiceBase):
         return header, parsed_data
 
     def raise_failed_passworded_extraction(
-        self, request: ServiceRequest, extracted_files, expected_files, password_tested
+        self, request: ServiceRequest, file_type: str, extracted_files, expected_files, password_tested
     ):
         section = ResultTextSection(
             "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
@@ -940,7 +947,7 @@ class Extract(ServiceBase):
                     section.add_line(name)
                     section.add_tag("file.name.extracted", name)
 
-        if not request.file_type.startswith("executable"):
+        if not file_type.startswith("executable"):
             # Don't drop executables that contain password protected zip sections
             request.drop()
 
@@ -951,7 +958,7 @@ class Extract(ServiceBase):
                 json.dump(password_tested, f)
             request.add_supplementary(password_tested_path, "password_tested.json", "Passwords used that failed")
 
-    def extract_zip_7zip(self, request: ServiceRequest):
+    def extract_zip_7zip(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
         password_list = []
 
@@ -961,20 +968,22 @@ class Extract(ServiceBase):
         with tempfile.TemporaryDirectory() as temp_dir:
             extracted_files = []
 
-            popenargs = ["7zzs", "x", "-p", "-y", request.file_path, f"-o{temp_dir}"]
+            popenargs = ["7zzs", "x", "-p", "-y", file_path, f"-o{temp_dir}"]
             # Some UDF samples were wrongly identified as plain ISO by 7z.
             # By adding the .iso extension, it somehow made 7z identify it as UDF.
             # Our Identify was also identifying it as "iso", so we can't only rely on "archive/udf".
-            if request.file_type in ["archive/iso", "archive/udf"]:
+            if file_type in ["archive/iso", "archive/udf"]:
                 temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
-                shutil.copy2(request.file_path, temp_path)
+                shutil.copy2(file_path, temp_path)
                 popenargs[4] = temp_path
 
             try:
                 p = subprocess.run(popenargs, env=env, capture_output=True)
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(
+                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                )
 
                 if b"Wrong password" in stderr:
                     password_protected = True
@@ -986,7 +995,7 @@ class Extract(ServiceBase):
                             p = subprocess.run(popenargs, env=env, capture_output=True)
                             stdoutput = p.stdout + p.stderr
                             extracted_children = self._submit_extracted(
-                                request, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -1008,7 +1017,7 @@ class Extract(ServiceBase):
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data and request.file_type != "archive/rar":
+                if not data and file_type != "archive/rar":
                     # No listing could be extracted.
                     heur = Heuristic(24)
                     _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
@@ -1031,14 +1040,17 @@ class Extract(ServiceBase):
                     if password_protected and len(extracted_files) != len(expected_files):
                         # If we extracted no files, and it is an archive/rar,
                         # we'll rely on unrar to populate the section
-                        if extracted_files or request.file_type != "archive/rar":
+                        if extracted_files or file_type != "archive/rar":
                             self.raise_failed_passworded_extraction(
-                                request, extracted_files, expected_files, password_list
+                                request, file_type, extracted_files, expected_files, password_list
                             )
 
                     # Only trigger on certain conditions, else rely on checking the
                     # actual file to determine if it is bloated
-                    if error_res or (password_protected and len(extracted_files) != len(expected_files)):
+                    # A lot of archive/gzip are causing false positives
+                    if file_type != "archive/gzip" and (
+                        error_res or (password_protected and len(extracted_files) != len(expected_files))
+                    ):
                         very_compressed = []
                         for x in data:
                             if (
@@ -1062,12 +1074,12 @@ class Extract(ServiceBase):
             except UnicodeEncodeError:
                 raise
             finally:
-                if request.file_type in ["archive/iso", "archive/udf"] and os.path.exists(temp_path):
+                if file_type in ["archive/iso", "archive/udf"] and os.path.exists(temp_path):
                     os.remove(temp_path)
 
         return extracted_files, password_protected
 
-    def extract_zip_zipfile(self, request: ServiceRequest):
+    def extract_zip_zipfile(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
         password_list = []
 
@@ -1075,9 +1087,11 @@ class Extract(ServiceBase):
             extracted_files = []
 
             try:
-                with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                with zipfile.ZipFile(file_path, "r") as zipped_file:
                     zipped_file.extractall(path=temp_dir)
-                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(
+                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                )
             except RuntimeError as e:
                 if any("password required for extraction" in event for event in e.args):
                     # Try with available passwords
@@ -1086,10 +1100,10 @@ class Extract(ServiceBase):
                     for password in password_list:
                         try:
                             shutil.rmtree(temp_dir, ignore_errors=True)
-                            with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                            with zipfile.ZipFile(file_path, "r") as zipped_file:
                                 zipped_file.extractall(path=temp_dir, pwd=password.encode())
                             extracted_children = self._submit_extracted(
-                                request, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -1098,16 +1112,18 @@ class Extract(ServiceBase):
                         except RuntimeError:
                             pass
 
-                    with zipfile.ZipFile(request.file_path, "r") as zipped_file:
+                    with zipfile.ZipFile(file_path, "r") as zipped_file:
                         namelist = zipped_file.namelist()
                     if len(extracted_files) != len(namelist):
-                        self.raise_failed_passworded_extraction(request, extracted_files, namelist, password_list)
+                        self.raise_failed_passworded_extraction(
+                            request, file_type, extracted_files, namelist, password_list
+                        )
             except BadZipfile:
                 self.log.warning("A non-zip file was passed to zipfile library")
 
         return extracted_files, password_protected
 
-    def extract_zip_unrar(self, request: ServiceRequest):
+    def extract_zip_unrar(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
         password_list = []
 
@@ -1118,16 +1134,16 @@ class Extract(ServiceBase):
             extracted_files = []
 
             try:
-                p = subprocess.run(
-                    ["unrar", "x", "-y", "-p-", request.file_path, temp_dir], env=env, capture_output=True
-                )
+                p = subprocess.run(["unrar", "x", "-y", "-p-", file_path, temp_dir], env=env, capture_output=True)
                 stdout_rar, stderr_rar = p.stdout, p.stderr
             except OSError:
                 self.log.warning(f"Error running unrar on sample {request.sha256}. Extract service may be out of date.")
                 return extracted_files, password_protected
 
             if b"All OK" in stdout_rar:
-                extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+                extracted_files.extend(
+                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                )
             # "password is incorrect" in unrar 5.6.6, "Incorrect password" in unrar 6.0.3
             elif b"password is incorrect" in stderr_rar or b"Incorrect password" in stderr_rar:
                 password_protected = True
@@ -1137,13 +1153,13 @@ class Extract(ServiceBase):
                         shutil.rmtree(temp_dir, ignore_errors=True)
                         os.mkdir(temp_dir)
                         stdout = subprocess.run(
-                            ["unrar", "x", "-y", f"-p{password}", request.file_path, temp_dir],
+                            ["unrar", "x", "-y", f"-p{password}", file_path, temp_dir],
                             env=env,
                             capture_output=True,
                         ).stdout
                         if b"All OK" in stdout:
                             extracted_children = self._submit_extracted(
-                                request, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -1153,9 +1169,9 @@ class Extract(ServiceBase):
 
         if password_protected:
             if self.password_used:
-                popenargs = ["unrar", "l", "-y", f"-p{self.password_used[-1]}", request.file_path]
+                popenargs = ["unrar", "l", "-y", f"-p{self.password_used[-1]}", file_path]
             else:
-                popenargs = ["unrar", "l", "-y", "-p-", request.file_path]
+                popenargs = ["unrar", "l", "-y", "-p-", file_path]
             header, data = self.parse_archive_listing(popenargs, env, b"Attributes")
             if not data:
                 # No listing could be extracted.
@@ -1165,18 +1181,20 @@ class Extract(ServiceBase):
                 # x[1] is the size, so ignore empty files/folders
                 expected_files = [x[4] for x in data if x[1] != "0"]
                 if len(extracted_files) != len(expected_files):
-                    self.raise_failed_passworded_extraction(request, extracted_files, expected_files, password_list)
+                    self.raise_failed_passworded_extraction(
+                        request, file_type, extracted_files, expected_files, password_list
+                    )
 
         return extracted_files, password_protected
 
-    def extract_tarfile(self, request: ServiceRequest):
+    def extract_tarfile(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
 
         with tempfile.TemporaryDirectory() as temp_dir:
             extracted_files = []
 
             try:
-                tar_obj = tarfile.open(request.file_path)
+                tar_obj = tarfile.open(file_path)
                 tar_obj.extractall(temp_dir)
                 tar_obj.close()
 
@@ -1184,7 +1202,7 @@ class Extract(ServiceBase):
                 self.log.exception(f"Error using tarfile to extract sample {request.sha256}: {str(e)}.")
                 return extracted_files, password_protected
 
-            extracted_files.extend(self._submit_extracted(request, temp_dir, sys._getframe().f_code.co_name))
+            extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name))
 
         return extracted_files, password_protected
 
