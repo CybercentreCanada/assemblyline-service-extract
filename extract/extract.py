@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import itertools
 import json
@@ -1567,6 +1568,25 @@ class Extract(ServiceBase):
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), sys._getframe().f_code.co_name])
+
+        a_tags = soup.findAll("a")
+        for a_tag in a_tags:
+            if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
+                a_tag_parts = a_tag.get("href").split(",", 1)
+                if a_tag_parts[0].endswith("base64"):
+                    a_tag_content = base64.b64decode(a_tag_parts[1])
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
+                        out.write(a_tag_content)
+                    # Ignore files that should be handled by JsJaws
+                    if self.identify.fileinfo(out.name)["type"] not in [
+                        "code/jscript",
+                        "code/javascript",
+                        "code/html",
+                    ]:
+                        name = a_tag.get("download")
+                        if not name:
+                            name = hashlib.sha256(a_tag_content).hexdigest()
+                        extracted.append([out.name, name, sys._getframe().f_code.co_name])
 
         # Extraction of passwords was previously done in JsJaws, the analyzer for HTML/Javascript.
         # To speed up processing, Assemblyline is running services in phases. Each services from the same phase are
