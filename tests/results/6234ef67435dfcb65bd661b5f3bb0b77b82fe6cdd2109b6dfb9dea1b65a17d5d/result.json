@@ -1,0 +1,124 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk\n\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk",
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk",
+                "\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk\n\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk",
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk",
+                "\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk",
+        "sha256": "479894be4c5dec0992ad3c5b21fb1423643996d80d59dcca76386bb325dc811e"
+      },
+      {
+        "name": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk",
+        "sha256": "c5c05f9df89fc803884fed2bd20a3824eae95eeb34a1827bf5210e4ac17beadd"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
