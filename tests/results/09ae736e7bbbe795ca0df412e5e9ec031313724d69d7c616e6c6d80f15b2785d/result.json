@@ -1,0 +1,119 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "[[\"TEXT\", \"The following tar file was extracted from the gzip, and further extracted\"], [\"ORDERED_KEY_VALUE\", [[\"Name\", \"scan_doc_HP0029302.tar\"], [\"SHA256\", \"176acec88b25ce940c25db6f4f898d0a0382d27ad50a1b84e8f5c5850e61b9d5\"], [\"SHA1\", \"55a2e47480d7fe924c2ac38339b46797ae083f99\"], [\"MD5\", \"e851c3e8094f68bf033f8855d34b9732\"], [\"SSDEEP\", \"24576:OLvXkGKkj3a9ELZjnLIm5Xx2XkW9BxbzSsCp8alWvGsa:sv/a9ELZjUoh0kW93CTWesa\"], [\"Total Size\", 972800]]]]",
+        "body_format": "MULTI",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "tags": {},
+        "title_text": "GZipped Tar file extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "scan_doc_HP0029302.exe",
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "scan_doc_HP0029302.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "scan_doc_HP0029302.exe",
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 13,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single Executable"
+            ],
+            "name": {
+              "extracted": [
+                "scan_doc_HP0029302.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "scan_doc_HP0029302.exe",
+        "sha256": "c3653e6517e48603a356a5978cdc1b210bd20e023146fd561c611c3b82c0736c"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 13,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "Archived Single Executable"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "scan_doc_HP0029302.exe"
+        },
+        {
+          "heur_id": 13,
+          "signatures": [],
+          "value": "scan_doc_HP0029302.exe"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
