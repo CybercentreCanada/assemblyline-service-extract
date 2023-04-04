@@ -5,6 +5,33 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "[{\"Date Time\": \"2022-10-24 10:51:34\", \"Attr\": \"..H.A\", \"Size\": \"270336\", \"Compressed\": \"118617\", \"Name\": \"7za.dll\"}, {\"Date Time\": \"2022-10-24 10:23:26\", \"Attr\": \"..H.A\", \"Size\": \"92160\", \"Compressed\": \"44414\", \"Name\": \"vcruntime140.dll\"}]",
+        "body_format": "TABLE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 18,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "7za.dll",
+                "vcruntime140.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Hidden files found in archive",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -92,6 +119,11 @@
         "attack_ids": [],
         "heur_id": 16,
         "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 18,
+        "signatures": []
       }
     ],
     "tags": {
@@ -104,6 +136,11 @@
       ],
       "file.name.extracted": [
         {
+          "heur_id": 18,
+          "signatures": [],
+          "value": "7za.dll"
+        },
+        {
           "heur_id": 1,
           "signatures": [],
           "value": "7za.dll"
@@ -122,6 +159,11 @@
           "heur_id": 16,
           "signatures": [],
           "value": "november_schedul\u202d\u202e\u202e\u202efdp.exe"
+        },
+        {
+          "heur_id": 18,
+          "signatures": [],
+          "value": "vcruntime140.dll"
         },
         {
           "heur_id": 1,

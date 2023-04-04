@@ -111,14 +111,23 @@ class Extract(ServiceBase):
         "code/ps1",
         "code/python",
         "code/vbs",
+        "shortcut/windows",
     ]
 
-    LAUNCHABLE_TYPE_SW = ["executable/", "shortcut/"]
+    LAUNCHABLE_TYPE_SW = ["executable/"]
 
-    LAUNCHABLE_TYPE_FP = [
-        "executable/windows/com",
-        "executable/windows/dos",
-    ]
+    LAUNCHABLE_TYPE_FP_FROM_SW = {
+        "executable/windows": [
+            "executable/windows/com",
+            "executable/windows/dos",
+        ],
+        "java/jar": [
+            "java/jar",
+        ],
+        "code/vbe": [
+            "code/vbs",
+        ],
+    }
 
     def __init__(self, config=None):
         super().__init__(config)
@@ -906,9 +915,9 @@ class Extract(ServiceBase):
         header = [b" ".join(header[c[0] : c[1]].split()).decode() for c in col_len]
         parsed_data = []
         for d in data:
-            parsed_data.append([d[c[0] : c[1]].strip().decode() for c in col_len])
+            parsed_data.append([safe_str(d[c[0] : c[1]].strip()) for c in col_len])
             if len(separator) < len(d):
-                parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{d[len(separator) :].decode()}"
+                parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{safe_str(d[len(separator) :])}"
             parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
 
         return header, parsed_data
@@ -1439,7 +1448,10 @@ class Extract(ServiceBase):
                 return True
             file_type = self.identify.fileinfo(file["path"])["type"]
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                return file_type not in Extract.LAUNCHABLE_TYPE_FP
+                for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
+                    if request.file_type.startswith(k) and file_type in v:
+                        return False
+                return True
             return False
 
         if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
