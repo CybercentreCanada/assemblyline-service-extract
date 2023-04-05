@@ -432,6 +432,8 @@ class Extract(ServiceBase):
             and request.file_type != "ios/ipa"
             and request.file_type != "code/html"
             and request.file_type != "code/hta"
+            and request.file_type != "code/wsf"
+            and request.file_type != "code/wsc"
             and request.file_type != "archive/iso"
             and request.file_type != "archive/udf"
             and request.file_type != "archive/vhd"
