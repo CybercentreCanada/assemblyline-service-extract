@@ -5,7 +5,7 @@ ENV SERVICE_PATH extract.extract.Extract
 
 USER root
 
-RUN echo "deb http://http.us.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://http.us.debian.org/debian buster main contrib non-free" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar && rm -rf /var/lib/apt/lists/*
 
