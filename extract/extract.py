@@ -20,6 +20,7 @@ import pefile
 from assemblyline.common import forge
 from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
+from assemblyline.common.path import strip_path_inclusion
 from assemblyline.common.str_utils import safe_str
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
@@ -1594,7 +1595,7 @@ class Extract(ServiceBase):
             if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
                 a_tag_parts = a_tag.get("href").split(",", 1)
                 if a_tag_parts[0].endswith("base64"):
-                    a_tag_content = base64.b64decode(a_tag_parts[1])
+                    a_tag_content = base64.b64decode(a_tag_parts[1].strip())
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(a_tag_content)
                     # Ignore files that should be handled by JsJaws
@@ -1743,7 +1744,7 @@ class Extract(ServiceBase):
         files = xxuu_decode_from_file(request.file_path, xx_character)
         extracted = []
         for output_file, ans in files:
-            output_file = output_file.lstrip("/")
+            output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
             extracted.append(
@@ -1764,7 +1765,7 @@ class Extract(ServiceBase):
         files = xxuu_decode_from_file(request.file_path, uu_character)
         extracted = []
         for output_file, ans in files:
-            output_file = output_file.lstrip("/")
+            output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
             extracted.append(
@@ -1774,7 +1775,7 @@ class Extract(ServiceBase):
 
     def extract_cart(self, request: ServiceRequest):
         cart_name = get_metadata_only(request.file_path)["name"]
-        output_path = os.path.join(self.working_directory, cart_name.lstrip("/"))
+        output_path = os.path.join(self.working_directory, strip_path_inclusion(cart_name, self.working_directory))
         with open(request.file_path, "rb") as ifile, open(output_path, "wb") as ofile:
             unpack_stream(ifile, ofile)
 
