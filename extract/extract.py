@@ -270,6 +270,11 @@ class Extract(ServiceBase):
                     link_desc = f"{child[1]} -> {os.readlink(file_path)}"
                     symlinks.append(link_desc)
                 else:
+                    # Some files in a zip are not even readable, so make sure we can read them.
+                    # They had `oct(os.stat(file_path).st_mode) == 0o100000`
+                    if not os.access(file_path, os.R_OK):
+                        os.chmod(file_path, os.stat(file_path).st_mode | 0o444)
+
                     # Start by stripping the file.
                     if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
                         extracted_file_info = self.identify.fileinfo(file_path)
