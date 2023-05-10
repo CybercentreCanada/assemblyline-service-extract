@@ -431,18 +431,8 @@ class Extract(ServiceBase):
 
         if (
             not big_file_with_few_extracted_files_only
-            and not request.file_type.startswith("executable")
-            and not request.file_type.startswith("java")
-            and not request.file_type.startswith("android")
-            and not request.file_type.startswith("document")
-            and request.file_type != "ios/ipa"
-            and request.file_type != "code/html"
-            and request.file_type != "code/hta"
-            and request.file_type != "code/wsf"
-            and request.file_type != "code/wsc"
-            and request.file_type != "archive/iso"
-            and request.file_type != "archive/udf"
-            and request.file_type != "archive/vhd"
+            and request.file_type.startswith("archive")
+            and request.file_type not in ["archive/iso", "archive/udf", "archive/vhd"]
             and not request.get_param("continue_after_extract")
         ):
             request.drop()
