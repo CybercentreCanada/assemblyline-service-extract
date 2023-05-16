@@ -818,8 +818,13 @@ class Extract(ServiceBase):
             List containing decoded file information, including: decoded file path, encoding, and display name,
             or a blank list if decode failed
         """
-        with open(request.file_path, "r") as fh:
-            text = fh.read()
+
+        text = request.file_contents
+        try:
+            text = text.decode()
+        except UnicodeDecodeError:
+            text = text.decode("ISO-8859-1")
+
         try:
             # Ensure file format is correct via regex
             evbe_present = re.search(EVBE_REGEX, text)
