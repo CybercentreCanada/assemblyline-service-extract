@@ -8,7 +8,7 @@ import mmap
 import struct
 import threading
 import zlib
-from zipfile import ZipFile, BadZipfile, ZipInfo
+from zipfile import BadZipfile, ZipFile, ZipInfo
 
 # Based on zipfile.py:
 
