@@ -3,14 +3,14 @@
 # All algorithms, constants, etc taken from:
 #  https://msdn.microsoft.com/en-us/library/cc313071(v=office.12).aspx
 
-import struct
+import binascii
 import hashlib
 import math
-import binascii
+import struct
 import tempfile
-import msoffcrypto
 
-from Crypto.Cipher import AES, DES3, ARC2, ARC4, DES
+import msoffcrypto
+from Crypto.Cipher import AES, ARC2, ARC4, DES, DES3
 from lxml import etree
 from olefile import olefile
 
