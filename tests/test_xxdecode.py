@@ -1,8 +1,7 @@
 import tempfile
 
-import pytest
-
 import extract.ext.xxuudecode
+import pytest
 
 
 @pytest.mark.parametrize(

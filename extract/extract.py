@@ -22,6 +22,7 @@ from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.path import strip_path_inclusion
 from assemblyline.common.str_utils import safe_str
+from assemblyline_service_utilities.common.utils import PASSWORD_WORDS, extract_passwords, set_death_signal
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
 from assemblyline_v4_service.common.result import (
@@ -37,28 +38,18 @@ from assemblyline_v4_service.common.result import (
     TableRow,
     TextSectionBody,
 )
-from assemblyline_v4_service.common.utils import (
-    PASSWORD_WORDS,
-    extract_passwords,
-    set_death_signal,
-)
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
-from msoffcrypto import exceptions as msoffcryptoexceptions
-from nrs.nsi.extractor import Extractor as NSIExtractor
-from pikepdf import PasswordError as PDFPasswordError
-from pikepdf import Pdf, PdfError
-
-from extract.ext.office_extract import (
-    ExtractionError,
-    PasswordError,
-    extract_office_docs,
-)
+from extract.ext.office_extract import ExtractionError, PasswordError, extract_office_docs
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
+from msoffcrypto import exceptions as msoffcryptoexceptions
+from nrs.nsi.extractor import Extractor as NSIExtractor
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
