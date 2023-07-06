@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "Documents.dll\nICA-declass.pdf\nReports.lnk",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -34,6 +35,7 @@
       {
         "auto_collapse": false,
         "body": "Documents.dll\nReports.lnk",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

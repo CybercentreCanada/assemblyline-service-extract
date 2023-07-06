@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "Overlay Size: 357500072\nOverlay Entropy: 0.0033219519674815862",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

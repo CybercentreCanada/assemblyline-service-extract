@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "vbe_decoded",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

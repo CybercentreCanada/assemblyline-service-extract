@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "Unextracted files in password protected archive:\nfile2.txt",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -35,6 +36,7 @@
       {
         "auto_collapse": false,
         "body": "file1.txt",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

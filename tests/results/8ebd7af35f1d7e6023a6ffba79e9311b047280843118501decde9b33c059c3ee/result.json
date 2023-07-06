@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "7z1805-x64.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -32,6 +33,7 @@
       {
         "auto_collapse": false,
         "body": "7z1805-x64.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

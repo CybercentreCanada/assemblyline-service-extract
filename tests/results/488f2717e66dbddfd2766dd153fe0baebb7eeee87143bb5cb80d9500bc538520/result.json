@@ -6,6 +6,15 @@
       {
         "auto_collapse": false,
         "body": "[{\"Date Time\": \"2022-09-06 14:35:50\", \"Attr\": \"..H.A\", \"Size\": \"1206\", \"Compressed\": \"619\", \"Name\": \"hit/hanging.bat\"}, {\"Date Time\": \"2022-09-06 14:32:02\", \"Attr\": \"..H.A\", \"Size\": \"101376\", \"Compressed\": \"57805\", \"Name\": \"hit/overgoverning.dll\"}]",
+        "body_config": {
+          "column_order": [
+            "Date Time",
+            "Attr",
+            "Size",
+            "Compressed",
+            "Name"
+          ]
+        },
         "body_format": "TABLE",
         "classification": "TLP:C",
         "depth": 0,
@@ -33,6 +42,7 @@
       {
         "auto_collapse": false,
         "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -61,6 +71,7 @@
       {
         "auto_collapse": false,
         "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

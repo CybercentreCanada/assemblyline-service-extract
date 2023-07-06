@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "file1.txt\nfile2.txt",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
