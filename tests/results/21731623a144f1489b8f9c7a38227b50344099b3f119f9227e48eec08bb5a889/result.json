@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "https://pastebin.mozilla.org/kzDpA2Bq/raw",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": null,
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -30,6 +31,7 @@
       {
         "auto_collapse": false,
         "body": "Order_list001.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -56,6 +58,7 @@
       {
         "auto_collapse": false,
         "body": "Order_list001.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

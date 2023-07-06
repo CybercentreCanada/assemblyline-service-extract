@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "ZTIUtility.vbs",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -26,6 +27,7 @@
       {
         "auto_collapse": false,
         "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -45,6 +47,7 @@
       {
         "auto_collapse": false,
         "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
