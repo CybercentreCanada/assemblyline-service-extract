@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "HSBC Customer Information.com\nHSBC Payment Advice.com",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -33,6 +34,7 @@
       {
         "auto_collapse": false,
         "body": "HSBC Customer Information.com\nHSBC Payment Advice.com",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

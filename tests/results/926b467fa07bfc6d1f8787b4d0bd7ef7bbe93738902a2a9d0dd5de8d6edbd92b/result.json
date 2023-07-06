@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -24,6 +25,7 @@
       {
         "auto_collapse": false,
         "body": "651f1236bb6e8cbfc1415c0737b46c1cc8cc4c115058d48934fa4f13e2aad6a2",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

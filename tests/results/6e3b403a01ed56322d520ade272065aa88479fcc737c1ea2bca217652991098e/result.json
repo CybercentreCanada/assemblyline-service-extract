@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "AaaTeXMeterBilling.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt\nSetup.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -36,6 +37,7 @@
       {
         "auto_collapse": false,
         "body": "AaaTeXMeterBilling.exe\nSetup.exe",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

@@ -1,4 +1,3 @@
-assemblyline-service-utilities
 tnefparse
 olefile
 beautifulsoup4

@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "ERROR: Data Error : Screenshot.png",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -17,6 +18,7 @@
       {
         "auto_collapse": false,
         "body": "ProgramList.txt\nProsessList.txt\nScreenshot.png\ninfo.txt",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "Pepsico LLC RFQ Information.com",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -32,6 +33,7 @@
       {
         "auto_collapse": false,
         "body": "Pepsico LLC RFQ Information.com",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk\n\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -33,6 +34,7 @@
       {
         "auto_collapse": false,
         "body": "\ubd81 \uc678\uad50\uad00 \uc120\ubc1c\ud30c\uacac \ubc0f \ud574\uc678\uacf5\uad00.lnk\n\ubd81\ud55c\uc678\uad50\uc815\ucc45\uacb0\uc815\uacfc\uc815.lnk",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

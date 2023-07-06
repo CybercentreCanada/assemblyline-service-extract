@@ -1,1 +1,2 @@
+assemblyline-service-utilities
 pytest

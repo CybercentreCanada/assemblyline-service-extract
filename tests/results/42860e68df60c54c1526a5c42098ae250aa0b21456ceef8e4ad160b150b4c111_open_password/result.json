@@ -6,6 +6,7 @@
       {
         "auto_collapse": false,
         "body": "42860e68df60c54c1526a5c42098ae250aa0b21456ceef8e4ad160b150b4c111",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,

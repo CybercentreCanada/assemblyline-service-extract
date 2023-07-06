@@ -6,6 +6,15 @@
       {
         "auto_collapse": false,
         "body": "[{\"Date Time\": \"2022-10-24 10:51:34\", \"Attr\": \"..H.A\", \"Size\": \"270336\", \"Compressed\": \"118617\", \"Name\": \"7za.dll\"}, {\"Date Time\": \"2022-10-24 10:23:26\", \"Attr\": \"..H.A\", \"Size\": \"92160\", \"Compressed\": \"44414\", \"Name\": \"vcruntime140.dll\"}]",
+        "body_config": {
+          "column_order": [
+            "Date Time",
+            "Attr",
+            "Size",
+            "Compressed",
+            "Name"
+          ]
+        },
         "body_format": "TABLE",
         "classification": "TLP:C",
         "depth": 0,
@@ -33,6 +42,7 @@
       {
         "auto_collapse": false,
         "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
@@ -61,6 +71,7 @@
       {
         "auto_collapse": false,
         "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
+        "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
