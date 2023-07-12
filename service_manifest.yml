@@ -180,11 +180,11 @@ heuristics:
     description: A WSF script with multiple languages was found. Static analysis is going to be hard to apply on that sample.
 
   - heur_id: 22
-    name: Big overlay with very low entropy
+    name: Bloated file
     score: 500
     filetype: ".*"
     description: >-
-       The overlay entropy is low, while the size is noticeable. It may be a sign of padding or bloating to bypass certain detection techniques.
+       The file is bloated in some way. Either a PE using a large overlay with low entropy, a PE with bloated sections or .rsrc, or a script with a lot null bytes padding at the end. It is usually an attempt to bypass certain detection techniques.
 
   - heur_id: 23
     name: Executable File(s) found in Office Document
