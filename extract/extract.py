@@ -16,6 +16,7 @@ from copy import deepcopy
 from datetime import datetime
 from io import BytesIO
 
+import debloat.processor
 import pefile
 from assemblyline.common import forge
 from assemblyline.common.entropy import BufferedCalculator
@@ -41,15 +42,16 @@ from assemblyline_v4_service.common.utils import PASSWORD_WORDS, extract_passwor
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
+from msoffcrypto import exceptions as msoffcryptoexceptions
+from nrs.nsi.extractor import Extractor as NSIExtractor
+from pikepdf import PasswordError as PDFPasswordError
+from pikepdf import Pdf, PdfError
+
 from extract.ext.office_extract import ExtractionError, PasswordError, extract_office_docs
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
-from msoffcrypto import exceptions as msoffcryptoexceptions
-from nrs.nsi.extractor import Extractor as NSIExtractor
-from pikepdf import PasswordError as PDFPasswordError
-from pikepdf import Pdf, PdfError
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -224,25 +226,30 @@ class Extract(ServiceBase):
                     extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
             summary_section_heuristic = 1
         elif request.file_type.startswith("executable/"):
-            strip_overlay_result = self.strip_overlay(request.file_path)
-            if strip_overlay_result:
-                temp_path, overlay_size, entropy = strip_overlay_result
-                added = request.add_extracted(
-                    temp_path,
-                    os.path.basename(request.file_path),
-                    f"Executable bloat stripped from original file {os.path.basename(request.file_path)}",
-                    safelist_interface=self.api_interface,
-                )
+            if request.file_type.startswith("executable/windows") and os.path.getsize(
+                request.file_path
+            ) > self.config.get("heur22_min_overlay_size", 31457280):
+                strip_overlay_result = self.strip_overlay(request.file_path)
+                if strip_overlay_result:
+                    temp_path, overlay_size, entropy = strip_overlay_result
+                    added = request.add_extracted(
+                        temp_path,
+                        os.path.basename(request.file_path),
+                        f"Executable bloat stripped from original file {os.path.basename(request.file_path)}",
+                        safelist_interface=self.api_interface,
+                    )
 
-                heur = Heuristic(22)
-                heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
-                heur_section.add_line(f"Overlay Size: {overlay_size}")
-                heur_section.add_line(f"Overlay Entropy: {entropy}")
-                if not added:
-                    heur_section.add_line(f"{os.path.basename(request.file_path)} is safelisted once de-bloated")
-                # Drop the request so that no other module are going to analyze it.
-                request.drop()
-                return
+                    heur = Heuristic(22)
+                    heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
+                    if overlay_size is not None:
+                        heur_section.add_line(f"Overlay Size: {overlay_size}")
+                    if entropy is not None:
+                        heur_section.add_line(f"Overlay Entropy: {entropy}")
+                    if not added:
+                        heur_section.add_line(f"{os.path.basename(request.file_path)} is safelisted once de-bloated")
+                    # Drop the request so that no other module are going to analyze it.
+                    request.drop()
+                    return
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 2
         else:
@@ -278,8 +285,10 @@ class Extract(ServiceBase):
                                     heur.name, heuristic=heur, parent=request.result
                                 )
                                 heur_section.add_item("Target file", child[1])
-                                heur_section.add_item("Overlay Size", overlay_size)
-                                heur_section.add_item("Overlay Entropy", entropy)
+                                if overlay_size is not None:
+                                    heur_section.add_item("Overlay Size", overlay_size)
+                                if entropy is not None:
+                                    heur_section.add_item("Overlay Entropy", entropy)
                                 heur_section.add_item("SHA256", extracted_file_info["sha256"])
                                 heur_section.add_item("SHA1", extracted_file_info["sha1"])
                                 heur_section.add_item("MD5", extracted_file_info["md5"])
@@ -333,6 +342,7 @@ class Extract(ServiceBase):
                                     heur_section.add_item("Target file", child[1])
                                     heur_section.add_item("Overlay Size", overlay_size)
                                     heur_section.add_item("Overlay Entropy", entropy)
+                                    heur_section.add_item("Bloated byte", last_data[0])
                                     heur_section.add_item("SHA256", extracted_file_info["sha256"])
                                     heur_section.add_item("SHA1", extracted_file_info["sha1"])
                                     heur_section.add_item("MD5", extracted_file_info["md5"])
@@ -1778,32 +1788,44 @@ class Extract(ServiceBase):
         except Exception:
             return False
 
-        file_size = os.path.getsize(file_path)
         overlay_offset = binary.get_overlay_data_start_offset()
-        if overlay_offset is None or overlay_offset == 0:
-            return False
-        overlay_size = file_size - overlay_offset
-        if overlay_size < self.config.get("heur22_min_overlay_size", 31457280):
-            return False
+        overlay_size = os.path.getsize(file_path) - overlay_offset
+        if (
+            overlay_offset is not None
+            and overlay_offset != 0
+            and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280)
+        ):
 
-        calculator = BufferedCalculator()
-        with open(file_path, "rb") as f:
-            f.seek(overlay_offset)
-            while True:
-                data = f.read(1024)
-                if not data:
-                    break
-                calculator.update(data)
-        entropy = calculator.entropy()
-
-        if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
+            calculator = BufferedCalculator()
             with open(file_path, "rb") as f:
-                data = f.read(overlay_offset)
-            sha256hash = hashlib.sha256(data).hexdigest()
-            temp_path = os.path.join(self.working_directory, sha256hash)
-            with open(temp_path, "wb") as f:
-                f.write(data)
+                f.seek(overlay_offset)
+                while True:
+                    data = f.read(1024)
+                    if not data:
+                        break
+                    calculator.update(data)
+            entropy = calculator.entropy()
 
-            return (temp_path, overlay_size, entropy)
+            if entropy < self.config.get("heur22_min_overlay_entropy", 0.5):
+                with open(file_path, "rb") as f:
+                    data = f.read(overlay_offset)
+                sha256hash = hashlib.sha256(data).hexdigest()
+                temp_path = os.path.join(self.working_directory, sha256hash)
+                with open(temp_path, "wb") as f:
+                    f.write(data)
 
-        return False
+                return (temp_path, overlay_size, entropy)
+
+        out_path = os.path.join(self.working_directory, "debloated")
+        debloat.processor.process_pe(
+            binary, out_path=out_path, unsafe_processing=False, log_message=lambda *args, **kwargs: None
+        )
+
+        if not os.path.exists(out_path):
+            return False
+
+        with open(out_path, "rb") as f:
+            data = f.read()
+        sha256hash = hashlib.sha256(data).hexdigest()
+        shutil.move(out_path, os.path.join(self.working_directory, sha256hash))
+        return (os.path.join(self.working_directory, sha256hash), None, None)

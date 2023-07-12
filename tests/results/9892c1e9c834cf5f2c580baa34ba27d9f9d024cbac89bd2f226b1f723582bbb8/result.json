@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Overlay Size: 357500072\nOverlay Entropy: 0.0033219519674815862",
+        "body": null,
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -27,8 +27,8 @@
   "files": {
     "extracted": [
       {
-        "name": "260e454f1c460f016406e94de138764950fbc7746f2035632bd08b14ab6447db",
-        "sha256": "2895e2b46df20091ffd40cd02f65d32ea69c3605c1f60f511480cffbb2445692"
+        "name": "9892c1e9c834cf5f2c580baa34ba27d9f9d024cbac89bd2f226b1f723582bbb8",
+        "sha256": "8bc1a9346d92f4b4d8828b64c1f5e4b706bf5278819803fba442b296547d823d"
       }
     ],
     "supplementary": []
