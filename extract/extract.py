@@ -694,7 +694,7 @@ class Extract(ServiceBase):
                 fd.seek(0)
                 self.password_used.append(password)
                 return [[fd.name, request.file_name, sys._getframe().f_code.co_name]], True
-            except PDFPasswordError:
+            except (PDFPasswordError, RuntimeError):
                 continue
             except PdfError as e:
                 if "unsupported encryption filter" in str(e):
@@ -724,11 +724,15 @@ class Extract(ServiceBase):
             # Extract embedded contents in PDF
             for key in pdf.attachments.keys():
                 if pdf.attachments.get(key):
-                    fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                     attachment = pdf.attachments[key]
                     if not attachment.filename:
                         continue
-                    fd.write(attachment.get_file().read_bytes())
+                    try:
+                        attachment_data = attachment.get_file().read_bytes()
+                    except AttributeError:
+                        continue
+                    fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+                    fd.write(attachment_data)
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
         except PdfError as e:
@@ -1788,11 +1792,10 @@ class Extract(ServiceBase):
         except Exception:
             return False
 
-        overlay_offset = binary.get_overlay_data_start_offset()
+        overlay_offset = binary.get_overlay_data_start_offset() or 0
         overlay_size = os.path.getsize(file_path) - overlay_offset
         if (
-            overlay_offset is not None
-            and overlay_offset != 0
+            overlay_offset != 0
             and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280)
         ):
 
