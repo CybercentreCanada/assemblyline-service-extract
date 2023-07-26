@@ -517,6 +517,8 @@ class Extract(ServiceBase):
                 "RuntimeError detected. Is the corrupted file password protected? That is usually the cause."
             )
             return []
+        except BadZipfile:
+            return []
 
     def extract_office(self, request: ServiceRequest):
         """Will attempt to use modules in office_extract.py to extract a document from an encrypted Office file.
@@ -735,7 +737,7 @@ class Extract(ServiceBase):
                     fd.write(attachment_data)
                     fd.seek(0)
                     extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
-        except PdfError as e:
+        except (PdfError, ValueError) as e:
             # Damaged PDF, typically extracted from another service like OLETools
             self.log.warning(e)
 
@@ -1794,10 +1796,7 @@ class Extract(ServiceBase):
 
         overlay_offset = binary.get_overlay_data_start_offset() or 0
         overlay_size = os.path.getsize(file_path) - overlay_offset
-        if (
-            overlay_offset != 0
-            and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280)
-        ):
+        if overlay_offset != 0 and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280):
 
             calculator = BufferedCalculator()
             with open(file_path, "rb") as f:
