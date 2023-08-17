@@ -1,23 +1,30 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 1000,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"TEXT\", \"The following tar file was extracted from the gzip, and further extracted\", {}], [\"ORDERED_KEY_VALUE\", [[\"Name\", \"scan_doc_HP0029302.tar\"], [\"SHA256\", \"176acec88b25ce940c25db6f4f898d0a0382d27ad50a1b84e8f5c5850e61b9d5\"], [\"SHA1\", \"55a2e47480d7fe924c2ac38339b46797ae083f99\"], [\"MD5\", \"e851c3e8094f68bf033f8855d34b9732\"], [\"Total Size\", 972800]], {}]]",
+        "body": "[[\"Target file\", \"\\u430b\\u4131\\u4735\\u433e\\u41f9\\u4396\\u42ac\\u42ee\\u4823\"], [\"SHA256\", \"67b54f709895fa88b5153b568e62df5fb866237a1b3050502e7bee95a5a41738\"], [\"SHA1\", \"b1511d80ad998e523be746a56ae2212fadfc0d15\"], [\"MD5\", \"21bb60837d686b7d1ea9e1746f60c756\"], [\"Total Size\", 506018816]]",
         "body_config": {},
-        "body_format": "MULTI",
+        "body_format": "ORDERED_KEY_VALUE",
         "classification": "TLP:C",
         "depth": 0,
-        "heuristic": null,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
         "tags": {},
-        "title_text": "GZipped Tar file extracted",
+        "title_text": "Bloated file",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "scan_doc_HP0029302.exe",
+        "body": "File_Chapter.1.msi",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -34,7 +41,7 @@
           "file": {
             "name": {
               "extracted": [
-                "scan_doc_HP0029302.exe"
+                "File_Chapter.1.msi"
               ]
             }
           }
@@ -44,7 +51,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "scan_doc_HP0029302.exe",
+        "body": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -52,7 +59,7 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 13,
+          "heur_id": 16,
           "score": 500,
           "score_map": {},
           "signatures": {}
@@ -60,16 +67,16 @@
         "tags": {
           "file": {
             "behavior": [
-              "Archived Single Executable"
+              "Executable Content in Archive"
             ],
             "name": {
               "extracted": [
-                "scan_doc_HP0029302.exe"
+                "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823"
               ]
             }
           }
         },
-        "title_text": "Archive file with single executable inside. Potentially malicious...",
+        "title_text": "Executable Content in Archive. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -77,8 +84,12 @@
   "files": {
     "extracted": [
       {
-        "name": "scan_doc_HP0029302.exe",
-        "sha256": "c3653e6517e48603a356a5978cdc1b210bd20e023146fd561c611c3b82c0736c"
+        "name": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823",
+        "sha256": "47352fea33746cbdfe5d38850c34986963eefd8558e5fbe95951b3af4de83bd0"
+      },
+      {
+        "name": "File_Chapter.1.msi",
+        "sha256": "a9be5d0df2602ce3c598d5139210a4bb9adea2051e7673c008c18aeddf61332c"
       }
     ],
     "supplementary": []
@@ -92,28 +103,33 @@
       },
       {
         "attack_ids": [],
-        "heur_id": 13,
+        "heur_id": 16,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 22,
         "signatures": []
       }
     ],
     "tags": {
       "file.behavior": [
         {
-          "heur_id": 13,
+          "heur_id": 16,
           "signatures": [],
-          "value": "Archived Single Executable"
+          "value": "Executable Content in Archive"
         }
       ],
       "file.name.extracted": [
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "scan_doc_HP0029302.exe"
+          "value": "File_Chapter.1.msi"
         },
         {
-          "heur_id": 13,
+          "heur_id": 16,
           "signatures": [],
-          "value": "scan_doc_HP0029302.exe"
+          "value": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823"
         }
       ]
     },
