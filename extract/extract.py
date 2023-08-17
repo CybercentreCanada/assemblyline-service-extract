@@ -17,6 +17,7 @@ from datetime import datetime
 from io import BytesIO
 
 import debloat.processor
+import olefile
 import pefile
 from assemblyline.common import forge
 from assemblyline.common.entropy import BufferedCalculator
@@ -208,7 +209,7 @@ class Extract(ServiceBase):
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             if request.file_type == "archive/gzip" and not password_protected and len(extracted) == 1:
-                subfile_info = self.identify.fileinfo(extracted[0][0])
+                subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
                 if subfile_info["type"] == "archive/tar":
                     tgz_section = ResultMultiSection("GZipped Tar file extracted", parent=request.result)
                     tgz_textbody = TextSectionBody(
@@ -220,7 +221,6 @@ class Extract(ServiceBase):
                     tgz_kvbody.add_item("SHA256", subfile_info["sha256"])
                     tgz_kvbody.add_item("SHA1", subfile_info["sha1"])
                     tgz_kvbody.add_item("MD5", subfile_info["md5"])
-                    tgz_kvbody.add_item("SSDEEP", subfile_info["ssdeep"])
                     tgz_kvbody.add_item("Total Size", subfile_info["size"])
                     tgz_section.add_section_part(tgz_kvbody)
                     extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
@@ -275,79 +275,7 @@ class Extract(ServiceBase):
 
                     # Start by stripping the file.
                     if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
-                        extracted_file_info = self.identify.fileinfo(file_path)
-                        if extracted_file_info["type"].startswith("executable/windows"):
-                            strip_overlay_result = self.strip_overlay(file_path)
-                            if strip_overlay_result:
-                                file_path, overlay_size, entropy = strip_overlay_result
-                                heur = Heuristic(22)
-                                heur_section = ResultOrderedKeyValueSection(
-                                    heur.name, heuristic=heur, parent=request.result
-                                )
-                                heur_section.add_item("Target file", child[1])
-                                if overlay_size is not None:
-                                    heur_section.add_item("Overlay Size", overlay_size)
-                                if entropy is not None:
-                                    heur_section.add_item("Overlay Entropy", entropy)
-                                heur_section.add_item("SHA256", extracted_file_info["sha256"])
-                                heur_section.add_item("SHA1", extracted_file_info["sha1"])
-                                heur_section.add_item("MD5", extracted_file_info["md5"])
-                                heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
-                                heur_section.add_item("Total Size", extracted_file_info["size"])
-                        else:
-                            # Reuse the target overlay size to check for general bloating
-                            calculator = BufferedCalculator()
-                            with open(file_path, "rb") as f:
-                                f.seek(os.path.getsize(file_path) // 2)
-                                while True:
-                                    data = f.read(1024)
-                                    if not data:
-                                        break
-                                    calculator.update(data)
-                            entropy = calculator.entropy()
-
-                            if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
-                                # Padding detected in a general file, determine byte-padding
-                                with open(file_path, "rb") as f:
-                                    f.seek(-1024, os.SEEK_END)
-                                    last_data = f.read(1024)
-                                    last_position_jumps = 2
-                                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
-                                    while f.read(1024) == last_data:
-                                        last_position_jumps += 1
-                                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
-                                    # Time to find exactly where to stop the stripping
-                                    precise_offset = 1024
-                                    while precise_offset >= 0:
-                                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
-                                        data = f.read(1)
-                                        if data and data[0] != last_data[0]:
-                                            break
-                                        precise_offset -= 1
-                                    overlay_size = 1024 * last_position_jumps - precise_offset - 1
-
-                                    f.seek(0)
-                                    data = f.read(os.path.getsize(file_path) - overlay_size)
-
-                                if overlay_size > self.config.get("heur22_min_overlay_size", 31457280):
-                                    sha256hash = hashlib.sha256(data).hexdigest()
-                                    file_path = os.path.join(self.working_directory, sha256hash)
-                                    with open(file_path, "wb") as f:
-                                        f.write(data)
-
-                                    heur = Heuristic(22)
-                                    heur_section = ResultOrderedKeyValueSection(
-                                        heur.name, heuristic=heur, parent=request.result
-                                    )
-                                    heur_section.add_item("Target file", child[1])
-                                    heur_section.add_item("Overlay Size", overlay_size)
-                                    heur_section.add_item("Overlay Entropy", entropy)
-                                    heur_section.add_item("Bloated byte", last_data[0])
-                                    heur_section.add_item("SHA256", extracted_file_info["sha256"])
-                                    heur_section.add_item("SHA1", extracted_file_info["sha1"])
-                                    heur_section.add_item("MD5", extracted_file_info["md5"])
-                                    heur_section.add_item("SSDEEP", extracted_file_info["ssdeep"])
-                                    heur_section.add_item("Total Size", extracted_file_info["size"])
+                        file_path = self.strip_file(request, file_path, child[1])
 
                     if request.add_extracted(
                         path=file_path,
@@ -439,6 +367,92 @@ class Extract(ServiceBase):
             request.drop()
 
         self.archive_with_executables(request)
+
+    def strip_file(self, request: ServiceRequest, file_path, file_name):
+        extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True)
+        if extracted_file_info["type"].startswith("executable/windows"):
+            strip_overlay_result = self.strip_overlay(file_path)
+            if strip_overlay_result:
+                file_path, overlay_size, entropy = strip_overlay_result
+                heur = Heuristic(22)
+                heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
+                heur_section.add_item("Target file", file_name)
+                if overlay_size is not None:
+                    heur_section.add_item("Overlay Size", overlay_size)
+                if entropy is not None:
+                    heur_section.add_item("Overlay Entropy", entropy)
+                heur_section.add_item("SHA256", extracted_file_info["sha256"])
+                heur_section.add_item("SHA1", extracted_file_info["sha1"])
+                heur_section.add_item("MD5", extracted_file_info["md5"])
+                heur_section.add_item("Total Size", extracted_file_info["size"])
+        elif extracted_file_info["type"] == "document/installer/windows":
+            ole = olefile.OleFileIO(file_path)
+            for direntry in ole.direntries:
+                if direntry and direntry.size > self.config.get("heur22_min_overlay_size", 31457280):
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory) as tf:
+                        tf.write(ole.openstream(direntry.name).read())
+                        tf.flush()
+                        temp_file_path = self.strip_file(request, tf.name, safe_str(direntry.name))
+                        if tf.name != temp_file_path:
+                            request.add_extracted(
+                                path=temp_file_path,
+                                name=safe_str(direntry.name),
+                                description="Extracted from document/installer/windows",
+                                safelist_interface=self.api_interface,
+                            )
+        else:
+            # Reuse the target overlay size to check for general bloating
+            calculator = BufferedCalculator()
+            with open(file_path, "rb") as f:
+                f.seek(os.path.getsize(file_path) // 2)
+                while True:
+                    data = f.read(1024)
+                    if not data:
+                        break
+                    calculator.update(data)
+            entropy = calculator.entropy()
+
+            if entropy < self.config.get("heur22_min_general_bloat_entropy", 0.2):
+                # Padding detected in a general file, determine byte-padding
+                with open(file_path, "rb") as f:
+                    f.seek(-1024, os.SEEK_END)
+                    last_data = f.read(1024)
+                    last_position_jumps = 2
+                    f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                    while f.read(1024) == last_data:
+                        last_position_jumps += 1
+                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                    # Time to find exactly where to stop the stripping
+                    precise_offset = 1024
+                    while precise_offset >= 0:
+                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        data = f.read(1)
+                        if data and data[0] != last_data[0]:
+                            break
+                        precise_offset -= 1
+                    overlay_size = 1024 * last_position_jumps - precise_offset - 1
+
+                    f.seek(0)
+                    data = f.read(os.path.getsize(file_path) - overlay_size)
+
+                if overlay_size > self.config.get("heur22_min_overlay_size", 31457280):
+                    sha256hash = hashlib.sha256(data).hexdigest()
+                    file_path = os.path.join(self.working_directory, sha256hash)
+                    with open(file_path, "wb") as f:
+                        f.write(data)
+
+                    heur = Heuristic(22)
+                    heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
+                    heur_section.add_item("Target file", file_name)
+                    heur_section.add_item("Overlay Size", overlay_size)
+                    heur_section.add_item("Overlay Entropy", entropy)
+                    heur_section.add_item("Bloated byte", last_data[0])
+                    heur_section.add_item("SHA256", extracted_file_info["sha256"])
+                    heur_section.add_item("SHA1", extracted_file_info["sha1"])
+                    heur_section.add_item("MD5", extracted_file_info["md5"])
+                    heur_section.add_item("Total Size", extracted_file_info["size"])
+
+        return file_path
 
     def get_passwords(self, request: ServiceRequest):
         """
@@ -1439,7 +1453,7 @@ class Extract(ServiceBase):
 
         for cur_file in extracted:
             to_add = True
-            file_info = self.identify.fileinfo(cur_file[0])
+            file_info = self.identify.fileinfo(cur_file[0], generate_hashes=False)
             for exp in safelisted_tags_re:
                 if exp.search(file_info["type"]):
                     to_add = False
@@ -1475,7 +1489,7 @@ class Extract(ServiceBase):
         def is_launchable(file):
             if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
                 return True
-            file_type = self.identify.fileinfo(file["path"])["type"]
+            file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
                 for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
                     if request.file_type.startswith(k) and file_type in v:
@@ -1606,7 +1620,7 @@ class Extract(ServiceBase):
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(a_tag_content)
                     # Ignore files that should be handled by JsJaws
-                    if self.identify.fileinfo(out.name)["type"] not in [
+                    if self.identify.fileinfo(out.name, generate_hashes=False)["type"] not in [
                         "code/jscript",
                         "code/javascript",
                         "code/html",
@@ -1795,7 +1809,8 @@ class Extract(ServiceBase):
             return False
 
         overlay_offset = binary.get_overlay_data_start_offset() or 0
-        overlay_size = os.path.getsize(file_path) - overlay_offset
+        file_size = os.path.getsize(file_path)
+        overlay_size = file_size - overlay_offset
         if overlay_offset != 0 and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280):
 
             calculator = BufferedCalculator()
@@ -1820,7 +1835,11 @@ class Extract(ServiceBase):
 
         out_path = os.path.join(self.working_directory, "debloated")
         debloat.processor.process_pe(
-            binary, out_path=out_path, unsafe_processing=False, log_message=lambda *args, **kwargs: None
+            binary,
+            out_path=out_path,
+            last_ditch_processing=False,
+            log_message=lambda *args, **kwargs: None,
+            beginning_file_size=file_size,
         )
 
         if not os.path.exists(out_path):

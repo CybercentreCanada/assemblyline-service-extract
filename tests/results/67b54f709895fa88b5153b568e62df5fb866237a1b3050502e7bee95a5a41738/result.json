@@ -1,0 +1,47 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "tags": {},
+        "title_text": "Bloated file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "67b54f709895fa88b5153b568e62df5fb866237a1b3050502e7bee95a5a41738",
+        "sha256": "47352fea33746cbdfe5d38850c34986963eefd8558e5fbe95951b3af4de83bd0"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 22,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}
