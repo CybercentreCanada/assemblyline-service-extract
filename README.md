@@ -2,8 +2,7 @@
 
 This Assemblyline service extracts embedded files from file containers (like ZIP, RAR, 7z ...)
 
-**NOTE**: This service does not require you to buy any licence and is preinstalled and
-working after a default installation
+**NOTE**: This service does not require you to buy any licence
 
 ## Execution
 
@@ -21,6 +20,11 @@ It will also:
     - An optional user-supplied password (see section below)
     - The body of an .eml file (separated once by whitespace characters and second on [a-zA-Z0-9]+)
 - Use pdfdetach in poppler-utils to extract attachments from pdf samples;
+- Use the NSIS Reversing Suite to recover a preview of the the original Setup.nsi
+- Debloat bloated files:
+    - Windows executables: [debloat](https://github.com/Squiblydoo/debloat) and custom scripts
+    - Windows installers (.msi)
+    - Every other files by using a generic entropy-based calculator
 
 Once this service has completed its processing, it will block samples from continuing to other services unless they are
 identified as the following file types:
