@@ -34,5 +34,19 @@
             ],
             "justMyCode": false,
         },
+        {
+            "name": "[Service] Extract - Privileged",
+            "type": "python",
+            "request": "launch",
+            "module": "assemblyline_v4_service.run_privileged_service",
+            "env": {
+                "SERVICE_MANIFEST_PATH": "service_manifest.yml",
+                "PRIVILEGED": "true",
+                "SERVICE_PATH": "extract.extract.Extract",
+                "TASKING_DIR": "/tmp/Extract"
+            },
+            "console": "internalConsole",
+            "cwd": "${workspaceFolder}"
+        }
     ]
 }

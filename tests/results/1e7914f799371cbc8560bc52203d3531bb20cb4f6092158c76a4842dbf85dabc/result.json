@@ -1,30 +1,11 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 1000,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"Target file\", \"\\u430b\\u4131\\u4735\\u433e\\u41f9\\u4396\\u42ac\\u42ee\\u4823\"], [\"SHA256\", \"67b54f709895fa88b5153b568e62df5fb866237a1b3050502e7bee95a5a41738\"], [\"SHA1\", \"b1511d80ad998e523be746a56ae2212fadfc0d15\"], [\"MD5\", \"21bb60837d686b7d1ea9e1746f60c756\"], [\"Total Size\", 506018816]]",
-        "body_config": {},
-        "body_format": "ORDERED_KEY_VALUE",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 22,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
-        "tags": {},
-        "title_text": "Bloated file",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "File_Chapter.1.msi",
+        "body": "_p5_0\n_p5_1",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -32,7 +13,7 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 1,
+          "heur_id": 19,
           "score": 0,
           "score_map": {},
           "signatures": {}
@@ -41,17 +22,18 @@
           "file": {
             "name": {
               "extracted": [
-                "File_Chapter.1.msi"
+                "_p5_0",
+                "_p5_1"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 1 file",
+        "title_text": "Successfully extracted 2 files",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823",
+        "body": "_p5_0\n_p5_1",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -71,7 +53,8 @@
             ],
             "name": {
               "extracted": [
-                "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823"
+                "_p5_0",
+                "_p5_1"
               ]
             }
           }
@@ -84,12 +67,12 @@
   "files": {
     "extracted": [
       {
-        "name": "File_Chapter.1.msi",
-        "sha256": "a9be5d0df2602ce3c598d5139210a4bb9adea2051e7673c008c18aeddf61332c"
+        "name": "_p5_0",
+        "sha256": "1e26938fcff220a294c03ed106068ab845d9c762f3adba926bf46c19f8ba49d6"
       },
       {
-        "name": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823",
-        "sha256": "c17653042b38857047e70da08c5e729d04134bf2d36432793e50c954af5c5166"
+        "name": "_p5_1",
+        "sha256": "f69b84249f6703cb1e99a0a39974a9d6fb543b40a9ff44f7d5da9a2bdbbd9eb3"
       }
     ],
     "supplementary": []
@@ -98,17 +81,12 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 1,
-        "signatures": []
-      },
-      {
-        "attack_ids": [],
         "heur_id": 16,
         "signatures": []
       },
       {
         "attack_ids": [],
-        "heur_id": 22,
+        "heur_id": 19,
         "signatures": []
       }
     ],
@@ -122,14 +100,24 @@
       ],
       "file.name.extracted": [
         {
-          "heur_id": 1,
+          "heur_id": 19,
           "signatures": [],
-          "value": "File_Chapter.1.msi"
+          "value": "_p5_0"
         },
         {
           "heur_id": 16,
           "signatures": [],
-          "value": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823"
+          "value": "_p5_0"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_p5_1"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "_p5_1"
         }
       ]
     },

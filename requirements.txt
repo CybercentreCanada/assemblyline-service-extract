@@ -7,4 +7,4 @@ msoffcrypto-tool
 html5lib
 pikepdf
 https://github.com/gdesmar/nrs/archive/nsi-script.zip
-debloat==1.5.1
+debloat==1.5.3.2
