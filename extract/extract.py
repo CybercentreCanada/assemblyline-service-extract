@@ -608,10 +608,15 @@ class Extract(ServiceBase):
                             )
                         shutil.move(file_path, new_file_path)
 
-        # Add Extracted
+        # Generate a unique subfolder for each call to _submit_extracted, in case different calls contain the same files
         extracted_path = os.path.join(self.working_directory, "extracted_files")
         if not os.path.exists(extracted_path):
             os.mkdir(extracted_path)
+        sub_folder = 1
+        while os.path.exists(os.path.join(extracted_path, str(sub_folder))):
+            sub_folder += 1
+        extracted_path = os.path.join(extracted_path, str(sub_folder))
+        os.mkdir(extracted_path)
 
         for root, _, files in os.walk(folder_path):
             for f in files:
@@ -947,10 +952,10 @@ class Extract(ServiceBase):
         header = [b" ".join(header[c[0] : c[1]].split()).decode() for c in col_len]
         parsed_data = []
         for d in data:
-            parsed_data.append([safe_str(d[c[0] : c[1]].strip()) for c in col_len])
+            parsed_data.append([safe_str(d[c[0] : c[1]].lstrip()) for c in col_len])
             if len(separator) < len(d):
                 parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{safe_str(d[len(separator) :])}"
-            parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
+            parsed_data[-1] = [x.lstrip() for x in parsed_data[-1]]
 
         return header, parsed_data
 
@@ -999,7 +1004,7 @@ class Extract(ServiceBase):
             if file_type in ["archive/iso", "archive/udf"]:
                 temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
                 shutil.copy2(file_path, temp_path)
-                popenargs[4] = temp_path
+                popenargs[-2] = temp_path
 
             try:
                 p = subprocess.run(popenargs, env=env, capture_output=True)
@@ -1095,6 +1100,34 @@ class Extract(ServiceBase):
                                     )
                                 )
 
+                    # Detection for CVE-2023-38831
+                    # Find all folders
+                    heur_section = ResultKeyValueSection("CVE-2023-38831")
+                    folders = [x[-1] for x in data if x[1][0] == "D"]
+                    hijacked_folders = set()
+                    for folder in folders:
+                        # Find if a file has the same name as any folder
+                        if any([True for x in data if x[-1] == folder and x[1][0] != "D"]):
+                            # Find if there is a file that starts with the name of the folder inside that folder
+                            for data_line in data:
+                                if data_line[-1].startswith(f"{folder}{os.sep}{folder}"):
+                                    heur_section.set_item(folder, data_line[-1])
+                                    hijacked_folders.add(folder)
+                    if heur_section.body:
+                        heur_section.add_tag("attribution.exploit", "CVE-2023-38831")
+                        heur_section.set_heuristic(25)
+                        request.result.add_section(heur_section)
+                        shutil.rmtree(temp_dir, ignore_errors=True)
+                        os.makedirs(temp_dir)
+                        for folder in hijacked_folders:
+                            os.makedirs(os.path.join(temp_dir, folder), exist_ok=True)
+                        popenargs[1] = "x"
+                        popenargs.append(f"-o{temp_dir}")
+                        popenargs[3] = "-aos"  # Remplace the "-y" with "-aos" to skip existing folders
+                        subprocess.run(popenargs, env=env, capture_output=True)
+                        extracted_files.extend(
+                            self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                        )
             except UnicodeEncodeError:
                 raise
             finally:
