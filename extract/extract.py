@@ -244,7 +244,7 @@ class Extract(ServiceBase):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
 
-        if request.file_type in ["archive/gzip", "archive/zstd"] and not password_protected and len(extracted) == 1:
+        if len(extracted) == 1:
             subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
             if subfile_info["type"] == "archive/tar":
                 internal_tar_section = ResultMultiSection(
@@ -265,6 +265,7 @@ class Extract(ServiceBase):
                 internal_tar_kvbody.add_item("Total Size", subfile_info["size"])
                 internal_tar_section.add_section_part(internal_tar_kvbody)
                 extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
+
         # For the time being, always try repair_zip, and see if we have any results
         if not extracted:
             extracted = self.repair_zip(request)
