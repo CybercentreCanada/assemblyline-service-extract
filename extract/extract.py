@@ -19,6 +19,7 @@ from io import BytesIO
 import debloat.processor
 import olefile
 import pefile
+import zstandard
 from assemblyline.common import forge
 from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
@@ -191,6 +192,9 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
             summary_section_heuristic = 1
+        elif request.file_type == "archive/zstd":
+            extracted = self.extract_zstd(request)
+            summary_section_heuristic = 1
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 9
@@ -208,22 +212,6 @@ class Extract(ServiceBase):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
-            if request.file_type == "archive/gzip" and not password_protected and len(extracted) == 1:
-                subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
-                if subfile_info["type"] == "archive/tar":
-                    tgz_section = ResultMultiSection("GZipped Tar file extracted", parent=request.result)
-                    tgz_textbody = TextSectionBody(
-                        "The following tar file was extracted from the gzip, and further extracted"
-                    )
-                    tgz_section.add_section_part(tgz_textbody)
-                    tgz_kvbody = OrderedKVSectionBody()
-                    tgz_kvbody.add_item("Name", extracted[0][1])
-                    tgz_kvbody.add_item("SHA256", subfile_info["sha256"])
-                    tgz_kvbody.add_item("SHA1", subfile_info["sha1"])
-                    tgz_kvbody.add_item("MD5", subfile_info["md5"])
-                    tgz_kvbody.add_item("Total Size", subfile_info["size"])
-                    tgz_section.add_section_part(tgz_kvbody)
-                    extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
             summary_section_heuristic = 1
         elif request.file_type.startswith("executable/"):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
@@ -255,6 +243,29 @@ class Extract(ServiceBase):
         else:
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
+
+        if len(extracted) == 1:
+            subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
+            if subfile_info["type"] == "archive/tar":
+                internal_tar_section = ResultMultiSection(
+                    f"{request.file_type.replace('archive/', '')} tar file extracted", parent=request.result
+                )
+                internal_tar_textbody = TextSectionBody(
+                    (
+                        "The following tar file was extracted from the "
+                        f"{request.file_type.replace('archive/', '')}, and further extracted"
+                    )
+                )
+                internal_tar_section.add_section_part(internal_tar_textbody)
+                internal_tar_kvbody = OrderedKVSectionBody()
+                internal_tar_kvbody.add_item("Name", extracted[0][1])
+                internal_tar_kvbody.add_item("SHA256", subfile_info["sha256"])
+                internal_tar_kvbody.add_item("SHA1", subfile_info["sha1"])
+                internal_tar_kvbody.add_item("MD5", subfile_info["md5"])
+                internal_tar_kvbody.add_item("Total Size", subfile_info["size"])
+                internal_tar_section.add_section_part(internal_tar_kvbody)
+                extracted, tar_password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
+                password_protected = password_protected or tar_password_protected
 
         # For the time being, always try repair_zip, and see if we have any results
         if not extracted:
@@ -291,7 +302,7 @@ class Extract(ServiceBase):
                     ResultSection(
                         f"This file contains a total of {len(extracted)} extracted files, "
                         f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
-                        "Some files where not extracted."
+                        "Some files were not extracted."
                     )
                 )
                 break
@@ -350,7 +361,7 @@ class Extract(ServiceBase):
                 section.add_line("...")
 
         if symlinks:
-            section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found")
+            section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found", parent=request.result)
             section.add_lines(symlinks)
             section.set_heuristic(15)
 
@@ -620,11 +631,12 @@ class Extract(ServiceBase):
 
         for root, _, files in os.walk(folder_path):
             for f in files:
-                if not os.path.getsize(os.path.join(root, f)):
+                file_path = os.path.join(root, f)
+                if not os.path.islink(file_path) and not os.path.getsize(file_path):
                     continue
 
                 skip = False
-                filename = safe_str(os.path.join(root, f).replace(folder_path, ""))
+                filename = safe_str(file_path.replace(folder_path, ""))
                 if filename.startswith("/"):
                     filename = filename[1:]
                 if not extract_executable_sections and file_type.startswith("executable"):
@@ -651,7 +663,7 @@ class Extract(ServiceBase):
                     target_folder = os.path.join(extracted_path, root.lstrip(folder_path))
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
-                    shutil.move(os.path.join(root, f), target_path)
+                    shutil.move(file_path, target_path)
                     extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
@@ -875,6 +887,23 @@ class Extract(ServiceBase):
 
         try:
             decoder = zlib.decompressobj()
+            uncompress_data = decoder.decompress(data)
+            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
+            path = os.path.join(self.working_directory, sha256hash)
+            with open(path, "wb") as f:
+                f.write(uncompress_data)
+            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+        except Exception:
+            pass
+
+        return []
+
+    def extract_zstd(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as fh:
+            data = fh.read()
+
+        try:
+            decoder = zstandard.ZstdDecompressor().decompressobj()
             uncompress_data = decoder.decompress(data)
             sha256hash = hashlib.sha256(uncompress_data).hexdigest()
             path = os.path.join(self.working_directory, sha256hash)
