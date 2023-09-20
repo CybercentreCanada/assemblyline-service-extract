@@ -1904,7 +1904,8 @@ class Extract(ServiceBase):
             beginning_file_size=file_size,
         )
 
-        if not os.path.exists(out_path):
+        # If nothing was extracted, or it was a NSIS file that debloat wants to extract
+        if not os.path.exists(out_path) or os.path.isdir(out_path):
             return False
 
         with open(out_path, "rb") as f:
