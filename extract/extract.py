@@ -264,7 +264,8 @@ class Extract(ServiceBase):
                 internal_tar_kvbody.add_item("MD5", subfile_info["md5"])
                 internal_tar_kvbody.add_item("Total Size", subfile_info["size"])
                 internal_tar_section.add_section_part(internal_tar_kvbody)
-                extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
+                extracted, tar_password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
+                password_protected = password_protected or tar_password_protected
 
         # For the time being, always try repair_zip, and see if we have any results
         if not extracted:
