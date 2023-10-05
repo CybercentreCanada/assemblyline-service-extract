@@ -1642,7 +1642,9 @@ class Extract(ServiceBase):
             if len(body) <= 2:  # We can treat 2 character scripts as empty
                 continue
 
-            if script.get("language", "").lower() == "jscript.encode":
+            script_language = script.get("language", None)
+            script_type = script.get("type", None)
+            if script_language and script_language.lower() == "jscript.encode":
                 try:
                     # The encoded VB technique can be used to encode javascript
                     evbe_present = re.search(EVBE_REGEX, body)
@@ -1664,9 +1666,12 @@ class Extract(ServiceBase):
                         out.write(encoded_script)
                     file_hash = hashlib.sha256(encoded_script).hexdigest()
                     extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
-            elif script.get("type", "").lower() not in ["", "text/javascript"]:
+            elif (
+                (script_language and script_language.lower() != "javascript")
+                or (script_type and script_type.lower() != "text/javascript")
+            ):
                 # If there is no "type" attribute specified in a script element, then the default assumption is
-                # that the body of the element is Javascript
+                # that the body of the element is Javascript. "" is also going to be assumed Javascript.
                 # We don't want to handle those, but any other special type, we can extract
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
