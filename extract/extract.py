@@ -1729,7 +1729,7 @@ class Extract(ServiceBase):
                 # It is technically not required to sort them, but it makes the output of the module predictable
                 if "passwords" in request.temp_submission_data:
                     new_passwords.update(set(request.temp_submission_data["passwords"]))
-                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
+                request.temp_submission_data["passwords"] = sorted(new_passwords)
 
         return extracted
 
@@ -1739,7 +1739,7 @@ class Extract(ServiceBase):
 
         soup = BeautifulSoup(data, features="lxml")
         scripts = soup.findAll("script")
-        languages = sorted(list(set([script.get("language", "").lower() for script in scripts])))
+        languages = sorted({script.get("language", "").lower() for script in scripts})
         if len(languages) > 1:
             heur = Heuristic(20)
             heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
