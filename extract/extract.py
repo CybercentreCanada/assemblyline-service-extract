@@ -589,7 +589,7 @@ class Extract(ServiceBase):
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
     def extract_au3(self, request: ServiceRequest):
-        """Will attempt to use modules autoit-ripper or UnAutoIt.bin to extract a decompiled AutoIt script from an
+        """Will attempt to use modules autoit-ripper or UnAutoIt.bin to extract a decompiled AutoIt script from a
         compiled AutoIt script or executable.
 
         Args:
