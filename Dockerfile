@@ -19,6 +19,11 @@ USER assemblyline
 COPY requirements.txt /tmp/requirements.txt
 RUN touch /tmp/before-pip
 RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && rm -rf ~/.cache/pip
+# AutoIt Ripper depends on a pinned and outdated version of PeFile
+# https://github.com/nazywam/AutoIt-Ripper/blob/master/requirements.txt, which we don't want to install.
+# The package works fine without it
+RUN pip install --no-cache-dir --user --no-deps autoit-ripper
+
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz

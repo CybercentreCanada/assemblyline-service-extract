@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
 rejects: empty|metadata/.*
 
 stage: EXTRACT
@@ -204,6 +204,18 @@ heuristics:
     filetype: ".*"
     description: >-
       A CVE exploit detection that was specifically coded in this module was raised. (i.e. CVE-2023-23397, CVE-2023-38831) This needs be investigated.
+
+  - heur_id: 26
+    name: Extracted AutoIt script from PE file
+    score: 100
+    filetype: executable/windows/(dll32|dll64|pe32|pe64)
+    description: AutoIt script extracted from a PE file
+
+  - heur_id: 27
+    name: Extracted AutoIt script from compiled script
+    score: 100
+    filetype: code/a3x
+    description: AutoIt script extracted from compiled script
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
