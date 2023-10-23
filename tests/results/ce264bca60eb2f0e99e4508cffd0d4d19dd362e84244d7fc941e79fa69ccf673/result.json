@@ -11,6 +11,7 @@
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
         "title_text": "zstd tar file extracted",
         "zeroize_on_tag_safe": false
@@ -23,6 +24,7 @@
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
         "title_text": "This file contains a total of 614 extracted files, exceeding the maximum of 501 extracted files allowed. Some files were not extracted.",
         "zeroize_on_tag_safe": false
@@ -42,6 +44,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -569,6 +572,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {},
         "title_text": "2 Symlink(s) Found",
         "zeroize_on_tag_safe": false
@@ -581,6 +585,7 @@
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [
