@@ -26,6 +26,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -54,6 +55,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -83,6 +85,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [
