@@ -20,6 +20,7 @@
             "local": 1
           }
         },
+        "promote_to": null,
         "tags": {},
         "title_text": "External script loading",
         "zeroize_on_tag_safe": false
@@ -32,6 +33,7 @@
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -59,6 +61,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [

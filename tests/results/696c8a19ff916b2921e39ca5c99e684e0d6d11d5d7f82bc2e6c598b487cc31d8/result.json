@@ -11,6 +11,7 @@
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
         "title_text": "This file contains a total of 550 extracted files, exceeding the maximum of 501 extracted files allowed. Some files were not extracted.",
         "zeroize_on_tag_safe": false
@@ -30,6 +31,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
