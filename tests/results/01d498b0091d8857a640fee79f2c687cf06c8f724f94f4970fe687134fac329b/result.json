@@ -1,0 +1,64 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 100,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "script.au3",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 26,
+          "score": 100,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "script.au3"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "script.au3",
+        "sha256": "d94d4a28e1d85988ec29f52aa9aa2e7f4310d4be3827cf1a473f9c4c4e5d5af3"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 26,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 26,
+          "signatures": [],
+          "value": "script.au3"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
