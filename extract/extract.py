@@ -16,6 +16,7 @@ from copy import deepcopy
 from datetime import datetime
 from io import BytesIO
 
+import autoit_ripper
 import debloat.processor
 import olefile
 import pefile
@@ -238,8 +239,21 @@ class Extract(ServiceBase):
                     # Drop the request so that no other module are going to analyze it.
                     request.drop()
                     return
-            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
-            summary_section_heuristic = 2
+
+            if request.file_type.startswith("executable/windows/dll") or request.file_type.startswith(
+                "executable/windows/pe"
+            ):
+                extracted = self.extract_au3(request)
+                if extracted:
+                    summary_section_heuristic = 26
+
+            if not extracted:
+                extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+                summary_section_heuristic = 2
+        elif request.file_type == "code/a3x":
+            extracted = self.extract_au3(request)
+            if extracted:
+                summary_section_heuristic = 27
         else:
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
@@ -573,6 +587,47 @@ class Extract(ServiceBase):
         out_name, password = res
         self.password_used.append(password)
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
+
+    def extract_au3(self, request: ServiceRequest):
+        """Will attempt to use modules autoit-ripper or UnAutoIt.bin to extract a decompiled AutoIt script from an
+        compiled AutoIt script or executable.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List containing decoded file path and display name "[orig FH name]", or a blank list if decryption failed
+        """
+        extracted = []
+
+        if request.file_type.startswith("executable/windows/dll") or request.file_type.startswith(
+            "executable/windows/pe"
+        ):
+            try:
+                content_list = autoit_ripper.extract(data=request.file_contents)
+            except AttributeError:
+                # If the PE file cannot be parsed, then we can do nothing with it
+                return extracted
+
+            if content_list:
+                content = content_list[0][1].decode("utf-8")
+                decompiled_script_path = os.path.join(self.working_directory, "script.au3")
+                with open(decompiled_script_path, "w") as f:
+                    f.write(content)
+                extracted.append([decompiled_script_path, "script.au3", "autoit-ripper"])
+
+        elif request.file_type == "code/a3x":
+            unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
+            _ = subprocess.run(
+                [unautoit_bin_path, "extract-all", "--output-dir", self.working_directory, request.file_path],
+                capture_output=True,
+                check=False,
+            )
+            for f in os.listdir(self.working_directory):
+                if f.endswith(".au3"):
+                    extracted.append([os.path.join(self.working_directory, f), f, "UnAutoIt"])
+
+        return extracted
 
     def _submit_extracted(self, request: ServiceRequest, file_type: str, folder_path: str, caller: str):
         """Go over a folder, sanitize file/folder names and return a list of filtered files

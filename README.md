@@ -25,6 +25,7 @@ It will also:
     - Windows executables: [debloat](https://github.com/Squiblydoo/debloat) and custom scripts
     - Windows installers (.msi)
     - Every other files by using a generic entropy-based calculator
+- Integrates the capabilities of the now-archived [AutoItRipper service](https://github.com/CybercentreCanada/assemblyline-service-autoit-ripper)
 
 Once this service has completed its processing, it will block samples from continuing to other services unless they are
 identified as the following file types:
