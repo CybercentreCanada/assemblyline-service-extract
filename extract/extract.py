@@ -981,6 +981,7 @@ class Extract(ServiceBase):
                     tmp_f.write(crypt_obj.data)
                 return [[tmp_f.name, "gnupgp content", sys._getframe().f_code.co_name]], True
 
+        self.raise_failed_passworded_extraction(request, request.file_type, [], [], password_list)
         return [], False
 
     def extract_zip(self, request: ServiceRequest, file_path: str, file_type: str):
