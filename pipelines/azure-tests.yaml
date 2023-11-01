@@ -54,7 +54,7 @@ jobs:
           [ ! -d "$(pwd)/tests" ] && echo "No tests found" && exit
           sudo apt-get update
           sudo apt-get install -y libfuzzy-dev libfuzzy2
-          sudo apt-get install -y libssl1.1 unace-nonfree python-lxml unrar build-essential libssl-dev wget swig
+          sudo apt-get install -y libssl1.1 unace-nonfree python-lxml unrar build-essential libssl-dev wget swig gpg
           wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
           mkdir -p /opt/al/support/extract
           tar -zxf /tmp/cybozulib.tar.gz -C /opt/al/support/extract

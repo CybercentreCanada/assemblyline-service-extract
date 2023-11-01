@@ -18,6 +18,7 @@ from io import BytesIO
 
 import autoit_ripper
 import debloat.processor
+import gnupg
 import olefile
 import pefile
 import zstandard
@@ -196,6 +197,8 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/zstd":
             extracted = self.extract_zstd(request)
             summary_section_heuristic = 1
+        elif request.file_type == "gpg/symmetric":
+            extracted, password_protected = self.extract_gpg_symmetric(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 9
@@ -243,7 +246,7 @@ class Extract(ServiceBase):
             if request.file_type.startswith("executable/windows/dll") or request.file_type.startswith(
                 "executable/windows/pe"
             ):
-                extracted = self.extract_au3(request)
+                extracted = self.extract_autoit_executable(request)
                 if extracted:
                     summary_section_heuristic = 26
 
@@ -251,7 +254,7 @@ class Extract(ServiceBase):
                 extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
                 summary_section_heuristic = 2
         elif request.file_type == "code/a3x":
-            extracted = self.extract_au3(request)
+            extracted = self.extract_a3x(request)
             if extracted:
                 summary_section_heuristic = 27
         else:
@@ -588,44 +591,40 @@ class Extract(ServiceBase):
         self.password_used.append(password)
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
-    def extract_au3(self, request: ServiceRequest):
-        """Will attempt to use modules autoit-ripper or UnAutoIt.bin to extract a decompiled AutoIt script from a
-        compiled AutoIt script or executable.
-
-        Args:
-            request: AL request object.
-
-        Returns:
-            List containing decoded file path and display name "[orig FH name]", or a blank list if decryption failed
+    def extract_autoit_executable(self, request: ServiceRequest):
+        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable.
         """
         extracted = []
 
-        if request.file_type.startswith("executable/windows/dll") or request.file_type.startswith(
-            "executable/windows/pe"
-        ):
-            try:
-                content_list = autoit_ripper.extract(data=request.file_contents)
-            except AttributeError:
-                # If the PE file cannot be parsed, then we can do nothing with it
-                return extracted
+        try:
+            content_list = autoit_ripper.extract(data=request.file_contents)
+        except AttributeError:
+            # If the PE file cannot be parsed, then we can do nothing with it
+            return extracted
 
-            if content_list:
-                content = content_list[0][1].decode("utf-8")
-                decompiled_script_path = os.path.join(self.working_directory, "script.au3")
-                with open(decompiled_script_path, "w") as f:
-                    f.write(content)
-                extracted.append([decompiled_script_path, "script.au3", "autoit-ripper"])
+        if content_list:
+            content = content_list[0][1].decode("utf-8")
+            decompiled_script_path = os.path.join(self.working_directory, "script.au3")
+            with open(decompiled_script_path, "w") as f:
+                f.write(content)
+            extracted.append([decompiled_script_path, "script.au3", sys._getframe().f_code.co_name])
 
-        elif request.file_type == "code/a3x":
-            unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
-            _ = subprocess.run(
-                [unautoit_bin_path, "extract-all", "--output-dir", self.working_directory, request.file_path],
-                capture_output=True,
-                check=False,
-            )
-            for f in os.listdir(self.working_directory):
-                if f.endswith(".au3"):
-                    extracted.append([os.path.join(self.working_directory, f), f, "UnAutoIt"])
+        return extracted
+
+    def extract_a3x(self, request: ServiceRequest):
+        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script.
+        """
+        extracted = []
+
+        unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
+        _ = subprocess.run(
+            [unautoit_bin_path, "extract-all", "--output-dir", self.working_directory, request.file_path],
+            capture_output=True,
+            check=False,
+        )
+        for f in os.listdir(self.working_directory):
+            if f.endswith(".au3"):
+                extracted.append([os.path.join(self.working_directory, f), f, sys._getframe().f_code.co_name])
 
         return extracted
 
@@ -969,6 +968,21 @@ class Extract(ServiceBase):
             pass
 
         return []
+
+    def extract_gpg_symmetric(self, request: ServiceRequest):
+        password_list = self.get_passwords(request)
+        gpg = gnupg.GPG()
+
+        for password in password_list:
+            crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+            if crypt_obj.returncode == 0:
+                self.password_used.append(password)
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                    tmp_f.write(crypt_obj.data)
+                return [[tmp_f.name, "gnupgp content", sys._getframe().f_code.co_name]], True
+
+        self.raise_failed_passworded_extraction(request, request.file_type, [], [], password_list)
+        return [], False
 
     def extract_zip(self, request: ServiceRequest, file_path: str, file_type: str):
         """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive,
