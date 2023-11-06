@@ -133,7 +133,7 @@ class Extract(ServiceBase):
 
     def __init__(self, config=None):
         super().__init__(config)
-        self.password_used = []
+        autoit_ripper.autoit_unpack.log.addHandler(logging.NullHandler())
         self.identify = forge.get_identify(use_cache=os.environ.get("PRIVILEGED", "false").lower() == "true")
 
     def execute(self, request: ServiceRequest):
@@ -592,8 +592,7 @@ class Extract(ServiceBase):
         return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
 
     def extract_autoit_executable(self, request: ServiceRequest):
-        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable.
-        """
+        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
         extracted = []
 
         try:
@@ -612,8 +611,7 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_a3x(self, request: ServiceRequest):
-        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script.
-        """
+        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script."""
         extracted = []
 
         unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
@@ -1735,9 +1733,8 @@ class Extract(ServiceBase):
                         out.write(encoded_script)
                     file_hash = hashlib.sha256(encoded_script).hexdigest()
                     extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
-            elif (
-                (script_language and script_language.lower() != "javascript")
-                or (script_type and script_type.lower() != "text/javascript")
+            elif (script_language and script_language.lower() != "javascript") or (
+                script_type and script_type.lower() != "text/javascript"
             ):
                 # If there is no "type" attribute specified in a script element, then the default assumption is
                 # that the body of the element is Javascript. "" is also going to be assumed Javascript.
@@ -1948,7 +1945,6 @@ class Extract(ServiceBase):
         file_size = os.path.getsize(file_path)
         overlay_size = file_size - overlay_offset
         if overlay_offset != 0 and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280):
-
             calculator = BufferedCalculator()
             with open(file_path, "rb") as f:
                 f.seek(overlay_offset)
