@@ -364,6 +364,12 @@ class Extract(ServiceBase):
                 section.add_line(extracted_file)
                 section.add_tag("file.name.extracted", extracted_file)
 
+            if request.file_type.startswith("executable/windows") and any(
+                extracted_file == "_RDATA" for extracted_file in extracted_files
+            ):
+                rdata_heur = Heuristic(28)
+                _ = ResultSection(rdata_heur.name, rdata_heur.description, heuristic=rdata_heur, parent=request.result)
+
         if safelisted_extracted:
             MAX_SAFELISTED_SHOW = 25
             section = ResultSection(

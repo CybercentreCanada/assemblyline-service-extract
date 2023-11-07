@@ -1,0 +1,119 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 300,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": ".data\nCERTIFICATE\n[0]\n_RDATA",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                ".data",
+                "CERTIFICATE",
+                "[0]",
+                "_RDATA"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 4 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "_RDATA is a non-standard section name for PEs, and the fact that it is extractable is trending towards suspicious.",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 28,
+          "score": 300,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Extractable _RDATA section found",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "CERTIFICATE",
+        "sha256": "090b03e1ff82d53fb90c3776be756465d6bc4dc04b164348eeab703a72bb2243"
+      },
+      {
+        "name": ".data",
+        "sha256": "0d0e6912c4f4c798c683719bd779ecbeb0fc136817076d9a906d589147378581"
+      },
+      {
+        "name": "_RDATA",
+        "sha256": "277f0ce03d8fc555cf5a9f56a4a4f3c6b3f44d46f4f6e08e7b3a2f6c06b29ccf"
+      },
+      {
+        "name": "[0]",
+        "sha256": "291059a46f5f785ffee1b703551f0c6d7edb21335358461ac81a9fa5815ac3ad"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 28,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".data"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "CERTIFICATE"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "[0]"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "_RDATA"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

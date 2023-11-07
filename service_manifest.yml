@@ -217,6 +217,14 @@ heuristics:
     filetype: code/a3x
     description: AutoIt script extracted from compiled script
 
+  - heur_id: 28
+    name: Extractable _RDATA section found
+    score: 300
+    filetype: executable/windows
+    description: >-
+      _RDATA is a non-standard section name for PEs, and the fact that it is extractable
+      is trending towards suspicious.
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1
