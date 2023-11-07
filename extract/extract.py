@@ -253,6 +253,13 @@ class Extract(ServiceBase):
             if not extracted:
                 extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
                 summary_section_heuristic = 2
+
+            if request.file_type.startswith("executable/windows") and any(
+                extracted_file[1] == "_RDATA" for extracted_file in extracted
+            ):
+                rdata_heur = Heuristic(28)
+                _ = ResultSection(rdata_heur.name, rdata_heur.description, heuristic=rdata_heur, parent=request.result)
+
         elif request.file_type == "code/a3x":
             extracted = self.extract_a3x(request)
             if extracted:
