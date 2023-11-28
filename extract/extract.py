@@ -604,7 +604,7 @@ class Extract(ServiceBase):
 
         try:
             content_list = autoit_ripper.extract(data=request.file_contents)
-        except AttributeError:
+        except (AttributeError, pefile.PEFormatError):
             # If the PE file cannot be parsed, then we can do nothing with it
             return extracted
 
