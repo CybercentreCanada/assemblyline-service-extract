@@ -1,0 +1,94 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": ".data\n.itext\nCERTIFICATE\n[0]",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                ".data",
+                ".itext",
+                "CERTIFICATE",
+                "[0]"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 4 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "CERTIFICATE",
+        "sha256": "06095b5c3528c439378692f824c7e1910d0f3fb23f27eca943092fed92695ad7"
+      },
+      {
+        "name": ".data",
+        "sha256": "42f6faae65550b06e3ebbb5a5a19d6ac41911ca2690b14db237928bc63453d96"
+      },
+      {
+        "name": "[0]",
+        "sha256": "77428bcee30b0a473d9adaea9ae709d6332ad2434f76c334e86710266dd71fb7"
+      },
+      {
+        "name": ".itext",
+        "sha256": "7f26d734f1c91987ba9e8f9100bb4d742f5bfef70e88763bbdbc3ce181bf6651"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".data"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".itext"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "CERTIFICATE"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "[0]"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

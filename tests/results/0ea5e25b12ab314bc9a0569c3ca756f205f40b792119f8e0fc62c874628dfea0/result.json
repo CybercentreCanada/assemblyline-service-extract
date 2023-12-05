@@ -1,0 +1,404 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "!AdminExecuteSequence\n!AdminUISequence\n!AdvtExecuteSequence\n!Binary\n!Component\n!Control\n!ControlCondition\n!ControlEvent\n!CustomAction\n!Dialog\n!Directory\n!EventMapping\n!Feature\n!FeatureComponents\n!File\n!InstallExecuteSequence\n!InstallUISequence\n!Media\n!ModuleSignature\n!Property\n!RadioButton\n!TextStyle\n!UIText\n!Upgrade\n!_Columns\n!_StringData\n!_StringPool\n!_Tables\n!_Validation\nBinary.DefBannerBitmap\nBinary.NewFldrBtn\nBinary.UpFldrBtn\nBinary._89A48033CC012E7E8A1968D0FFBDD699\n[5]SummaryInformation\n_966DB40C40F8C4EFBD4760B26A9605D6",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 19,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "!AdminExecuteSequence",
+                "!AdminUISequence",
+                "!AdvtExecuteSequence",
+                "!Binary",
+                "!Component",
+                "!Control",
+                "!ControlCondition",
+                "!ControlEvent",
+                "!CustomAction",
+                "!Dialog",
+                "!Directory",
+                "!EventMapping",
+                "!Feature",
+                "!FeatureComponents",
+                "!File",
+                "!InstallExecuteSequence",
+                "!InstallUISequence",
+                "!Media",
+                "!ModuleSignature",
+                "!Property",
+                "!RadioButton",
+                "!TextStyle",
+                "!UIText",
+                "!Upgrade",
+                "!_Columns",
+                "!_StringData",
+                "!_StringPool",
+                "!_Tables",
+                "!_Validation",
+                "Binary.DefBannerBitmap",
+                "Binary.NewFldrBtn",
+                "Binary.UpFldrBtn",
+                "Binary._89A48033CC012E7E8A1968D0FFBDD699",
+                "[5]SummaryInformation",
+                "_966DB40C40F8C4EFBD4760B26A9605D6"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 35 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Binary.NewFldrBtn",
+        "sha256": "15771bcf9014c22d71c1e0e11a96cdf36942836cc30881032e5be668f1c10405"
+      },
+      {
+        "name": "!AdvtExecuteSequence",
+        "sha256": "24fe2ddb052f4902d92858d984ab09d7e3bf7c6e0770f617e1f7829303728ae3"
+      },
+      {
+        "name": "!ControlCondition",
+        "sha256": "2b1ddc90082016213e7e968e2e786ef5c201cfc0d928fa35bab3b640538b096d"
+      },
+      {
+        "name": "!_Validation",
+        "sha256": "3392f8842491f92740b89d8def4b740a6ed5503097d2dd00b69c0e03e226d253"
+      },
+      {
+        "name": "!InstallUISequence",
+        "sha256": "340bb1e41cc1c713b7ae7f9ea6ffc45832dbb6ae62c5c486db04d8a226b0da5d"
+      },
+      {
+        "name": "!AdminExecuteSequence",
+        "sha256": "39a1b078f6594df79f6c0f7479ca9b2ea0b7db12cb0fa0de5ff512c0e24e42c3"
+      },
+      {
+        "name": "!_StringPool",
+        "sha256": "4237861de6eea59afdc423d74108fcf8f3551aec6b1ce3544146a9641b53c3a0"
+      },
+      {
+        "name": "!AdminUISequence",
+        "sha256": "4aaee66158ff381e3fada767084630a7addd4acf7184349c8a78e38cc7cc8a02"
+      },
+      {
+        "name": "!Feature",
+        "sha256": "52ddb23dedef32b75412754c64a20b94166a0541ac6ed46b6844882c1bf3f10f"
+      },
+      {
+        "name": "_966DB40C40F8C4EFBD4760B26A9605D6",
+        "sha256": "52f11f4992bc57c312561a5b20bf1839b4c321c7cbcd65d1dc4e62e31af404c5"
+      },
+      {
+        "name": "!Control",
+        "sha256": "5668dc6929689ad57c7c0eb0a50dca3d04848b3675c2eddee27f183c684c4cee"
+      },
+      {
+        "name": "!Dialog",
+        "sha256": "5c5caa978478c3212cc3a2c556e8cc46d6a7a5a360be20b10b90dbba029253c6"
+      },
+      {
+        "name": "!UIText",
+        "sha256": "5e0a173a1983b6e44aa9fd49b260393702fa32fa336feae95ffa4d2457676b24"
+      },
+      {
+        "name": "Binary.UpFldrBtn",
+        "sha256": "5f8a207de39e7465242e85a57ceb78c5915bdc5eab5ebb34036b5fd8d90e0474"
+      },
+      {
+        "name": "!_Columns",
+        "sha256": "62942c13db1eb4f571398876df7ca3a6ada262ab5a851855b44f02d92446582a"
+      },
+      {
+        "name": "!Binary",
+        "sha256": "6deba52ee0da4542e63b2924d344e0a085e97f1697c0e66a71a45bdbefb3488f"
+      },
+      {
+        "name": "!Component",
+        "sha256": "721c007107924d97882f5b7c29af19d873a3be86622af17272eab61bc1e12fbf"
+      },
+      {
+        "name": "!Directory",
+        "sha256": "73ba057c16ab4377c0c1a6ad171a93537acfc36736b027edc61047e4df9e2cd5"
+      },
+      {
+        "name": "!Media",
+        "sha256": "75dad02b789bc3c9e700da4bf98f34831c8b81245ccdb8ab7e51923d2329014d"
+      },
+      {
+        "name": "!CustomAction",
+        "sha256": "90747fb9b720aa1b51753ad1356912618f7855c5e680cdda8af665a77ff6445f"
+      },
+      {
+        "name": "!EventMapping",
+        "sha256": "90765034c869636d0231b6f27c80e29c98434c2890094bd67df23c9544f9cd93"
+      },
+      {
+        "name": "!_Tables",
+        "sha256": "97c696f23639f760bc681b404b9a76f16e9d53a6a296c7ca364f8d6dd381564b"
+      },
+      {
+        "name": "!TextStyle",
+        "sha256": "97cfc185750a9a9949435855e9ba5b33a51e71da514e5f910f2532732d34a61a"
+      },
+      {
+        "name": "!FeatureComponents",
+        "sha256": "9cc3ad1d66dc315ce37fac8ec8775b27d691bef6300630c390a5992e1c080372"
+      },
+      {
+        "name": "Binary.DefBannerBitmap",
+        "sha256": "9e67ddb7683d33f20c01b1a310da20a5f84943f6f2fc9a030d2f183285a73c88"
+      },
+      {
+        "name": "!_StringData",
+        "sha256": "a20b029e2d1a91073b8d8de8c1390448bed369d8317bb60367dc71b188c58693"
+      },
+      {
+        "name": "[5]SummaryInformation",
+        "sha256": "aaf94e879bd4c0e278ee939d571dbf33387fe492f3f3a7be42605b96bce5f4cd"
+      },
+      {
+        "name": "Binary._89A48033CC012E7E8A1968D0FFBDD699",
+        "sha256": "ab7fdd6ab72a35f37f197611f47c4c301123a0365f6dc5f9a43bc287d560145f"
+      },
+      {
+        "name": "!Upgrade",
+        "sha256": "b0c2db631e8c50254b13e701a2e7a7bd1606253943666fcfb1a59a65b3866244"
+      },
+      {
+        "name": "!ModuleSignature",
+        "sha256": "c035065536e0531c61528eaa322fc8169d9ff11871ad99051229a53778b62e1f"
+      },
+      {
+        "name": "!RadioButton",
+        "sha256": "c3eb3ec4469921f90fc598da8efbd8d8eb22d16ef3f76c5ab442402965d8ebcb"
+      },
+      {
+        "name": "!Property",
+        "sha256": "c60b6ece1187b9e52f61c1511dd98d99a333e507bf3eefa0b098e957a0b31570"
+      },
+      {
+        "name": "!InstallExecuteSequence",
+        "sha256": "c86b237d631bc949ecda4af22d2332d832c177a717dee1c3d9068cdb31a706c0"
+      },
+      {
+        "name": "!File",
+        "sha256": "ca171652493dc73238fbe969f10adace3bd31f4c09c34c8342b2c4842cf17758"
+      },
+      {
+        "name": "!ControlEvent",
+        "sha256": "ef6b544892b9edb87d48a6975e9d04e0f4d2d9a7c0e219ddfbc61f29fb745010"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 19,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!AdminExecuteSequence"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!AdminUISequence"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!AdvtExecuteSequence"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Binary"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Component"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Control"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!ControlCondition"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!ControlEvent"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!CustomAction"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Dialog"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Directory"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!EventMapping"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Feature"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!FeatureComponents"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!File"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!InstallExecuteSequence"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!InstallUISequence"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Media"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!ModuleSignature"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Property"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!RadioButton"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!TextStyle"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!UIText"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!Upgrade"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!_Columns"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!_StringData"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!_StringPool"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!_Tables"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "!_Validation"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "Binary.DefBannerBitmap"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "Binary.NewFldrBtn"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "Binary.UpFldrBtn"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "Binary._89A48033CC012E7E8A1968D0FFBDD699"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "[5]SummaryInformation"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_966DB40C40F8C4EFBD4760B26A9605D6"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "FILE_ID.DIZ\nTranslation.Workspace.Xliff.Ed.serials.maker.exe\norion.nfo",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "FILE_ID.DIZ",
+                "Translation.Workspace.Xliff.Ed.serials.maker.exe",
+                "orion.nfo"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "12345"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 3 files using password: 12345",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Translation.Workspace.Xliff.Ed.serials.maker.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Translation.Workspace.Xliff.Ed.serials.maker.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Translation.Workspace.Xliff.Ed.serials.maker.exe",
+        "sha256": "333ac81e3b49685ff55b33126a205ea7ea89ee0635efa96bc5644fe28586516c"
+      },
+      {
+        "name": "orion.nfo",
+        "sha256": "837ae141437ed0523c29d28975f604cf3598c6be2dcc499a09aaa3fd6dfc9b93"
+      },
+      {
+        "name": "FILE_ID.DIZ",
+        "sha256": "a853be71270cbbcffe727c6e8536708c647d913344973d67923fc38d9632fc81"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "FILE_ID.DIZ"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Translation.Workspace.Xliff.Ed.serials.maker.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Translation.Workspace.Xliff.Ed.serials.maker.exe"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "orion.nfo"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "12345"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
