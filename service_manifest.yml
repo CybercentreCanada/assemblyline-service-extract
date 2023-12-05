@@ -225,6 +225,14 @@ heuristics:
       _RDATA is a non-standard section name for PEs, and the fact that it is extractable
       is trending towards suspicious.
 
+  # Inspired by https://github.com/pandora-analysis/pandora/blob/main/pandora/workers/odf.py
+  - heur_id: 29
+    name: ODF file contains macro
+    score: 0
+    filetype: document/odt
+    description: >-
+      The file contains an indicator (extracted file name) that could be related to a macro
+
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
   cpu_cores: 1

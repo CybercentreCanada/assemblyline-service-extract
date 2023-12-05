@@ -402,6 +402,7 @@ class Extract(ServiceBase):
             request.drop()
 
         self.archive_with_executables(request)
+        self.odf_with_macros(request)
 
     def strip_file(self, request: ServiceRequest, file_path, file_name):
         extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True)
@@ -1663,6 +1664,28 @@ class Extract(ServiceBase):
                     _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
 
                 request.result.add_section(new_section)
+
+    def odf_with_macros(self, request: ServiceRequest):
+        """Detects OpenDocument Format files containing macros.
+
+        Inspired by https://github.com/pandora-analysis/pandora/blob/main/pandora/workers/odf.py
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            Al result object raising heuristic if macros detected in ODF file, or None.
+        """
+        if request.file_type.startswith("document/odt"):
+            for extracted in request.extracted:
+                if (
+                    extracted["name"].startswith("script")
+                    or extracted["name"].startswith("basic")
+                    or extracted["name"].startswith("object")
+                    or extracted["name"].endswith(".bin")
+                ):
+                    heur = Heuristic(29)
+                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
 
     def extract_onenote(self, request: ServiceRequest):
         """Extract embedded files from OneNote (.one) files
