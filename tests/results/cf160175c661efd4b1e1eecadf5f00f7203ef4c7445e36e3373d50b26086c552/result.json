@@ -5,7 +5,22 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[{\"Date Time\": \"2022-10-24 10:51:34\", \"Attr\": \"..H.A\", \"Size\": \"270336\", \"Compressed\": \"118617\", \"Name\": \"7za.dll\"}, {\"Date Time\": \"2022-10-24 10:23:26\", \"Attr\": \"..H.A\", \"Size\": \"92160\", \"Compressed\": \"44414\", \"Name\": \"vcruntime140.dll\"}]",
+        "body": [
+          {
+            "Attr": "..H.A",
+            "Compressed": "118617",
+            "Date Time": "2022-10-24 10:51:34",
+            "Name": "7za.dll",
+            "Size": "270336"
+          },
+          {
+            "Attr": "..H.A",
+            "Compressed": "44414",
+            "Date Time": "2022-10-24 10:23:26",
+            "Name": "vcruntime140.dll",
+            "Size": "92160"
+          }
+        ],
         "body_config": {
           "column_order": [
             "Date Time",

@@ -5,7 +5,22 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[{\"Date Time\": \"2022-09-06 14:35:50\", \"Attr\": \"..H.A\", \"Size\": \"1206\", \"Compressed\": \"619\", \"Name\": \"hit/hanging.bat\"}, {\"Date Time\": \"2022-09-06 14:32:02\", \"Attr\": \"..H.A\", \"Size\": \"101376\", \"Compressed\": \"57805\", \"Name\": \"hit/overgoverning.dll\"}]",
+        "body": [
+          {
+            "Attr": "..H.A",
+            "Compressed": "619",
+            "Date Time": "2022-09-06 14:35:50",
+            "Name": "hit/hanging.bat",
+            "Size": "1206"
+          },
+          {
+            "Attr": "..H.A",
+            "Compressed": "57805",
+            "Date Time": "2022-09-06 14:32:02",
+            "Name": "hit/overgoverning.dll",
+            "Size": "101376"
+          }
+        ],
         "body_config": {
           "column_order": [
             "Date Time",

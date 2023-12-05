@@ -5,6 +5,26 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "_RDATA is a non-standard section name for PEs, and the fact that it is extractable is trending towards suspicious.",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 28,
+          "score": 300,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Extractable _RDATA section found",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": ".data\nCERTIFICATE\n[0]\n_RDATA",
         "body_config": {},
         "body_format": "TEXT",
@@ -32,26 +52,6 @@
           }
         },
         "title_text": "Successfully extracted 4 files",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "_RDATA is a non-standard section name for PEs, and the fact that it is extractable is trending towards suspicious.",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 28,
-          "score": 300,
-          "score_map": {},
-          "signatures": {}
-        },
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Extractable _RDATA section found",
         "zeroize_on_tag_safe": false
       }
     ]
