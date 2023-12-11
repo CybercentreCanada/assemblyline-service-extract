@@ -604,7 +604,7 @@ class Extract(ServiceBase):
 
         try:
             content_list = autoit_ripper.extract(data=request.file_contents)
-        except AttributeError:
+        except (AttributeError, pefile.PEFormatError):
             # If the PE file cannot be parsed, then we can do nothing with it
             return extracted
 
@@ -1141,7 +1141,11 @@ class Extract(ServiceBase):
 
                 error_res = None
                 for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
-                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
+                    if (
+                        line.startswith(b"ERROR:")
+                        and not line.startswith(b"ERROR: Wrong password :")
+                        and not line.startswith(b"ERROR: Data Error in encrypted file. Wrong password? : ")
+                    ):
                         if error_res is None:
                             error_res = ResultTextSection("Errors in 7z", parent=request.result)
                         error_res.add_line(line)

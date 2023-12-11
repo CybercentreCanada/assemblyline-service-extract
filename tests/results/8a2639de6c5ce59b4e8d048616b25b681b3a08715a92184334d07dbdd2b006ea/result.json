@@ -5,7 +5,39 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"TEXT\", \"The following tar file was extracted from the gpg/symmetric, and further extracted\", {}], [\"ORDERED_KEY_VALUE\", [[\"Name\", \"gnupgp content\"], [\"SHA256\", \"cff770639ce05d47d71ae36a81d07fb388cb810398bc3f51e69499979fe4e761\"], [\"SHA1\", \"29c220be3b57e88566cf11af2a2d57e39d2bfad6\"], [\"MD5\", \"f18ece45be29a1f706f347fc2d47e514\"], [\"Total Size\", 3345408]], {}]]",
+        "body": [
+          [
+            "TEXT",
+            "The following tar file was extracted from the gpg/symmetric, and further extracted",
+            {}
+          ],
+          [
+            "ORDERED_KEY_VALUE",
+            [
+              [
+                "Name",
+                "gnupgp content"
+              ],
+              [
+                "SHA256",
+                "cff770639ce05d47d71ae36a81d07fb388cb810398bc3f51e69499979fe4e761"
+              ],
+              [
+                "SHA1",
+                "29c220be3b57e88566cf11af2a2d57e39d2bfad6"
+              ],
+              [
+                "MD5",
+                "f18ece45be29a1f706f347fc2d47e514"
+              ],
+              [
+                "Total Size",
+                3345408
+              ]
+            ],
+            {}
+          ]
+        ],
         "body_config": {},
         "body_format": "MULTI",
         "classification": "TLP:C",

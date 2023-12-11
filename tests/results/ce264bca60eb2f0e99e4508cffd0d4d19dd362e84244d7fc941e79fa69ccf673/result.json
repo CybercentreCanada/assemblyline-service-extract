@@ -5,7 +5,39 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"TEXT\", \"The following tar file was extracted from the zstd, and further extracted\", {}], [\"ORDERED_KEY_VALUE\", [[\"Name\", \"c0ebb9f43b745c2e004178e301498e41ca9f3bf6391ff7677cb2c82b9b8c1820\"], [\"SHA256\", \"c0ebb9f43b745c2e004178e301498e41ca9f3bf6391ff7677cb2c82b9b8c1820\"], [\"SHA1\", \"bc32fa0f48eacfbab7eddc25fd89b357cc1d9740\"], [\"MD5\", \"b043fe03f24e20cf7dcb2c8ab0f3052c\"], [\"Total Size\", 8499200]], {}]]",
+        "body": [
+          [
+            "TEXT",
+            "The following tar file was extracted from the zstd, and further extracted",
+            {}
+          ],
+          [
+            "ORDERED_KEY_VALUE",
+            [
+              [
+                "Name",
+                "c0ebb9f43b745c2e004178e301498e41ca9f3bf6391ff7677cb2c82b9b8c1820"
+              ],
+              [
+                "SHA256",
+                "c0ebb9f43b745c2e004178e301498e41ca9f3bf6391ff7677cb2c82b9b8c1820"
+              ],
+              [
+                "SHA1",
+                "bc32fa0f48eacfbab7eddc25fd89b357cc1d9740"
+              ],
+              [
+                "MD5",
+                "b043fe03f24e20cf7dcb2c8ab0f3052c"
+              ],
+              [
+                "Total Size",
+                8499200
+              ]
+            ],
+            {}
+          ]
+        ],
         "body_config": {},
         "body_format": "MULTI",
         "classification": "TLP:C",

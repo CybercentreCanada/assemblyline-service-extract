@@ -5,7 +5,7 @@ This guide covers the basics of how to contribute to the Assemblyline project.
 Python code should follow the PEP8 guidelines defined here: [PEP8 Guidelines](https://www.python.org/dev/peps/pep-0008/).
 
 ## Tell us want you want to build/fix
-Before you start coding anything you should connect with the [Assemblyline community](https://groups.google.com/d/forum/cse-cst-assemblyline) to make sure no one else is working on the same thing and that whatever you are going to build still fits with the vision off the system.
+Before you start coding anything you should connect with the Assemblyline community via the [Assemblyline Discord server](https://discord.gg/GUAy9wErNu) and/or the [central Assemblyline GitHub project](https://github.com/CybercentreCanada/assemblyline/issues) to make sure no one else is working on the same thing and that whatever you are going to build still fits with the vision of the system.
 
 ## Git workflow
 
