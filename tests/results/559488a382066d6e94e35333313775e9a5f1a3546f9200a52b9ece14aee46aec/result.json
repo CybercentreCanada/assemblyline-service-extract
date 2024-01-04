@@ -1,0 +1,64 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "vbe_decoded",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 11,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "vbe_decoded"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "vbe_decoded",
+        "sha256": "c738cdd8ec0d65769e17eed1d6fe371893a2972b7a432c6532446d225e166733"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 11,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 11,
+          "signatures": [],
+          "value": "vbe_decoded"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Re-LoaderByR@1n.exe\nReadme/Leggimi.txt\nReadme/Lisezmoi.txt\nReadme/Readme.txt\nReadme/\u81ea\u8ff0.txt\nSetupComplete.cmd",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Re-LoaderByR@1n.exe",
+                "Readme/Leggimi.txt",
+                "Readme/Lisezmoi.txt",
+                "Readme/Readme.txt",
+                "Readme/\u81ea\u8ff0.txt",
+                "SetupComplete.cmd"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 6 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Re-LoaderByR@1n.exe\nSetupComplete.cmd",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Re-LoaderByR@1n.exe",
+                "SetupComplete.cmd"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "SetupComplete.cmd",
+        "sha256": "353413c1c76ef3fb63ee05414474a1b90537b34e0d1584bd79d159a0b0602aea"
+      },
+      {
+        "name": "Readme/\u81ea\u8ff0.txt",
+        "sha256": "48f2a37e9b4343ea96debf91a22cb4d01d70698357f0e600caa2f608050ff196"
+      },
+      {
+        "name": "Re-LoaderByR@1n.exe",
+        "sha256": "4ac8f2d8a45abe82179aa85d0a3aa4613a230d126f0eba82591fb43a7a7e46b2"
+      },
+      {
+        "name": "Readme/Leggimi.txt",
+        "sha256": "8011f9a7af57650e9d310ba90fbe4edd086f4cb0a17b52a50b070b92d9da5fd7"
+      },
+      {
+        "name": "Readme/Readme.txt",
+        "sha256": "b0ee6d05807e7f45f17cea9e721191c276618c92174dbb9a0a799cb2ac01428a"
+      },
+      {
+        "name": "Readme/Lisezmoi.txt",
+        "sha256": "ed695fad0ed3ef91e8ba8ee9511018a7226129d50280bf60d84b4a16a379f5a3"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Re-LoaderByR@1n.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Re-LoaderByR@1n.exe"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Readme/Leggimi.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Readme/Lisezmoi.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Readme/Readme.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Readme/\u81ea\u8ff0.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "SetupComplete.cmd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "SetupComplete.cmd"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

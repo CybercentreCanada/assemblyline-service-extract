@@ -1,4 +1,5 @@
 import os
+import time
 
 import pytest
 from assemblyline.common.importing import load_module_by_path
@@ -17,4 +18,6 @@ th = TestHelper(service_class, RESULTS_FOLDER)
 
 @pytest.mark.parametrize("sample", th.result_list())
 def test_sample(sample):
+    start_time = time.time()
     th.run_test_comparison(sample)
+    print(f"Time elapsed for {sample}: {round(time.time() - start_time)}s")
