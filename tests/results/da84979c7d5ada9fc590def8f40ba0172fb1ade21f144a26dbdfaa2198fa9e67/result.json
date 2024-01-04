@@ -1,0 +1,284 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "$PLUGINSDIR/System.dll\nExSuiteExtWiz.msi\nGreen_Leaves_12.bmp\nNeGACOM.dll\nORDDELINGSSTREG.Tre\nSentensers.Beg8\nSwedish.ini\nSystem.Runtime.Serialization.Formatters.dll\nSystem.Threading.Channels.dll\nbluetooth-disabled-symbolic.svg\ndrive-removable-media.png\nemblem-videos-symbolic.svg\nsave.jpg\nshathree.c\nuHDDImporter.dll\nuser-idle-symbolic.symbolic.png\nview-more-symbolic.svg",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "$PLUGINSDIR/System.dll",
+                "ExSuiteExtWiz.msi",
+                "Green_Leaves_12.bmp",
+                "NeGACOM.dll",
+                "ORDDELINGSSTREG.Tre",
+                "Sentensers.Beg8",
+                "Swedish.ini",
+                "System.Runtime.Serialization.Formatters.dll",
+                "System.Threading.Channels.dll",
+                "bluetooth-disabled-symbolic.svg",
+                "drive-removable-media.png",
+                "emblem-videos-symbolic.svg",
+                "save.jpg",
+                "shathree.c",
+                "uHDDImporter.dll",
+                "user-idle-symbolic.symbolic.png",
+                "view-more-symbolic.svg"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 17 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "$PLUGINSDIR/System.dll\nNeGACOM.dll\nSystem.Runtime.Serialization.Formatters.dll\nSystem.Threading.Channels.dll\nuHDDImporter.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "$PLUGINSDIR/System.dll",
+                "NeGACOM.dll",
+                "System.Runtime.Serialization.Formatters.dll",
+                "System.Threading.Channels.dll",
+                "uHDDImporter.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "ExSuiteExtWiz.msi",
+        "sha256": "0ea5e25b12ab314bc9a0569c3ca756f205f40b792119f8e0fc62c874628dfea0"
+      },
+      {
+        "name": "view-more-symbolic.svg",
+        "sha256": "27fa9e1eb1dd7f981c49317493141b8d69309c0bec2ba197d08af337d9ad24ef"
+      },
+      {
+        "name": "uHDDImporter.dll",
+        "sha256": "3831e88da2b42efffdcb4d54fb83a780b6a5864b9089a28d9c4900801aa987b0"
+      },
+      {
+        "name": "Green_Leaves_12.bmp",
+        "sha256": "542b3ff955758661724b67b9fcacc77543170491b8170b60a770bbcb4d1889d0"
+      },
+      {
+        "name": "emblem-videos-symbolic.svg",
+        "sha256": "609bddfb6c6e6a40ad98858efb05c489ed162ed797d15ea714e7a6071c28e276"
+      },
+      {
+        "name": "System.Threading.Channels.dll",
+        "sha256": "700a5f7b35cbd2317d67b9acb1a07e93575a1555c8016e199c27ca9ba9fb5b02"
+      },
+      {
+        "name": "System.Runtime.Serialization.Formatters.dll",
+        "sha256": "75c3b1306354487172fe5933ebc167eaf89f636223522dba637ccc555fbb56c8"
+      },
+      {
+        "name": "NeGACOM.dll",
+        "sha256": "7fa76f34ff78b115607a1f2738aa0344cde336fa41b3cfebf8e0f4f54beeb323"
+      },
+      {
+        "name": "drive-removable-media.png",
+        "sha256": "8980789994a35fb135effbe1196ce6fdac7ffc61ff524d7cbf76e02c72f2485e"
+      },
+      {
+        "name": "$PLUGINSDIR/System.dll",
+        "sha256": "8dc562cda7217a3a52db898243de3e2ed68b80e62ddcb8619545ed0b4e7f65a8"
+      },
+      {
+        "name": "bluetooth-disabled-symbolic.svg",
+        "sha256": "99c7be943eb12122f95c9428f94379a1385d1ee9a98a8084905e82e4d4201bb1"
+      },
+      {
+        "name": "Swedish.ini",
+        "sha256": "9c5948468dd8ada15a36d7a1f7f5bc9563b7c7602a9bfb3cdc1b70f40c67de36"
+      },
+      {
+        "name": "shathree.c",
+        "sha256": "df9f9d312d962295af159b9c3ecebe9527b4128327134790e5076425feca04f4"
+      },
+      {
+        "name": "save.jpg",
+        "sha256": "e4c5997035e58f56e2a64f8401731a823942b40b72b48d73f56b0c448188d6bc"
+      },
+      {
+        "name": "Sentensers.Beg8",
+        "sha256": "e5e22d1eba289fd9e7250456b3188c0d1fb324986634e088ecb9782f8342987a"
+      },
+      {
+        "name": "ORDDELINGSSTREG.Tre",
+        "sha256": "eb1eb555102812fa55ae4db2b9ebd91abc820132158077c5dd89632cdc225466"
+      },
+      {
+        "name": "user-idle-symbolic.symbolic.png",
+        "sha256": "eeac641fac8b94b771158b33d6af71815803e4c6b9284b12a357c4bb708c38c5"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "$PLUGINSDIR/System.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "$PLUGINSDIR/System.dll"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ExSuiteExtWiz.msi"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Green_Leaves_12.bmp"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "NeGACOM.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "NeGACOM.dll"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ORDDELINGSSTREG.Tre"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Sentensers.Beg8"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Swedish.ini"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "System.Runtime.Serialization.Formatters.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "System.Runtime.Serialization.Formatters.dll"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "System.Threading.Channels.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "System.Threading.Channels.dll"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "bluetooth-disabled-symbolic.svg"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "drive-removable-media.png"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "emblem-videos-symbolic.svg"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "save.jpg"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "shathree.c"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "uHDDImporter.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "uHDDImporter.dll"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "user-idle-symbolic.symbolic.png"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "view-more-symbolic.svg"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
