@@ -1148,7 +1148,7 @@ class Extract(ServiceBase):
                     ):
                         if error_res is None:
                             error_res = ResultTextSection("Errors in 7z", parent=request.result)
-                        error_res.add_line(line)
+                        error_res.add_line(line.replace(temp_dir.encode(), b"/TMP_DIR"))
 
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
