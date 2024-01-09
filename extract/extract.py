@@ -197,6 +197,9 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/zstd":
             extracted = self.extract_zstd(request)
             summary_section_heuristic = 1
+        elif request.file_type == "archive/zpaq":
+            extracted, password_protected = self.extract_zpaq(request)
+            summary_section_heuristic = 1
         elif request.file_type == "gpg/symmetric":
             extracted, password_protected = self.extract_gpg_symmetric(request)
         elif request.file_type == "ios/ipa":
@@ -973,6 +976,81 @@ class Extract(ServiceBase):
             pass
 
         return []
+
+    def extract_zpaq(self, request: ServiceRequest):
+        password_protected = False
+        password_list = []
+        extracted_files = []
+        temp_path = os.path.join(self.working_directory, f"{request.file_path}.zpaq")
+        shutil.copy2(request.file_path, temp_path)
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            popenargs = ["zpaq", "x", temp_path, "-to", temp_dir]
+
+            try:
+                p = subprocess.run(popenargs, capture_output=True)
+                stdoutput, stderr = p.stdout, p.stderr
+
+                extracted_files.extend(
+                    self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
+                )
+
+                if b"password incorrect" in stderr:
+                    password_protected = True
+                    password_list = self.get_passwords(request)
+                    popenargs.extend(["-key", "password"])
+                    for password in password_list:
+                        try:
+                            popenargs[-1] = password
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                            p = subprocess.run(popenargs, capture_output=True)
+                            stdoutput = p.stdout + p.stderr
+                            extracted_children = self._submit_extracted(
+                                request, request.file_type, temp_dir, sys._getframe().f_code.co_name
+                            )
+                            if extracted_children:
+                                self.password_used.append(password)
+                                extracted_files.extend(extracted_children)
+                            if stdoutput and "password incorrect" not in stdoutput:
+                                break
+                        except OSError:
+                            pass
+
+                popenargs = ["zpaq", "l", temp_path]
+                p = subprocess.run(popenargs, capture_output=True)
+                data = []
+                for line in p.stdout.split(b"\n"):
+                    if line.startswith(b"- "):
+                        line = line[2:].split(b" ", 2)
+                        date = b" ".join(line[:2])
+                        line = line[-1].lstrip().split(b" ", 1)
+                        size = line[0]
+                        line = line[-1].lstrip().split(b" ", 1)
+                        attributes = line[0]
+                        filename = line[-1].lstrip()
+                        data.append([date, size, attributes, filename])
+
+                hidden_files = [x for x in data if b"H" in x[2]]
+                if hidden_files:
+                    heur = Heuristic(18)
+                    res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
+                    for hf in hidden_files:
+                        res.add_row(TableRow({"Date": hf[0], "Size": hf[1], "Attributes": hf[2], "Filename": hf[3]}))
+                        # Do not add Directories to filename extracted
+                        if "D" not in hf[2]:
+                            res.add_tag("file.name.extracted", hf[-1])
+
+                # Ignore empty files/folders
+                expected_files = [x[3] for x in data if b"D" not in x[2]]
+                if password_protected and len(extracted_files) != len(expected_files):
+                    self.raise_failed_passworded_extraction(
+                        request, request.file_type, extracted_files, expected_files, password_list
+                    )
+            finally:
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+
+        return extracted_files, password_protected
 
     def extract_gpg_symmetric(self, request: ServiceRequest):
         password_list = self.get_passwords(request)
