@@ -7,7 +7,7 @@ USER root
 
 RUN echo "deb http://http.us.debian.org/debian buster main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar gpg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar gpg zpaq && rm -rf /var/lib/apt/lists/*
 
 FROM base AS build
 
