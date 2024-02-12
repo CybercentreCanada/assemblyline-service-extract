@@ -11,4 +11,3 @@ debloat==1.5.3.2
 zstandard
 autoit-ripper
 python-gnupg
-https://github.com/erocarrera/pefile/archive/master.zip

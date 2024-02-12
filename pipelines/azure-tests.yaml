@@ -67,6 +67,9 @@ jobs:
           fi
           sudo rm -rf /var/lib/apt/lists/*
           sudo env "PATH=$PATH" python -m pip install -U --no-cache-dir assemblyline assemblyline_v4_service
+          # Force-reinstall the newer pefile since we can't force a single line of a requirements.txt
+          # and no new version were done since https://github.com/erocarrera/pefile/blob/v2023.2.7/pefile.py#L4071
+          sudo env "PATH=$PATH" python -m pip install -U --no-cache-dir assemblyline assemblyline_v4_service
           [ -f $(pwd)/requirements.txt ] && sudo env "PATH=$PATH" python -m pip install -U --no-cache-dir -r $(pwd)/requirements.txt
           [ -f $(pwd)/tests/requirements.txt ] && sudo env "PATH=$PATH" python -m pip install -U --no-cache-dir -r $(pwd)/tests/requirements.txt
           sudo rm -rf /tmp/* /var/lib/apt/lists/* ~/.cache/pip

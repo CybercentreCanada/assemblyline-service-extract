@@ -18,7 +18,11 @@ USER assemblyline
 # Install pip packages
 COPY requirements.txt /tmp/requirements.txt
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && \
+    # Force-reinstall the newer pefile since we can't force a single line of a requirements.txt
+    # and no new version were done since https://github.com/erocarrera/pefile/blob/v2023.2.7/pefile.py#L4071
+    pip install --no-cache-dir --user --force-reinstall https://github.com/erocarrera/pefile/archive/master.zip && \
+    rm -rf ~/.cache/pip
 
 # Download the support files from Amazon S3
 RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
