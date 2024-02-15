@@ -829,7 +829,9 @@ class Extract(ServiceBase):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                     fd.write(attachment_data)
                     fd.seek(0)
-                    extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
+                    extracted_children.append(
+                        [fd.name, key if key else "UnknownFilename", sys._getframe().f_code.co_name]
+                    )
         except (PdfError, ValueError) as e:
             # Damaged PDF, typically extracted from another service like OLETools
             self.log.warning(e)
