@@ -144,6 +144,11 @@ class RepairZip(ZipFile):
         self._seekable = True
         self._writing = False
         self._strict_timestamps = True
+        self.metadata_encoding = None
+
+        # Check that we don't try to write with nonconforming codecs
+        if self.metadata_encoding and mode != "r":
+            raise ValueError("metadata_encoding is only supported for reading files")
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
