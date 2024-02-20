@@ -1796,7 +1796,12 @@ class Extract(ServiceBase):
         with open(request.file_path, "rb") as f:
             data = f.read()
 
-        soup = BeautifulSoup(data, features="html5lib")
+        try:
+            soup = BeautifulSoup(data, features="html5lib")
+        except AssertionError:
+            # If this one gives us trouble too, we can try Python’s built-in HTML parser "html.parser"
+            soup = BeautifulSoup(data, features="lxml")
+
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
