@@ -10,7 +10,6 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-import traceback
 import zipfile
 import zlib
 from copy import deepcopy
@@ -185,6 +184,8 @@ class Extract(ServiceBase):
         elif request.file_type == "document/pdf":
             extracted = self.extract_pdf(request)
             summary_section_heuristic = 7
+        elif request.file_type == "document/epub":
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
         elif request.file_type in ["code/hta", "code/html"]:
             extracted = self.extract_jscript(request)
         elif request.file_type == "code/wsf":
@@ -608,14 +609,7 @@ class Extract(ServiceBase):
 
         try:
             content_list = autoit_ripper.extract(data=request.file_contents)
-        except (AttributeError, pefile.PEFormatError, KeyError) as e:
-            # TODO: Delete this KeyError handling when the ticket is going to be closed
-            # This error has been reported on the AutoIt-Ripper repository:
-            # https://github.com/nazywam/AutoIt-Ripper/issues/26
-            if isinstance(e, KeyError):
-                tb = traceback.format_exc()
-                if '0x32: lambda x: "@" + MACROS_INVERT_CASE[x.get_xored_string()]' not in tb:
-                    raise
+        except (AttributeError, pefile.PEFormatError):
             # If the PE file cannot be parsed, then we can do nothing with it
             return extracted
 
