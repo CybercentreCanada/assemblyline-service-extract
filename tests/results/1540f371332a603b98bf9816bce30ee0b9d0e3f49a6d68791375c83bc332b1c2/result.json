@@ -1,11 +1,11 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 0,
+    "score": 100,
     "sections": [
       {
         "auto_collapse": false,
-        "body": ".data",
+        "body": "script.au3",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -13,8 +13,8 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 2,
-          "score": 0,
+          "heur_id": 26,
+          "score": 100,
           "score_map": {},
           "signatures": {}
         },
@@ -23,7 +23,7 @@
           "file": {
             "name": {
               "extracted": [
-                ".data"
+                "script.au3"
               ]
             }
           }
@@ -36,8 +36,8 @@
   "files": {
     "extracted": [
       {
-        "name": ".data",
-        "sha256": "905f5100fff55d7bc415d0c25c20c531b9ac9ff81d42768131fa05bdc9c43d9b"
+        "name": "script.au3",
+        "sha256": "e37945ade8707a0b6ba735919e2e53f13de79326e50f11f815efadfde7f83707"
       }
     ],
     "supplementary": []
@@ -46,16 +46,16 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 2,
+        "heur_id": 26,
         "signatures": []
       }
     ],
     "tags": {
       "file.name.extracted": [
         {
-          "heur_id": 2,
+          "heur_id": 26,
           "signatures": [],
-          "value": ".data"
+          "value": "script.au3"
         }
       ]
     },
