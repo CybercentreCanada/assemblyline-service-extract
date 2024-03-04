@@ -19,6 +19,7 @@ from io import BytesIO
 import autoit_ripper
 import debloat.processor
 import gnupg
+import mobi
 import olefile
 import pefile
 import zstandard
@@ -186,6 +187,8 @@ class Extract(ServiceBase):
             summary_section_heuristic = 7
         elif request.file_type == "document/epub":
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+        elif request.file_type == "document/mobi":
+            extracted = self.extract_mobi(request)
         elif request.file_type in ["code/hta", "code/html"]:
             extracted = self.extract_jscript(request)
         elif request.file_type == "code/wsf":
@@ -767,6 +770,15 @@ class Extract(ServiceBase):
             self.log.exception(f"While extracting {request.sha256} with unace")
 
         return []
+
+    def extract_mobi(self, request: ServiceRequest):
+        extracted_files = []
+        temp_dir, _ = mobi.extract(request.file_path)
+        extracted_files.extend(
+            self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
+        )
+        shutil.rmtree(temp_dir)
+        return extracted_files
 
     def extract_pdf_passwordprotected(self, request: ServiceRequest):
         """Will attempt to use pikepdf to extract embedded files from a passwordprotected PDF sample.
