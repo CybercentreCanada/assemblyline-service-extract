@@ -587,14 +587,14 @@ class Extract(ServiceBase):
             Boolean if encryption successful (indicating encryption detected).
         """
 
-        passwords = self.get_passwords(request)
-        password = None
-
         try:
             file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
         except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError):
             # Not a valid supported/valid file
             return [], False
+
+        passwords = self.get_passwords(request)
+        password = None
 
         for pass_try in passwords:
             try:
@@ -604,7 +604,7 @@ class Extract(ServiceBase):
                     file.load_key(password=pass_try)
                 password = pass_try
                 break
-            except msoffcrypto.exceptions.InvalidKeyError:
+            except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
                 pass
 
         if password is None:
