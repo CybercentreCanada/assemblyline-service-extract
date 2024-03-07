@@ -48,6 +48,7 @@ from assemblyline_v4_service.common.utils import PASSWORD_WORDS, extract_passwor
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
+from msoffcrypto.format.ooxml import OOXMLFile
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
@@ -598,7 +599,7 @@ class Extract(ServiceBase):
 
         for pass_try in passwords:
             try:
-                if isinstance(file, msoffcrypto.format.ooxml.OOXMLFile):
+                if isinstance(file, OOXMLFile):
                     file.load_key(password=pass_try, verify_password=True)
                 else:
                     file.load_key(password=pass_try)
