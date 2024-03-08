@@ -20,6 +20,7 @@ import autoit_ripper
 import debloat.processor
 import gnupg
 import mobi
+import msoffcrypto
 import olefile
 import pefile
 import zstandard
@@ -47,12 +48,11 @@ from assemblyline_v4_service.common.utils import PASSWORD_WORDS, extract_passwor
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
-from msoffcrypto import exceptions as msoffcryptoexceptions
+from msoffcrypto.format.ooxml import OOXMLFile
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 
-from extract.ext.office_extract import ExtractionError, PasswordError, extract_office_docs
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
@@ -588,23 +588,45 @@ class Extract(ServiceBase):
             Boolean if encryption successful (indicating encryption detected).
         """
 
-        passwords = self.get_passwords(request)
         try:
-            res = extract_office_docs(request.file_path, passwords, self.working_directory)
-
-            if res is None:
-                raise ValueError()
-        except (ValueError, OSError, msoffcryptoexceptions.FileFormatError):
+            file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
+        except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError):
             # Not a valid supported/valid file
             return [], False
-        except (PasswordError, ExtractionError):
-            # Could not guess password
+
+        passwords = self.get_passwords(request)
+        password = None
+
+        for pass_try in passwords:
+            try:
+                if isinstance(file, OOXMLFile):
+                    file.load_key(password=pass_try, verify_password=True)
+                else:
+                    file.load_key(password=pass_try)
+                password = pass_try
+                break
+            except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
+                pass
+
+        if password is None:
             self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
             return [], True
 
-        out_name, password = res
+        tf = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+        name = tf.name
+        try:
+            file.decrypt(open(name, "wb"))
+        except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
+            section = ResultTextSection(
+                "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
+            )
+            section.add_line(password)
+            section.add_tag("info.password", password)
+            return [], True
+        tf.close()
+
         self.password_used.append(password)
-        return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
+        return [[name, request.file_name, sys._getframe().f_code.co_name]], True
 
     def extract_autoit_executable(self, request: ServiceRequest):
         """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
