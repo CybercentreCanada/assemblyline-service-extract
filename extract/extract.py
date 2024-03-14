@@ -607,6 +607,10 @@ class Extract(ServiceBase):
                 break
             except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
                 pass
+            except Exception as e:
+                if isinstance(e, ValueError) and str(e).startswith("Invalid key size") and str(e).endswith(" for RC4."):
+                    return [], True
+                raise Exception(f"Password tested was {password}").with_traceback(e.__traceback__)
 
         if password is None:
             self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
@@ -616,13 +620,20 @@ class Extract(ServiceBase):
         name = tf.name
         try:
             file.decrypt(open(name, "wb"))
-        except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
+        except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError, ValueError) as e:
+            if (
+                isinstance(e, ValueError)
+                and str(e) != "write_stream: data must be the same size as the existing stream"
+            ):
+                raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
             section = ResultTextSection(
                 "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
             )
             section.add_line(password)
             section.add_tag("info.password", password)
             return [], True
+        except Exception as e:
+            raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
         tf.close()
 
         self.password_used.append(password)
