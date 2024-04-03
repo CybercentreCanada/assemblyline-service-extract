@@ -57,6 +57,7 @@ from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
+from extract.ext import pyinstaller, pydecompile
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -267,6 +268,20 @@ class Extract(ServiceBase):
             ):
                 rdata_heur = Heuristic(28)
                 _ = ResultSection(rdata_heur.name, rdata_heur.description, heuristic=rdata_heur, parent=request.result)
+
+            # pyinstaller can generate executables for the following:
+            # Windows (32bit/64bit/ARM64), Linux (x86_64, aarch64, i686, ppc64le, s390x), macOS (x86_64 or arm64)
+            pyinstaller_types = ("executable/windows", "executable/linux", "executable/mach-o")
+            if any(True for x in pyinstaller_types if request.file_type.startswith(x)):
+                try:
+                    pyinstaller_files = self.extract_pyinstaller(request)
+                    if pyinstaller_files:
+                        # extract_zip can also extract some files from pyinstaller
+                        if not extracted:
+                            extracted = []
+                        extracted.extend(pyinstaller_files)
+                except pyinstaller.Invalid:
+                    pass
 
         elif request.file_type == "code/a3x":
             extracted = self.extract_a3x(request)
@@ -2129,3 +2144,34 @@ class Extract(ServiceBase):
         sha256hash = hashlib.sha256(data).hexdigest()
         shutil.move(out_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
+
+    def extract_pyinstaller(self, request: ServiceRequest):
+        """Extract embedded python byte code from a pyinstaller complied binary.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List containing extracted information, including: extracted path, display name
+        """
+        extracted = []
+        with open(request.file_path, "rb") as f:
+            buf = f.read()
+        pycs = pyinstaller.extract_pyc(buf)
+        for name, pyc in pycs:
+            # always save py/pyc file
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tf:
+                tf.write(bytes(pyc))
+            extracted.append([tf.name, name, sys._getframe().f_code.co_name])
+
+            # in case of pyc, attempt to also decompile
+            if name.endswith(".pyc"):
+                try:
+                    py_file, embedded_fiename = pydecompile.decompile_pyc(tf.name)
+                    if py_file:
+                        fname = embedded_fiename or os.path.basename(py_file)
+                        extracted.append([py_file, fname, sys._getframe().f_code.co_name])
+                except pydecompile.Invalid:
+                    pass
+
+        return extracted

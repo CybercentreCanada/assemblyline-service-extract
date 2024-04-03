@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "pydata\nsimple39.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "pydata",
+                "simple39.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "pydata",
+        "sha256": "003c7ec94b0e3826c0aa7d7b8153695177bd1bb90a87b2afda6fff181f3f4b21"
+      },
+      {
+        "name": "simple39.pyc",
+        "sha256": "cccabba5c383a48c8594510ca70c12ac9cf341306720289f700dfc4b82c4d362"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "pydata"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "simple39.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

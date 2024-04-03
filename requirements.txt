@@ -12,3 +12,5 @@ zstandard
 autoit-ripper
 python-gnupg
 mobi
+uncompyle6
+xdis
