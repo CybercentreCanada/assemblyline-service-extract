@@ -608,9 +608,12 @@ class Extract(ServiceBase):
             except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
                 pass
             except Exception as e:
+                if isinstance(e, IOError) and str(e) == "file not found":
+                    # Error happening usually when the 0Table or 1Table stream is not found in the olefile
+                    return [], True
                 if isinstance(e, ValueError) and str(e).startswith("Invalid key size") and str(e).endswith(" for RC4."):
                     return [], True
-                raise Exception(f"Password tested was {password}").with_traceback(e.__traceback__)
+                raise Exception(f"Password tested was {pass_try}").with_traceback(e.__traceback__)
 
         if password is None:
             self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
