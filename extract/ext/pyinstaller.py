@@ -1,4 +1,11 @@
-"""Logic around identifcation and extraction of PyInstaller generated files."""
+"""Logic around identifcation and extraction of PyInstaller generated files.
+
+
+* Package, Cookie and TOC structures are taken directly from PyInstaller source.
+* Package, Cookie and TOC parsing based from PyInstaller reader:
+  https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/archive/readers.py
+
+"""
 
 import struct
 import xdis.magics
