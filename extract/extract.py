@@ -272,7 +272,7 @@ class Extract(ServiceBase):
             # pyinstaller can generate executables for the following:
             # Windows (32bit/64bit/ARM64), Linux (x86_64, aarch64, i686, ppc64le, s390x), macOS (x86_64 or arm64)
             pyinstaller_types = ("executable/windows", "executable/linux", "executable/mach-o")
-            if any(True for x in pyinstaller_types if request.file_type.startswith(x)):
+            if any(request.file_type.startswith(x) for x in pyinstaller_types):
                 try:
                     pyinstaller_files = self.extract_pyinstaller(request)
                     if pyinstaller_files:
