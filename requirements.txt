@@ -12,3 +12,4 @@ zstandard
 autoit-ripper
 python-gnupg
 mobi
+lief

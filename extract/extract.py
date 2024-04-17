@@ -3,6 +3,7 @@ import hashlib
 import itertools
 import json
 import logging
+import pathlib
 import os
 import re
 import shutil
@@ -57,6 +58,7 @@ from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
+from extract.ext import py2exe_extractor, pydecompile
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -267,6 +269,19 @@ class Extract(ServiceBase):
             ):
                 rdata_heur = Heuristic(28)
                 _ = ResultSection(rdata_heur.name, rdata_heur.description, heuristic=rdata_heur, parent=request.result)
+
+            # py2exe can only generate pe executables for windows
+            if request.file_type.startswith("executable/windows/pe"):
+                try:
+                    py2exe_files = self.extract_py2exe(request)
+                    if py2exe_files:
+                        # extract_zip can also extract some files from py2exe
+                        try:
+                            extracted.extend(py2exe_files)
+                        except NameError:
+                            extracted = py2exe_files
+                except py2exe_extractor.Invalid:
+                    pass
 
         elif request.file_type == "code/a3x":
             extracted = self.extract_a3x(request)
@@ -2129,3 +2144,28 @@ class Extract(ServiceBase):
         sha256hash = hashlib.sha256(data).hexdigest()
         shutil.move(out_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
+
+    def extract_py2exe(self, request: ServiceRequest):
+        """Extract embedded python byte code from a py2exe complied binary.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            list containing extracted information, including: extracted path, display name
+        """
+        extracted = []
+        with open(request.file_path, "rb") as f:
+            buf = f.read()
+        pycs = py2exe_extractor.extract(buf, outdir=pathlib.Path(self.working_directory))
+        for pyc_path, script_name in pycs.items():
+            extracted.append([pyc_path.as_posix(), script_name, sys._getframe().f_code.co_name])
+            try:
+                py_file, embedded_fiename = pydecompile.decompile_pyc(pyc_path.as_posix())
+                if py_file:
+                    fname = embedded_fiename or os.path.basename(py_file)
+                    extracted.append([py_file, fname, sys._getframe().f_code.co_name])
+            except pydecompile.Invalid:
+                pass
+
+        return extracted
