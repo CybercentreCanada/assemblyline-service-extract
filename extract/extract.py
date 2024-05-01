@@ -590,8 +590,8 @@ class Extract(ServiceBase):
 
         try:
             file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
-        except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError):
-            # Not a valid supported/valid file
+        except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError, msoffcrypto.exceptions.DecryptionError):
+            # Not a supported/valid file
             return [], False
 
         passwords = self.get_passwords(request)
@@ -624,15 +624,16 @@ class Extract(ServiceBase):
         try:
             file.decrypt(open(name, "wb"))
         except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError, ValueError) as e:
-            if (
-                isinstance(e, ValueError)
-                and str(e) != "write_stream: data must be the same size as the existing stream"
-            ):
+            if isinstance(e, ValueError) and str(e) not in [
+                "write_stream: data must be the same size as the existing stream",
+                "The length of the provided data is not a multiple of the block length.",
+            ]:
                 raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
             section = ResultTextSection(
                 "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
             )
-            section.add_line(password)
+            section.add_line(f"Password was {password} but the file has the following problem:")
+            section.add_line(str(e))
             section.add_tag("info.password", password)
             return [], True
         except Exception as e:
