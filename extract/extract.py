@@ -229,7 +229,7 @@ class Extract(ServiceBase):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
                 request.file_path
             ) > self.config.get("heur22_min_overlay_size", 31457280):
-                strip_overlay_result = self.strip_overlay(request.file_path)
+                strip_overlay_result = self.strip_overlay(request, request.file_path)
                 if strip_overlay_result:
                     temp_path, overlay_size, entropy = strip_overlay_result
                     added = request.add_extracted(
@@ -414,7 +414,7 @@ class Extract(ServiceBase):
     def strip_file(self, request: ServiceRequest, file_path, file_name):
         extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True)
         if extracted_file_info["type"].startswith("executable/windows"):
-            strip_overlay_result = self.strip_overlay(file_path)
+            strip_overlay_result = self.strip_overlay(request, file_path)
             if strip_overlay_result:
                 file_path, overlay_size, entropy = strip_overlay_result
                 heur = Heuristic(22)
@@ -2082,7 +2082,7 @@ class Extract(ServiceBase):
 
         return [[output_path, cart_name, sys._getframe().f_code.co_name]]
 
-    def strip_overlay(self, file_path):
+    def strip_overlay(self, request, file_path):
         try:
             binary = pefile.PE(file_path, fast_load=True)
         except Exception:
@@ -2113,7 +2113,7 @@ class Extract(ServiceBase):
                 return (temp_path, overlay_size, entropy)
 
         out_path = os.path.join(self.working_directory, "debloated")
-        debloat.processor.process_pe(
+        debloat_code = debloat.processor.process_pe(
             binary,
             out_path=out_path,
             last_ditch_processing=False,
@@ -2124,6 +2124,9 @@ class Extract(ServiceBase):
         # If nothing was extracted, or it was a NSIS file that debloat wants to extract
         if not os.path.exists(out_path) or os.path.isdir(out_path):
             return False
+
+        debloat_section = ResultTextSection("Debloated using specific technique", parent=request.result)
+        debloat_section.add_line(debloat.processor.RESULT_CODES[debloat_code])
 
         with open(out_path, "rb") as f:
             data = f.read()
