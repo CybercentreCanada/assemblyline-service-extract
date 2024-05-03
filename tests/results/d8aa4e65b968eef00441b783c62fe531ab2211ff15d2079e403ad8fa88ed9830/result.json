@@ -8,7 +8,7 @@
         "body": ".data\nmain.pyc",
         "body_config": {},
         "body_format": "TEXT",
-        "classification": "TLP:CLEAR",
+        "classification": "TLP:C",
         "depth": 0,
         "heuristic": {
           "attack_ids": [],

@@ -227,6 +227,8 @@ class Extract(ServiceBase):
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 1
+            # due to bug with identify identifying some py2exe pe's as archives, attempt extraction to add additional.
+            self.attempt_extract_py2exe(request, extracted)
         elif request.file_type.startswith("executable/"):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
                 request.file_path
@@ -272,16 +274,7 @@ class Extract(ServiceBase):
 
             # py2exe can only generate pe executables for windows
             if request.file_type.startswith("executable/windows/pe"):
-                try:
-                    py2exe_files = self.extract_py2exe(request)
-                    if py2exe_files:
-                        # extract_zip can also extract some files from py2exe
-                        try:
-                            extracted.extend(py2exe_files)
-                        except NameError:
-                            extracted = py2exe_files
-                except py2exe_extractor.Invalid:
-                    pass
+                self.attempt_extract_py2exe(request, extracted)
 
             # pyinstaller can generate executables for the following:
             # Windows (32bit/64bit/ARM64), Linux (x86_64, aarch64, i686, ppc64le, s390x), macOS (x86_64 or arm64)
@@ -2218,4 +2211,17 @@ class Extract(ServiceBase):
                 except pydecompile.Invalid:
                     pass
 
+        return extracted
+
+    def attempt_extract_py2exe(self, request, extracted: list):
+        """Attempt to extract py2exe from the request.
+
+        Mutates the passed in `extracted`.
+        """
+        try:
+            py2exe_files = self.extract_py2exe(request)
+            if py2exe_files:
+                extracted.extend(py2exe_files)
+        except py2exe_extractor.Invalid:
+            pass
         return extracted
