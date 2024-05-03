@@ -7,9 +7,11 @@ msoffcrypto-tool
 html5lib
 pikepdf
 https://github.com/gdesmar/nrs/archive/nsi-script.zip
-debloat==1.5.3.3
+debloat==1.5.5
 zstandard
 autoit-ripper
 python-gnupg
 mobi
+uncompyle6
+xdis
 lief

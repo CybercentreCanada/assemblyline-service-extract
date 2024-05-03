@@ -1,31 +1,11 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 300,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
-        "body": "_RDATA is a non-standard section name for PEs, and the fact that it is extractable is trending towards suspicious.",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 28,
-          "score": 300,
-          "score_map": {},
-          "signatures": {}
-        },
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Extractable _RDATA section found",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": ".data\nCERTIFICATE\n[0]\n\\x00\\xdd5\\xbc\n\u0492\\x85.pyc\n_RDATA",
+        "body": "pydata\nsimple38.py\nsimple38.pyc",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -43,16 +23,45 @@
           "file": {
             "name": {
               "extracted": [
-                ".data",
-                "CERTIFICATE",
-                "[0]",
-                "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc",
-                "_RDATA"
+                "pydata",
+                "simple38.py",
+                "simple38.pyc"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 5 files",
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "simple38.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "simple38.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -60,24 +69,16 @@
   "files": {
     "extracted": [
       {
-        "name": "CERTIFICATE",
-        "sha256": "090b03e1ff82d53fb90c3776be756465d6bc4dc04b164348eeab703a72bb2243"
+        "name": "simple38.py",
+        "sha256": "1e992f074f757c6833918a7839da8211dd0afaa7ebc5b6737805fc1255d42807"
       },
       {
-        "name": ".data",
-        "sha256": "0d0e6912c4f4c798c683719bd779ecbeb0fc136817076d9a906d589147378581"
+        "name": "simple38.pyc",
+        "sha256": "86b4755db5c1b222e0957ab36761b4a91e486a38055b619d8fc58749a3082257"
       },
       {
-        "name": "_RDATA",
-        "sha256": "277f0ce03d8fc555cf5a9f56a4a4f3c6b3f44d46f4f6e08e7b3a2f6c06b29ccf"
-      },
-      {
-        "name": "[0]",
-        "sha256": "291059a46f5f785ffee1b703551f0c6d7edb21335358461ac81a9fa5815ac3ad"
-      },
-      {
-        "name": "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc",
-        "sha256": "f004d43228d4089a536113e811594fa83038460c87c8282d6cd2c0c53a5266ec"
+        "name": "pydata",
+        "sha256": "daaa8e7916bb324c1a252a2a072d492fac548c05fb9f61a05a3f2b34ff0e0e6d"
       }
     ],
     "supplementary": []
@@ -91,36 +92,38 @@
       },
       {
         "attack_ids": [],
-        "heur_id": 28,
+        "heur_id": 16,
         "signatures": []
       }
     ],
     "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
       "file.name.extracted": [
         {
           "heur_id": 2,
           "signatures": [],
-          "value": ".data"
+          "value": "pydata"
         },
         {
           "heur_id": 2,
           "signatures": [],
-          "value": "CERTIFICATE"
+          "value": "simple38.py"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "simple38.py"
         },
         {
           "heur_id": 2,
           "signatures": [],
-          "value": "[0]"
-        },
-        {
-          "heur_id": 2,
-          "signatures": [],
-          "value": "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc"
-        },
-        {
-          "heur_id": 2,
-          "signatures": [],
-          "value": "_RDATA"
+          "value": "simple38.pyc"
         }
       ]
     },

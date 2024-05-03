@@ -14,8 +14,10 @@ class Invalid(Exception):
 
 def decompile_pyc(filepath: str) -> str:
     """Decompile the given pyc file.
+
     Args:
         filepath: path to pyc file
+
     Returns:
         The filepath to the decompiled script.
     """
