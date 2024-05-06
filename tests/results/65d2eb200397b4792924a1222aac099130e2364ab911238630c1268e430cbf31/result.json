@@ -1,0 +1,89 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          [
+            "Target file",
+            "large"
+          ],
+          [
+            "Overlay Size",
+            104857600
+          ],
+          [
+            "Overlay Entropy",
+            0.0
+          ],
+          [
+            "Bloated byte",
+            0
+          ],
+          [
+            "SHA256",
+            "20492a4d0d84f8beb1767f6616229f85d44c2827b64bdbfb260ee12fa1109e0e"
+          ],
+          [
+            "SHA1",
+            "2c2ceccb5ec5574f791d45b63c940cff20550f9a"
+          ],
+          [
+            "MD5",
+            "2f282b84e7e608d5852449ed940bfc51"
+          ],
+          [
+            "Total Size",
+            104857600
+          ]
+        ],
+        "body_config": {},
+        "body_format": "ORDERED_KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 22,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Bloated file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "large",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1 file that was safelisted.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 22,
+        "signatures": []
+      }
+    ],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}

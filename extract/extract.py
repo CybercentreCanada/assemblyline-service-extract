@@ -479,11 +479,19 @@ class Extract(ServiceBase):
                     f.seek(-1024 * last_position_jumps, os.SEEK_END)
                     while f.read(1024) == last_data:
                         last_position_jumps += 1
-                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                     # Time to find exactly where to stop the stripping
                     precise_offset = 1024
                     while precise_offset >= 0:
-                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                         data = f.read(1)
                         if data and data[0] != last_data[0]:
                             break
