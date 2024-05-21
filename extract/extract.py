@@ -2140,6 +2140,7 @@ class Extract(ServiceBase):
             binary,
             out_path=out_path,
             last_ditch_processing=False,
+            cert_preservation=True,
             log_message=lambda *args, **kwargs: None,
             beginning_file_size=file_size,
         )
