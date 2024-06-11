@@ -6,6 +6,7 @@ import logging
 import os
 import re
 import shutil
+import binascii
 import subprocess
 import sys
 import tarfile
@@ -60,6 +61,21 @@ from extract.ext.xxxswf import xxxswf
 from extract.ext import pyinstaller, pydecompile
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
+
+
+def b64decode(b64data):
+    try:
+        data = base64.b64decode(b64data)
+    except binascii.Error as e:
+        if str(e) != "Incorrect padding":
+            raise e
+        try:
+            data = base64.b64decode(f"{b64data}=")
+        except binascii.Error as e:
+            if str(e) != "Incorrect padding":
+                raise e
+            data = base64.b64decode(f"{b64data}==")
+    return data
 
 
 class Extract(ServiceBase):
@@ -1919,7 +1935,8 @@ class Extract(ServiceBase):
             if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
                 a_tag_parts = a_tag.get("href").split(",", 1)
                 if a_tag_parts[0].endswith("base64"):
-                    a_tag_content = base64.b64decode(a_tag_parts[1].strip())
+                    a_tag_content = b64decode(a_tag_parts[1].strip())
+
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(a_tag_content)
                     # Ignore files that should be handled by JsJaws
