@@ -1,4 +1,5 @@
 import base64
+import binascii
 import hashlib
 import itertools
 import json
@@ -6,7 +7,6 @@ import logging
 import os
 import re
 import shutil
-import binascii
 import subprocess
 import sys
 import tarfile
@@ -687,17 +687,15 @@ class Extract(ServiceBase):
         extracted = []
 
         try:
-            content_list = autoit_ripper.extract(data=request.file_contents)
+            content_list = autoit_ripper.extract(data=request.file_contents) or []
         except (AttributeError, pefile.PEFormatError):
             # If the PE file cannot be parsed, then we can do nothing with it
             return extracted
 
-        if content_list:
-            content = content_list[0][1].decode("utf-8")
-            decompiled_script_path = os.path.join(self.working_directory, "script.au3")
-            with open(decompiled_script_path, "w") as f:
-                f.write(content)
-            extracted.append([decompiled_script_path, "script.au3", sys._getframe().f_code.co_name])
+        for name, content in content_list:
+            fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+            fd.write(content)
+            extracted.append([fd.name, name, sys._getframe().f_code.co_name])
 
         return extracted
 
