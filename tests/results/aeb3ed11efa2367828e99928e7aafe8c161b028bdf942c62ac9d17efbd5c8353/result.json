@@ -1,0 +1,84 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 100,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "bezzo\nscript.au3\nspringmaker",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 26,
+          "score": 100,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "bezzo",
+                "script.au3",
+                "springmaker"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "bezzo",
+        "sha256": "7b237b0ca262c90c03f3e65ad939e6202eb0462088059ea1cf14ae20770636d9"
+      },
+      {
+        "name": "springmaker",
+        "sha256": "9183bd8f64426072d03b62e905a5abe8e13f7506134b8af72a2b08cd3622bddb"
+      },
+      {
+        "name": "script.au3",
+        "sha256": "c6e2a97842d90752e02663876347ca0644680dad8056acd1c25554496be43dcc"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 26,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 26,
+          "signatures": [],
+          "value": "bezzo"
+        },
+        {
+          "heur_id": 26,
+          "signatures": [],
+          "value": "script.au3"
+        },
+        {
+          "heur_id": 26,
+          "signatures": [],
+          "value": "springmaker"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

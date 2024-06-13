@@ -1,4 +1,5 @@
 import base64
+import binascii
 import hashlib
 import itertools
 import json
@@ -61,6 +62,21 @@ from extract.ext.xxxswf import xxxswf
 from extract.ext import pyinstaller, pydecompile, py2exe_extractor
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
+
+
+def b64decode(b64data):
+    try:
+        data = base64.b64decode(b64data)
+    except binascii.Error as e:
+        if str(e) != "Incorrect padding":
+            raise e
+        try:
+            data = base64.b64decode(f"{b64data}=")
+        except binascii.Error as e:
+            if str(e) != "Incorrect padding":
+                raise e
+            data = base64.b64decode(f"{b64data}==")
+    return data
 
 
 class Extract(ServiceBase):
@@ -487,11 +503,19 @@ class Extract(ServiceBase):
                     f.seek(-1024 * last_position_jumps, os.SEEK_END)
                     while f.read(1024) == last_data:
                         last_position_jumps += 1
-                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                     # Time to find exactly where to stop the stripping
                     precise_offset = 1024
                     while precise_offset >= 0:
-                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                         data = f.read(1)
                         if data and data[0] != last_data[0]:
                             break
@@ -671,17 +695,15 @@ class Extract(ServiceBase):
         extracted = []
 
         try:
-            content_list = autoit_ripper.extract(data=request.file_contents)
+            content_list = autoit_ripper.extract(data=request.file_contents) or []
         except (AttributeError, pefile.PEFormatError):
             # If the PE file cannot be parsed, then we can do nothing with it
             return extracted
 
-        if content_list:
-            content = content_list[0][1].decode("utf-8")
-            decompiled_script_path = os.path.join(self.working_directory, "script.au3")
-            with open(decompiled_script_path, "w") as f:
-                f.write(content)
-            extracted.append([decompiled_script_path, "script.au3", sys._getframe().f_code.co_name])
+        for name, content in content_list:
+            fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+            fd.write(content)
+            extracted.append([fd.name, name, sys._getframe().f_code.co_name])
 
         return extracted
 
@@ -1919,7 +1941,8 @@ class Extract(ServiceBase):
             if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
                 a_tag_parts = a_tag.get("href").split(",", 1)
                 if a_tag_parts[0].endswith("base64"):
-                    a_tag_content = base64.b64decode(a_tag_parts[1].strip())
+                    a_tag_content = b64decode(a_tag_parts[1].strip())
+
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(a_tag_content)
                     # Ignore files that should be handled by JsJaws
@@ -2140,6 +2163,7 @@ class Extract(ServiceBase):
             binary,
             out_path=out_path,
             last_ditch_processing=False,
+            cert_preservation=True,
             log_message=lambda *args, **kwargs: None,
             beginning_file_size=file_size,
         )
