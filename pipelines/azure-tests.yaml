@@ -39,7 +39,7 @@ jobs:
       - script: |
           # Always use stable build from core
           export BUILD_TYPE=stable
-          docker build --build-arg --build-arg branch=$BUILD_TYPE -t cccs/${BUILD_REPOSITORY_NAME##*/}:$BUILD_TYPE -f ./Dockerfile .
+          docker build --build-arg branch=$BUILD_TYPE -t cccs/${BUILD_REPOSITORY_NAME##*/}:$BUILD_TYPE -f ./Dockerfile .
         workingDirectory: $(full_self_location)
         displayName: Build containers
       - script: |
