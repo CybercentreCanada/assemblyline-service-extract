@@ -4,8 +4,8 @@ import hashlib
 import itertools
 import json
 import logging
-import pathlib
 import os
+import pathlib
 import re
 import shutil
 import subprocess
@@ -55,11 +55,11 @@ from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 
+from extract.ext import py2exe_extractor, pydecompile, pyinstaller
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
-from extract.ext import pyinstaller, pydecompile, py2exe_extractor
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -244,6 +244,7 @@ class Extract(ServiceBase):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 1
             # due to bug with identify identifying some py2exe pe's as archives, attempt extraction to add additional.
+            # i.e. 3ada677a5a4109e00666dbe2aa6482b5fdae1ac37f20ef34102f08e0c96ed168
             self.attempt_extract_py2exe(request, extracted)
         elif request.file_type.startswith("executable/"):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
