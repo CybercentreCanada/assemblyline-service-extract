@@ -54,6 +54,10 @@ def decompile_pyc(filepath: str) -> str:
             source_files=[],
             outfile=None,
         )
+    except ImportError:
+        # likely an incorrectly or unimplemented code by uncompyle:
+        # bad marshal data (unknown type code)
+        raise Invalid
     finally:
         sys.stdout = stdout
         sys.stderr = stderr
