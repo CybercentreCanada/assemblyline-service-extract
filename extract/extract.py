@@ -301,10 +301,7 @@ class Extract(ServiceBase):
                     pyinstaller_files = self.extract_pyinstaller(request)
                     if pyinstaller_files:
                         # extract_zip can also extract some files from pyinstaller
-                        try:
-                            extracted.extend(pyinstaller_files)
-                        except NameError:
-                            extracted = pyinstaller_files
+                        extracted.extend(pyinstaller_files)
                 except pyinstaller.Invalid:
                     pass
 
