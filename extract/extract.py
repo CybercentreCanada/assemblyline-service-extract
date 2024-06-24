@@ -2156,10 +2156,17 @@ class Extract(ServiceBase):
 
                 return (temp_path, overlay_size, entropy)
 
-        out_path = os.path.join(self.working_directory, "debloated")
+        debloat_out_path = os.path.join(self.working_directory, "debloated")
+        if not os.path.exists(debloat_out_path):
+            os.mkdir(debloat_out_path)
+        sub_folder = 1
+        while os.path.exists(os.path.join(debloat_out_path, str(sub_folder))):
+            sub_folder += 1
+        debloat_extracted_path = os.path.join(debloat_out_path, str(sub_folder))
+
         debloat_code = debloat.processor.process_pe(
             binary,
-            out_path=out_path,
+            out_path=debloat_extracted_path,
             last_ditch_processing=False,
             cert_preservation=True,
             log_message=lambda *args, **kwargs: None,
@@ -2167,16 +2174,16 @@ class Extract(ServiceBase):
         )
 
         # If nothing was extracted, or it was a NSIS file that debloat wants to extract
-        if not os.path.exists(out_path) or os.path.isdir(out_path):
+        if not os.path.exists(debloat_extracted_path) or os.path.isdir(debloat_extracted_path):
             return False
 
         debloat_section = ResultTextSection("Debloated using specific technique", parent=request.result)
         debloat_section.add_line(debloat.processor.RESULT_CODES[debloat_code])
 
-        with open(out_path, "rb") as f:
+        with open(debloat_extracted_path, "rb") as f:
             data = f.read()
         sha256hash = hashlib.sha256(data).hexdigest()
-        shutil.move(out_path, os.path.join(self.working_directory, sha256hash))
+        shutil.move(debloat_extracted_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
 
     def extract_py2exe(self, request: ServiceRequest):
