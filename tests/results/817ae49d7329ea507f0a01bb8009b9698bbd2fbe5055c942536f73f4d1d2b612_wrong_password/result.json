@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "DocumentsFolder 6987584 12202022.img (Password:s1835)",
+        "body": "Interop.ShockwaveFlashObjects.dll (Password:password)",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -18,7 +18,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Unextracted files in password protected archive:\nDocumentsFolder 6987584 12202022.img",
+        "body": "Unextracted files in password protected archive:\nAxInterop.ShockwaveFlashObjects.dll\nInterop.ShockwaveFlashObjects.dll\nYouAreAnIdiot.exe",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -39,7 +39,9 @@
             ],
             "name": {
               "extracted": [
-                "DocumentsFolder 6987584 12202022.img"
+                "AxInterop.ShockwaveFlashObjects.dll",
+                "Interop.ShockwaveFlashObjects.dll",
+                "YouAreAnIdiot.exe"
               ]
             }
           }
@@ -54,7 +56,7 @@
     "supplementary": [
       {
         "name": "password_tested.json",
-        "sha256": "0b29e12e0d6ba5c0708e07c1c9601b4f4bd63647d9cd52dc130667937b607960"
+        "sha256": "99eb89529e1e106efc7da5026bfb3d028bb09eb4c48ccccd4744485dd318d75e"
       }
     ]
   },
@@ -78,7 +80,17 @@
         {
           "heur_id": 12,
           "signatures": [],
-          "value": "DocumentsFolder 6987584 12202022.img"
+          "value": "AxInterop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Interop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "YouAreAnIdiot.exe"
         }
       ]
     },
