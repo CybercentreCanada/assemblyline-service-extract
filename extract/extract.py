@@ -14,7 +14,6 @@ import tarfile
 import tempfile
 import zipfile
 import zlib
-from copy import deepcopy
 from datetime import datetime
 from io import BytesIO
 
@@ -377,37 +376,24 @@ class Extract(ServiceBase):
                 break
 
         if extracted_files:
+            section_title = (
+                f"Successfully extracted {len(extracted_files)} file{'s' if len(extracted_files) > 1 else ''}"
+            )
+            # Change password if one or more known password
+            # Some zip files are partially password protected, and we only got the non-protected
+            # files if we do not known the password
+            if password_protected and self.password_used:
+                pw_list = " | ".join(self.password_used)
+                section_title += f" using password{'s' if len(self.password_used) > 1 else ''}: {pw_list}"
+
+            section = ResultTextSection(section_title, parent=request.result)
+
             if password_protected:
                 if summary_section_heuristic == 1:
                     summary_section_heuristic = 10
-
-                # If successful known password
                 if self.password_used:
-                    pw_list = " | ".join(self.password_used)
-                    section = ResultSection(
-                        f"Successfully extracted {len(extracted_files)} "
-                        f"file{'s' if len(extracted_files) > 1 else ''} "
-                        f"using password{'s' if len(self.password_used) > 1 else ''}: {pw_list}",
-                        parent=request.result,
-                    )
                     for p in self.password_used:
                         section.add_tag("info.password", p)
-
-                # If successful unknown password ### Can this ever happen?
-                else:
-                    pw_list = " | ".join(self.get_passwords(request))
-                    section = ResultSection(
-                        f"Successfully extracted {len(extracted_files)} "
-                        f"file{'s' if len(extracted_files) > 1 else ''} "
-                        f"using one or more of the following passwords: {pw_list}",
-                        parent=request.result,
-                    )
-
-            else:
-                section = ResultTextSection(
-                    f"Successfully extracted {len(extracted_files)} file{'s' if len(extracted_files) > 1 else ''}",
-                    parent=request.result,
-                )
 
             if summary_section_heuristic:
                 section.set_heuristic(summary_section_heuristic)
@@ -557,10 +543,14 @@ class Extract(ServiceBase):
         Returns:
             List of strings.
         """
-        passwords = deepcopy(self.config.get("default_pw_list", []))
+
         user_supplied = request.get_param("password")
         if user_supplied:
-            passwords.append(user_supplied)
+            passwords = [user_supplied]
+        else:
+            passwords = []
+
+        passwords.extend(self.config.get("default_pw_list", []))
 
         if "email_body" in request.temp_submission_data:
             passwords.extend(request.temp_submission_data["email_body"])
@@ -1264,6 +1254,29 @@ class Extract(ServiceBase):
                 json.dump(password_tested, f)
             request.add_supplementary(password_tested_path, "password_tested.json", "Passwords used that failed")
 
+    @staticmethod
+    def filter_7zip_wrong_password(stderr, extracted_children):
+        if b"Wrong password? : " not in stderr:
+            return extracted_children, []
+
+        corrupted_files = []
+        for stderr_line in stderr.split(b"\n"):
+            if b"Wrong password? : " in stderr_line:
+                corrupted_files.append(stderr_line.rsplit(b"Wrong password? : ", 1)[-1])
+
+        if not corrupted_files:
+            return extracted_children, []
+
+        filtered_files = []
+        removed_files = []
+        for extracted_child in extracted_children:
+            if extracted_child[1].encode() not in corrupted_files:
+                filtered_files.append(extracted_child)
+            else:
+                removed_files.append(extracted_child)
+
+        return filtered_files, removed_files
+
     def extract_zip_7zip(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
         password_list = []
@@ -1273,6 +1286,7 @@ class Extract(ServiceBase):
 
         with tempfile.TemporaryDirectory() as temp_dir:
             extracted_files = []
+            password_used = []
 
             popenargs = ["7zzs", "x", "-p", "-y", file_path, f"-o{temp_dir}"]
             # Some UDF samples were wrongly identified as plain ISO by 7z.
@@ -1287,9 +1301,17 @@ class Extract(ServiceBase):
                 p = subprocess.run(popenargs, env=env, capture_output=True)
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_files.extend(
-                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                extracted_children = self._submit_extracted(
+                    request, file_type, temp_dir, sys._getframe().f_code.co_name
                 )
+                wrong_password_items = []
+                passwordless_filtered_files, passwordless_wrong_password_files = self.filter_7zip_wrong_password(
+                    p.stderr, extracted_children
+                )
+                for f in passwordless_wrong_password_files:
+                    wrong_password_items.append(f"{f[1]} (No password)")
+                extracted_files.extend(passwordless_filtered_files)
+                passwordless_filtered_file_names = [x[1] for x in passwordless_filtered_files]
 
                 if b"Wrong password" in stderr:
                     password_protected = True
@@ -1304,14 +1326,35 @@ class Extract(ServiceBase):
                                 request, file_type, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
-                                self.password_used.append(password)
-                                extracted_files.extend(extracted_children)
-                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
-                                break
+                                filtered_files, wrong_password_files = self.filter_7zip_wrong_password(
+                                    p.stderr, extracted_children
+                                )
+                                for f in wrong_password_files:
+                                    wrong_password_items.append(f"{f[1]} (Password:{password})")
+                                filtered_files = [
+                                    x for x in filtered_files if x[1] not in passwordless_filtered_file_names
+                                ]
+
+                                if filtered_files:
+                                    if b"\nEverything is Ok\n" in p.stdout:
+                                        wrong_password_items = []
+                                        password_used = [password]
+                                        extracted_files = passwordless_filtered_files + filtered_files
+                                        break
+                                    password_used.append(password)
+                                    extracted_files.extend(filtered_files)
                         except OSError:
                             pass
                 elif b"Can not open the file as archive" in stdoutput:
                     raise TypeError
+
+                if password_used:
+                    self.password_used.extend(password_used)
+
+                if wrong_password_items:
+                    section = ResultTextSection("Found corrupted files (Wrong password?)", parent=request.result)
+                    for item in wrong_password_items:
+                        section.add_line(item)
 
                 error_res = None
                 for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
@@ -1319,6 +1362,7 @@ class Extract(ServiceBase):
                         line.startswith(b"ERROR:")
                         and not line.startswith(b"ERROR: Wrong password :")
                         and not line.startswith(b"ERROR: Data Error in encrypted file. Wrong password? : ")
+                        and not line.startswith(b"ERROR: CRC Failed in encrypted file. Wrong password? : ")
                     ):
                         if error_res is None:
                             error_res = ResultTextSection("Errors in 7z", parent=request.result)

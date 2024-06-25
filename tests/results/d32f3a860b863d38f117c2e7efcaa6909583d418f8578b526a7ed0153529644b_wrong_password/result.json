@@ -5,20 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "DocumentsFolder 6987584 12202022.img (Password:s1835)",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Found corrupted files (Wrong password?)",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "Unextracted files in password protected archive:\nDocumentsFolder 6987584 12202022.img",
+        "body": "Unextracted files in password protected archive:\nVirus Maker.exe",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -39,27 +26,65 @@
             ],
             "name": {
               "extracted": [
-                "DocumentsFolder 6987584 12202022.img"
+                "Virus Maker.exe"
               ]
             }
           }
         },
         "title_text": "Failed to extract password protected file.",
         "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "readme.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "readme.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
       }
     ]
   },
   "files": {
-    "extracted": [],
+    "extracted": [
+      {
+        "name": "readme.txt",
+        "sha256": "ec059872ca0ab2a183c1e5539e76f926605ae2e7a60ced5247e5f0f72465d971"
+      }
+    ],
     "supplementary": [
       {
         "name": "password_tested.json",
-        "sha256": "0b29e12e0d6ba5c0708e07c1c9601b4f4bd63647d9cd52dc130667937b607960"
+        "sha256": "99eb89529e1e106efc7da5026bfb3d028bb09eb4c48ccccd4744485dd318d75e"
       }
     ]
   },
   "results": {
     "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
       {
         "attack_ids": [],
         "heur_id": 12,
@@ -78,7 +103,12 @@
         {
           "heur_id": 12,
           "signatures": [],
-          "value": "DocumentsFolder 6987584 12202022.img"
+          "value": "Virus Maker.exe"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "readme.txt"
         }
       ]
     },
