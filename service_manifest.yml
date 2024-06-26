@@ -2,7 +2,7 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|gpg/symmetric
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|gpg/symmetric|resource/pyc
 rejects: empty|metadata/.*
 
 stage: EXTRACT

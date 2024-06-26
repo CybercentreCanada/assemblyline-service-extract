@@ -1,7 +1,7 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 500,
+    "score": 0,
     "sections": [
       {
         "auto_collapse": false,
@@ -45,37 +45,6 @@
         "tags": {},
         "title_text": "Successfully extracted 868 files that were safelisted.",
         "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "gg/essential/loader/stage0/stage1.jar",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": {
-          "attack_ids": [],
-          "frequency": 1,
-          "heur_id": 16,
-          "score": 500,
-          "score_map": {},
-          "signatures": {}
-        },
-        "promote_to": null,
-        "tags": {
-          "file": {
-            "behavior": [
-              "Executable Content in Archive"
-            ],
-            "name": {
-              "extracted": [
-                "gg/essential/loader/stage0/stage1.jar"
-              ]
-            }
-          }
-        },
-        "title_text": "Executable Content in Archive. Potentially malicious...",
-        "zeroize_on_tag_safe": false
       }
     ]
   },
@@ -102,21 +71,9 @@
         "attack_ids": [],
         "heur_id": 3,
         "signatures": []
-      },
-      {
-        "attack_ids": [],
-        "heur_id": 16,
-        "signatures": []
       }
     ],
     "tags": {
-      "file.behavior": [
-        {
-          "heur_id": 16,
-          "signatures": [],
-          "value": "Executable Content in Archive"
-        }
-      ],
       "file.name.extracted": [
         {
           "heur_id": 3,
@@ -125,11 +82,6 @@
         },
         {
           "heur_id": 3,
-          "signatures": [],
-          "value": "gg/essential/loader/stage0/stage1.jar"
-        },
-        {
-          "heur_id": 16,
           "signatures": [],
           "value": "gg/essential/loader/stage0/stage1.jar"
         },
