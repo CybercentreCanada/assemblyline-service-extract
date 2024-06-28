@@ -2163,7 +2163,7 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_cart(self, request: ServiceRequest):
-        cart_name = get_metadata_only(request.file_path)["name"]
+        cart_name = get_metadata_only(request.file_path).get("name", f"uncarted_{request.sha256[:8]}")
         output_path = os.path.join(self.working_directory, strip_path_inclusion(cart_name, self.working_directory))
         with open(request.file_path, "rb") as ifile, open(output_path, "wb") as ofile:
             unpack_stream(ifile, ofile)
