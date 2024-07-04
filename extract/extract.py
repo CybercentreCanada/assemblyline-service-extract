@@ -2188,6 +2188,16 @@ class Extract(ServiceBase):
         return (os.path.join(self.working_directory, sha256hash), None, None)
 
     def extract_pyc(self, filepath):
+        """Attempt to decompile the pyc file at the given filepath.
+
+        Successfully decomplied files will be written back to the `working_directory`.
+
+        Args:
+            filepath: path to pyc file
+
+        Returns:
+            The filepath to the decompiled script.
+        """
         extracted = []
         try:
             py_file, embedded_fiename = pydecompile.decompile_pyc(filepath)
