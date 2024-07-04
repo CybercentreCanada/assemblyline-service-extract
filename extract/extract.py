@@ -147,6 +147,9 @@ class Extract(ServiceBase):
         "code/vbe": [
             "code/vbs",
         ],
+        "resource/pyc": [
+            "code/python",
+        ],
     }
 
     def __init__(self, config=None):
@@ -308,6 +311,8 @@ class Extract(ServiceBase):
             extracted = self.extract_a3x(request)
             if extracted:
                 summary_section_heuristic = 27
+        elif request.file_type == "resource/pyc":
+            extracted = self.extract_pyc(request.file_path)
         else:
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
@@ -1844,15 +1849,18 @@ class Extract(ServiceBase):
             Al result object scoring VHIGH if executables detected in container, or None.
         """
 
+        def is_launchable_fp(file_type):
+            for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
+                if request.file_type.startswith(k) and file_type in v:
+                    return True
+            return False
+
         def is_launchable(file):
-            if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
-                return True
             file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
+            if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
+                return not is_launchable_fp(file_type)
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
-                    if request.file_type.startswith(k) and file_type in v:
-                        return False
-                return True
+                return not is_launchable_fp(file_type)
             return False
 
         if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
@@ -2230,6 +2238,30 @@ class Extract(ServiceBase):
         shutil.move(debloat_extracted_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
 
+    def extract_pyc(self, filepath):
+        """Attempt to decompile the pyc file at the given filepath.
+
+        Successfully decomplied files will be written back to the `working_directory`.
+
+        Args:
+            filepath: path to pyc file
+
+        Returns:
+            The filepath to the decompiled script.
+        """
+        extracted = []
+        try:
+            py_file, embedded_fiename = pydecompile.decompile_pyc(filepath)
+            if py_file:
+                workdir_py_file = os.path.join(self.working_directory, os.path.basename(py_file))
+                shutil.move(py_file, workdir_py_file)
+                fname = embedded_fiename or os.path.basename(py_file)
+                extracted.append([workdir_py_file, fname, sys._getframe().f_code.co_name])
+        except pydecompile.Invalid:
+            pass
+
+        return extracted
+
     def extract_py2exe(self, request: ServiceRequest):
         """Extract embedded python byte code from a py2exe complied binary.
 
@@ -2245,13 +2277,7 @@ class Extract(ServiceBase):
         pycs = py2exe_extractor.extract(buf, outdir=pathlib.Path(self.working_directory))
         for pyc_path, script_name in pycs.items():
             extracted.append([pyc_path.as_posix(), script_name, sys._getframe().f_code.co_name])
-            try:
-                py_file, embedded_fiename = pydecompile.decompile_pyc(pyc_path.as_posix())
-                if py_file:
-                    fname = embedded_fiename or os.path.basename(py_file)
-                    extracted.append([py_file, fname, sys._getframe().f_code.co_name])
-            except pydecompile.Invalid:
-                pass
+            extracted.extend(self.extract_pyc(pyc_path.as_posix()))
 
         return extracted
 
@@ -2276,13 +2302,7 @@ class Extract(ServiceBase):
 
             # in case of pyc, attempt to also decompile
             if name.endswith(".pyc"):
-                try:
-                    py_file, embedded_fiename = pydecompile.decompile_pyc(tf.name)
-                    if py_file:
-                        fname = embedded_fiename or os.path.basename(py_file)
-                        extracted.append([py_file, fname, sys._getframe().f_code.co_name])
-                except pydecompile.Invalid:
-                    pass
+                extracted.extend(self.extract_pyc(tf.name))
 
         return extracted
 
