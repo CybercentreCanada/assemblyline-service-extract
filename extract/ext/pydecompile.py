@@ -1,3 +1,28 @@
+# Monkeypatch uncompyle6's print_doctstring function.
+# Unfortunately we can't get in early enough due to way __init__ is structured, so each use case must be patched.
+import uncompyle6
+
+orig_print_docstring = uncompyle6.pysource.print_docstring
+
+
+def patched_print_docstring(self, indent, docstring):
+    """Function to monkey patch the handling of binary docstrings."""
+    if isinstance(docstring, bytes):
+        docstring = docstring.decode("utf8", errors="replace")
+    return orig_print_docstring(self, indent, docstring)
+
+
+uncompyle6.pysource.print_docstring = patched_print_docstring
+from uncompyle6.semantics import helper
+
+helper.print_docstring = patched_print_docstring
+from uncompyle6.semantics import make_function1, make_function2, make_function3
+
+make_function1.print_docstring = patched_print_docstring
+make_function2.print_docstring = patched_print_docstring
+make_function3.print_docstring = patched_print_docstring
+# end monkeypatch
+
 import os
 import re
 import sys
@@ -5,7 +30,6 @@ import tempfile
 import xdis.magics
 
 from io import StringIO
-from uncompyle6.main import main as decompile
 
 
 class Invalid(Exception):
@@ -47,7 +71,7 @@ def decompile_pyc(filepath: str) -> str:
     sys.stdout = out
     sys.stderr = err
     try:
-        _ = decompile(
+        _ = uncompyle6.main.main(
             in_base=os.path.dirname(filepath),
             out_base=None,
             compiled_files=[fname],
