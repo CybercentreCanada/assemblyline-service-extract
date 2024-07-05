@@ -8,7 +8,7 @@ orig_print_docstring = uncompyle6.pysource.print_docstring
 def patched_print_docstring(self, indent, docstring):
     """Function to monkey patch the handling of binary docstrings."""
     if isinstance(docstring, bytes):
-        docstring = docstring.decode("utf8", errors="replace")
+        docstring = docstring.decode("utf8", errors="backslashreplace")
     return orig_print_docstring(self, indent, docstring)
 
 
