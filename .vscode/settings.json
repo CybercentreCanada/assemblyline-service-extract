@@ -27,6 +27,8 @@
     "flake8.args": [
         "--max-line-length=120",
         //Added the ignore of E203 for now : https://github.com/PyCQA/pycodestyle/issues/373
-        "--ignore=E203,W503"
+        "--ignore=E203,W503",
+        //Allow monkeypatch to be place at top of file and not be re-ordered.
+        "--per-file-ignores=extract/ext/pydecompile.py:E402"
     ],
 }
