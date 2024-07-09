@@ -8,11 +8,10 @@
 """
 
 import struct
-import xdis.magics
 import zlib
 
+import xdis.magics
 from assemblyline.common.str_utils import safe_str
-
 
 PYZ_MAGIC: bytes = b"PYZ\x00"
 ZLIB_HEADERS: list[bytes] = [

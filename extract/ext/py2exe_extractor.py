@@ -4,15 +4,13 @@ references: https://github.com/mitre/pydecipher/blob/master/pydecipher/artifact_
 """
 
 import io
-import lief
 import re
 import struct
 import tempfile
 import zipfile
-
-
 from pathlib import Path
 
+import lief
 import xdis.magics
 import xdis.marsh
 from xdis.unmarshal import load_code
@@ -30,6 +28,8 @@ SCRIPT_MAGIC = b"\x12\x34\x56\x78"
 # };
 SCRIPT_HEADER_FORMAT = "<iiii"
 SCRIPT_HEADER_SIZE = struct.calcsize(SCRIPT_HEADER_FORMAT)
+
+lief.logging.disable()
 
 
 class Invalid(Exception):

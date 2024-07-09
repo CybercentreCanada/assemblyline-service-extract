@@ -1,6 +1,23 @@
 # Monkeypatch uncompyle6's print_doctstring function.
 # Unfortunately we can't get in early enough due to way __init__ is structured, so each use case must be patched.
 import uncompyle6
+from uncompyle6.semantics import customize38
+from uncompyle6.semantics.consts import TABLE_DIRECT
+
+orig_customize_for_version38 = customize38.customize_for_version38
+
+
+def patched_customize_for_version38(self, version):
+    orig_customize_for_version38(self, version)
+    TABLE_DIRECT["whilestmt38"] = (
+        "%|while %c:\n%+%c%-\n\n",
+        (1, ("bool_op", "testexpr", "testexprc")),
+        (2, ("l_stmts", "l_stmts_opt", "pass", "_stmts")),
+    )
+
+
+customize38.customize_for_version38 = patched_customize_for_version38
+
 
 orig_print_docstring = uncompyle6.pysource.print_docstring
 
@@ -27,9 +44,9 @@ import os
 import re
 import sys
 import tempfile
-import xdis.magics
-
 from io import StringIO
+
+import xdis.magics
 
 
 class Invalid(Exception):
