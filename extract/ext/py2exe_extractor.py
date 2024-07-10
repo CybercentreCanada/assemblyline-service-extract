@@ -118,7 +118,7 @@ def extract_script(content: bytes) -> tuple[bytes, tuple[int, int]]:
     """
 
     binary = lief.parse(raw=content)
-    if not binary or isinstance(binary, lief.lief_errors) or not binary.has_resources:
+    if not binary or not isinstance(binary, lief.PE.Binary) or not binary.has_resources:
         raise Invalid
 
     # look for embedded PYTHONSCRIPT resource
