@@ -78,6 +78,26 @@ def b64decode(b64data):
     return data
 
 
+def is_archive_dmg(file_path) -> bool:
+    # https://en.wikipedia.org/wiki/Apple_Disk_Image#Metadata
+    with open(file_path, "rb") as f:
+        # The UDIF metadata is found at the end of the disk image following the data.
+        f.seek(-512, os.SEEK_END)
+
+        # uint8_t  Signature[4];           // magic 'koly'
+        if not f.read(4) == b"koly":
+            return False
+
+        # uint32_t Version;                // 4 (as of 2013)
+        if not f.read(4) == b"\x00\x00\x00\x04":
+            return False
+
+        # uint32_t HeaderSize;             // sizeof(this) =  512 (as of 2013)
+        if not f.read(4) == b"\x00\x00\x02\x00":
+            return False
+    return True
+
+
 class Extract(ServiceBase):
     FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
     FORBIDDEN_ELF = [str(x) for x in range(20)]
@@ -217,7 +237,11 @@ class Extract(ServiceBase):
             extracted = self.extract_cart(request)
             summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
-            extracted = self.extract_zlib(request)
+            # Our current trusted libmagic identifies Apple Disk Image as zlib streams, do the check manually
+            if is_archive_dmg(request.file_path):
+                extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+            else:
+                extracted = self.extract_zlib(request)
             summary_section_heuristic = 1
         elif request.file_type == "archive/zstd":
             extracted = self.extract_zstd(request)
