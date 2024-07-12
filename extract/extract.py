@@ -352,11 +352,6 @@ class Extract(ServiceBase):
                     link_desc = f"{child[1]} -> {os.readlink(file_path)}"
                     symlinks.append(link_desc)
                 else:
-                    # Some files in a zip are not even readable, so make sure we can read them.
-                    # They had `oct(os.stat(file_path).st_mode) == 0o100000`
-                    if not os.access(file_path, os.R_OK):
-                        os.chmod(file_path, os.stat(file_path).st_mode | 0o444)
-
                     # Start by stripping the file.
                     if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
                         file_path = self.strip_file(request, file_path, child[1])
@@ -806,6 +801,10 @@ class Extract(ServiceBase):
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
                     shutil.move(file_path, target_path)
+                    # Some files in a zip are not even readable, so make sure we can read them.
+                    # They had `oct(os.stat(file_path).st_mode) == 0o100000` (or 0o100100)
+                    if not os.path.islink(target_path) and not os.access(target_path, os.R_OK):
+                        os.chmod(target_path, os.stat(target_path).st_mode | 0o444)
                     extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
