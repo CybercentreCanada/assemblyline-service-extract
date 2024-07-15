@@ -7,6 +7,8 @@ from uncompyle6.semantics.consts import TABLE_DIRECT
 orig_customize_for_version38 = customize38.customize_for_version38
 
 
+# TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
+# Fixed in https://github.com/rocky/python-uncompyle6/issues/498
 def patched_customize_for_version38(self, version):
     orig_customize_for_version38(self, version)
     TABLE_DIRECT["whilestmt38"] = (
@@ -99,6 +101,11 @@ def decompile_pyc(filepath: str) -> str:
         # likely an incorrectly or unimplemented code by uncompyle:
         # bad marshal data (unknown type code)
         raise Invalid
+    except NameError as e:
+        # TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
+        # Fixed in https://github.com/rocky/python-uncompyle6/commit/b0b67e9f34c53ad4a76d5c30d171f10d909f443b
+        if str(e) != "name 'ParserError2' is not defined":
+            raise
     finally:
         sys.stdout = stdout
         sys.stderr = stderr
