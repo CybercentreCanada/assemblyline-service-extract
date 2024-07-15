@@ -238,7 +238,7 @@ class Extract(ServiceBase):
             summary_section_heuristic = 1
         elif request.file_type == "archive/zlib":
             # Our current trusted libmagic identifies Apple Disk Image as zlib streams, do the check manually
-            if is_archive_dmg(request.file_path):
+            if request.file_size > 512 and is_archive_dmg(request.file_path):
                 extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             else:
                 extracted = self.extract_zlib(request)
