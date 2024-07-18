@@ -106,6 +106,7 @@ def decompile_pyc(filepath: str) -> str:
         # Fixed in https://github.com/rocky/python-uncompyle6/commit/b0b67e9f34c53ad4a76d5c30d171f10d909f443b
         if str(e) != "name 'ParserError2' is not defined":
             raise
+        return script, embedded_filename
     finally:
         sys.stdout = stdout
         sys.stderr = stderr
