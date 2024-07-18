@@ -15,6 +15,9 @@ import xdis.magics
 import xdis.marsh
 from xdis.unmarshal import load_code
 
+from .pyinstaller import generate_pyc_header
+
+
 PYTHON_DLL_RE = re.compile(b"python([0-9]{2,3})\.dll", re.IGNORECASE)
 SCRIPT_MAGIC = b"\x12\x34\x56\x78"
 
@@ -38,37 +41,6 @@ class Invalid(Exception):
 
 class NoVersion(Exception):
     """Cannot determine the compiled python version."""
-
-
-## TODO move this to shared lib when pyinstaller merged
-def generate_pyc_header(major: int, minor: int) -> bytes:
-    """Create a fake header for pyc files.
-
-    Scripts included by PyInstaller do not have a header attached.
-
-    Args:
-        major: major python version
-        minor: minor python version
-
-    Returns:
-        A Zeroed out fake header of correct length
-    """
-    # attempt to match correct version
-    v = xdis.magics.by_version.get(f"{major}.{minor}")
-    if not v:
-        # unknown, set blank
-        v = b"\x00" * 4
-    header = [v]
-
-    # Check version for PEP552: https://peps.python.org/pep-0552/
-    if major >= 3 and minor >= 7:
-        header.append(b"\x00" * 4)  # bitfield
-        header.append(b"\x00" * 8)  # modification date + size
-    else:
-        header.append(b"\x00" * 4)  # timestamp
-        if major >= 3 and minor >= 3:
-            header.append(b"\x00" * 4)  # size
-    return b"".join(header)
 
 
 def get_pyver_from_archive(binary: lief.PE.Binary) -> tuple[int, int]:
