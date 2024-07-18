@@ -318,7 +318,7 @@ class Extract(ServiceBase):
             summary_section_heuristic = 19
 
         if len(extracted) == 1:
-            subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
+            subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True, calculate_entropy=False)
             if subfile_info["type"] == "archive/tar":
                 internal_tar_section = ResultMultiSection(
                     f"{request.file_type.replace('archive/', '')} tar file extracted", parent=request.result
@@ -352,11 +352,6 @@ class Extract(ServiceBase):
                     link_desc = f"{child[1]} -> {os.readlink(file_path)}"
                     symlinks.append(link_desc)
                 else:
-                    # Some files in a zip are not even readable, so make sure we can read them.
-                    # They had `oct(os.stat(file_path).st_mode) == 0o100000`
-                    if not os.access(file_path, os.R_OK):
-                        os.chmod(file_path, os.stat(file_path).st_mode | 0o444)
-
                     # Start by stripping the file.
                     if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
                         file_path = self.strip_file(request, file_path, child[1])
@@ -384,7 +379,7 @@ class Extract(ServiceBase):
             section_title = (
                 f"Successfully extracted {len(extracted_files)} file{'s' if len(extracted_files) > 1 else ''}"
             )
-            # Change password if one or more known password
+            # Change title if one or more known password found
             # Some zip files are partially password protected, and we only got the non-protected
             # files if we do not known the password
             if password_protected and self.password_used:
@@ -440,7 +435,7 @@ class Extract(ServiceBase):
         self.archive_with_executables(request)
 
     def strip_file(self, request: ServiceRequest, file_path, file_name):
-        extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True)
+        extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True, calculate_entropy=False)
         if extracted_file_info["type"].startswith("executable/windows"):
             strip_overlay_result = self.strip_overlay(request, file_path)
             if strip_overlay_result:
@@ -806,6 +801,10 @@ class Extract(ServiceBase):
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
                     shutil.move(file_path, target_path)
+                    # Some files in a zip are not even readable, so make sure we can read them.
+                    # They had `oct(os.stat(file_path).st_mode) == 0o100000` (or 0o100100)
+                    if not os.path.islink(target_path) and not os.access(target_path, os.R_OK):
+                        os.chmod(target_path, os.stat(target_path).st_mode | 0o444)
                     extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")

@@ -1,6 +1,25 @@
 # Monkeypatch uncompyle6's print_doctstring function.
 # Unfortunately we can't get in early enough due to way __init__ is structured, so each use case must be patched.
 import uncompyle6
+from uncompyle6.semantics import customize38
+from uncompyle6.semantics.consts import TABLE_DIRECT
+
+orig_customize_for_version38 = customize38.customize_for_version38
+
+
+# TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
+# Fixed in https://github.com/rocky/python-uncompyle6/issues/498
+def patched_customize_for_version38(self, version):
+    orig_customize_for_version38(self, version)
+    TABLE_DIRECT["whilestmt38"] = (
+        "%|while %c:\n%+%c%-\n\n",
+        (1, ("bool_op", "testexpr", "testexprc")),
+        (2, ("l_stmts", "l_stmts_opt", "pass", "_stmts")),
+    )
+
+
+customize38.customize_for_version38 = patched_customize_for_version38
+
 
 orig_print_docstring = uncompyle6.pysource.print_docstring
 
@@ -27,9 +46,9 @@ import os
 import re
 import sys
 import tempfile
-import xdis.magics
-
 from io import StringIO
+
+import xdis.magics
 
 
 class Invalid(Exception):
@@ -82,6 +101,11 @@ def decompile_pyc(filepath: str) -> str:
         # likely an incorrectly or unimplemented code by uncompyle:
         # bad marshal data (unknown type code)
         raise Invalid
+    except NameError as e:
+        # TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
+        # Fixed in https://github.com/rocky/python-uncompyle6/commit/b0b67e9f34c53ad4a76d5c30d171f10d909f443b
+        if str(e) != "name 'ParserError2' is not defined":
+            raise
     except AssertionError:
         # `xdis` has multiple `assert`s to validate that the code it is generating make sense.
         # if one of these `assert`s fails, then chances are the pyc was corrupt, malformed, protected

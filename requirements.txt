@@ -12,6 +12,6 @@ zstandard
 autoit-ripper
 python-gnupg
 mobi
-uncompyle6
+uncompyle6==3.9.1
 xdis
 lief

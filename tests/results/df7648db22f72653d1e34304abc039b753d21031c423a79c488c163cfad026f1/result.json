@@ -1,0 +1,142 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "VirtualRepairTool/.DS_Store\nVirtualRepairTool/.background/background.png\nVirtualRepairTool/VirtualRepairTool\nVirtualRepairTool/VirtualRepairTool:rsrc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "VirtualRepairTool/.DS_Store",
+                "VirtualRepairTool/.background/background.png",
+                "VirtualRepairTool/VirtualRepairTool",
+                "VirtualRepairTool/VirtualRepairTool:rsrc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 4 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "VirtualRepairTool/VirtualRepairTool",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "VirtualRepairTool/VirtualRepairTool"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "VirtualRepairTool/VirtualRepairTool",
+        "sha256": "171df1b7e44eb74db82301f666cc08bd480186c97a0b91bf3b5d6c13ad213e56"
+      },
+      {
+        "name": "VirtualRepairTool/VirtualRepairTool:rsrc",
+        "sha256": "37387a405c509aa4d380772d84990812251925eaf73ae1fdc3968ff8a6479f31"
+      },
+      {
+        "name": "VirtualRepairTool/.DS_Store",
+        "sha256": "58b030cef60a722ac140daf6d6d25923d58652aaabfe1984124af9cdc3019b6d"
+      },
+      {
+        "name": "VirtualRepairTool/.background/background.png",
+        "sha256": "e6ee38e13803218f6c1a71b2b94823cdb24193781ea8bf4c370ea6a2d5a0fa5f"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "VirtualRepairTool/.DS_Store"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "VirtualRepairTool/.background/background.png"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "VirtualRepairTool/VirtualRepairTool"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "VirtualRepairTool/VirtualRepairTool"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "VirtualRepairTool/VirtualRepairTool:rsrc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
