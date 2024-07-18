@@ -82,6 +82,11 @@ def decompile_pyc(filepath: str) -> str:
         # likely an incorrectly or unimplemented code by uncompyle:
         # bad marshal data (unknown type code)
         raise Invalid
+    except AssertionError:
+        # `xdis` has multiple `assert`s to validate that the code it is generating make sense.
+        # if one of these `assert`s fails, then chances are the pyc was corrupt, malformed, protected
+        # or there's a bug with `xdis`' parsing.
+        raise Invalid
     finally:
         sys.stdout = stdout
         sys.stderr = stderr
