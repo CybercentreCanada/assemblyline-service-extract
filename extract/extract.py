@@ -591,7 +591,7 @@ class Extract(ServiceBase):
                                     # Corrupted zip file, also expected
                                     self.log.debug(f"The zip file is corrupted due to '{e}'")
                                     pass
-                                except EOFError:
+                                except (EOFError, OSError):
                                     # Unable to read path
                                     pass
 
