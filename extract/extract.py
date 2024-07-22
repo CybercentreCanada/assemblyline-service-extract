@@ -12,6 +12,7 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import traceback
 import zipfile
 import zlib
 from datetime import datetime
@@ -312,7 +313,7 @@ class Extract(ServiceBase):
             if extracted:
                 summary_section_heuristic = 27
         elif request.file_type == "resource/pyc":
-            extracted = self.extract_pyc(request.file_path)
+            extracted = self.extract_pyc(request, request.file_path)
         else:
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
@@ -2237,7 +2238,7 @@ class Extract(ServiceBase):
         shutil.move(debloat_extracted_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
 
-    def extract_pyc(self, filepath):
+    def extract_pyc(self, request: ServiceRequest, filepath):
         """Attempt to decompile the pyc file at the given filepath.
 
         Successfully decomplied files will be written back to the `working_directory`.
@@ -2258,6 +2259,12 @@ class Extract(ServiceBase):
                 extracted.append([workdir_py_file, fname, sys._getframe().f_code.co_name])
         except pydecompile.Invalid:
             pass
+        except pydecompile.XDisError as e:
+            error_res = ResultTextSection("Errors in xdis", parent=request.result)
+            last_frame = traceback.extract_tb(e.__cause__.__traceback__)[-1]
+            error_res.add_line(f"{e.__cause__.__class__.__name__}: {str(e.__cause__)}")
+            error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
+            error_res.add_line(f"{last_frame.line}")
 
         return extracted
 
@@ -2276,7 +2283,7 @@ class Extract(ServiceBase):
         pycs = py2exe_extractor.extract(buf, outdir=pathlib.Path(self.working_directory))
         for pyc_path, script_name in pycs.items():
             extracted.append([pyc_path.as_posix(), script_name, sys._getframe().f_code.co_name])
-            extracted.extend(self.extract_pyc(pyc_path.as_posix()))
+            extracted.extend(self.extract_pyc(request, pyc_path.as_posix()))
 
         return extracted
 
@@ -2301,7 +2308,7 @@ class Extract(ServiceBase):
 
             # in case of pyc, attempt to also decompile
             if name.endswith(".pyc"):
-                extracted.extend(self.extract_pyc(tf.name))
+                extracted.extend(self.extract_pyc(request, tf.name))
 
         return extracted
 

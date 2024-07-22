@@ -46,6 +46,7 @@ import os
 import re
 import sys
 import tempfile
+import traceback
 from io import StringIO
 
 import xdis.magics
@@ -53,6 +54,10 @@ import xdis.magics
 
 class Invalid(Exception):
     """Not a valid pyc file"""
+
+
+class XDisError(Exception):
+    """The XDis library raised an error"""
 
 
 def decompile_pyc(filepath: str) -> str:
@@ -97,10 +102,6 @@ def decompile_pyc(filepath: str) -> str:
             source_files=[],
             outfile=None,
         )
-    except ImportError:
-        # likely an incorrectly or unimplemented code by uncompyle:
-        # bad marshal data (unknown type code)
-        raise Invalid
     except NameError as e:
         # TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
         # Fixed in https://github.com/rocky/python-uncompyle6/commit/b0b67e9f34c53ad4a76d5c30d171f10d909f443b
@@ -112,6 +113,15 @@ def decompile_pyc(filepath: str) -> str:
         # if one of these `assert`s fails, then chances are the pyc was corrupt, malformed, protected
         # or there's a bug with `xdis`' parsing.
         raise Invalid
+    except ImportError:
+        # likely an incorrectly or unimplemented code by uncompyle:
+        # bad marshal data (unknown type code)
+        raise Invalid
+    except IndexError as e:
+        last_frame = traceback.extract_tb(sys.exc_info()[-1])[-1]
+        if last_frame.filename.startswith(os.path.dirname(xdis.__file__)):
+            raise XDisError() from e
+        raise
     finally:
         sys.stdout = stdout
         sys.stderr = stderr
