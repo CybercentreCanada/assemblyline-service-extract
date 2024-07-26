@@ -18,6 +18,9 @@ licence_count: 0
 
 privileged: true
 uses_temp_submission_data: true
+monitored_keys:
+  - email_body
+  - passwords
 
 config:
   # Must be all strings
