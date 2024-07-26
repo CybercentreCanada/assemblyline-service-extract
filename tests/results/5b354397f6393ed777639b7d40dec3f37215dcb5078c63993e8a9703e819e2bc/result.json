@@ -1,11 +1,71 @@
 {
   "extra": {
     "drop_file": false,
-    "score": 0,
+    "score": 500,
     "sections": [
       {
         "auto_collapse": false,
-        "body": ".data\n.itext\nCERTIFICATE\n[0]",
+        "body": {
+          "Name": "VCF to CSV Converter",
+          "Version": "5.5.7 (unicode)"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 1,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "network": {
+            "static": {
+              "uri": [
+                "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
+              ]
+            }
+          }
+        },
+        "title_text": "URIs Found",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CompiledCode.bin\nCompiledCode.txt\napp/vcfconv.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CompiledCode.bin",
+                "CompiledCode.txt",
+                "app/vcfconv.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "app/vcfconv.exe",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -13,25 +73,25 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 2,
-          "score": 0,
+          "heur_id": 16,
+          "score": 500,
           "score_map": {},
           "signatures": {}
         },
         "promote_to": null,
         "tags": {
           "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
             "name": {
               "extracted": [
-                ".data",
-                ".itext",
-                "CERTIFICATE",
-                "[0]"
+                "app/vcfconv.exe"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 4 files",
+        "title_text": "Executable Content in Archive. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -39,20 +99,16 @@
   "files": {
     "extracted": [
       {
-        "name": "CERTIFICATE",
-        "sha256": "06095b5c3528c439378692f824c7e1910d0f3fb23f27eca943092fed92695ad7"
+        "name": "app/vcfconv.exe",
+        "sha256": "1022785d3ba3d4c9befbbde7c20d4787ceac1aec3f66668023fc31dc2ce0c20e"
       },
       {
-        "name": ".data",
-        "sha256": "42f6faae65550b06e3ebbb5a5a19d6ac41911ca2690b14db237928bc63453d96"
+        "name": "CompiledCode.txt",
+        "sha256": "a935246bc8b270b4b8dbe42353e37756c2391675d82abc68ad5c3bed0c94c600"
       },
       {
-        "name": "[0]",
-        "sha256": "77428bcee30b0a473d9adaea9ae709d6332ad2434f76c334e86710266dd71fb7"
-      },
-      {
-        "name": ".itext",
-        "sha256": "7f26d734f1c91987ba9e8f9100bb4d742f5bfef70e88763bbdbc3ce181bf6651"
+        "name": "CompiledCode.bin",
+        "sha256": "c9f5b1e33e00f32afe2d1d5a4547ee078412151800a2faa0ece914956496bdc6"
       }
     ],
     "supplementary": []
@@ -61,31 +117,45 @@
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 2,
+        "heur_id": 16,
         "signatures": []
       }
     ],
     "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
       "file.name.extracted": [
         {
-          "heur_id": 2,
+          "heur_id": null,
           "signatures": [],
-          "value": ".data"
+          "value": "CompiledCode.bin"
         },
         {
-          "heur_id": 2,
+          "heur_id": null,
           "signatures": [],
-          "value": ".itext"
+          "value": "CompiledCode.txt"
         },
         {
-          "heur_id": 2,
+          "heur_id": null,
           "signatures": [],
-          "value": "CERTIFICATE"
+          "value": "app/vcfconv.exe"
         },
         {
-          "heur_id": 2,
+          "heur_id": 16,
           "signatures": [],
-          "value": "[0]"
+          "value": "app/vcfconv.exe"
+        }
+      ],
+      "network.static.uri": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
         }
       ]
     },

@@ -31,6 +31,7 @@ from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.path import strip_path_inclusion
 from assemblyline.common.str_utils import safe_str
+from assemblyline.odm import FULL_URI, IP_ONLY_REGEX
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
 from assemblyline_v4_service.common.result import (
@@ -54,6 +55,7 @@ from msoffcrypto.format.ooxml import OOXMLFile
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
+from refinery.units.formats.ifps import IFPSFile
 
 from extract.ext import py2exe_extractor, pydecompile, pyinstaller
 from extract.ext.repair_zip import BadZipfile, RepairZip
@@ -281,6 +283,9 @@ class Extract(ServiceBase):
                 extracted = self.extract_autoit_executable(request)
                 if extracted:
                     summary_section_heuristic = 26
+
+            if request.file_type.startswith("executable/windows/pe"):
+                extracted.extend(self.extract_innosetup(request))
 
             if not extracted:
                 extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
@@ -678,6 +683,66 @@ class Extract(ServiceBase):
 
         self.password_used.append(password)
         return [[name, request.file_name, sys._getframe().f_code.co_name]], True
+
+    def extract_innosetup(self, request: ServiceRequest):
+        """Will attempt to use innoextract."""
+        extracted = []
+
+        output_path = os.path.join(self.working_directory, "innoextract")
+        p = subprocess.run(
+            ["innoextract", "--compiledcode", "--output-dir", output_path, request.file_path],
+            capture_output=True,
+            check=False,
+        )
+
+        first_line = r"Extracting \"(.*)\" - setup data version (.*)"
+        first_line_m = re.search(first_line.encode(), p.stdout)
+        section = None
+        if first_line_m:
+            section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            section.set_item("Name", first_line_m.group(1).decode("UTF8", errors="backslashreplace"))
+            section.set_item("Version", first_line_m.group(2).decode())
+
+        if not os.path.exists(output_path):
+            return extracted
+
+        extracted = self._submit_extracted(request, request.file_type, output_path, sys._getframe().f_code.co_name)
+
+        ip_found = []
+        uri_found = []
+        for file in extracted:
+            if file[1] != "CompiledCode.bin":
+                continue
+
+            with open(file[0], "rb") as f:
+                compiledcodebin = IFPSFile(f.read())
+            compiledcodetxt_path = os.path.join(os.path.dirname(file[0]), "CompiledCode.txt")
+            with open(compiledcodetxt_path, "wb") as f:
+                f.write(str(compiledcodebin).encode("UTF8"))
+            extracted.append([compiledcodetxt_path, "CompiledCode.txt", sys._getframe().f_code.co_name])
+
+            for s in compiledcodebin.strings:
+                match = re.search(FULL_URI, s)
+                if match:
+                    uri_found.append(s)
+                    continue
+                match = re.search(IP_ONLY_REGEX, s)
+                if match:
+                    ip_found.append(s)
+
+        if ip_found or uri_found:
+            if section is None:
+                section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            for i in ip_found:
+                ip_section = ResultSection("IP Found", parent=section)
+                ip_section.add_line(i)
+                ip_section.add_tag("network.static.ip", i)
+            for u in uri_found:
+                uri_section = ResultSection("URIs Found", parent=section)
+                uri_section.add_line(u)
+                uri_section.add_tag("network.static.uri", u)
+
+        return extracted
 
     def extract_autoit_executable(self, request: ServiceRequest):
         """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
