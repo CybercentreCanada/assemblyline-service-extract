@@ -27,6 +27,7 @@ import olefile
 import pefile
 import zstandard
 from assemblyline.common import forge
+from assemblyline.common.constants import MAX_INT
 from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.path import strip_path_inclusion
@@ -346,6 +347,7 @@ class Extract(ServiceBase):
             extracted = self.repair_zip(request)
 
         extracted_files = []
+        very_large_files = []
         for child in sorted(extracted, key=lambda x: x[1]):
             try:
                 file_path = child[0]
@@ -354,10 +356,13 @@ class Extract(ServiceBase):
                     symlinks.append(link_desc)
                 else:
                     # Start by stripping the file.
-                    if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
+                    file_size = os.path.getsize(file_path)
+                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
                         file_path = self.strip_file(request, file_path, child[1])
 
-                    if request.add_extracted(
+                    if file_size > MAX_INT:
+                        very_large_files.append((file_path, file_size))
+                    elif request.add_extracted(
                         path=file_path,
                         name=child[1],
                         description=f"Extracted using {child[2]}",
@@ -375,6 +380,15 @@ class Extract(ServiceBase):
                     )
                 )
                 break
+
+        if very_large_files:
+            res = ResultSection(
+                f"File{'s' if len(very_large_files) > 1 else ''} over {MAX_INT} bytes",
+                heuristic=Heuristic(22),
+                parent=request.result,
+            )
+            for very_large_file in very_large_files:
+                res.add_line(f"File '{os.path.basename(very_large_file[0])} is {very_large_file[1]} bytes")
 
         if extracted_files:
             section_title = (
