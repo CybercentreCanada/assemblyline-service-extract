@@ -1,0 +1,77 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Name": "Waves Complete v10.0.0.16 patch",
+          "Version": "5.6.0 (unicode)"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CompiledCode.bin\nCompiledCode.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CompiledCode.bin",
+                "CompiledCode.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "CompiledCode.bin",
+        "sha256": "0a4471d3be99a0d31f92ef01ef1890d4b9ace8fe5fe8ea89e6cd42ec5a4c2fb7"
+      },
+      {
+        "name": "CompiledCode.txt",
+        "sha256": "ecd9a66c23e2278d59d3b62f8ad256f391471af0eae103364f9d0ed3a011f6f3"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.txt"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

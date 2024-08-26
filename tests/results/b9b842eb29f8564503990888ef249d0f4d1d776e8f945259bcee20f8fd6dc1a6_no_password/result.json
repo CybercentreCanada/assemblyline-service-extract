@@ -6,8 +6,9 @@
       {
         "auto_collapse": false,
         "body": {
-          "Name": "VCF to CSV Converter",
-          "Version": "5.5.7 (unicode)"
+          "Name": "Waves Complete v10.0.0.16 patch",
+          "Password": "Zet0",
+          "Version": "5.6.0 (unicode)"
         },
         "body_config": {},
         "body_format": "KEY_VALUE",
@@ -21,28 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 1,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {
-          "network": {
-            "static": {
-              "uri": [
-                "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
-              ]
-            }
-          }
-        },
-        "title_text": "URI Found",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "CompiledCode.bin\nCompiledCode.txt\napp/vcfconv.exe",
+        "body": "CompiledCode.bin\nCompiledCode.txt\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -55,17 +35,23 @@
               "extracted": [
                 "CompiledCode.bin",
                 "CompiledCode.txt",
-                "app/vcfconv.exe"
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
               ]
             }
+          },
+          "info": {
+            "password": [
+              "Zet0"
+            ]
           }
         },
-        "title_text": "Successfully extracted 3 files",
+        "title_text": "Successfully extracted 4 files using password: Zet0",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "app/vcfconv.exe",
+        "body": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -86,7 +72,8 @@
             ],
             "name": {
               "extracted": [
-                "app/vcfconv.exe"
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
               ]
             }
           }
@@ -99,16 +86,20 @@
   "files": {
     "extracted": [
       {
-        "name": "app/vcfconv.exe",
-        "sha256": "1022785d3ba3d4c9befbbde7c20d4787ceac1aec3f66668023fc31dc2ce0c20e"
+        "name": "CompiledCode.bin",
+        "sha256": "0a4471d3be99a0d31f92ef01ef1890d4b9ace8fe5fe8ea89e6cd42ec5a4c2fb7"
+      },
+      {
+        "name": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+        "sha256": "24c2258aae95fec29f19e273048153c0b4f467573ac30ace9151ffd0dd54a2ae"
+      },
+      {
+        "name": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+        "sha256": "e00293fbb30dc93fb5331517b4f9f604afdf492312e4cd73d93b2b9e1b0bc4f9"
       },
       {
         "name": "CompiledCode.txt",
-        "sha256": "a935246bc8b270b4b8dbe42353e37756c2391675d82abc68ad5c3bed0c94c600"
-      },
-      {
-        "name": "CompiledCode.bin",
-        "sha256": "c9f5b1e33e00f32afe2d1d5a4547ee078412151800a2faa0ece914956496bdc6"
+        "sha256": "ecd9a66c23e2278d59d3b62f8ad256f391471af0eae103364f9d0ed3a011f6f3"
       }
     ],
     "supplementary": []
@@ -143,19 +134,29 @@
         {
           "heur_id": null,
           "signatures": [],
-          "value": "app/vcfconv.exe"
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll"
         },
         {
           "heur_id": 16,
           "signatures": [],
-          "value": "app/vcfconv.exe"
-        }
-      ],
-      "network.static.uri": [
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll"
+        },
         {
           "heur_id": null,
           "signatures": [],
-          "value": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Zet0"
         }
       ]
     },

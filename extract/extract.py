@@ -286,10 +286,12 @@ class Extract(ServiceBase):
                     summary_section_heuristic = 26
 
             if request.file_type.startswith("executable/windows/pe"):
-                extracted.extend(self.extract_innosetup(request))
+                inno_extracted, password_protected = self.extract_innosetup(request)
+                extracted.extend(inno_extracted)
 
             if not extracted:
-                extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+                extracted, zip_password_protected = self.extract_zip(request, request.file_path, request.file_type)
+                password_protected = password_protected or zip_password_protected
                 summary_section_heuristic = 2
 
             if request.file_type.startswith("executable/windows") and any(
@@ -701,6 +703,8 @@ class Extract(ServiceBase):
     def extract_innosetup(self, request: ServiceRequest):
         """Will attempt to use innoextract."""
         extracted = []
+        password_protected = False
+        password = None
 
         output_path = os.path.join(self.working_directory, "innoextract")
         p = subprocess.run(
@@ -709,16 +713,64 @@ class Extract(ServiceBase):
             check=False,
         )
 
+        if re.search("Setup contains encrypted files, use the --password option to extract them".encode(), p.stderr):
+            password_protected = True
+            p = subprocess.run(
+                ["innoextract", "--crack", request.file_path],
+                capture_output=True,
+                check=False,
+            )
+            password_found = r"Password found: (.*)"
+            password_found_m = re.search(password_found.encode(), p.stdout)
+            if password_found_m:
+                password = password_found_m.group(1).decode("UTF8", errors="backslashreplace")
+            else:
+                for possible_password in self.get_passwords(request):
+                    p = subprocess.run(
+                        [
+                            "innoextract",
+                            "--password",
+                            possible_password,
+                            "--compiledcode",
+                            "--output-dir",
+                            output_path,
+                            request.file_path,
+                        ],
+                        capture_output=True,
+                        check=False,
+                    )
+                    if not re.search("Incorrect password provided".encode(), p.stderr):
+                        password = possible_password
+
+            if password:
+                p = subprocess.run(
+                    [
+                        "innoextract",
+                        "--password",
+                        password,
+                        "--compiledcode",
+                        "--output-dir",
+                        output_path,
+                        request.file_path,
+                    ],
+                    capture_output=True,
+                    check=False,
+                )
+                self.password_used.append(password)
+
         first_line = r"Extracting \"(.*)\" - setup data version (.*)"
         first_line_m = re.search(first_line.encode(), p.stdout)
         section = None
-        if first_line_m:
+        if first_line_m or password is not None:
             section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
-            section.set_item("Name", first_line_m.group(1).decode("UTF8", errors="backslashreplace"))
-            section.set_item("Version", first_line_m.group(2).decode())
+            if first_line_m:
+                section.set_item("Name", first_line_m.group(1).decode("UTF8", errors="backslashreplace"))
+                section.set_item("Version", first_line_m.group(2).decode())
+            if password:
+                section.set_item("Password", password)
 
         if not os.path.exists(output_path):
-            return extracted
+            return extracted, password_protected
 
         extracted = self._submit_extracted(request, request.file_type, output_path, sys._getframe().f_code.co_name)
 
@@ -728,14 +780,21 @@ class Extract(ServiceBase):
             if file[1] != "CompiledCode.bin":
                 continue
 
-            with open(file[0], "rb") as f:
-                compiledcodebin = IFPSFile(f.read())
+            try:
+                with open(file[0], "rb") as f:
+                    compiledcodetxt = IFPSFile(f.read())
+            except Exception:
+                if section is None:
+                    section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+                ResultSection("CompiledCode.bin could not be decompiled", parent=section)
+                continue
+
             compiledcodetxt_path = os.path.join(os.path.dirname(file[0]), "CompiledCode.txt")
             with open(compiledcodetxt_path, "wb") as f:
-                f.write(str(compiledcodebin).encode("UTF8"))
+                f.write(str(compiledcodetxt).encode("UTF8"))
             extracted.append([compiledcodetxt_path, "CompiledCode.txt", sys._getframe().f_code.co_name])
 
-            for s in compiledcodebin.strings:
+            for s in compiledcodetxt.strings:
                 match = re.search(FULL_URI, s)
                 if match:
                     uri_found.append(s)
@@ -747,16 +806,18 @@ class Extract(ServiceBase):
         if ip_found or uri_found:
             if section is None:
                 section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
-            for i in ip_found:
-                ip_section = ResultSection("IP Found", parent=section)
-                ip_section.add_line(i)
-                ip_section.add_tag("network.static.ip", i)
-            for u in uri_found:
-                uri_section = ResultSection("URIs Found", parent=section)
-                uri_section.add_line(u)
-                uri_section.add_tag("network.static.uri", u)
+            if ip_found:
+                ip_section = ResultSection(f"IP{'s' if len(ip_found) > 1 else ''} Found", parent=section)
+                for i in ip_found:
+                    ip_section.add_line(i)
+                    ip_section.add_tag("network.static.ip", i)
+            if uri_found:
+                uri_section = ResultSection(f"URI{'s' if len(uri_found) > 1 else ''} Found", parent=section)
+                for u in uri_found:
+                    uri_section.add_line(u)
+                    uri_section.add_tag("network.static.uri", u)
 
-        return extracted
+        return extracted, password_protected
 
     def extract_autoit_executable(self, request: ServiceRequest):
         """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""

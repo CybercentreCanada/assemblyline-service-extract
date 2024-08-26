@@ -1,0 +1,282 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Name": "RadminVPN",
+          "Password": "ZELYALOVEKOKS",
+          "Version": "6.1.0 (unicode)"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "https://yandex.ru/legal/browser_agreement/\nhttps://yandex.ru/legal/desktop_software_agreement/\nhttp://download.yandex.ru/yandex-pack/downloader/downloader.exe\nhttps://pokie.ru/yagames\nhttps://pokie.ru/wot\nhttps://pokie.ru/warth\nhttps://pokie.ru/mc\nhttps://ithostingwow.com/Launch.7z",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 1,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "network": {
+            "static": {
+              "uri": [
+                "https://yandex.ru/legal/browser_agreement/",
+                "https://yandex.ru/legal/desktop_software_agreement/",
+                "http://download.yandex.ru/yandex-pack/downloader/downloader.exe",
+                "https://pokie.ru/yagames",
+                "https://pokie.ru/wot",
+                "https://pokie.ru/warth",
+                "https://pokie.ru/mc",
+                "https://ithostingwow.com/Launch.7z"
+              ]
+            }
+          }
+        },
+        "title_text": "URIs Found",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CompiledCode.bin\nCompiledCode.txt\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico\ntmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/CBO.bmp\ntmp/ir07n7jvj59zw8tr4awv.exe\ntmp/video.mp4",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CompiledCode.bin",
+                "CompiledCode.txt",
+                "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico",
+                "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico",
+                "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico",
+                "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico",
+                "tmp/4ymciq2rpquzvfdzpvnq.exe",
+                "tmp/CBO.bmp",
+                "tmp/ir07n7jvj59zw8tr4awv.exe",
+                "tmp/video.mp4"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "ZELYALOVEKOKS"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 10 files using password: ZELYALOVEKOKS",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "tmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/ir07n7jvj59zw8tr4awv.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "tmp/4ymciq2rpquzvfdzpvnq.exe",
+                "tmp/ir07n7jvj59zw8tr4awv.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "tmp/CBO.bmp",
+        "sha256": "2efb280a34e801cccf63ff0da64f444b856ed347b22590436d3af02e9d360555"
+      },
+      {
+        "name": "CompiledCode.bin",
+        "sha256": "56d381c9d898c92e921c80fffcbbcd50390a17ff80e3ee28c6259070c029418d"
+      },
+      {
+        "name": "CompiledCode.txt",
+        "sha256": "6b8120af41f97f9cb3eb9cbcf2cee912118736fde11c12ad922c2b53bd421453"
+      },
+      {
+        "name": "tmp/ir07n7jvj59zw8tr4awv.exe",
+        "sha256": "72c98287b2e8f85ea7bb87834b6ce1ce7ce7f41a8c97a81b307d4d4bf900922b"
+      },
+      {
+        "name": "tmp/video.mp4",
+        "sha256": "750971ded627fdbf204afc6a8d559c508af258bb42d293d8bc115a64df1f00fa"
+      },
+      {
+        "name": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico",
+        "sha256": "9f121d7af357bc02b5667806d35b71b5fa7f82e661f888a8adc07c8e24570e94"
+      },
+      {
+        "name": "tmp/4ymciq2rpquzvfdzpvnq.exe",
+        "sha256": "a6967e7a3c2251812dd6b3fa0265fb7b61aadc568f562a98c50c345908c6e827"
+      },
+      {
+        "name": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico",
+        "sha256": "e66152ea8ab6ae4c4b2cf0bfd8ef5d764da11d090e14076a7a7c7a4fc4f9297b"
+      },
+      {
+        "name": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico",
+        "sha256": "ea5407ae90ee73e20897ec2cbfef8f0a1b65ed9fdbaf092d9b40c7cdedbb11ac"
+      },
+      {
+        "name": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico",
+        "sha256": "f4a79122cee6ab97be3283e819cbb081408677fa5d6d69341aac3c366449db93"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/4ymciq2rpquzvfdzpvnq.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/4ymciq2rpquzvfdzpvnq.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/CBO.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/ir07n7jvj59zw8tr4awv.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/ir07n7jvj59zw8tr4awv.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "tmp/video.mp4"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "ZELYALOVEKOKS"
+        }
+      ],
+      "network.static.uri": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "http://download.yandex.ru/yandex-pack/downloader/downloader.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://ithostingwow.com/Launch.7z"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://pokie.ru/mc"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://pokie.ru/warth"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://pokie.ru/wot"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://pokie.ru/yagames"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://yandex.ru/legal/browser_agreement/"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://yandex.ru/legal/desktop_software_agreement/"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
