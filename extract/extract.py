@@ -708,7 +708,7 @@ class Extract(ServiceBase):
 
         output_path = os.path.join(self.working_directory, "innoextract")
         p = subprocess.run(
-            ["innoextract", "--compiledcode", "--output-dir", output_path, request.file_path],
+            ["innoextract", "--compiledcode", "--iss-file", "--output-dir", output_path, request.file_path],
             capture_output=True,
             check=False,
         )
@@ -732,6 +732,7 @@ class Extract(ServiceBase):
                             "--password",
                             possible_password,
                             "--compiledcode",
+                            "--iss-file",
                             "--output-dir",
                             output_path,
                             request.file_path,
@@ -749,6 +750,7 @@ class Extract(ServiceBase):
                         "--password",
                         password,
                         "--compiledcode",
+                        "--iss-file",
                         "--output-dir",
                         output_path,
                         request.file_path,
@@ -757,6 +759,11 @@ class Extract(ServiceBase):
                     check=False,
                 )
                 self.password_used.append(password)
+            else:
+                expected_files = [
+                    f[4:-13] for f in p.stdout.splitlines() if f.startswith(b' - "') and f.endswith(b'" - encrypted')
+                ]
+                self.raise_failed_passworded_extraction(request, request.file_type, [], expected_files, [])
 
         first_line = r"Extracting \"(.*)\" - setup data version (.*)"
         first_line_m = re.search(first_line.encode(), p.stdout)
@@ -777,17 +784,11 @@ class Extract(ServiceBase):
         ip_found = []
         uri_found = []
         for file in extracted:
-            if file[1] != "CompiledCode.bin":
+            if file[1] != "embedded/CompiledCode.bin":
                 continue
 
-            try:
-                with open(file[0], "rb") as f:
-                    compiledcodetxt = IFPSFile(f.read())
-            except Exception:
-                if section is None:
-                    section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
-                ResultSection("CompiledCode.bin could not be decompiled", parent=section)
-                continue
+            with open(file[0], "rb") as f:
+                compiledcodetxt = IFPSFile(f.read())
 
             compiledcodetxt_path = os.path.join(os.path.dirname(file[0]), "CompiledCode.txt")
             with open(compiledcodetxt_path, "wb") as f:
@@ -915,8 +916,8 @@ class Extract(ServiceBase):
 
                 skip = False
                 filename = safe_str(file_path.replace(folder_path, ""))
-                if filename.startswith("/"):
-                    filename = filename[1:]
+                if filename.startswith(os.path.sep):
+                    filename = filename[len(os.path.sep) :]
                 if not extract_executable_sections and file_type.startswith("executable"):
                     if "windows" in file_type:
                         for forbidden in self.FORBIDDEN_WIN:
@@ -938,7 +939,7 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
                 if not skip:
-                    target_folder = os.path.join(extracted_path, root.lstrip(folder_path))
+                    target_folder = os.path.join(extracted_path, root.removeprefix(folder_path).lstrip(os.path.sep))
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
                     shutil.move(file_path, target_path)

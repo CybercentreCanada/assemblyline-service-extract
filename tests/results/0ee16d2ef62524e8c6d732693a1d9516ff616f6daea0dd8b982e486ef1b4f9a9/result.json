@@ -50,7 +50,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.bin\nCompiledCode.txt\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico\ntmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/CBO.bmp\ntmp/ir07n7jvj59zw8tr4awv.exe\ntmp/video.mp4",
+        "body": "CompiledCode.txt\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico\nembedded/CompiledCode.bin\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/russian.isl\ninstall_script.iss\ntmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/CBO.bmp\ntmp/ir07n7jvj59zw8tr4awv.exe\ntmp/video.mp4",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -61,12 +61,16 @@
           "file": {
             "name": {
               "extracted": [
-                "CompiledCode.bin",
                 "CompiledCode.txt",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico",
+                "embedded/CompiledCode.bin",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/russian.isl",
+                "install_script.iss",
                 "tmp/4ymciq2rpquzvfdzpvnq.exe",
                 "tmp/CBO.bmp",
                 "tmp/ir07n7jvj59zw8tr4awv.exe",
@@ -80,7 +84,7 @@
             ]
           }
         },
-        "title_text": "Successfully extracted 10 files using password: ZELYALOVEKOKS",
+        "title_text": "Successfully extracted 14 files using password: ZELYALOVEKOKS",
         "zeroize_on_tag_safe": false
       },
       {
@@ -113,11 +117,23 @@
   "files": {
     "extracted": [
       {
+        "name": "embedded/WizardImage0.bmp",
+        "sha256": "043a355a498477b927070926bf24d965eda14bf8e20c1b40cf2c52ba67893d09"
+      },
+      {
+        "name": "embedded/WizardSmallImage0.bmp",
+        "sha256": "043a355a498477b927070926bf24d965eda14bf8e20c1b40cf2c52ba67893d09"
+      },
+      {
+        "name": "embedded/russian.isl",
+        "sha256": "26d0444da0edece32c8cb327c2d1062e702b76b9b756e67c4a90b656f7c77b6a"
+      },
+      {
         "name": "tmp/CBO.bmp",
         "sha256": "2efb280a34e801cccf63ff0da64f444b856ed347b22590436d3af02e9d360555"
       },
       {
-        "name": "CompiledCode.bin",
+        "name": "embedded/CompiledCode.bin",
         "sha256": "56d381c9d898c92e921c80fffcbbcd50390a17ff80e3ee28c6259070c029418d"
       },
       {
@@ -139,6 +155,10 @@
       {
         "name": "tmp/4ymciq2rpquzvfdzpvnq.exe",
         "sha256": "a6967e7a3c2251812dd6b3fa0265fb7b61aadc568f562a98c50c345908c6e827"
+      },
+      {
+        "name": "install_script.iss",
+        "sha256": "a8f79eed208ed5e44f3fd8b274d16910087328802f06d6ef5621e47b9d1a3f76"
       },
       {
         "name": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico",
@@ -169,11 +189,6 @@
         {
           "heur_id": null,
           "signatures": [],
-          "value": "CompiledCode.bin"
-        },
-        {
-          "heur_id": null,
-          "signatures": [],
           "value": "CompiledCode.txt"
         },
         {
@@ -195,6 +210,31 @@
           "heur_id": null,
           "signatures": [],
           "value": "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardSmallImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/russian.isl"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "install_script.iss"
         },
         {
           "heur_id": null,

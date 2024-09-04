@@ -22,7 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.bin\nCompiledCode.txt\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt",
+        "body": "CompiledCode.txt\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/decompressor.dll\nembedded/english.isl\ninstall_script.iss",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -33,7 +33,6 @@
           "file": {
             "name": {
               "extracted": [
-                "CompiledCode.bin",
                 "CompiledCode.txt",
                 "app/NetDiagram.chm",
                 "app/Visio/areas.vss",
@@ -51,7 +50,14 @@
                 "app/license.txt",
                 "app/mp3cdripperbeta.exe",
                 "app/ssleay32.dll",
-                "app/whatsnew.txt"
+                "app/whatsnew.txt",
+                "embedded/CompiledCode.bin",
+                "embedded/License.txt",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/decompressor.dll",
+                "embedded/english.isl",
+                "install_script.iss"
               ]
             }
           },
@@ -61,12 +67,12 @@
             ]
           }
         },
-        "title_text": "Successfully extracted 19 files using password: A1ADB8BE8E677894E",
+        "title_text": "Successfully extracted 25 files using password: A1ADB8BE8E677894E",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "app/NetDiagram.chm\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/mp3cdripperbeta.exe\napp/ssleay32.dll",
+        "body": "app/NetDiagram.chm\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\nembedded/decompressor.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -85,7 +91,8 @@
                 "app/libeay32.dll",
                 "app/libssl-1_1.dll",
                 "app/mp3cdripperbeta.exe",
-                "app/ssleay32.dll"
+                "app/ssleay32.dll",
+                "embedded/decompressor.dll"
               ]
             }
           }
@@ -106,6 +113,10 @@
         "sha256": "0dfabfc84209a1f6d0eccd764e1c8a6b26b25973d561c89318c6032bec48a945"
       },
       {
+        "name": "embedded/WizardImage0.bmp",
+        "sha256": "1b73df0b89a2943f34582cf81c2d8ed7b1ce4cfb54d86ce58ebd6dd0e1e05f5d"
+      },
+      {
         "name": "app/Visio/areas.vss",
         "sha256": "21889c505a0234524ac95081260329acee5100ed2d30278b52399d62d8aa801e"
       },
@@ -114,12 +125,24 @@
         "sha256": "2bdc115fb6d8c531fc7d8a7dd507948003b667c1d68b2d6b617ec9d044e746f9"
       },
       {
+        "name": "embedded/License.txt",
+        "sha256": "3327f310e89b9a589630aba28eccc0bd17b41e0a6db5bfe49cfc0aef3b14d174"
+      },
+      {
         "name": "app/Visio/devices.vssx",
         "sha256": "4e6e085089c471b6418195d056d8f32224d45273acc7abba3076d94ed9480434"
       },
       {
+        "name": "install_script.iss",
+        "sha256": "517b1d1ed0470dd5a2e419e3cca10dd95d9e3f5059112733237f7f2b74f45204"
+      },
+      {
         "name": "app/Visio/areas.vssx",
         "sha256": "5612a57a73b168840eb7fbbca3981e244d349a121b082ee6cdd593119e4c8873"
+      },
+      {
+        "name": "embedded/decompressor.dll",
+        "sha256": "58ee49d4b4f6def91c6561fc5a1b73bc86d8a01b23ce0c8ddbf0ed11f13d5ace"
       },
       {
         "name": "app/Visio/lines.vssx",
@@ -150,6 +173,10 @@
         "sha256": "86a89c8eada9c1ce5a74be1372de9756cc3529011fa5d3989c2ce9d15fedb729"
       },
       {
+        "name": "embedded/WizardSmallImage0.bmp",
+        "sha256": "ae94cd61179bc1869d0082b1fa8c189f8487d106712b48a2a6c6a035d370bfb4"
+      },
+      {
         "name": "app/ssleay32.dll",
         "sha256": "b6192300d3c1476ef3c25a368d055aa401035e78f9f6dbe5f93c84d36ef1fa62"
       },
@@ -166,7 +193,11 @@
         "sha256": "e98378b5f1fb11de06503b2143b593d1cb66b2b2e8f831fa39472f83afdaeb26"
       },
       {
-        "name": "CompiledCode.bin",
+        "name": "embedded/english.isl",
+        "sha256": "ef3b95c037e50eb263b8788f4959b073a50794eb8a57b835f1869a9517d78ee9"
+      },
+      {
+        "name": "embedded/CompiledCode.bin",
         "sha256": "fb0fc2e3c2059e6159540920a4ff7f75f92212639b318da7eb7fadece4a46ecc"
       },
       {
@@ -187,11 +218,6 @@
         }
       ],
       "file.name.extracted": [
-        {
-          "heur_id": null,
-          "signatures": [],
-          "value": "CompiledCode.bin"
-        },
         {
           "heur_id": null,
           "signatures": [],
@@ -311,6 +337,46 @@
           "heur_id": null,
           "signatures": [],
           "value": "app/whatsnew.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/License.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardSmallImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/decompressor.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/decompressor.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/english.isl"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "install_script.iss"
         }
       ],
       "info.password": [

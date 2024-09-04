@@ -53,7 +53,7 @@ RUN mkdir /opt/7z \
     && rm /7z2301-linux-x86.tar.xz
 
 # Install innoextract
-ADD https://github.com/gdesmar/innoextract/releases/download/0.2.0/innoextract /usr/bin/innoextract
+ADD https://github.com/gdesmar/innoextract/releases/download/0.3.0/innoextract /usr/bin/innoextract
 RUN chmod +x /usr/bin/innoextract
 
 # Switch to assemblyline user

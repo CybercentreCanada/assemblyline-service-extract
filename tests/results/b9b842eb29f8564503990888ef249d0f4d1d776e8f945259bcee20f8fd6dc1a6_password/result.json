@@ -7,6 +7,7 @@
         "auto_collapse": false,
         "body": {
           "Name": "Waves Complete v10.0.0.16 patch",
+          "Password": "Zet0",
           "Version": "5.6.0 (unicode)"
         },
         "body_config": {},
@@ -21,7 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.bin\nCompiledCode.txt",
+        "body": "CompiledCode.txt\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll\nembedded/CompiledCode.bin\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/default.isl\ninstall_script.iss",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -32,13 +33,49 @@
           "file": {
             "name": {
               "extracted": [
-                "CompiledCode.bin",
-                "CompiledCode.txt"
+                "CompiledCode.txt",
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+                "embedded/CompiledCode.bin",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/default.isl",
+                "install_script.iss"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "Zet0"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 8 files using password: Zet0",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+                "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 2 files",
+        "title_text": "Executable Content in Archive. Potentially malicious...",
         "zeroize_on_tag_safe": false
       }
     ]
@@ -46,8 +83,32 @@
   "files": {
     "extracted": [
       {
-        "name": "CompiledCode.bin",
+        "name": "embedded/CompiledCode.bin",
         "sha256": "0a4471d3be99a0d31f92ef01ef1890d4b9ace8fe5fe8ea89e6cd42ec5a4c2fb7"
+      },
+      {
+        "name": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
+        "sha256": "24c2258aae95fec29f19e273048153c0b4f467573ac30ace9151ffd0dd54a2ae"
+      },
+      {
+        "name": "embedded/WizardSmallImage0.bmp",
+        "sha256": "3103ff7601e3aad711b67ca507183277bb5040674e89a499f52415eb057a0e7f"
+      },
+      {
+        "name": "install_script.iss",
+        "sha256": "806dd58aa4caa4c5baf288e8c4020e70c0ebbca8d929903f1a4502ef03953ebb"
+      },
+      {
+        "name": "embedded/default.isl",
+        "sha256": "81789cb58702adc8f094d430f23102537cad66f02e4b0d6109ec10819d6ec23c"
+      },
+      {
+        "name": "embedded/WizardImage0.bmp",
+        "sha256": "b6681024f6601467e8e31782a864e269e3d5ce95cca8a096291cadb869aac807"
+      },
+      {
+        "name": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+        "sha256": "e00293fbb30dc93fb5331517b4f9f604afdf492312e4cd73d93b2b9e1b0bc4f9"
       },
       {
         "name": "CompiledCode.txt",
@@ -59,16 +120,70 @@
   "results": {
     "heuristics": [],
     "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
       "file.name.extracted": [
         {
           "heur_id": null,
           "signatures": [],
-          "value": "CompiledCode.bin"
+          "value": "CompiledCode.txt"
         },
         {
           "heur_id": null,
           "signatures": [],
-          "value": "CompiledCode.txt"
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardSmallImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/default.isl"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "install_script.iss"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Zet0"
         }
       ]
     },
