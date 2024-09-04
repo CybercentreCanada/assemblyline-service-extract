@@ -22,20 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": null,
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 1,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "CompiledCode.bin could not be decompiled",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "CompiledCode.bin\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt",
+        "body": "CompiledCode.bin\nCompiledCode.txt\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -47,6 +34,7 @@
             "name": {
               "extracted": [
                 "CompiledCode.bin",
+                "CompiledCode.txt",
                 "app/NetDiagram.chm",
                 "app/Visio/areas.vss",
                 "app/Visio/areas.vssx",
@@ -73,7 +61,7 @@
             ]
           }
         },
-        "title_text": "Successfully extracted 18 files using password: A1ADB8BE8E677894E",
+        "title_text": "Successfully extracted 19 files using password: A1ADB8BE8E677894E",
         "zeroize_on_tag_safe": false
       },
       {
@@ -150,6 +138,10 @@
         "sha256": "6871cb7ac5d9d3172cc48423d703b45b61cb8e0d3a6f894eba440773bcc831bc"
       },
       {
+        "name": "CompiledCode.txt",
+        "sha256": "6d96ad571bb486c0c2d6a5c86925911905246384d114dc0de9a127d1636bb125"
+      },
+      {
         "name": "app/libssl-1_1.dll",
         "sha256": "7a16e6ed0c0a49aeb8ea4972600a7a1422c92550602a150634b1c221f79300b4"
       },
@@ -199,6 +191,11 @@
           "heur_id": null,
           "signatures": [],
           "value": "CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.txt"
         },
         {
           "heur_id": null,
