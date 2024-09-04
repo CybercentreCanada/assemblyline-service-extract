@@ -229,7 +229,7 @@ heuristics:
 
   - heur_id: 28
     name: Extractable _RDATA section found
-    score: 300
+    score: 200
     filetype: executable/windows
     description: >-
       _RDATA is a non-standard section name for PEs, and the fact that it is extractable
