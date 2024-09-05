@@ -579,6 +579,15 @@ class Extract(ServiceBase):
         if "passwords" in request.temp_submission_data:
             passwords.extend(request.temp_submission_data["passwords"])
 
+        if request.file_name:
+            partial = ""
+            for chunk in request.file_name.split("."):
+                if partial:
+                    partial = ".".join([partial, chunk])
+                else:
+                    partial = chunk
+                passwords.append(partial)
+
         return passwords
 
     def repair_zip(self, request: ServiceRequest):
@@ -1918,7 +1927,7 @@ class Extract(ServiceBase):
             List of filtered file names and updated count of safelisted files.
         """
 
-        safelisted_tags_re = [
+        safelisted_type_re = [
             re.compile(r"android/(xml|resource)"),
             re.compile(r"audiovisual/.*"),
             re.compile(r"certificate/rsa"),
@@ -1958,7 +1967,7 @@ class Extract(ServiceBase):
         for cur_file in extracted:
             to_add = True
             file_info = self.identify.fileinfo(cur_file[0], generate_hashes=False)
-            for exp in safelisted_tags_re:
+            for exp in safelisted_type_re:
                 if exp.search(file_info["type"]):
                     to_add = False
                     safelisted_extracted.append(cur_file[1])

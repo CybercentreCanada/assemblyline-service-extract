@@ -1,0 +1,156 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "AxInterop.ShockwaveFlashObjects.dll\nInterop.ShockwaveFlashObjects.dll\nYouAreAnIdiot.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "AxInterop.ShockwaveFlashObjects.dll",
+                "Interop.ShockwaveFlashObjects.dll",
+                "YouAreAnIdiot.exe"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "mysubsarethebest"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 3 files using password: mysubsarethebest",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "AxInterop.ShockwaveFlashObjects.dll\nInterop.ShockwaveFlashObjects.dll\nYouAreAnIdiot.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "AxInterop.ShockwaveFlashObjects.dll",
+                "Interop.ShockwaveFlashObjects.dll",
+                "YouAreAnIdiot.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "AxInterop.ShockwaveFlashObjects.dll",
+        "sha256": "0d57a706d4e10cca3aed49b341a651f29046f5ef1328878d616be93c3b4cbce9"
+      },
+      {
+        "name": "YouAreAnIdiot.exe",
+        "sha256": "1f69810b8fe71e30a8738278adf09dd982f7de0ab9891d296ce7ea61b3fa4f69"
+      },
+      {
+        "name": "Interop.ShockwaveFlashObjects.dll",
+        "sha256": "63af704211a03f6ff6530ebfca095b6c97636ab66e5a6de80d167b19c3c30c66"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "AxInterop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "AxInterop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Interop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Interop.ShockwaveFlashObjects.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "YouAreAnIdiot.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "YouAreAnIdiot.exe"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "mysubsarethebest"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
