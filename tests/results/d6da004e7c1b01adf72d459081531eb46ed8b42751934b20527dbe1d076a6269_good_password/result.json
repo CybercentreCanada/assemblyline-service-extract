@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Config/Config Launcher.cfg\nLauncher.dll\nMain.dll\nPassword.txt\nSpaceLauncher.exe",
+        "body": "SpaceLauncher.exe\nLauncher.dll\nConfig/Config Launcher.cfg\nMain.dll\nPassword.txt",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,11 +23,11 @@
           "file": {
             "name": {
               "extracted": [
-                "Config/Config Launcher.cfg",
+                "SpaceLauncher.exe",
                 "Launcher.dll",
+                "Config/Config Launcher.cfg",
                 "Main.dll",
-                "Password.txt",
-                "SpaceLauncher.exe"
+                "Password.txt"
               ]
             }
           },
@@ -42,7 +42,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Launcher.dll\nMain.dll\nSpaceLauncher.exe",
+        "body": "SpaceLauncher.exe\nLauncher.dll\nMain.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -63,9 +63,9 @@
             ],
             "name": {
               "extracted": [
+                "SpaceLauncher.exe",
                 "Launcher.dll",
-                "Main.dll",
-                "SpaceLauncher.exe"
+                "Main.dll"
               ]
             }
           }

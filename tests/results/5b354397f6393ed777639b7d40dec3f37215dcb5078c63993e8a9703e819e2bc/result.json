@@ -42,7 +42,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.txt\napp/vcfconv.exe\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/english.isl\ninstall_script.iss",
+        "body": "app/vcfconv.exe\nCompiledCode.txt\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/english.isl\ninstall_script.iss\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -53,14 +53,14 @@
           "file": {
             "name": {
               "extracted": [
-                "CompiledCode.txt",
                 "app/vcfconv.exe",
+                "CompiledCode.txt",
                 "embedded/CompiledCode.bin",
                 "embedded/License.txt",
-                "embedded/WizardImage0.bmp",
-                "embedded/WizardSmallImage0.bmp",
                 "embedded/english.isl",
-                "install_script.iss"
+                "install_script.iss",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp"
               ]
             }
           }

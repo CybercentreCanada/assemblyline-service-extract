@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "FILE_ID.DIZ\nTranslation.Workspace.Xliff.Ed.serials.maker.exe\norion.nfo",
+        "body": "Translation.Workspace.Xliff.Ed.serials.maker.exe\nFILE_ID.DIZ\norion.nfo",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,8 +23,8 @@
           "file": {
             "name": {
               "extracted": [
-                "FILE_ID.DIZ",
                 "Translation.Workspace.Xliff.Ed.serials.maker.exe",
+                "FILE_ID.DIZ",
                 "orion.nfo"
               ]
             }

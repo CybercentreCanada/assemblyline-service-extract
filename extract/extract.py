@@ -16,6 +16,7 @@ import traceback
 import zipfile
 import zlib
 from datetime import datetime
+from enum import Enum
 from io import BytesIO
 
 import autoit_ripper
@@ -80,6 +81,63 @@ def b64decode(b64data):
                 raise e
             data = base64.b64decode(f"{b64data}==")
     return data
+
+
+class PRIORITY(Enum):
+    VERY_HIGH = 1
+    HIGH = 2
+    MEDIUM = 3
+    LOW = 4
+    VERY_LOW = 5
+
+
+EXTRACTION_PRIORITY = {
+    PRIORITY.VERY_HIGH: [
+        "executable/",
+    ],
+    PRIORITY.HIGH: [
+        "resource/pyc",
+        "code/",
+        "document/",
+        "archive/",
+    ],
+    PRIORITY.MEDIUM: [
+        "image/svg",
+        "text/plain",
+        "text/windows/registry",
+    ],
+    PRIORITY.LOW: [
+        "text/",
+        "resource/",
+    ],
+    PRIORITY.VERY_LOW: [
+        "image/",
+        "video/",
+        "audio/",
+    ],
+}
+
+__PRIORITY_EXACT = {
+    file_type: priority
+    for priority in PRIORITY
+    for file_type in EXTRACTION_PRIORITY[priority]
+    if not file_type.endswith("/")
+}
+__PRIORITY_SW = {
+    file_type: priority
+    for priority in PRIORITY
+    for file_type in EXTRACTION_PRIORITY[priority]
+    if file_type.endswith("/")
+}
+
+
+def get_file_priority(file_type: str):
+    if file_type in __PRIORITY_EXACT:
+        return __PRIORITY_EXACT[file_type]
+    for potential_match, priority in __PRIORITY_SW.items():
+        if file_type.startswith(potential_match):
+            return priority
+    return PRIORITY.MEDIUM
 
 
 class Extract(ServiceBase):
@@ -353,24 +411,43 @@ class Extract(ServiceBase):
         if not extracted:
             extracted = self.repair_zip(request)
 
-        extracted_files = []
+        prioritized_files = {
+            PRIORITY.VERY_HIGH: [],
+            PRIORITY.HIGH: [],
+            PRIORITY.MEDIUM: [],
+            PRIORITY.LOW: [],
+            PRIORITY.VERY_LOW: [],
+        }
         very_large_files = []
         for child in sorted(extracted, key=lambda x: x[1]):
-            try:
-                file_path = child[0]
-                if os.path.islink(file_path):
-                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
-                    symlinks.append(link_desc)
-                else:
-                    # Start by stripping the file.
+            file_path = child[0]
+            if os.path.islink(file_path):
+                link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                symlinks.append(link_desc)
+            else:
+                # Start by stripping the file.
+                file_info = self.identify.fileinfo(file_path, generate_hashes=False)
+                file_size = file_info["size"]
+                if file_size > self.config.get("heur22_min_overlay_size", 31457280):
+                    file_path = self.strip_file(request, file_path, child[1])
                     file_size = os.path.getsize(file_path)
-                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
-                        file_path = self.strip_file(request, file_path, child[1])
 
-                    if file_size > MAX_INT:
-                        very_large_files.append((file_path, file_size))
-                    elif request.add_extracted(
-                        path=file_path,
+                if file_size > MAX_INT:
+                    very_large_files.append((file_path, file_size))
+                    continue
+
+                prioritized_files[get_file_priority(file_info["type"])].append([file_path, child[1], child[2]])
+
+        max_extracted_exceeded = False
+        extracted_files = []
+        for priority in [PRIORITY.VERY_HIGH, PRIORITY.HIGH, PRIORITY.MEDIUM, PRIORITY.LOW, PRIORITY.VERY_LOW]:
+            if max_extracted_exceeded:
+                break
+
+            for child in prioritized_files[priority]:
+                try:
+                    if request.add_extracted(
+                        path=child[0],
                         name=child[1],
                         description=f"Extracted using {child[2]}",
                         safelist_interface=self.api_interface,
@@ -378,15 +455,16 @@ class Extract(ServiceBase):
                         extracted_files.append(child[1])
                     else:
                         safelisted_extracted.append(child[1])
-            except MaxExtractedExceeded:
-                request.result.add_section(
-                    ResultSection(
-                        f"This file contains a total of {len(extracted)} extracted files, "
-                        f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
-                        "Some files were not extracted."
+                except MaxExtractedExceeded:
+                    request.result.add_section(
+                        ResultSection(
+                            f"This file contains a total of {len(extracted)} extracted files, "
+                            f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
+                            "Some files were not extracted."
+                        )
                     )
-                )
-                break
+                    max_extracted_exceeded = True
+                    break
 
         if very_large_files:
             res = ResultSection(

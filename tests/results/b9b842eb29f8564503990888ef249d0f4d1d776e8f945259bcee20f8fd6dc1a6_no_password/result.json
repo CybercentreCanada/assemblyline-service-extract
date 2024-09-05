@@ -53,7 +53,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.txt\nembedded/CompiledCode.bin\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/default.isl\ninstall_script.iss",
+        "body": "CompiledCode.txt\nembedded/CompiledCode.bin\nembedded/default.isl\ninstall_script.iss\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -66,10 +66,10 @@
               "extracted": [
                 "CompiledCode.txt",
                 "embedded/CompiledCode.bin",
-                "embedded/WizardImage0.bmp",
-                "embedded/WizardSmallImage0.bmp",
                 "embedded/default.isl",
-                "install_script.iss"
+                "install_script.iss",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp"
               ]
             }
           }

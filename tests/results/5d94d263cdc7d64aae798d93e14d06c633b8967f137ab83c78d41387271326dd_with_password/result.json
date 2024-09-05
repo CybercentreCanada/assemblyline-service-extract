@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "GeoIP.dat\nPlugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nStub.manifest\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
+        "body": "Plugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nWinMM.Net.dll\nnjRAT v0.7d.exe\nStub.manifest\nstub.il\nGeoIP.dat",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,17 +23,17 @@
           "file": {
             "name": {
               "extracted": [
-                "GeoIP.dat",
                 "Plugin/cam.dll",
                 "Plugin/ch.dll",
                 "Plugin/mic.dll",
                 "Plugin/plg.dll",
                 "Plugin/pw.dll",
                 "Plugin/sc2.dll",
-                "Stub.manifest",
                 "WinMM.Net.dll",
                 "njRAT v0.7d.exe",
-                "stub.il"
+                "Stub.manifest",
+                "stub.il",
+                "GeoIP.dat"
               ]
             }
           },

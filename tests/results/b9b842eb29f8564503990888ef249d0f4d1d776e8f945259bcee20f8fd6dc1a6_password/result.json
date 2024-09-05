@@ -22,7 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "CompiledCode.txt\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll\nembedded/CompiledCode.bin\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/default.isl\ninstall_script.iss",
+        "body": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll\nCompiledCode.txt\nembedded/CompiledCode.bin\nembedded/default.isl\ninstall_script.iss\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -33,14 +33,14 @@
           "file": {
             "name": {
               "extracted": [
-                "CompiledCode.txt",
                 "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll",
                 "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+                "CompiledCode.txt",
                 "embedded/CompiledCode.bin",
-                "embedded/WizardImage0.bmp",
-                "embedded/WizardSmallImage0.bmp",
                 "embedded/default.isl",
-                "install_script.iss"
+                "install_script.iss",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp"
               ]
             }
           },

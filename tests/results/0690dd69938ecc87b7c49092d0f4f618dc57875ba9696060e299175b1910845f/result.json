@@ -18,7 +18,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "ProgramList.txt\nProsessList.txt\nScreenshot.png\ninfo.txt",
+        "body": "ProgramList.txt\nProsessList.txt\ninfo.txt\nScreenshot.png",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -38,8 +38,8 @@
               "extracted": [
                 "ProgramList.txt",
                 "ProsessList.txt",
-                "Screenshot.png",
-                "info.txt"
+                "info.txt",
+                "Screenshot.png"
               ]
             }
           }

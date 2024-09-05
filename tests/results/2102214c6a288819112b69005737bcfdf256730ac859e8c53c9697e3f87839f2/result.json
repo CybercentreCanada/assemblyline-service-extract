@@ -56,7 +56,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Quote.lnk\nSystem Volume Information/WPSettings.dat\nimagedata.ps1",
+        "body": "imagedata.ps1\nQuote.lnk\nSystem Volume Information/WPSettings.dat",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -74,9 +74,9 @@
           "file": {
             "name": {
               "extracted": [
+                "imagedata.ps1",
                 "Quote.lnk",
-                "System Volume Information/WPSettings.dat",
-                "imagedata.ps1"
+                "System Volume Information/WPSettings.dat"
               ]
             }
           }
@@ -86,7 +86,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Quote.lnk\nimagedata.ps1",
+        "body": "imagedata.ps1\nQuote.lnk",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -107,8 +107,8 @@
             ],
             "name": {
               "extracted": [
-                "Quote.lnk",
-                "imagedata.ps1"
+                "imagedata.ps1",
+                "Quote.lnk"
               ]
             }
           }

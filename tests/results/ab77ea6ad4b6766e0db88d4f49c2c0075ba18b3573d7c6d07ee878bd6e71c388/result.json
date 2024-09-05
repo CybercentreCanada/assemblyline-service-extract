@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Re-LoaderByR@1n.exe\nReadme/Leggimi.txt\nReadme/Lisezmoi.txt\nReadme/Readme.txt\nReadme/\u81ea\u8ff0.txt\nSetupComplete.cmd",
+        "body": "Re-LoaderByR@1n.exe\nSetupComplete.cmd\nReadme/Leggimi.txt\nReadme/Lisezmoi.txt\nReadme/Readme.txt\nReadme/\u81ea\u8ff0.txt",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -24,11 +24,11 @@
             "name": {
               "extracted": [
                 "Re-LoaderByR@1n.exe",
+                "SetupComplete.cmd",
                 "Readme/Leggimi.txt",
                 "Readme/Lisezmoi.txt",
                 "Readme/Readme.txt",
-                "Readme/\u81ea\u8ff0.txt",
-                "SetupComplete.cmd"
+                "Readme/\u81ea\u8ff0.txt"
               ]
             }
           }
