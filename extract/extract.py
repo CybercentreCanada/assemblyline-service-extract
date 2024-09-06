@@ -408,7 +408,7 @@ class Extract(ServiceBase):
                 password_protected = password_protected or tar_password_protected
 
         # For the time being, always try repair_zip, and see if we have any results
-        if not extracted:
+        if not extracted and not safelisted_extracted:
             extracted = self.repair_zip(request)
 
         prioritized_files = {
@@ -1297,7 +1297,8 @@ class Extract(ServiceBase):
         except Exception:
             pass
 
-        return []
+        # Fallback to using extract_zip, but do not return if password-protected
+        return self.extract_zip(request, request.file_path, request.file_type)[0]
 
     def extract_zstd(self, request: ServiceRequest):
         with open(request.file_path, "rb") as fh:

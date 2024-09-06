@@ -1,0 +1,43 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: There are some data after the end of the payload data : update.json",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "META-INF/MANIFEST.MF\njar/main.clz\njar/main.jar\nlayout/css/jquery-weui.min.css\nlayout/css/weui.min.css\nlayout/index.css\nlayout/intr.html\nlayout/main.html\nlayout/other.html\nlayout/res/1715488175661.png\nlayout/show.xml\nuijar/main.clz\nuijar/ui.jar\nupdate.json",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 14 files that were safelisted.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {},
+    "temp_submission_data": {}
+  }
+}
