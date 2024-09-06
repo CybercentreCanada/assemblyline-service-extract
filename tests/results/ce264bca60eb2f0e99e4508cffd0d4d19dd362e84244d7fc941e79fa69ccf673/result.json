@@ -63,7 +63,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "zstd-1.5.5/.buckconfig\nzstd-1.5.5/.buckversion\nzstd-1.5.5/.circleci/config.yml\nzstd-1.5.5/.circleci/images/primary/Dockerfile\nzstd-1.5.5/.cirrus.yml\nzstd-1.5.5/.gitattributes\nzstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md\nzstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md\nzstd-1.5.5/.github/dependabot.yml\nzstd-1.5.5/.github/workflows/dev-long-tests.yml\nzstd-1.5.5/.github/workflows/dev-short-tests.yml\nzstd-1.5.5/.github/workflows/publish-release-artifacts.yml\nzstd-1.5.5/.github/workflows/scorecards.yml\nzstd-1.5.5/.github/workflows/windows-artifacts.yml\nzstd-1.5.5/.gitignore\nzstd-1.5.5/.travis.yml\nzstd-1.5.5/CHANGELOG\nzstd-1.5.5/CODE_OF_CONDUCT.md\nzstd-1.5.5/CONTRIBUTING.md\nzstd-1.5.5/COPYING\nzstd-1.5.5/LICENSE\nzstd-1.5.5/Makefile\nzstd-1.5.5/Package.swift\nzstd-1.5.5/README.md\nzstd-1.5.5/TESTING.md\nzstd-1.5.5/appveyor.yml\nzstd-1.5.5/build/.gitignore\nzstd-1.5.5/build/README.md\nzstd-1.5.5/build/VS2008/fullbench/fullbench.vcproj\nzstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj\nzstd-1.5.5/build/VS2008/zstd.sln\nzstd-1.5.5/build/VS2008/zstd/zstd.vcproj\nzstd-1.5.5/build/VS2008/zstdlib/zstdlib.vcproj\nzstd-1.5.5/build/VS2010/CompileAsCpp.props\nzstd-1.5.5/build/VS2010/datagen/datagen.vcxproj\nzstd-1.5.5/build/VS2010/fullbench-dll/fullbench-dll.vcxproj\nzstd-1.5.5/build/VS2010/fullbench/fullbench.vcxproj\nzstd-1.5.5/build/VS2010/fuzzer/fuzzer.vcxproj\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.vcxproj\nzstd-1.5.5/build/VS2010/libzstd/libzstd.vcxproj\nzstd-1.5.5/build/VS2010/zstd.sln\nzstd-1.5.5/build/VS2010/zstd/zstd.rc\nzstd-1.5.5/build/VS2010/zstd/zstd.vcxproj\nzstd-1.5.5/build/VS_scripts/README.md\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/cmake/.gitignore\nzstd-1.5.5/build/cmake/CMakeLists.txt\nzstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake\nzstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake\nzstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake\nzstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake\nzstd-1.5.5/build/cmake/README.md\nzstd-1.5.5/build/cmake/contrib/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/.gitignore\nzstd-1.5.5/build/cmake/lib/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in\nzstd-1.5.5/build/cmake/programs/.gitignore\nzstd-1.5.5/build/cmake/programs/CMakeLists.txt\nzstd-1.5.5/build/cmake/tests/.gitignore\nzstd-1.5.5/build/cmake/tests/CMakeLists.txt\nzstd-1.5.5/build/cmake/zstdConfig.cmake\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/README.md\nzstd-1.5.5/build/meson/contrib/gen_html/meson.build\nzstd-1.5.5/build/meson/contrib/meson.build\nzstd-1.5.5/build/meson/contrib/pzstd/meson.build\nzstd-1.5.5/build/meson/lib/meson.build\nzstd-1.5.5/build/meson/meson.build\nzstd-1.5.5/build/meson/meson_options.txt\nzstd-1.5.5/build/meson/programs/meson.build\nzstd-1.5.5/build/meson/tests/meson.build\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/.gitignore\nzstd-1.5.5/build/single_file_libs/README.md\nzstd-1.5.5/build/single_file_libs/build_decoder_test.sh\nzstd-1.5.5/build/single_file_libs/build_library_test.sh\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/build/single_file_libs/combine.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_decoder.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_library.sh\nzstd-1.5.5/build/single_file_libs/examples/README.md\nzstd-1.5.5/build/single_file_libs/examples/emscripten.c\nzstd-1.5.5/build/single_file_libs/examples/roundtrip.c\nzstd-1.5.5/build/single_file_libs/examples/shell.html\nzstd-1.5.5/build/single_file_libs/examples/simple.c\nzstd-1.5.5/build/single_file_libs/examples/testcard-dxt1.inl\nzstd-1.5.5/build/single_file_libs/examples/testcard-zstd.inl\nzstd-1.5.5/build/single_file_libs/examples/testcard.png\nzstd-1.5.5/build/single_file_libs/zstd-in.c\nzstd-1.5.5/build/single_file_libs/zstddeclib-in.c\nzstd-1.5.5/contrib/VS2005/README.md\nzstd-1.5.5/contrib/VS2005/fullbench/fullbench.vcproj\nzstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj\nzstd-1.5.5/contrib/VS2005/zstd.sln\nzstd-1.5.5/contrib/VS2005/zstd/zstd.vcproj\nzstd-1.5.5/contrib/VS2005/zstdlib/zstdlib.vcproj\nzstd-1.5.5/contrib/cleanTabs\nzstd-1.5.5/contrib/diagnose_corruption/.gitignore\nzstd-1.5.5/contrib/diagnose_corruption/Makefile\nzstd-1.5.5/contrib/diagnose_corruption/check_flipped_bits.c\nzstd-1.5.5/contrib/docker/Dockerfile\nzstd-1.5.5/contrib/docker/README.md\nzstd-1.5.5/contrib/externalSequenceProducer/.gitignore\nzstd-1.5.5/contrib/externalSequenceProducer/Makefile\nzstd-1.5.5/contrib/externalSequenceProducer/README.md\nzstd-1.5.5/contrib/externalSequenceProducer/main.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/contrib/gen_html/.gitignore\nzstd-1.5.5/contrib/gen_html/Makefile\nzstd-1.5.5/contrib/gen_html/README.md\nzstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh\nzstd-1.5.5/contrib/gen_html/gen_html.cpp\nzstd-1.5.5/contrib/largeNbDicts/.gitignore\nzstd-1.5.5/contrib/largeNbDicts/Makefile\nzstd-1.5.5/contrib/largeNbDicts/README.md\nzstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c\nzstd-1.5.5/contrib/linux-kernel/.gitignore\nzstd-1.5.5/contrib/linux-kernel/Makefile\nzstd-1.5.5/contrib/linux-kernel/README.md\nzstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/decompress_sources.h\nzstd-1.5.5/contrib/linux-kernel/linux.mk\nzstd-1.5.5/contrib/linux-kernel/linux_zstd.h\nzstd-1.5.5/contrib/linux-kernel/mem.h\nzstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/test/Makefile\nzstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/stddef.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h\nzstd-1.5.5/contrib/linux-kernel/test/macro-test.sh\nzstd-1.5.5/contrib/linux-kernel/test/static_test.c\nzstd-1.5.5/contrib/linux-kernel/test/test.c\nzstd-1.5.5/contrib/linux-kernel/zstd_common_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_compress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_decompress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_deps.h\nzstd-1.5.5/contrib/match_finders/README.md\nzstd-1.5.5/contrib/match_finders/zstd_edist.c\nzstd-1.5.5/contrib/match_finders/zstd_edist.h\nzstd-1.5.5/contrib/premake/premake4.lua\nzstd-1.5.5/contrib/premake/zstd.lua\nzstd-1.5.5/contrib/pzstd/.gitignore\nzstd-1.5.5/contrib/pzstd/BUCK\nzstd-1.5.5/contrib/pzstd/ErrorHolder.h\nzstd-1.5.5/contrib/pzstd/Logging.h\nzstd-1.5.5/contrib/pzstd/Makefile\nzstd-1.5.5/contrib/pzstd/Options.cpp\nzstd-1.5.5/contrib/pzstd/Options.h\nzstd-1.5.5/contrib/pzstd/Pzstd.cpp\nzstd-1.5.5/contrib/pzstd/Pzstd.h\nzstd-1.5.5/contrib/pzstd/README.md\nzstd-1.5.5/contrib/pzstd/SkippableFrame.cpp\nzstd-1.5.5/contrib/pzstd/SkippableFrame.h\nzstd-1.5.5/contrib/pzstd/images/Cspeed.png\nzstd-1.5.5/contrib/pzstd/images/Dspeed.png\nzstd-1.5.5/contrib/pzstd/main.cpp\nzstd-1.5.5/contrib/pzstd/test/BUCK\nzstd-1.5.5/contrib/pzstd/test/OptionsTest.cpp\nzstd-1.5.5/contrib/pzstd/test/PzstdTest.cpp\nzstd-1.5.5/contrib/pzstd/test/RoundTrip.h\nzstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/BUCK\nzstd-1.5.5/contrib/pzstd/utils/Buffer.h\nzstd-1.5.5/contrib/pzstd/utils/FileSystem.h\nzstd-1.5.5/contrib/pzstd/utils/Likely.h\nzstd-1.5.5/contrib/pzstd/utils/Portability.h\nzstd-1.5.5/contrib/pzstd/utils/Range.h\nzstd-1.5.5/contrib/pzstd/utils/ResourcePool.h\nzstd-1.5.5/contrib/pzstd/utils/ScopeGuard.h\nzstd-1.5.5/contrib/pzstd/utils/ThreadPool.h\nzstd-1.5.5/contrib/pzstd/utils/WorkQueue.h\nzstd-1.5.5/contrib/pzstd/utils/test/BUCK\nzstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/WorkQueueTest.cpp\nzstd-1.5.5/contrib/recovery/Makefile\nzstd-1.5.5/contrib/recovery/recover_directory.c\nzstd-1.5.5/contrib/seekable_format/README.md\nzstd-1.5.5/contrib/seekable_format/examples/.gitignore\nzstd-1.5.5/contrib/seekable_format/examples/Makefile\nzstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_processing.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression_mem.c\nzstd-1.5.5/contrib/seekable_format/tests/.gitignore\nzstd-1.5.5/contrib/seekable_format/tests/Makefile\nzstd-1.5.5/contrib/seekable_format/tests/seekable_tests.c\nzstd-1.5.5/contrib/seekable_format/zstd_seekable.h\nzstd-1.5.5/contrib/seekable_format/zstd_seekable_compression_format.md\nzstd-1.5.5/contrib/seekable_format/zstdseek_compress.c\nzstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c\nzstd-1.5.5/contrib/seqBench/Makefile\nzstd-1.5.5/contrib/seqBench/seqBench.c\nzstd-1.5.5/contrib/snap/snapcraft.yaml\nzstd-1.5.5/doc/README.md\nzstd-1.5.5/doc/decompressor_errata.md\nzstd-1.5.5/doc/educational_decoder/.gitignore\nzstd-1.5.5/doc/educational_decoder/Makefile\nzstd-1.5.5/doc/educational_decoder/README.md\nzstd-1.5.5/doc/educational_decoder/harness.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.h\nzstd-1.5.5/doc/images/CSpeed2.png\nzstd-1.5.5/doc/images/DCspeed5.png\nzstd-1.5.5/doc/images/DSpeed3.png\nzstd-1.5.5/doc/images/cdict_v136.png\nzstd-1.5.5/doc/images/dict-cr.png\nzstd-1.5.5/doc/images/dict-cs.png\nzstd-1.5.5/doc/images/dict-ds.png\nzstd-1.5.5/doc/images/zstd_cdict_v1_3_5.png\nzstd-1.5.5/doc/images/zstd_logo86.png\nzstd-1.5.5/doc/zstd_compression_format.md\nzstd-1.5.5/doc/zstd_manual.html\nzstd-1.5.5/examples/.gitignore\nzstd-1.5.5/examples/Makefile\nzstd-1.5.5/examples/README.md\nzstd-1.5.5/examples/common.h\nzstd-1.5.5/examples/dictionary_compression.c\nzstd-1.5.5/examples/dictionary_decompression.c\nzstd-1.5.5/examples/multiple_simple_compression.c\nzstd-1.5.5/examples/multiple_streaming_compression.c\nzstd-1.5.5/examples/simple_compression.c\nzstd-1.5.5/examples/simple_decompression.c\nzstd-1.5.5/examples/streaming_compression.c\nzstd-1.5.5/examples/streaming_compression_thread_pool.c\nzstd-1.5.5/examples/streaming_decompression.c\nzstd-1.5.5/examples/streaming_memory_usage.c\nzstd-1.5.5/lib/.gitignore\nzstd-1.5.5/lib/BUCK\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/README.md\nzstd-1.5.5/lib/common/allocations.h\nzstd-1.5.5/lib/common/bits.h\nzstd-1.5.5/lib/common/bitstream.h\nzstd-1.5.5/lib/common/compiler.h\nzstd-1.5.5/lib/common/cpu.h\nzstd-1.5.5/lib/common/debug.c\nzstd-1.5.5/lib/common/debug.h\nzstd-1.5.5/lib/common/entropy_common.c\nzstd-1.5.5/lib/common/error_private.c\nzstd-1.5.5/lib/common/error_private.h\nzstd-1.5.5/lib/common/fse.h\nzstd-1.5.5/lib/common/fse_decompress.c\nzstd-1.5.5/lib/common/huf.h\nzstd-1.5.5/lib/common/mem.h\nzstd-1.5.5/lib/common/pool.c\nzstd-1.5.5/lib/common/pool.h\nzstd-1.5.5/lib/common/portability_macros.h\nzstd-1.5.5/lib/common/threading.c\nzstd-1.5.5/lib/common/threading.h\nzstd-1.5.5/lib/common/xxhash.c\nzstd-1.5.5/lib/common/xxhash.h\nzstd-1.5.5/lib/common/zstd_common.c\nzstd-1.5.5/lib/common/zstd_deps.h\nzstd-1.5.5/lib/common/zstd_internal.h\nzstd-1.5.5/lib/common/zstd_trace.h\nzstd-1.5.5/lib/compress/clevels.h\nzstd-1.5.5/lib/compress/fse_compress.c\nzstd-1.5.5/lib/compress/hist.c\nzstd-1.5.5/lib/compress/hist.h\nzstd-1.5.5/lib/compress/huf_compress.c\nzstd-1.5.5/lib/compress/zstd_compress.c\nzstd-1.5.5/lib/compress/zstd_compress_internal.h\nzstd-1.5.5/lib/compress/zstd_compress_literals.c\nzstd-1.5.5/lib/compress/zstd_compress_literals.h\nzstd-1.5.5/lib/compress/zstd_compress_sequences.c\nzstd-1.5.5/lib/compress/zstd_compress_sequences.h\nzstd-1.5.5/lib/compress/zstd_compress_superblock.c\nzstd-1.5.5/lib/compress/zstd_compress_superblock.h\nzstd-1.5.5/lib/compress/zstd_cwksp.h\nzstd-1.5.5/lib/compress/zstd_double_fast.c\nzstd-1.5.5/lib/compress/zstd_double_fast.h\nzstd-1.5.5/lib/compress/zstd_fast.c\nzstd-1.5.5/lib/compress/zstd_fast.h\nzstd-1.5.5/lib/compress/zstd_lazy.c\nzstd-1.5.5/lib/compress/zstd_lazy.h\nzstd-1.5.5/lib/compress/zstd_ldm.c\nzstd-1.5.5/lib/compress/zstd_ldm.h\nzstd-1.5.5/lib/compress/zstd_ldm_geartab.h\nzstd-1.5.5/lib/compress/zstd_opt.c\nzstd-1.5.5/lib/compress/zstd_opt.h\nzstd-1.5.5/lib/compress/zstdmt_compress.c\nzstd-1.5.5/lib/compress/zstdmt_compress.h\nzstd-1.5.5/lib/decompress/huf_decompress.c\nzstd-1.5.5/lib/decompress/huf_decompress_amd64.S\nzstd-1.5.5/lib/decompress/zstd_ddict.c\nzstd-1.5.5/lib/decompress/zstd_ddict.h\nzstd-1.5.5/lib/decompress/zstd_decompress.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.h\nzstd-1.5.5/lib/decompress/zstd_decompress_internal.h\nzstd-1.5.5/lib/deprecated/zbuff.h\nzstd-1.5.5/lib/deprecated/zbuff_common.c\nzstd-1.5.5/lib/deprecated/zbuff_compress.c\nzstd-1.5.5/lib/deprecated/zbuff_decompress.c\nzstd-1.5.5/lib/dictBuilder/cover.c\nzstd-1.5.5/lib/dictBuilder/cover.h\nzstd-1.5.5/lib/dictBuilder/divsufsort.c\nzstd-1.5.5/lib/dictBuilder/divsufsort.h\nzstd-1.5.5/lib/dictBuilder/fastcover.c\nzstd-1.5.5/lib/dictBuilder/zdict.c\nzstd-1.5.5/lib/dll/example/Makefile\nzstd-1.5.5/lib/dll/example/README.md\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/lib/dll/example/fullbench-dll.sln\nzstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj\nzstd-1.5.5/lib/legacy/zstd_legacy.h\nzstd-1.5.5/lib/legacy/zstd_v01.c\nzstd-1.5.5/lib/legacy/zstd_v01.h\nzstd-1.5.5/lib/legacy/zstd_v02.c\nzstd-1.5.5/lib/legacy/zstd_v02.h\nzstd-1.5.5/lib/legacy/zstd_v03.c\nzstd-1.5.5/lib/legacy/zstd_v03.h\nzstd-1.5.5/lib/legacy/zstd_v04.c\nzstd-1.5.5/lib/legacy/zstd_v04.h\nzstd-1.5.5/lib/legacy/zstd_v05.c\nzstd-1.5.5/lib/legacy/zstd_v05.h\nzstd-1.5.5/lib/legacy/zstd_v06.c\nzstd-1.5.5/lib/legacy/zstd_v06.h\nzstd-1.5.5/lib/legacy/zstd_v07.c\nzstd-1.5.5/lib/legacy/zstd_v07.h\nzstd-1.5.5/lib/libzstd.mk\nzstd-1.5.5/lib/libzstd.pc.in\nzstd-1.5.5/lib/module.modulemap\nzstd-1.5.5/lib/zdict.h\nzstd-1.5.5/lib/zstd.h\nzstd-1.5.5/lib/zstd_errors.h\nzstd-1.5.5/programs/.gitignore\nzstd-1.5.5/programs/BUCK\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/programs/README.md\nzstd-1.5.5/programs/benchfn.c\nzstd-1.5.5/programs/benchfn.h\nzstd-1.5.5/programs/benchzstd.c\nzstd-1.5.5/programs/benchzstd.h\nzstd-1.5.5/programs/datagen.c\nzstd-1.5.5/programs/datagen.h\nzstd-1.5.5/programs/dibio.c\nzstd-1.5.5/programs/dibio.h\nzstd-1.5.5/programs/fileio.c\nzstd-1.5.5/programs/fileio.h\nzstd-1.5.5/programs/fileio_asyncio.c\nzstd-1.5.5/programs/fileio_asyncio.h\nzstd-1.5.5/programs/fileio_common.h\nzstd-1.5.5/programs/fileio_types.h\nzstd-1.5.5/programs/platform.h\nzstd-1.5.5/programs/timefn.c\nzstd-1.5.5/programs/timefn.h\nzstd-1.5.5/programs/util.c\nzstd-1.5.5/programs/util.h\nzstd-1.5.5/programs/windres/verrsrc.h\nzstd-1.5.5/programs/windres/zstd.rc\nzstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/programs/windres/zstd64.res\nzstd-1.5.5/programs/zstd.1\nzstd-1.5.5/programs/zstd.1.md\nzstd-1.5.5/programs/zstdcli.c\nzstd-1.5.5/programs/zstdcli_trace.c\nzstd-1.5.5/programs/zstdcli_trace.h\nzstd-1.5.5/programs/zstdgrep\nzstd-1.5.5/programs/zstdgrep.1\nzstd-1.5.5/programs/zstdgrep.1.md\nzstd-1.5.5/programs/zstdless\nzstd-1.5.5/programs/zstdless.1\nzstd-1.5.5/programs/zstdless.1.md\nzstd-1.5.5/tests/.gitignore\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/Makefile\nzstd-1.5.5/tests/README.md\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/bigdict.c\nzstd-1.5.5/tests/checkTag.c\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/.gitignore\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/basic/help.sh\nzstd-1.5.5/tests/cli-tests/basic/help.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stdout.exact\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stdout.exact\nzstd-1.5.5/tests/cli-tests/basic/version.sh\nzstd-1.5.5/tests/cli-tests/basic/version.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/bin/cmp_size\nzstd-1.5.5/tests/cli-tests/bin/datagen\nzstd-1.5.5/tests/cli-tests/bin/die\nzstd-1.5.5/tests/cli-tests/bin/println\nzstd-1.5.5/tests/cli-tests/bin/zstd\nzstd-1.5.5/tests/cli-tests/bin/zstdgrep\nzstd-1.5.5/tests/cli-tests/bin/zstdless\nzstd-1.5.5/tests/cli-tests/cltools/setup\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.exit\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/common/format.sh\nzstd-1.5.5/tests/cli-tests/common/mtime.sh\nzstd-1.5.5/tests/cli-tests/common/permissions.sh\nzstd-1.5.5/tests/cli-tests/common/platform.sh\nzstd-1.5.5/tests/cli-tests/compression/adapt.sh\nzstd-1.5.5/tests/cli-tests/compression/basic.sh\nzstd-1.5.5/tests/cli-tests/compression/compress-literals.sh\nzstd-1.5.5/tests/cli-tests/compression/format.sh\nzstd-1.5.5/tests/cli-tests/compression/golden.sh\nzstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh\nzstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh\nzstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/compression/multiple-files.sh\nzstd-1.5.5/tests/cli-tests/compression/multiple-files.sh.stdout.exact\nzstd-1.5.5/tests/cli-tests/compression/row-match-finder.sh\nzstd-1.5.5/tests/cli-tests/compression/setup\nzstd-1.5.5/tests/cli-tests/compression/stream-size.sh\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stderr.glob\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/compression/window-resize.sh\nzstd-1.5.5/tests/cli-tests/compression/window-resize.sh.stdout.glob\nzstd-1.5.5/tests/cli-tests/decompression/golden.sh\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stdout.exact\nzstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.exit\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/dictionaries/golden.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/setup\nzstd-1.5.5/tests/cli-tests/dictionaries/setup_once\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/progress/no-progress.sh\nzstd-1.5.5/tests/cli-tests/progress/no-progress.sh.stderr.glob\nzstd-1.5.5/tests/cli-tests/progress/progress.sh\nzstd-1.5.5/tests/cli-tests/progress/progress.sh.stderr.glob\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/setup\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh.stdout.exact\nzstd-1.5.5/tests/datagencli.c\nzstd-1.5.5/tests/decodecorpus.c\nzstd-1.5.5/tests/dict-files/zero-weight-dict\nzstd-1.5.5/tests/external_matchfinder.c\nzstd-1.5.5/tests/external_matchfinder.h\nzstd-1.5.5/tests/fullbench.c\nzstd-1.5.5/tests/fuzz/.gitignore\nzstd-1.5.5/tests/fuzz/Makefile",
+        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS2008/fullbench/fullbench.vcproj\nzstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj\nzstd-1.5.5/build/VS2008/zstd/zstd.vcproj\nzstd-1.5.5/build/VS2008/zstdlib/zstdlib.vcproj\nzstd-1.5.5/build/VS2010/CompileAsCpp.props\nzstd-1.5.5/build/VS2010/datagen/datagen.vcxproj\nzstd-1.5.5/build/VS2010/fullbench-dll/fullbench-dll.vcxproj\nzstd-1.5.5/build/VS2010/fullbench/fullbench.vcxproj\nzstd-1.5.5/build/VS2010/fuzzer/fuzzer.vcxproj\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.vcxproj\nzstd-1.5.5/build/VS2010/libzstd/libzstd.vcxproj\nzstd-1.5.5/build/VS2010/zstd/zstd.rc\nzstd-1.5.5/build/VS2010/zstd/zstd.vcxproj\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/build_decoder_test.sh\nzstd-1.5.5/build/single_file_libs/build_library_test.sh\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/build/single_file_libs/combine.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_decoder.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_library.sh\nzstd-1.5.5/build/single_file_libs/examples/emscripten.c\nzstd-1.5.5/build/single_file_libs/examples/roundtrip.c\nzstd-1.5.5/build/single_file_libs/examples/shell.html\nzstd-1.5.5/build/single_file_libs/examples/simple.c\nzstd-1.5.5/build/single_file_libs/zstd-in.c\nzstd-1.5.5/build/single_file_libs/zstddeclib-in.c\nzstd-1.5.5/contrib/VS2005/fullbench/fullbench.vcproj\nzstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj\nzstd-1.5.5/contrib/VS2005/zstd/zstd.vcproj\nzstd-1.5.5/contrib/VS2005/zstdlib/zstdlib.vcproj\nzstd-1.5.5/contrib/cleanTabs\nzstd-1.5.5/contrib/diagnose_corruption/check_flipped_bits.c\nzstd-1.5.5/contrib/externalSequenceProducer/main.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh\nzstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c\nzstd-1.5.5/contrib/linux-kernel/decompress_sources.h\nzstd-1.5.5/contrib/linux-kernel/linux_zstd.h\nzstd-1.5.5/contrib/linux-kernel/mem.h\nzstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/stddef.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h\nzstd-1.5.5/contrib/linux-kernel/test/static_test.c\nzstd-1.5.5/contrib/linux-kernel/test/test.c\nzstd-1.5.5/contrib/linux-kernel/zstd_compress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_decompress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_deps.h\nzstd-1.5.5/contrib/match_finders/zstd_edist.c\nzstd-1.5.5/contrib/match_finders/zstd_edist.h\nzstd-1.5.5/contrib/pzstd/ErrorHolder.h\nzstd-1.5.5/contrib/pzstd/Logging.h\nzstd-1.5.5/contrib/pzstd/Options.cpp\nzstd-1.5.5/contrib/pzstd/Options.h\nzstd-1.5.5/contrib/pzstd/Pzstd.cpp\nzstd-1.5.5/contrib/pzstd/Pzstd.h\nzstd-1.5.5/contrib/pzstd/SkippableFrame.h\nzstd-1.5.5/contrib/pzstd/test/OptionsTest.cpp\nzstd-1.5.5/contrib/pzstd/test/PzstdTest.cpp\nzstd-1.5.5/contrib/pzstd/test/RoundTrip.h\nzstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/Buffer.h\nzstd-1.5.5/contrib/pzstd/utils/FileSystem.h\nzstd-1.5.5/contrib/pzstd/utils/Portability.h\nzstd-1.5.5/contrib/pzstd/utils/Range.h\nzstd-1.5.5/contrib/pzstd/utils/ResourcePool.h\nzstd-1.5.5/contrib/pzstd/utils/ScopeGuard.h\nzstd-1.5.5/contrib/pzstd/utils/ThreadPool.h\nzstd-1.5.5/contrib/pzstd/utils/WorkQueue.h\nzstd-1.5.5/contrib/pzstd/utils/test/WorkQueueTest.cpp\nzstd-1.5.5/contrib/recovery/recover_directory.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_processing.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression_mem.c\nzstd-1.5.5/contrib/seekable_format/tests/seekable_tests.c\nzstd-1.5.5/contrib/seekable_format/zstd_seekable.h\nzstd-1.5.5/contrib/seekable_format/zstdseek_compress.c\nzstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c\nzstd-1.5.5/contrib/seqBench/seqBench.c\nzstd-1.5.5/doc/educational_decoder/harness.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.h\nzstd-1.5.5/doc/zstd_manual.html\nzstd-1.5.5/examples/common.h\nzstd-1.5.5/examples/dictionary_compression.c\nzstd-1.5.5/examples/dictionary_decompression.c\nzstd-1.5.5/examples/multiple_simple_compression.c\nzstd-1.5.5/examples/multiple_streaming_compression.c\nzstd-1.5.5/examples/simple_compression.c\nzstd-1.5.5/examples/simple_decompression.c\nzstd-1.5.5/examples/streaming_compression.c\nzstd-1.5.5/examples/streaming_compression_thread_pool.c\nzstd-1.5.5/examples/streaming_decompression.c\nzstd-1.5.5/examples/streaming_memory_usage.c\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/common/allocations.h\nzstd-1.5.5/lib/common/bits.h\nzstd-1.5.5/lib/common/bitstream.h\nzstd-1.5.5/lib/common/compiler.h\nzstd-1.5.5/lib/common/cpu.h\nzstd-1.5.5/lib/common/debug.h\nzstd-1.5.5/lib/common/entropy_common.c\nzstd-1.5.5/lib/common/error_private.h\nzstd-1.5.5/lib/common/fse.h\nzstd-1.5.5/lib/common/fse_decompress.c\nzstd-1.5.5/lib/common/huf.h\nzstd-1.5.5/lib/common/mem.h\nzstd-1.5.5/lib/common/pool.c\nzstd-1.5.5/lib/common/pool.h\nzstd-1.5.5/lib/common/threading.c\nzstd-1.5.5/lib/common/threading.h\nzstd-1.5.5/lib/common/xxhash.c\nzstd-1.5.5/lib/common/xxhash.h\nzstd-1.5.5/lib/common/zstd_common.c\nzstd-1.5.5/lib/common/zstd_deps.h\nzstd-1.5.5/lib/common/zstd_internal.h\nzstd-1.5.5/lib/common/zstd_trace.h\nzstd-1.5.5/lib/compress/clevels.h\nzstd-1.5.5/lib/compress/fse_compress.c\nzstd-1.5.5/lib/compress/hist.c\nzstd-1.5.5/lib/compress/hist.h\nzstd-1.5.5/lib/compress/huf_compress.c\nzstd-1.5.5/lib/compress/zstd_compress.c\nzstd-1.5.5/lib/compress/zstd_compress_internal.h\nzstd-1.5.5/lib/compress/zstd_compress_literals.c\nzstd-1.5.5/lib/compress/zstd_compress_literals.h\nzstd-1.5.5/lib/compress/zstd_compress_sequences.c\nzstd-1.5.5/lib/compress/zstd_compress_sequences.h\nzstd-1.5.5/lib/compress/zstd_compress_superblock.c\nzstd-1.5.5/lib/compress/zstd_compress_superblock.h\nzstd-1.5.5/lib/compress/zstd_cwksp.h\nzstd-1.5.5/lib/compress/zstd_double_fast.c\nzstd-1.5.5/lib/compress/zstd_double_fast.h\nzstd-1.5.5/lib/compress/zstd_fast.c\nzstd-1.5.5/lib/compress/zstd_fast.h\nzstd-1.5.5/lib/compress/zstd_lazy.c\nzstd-1.5.5/lib/compress/zstd_lazy.h\nzstd-1.5.5/lib/compress/zstd_ldm.c\nzstd-1.5.5/lib/compress/zstd_ldm.h\nzstd-1.5.5/lib/compress/zstd_ldm_geartab.h\nzstd-1.5.5/lib/compress/zstd_opt.c\nzstd-1.5.5/lib/compress/zstd_opt.h\nzstd-1.5.5/lib/compress/zstdmt_compress.c\nzstd-1.5.5/lib/compress/zstdmt_compress.h\nzstd-1.5.5/lib/decompress/huf_decompress.c\nzstd-1.5.5/lib/decompress/huf_decompress_amd64.S\nzstd-1.5.5/lib/decompress/zstd_ddict.c\nzstd-1.5.5/lib/decompress/zstd_ddict.h\nzstd-1.5.5/lib/decompress/zstd_decompress.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.h\nzstd-1.5.5/lib/decompress/zstd_decompress_internal.h\nzstd-1.5.5/lib/deprecated/zbuff.h\nzstd-1.5.5/lib/deprecated/zbuff_compress.c\nzstd-1.5.5/lib/deprecated/zbuff_decompress.c\nzstd-1.5.5/lib/dictBuilder/cover.c\nzstd-1.5.5/lib/dictBuilder/cover.h\nzstd-1.5.5/lib/dictBuilder/divsufsort.c\nzstd-1.5.5/lib/dictBuilder/divsufsort.h\nzstd-1.5.5/lib/dictBuilder/fastcover.c\nzstd-1.5.5/lib/dictBuilder/zdict.c\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj\nzstd-1.5.5/lib/legacy/zstd_legacy.h\nzstd-1.5.5/lib/legacy/zstd_v01.c\nzstd-1.5.5/lib/legacy/zstd_v01.h\nzstd-1.5.5/lib/legacy/zstd_v02.c\nzstd-1.5.5/lib/legacy/zstd_v02.h\nzstd-1.5.5/lib/legacy/zstd_v03.c\nzstd-1.5.5/lib/legacy/zstd_v03.h\nzstd-1.5.5/lib/legacy/zstd_v04.c\nzstd-1.5.5/lib/legacy/zstd_v04.h\nzstd-1.5.5/lib/legacy/zstd_v05.c\nzstd-1.5.5/lib/legacy/zstd_v05.h\nzstd-1.5.5/lib/legacy/zstd_v06.c\nzstd-1.5.5/lib/legacy/zstd_v06.h\nzstd-1.5.5/lib/legacy/zstd_v07.c\nzstd-1.5.5/lib/legacy/zstd_v07.h\nzstd-1.5.5/lib/zdict.h\nzstd-1.5.5/lib/zstd.h\nzstd-1.5.5/lib/zstd_errors.h\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/programs/benchfn.c\nzstd-1.5.5/programs/benchfn.h\nzstd-1.5.5/programs/benchzstd.c\nzstd-1.5.5/programs/benchzstd.h\nzstd-1.5.5/programs/datagen.c\nzstd-1.5.5/programs/datagen.h\nzstd-1.5.5/programs/dibio.c\nzstd-1.5.5/programs/dibio.h\nzstd-1.5.5/programs/fileio.c\nzstd-1.5.5/programs/fileio.h\nzstd-1.5.5/programs/fileio_asyncio.c\nzstd-1.5.5/programs/fileio_asyncio.h\nzstd-1.5.5/programs/fileio_common.h\nzstd-1.5.5/programs/fileio_types.h\nzstd-1.5.5/programs/platform.h\nzstd-1.5.5/programs/timefn.c\nzstd-1.5.5/programs/timefn.h\nzstd-1.5.5/programs/util.c\nzstd-1.5.5/programs/util.h\nzstd-1.5.5/programs/windres/zstd.rc\nzstd-1.5.5/programs/zstdcli.c\nzstd-1.5.5/programs/zstdcli_trace.c\nzstd-1.5.5/programs/zstdgrep\nzstd-1.5.5/programs/zstdless\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/bigdict.c\nzstd-1.5.5/tests/checkTag.c\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/basic/help.sh\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh\nzstd-1.5.5/tests/cli-tests/basic/version.sh\nzstd-1.5.5/tests/cli-tests/bin/cmp_size\nzstd-1.5.5/tests/cli-tests/bin/datagen\nzstd-1.5.5/tests/cli-tests/bin/die\nzstd-1.5.5/tests/cli-tests/bin/println\nzstd-1.5.5/tests/cli-tests/bin/zstd\nzstd-1.5.5/tests/cli-tests/bin/zstdgrep\nzstd-1.5.5/tests/cli-tests/bin/zstdless\nzstd-1.5.5/tests/cli-tests/cltools/setup\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh\nzstd-1.5.5/tests/cli-tests/common/format.sh\nzstd-1.5.5/tests/cli-tests/common/platform.sh\nzstd-1.5.5/tests/cli-tests/compression/adapt.sh\nzstd-1.5.5/tests/cli-tests/compression/basic.sh\nzstd-1.5.5/tests/cli-tests/compression/compress-literals.sh\nzstd-1.5.5/tests/cli-tests/compression/format.sh\nzstd-1.5.5/tests/cli-tests/compression/golden.sh\nzstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh\nzstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh\nzstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh\nzstd-1.5.5/tests/cli-tests/compression/multiple-files.sh\nzstd-1.5.5/tests/cli-tests/compression/row-match-finder.sh\nzstd-1.5.5/tests/cli-tests/compression/setup\nzstd-1.5.5/tests/cli-tests/compression/stream-size.sh\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh\nzstd-1.5.5/tests/cli-tests/compression/window-resize.sh\nzstd-1.5.5/tests/cli-tests/decompression/golden.sh\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/golden.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/setup\nzstd-1.5.5/tests/cli-tests/dictionaries/setup_once\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/progress/no-progress.sh\nzstd-1.5.5/tests/cli-tests/progress/progress.sh\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/setup\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh\nzstd-1.5.5/tests/datagencli.c\nzstd-1.5.5/tests/decodecorpus.c\nzstd-1.5.5/tests/external_matchfinder.c\nzstd-1.5.5/tests/external_matchfinder.h\nzstd-1.5.5/tests/fullbench.c\nzstd-1.5.5/tests/fuzz/block_decompress.c\nzstd-1.5.5/tests/fuzz/block_round_trip.c\nzstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c\nzstd-1.5.5/tests/fuzz/dictionary_decompress.c\nzstd-1.5.5/tests/fuzz/dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c\nzstd-1.5.5/tests/fuzz/fse_read_ncount.c\nzstd-1.5.5/tests/fuzz/fuzz.h\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.c\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.h\nzstd-1.5.5/tests/fuzz/fuzz_helpers.h\nzstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h\nzstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/regression_driver.c\nzstd-1.5.5/tests/fuzz/seekable_roundtrip.c\nzstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c\nzstd-1.5.5/tests/fuzz/sequence_compression_api.c\nzstd-1.5.5/tests/fuzz/simple_compress.c\nzstd-1.5.5/tests/fuzz/simple_decompress.c\nzstd-1.5.5/tests/fuzz/simple_round_trip.c\nzstd-1.5.5/tests/fuzz/stream_decompress.c\nzstd-1.5.5/tests/fuzz/stream_round_trip.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.h\nzstd-1.5.5/tests/fuzzer.c\nzstd-1.5.5/tests/golden-compression/http\nzstd-1.5.5/tests/golden-compression/huffman-compressed-larger\nzstd-1.5.5/tests/golden-decompression/empty-block.zst\nzstd-1.5.5/tests/golden-decompression/rle-first-block.zst\nzstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols\nzstd-1.5.5/tests/gzip/gzip-env.sh\nzstd-1.5.5/tests/gzip/helin-segv.sh\nzstd-1.5.5/tests/gzip/help-version.sh\nzstd-1.5.5/tests/gzip/hufts-segv.gz\nzstd-1.5.5/tests/gzip/hufts.sh\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/gzip/keep.sh\nzstd-1.5.5/tests/gzip/list.sh\nzstd-1.5.5/tests/gzip/memcpy-abuse.sh\nzstd-1.5.5/tests/gzip/mixed.sh\nzstd-1.5.5/tests/gzip/null-suffix-clobber.sh\nzstd-1.5.5/tests/gzip/stdin.sh\nzstd-1.5.5/tests/gzip/test-driver.sh\nzstd-1.5.5/tests/gzip/trailing-nul.sh\nzstd-1.5.5/tests/gzip/unpack-invalid.sh\nzstd-1.5.5/tests/gzip/z-suffix.sh\nzstd-1.5.5/tests/gzip/zdiff.sh\nzstd-1.5.5/tests/gzip/zgrep-context.sh\nzstd-1.5.5/tests/gzip/zgrep-f.sh\nzstd-1.5.5/tests/gzip/zgrep-signal.sh\nzstd-1.5.5/tests/gzip/znew-k.sh\nzstd-1.5.5/tests/invalidDictionaries.c\nzstd-1.5.5/tests/legacy.c\nzstd-1.5.5/tests/libzstd_builds.sh\nzstd-1.5.5/tests/longmatch.c\nzstd-1.5.5/tests/paramgrill.c\nzstd-1.5.5/tests/playTests.sh\nzstd-1.5.5/tests/poolTests.c\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/regression/config.c\nzstd-1.5.5/tests/regression/config.h\nzstd-1.5.5/tests/regression/data.c\nzstd-1.5.5/tests/regression/data.h\nzstd-1.5.5/tests/regression/method.c\nzstd-1.5.5/tests/regression/method.h\nzstd-1.5.5/tests/regression/result.h\nzstd-1.5.5/tests/regression/test.c\nzstd-1.5.5/tests/roundTripCrash.c\nzstd-1.5.5/tests/seqgen.c\nzstd-1.5.5/tests/seqgen.h\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-variants.sh\nzstd-1.5.5/tests/test-zstd-versions.py\nzstd-1.5.5/tests/zstreamtest.c\nzstd-1.5.5/zlibWrapper/examples/example.c\nzstd-1.5.5/zlibWrapper/examples/example_original.c\nzstd-1.5.5/zlibWrapper/examples/fitblk.c\nzstd-1.5.5/zlibWrapper/examples/fitblk_original.c\nzstd-1.5.5/zlibWrapper/examples/minigzip.c\nzstd-1.5.5/zlibWrapper/examples/zwrapbench.c\nzstd-1.5.5/zlibWrapper/gzclose.c\nzstd-1.5.5/zlibWrapper/gzguts.h\nzstd-1.5.5/zlibWrapper/gzlib.c\nzstd-1.5.5/zlibWrapper/gzwrite.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h\nzstd-1.5.5/.buckconfig\nzstd-1.5.5/.buckversion\nzstd-1.5.5/.circleci/config.yml\nzstd-1.5.5/.circleci/images/primary/Dockerfile\nzstd-1.5.5/.cirrus.yml\nzstd-1.5.5/.gitattributes\nzstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md\nzstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md\nzstd-1.5.5/.github/dependabot.yml\nzstd-1.5.5/.github/workflows/dev-long-tests.yml\nzstd-1.5.5/.github/workflows/dev-short-tests.yml\nzstd-1.5.5/.github/workflows/publish-release-artifacts.yml\nzstd-1.5.5/.github/workflows/scorecards.yml\nzstd-1.5.5/.github/workflows/windows-artifacts.yml\nzstd-1.5.5/.gitignore\nzstd-1.5.5/.travis.yml\nzstd-1.5.5/CHANGELOG\nzstd-1.5.5/CODE_OF_CONDUCT.md\nzstd-1.5.5/CONTRIBUTING.md\nzstd-1.5.5/COPYING\nzstd-1.5.5/LICENSE\nzstd-1.5.5/Makefile\nzstd-1.5.5/Package.swift\nzstd-1.5.5/README.md\nzstd-1.5.5/TESTING.md\nzstd-1.5.5/appveyor.yml\nzstd-1.5.5/build/.gitignore\nzstd-1.5.5/build/README.md\nzstd-1.5.5/build/VS2008/zstd.sln\nzstd-1.5.5/build/VS2010/zstd.sln\nzstd-1.5.5/build/VS_scripts/README.md\nzstd-1.5.5/build/cmake/.gitignore\nzstd-1.5.5/build/cmake/CMakeLists.txt\nzstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake\nzstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake\nzstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake\nzstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake\nzstd-1.5.5/build/cmake/README.md\nzstd-1.5.5/build/cmake/contrib/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/.gitignore\nzstd-1.5.5/build/cmake/lib/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in\nzstd-1.5.5/build/cmake/programs/.gitignore\nzstd-1.5.5/build/cmake/programs/CMakeLists.txt\nzstd-1.5.5/build/cmake/tests/.gitignore\nzstd-1.5.5/build/cmake/tests/CMakeLists.txt\nzstd-1.5.5/build/cmake/zstdConfig.cmake\nzstd-1.5.5/build/meson/README.md\nzstd-1.5.5/build/meson/contrib/gen_html/meson.build\nzstd-1.5.5/build/meson/contrib/meson.build\nzstd-1.5.5/build/meson/contrib/pzstd/meson.build\nzstd-1.5.5/build/meson/lib/meson.build\nzstd-1.5.5/build/meson/meson.build\nzstd-1.5.5/build/meson/meson_options.txt\nzstd-1.5.5/build/meson/programs/meson.build\nzstd-1.5.5/build/meson/tests/meson.build\nzstd-1.5.5/build/single_file_libs/.gitignore\nzstd-1.5.5/build/single_file_libs/README.md\nzstd-1.5.5/build/single_file_libs/examples/README.md\nzstd-1.5.5/build/single_file_libs/examples/testcard-dxt1.inl\nzstd-1.5.5/build/single_file_libs/examples/testcard-zstd.inl\nzstd-1.5.5/contrib/VS2005/README.md\nzstd-1.5.5/contrib/VS2005/zstd.sln\nzstd-1.5.5/contrib/diagnose_corruption/.gitignore\nzstd-1.5.5/contrib/diagnose_corruption/Makefile\nzstd-1.5.5/contrib/docker/Dockerfile\nzstd-1.5.5/contrib/docker/README.md\nzstd-1.5.5/contrib/externalSequenceProducer/.gitignore\nzstd-1.5.5/contrib/externalSequenceProducer/Makefile\nzstd-1.5.5/contrib/externalSequenceProducer/README.md\nzstd-1.5.5/contrib/gen_html/.gitignore\nzstd-1.5.5/contrib/gen_html/Makefile\nzstd-1.5.5/contrib/gen_html/README.md\nzstd-1.5.5/contrib/gen_html/gen_html.cpp\nzstd-1.5.5/contrib/largeNbDicts/.gitignore\nzstd-1.5.5/contrib/largeNbDicts/Makefile\nzstd-1.5.5/contrib/largeNbDicts/README.md\nzstd-1.5.5/contrib/linux-kernel/.gitignore\nzstd-1.5.5/contrib/linux-kernel/Makefile\nzstd-1.5.5/contrib/linux-kernel/README.md\nzstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/linux.mk\nzstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/test/Makefile\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h\nzstd-1.5.5/contrib/linux-kernel/test/macro-test.sh\nzstd-1.5.5/contrib/linux-kernel/zstd_common_module.c\nzstd-1.5.5/contrib/match_finders/README.md\nzstd-1.5.5/contrib/premake/premake4.lua\nzstd-1.5.5/contrib/premake/zstd.lua\nzstd-1.5.5/contrib/pzstd/.gitignore\nzstd-1.5.5/contrib/pzstd/BUCK\nzstd-1.5.5/contrib/pzstd/Makefile\nzstd-1.5.5/contrib/pzstd/README.md\nzstd-1.5.5/contrib/pzstd/SkippableFrame.cpp\nzstd-1.5.5/contrib/pzstd/main.cpp\nzstd-1.5.5/contrib/pzstd/test/BUCK\nzstd-1.5.5/contrib/pzstd/utils/BUCK\nzstd-1.5.5/contrib/pzstd/utils/Likely.h\nzstd-1.5.5/contrib/pzstd/utils/test/BUCK\nzstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp\nzstd-1.5.5/contrib/recovery/Makefile\nzstd-1.5.5/contrib/seekable_format/README.md\nzstd-1.5.5/contrib/seekable_format/examples/.gitignore\nzstd-1.5.5/contrib/seekable_format/examples/Makefile\nzstd-1.5.5/contrib/seekable_format/tests/.gitignore\nzstd-1.5.5/contrib/seekable_format/tests/Makefile\nzstd-1.5.5/contrib/seekable_format/zstd_seekable_compression_format.md\nzstd-1.5.5/contrib/seqBench/Makefile\nzstd-1.5.5/contrib/snap/snapcraft.yaml\nzstd-1.5.5/doc/README.md\nzstd-1.5.5/doc/decompressor_errata.md\nzstd-1.5.5/doc/educational_decoder/.gitignore",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -81,37 +81,9 @@
           "file": {
             "name": {
               "extracted": [
-                "zstd-1.5.5/.buckconfig",
-                "zstd-1.5.5/.buckversion",
-                "zstd-1.5.5/.circleci/config.yml",
-                "zstd-1.5.5/.circleci/images/primary/Dockerfile",
-                "zstd-1.5.5/.cirrus.yml",
-                "zstd-1.5.5/.gitattributes",
-                "zstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md",
-                "zstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md",
-                "zstd-1.5.5/.github/dependabot.yml",
-                "zstd-1.5.5/.github/workflows/dev-long-tests.yml",
-                "zstd-1.5.5/.github/workflows/dev-short-tests.yml",
-                "zstd-1.5.5/.github/workflows/publish-release-artifacts.yml",
-                "zstd-1.5.5/.github/workflows/scorecards.yml",
-                "zstd-1.5.5/.github/workflows/windows-artifacts.yml",
-                "zstd-1.5.5/.gitignore",
-                "zstd-1.5.5/.travis.yml",
-                "zstd-1.5.5/CHANGELOG",
-                "zstd-1.5.5/CODE_OF_CONDUCT.md",
-                "zstd-1.5.5/CONTRIBUTING.md",
-                "zstd-1.5.5/COPYING",
-                "zstd-1.5.5/LICENSE",
-                "zstd-1.5.5/Makefile",
-                "zstd-1.5.5/Package.swift",
-                "zstd-1.5.5/README.md",
-                "zstd-1.5.5/TESTING.md",
-                "zstd-1.5.5/appveyor.yml",
-                "zstd-1.5.5/build/.gitignore",
-                "zstd-1.5.5/build/README.md",
+                "zstd-1.5.5/programs/windres/zstd32.res",
                 "zstd-1.5.5/build/VS2008/fullbench/fullbench.vcproj",
                 "zstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj",
-                "zstd-1.5.5/build/VS2008/zstd.sln",
                 "zstd-1.5.5/build/VS2008/zstd/zstd.vcproj",
                 "zstd-1.5.5/build/VS2008/zstdlib/zstdlib.vcproj",
                 "zstd-1.5.5/build/VS2010/CompileAsCpp.props",
@@ -122,10 +94,8 @@
                 "zstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc",
                 "zstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.vcxproj",
                 "zstd-1.5.5/build/VS2010/libzstd/libzstd.vcxproj",
-                "zstd-1.5.5/build/VS2010/zstd.sln",
                 "zstd-1.5.5/build/VS2010/zstd/zstd.rc",
                 "zstd-1.5.5/build/VS2010/zstd/zstd.vcxproj",
-                "zstd-1.5.5/build/VS_scripts/README.md",
                 "zstd-1.5.5/build/VS_scripts/build.VS2010.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.VS2012.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.VS2013.cmd",
@@ -135,196 +105,84 @@
                 "zstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.generic.cmd",
-                "zstd-1.5.5/build/cmake/.gitignore",
-                "zstd-1.5.5/build/cmake/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake",
-                "zstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake",
-                "zstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake",
-                "zstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake",
-                "zstd-1.5.5/build/cmake/README.md",
-                "zstd-1.5.5/build/cmake/contrib/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/lib/.gitignore",
-                "zstd-1.5.5/build/cmake/lib/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in",
-                "zstd-1.5.5/build/cmake/programs/.gitignore",
-                "zstd-1.5.5/build/cmake/programs/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/tests/.gitignore",
-                "zstd-1.5.5/build/cmake/tests/CMakeLists.txt",
-                "zstd-1.5.5/build/cmake/zstdConfig.cmake",
                 "zstd-1.5.5/build/meson/GetZstdLibraryVersion.py",
                 "zstd-1.5.5/build/meson/InstallSymlink.py",
-                "zstd-1.5.5/build/meson/README.md",
-                "zstd-1.5.5/build/meson/contrib/gen_html/meson.build",
-                "zstd-1.5.5/build/meson/contrib/meson.build",
-                "zstd-1.5.5/build/meson/contrib/pzstd/meson.build",
-                "zstd-1.5.5/build/meson/lib/meson.build",
-                "zstd-1.5.5/build/meson/meson.build",
-                "zstd-1.5.5/build/meson/meson_options.txt",
-                "zstd-1.5.5/build/meson/programs/meson.build",
-                "zstd-1.5.5/build/meson/tests/meson.build",
                 "zstd-1.5.5/build/meson/tests/valgrindTest.py",
-                "zstd-1.5.5/build/single_file_libs/.gitignore",
-                "zstd-1.5.5/build/single_file_libs/README.md",
                 "zstd-1.5.5/build/single_file_libs/build_decoder_test.sh",
                 "zstd-1.5.5/build/single_file_libs/build_library_test.sh",
                 "zstd-1.5.5/build/single_file_libs/combine.py",
                 "zstd-1.5.5/build/single_file_libs/combine.sh",
                 "zstd-1.5.5/build/single_file_libs/create_single_file_decoder.sh",
                 "zstd-1.5.5/build/single_file_libs/create_single_file_library.sh",
-                "zstd-1.5.5/build/single_file_libs/examples/README.md",
                 "zstd-1.5.5/build/single_file_libs/examples/emscripten.c",
                 "zstd-1.5.5/build/single_file_libs/examples/roundtrip.c",
                 "zstd-1.5.5/build/single_file_libs/examples/shell.html",
                 "zstd-1.5.5/build/single_file_libs/examples/simple.c",
-                "zstd-1.5.5/build/single_file_libs/examples/testcard-dxt1.inl",
-                "zstd-1.5.5/build/single_file_libs/examples/testcard-zstd.inl",
-                "zstd-1.5.5/build/single_file_libs/examples/testcard.png",
                 "zstd-1.5.5/build/single_file_libs/zstd-in.c",
                 "zstd-1.5.5/build/single_file_libs/zstddeclib-in.c",
-                "zstd-1.5.5/contrib/VS2005/README.md",
                 "zstd-1.5.5/contrib/VS2005/fullbench/fullbench.vcproj",
                 "zstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj",
-                "zstd-1.5.5/contrib/VS2005/zstd.sln",
                 "zstd-1.5.5/contrib/VS2005/zstd/zstd.vcproj",
                 "zstd-1.5.5/contrib/VS2005/zstdlib/zstdlib.vcproj",
                 "zstd-1.5.5/contrib/cleanTabs",
-                "zstd-1.5.5/contrib/diagnose_corruption/.gitignore",
-                "zstd-1.5.5/contrib/diagnose_corruption/Makefile",
                 "zstd-1.5.5/contrib/diagnose_corruption/check_flipped_bits.c",
-                "zstd-1.5.5/contrib/docker/Dockerfile",
-                "zstd-1.5.5/contrib/docker/README.md",
-                "zstd-1.5.5/contrib/externalSequenceProducer/.gitignore",
-                "zstd-1.5.5/contrib/externalSequenceProducer/Makefile",
-                "zstd-1.5.5/contrib/externalSequenceProducer/README.md",
                 "zstd-1.5.5/contrib/externalSequenceProducer/main.c",
                 "zstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c",
                 "zstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h",
                 "zstd-1.5.5/contrib/freestanding_lib/freestanding.py",
-                "zstd-1.5.5/contrib/gen_html/.gitignore",
-                "zstd-1.5.5/contrib/gen_html/Makefile",
-                "zstd-1.5.5/contrib/gen_html/README.md",
                 "zstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh",
-                "zstd-1.5.5/contrib/gen_html/gen_html.cpp",
-                "zstd-1.5.5/contrib/largeNbDicts/.gitignore",
-                "zstd-1.5.5/contrib/largeNbDicts/Makefile",
-                "zstd-1.5.5/contrib/largeNbDicts/README.md",
                 "zstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c",
-                "zstd-1.5.5/contrib/linux-kernel/.gitignore",
-                "zstd-1.5.5/contrib/linux-kernel/Makefile",
-                "zstd-1.5.5/contrib/linux-kernel/README.md",
-                "zstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh",
-                "zstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh",
                 "zstd-1.5.5/contrib/linux-kernel/decompress_sources.h",
-                "zstd-1.5.5/contrib/linux-kernel/linux.mk",
                 "zstd-1.5.5/contrib/linux-kernel/linux_zstd.h",
                 "zstd-1.5.5/contrib/linux-kernel/mem.h",
-                "zstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh",
-                "zstd-1.5.5/contrib/linux-kernel/test/Makefile",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/stddef.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h",
-                "zstd-1.5.5/contrib/linux-kernel/test/macro-test.sh",
                 "zstd-1.5.5/contrib/linux-kernel/test/static_test.c",
                 "zstd-1.5.5/contrib/linux-kernel/test/test.c",
-                "zstd-1.5.5/contrib/linux-kernel/zstd_common_module.c",
                 "zstd-1.5.5/contrib/linux-kernel/zstd_compress_module.c",
                 "zstd-1.5.5/contrib/linux-kernel/zstd_decompress_module.c",
                 "zstd-1.5.5/contrib/linux-kernel/zstd_deps.h",
-                "zstd-1.5.5/contrib/match_finders/README.md",
                 "zstd-1.5.5/contrib/match_finders/zstd_edist.c",
                 "zstd-1.5.5/contrib/match_finders/zstd_edist.h",
-                "zstd-1.5.5/contrib/premake/premake4.lua",
-                "zstd-1.5.5/contrib/premake/zstd.lua",
-                "zstd-1.5.5/contrib/pzstd/.gitignore",
-                "zstd-1.5.5/contrib/pzstd/BUCK",
                 "zstd-1.5.5/contrib/pzstd/ErrorHolder.h",
                 "zstd-1.5.5/contrib/pzstd/Logging.h",
-                "zstd-1.5.5/contrib/pzstd/Makefile",
                 "zstd-1.5.5/contrib/pzstd/Options.cpp",
                 "zstd-1.5.5/contrib/pzstd/Options.h",
                 "zstd-1.5.5/contrib/pzstd/Pzstd.cpp",
                 "zstd-1.5.5/contrib/pzstd/Pzstd.h",
-                "zstd-1.5.5/contrib/pzstd/README.md",
-                "zstd-1.5.5/contrib/pzstd/SkippableFrame.cpp",
                 "zstd-1.5.5/contrib/pzstd/SkippableFrame.h",
-                "zstd-1.5.5/contrib/pzstd/images/Cspeed.png",
-                "zstd-1.5.5/contrib/pzstd/images/Dspeed.png",
-                "zstd-1.5.5/contrib/pzstd/main.cpp",
-                "zstd-1.5.5/contrib/pzstd/test/BUCK",
                 "zstd-1.5.5/contrib/pzstd/test/OptionsTest.cpp",
                 "zstd-1.5.5/contrib/pzstd/test/PzstdTest.cpp",
                 "zstd-1.5.5/contrib/pzstd/test/RoundTrip.h",
                 "zstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp",
-                "zstd-1.5.5/contrib/pzstd/utils/BUCK",
                 "zstd-1.5.5/contrib/pzstd/utils/Buffer.h",
                 "zstd-1.5.5/contrib/pzstd/utils/FileSystem.h",
-                "zstd-1.5.5/contrib/pzstd/utils/Likely.h",
                 "zstd-1.5.5/contrib/pzstd/utils/Portability.h",
                 "zstd-1.5.5/contrib/pzstd/utils/Range.h",
                 "zstd-1.5.5/contrib/pzstd/utils/ResourcePool.h",
                 "zstd-1.5.5/contrib/pzstd/utils/ScopeGuard.h",
                 "zstd-1.5.5/contrib/pzstd/utils/ThreadPool.h",
                 "zstd-1.5.5/contrib/pzstd/utils/WorkQueue.h",
-                "zstd-1.5.5/contrib/pzstd/utils/test/BUCK",
-                "zstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp",
-                "zstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp",
-                "zstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp",
-                "zstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp",
-                "zstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp",
                 "zstd-1.5.5/contrib/pzstd/utils/test/WorkQueueTest.cpp",
-                "zstd-1.5.5/contrib/recovery/Makefile",
                 "zstd-1.5.5/contrib/recovery/recover_directory.c",
-                "zstd-1.5.5/contrib/seekable_format/README.md",
-                "zstd-1.5.5/contrib/seekable_format/examples/.gitignore",
-                "zstd-1.5.5/contrib/seekable_format/examples/Makefile",
                 "zstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c",
                 "zstd-1.5.5/contrib/seekable_format/examples/parallel_processing.c",
                 "zstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c",
                 "zstd-1.5.5/contrib/seekable_format/examples/seekable_decompression.c",
                 "zstd-1.5.5/contrib/seekable_format/examples/seekable_decompression_mem.c",
-                "zstd-1.5.5/contrib/seekable_format/tests/.gitignore",
-                "zstd-1.5.5/contrib/seekable_format/tests/Makefile",
                 "zstd-1.5.5/contrib/seekable_format/tests/seekable_tests.c",
                 "zstd-1.5.5/contrib/seekable_format/zstd_seekable.h",
-                "zstd-1.5.5/contrib/seekable_format/zstd_seekable_compression_format.md",
                 "zstd-1.5.5/contrib/seekable_format/zstdseek_compress.c",
                 "zstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c",
-                "zstd-1.5.5/contrib/seqBench/Makefile",
                 "zstd-1.5.5/contrib/seqBench/seqBench.c",
-                "zstd-1.5.5/contrib/snap/snapcraft.yaml",
-                "zstd-1.5.5/doc/README.md",
-                "zstd-1.5.5/doc/decompressor_errata.md",
-                "zstd-1.5.5/doc/educational_decoder/.gitignore",
-                "zstd-1.5.5/doc/educational_decoder/Makefile",
-                "zstd-1.5.5/doc/educational_decoder/README.md",
                 "zstd-1.5.5/doc/educational_decoder/harness.c",
                 "zstd-1.5.5/doc/educational_decoder/zstd_decompress.c",
                 "zstd-1.5.5/doc/educational_decoder/zstd_decompress.h",
-                "zstd-1.5.5/doc/images/CSpeed2.png",
-                "zstd-1.5.5/doc/images/DCspeed5.png",
-                "zstd-1.5.5/doc/images/DSpeed3.png",
-                "zstd-1.5.5/doc/images/cdict_v136.png",
-                "zstd-1.5.5/doc/images/dict-cr.png",
-                "zstd-1.5.5/doc/images/dict-cs.png",
-                "zstd-1.5.5/doc/images/dict-ds.png",
-                "zstd-1.5.5/doc/images/zstd_cdict_v1_3_5.png",
-                "zstd-1.5.5/doc/images/zstd_logo86.png",
-                "zstd-1.5.5/doc/zstd_compression_format.md",
                 "zstd-1.5.5/doc/zstd_manual.html",
-                "zstd-1.5.5/examples/.gitignore",
-                "zstd-1.5.5/examples/Makefile",
-                "zstd-1.5.5/examples/README.md",
                 "zstd-1.5.5/examples/common.h",
                 "zstd-1.5.5/examples/dictionary_compression.c",
                 "zstd-1.5.5/examples/dictionary_decompression.c",
@@ -336,19 +194,14 @@
                 "zstd-1.5.5/examples/streaming_compression_thread_pool.c",
                 "zstd-1.5.5/examples/streaming_decompression.c",
                 "zstd-1.5.5/examples/streaming_memory_usage.c",
-                "zstd-1.5.5/lib/.gitignore",
-                "zstd-1.5.5/lib/BUCK",
                 "zstd-1.5.5/lib/Makefile",
-                "zstd-1.5.5/lib/README.md",
                 "zstd-1.5.5/lib/common/allocations.h",
                 "zstd-1.5.5/lib/common/bits.h",
                 "zstd-1.5.5/lib/common/bitstream.h",
                 "zstd-1.5.5/lib/common/compiler.h",
                 "zstd-1.5.5/lib/common/cpu.h",
-                "zstd-1.5.5/lib/common/debug.c",
                 "zstd-1.5.5/lib/common/debug.h",
                 "zstd-1.5.5/lib/common/entropy_common.c",
-                "zstd-1.5.5/lib/common/error_private.c",
                 "zstd-1.5.5/lib/common/error_private.h",
                 "zstd-1.5.5/lib/common/fse.h",
                 "zstd-1.5.5/lib/common/fse_decompress.c",
@@ -356,7 +209,6 @@
                 "zstd-1.5.5/lib/common/mem.h",
                 "zstd-1.5.5/lib/common/pool.c",
                 "zstd-1.5.5/lib/common/pool.h",
-                "zstd-1.5.5/lib/common/portability_macros.h",
                 "zstd-1.5.5/lib/common/threading.c",
                 "zstd-1.5.5/lib/common/threading.h",
                 "zstd-1.5.5/lib/common/xxhash.c",
@@ -401,7 +253,6 @@
                 "zstd-1.5.5/lib/decompress/zstd_decompress_block.h",
                 "zstd-1.5.5/lib/decompress/zstd_decompress_internal.h",
                 "zstd-1.5.5/lib/deprecated/zbuff.h",
-                "zstd-1.5.5/lib/deprecated/zbuff_common.c",
                 "zstd-1.5.5/lib/deprecated/zbuff_compress.c",
                 "zstd-1.5.5/lib/deprecated/zbuff_decompress.c",
                 "zstd-1.5.5/lib/dictBuilder/cover.c",
@@ -410,10 +261,7 @@
                 "zstd-1.5.5/lib/dictBuilder/divsufsort.h",
                 "zstd-1.5.5/lib/dictBuilder/fastcover.c",
                 "zstd-1.5.5/lib/dictBuilder/zdict.c",
-                "zstd-1.5.5/lib/dll/example/Makefile",
-                "zstd-1.5.5/lib/dll/example/README.md",
                 "zstd-1.5.5/lib/dll/example/build_package.bat",
-                "zstd-1.5.5/lib/dll/example/fullbench-dll.sln",
                 "zstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj",
                 "zstd-1.5.5/lib/legacy/zstd_legacy.h",
                 "zstd-1.5.5/lib/legacy/zstd_v01.c",
@@ -430,16 +278,10 @@
                 "zstd-1.5.5/lib/legacy/zstd_v06.h",
                 "zstd-1.5.5/lib/legacy/zstd_v07.c",
                 "zstd-1.5.5/lib/legacy/zstd_v07.h",
-                "zstd-1.5.5/lib/libzstd.mk",
-                "zstd-1.5.5/lib/libzstd.pc.in",
-                "zstd-1.5.5/lib/module.modulemap",
                 "zstd-1.5.5/lib/zdict.h",
                 "zstd-1.5.5/lib/zstd.h",
                 "zstd-1.5.5/lib/zstd_errors.h",
-                "zstd-1.5.5/programs/.gitignore",
-                "zstd-1.5.5/programs/BUCK",
                 "zstd-1.5.5/programs/Makefile",
-                "zstd-1.5.5/programs/README.md",
                 "zstd-1.5.5/programs/benchfn.c",
                 "zstd-1.5.5/programs/benchfn.h",
                 "zstd-1.5.5/programs/benchzstd.c",
@@ -459,41 +301,21 @@
                 "zstd-1.5.5/programs/timefn.h",
                 "zstd-1.5.5/programs/util.c",
                 "zstd-1.5.5/programs/util.h",
-                "zstd-1.5.5/programs/windres/verrsrc.h",
                 "zstd-1.5.5/programs/windres/zstd.rc",
-                "zstd-1.5.5/programs/windres/zstd32.res",
-                "zstd-1.5.5/programs/windres/zstd64.res",
-                "zstd-1.5.5/programs/zstd.1",
-                "zstd-1.5.5/programs/zstd.1.md",
                 "zstd-1.5.5/programs/zstdcli.c",
                 "zstd-1.5.5/programs/zstdcli_trace.c",
-                "zstd-1.5.5/programs/zstdcli_trace.h",
                 "zstd-1.5.5/programs/zstdgrep",
-                "zstd-1.5.5/programs/zstdgrep.1",
-                "zstd-1.5.5/programs/zstdgrep.1.md",
                 "zstd-1.5.5/programs/zstdless",
-                "zstd-1.5.5/programs/zstdless.1",
-                "zstd-1.5.5/programs/zstdless.1.md",
-                "zstd-1.5.5/tests/.gitignore",
                 "zstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py",
-                "zstd-1.5.5/tests/Makefile",
-                "zstd-1.5.5/tests/README.md",
                 "zstd-1.5.5/tests/automated_benchmarking.py",
                 "zstd-1.5.5/tests/bigdict.c",
                 "zstd-1.5.5/tests/checkTag.c",
                 "zstd-1.5.5/tests/check_size.py",
-                "zstd-1.5.5/tests/cli-tests/.gitignore",
                 "zstd-1.5.5/tests/cli-tests/README.md",
                 "zstd-1.5.5/tests/cli-tests/basic/help.sh",
-                "zstd-1.5.5/tests/cli-tests/basic/help.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh",
-                "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stderr.exact",
-                "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stdout.exact",
                 "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh",
-                "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stderr.exact",
-                "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stdout.exact",
                 "zstd-1.5.5/tests/cli-tests/basic/version.sh",
-                "zstd-1.5.5/tests/cli-tests/basic/version.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/bin/cmp_size",
                 "zstd-1.5.5/tests/cli-tests/bin/datagen",
                 "zstd-1.5.5/tests/cli-tests/bin/die",
@@ -503,15 +325,8 @@
                 "zstd-1.5.5/tests/cli-tests/bin/zstdless",
                 "zstd-1.5.5/tests/cli-tests/cltools/setup",
                 "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh",
-                "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.exit",
-                "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stderr.exact",
-                "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh",
-                "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stderr.exact",
-                "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/common/format.sh",
-                "zstd-1.5.5/tests/cli-tests/common/mtime.sh",
-                "zstd-1.5.5/tests/cli-tests/common/permissions.sh",
                 "zstd-1.5.5/tests/cli-tests/common/platform.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/adapt.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/basic.sh",
@@ -520,68 +335,253 @@
                 "zstd-1.5.5/tests/cli-tests/compression/golden.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/levels.sh",
-                "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh",
-                "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh",
-                "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh.stdout.exact",
                 "zstd-1.5.5/tests/cli-tests/compression/row-match-finder.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/setup",
                 "zstd-1.5.5/tests/cli-tests/compression/stream-size.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh",
-                "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stderr.glob",
-                "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh",
-                "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh.stdout.glob",
                 "zstd-1.5.5/tests/cli-tests/decompression/golden.sh",
                 "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh",
-                "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stderr.exact",
-                "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stdout.exact",
                 "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh",
-                "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh",
-                "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.exit",
-                "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh",
-                "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/golden.sh",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/setup",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/setup_once",
                 "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh",
-                "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh",
-                "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh.stderr.glob",
                 "zstd-1.5.5/tests/cli-tests/progress/progress.sh",
-                "zstd-1.5.5/tests/cli-tests/progress/progress.sh.stderr.glob",
                 "zstd-1.5.5/tests/cli-tests/run.py",
                 "zstd-1.5.5/tests/cli-tests/zstd-symlinks/setup",
                 "zstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh",
-                "zstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh.stdout.exact",
                 "zstd-1.5.5/tests/datagencli.c",
                 "zstd-1.5.5/tests/decodecorpus.c",
-                "zstd-1.5.5/tests/dict-files/zero-weight-dict",
                 "zstd-1.5.5/tests/external_matchfinder.c",
                 "zstd-1.5.5/tests/external_matchfinder.h",
                 "zstd-1.5.5/tests/fullbench.c",
-                "zstd-1.5.5/tests/fuzz/.gitignore",
-                "zstd-1.5.5/tests/fuzz/Makefile"
+                "zstd-1.5.5/tests/fuzz/block_decompress.c",
+                "zstd-1.5.5/tests/fuzz/block_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c",
+                "zstd-1.5.5/tests/fuzz/dictionary_decompress.c",
+                "zstd-1.5.5/tests/fuzz/dictionary_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/fse_read_ncount.c",
+                "zstd-1.5.5/tests/fuzz/fuzz.h",
+                "zstd-1.5.5/tests/fuzz/fuzz.py",
+                "zstd-1.5.5/tests/fuzz/fuzz_data_producer.c",
+                "zstd-1.5.5/tests/fuzz/fuzz_data_producer.h",
+                "zstd-1.5.5/tests/fuzz/fuzz_helpers.h",
+                "zstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h",
+                "zstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/regression_driver.c",
+                "zstd-1.5.5/tests/fuzz/seekable_roundtrip.c",
+                "zstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c",
+                "zstd-1.5.5/tests/fuzz/sequence_compression_api.c",
+                "zstd-1.5.5/tests/fuzz/simple_compress.c",
+                "zstd-1.5.5/tests/fuzz/simple_decompress.c",
+                "zstd-1.5.5/tests/fuzz/simple_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/stream_decompress.c",
+                "zstd-1.5.5/tests/fuzz/stream_round_trip.c",
+                "zstd-1.5.5/tests/fuzz/zstd_helpers.c",
+                "zstd-1.5.5/tests/fuzz/zstd_helpers.h",
+                "zstd-1.5.5/tests/fuzzer.c",
+                "zstd-1.5.5/tests/golden-compression/http",
+                "zstd-1.5.5/tests/golden-compression/huffman-compressed-larger",
+                "zstd-1.5.5/tests/golden-decompression/empty-block.zst",
+                "zstd-1.5.5/tests/golden-decompression/rle-first-block.zst",
+                "zstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols",
+                "zstd-1.5.5/tests/gzip/gzip-env.sh",
+                "zstd-1.5.5/tests/gzip/helin-segv.sh",
+                "zstd-1.5.5/tests/gzip/help-version.sh",
+                "zstd-1.5.5/tests/gzip/hufts-segv.gz",
+                "zstd-1.5.5/tests/gzip/hufts.sh",
+                "zstd-1.5.5/tests/gzip/init.sh",
+                "zstd-1.5.5/tests/gzip/keep.sh",
+                "zstd-1.5.5/tests/gzip/list.sh",
+                "zstd-1.5.5/tests/gzip/memcpy-abuse.sh",
+                "zstd-1.5.5/tests/gzip/mixed.sh",
+                "zstd-1.5.5/tests/gzip/null-suffix-clobber.sh",
+                "zstd-1.5.5/tests/gzip/stdin.sh",
+                "zstd-1.5.5/tests/gzip/test-driver.sh",
+                "zstd-1.5.5/tests/gzip/trailing-nul.sh",
+                "zstd-1.5.5/tests/gzip/unpack-invalid.sh",
+                "zstd-1.5.5/tests/gzip/z-suffix.sh",
+                "zstd-1.5.5/tests/gzip/zdiff.sh",
+                "zstd-1.5.5/tests/gzip/zgrep-context.sh",
+                "zstd-1.5.5/tests/gzip/zgrep-f.sh",
+                "zstd-1.5.5/tests/gzip/zgrep-signal.sh",
+                "zstd-1.5.5/tests/gzip/znew-k.sh",
+                "zstd-1.5.5/tests/invalidDictionaries.c",
+                "zstd-1.5.5/tests/legacy.c",
+                "zstd-1.5.5/tests/libzstd_builds.sh",
+                "zstd-1.5.5/tests/longmatch.c",
+                "zstd-1.5.5/tests/paramgrill.c",
+                "zstd-1.5.5/tests/playTests.sh",
+                "zstd-1.5.5/tests/poolTests.c",
+                "zstd-1.5.5/tests/rateLimiter.py",
+                "zstd-1.5.5/tests/regression/config.c",
+                "zstd-1.5.5/tests/regression/config.h",
+                "zstd-1.5.5/tests/regression/data.c",
+                "zstd-1.5.5/tests/regression/data.h",
+                "zstd-1.5.5/tests/regression/method.c",
+                "zstd-1.5.5/tests/regression/method.h",
+                "zstd-1.5.5/tests/regression/result.h",
+                "zstd-1.5.5/tests/regression/test.c",
+                "zstd-1.5.5/tests/roundTripCrash.c",
+                "zstd-1.5.5/tests/seqgen.c",
+                "zstd-1.5.5/tests/seqgen.h",
+                "zstd-1.5.5/tests/test-license.py",
+                "zstd-1.5.5/tests/test-variants.sh",
+                "zstd-1.5.5/tests/test-zstd-versions.py",
+                "zstd-1.5.5/tests/zstreamtest.c",
+                "zstd-1.5.5/zlibWrapper/examples/example.c",
+                "zstd-1.5.5/zlibWrapper/examples/example_original.c",
+                "zstd-1.5.5/zlibWrapper/examples/fitblk.c",
+                "zstd-1.5.5/zlibWrapper/examples/fitblk_original.c",
+                "zstd-1.5.5/zlibWrapper/examples/minigzip.c",
+                "zstd-1.5.5/zlibWrapper/examples/zwrapbench.c",
+                "zstd-1.5.5/zlibWrapper/gzclose.c",
+                "zstd-1.5.5/zlibWrapper/gzguts.h",
+                "zstd-1.5.5/zlibWrapper/gzlib.c",
+                "zstd-1.5.5/zlibWrapper/gzwrite.c",
+                "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c",
+                "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h",
+                "zstd-1.5.5/.buckconfig",
+                "zstd-1.5.5/.buckversion",
+                "zstd-1.5.5/.circleci/config.yml",
+                "zstd-1.5.5/.circleci/images/primary/Dockerfile",
+                "zstd-1.5.5/.cirrus.yml",
+                "zstd-1.5.5/.gitattributes",
+                "zstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md",
+                "zstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md",
+                "zstd-1.5.5/.github/dependabot.yml",
+                "zstd-1.5.5/.github/workflows/dev-long-tests.yml",
+                "zstd-1.5.5/.github/workflows/dev-short-tests.yml",
+                "zstd-1.5.5/.github/workflows/publish-release-artifacts.yml",
+                "zstd-1.5.5/.github/workflows/scorecards.yml",
+                "zstd-1.5.5/.github/workflows/windows-artifacts.yml",
+                "zstd-1.5.5/.gitignore",
+                "zstd-1.5.5/.travis.yml",
+                "zstd-1.5.5/CHANGELOG",
+                "zstd-1.5.5/CODE_OF_CONDUCT.md",
+                "zstd-1.5.5/CONTRIBUTING.md",
+                "zstd-1.5.5/COPYING",
+                "zstd-1.5.5/LICENSE",
+                "zstd-1.5.5/Makefile",
+                "zstd-1.5.5/Package.swift",
+                "zstd-1.5.5/README.md",
+                "zstd-1.5.5/TESTING.md",
+                "zstd-1.5.5/appveyor.yml",
+                "zstd-1.5.5/build/.gitignore",
+                "zstd-1.5.5/build/README.md",
+                "zstd-1.5.5/build/VS2008/zstd.sln",
+                "zstd-1.5.5/build/VS2010/zstd.sln",
+                "zstd-1.5.5/build/VS_scripts/README.md",
+                "zstd-1.5.5/build/cmake/.gitignore",
+                "zstd-1.5.5/build/cmake/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake",
+                "zstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake",
+                "zstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake",
+                "zstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake",
+                "zstd-1.5.5/build/cmake/README.md",
+                "zstd-1.5.5/build/cmake/contrib/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/lib/.gitignore",
+                "zstd-1.5.5/build/cmake/lib/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in",
+                "zstd-1.5.5/build/cmake/programs/.gitignore",
+                "zstd-1.5.5/build/cmake/programs/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/tests/.gitignore",
+                "zstd-1.5.5/build/cmake/tests/CMakeLists.txt",
+                "zstd-1.5.5/build/cmake/zstdConfig.cmake",
+                "zstd-1.5.5/build/meson/README.md",
+                "zstd-1.5.5/build/meson/contrib/gen_html/meson.build",
+                "zstd-1.5.5/build/meson/contrib/meson.build",
+                "zstd-1.5.5/build/meson/contrib/pzstd/meson.build",
+                "zstd-1.5.5/build/meson/lib/meson.build",
+                "zstd-1.5.5/build/meson/meson.build",
+                "zstd-1.5.5/build/meson/meson_options.txt",
+                "zstd-1.5.5/build/meson/programs/meson.build",
+                "zstd-1.5.5/build/meson/tests/meson.build",
+                "zstd-1.5.5/build/single_file_libs/.gitignore",
+                "zstd-1.5.5/build/single_file_libs/README.md",
+                "zstd-1.5.5/build/single_file_libs/examples/README.md",
+                "zstd-1.5.5/build/single_file_libs/examples/testcard-dxt1.inl",
+                "zstd-1.5.5/build/single_file_libs/examples/testcard-zstd.inl",
+                "zstd-1.5.5/contrib/VS2005/README.md",
+                "zstd-1.5.5/contrib/VS2005/zstd.sln",
+                "zstd-1.5.5/contrib/diagnose_corruption/.gitignore",
+                "zstd-1.5.5/contrib/diagnose_corruption/Makefile",
+                "zstd-1.5.5/contrib/docker/Dockerfile",
+                "zstd-1.5.5/contrib/docker/README.md",
+                "zstd-1.5.5/contrib/externalSequenceProducer/.gitignore",
+                "zstd-1.5.5/contrib/externalSequenceProducer/Makefile",
+                "zstd-1.5.5/contrib/externalSequenceProducer/README.md",
+                "zstd-1.5.5/contrib/gen_html/.gitignore",
+                "zstd-1.5.5/contrib/gen_html/Makefile",
+                "zstd-1.5.5/contrib/gen_html/README.md",
+                "zstd-1.5.5/contrib/gen_html/gen_html.cpp",
+                "zstd-1.5.5/contrib/largeNbDicts/.gitignore",
+                "zstd-1.5.5/contrib/largeNbDicts/Makefile",
+                "zstd-1.5.5/contrib/largeNbDicts/README.md",
+                "zstd-1.5.5/contrib/linux-kernel/.gitignore",
+                "zstd-1.5.5/contrib/linux-kernel/Makefile",
+                "zstd-1.5.5/contrib/linux-kernel/README.md",
+                "zstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh",
+                "zstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh",
+                "zstd-1.5.5/contrib/linux-kernel/linux.mk",
+                "zstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh",
+                "zstd-1.5.5/contrib/linux-kernel/test/Makefile",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/macro-test.sh",
+                "zstd-1.5.5/contrib/linux-kernel/zstd_common_module.c",
+                "zstd-1.5.5/contrib/match_finders/README.md",
+                "zstd-1.5.5/contrib/premake/premake4.lua",
+                "zstd-1.5.5/contrib/premake/zstd.lua",
+                "zstd-1.5.5/contrib/pzstd/.gitignore",
+                "zstd-1.5.5/contrib/pzstd/BUCK",
+                "zstd-1.5.5/contrib/pzstd/Makefile",
+                "zstd-1.5.5/contrib/pzstd/README.md",
+                "zstd-1.5.5/contrib/pzstd/SkippableFrame.cpp",
+                "zstd-1.5.5/contrib/pzstd/main.cpp",
+                "zstd-1.5.5/contrib/pzstd/test/BUCK",
+                "zstd-1.5.5/contrib/pzstd/utils/BUCK",
+                "zstd-1.5.5/contrib/pzstd/utils/Likely.h",
+                "zstd-1.5.5/contrib/pzstd/utils/test/BUCK",
+                "zstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp",
+                "zstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp",
+                "zstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp",
+                "zstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp",
+                "zstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp",
+                "zstd-1.5.5/contrib/recovery/Makefile",
+                "zstd-1.5.5/contrib/seekable_format/README.md",
+                "zstd-1.5.5/contrib/seekable_format/examples/.gitignore",
+                "zstd-1.5.5/contrib/seekable_format/examples/Makefile",
+                "zstd-1.5.5/contrib/seekable_format/tests/.gitignore",
+                "zstd-1.5.5/contrib/seekable_format/tests/Makefile",
+                "zstd-1.5.5/contrib/seekable_format/zstd_seekable_compression_format.md",
+                "zstd-1.5.5/contrib/seqBench/Makefile",
+                "zstd-1.5.5/contrib/snap/snapcraft.yaml",
+                "zstd-1.5.5/doc/README.md",
+                "zstd-1.5.5/doc/decompressor_errata.md",
+                "zstd-1.5.5/doc/educational_decoder/.gitignore"
               ]
             }
           }
@@ -611,7 +611,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "zstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/run.py",
+        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-zstd-versions.py",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -625,6 +625,7 @@
             ],
             "name": {
               "extracted": [
+                "zstd-1.5.5/programs/windres/zstd32.res",
                 "zstd-1.5.5/build/VS_scripts/build.VS2010.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.VS2012.cmd",
                 "zstd-1.5.5/build/VS_scripts/build.VS2013.cmd",
@@ -642,12 +643,16 @@
                 "zstd-1.5.5/lib/Makefile",
                 "zstd-1.5.5/lib/dll/example/build_package.bat",
                 "zstd-1.5.5/programs/Makefile",
-                "zstd-1.5.5/programs/windres/zstd32.res",
                 "zstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py",
                 "zstd-1.5.5/tests/automated_benchmarking.py",
                 "zstd-1.5.5/tests/check_size.py",
                 "zstd-1.5.5/tests/cli-tests/README.md",
-                "zstd-1.5.5/tests/cli-tests/run.py"
+                "zstd-1.5.5/tests/cli-tests/run.py",
+                "zstd-1.5.5/tests/fuzz/fuzz.py",
+                "zstd-1.5.5/tests/gzip/init.sh",
+                "zstd-1.5.5/tests/rateLimiter.py",
+                "zstd-1.5.5/tests/test-license.py",
+                "zstd-1.5.5/tests/test-zstd-versions.py"
               ]
             }
           }
@@ -676,10 +681,6 @@
         "sha256": "00e18d6b05ebccfb6e0eb7649c8e19341193e8fbff73a175c3b0d39354bba6f0"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stdout.glob",
-        "sha256": "00ffef682497e792520e28f90ddcd2e01d9f2b2329099febc6bdf4e5f20feb45"
-      },
-      {
         "name": "zstd-1.5.5/build/single_file_libs/examples/testcard-zstd.inl",
         "sha256": "020bcbbbfd66dff33821e11f6428d0d0e3a58f2eefea566398f678e7a63de7be"
       },
@@ -692,6 +693,10 @@
         "sha256": "025b38899dfac0a22e2e80f25dfaf36ffcad3cfc7b68827f020d03bcedf9c782"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/seekable_roundtrip.c",
+        "sha256": "028947ccc79c0f8a55d7bce06b79d55f762e7d1a9a603de79cc71c3dc17fe622"
+      },
+      {
         "name": "zstd-1.5.5/lib/zdict.h",
         "sha256": "02a34169467501fcc665cccb33f5bd455fdb665e9806851777dc8a6c4d5a75e3"
       },
@@ -702,6 +707,10 @@
       {
         "name": "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh",
         "sha256": "02f2dcf364d2d37ecc21487ea7370a12053c08dfa77032457a84f315ee9b1967"
+      },
+      {
+        "name": "zstd-1.5.5/zlibWrapper/gzguts.h",
+        "sha256": "037caf8230186cd312de46349ad8467c4a6613069b9aa4f3622371ed4d5d483f"
       },
       {
         "name": "zstd-1.5.5/build/meson/tests/meson.build",
@@ -728,32 +737,24 @@
         "sha256": "06aa93ecdf97130aa1d43b75350a3e26ac7a5cba1838762232b642a305b8115f"
       },
       {
-        "name": "zstd-1.5.5/contrib/pzstd/images/Cspeed.png",
-        "sha256": "07322684df7adee954e19783593e25d5849f3106a45471b737764932c17060c5"
-      },
-      {
-        "name": "zstd-1.5.5/programs/windres/verrsrc.h",
-        "sha256": "0827c5ac312268cd50a4517831cf28df55a681081b7a9459c27ea72aef26e875"
+        "name": "zstd-1.5.5/tests/fuzz/fse_read_ncount.c",
+        "sha256": "084826e95e0280a21cf95091cc5daab018a283a6d99a096a1e356605757a7c96"
       },
       {
         "name": "zstd-1.5.5/build/VS2010/datagen/datagen.vcxproj",
         "sha256": "084f510000a301a1993f2740fed0155717b7517b5963c1ea1c2291286f1c9e32"
       },
       {
-        "name": "zstd-1.5.5/programs/zstdless.1",
-        "sha256": "08f4c76f972653630e0673e6ab5ed6d3ff71c02156e17b57815e5e01bc5d9759"
-      },
-      {
         "name": "zstd-1.5.5/tests/external_matchfinder.h",
         "sha256": "0945bcbeabae114aeb10c11c881ad3c7512a87a2c30c534e38820e4d80d5d5a0"
       },
       {
-        "name": "zstd-1.5.5/programs/zstd.1.md",
-        "sha256": "099e067f79fa80ee18eee19729caa1bba910d6bdfe64a48e760766a275d0b9f5"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/bin/zstdgrep",
         "sha256": "09b99f30d50191f71968eed60313adc6a9cdadf68f1a0aa46914f77e01ae045a"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/init.sh",
+        "sha256": "0a23778d3cc53f0072417e5de30471b67e6ed5095e866cceb6e403dacccc0f43"
       },
       {
         "name": "zstd-1.5.5/lib/common/bitstream.h",
@@ -762,6 +763,10 @@
       {
         "name": "zstd-1.5.5/build/meson/README.md",
         "sha256": "0a739c43b805ba7444ebd4b3f9684d5c90498a9a00de9f8c2847c7611e78f7d4"
+      },
+      {
+        "name": "zstd-1.5.5/tests/paramgrill.c",
+        "sha256": "0b455958ad112dcfeff9b634705bac3b2d1da1b95da49db3b78e27facc8c6ec5"
       },
       {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd",
@@ -776,10 +781,6 @@
         "sha256": "0c30d37211246feef5fbf43d15b9948312d4fc7e8aa03ffae37afae5c9920f85"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh.stderr.exact",
-        "sha256": "0c5fbf9fe1101151b7cde3a36aa27d0322606597da34f26e948193546ed1b7de"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/README.md",
         "sha256": "0ca32c118270c05bea678101010555f42fccd20d2f2d38f45aa52d1dedeb11dc"
       },
@@ -792,8 +793,16 @@
         "sha256": "0ee157945a4a1cc81ac5bd2f9d6a985363516201f50cda9602f4a6a16fb778bb"
       },
       {
+        "name": "zstd-1.5.5/tests/regression/test.c",
+        "sha256": "0f68f9094e435a89e307074ac4efde0fd10b23e659021a821675a013513e2193"
+      },
+      {
         "name": "zstd-1.5.5/.travis.yml",
         "sha256": "0f7035089eb4d5a709cfcfd9b6340f3f6eca44c300584ad2f384cd9c6d999307"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/test-driver.sh",
+        "sha256": "0f7a9121ea624a8d0dbbda441faf0ce59442a6c0d4f72e1471b261b653b45c83"
       },
       {
         "name": "zstd-1.5.5/contrib/seqBench/seqBench.c",
@@ -828,6 +837,10 @@
         "sha256": "119058ce4431581ca118d9f9970842c4d7366a7695fc3cdbcc2b055863534d85"
       },
       {
+        "name": "zstd-1.5.5/tests/playTests.sh",
+        "sha256": "11efc0c2ef74cc11991b612df57dd2bcb4ba9345b0d3fe12ae4f5f13fcb6dbfb"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/common/format.sh",
         "sha256": "12ab3ede5a24459e944eb76a3878ae916b200f4be05aea7a631bab2e0517c19f"
       },
@@ -844,20 +857,24 @@
         "sha256": "1448cc8e434c12e83eab0545619bf5230de98191730fbdf38978d2f425cfece8"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh.stderr.exact",
-        "sha256": "1493dfedd717bfdb94d2d8a66058e473a9951045b82860211b13c24b83a1b92c"
+        "name": "zstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h",
+        "sha256": "14cbdcc43b4923153550711f88128ec47b89cd0f3b5387b039b02efab1bb3da8"
       },
       {
         "name": "zstd-1.5.5/lib/compress/hist.c",
         "sha256": "154e5efd4f3cf8a4e6f29db6463fd3aa4e3694ae9b9c73e5c275a6cb1e3fefe1"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/fuzz.py",
+        "sha256": "158418751d856936fe3466d8efa74066975e85dc6515a87ec4d3629a3ec55fb0"
+      },
+      {
         "name": "zstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h",
         "sha256": "15ca063e42e8faca19c3336a9cc373edd6cf8724ac41d1eba7f23ac41c5af6af"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh.stderr.exact",
-        "sha256": "15f2976e8d06d32b91422a362532104045f43b23e7c579e1450c1ea0e141963f"
+        "name": "zstd-1.5.5/tests/fuzz/simple_decompress.c",
+        "sha256": "16deddf7cd2f6a95f41df3377fdeb4c1a674b7bb2193465cc3ddc07a7beea30c"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_ldm.c",
@@ -878,6 +895,10 @@
       {
         "name": "zstd-1.5.5/lib/dictBuilder/cover.h",
         "sha256": "17f9a62c0fe8d495700ba3073989aaa05dcb6a59a1a749b7bbb707dbc191890c"
+      },
+      {
+        "name": "zstd-1.5.5/zlibWrapper/examples/minigzip.c",
+        "sha256": "1822d9db7de97106b925a9b33a13f5b0720b7c53befef2ac8be69d3c3961b9bd"
       },
       {
         "name": "zstd-1.5.5/contrib/gen_html/gen_html.cpp",
@@ -912,6 +933,10 @@
         "sha256": "1dead3c7cd0acd6613102757796b5f54b5afb8eb09d3fec338091ff0db09277e"
       },
       {
+        "name": "zstd-1.5.5/tests/test-zstd-versions.py",
+        "sha256": "1e32d33d37b74361d85e8947cc427fa4d18ee8542c0ab71fa32f3aff1184dece"
+      },
+      {
         "name": "zstd-1.5.5/lib/legacy/zstd_v02.c",
         "sha256": "1ee9e28fb0a6003ba3b3f975441463e2411f707dd2a588cd36759db127fef017"
       },
@@ -934,10 +959,6 @@
       {
         "name": "zstd-1.5.5/lib/dictBuilder/divsufsort.c",
         "sha256": "2081acb08865f623857d2c0dcb0e79fce9489f01416528c30cfee7097915c616"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh.stderr.exact",
-        "sha256": "213ef096cffc0291a7e1e30f158a078ceb628636db930502ed5cb51af015062d"
       },
       {
         "name": "zstd-1.5.5/lib/common/cpu.h",
@@ -968,12 +989,12 @@
         "sha256": "23236154fce017c22158855eafd81febb168e8485e0c6c8e3a6c7ddcbc3863c6"
       },
       {
-        "name": "zstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake",
-        "sha256": "23cadc16f6daa0470a5a72deb343a82c601aa77979e60a3a5e96ab69e21f5818"
+        "name": "zstd-1.5.5/tests/gzip/zgrep-context.sh",
+        "sha256": "23c7a4a0203d6613b61108d3cc3b8cbac21beb6a693822fce21ea720821bf200"
       },
       {
-        "name": "zstd-1.5.5/doc/images/cdict_v136.png",
-        "sha256": "24495a89edbef37f830093950b99989b5d6361ec5a4ca4883dcdb1c5568e8752"
+        "name": "zstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake",
+        "sha256": "23cadc16f6daa0470a5a72deb343a82c601aa77979e60a3a5e96ab69e21f5818"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/progress/progress.sh",
@@ -996,14 +1017,6 @@
         "sha256": "268085ccb917a9a8eddb396313af7ce840d56bcbeeaff09deb417d48101e3bf2"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh.stdout.exact",
-        "sha256": "270d7eb5a1ed6828fad0add0089cc3ec5b0d17ad9bb6ec8c715d565f7dadc082"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/common/permissions.sh",
-        "sha256": "271cf278133329411669842b43b0873c829806eb292ad291da48ba8df0aba273"
-      },
-      {
         "name": "zstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt",
         "sha256": "27e977989dc4aa1d70de755bc15dcd2308578057782f3b1e935ed8961d66a48b"
       },
@@ -1016,16 +1029,8 @@
         "sha256": "28926551c60d42ecc986cf095a461e9e178cc0730ee19abaf5388ab4eacfbbf5"
       },
       {
-        "name": "zstd-1.5.5/doc/images/dict-ds.png",
-        "sha256": "28b60851ed26d6faa83f5d50adf0404e6bcd3b92156cb98b76fe0d2a194f7106"
-      },
-      {
         "name": "zstd-1.5.5/contrib/pzstd/utils/Portability.h",
         "sha256": "28c89220b36c8fee0f86f165bfaad9eca7fc77a80523c664503cdf5fca7c924e"
-      },
-      {
-        "name": "zstd-1.5.5/lib/libzstd.pc.in",
-        "sha256": "28f3f43091b3b7e4667061f2c5ce9cd63050b25ea4b79d6315cd0e45ea8c1e68"
       },
       {
         "name": "zstd-1.5.5/contrib/externalSequenceProducer/README.md",
@@ -1056,20 +1061,16 @@
         "sha256": "29f92c83bd087e252d589662d2b12ca84a3bc8d8094fa6206f65e873b7f4ad4a"
       },
       {
-        "name": "zstd-1.5.5/tests/fuzz/.gitignore",
-        "sha256": "2a3357bb7d880362b7a163c0b2152e0c4de776116139f0720452c5b5c8ca7994"
-      },
-      {
         "name": "zstd-1.5.5/contrib/externalSequenceProducer/main.c",
         "sha256": "2b4bed7e10155178a10922f05e683f7447f030fd99afd562b91fe7329726ce57"
       },
       {
-        "name": "zstd-1.5.5/build/meson/meson_options.txt",
-        "sha256": "2bbb4ff8a7750c22902764ee70dc76d29f5f6c8b9883c8bbe016d9ba8c25bd02"
+        "name": "zstd-1.5.5/zlibWrapper/examples/example.c",
+        "sha256": "2b5d6b292c6a2eabbc9c4db921fd6b30a7ef00be33466306fd1e1fd848369b5b"
       },
       {
-        "name": "zstd-1.5.5/programs/BUCK",
-        "sha256": "2c5d02ea149c4e170c66ae38691cf8e0c7a82a8893a1be627be702985d710ef7"
+        "name": "zstd-1.5.5/build/meson/meson_options.txt",
+        "sha256": "2bbb4ff8a7750c22902764ee70dc76d29f5f6c8b9883c8bbe016d9ba8c25bd02"
       },
       {
         "name": "zstd-1.5.5/programs/datagen.h",
@@ -1092,8 +1093,8 @@
         "sha256": "2f41fd8ea13d8549ed168f76759b51b51fc720878938982f9f82944c69a574fd"
       },
       {
-        "name": "zstd-1.5.5/examples/Makefile",
-        "sha256": "2f7a83ef8f0be325a79e33ac38280630172789b6e2fbb3bf2e18e7f5189b97fd"
+        "name": "zstd-1.5.5/tests/gzip/trailing-nul.sh",
+        "sha256": "2f4b088d711f6ad60efe596bcee3513fdd02248b6004782ac928e6490cb5ea85"
       },
       {
         "name": "zstd-1.5.5/lib/common/pool.h",
@@ -1108,8 +1109,8 @@
         "sha256": "3079652a6a58c72784a74ce27db50dceb9c88c079511ecd65024a68993e95591"
       },
       {
-        "name": "zstd-1.5.5/examples/.gitignore",
-        "sha256": "315b3f50f36c6b89e08abeebc054142fe7457a767b0542ae43969bf2196ecc64"
+        "name": "zstd-1.5.5/tests/regression/result.h",
+        "sha256": "3085c575ee4afe9b63669bc80f2f8db382d0598f6dfba3a4ab903d2bf7f279d4"
       },
       {
         "name": "zstd-1.5.5/contrib/seekable_format/README.md",
@@ -1136,10 +1137,6 @@
         "sha256": "347bb4678bc14253a0a56f69f1d3a277cbeea787480355fec06e7e43482135c8"
       },
       {
-        "name": "zstd-1.5.5/programs/zstdgrep.1.md",
-        "sha256": "34d801ed7f7c6fe21235463fed8e6e0eb70683937c793e7d222fbd55f50ed9c4"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/basic/help.sh",
         "sha256": "350047e5420c5cfda8003c10640123177b000a7947b1db2ffc1a4b2356420dae"
       },
@@ -1148,8 +1145,8 @@
         "sha256": "35672a1527a2be0f9fff62473bf773b033b8c0f663d003dc7c3f080b9a55ea32"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/version.sh.stdout.glob",
-        "sha256": "36b3f89d01794fb0963147bfce7051522bd683c8973a1f909a543737848a0e66"
+        "name": "zstd-1.5.5/zlibWrapper/gzclose.c",
+        "sha256": "35b70905d11dd53eaaa367b83698b0e02ea19c7adba1c347674fa5e3ff96729b"
       },
       {
         "name": "zstd-1.5.5/lib/zstd_errors.h",
@@ -1164,16 +1161,8 @@
         "sha256": "3855f87412781a8eaf066668c0ed53b3f28a8f2922d1c57119b4115c14194f79"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stdout.glob",
-        "sha256": "38bb4fe52c3d90d63a21438e86ce6b3c377ff3e1b96285674f0f3adf00769cb4"
-      },
-      {
         "name": "zstd-1.5.5/lib/decompress/zstd_ddict.c",
         "sha256": "38bf812283d61f4cd1f6aea30f84b43317418257c4e6fc198b09b436bd484397"
-      },
-      {
-        "name": "zstd-1.5.5/lib/common/portability_macros.h",
-        "sha256": "3923b88fb6e973a6b1e944103abfb152fe5d95a795596cf37857f5f2df461d01"
       },
       {
         "name": "zstd-1.5.5/programs/timefn.h",
@@ -1192,8 +1181,8 @@
         "sha256": "3aefdd381ba8989857392037ada029441030a00f5af0b6dfbfbf817dbbeba4de"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh.stderr.exact",
-        "sha256": "3c3802ba1d768ec4627c988fbbabb36e1adc3e50a6f3e31e5ccc18cfe27cfe6d"
+        "name": "zstd-1.5.5/tests/rateLimiter.py",
+        "sha256": "3ce2c8046622b270a6c3aeb35887a8d5120e9cd50e2cec2a76c9ef821ab09202"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh",
@@ -1206,10 +1195,6 @@
       {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2013.cmd",
         "sha256": "3e6e170dfc54d05071e6aaa00d653648f83f5d44007954d908dbefca8cae9f8b"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/progress/progress.sh.stderr.glob",
-        "sha256": "3eaa41132abe3d7b0e0fea4bd55ca849cf10c5038edfb072b9eddb00a5fc3eea"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/examples/simple.c",
@@ -1228,10 +1213,6 @@
         "sha256": "3fb6770b780241d07b9a2098355ead61b8a49e21d6c4dcc5aed628ad4d1eee50"
       },
       {
-        "name": "zstd-1.5.5/tests/dict-files/zero-weight-dict",
-        "sha256": "3ff9faaae704c6a365224c8a8b4f75e55ad3231b1d696c64bcb19653f8d89bb9"
-      },
-      {
         "name": "zstd-1.5.5/doc/educational_decoder/harness.c",
         "sha256": "419d644613881903fc4f7e91163107b38e91bb8a2d46dfa661335827950a4fd0"
       },
@@ -1244,12 +1225,20 @@
         "sha256": "41f6e37c149fcfbd4923e7961447472767643521083369f5c9239dc20f1e623a"
       },
       {
+        "name": "zstd-1.5.5/tests/poolTests.c",
+        "sha256": "42063932f4ea4e8e45b5a1ea84726fd9e0372a735928e0af9145e3fee623dfdf"
+      },
+      {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2015.cmd",
         "sha256": "420a6d81afffccd80f71e44a3d63e0d335a6f01a5098f6ea06def319f614252e"
       },
       {
         "name": "zstd-1.5.5/contrib/pzstd/utils/ResourcePool.h",
         "sha256": "4249ea5b5ed2988b5ba88c73917c7a5fb775394ae1277d296b9e437f00f7e765"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/fuzz_data_producer.h",
+        "sha256": "42ebc1c8e355747f2627daa1998e1823668ae1ce899b3ad36dda105ae03b3da4"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/compression/stream-size.sh",
@@ -1266,6 +1255,10 @@
       {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2012.cmd",
         "sha256": "43ec66eb99d7389afeb0b03c1863f751648c10b2f08ce1f5bfcf66c89be02220"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/help-version.sh",
+        "sha256": "4412d6781e11e5de6198c386fd80ef99830424049be39a47399b70439ec42b0b"
       },
       {
         "name": "zstd-1.5.5/programs/util.c",
@@ -1292,8 +1285,8 @@
         "sha256": "46abb11a97f5b52688e408c3496b1e702c22a191087663c311eba4050cce6896"
       },
       {
-        "name": "zstd-1.5.5/contrib/pzstd/images/Dspeed.png",
-        "sha256": "46eb35e28a0a853e6fc97eabaa67828800c4bf0c64b90ee2258e33cb9f9dc7ff"
+        "name": "zstd-1.5.5/tests/golden-compression/huffman-compressed-larger",
+        "sha256": "46f9f62efa91681b9bcb5cdd390bbe540fb565c0ed0ab2c65a86eb575116d3fc"
       },
       {
         "name": "zstd-1.5.5/examples/multiple_streaming_compression.c",
@@ -1304,16 +1297,16 @@
         "sha256": "47a2190fac3698d24ba494cce4ef31c2c7c3794625142910c5c3d36c4dc885d0"
       },
       {
-        "name": "zstd-1.5.5/lib/dll/example/README.md",
-        "sha256": "48a9e1287c1c0921909b6306e96abd1a5d733b4a53fc1c3e346d05701cedff33"
+        "name": "zstd-1.5.5/tests/fuzz/stream_decompress.c",
+        "sha256": "482017deccb6afc608529f95e0177d5d8315258ef22c465ae388baa22d53c180"
       },
       {
         "name": "zstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj",
         "sha256": "48e345992e0a90b5f8d8b49867e03f42ded95217b932126494271cf78a7673e9"
       },
       {
-        "name": "zstd-1.5.5/programs/zstd.1",
-        "sha256": "49f5318678b21ca96e93f16b7fe5ca58dde6d50863c80708078190838647eeca"
+        "name": "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h",
+        "sha256": "499ea13efc449e271177152502676268247bc9b24976e51b620b50f9c8249c9f"
       },
       {
         "name": "zstd-1.5.5/lib/common/huf.h",
@@ -1344,24 +1337,20 @@
         "sha256": "4d50bed0ccbd391e8e1115ee2f26782583e111530bdc4a0292bdc006136f1c5b"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stderr.exact",
-        "sha256": "4d5a2857f64646c9035647650268d51596d994dd0aba8947088b6fe03357c5c1"
-      },
-      {
-        "name": "zstd-1.5.5/doc/educational_decoder/README.md",
-        "sha256": "4e0421a0f95b2168865c7713c99448b880d67bbe8dd42e29c2a35fb17bcc842a"
-      },
-      {
         "name": "zstd-1.5.5/programs/fileio.c",
         "sha256": "4ecb0d40dff1799da5a46a639924be3c5e61fffa861c5023d5509dedd60c3196"
       },
       {
-        "name": "zstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj",
-        "sha256": "4f932405a188a42bf7d8d525d72f62c24e0145092fab1f313331e1c637572d6f"
+        "name": "zstd-1.5.5/tests/zstreamtest.c",
+        "sha256": "4f0760db82b0fceda93ffec17f00e3c131d7511c2bc3ee1f5444e7f2b268e138"
       },
       {
-        "name": "zstd-1.5.5/doc/images/DSpeed3.png",
-        "sha256": "4fb12ccebd53569672f0b1c539ad8950d3f4e2a93648baa214553b1eb00d4a63"
+        "name": "zstd-1.5.5/tests/gzip/hufts.sh",
+        "sha256": "4f6f8e19eb7229471038be7c96092168f5808e4b781588e4cc08318ce86d892d"
+      },
+      {
+        "name": "zstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj",
+        "sha256": "4f932405a188a42bf7d8d525d72f62c24e0145092fab1f313331e1c637572d6f"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/basic/version.sh",
@@ -1396,6 +1385,10 @@
         "sha256": "524e8e6bd0d9377c887fcb12ff96401157ea8433da1403804b8b26152a0a3999"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/zstd_helpers.c",
+        "sha256": "5254ad970efeacf43ac5c0d63ec7ae1edfc3863f217213711981a2390d9f5e19"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh",
         "sha256": "53030829d5d1f68642846651a05f096d07f8c6903136d906cc30bac88ce6803f"
       },
@@ -1420,12 +1413,12 @@
         "sha256": "57890f80be503ee8b7a57c1e458b12aa31eeb3cf5791415c7de88d81807fa9ef"
       },
       {
-        "name": "zstd-1.5.5/tests/fuzz/Makefile",
-        "sha256": "57a8ec3122df59832bd6b12d7bdfbcbb53739a6b7edd175603d0bf21dbf34e82"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/compression/compress-literals.sh",
         "sha256": "57d314c5ae156b89c3476c91ac15d33458ae387030ed2e1b4daa76b6c0981c2f"
+      },
+      {
+        "name": "zstd-1.5.5/tests/regression/config.c",
+        "sha256": "58229258866012d59607a2c2807d31489ba6cf2775f053b9b3dee1bdfae297b0"
       },
       {
         "name": "zstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c",
@@ -1434,14 +1427,6 @@
       {
         "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh",
         "sha256": "5861da963c6e180747f7d8212a022572e46b388694a5e26747d39432202a5f70"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stdout.exact",
-        "sha256": "59306a98e0852690abf9e06a57c839c85eae9105a3eb381f2285335b12818a50"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh.stderr.exact",
-        "sha256": "5b0ed4b4b05c411385c156dc78fce242cdc95cf853d0988ae2c3760d85b3a4f9"
       },
       {
         "name": "zstd-1.5.5/contrib/diagnose_corruption/Makefile",
@@ -1462,10 +1447,6 @@
       {
         "name": "zstd-1.5.5/examples/simple_compression.c",
         "sha256": "5d1eb4d0493c8737021dfc71ce9c3bca6140535206ec6f3a8553b4283fe8d5b5"
-      },
-      {
-        "name": "zstd-1.5.5/programs/README.md",
-        "sha256": "5d80ca730d95444be7c54a2fa7b617696ad7658ef8c8a0ed5dd198e6e368a7ae"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/examples/roundtrip.c",
@@ -1492,16 +1473,16 @@
         "sha256": "60f35ef2ac59294e9f88c9180f464e9b06bc32c4a1c1e07a31228fa8b8e31229"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/mixed.sh",
+        "sha256": "614940442a0d8465888d41da7afe72ee419baf1adc96b3d7448912cc55846f01"
+      },
+      {
         "name": "zstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp",
         "sha256": "61a07fe033a583fa0cbf33f345d76415712c505d01b321b19397fc0f8c95655d"
       },
       {
         "name": "zstd-1.5.5/.buckversion",
         "sha256": "61bb45fc1c301a683d8e7e56b6a27a9b5ac4aedb1ddfd4ab926fc8040f289242"
-      },
-      {
-        "name": "zstd-1.5.5/doc/educational_decoder/Makefile",
-        "sha256": "61d5e25a4b4069a59f6b36bf83209eb0efd3b7ec9c3e39cb85c2aa9bf73f36b9"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_lazy.h",
@@ -1512,24 +1493,28 @@
         "sha256": "627d36e327fb58a5c61591c6c280254140d627e14ee69d519e51e6d956f8f242"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzzer.c",
+        "sha256": "6309fb82d70372a2bc24c5495e6de3c7040c245b65e48aeaca64fc799d51af09"
+      },
+      {
         "name": "zstd-1.5.5/contrib/largeNbDicts/Makefile",
         "sha256": "632bf38cfbb47a1547a9031a565a690afda1dcd719e714969bad824f7b33a729"
+      },
+      {
+        "name": "zstd-1.5.5/tests/invalidDictionaries.c",
+        "sha256": "63e788285258664f3f432a00d1ec9b2d965dc94b6884e5a925ff888f4879c1b8"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh",
         "sha256": "641c039061f4bd02e6ae68b4954359043af2265e11e1e1965e781ad1ebfcbe5c"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact",
-        "sha256": "64caf09d5b9b432708e1f57ab627af6eea5ef764185a5c630460a72a8b7c9910"
-      },
-      {
         "name": "zstd-1.5.5/tests/check_size.py",
         "sha256": "65242d4479da77e0cfd4bc0029b4fe75eb22df406aaa7908851b3892b5df15d5"
       },
       {
-        "name": "zstd-1.5.5/lib/BUCK",
-        "sha256": "6629e51f4a8ea262df547b179b967068523bb13f75b6415458517328f5c1cbb9"
+        "name": "zstd-1.5.5/tests/fuzz/zstd_helpers.h",
+        "sha256": "656fa4ef4db701f69fa3f106d9e946e60c770e08a583f2484a55a87aec5e82fb"
       },
       {
         "name": "zstd-1.5.5/build/VS2010/fullbench-dll/fullbench-dll.vcxproj",
@@ -1552,10 +1537,6 @@
         "sha256": "6a7120da5a377e5467a3d9b7cfc4403adee2a233c106aec0a124865c0c51ae66"
       },
       {
-        "name": "zstd-1.5.5/programs/.gitignore",
-        "sha256": "6aa187053946dfb0044d6127e5c34b5bdd1d7758884b2db003155e7de27927c7"
-      },
-      {
         "name": "zstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj",
         "sha256": "6aad63c0f1f94c90bafb73c823acacb76cafd04599f9a173717bc64e53cbdafa"
       },
@@ -1568,32 +1549,12 @@
         "sha256": "6b57771c66247b2e5f15cf5e9a781128f885b33a0023d93f5822e67626962816"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.exit",
-        "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
-      },
-      {
         "name": "zstd-1.5.5/lib/compress/fse_compress.c",
         "sha256": "6bc37877000072b4dcfb7ecc0486a33c0ce8e513fac7e5cdc0e0ab829ffdacdb"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/help.sh.stdout.glob",
-        "sha256": "6bea686f09990c5ee38a790f5726d28909c49547c2d2f8c77ec6669b6520c78d"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stderr.exact",
-        "sha256": "6c00c9decf204def2e3f6d2d45c06367b82abea995cc81d6ba25a3bb5c08cca5"
-      },
-      {
-        "name": "zstd-1.5.5/doc/images/CSpeed2.png",
-        "sha256": "6c8ff381951765b045f1e7dde790e6aaabdc660c39faeff09abd01c6ba5395e5"
-      },
-      {
         "name": "zstd-1.5.5/build/cmake/lib/CMakeLists.txt",
         "sha256": "6e0b15394ac2218a78dab57afd50a04c51e919cede7c0a3daf6ee406952a5ba1"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact",
-        "sha256": "6eab87182f9ba97423435b8ca2a2628949a7fc425c609de9f33ab5697f4e9044"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_double_fast.h",
@@ -1628,10 +1589,6 @@
         "sha256": "7163030ff3b98b846084cbc563be2907b3ed2d1feea2a20d4c83806515362f8a"
       },
       {
-        "name": "zstd-1.5.5/lib/README.md",
-        "sha256": "71a22a9a045482cc0850438721127f5385241bc4633b804237dd0d2027659c2f"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/bin/println",
         "sha256": "71de438cd1dbf49ac5f6e3f1294ce54e3d20240a8353afaf1a42e6fe10c7d963"
       },
@@ -1644,16 +1601,8 @@
         "sha256": "73773923c07d2ee22a7513228921ab23147efc907c5ee56ce9bb22ee68c49687"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh.stderr.exact",
-        "sha256": "741cf0d65c9f85f83d79696abc9564f6950913ecf42839cf4914d06a31d1ff4f"
-      },
-      {
         "name": "zstd-1.5.5/programs/timefn.c",
         "sha256": "74424ffd67f879dd4ec9b6f6777f9730ce812ceae0dee087b98a676ea18aeec5"
-      },
-      {
-        "name": "zstd-1.5.5/lib/common/error_private.c",
-        "sha256": "749261716f8628275149880d88c8862207d2f7a550a4f84ef37710abb78a3bcc"
       },
       {
         "name": "zstd-1.5.5/examples/streaming_decompression.c",
@@ -1668,10 +1617,6 @@
         "sha256": "76ce8fbf10f89ab035de0b73d396394e10ea200c002ec818ee7a3e86e6e0ca78"
       },
       {
-        "name": "zstd-1.5.5/lib/common/debug.c",
-        "sha256": "77083a66b80b7a677875adb765b581d800a934a87d29c0955410c6c027cd0f35"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh",
         "sha256": "770f21bf61416f8ed50dcb39838d2f4d43e11156121fa669c963879f89ef4a0d"
       },
@@ -1682,6 +1627,10 @@
       {
         "name": "zstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp",
         "sha256": "77c3839b526c66cc6211de144e7a89c2faf56b1d2492215353365385d43d2d23"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/memcpy-abuse.sh",
+        "sha256": "792fd929a5cf13846602b1ac487d00ec4ef2107a8c97705b1a392bdc8a038755"
       },
       {
         "name": "zstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake",
@@ -1696,6 +1645,14 @@
         "sha256": "79ff0630cfef960e5c1e4752c77b880306f41bff6c90f6a638da84e6e288cb9d"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/unpack-invalid.sh",
+        "sha256": "7a797ec309da1d0997940b633648d298436183aaf656c8645359ffdac4ad3eb5"
+      },
+      {
+        "name": "zstd-1.5.5/zlibWrapper/examples/example_original.c",
+        "sha256": "7ab554464816482c9c479867d2a4575d739eec63d7e96ad24e0b1f910556b7e4"
+      },
+      {
         "name": "zstd-1.5.5/lib/decompress/huf_decompress.c",
         "sha256": "7c0d521904d99733ea0d68685f91e14318186063ec2859e50f2155a58ba773d3"
       },
@@ -1706,10 +1663,6 @@
       {
         "name": "zstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh",
         "sha256": "7cd384bb46512db25f68cbf2562a9851e0833ef3b92935aac4a2c4261e3d7af1"
-      },
-      {
-        "name": "zstd-1.5.5/programs/zstdgrep.1",
-        "sha256": "7d054534acaeee3358d5d732fd2d61119405ca3e9fb7efc53c2d038fbef771b8"
       },
       {
         "name": "zstd-1.5.5/lib/common/entropy_common.c",
@@ -1724,12 +1677,16 @@
         "sha256": "7ec66723e2e806adaca3e718ca2743b04426d742581aa3761d8a600e77e58570"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stdout.exact",
-        "sha256": "7f1976d4c8dcacc48d69f259a7fe9d3118cc84ddc0146820603089e72b1785dc"
+        "name": "zstd-1.5.5/tests/gzip/z-suffix.sh",
+        "sha256": "7ef12f324429415c23f93e811f6c21c92be558f5b176fb72d83545c754869940"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh",
         "sha256": "7f39fea1368298a7e76f7428cdc32026d46216001d88c27efee227fc9fd8a28d"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/zdiff.sh",
+        "sha256": "7f68e9408d17532243ce225267261fc8370c78c92c1539b3bf32d7c06c969f66"
       },
       {
         "name": "zstd-1.5.5/programs/fileio_common.h",
@@ -1758,6 +1715,10 @@
       {
         "name": "zstd-1.5.5/contrib/gen_html/.gitignore",
         "sha256": "81bc4300ad8df19c7cde13ad8402af4d3a7238cb3d45d74522a38de849af759a"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/helin-segv.sh",
+        "sha256": "81ffc4dabbde2d2e5086a163a557849deb8ba5008002780b2464f5e9bf8ed395"
       },
       {
         "name": "zstd-1.5.5/lib/decompress/huf_decompress_amd64.S",
@@ -1792,6 +1753,14 @@
         "sha256": "85e09401af4194c4d93b86e3ef37031bfbe2b8f41f9dd631b1d32b1d5d527b02"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/stdin.sh",
+        "sha256": "871bcc2a8e78d95c1f19206d0481f88bf913bf54b655099309ec260a7d672e17"
+      },
+      {
+        "name": "zstd-1.5.5/tests/legacy.c",
+        "sha256": "8777219624109da3b1c1332e2a6dd3f20ed84f64054cbbef144594fae5627e9d"
+      },
+      {
         "name": "zstd-1.5.5/contrib/pzstd/Makefile",
         "sha256": "877cddf940e1f2ad212dbd80fdb19704bf6bbf3fb125fdcc28dfac76c98c39af"
       },
@@ -1824,20 +1793,12 @@
         "sha256": "8ece2f75edb4e3846564bcf93abb3b498427ec472e9651525eb5705edae4ff63"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh.stderr.glob",
-        "sha256": "90356248bfaaaa30f469a7f84b7a60180b18a77742260998785adade059ed81d"
-      },
-      {
-        "name": "zstd-1.5.5/lib/module.modulemap",
-        "sha256": "9057c3276d68fbbef0c140ec3f5431222fb5f450b0608c09fb2756c7e99f59f4"
+        "name": "zstd-1.5.5/tests/gzip/zgrep-signal.sh",
+        "sha256": "901e32c058d8da47c5bdeafaab340c349d3089ed0e4be707aaaf34b8c23d96a8"
       },
       {
         "name": "zstd-1.5.5/contrib/pzstd/test/BUCK",
         "sha256": "90e6dac8346cb3fbde8c94af36feec3624988eb5ead750008e54568825688a6d"
-      },
-      {
-        "name": "zstd-1.5.5/doc/images/dict-cs.png",
-        "sha256": "91460b20e9817c7ffc463ab69f9f8c8bef8513da1b5bf28d3501264e1fdaeb0b"
       },
       {
         "name": "zstd-1.5.5/Makefile",
@@ -1846,10 +1807,6 @@
       {
         "name": "zstd-1.5.5/contrib/match_finders/zstd_edist.h",
         "sha256": "91aa18bfb5b953caa908cfbe80f02ff4693b74bb69924dd5809c27b852cf7d31"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh.stderr.exact",
-        "sha256": "91f36d9720853ea276f10fa97e9ee943da30495958ceb6e24967dee3d0ac8f4b"
       },
       {
         "name": "zstd-1.5.5/contrib/docker/README.md",
@@ -1868,10 +1825,6 @@
         "sha256": "937862174e9b76d01b3798dc08ae7f6a893fa42821a80742dc0eaea97f3494fc"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh.stdout.exact",
-        "sha256": "93ba32740ec5b73cd3ebc287f2102d31a86dabe291f4d5f80be19f523156c113"
-      },
-      {
         "name": "zstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h",
         "sha256": "93f69b4346aaa15c49d7c54c15f958e65b48f515e981844bd6316e3a78aed4df"
       },
@@ -1888,12 +1841,12 @@
         "sha256": "95b0d5c110dff0d94a750615d9bcc3cd4a2b54b95e0064343d97a314ef991034"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/common/mtime.sh",
-        "sha256": "965c9dce94c55a57cf7de028f5d19fb0de0c1ba6118cb1f4dbd43d7c57e62dcf"
-      },
-      {
         "name": "zstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c",
         "sha256": "9696cb6cbe9ba6f4ab3dae6fc22d158783c4e5f7c53f3ff2d93dbfa744a4099f"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/zgrep-f.sh",
+        "sha256": "96dd806ffaf26f7e494e4b24e5973c39bb8cee71d78db6ff03496026e29c1a41"
       },
       {
         "name": "zstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md",
@@ -1908,8 +1861,16 @@
         "sha256": "98bf858de31300054944f26104c98d60c4b463d338ccd4df63ca5bb3195df4b6"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/block_decompress.c",
+        "sha256": "98da103ab3557996eaa3e616a5609a89516b92d6838f17a5e2c670271c88ef55"
+      },
+      {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2010.cmd",
         "sha256": "99385fe13bf132c2c30639a8372b4fbcd34e21322a8de374a6731a3c91184f99"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/block_round_trip.c",
+        "sha256": "99579bfcd8feb2fe82299601c56d1c6ae03a208102e67589985eb9c449188ff3"
       },
       {
         "name": "zstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt",
@@ -1936,20 +1897,16 @@
         "sha256": "9a708a9687a82a076469a8332ec5af55810201102b8f27b9b79ad8b48849fff8"
       },
       {
-        "name": "zstd-1.5.5/programs/windres/zstd64.res",
-        "sha256": "9a81815b19c9f4fa1972ce8cfc7b04d1ed7904a585bf5216c39e87db6bf39c18"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.exit",
-        "sha256": "9a92adbc0cee38ef658c71ce1b1bf8c65668f166bfb213644c895ccb1ad07a25"
-      },
-      {
         "name": "zstd-1.5.5/programs/zstdgrep",
         "sha256": "9bc769b26542ef2efa14ae29b3178b7f10639cd95544207691cb258fe06bbe17"
       },
       {
-        "name": "zstd-1.5.5/lib/deprecated/zbuff_common.c",
-        "sha256": "9c2f0f5debd0632ea52d8776eff332227a90396bfec079159b3c29340e018215"
+        "name": "zstd-1.5.5/zlibWrapper/gzwrite.c",
+        "sha256": "9c0417c2a059f493b10908f5d1d08ea026d9e376dfa4dd91d8a63dfc17336f41"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/sequence_compression_api.c",
+        "sha256": "9cdce9bc5f2ea19e6f01cfc1739c69cac0109c1af446481779b0541a237eb5fe"
       },
       {
         "name": "zstd-1.5.5/.github/workflows/windows-artifacts.yml",
@@ -1968,12 +1925,16 @@
         "sha256": "9f8a2cc027787dbf10183db64e96054938d80af1ca70fffea064bae204aa8509"
       },
       {
+        "name": "zstd-1.5.5/tests/test-variants.sh",
+        "sha256": "9fc7d5778afaf0c2205b1528d5010e5516915e7d750ee8d5c01ae406c42abfab"
+      },
+      {
         "name": "zstd-1.5.5/lib/compress/huf_compress.c",
         "sha256": "a00a8a4f90b6dd42ef7733d4481d7e5793f674e574af5a854e256db683ee88f6"
       },
       {
-        "name": "zstd-1.5.5/tests/Makefile",
-        "sha256": "a050aeb8c88443fac616a6425a276a039ea07a50074046c97bf13873b5b8cd91"
+        "name": "zstd-1.5.5/zlibWrapper/examples/fitblk.c",
+        "sha256": "a023e866a55e83dca1b2113dcd2ba80b82c5c7b55197afa7236a98e0837171c2"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/combine.sh",
@@ -1988,20 +1949,16 @@
         "sha256": "a0b36a9e700dfb5c67e309f5c4e634be84dce057bc51210b89676fd9d7c88989"
       },
       {
+        "name": "zstd-1.5.5/tests/test-license.py",
+        "sha256": "a0bd1837d89c90e45722ff2c109530f2d280fa8296732b1a86adea2054f08ee9"
+      },
+      {
         "name": "zstd-1.5.5/lib/compress/zstd_compress_sequences.h",
         "sha256": "a119b546cc28baed798c3da181861500487229b61c379380b600adf41eb8f21e"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stderr.glob",
-        "sha256": "a1f6fe5e79fa63f7854306396dfdf36d78302988a670132b5da16459d32c5a42"
-      },
-      {
-        "name": "zstd-1.5.5/tests/.gitignore",
-        "sha256": "a20a317806dd9e3e2b2e28f0e02e7b255928bb2589142f4e253f4a19d3cf73a9"
-      },
-      {
-        "name": "zstd-1.5.5/doc/images/zstd_cdict_v1_3_5.png",
-        "sha256": "a21715e337f655fc9214888786b458e9a35c9b40c503bc9d3ebd98e57998c555"
+        "name": "zstd-1.5.5/tests/roundTripCrash.c",
+        "sha256": "a16fddf17fea95ae10df411935fd743fbad304627556d0526b61be8576c093a9"
       },
       {
         "name": "zstd-1.5.5/contrib/pzstd/utils/FileSystem.h",
@@ -2014,6 +1971,10 @@
       {
         "name": "zstd-1.5.5/build/single_file_libs/examples/emscripten.c",
         "sha256": "a3a9cc2c49b24b4199b73a7f3e00afb1cec4092be520a988aa87dcc18a027539"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c",
+        "sha256": "a405de5ac5b31c8f7ca262505c9164e5878899ef8d8b29d3981a6d8ab9b1cd1d"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_fast.h",
@@ -2044,10 +2005,6 @@
         "sha256": "a5c853ceaf6f9dff951d33c0b666ee7e80914d201fa043fd25bc7dbfcd54ac26"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh.stderr.exact",
-        "sha256": "a6d12f818960635250336e3d3f12ea1f049ad60fa2d671aef6c2bed83a326a0f"
-      },
-      {
         "name": "zstd-1.5.5/programs/platform.h",
         "sha256": "a7251568d9b86067d7a033c507509b055ff1c5695aa321b1ca17c75d636473f2"
       },
@@ -2056,8 +2013,16 @@
         "sha256": "a73dac3fe395163a4f952849f49ce1ca13a8d1dcf73473ec9a05115f60a5e956"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/fuzz_helpers.h",
+        "sha256": "a75575c9f3034569c157ad63adfdc118c219203a583aa3433e64fa393faec4a9"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/compression/basic.sh",
         "sha256": "a7860bb84104604256eceae1a50b567c0574d24b2609f559711330db9db7849b"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/dictionary_round_trip.c",
+        "sha256": "a78a738072df396353486d0f289c669826e85a01e5af4fbfe476718c4e5e2861"
       },
       {
         "name": "zstd-1.5.5/examples/streaming_compression.c",
@@ -2066,14 +2031,6 @@
       {
         "name": "zstd-1.5.5/lib/decompress/zstd_decompress_block.h",
         "sha256": "a8116d6266eef14d5928731349cc9e6ab8ad3f022046968fc93e615aa34195dd"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stdout.glob",
-        "sha256": "a839f17f5e21ca6b32f98711a5eaedad9ce4bbdf72296ab8aed97c6b0b07c374"
-      },
-      {
-        "name": "zstd-1.5.5/doc/images/DCspeed5.png",
-        "sha256": "a86ef457ff5c926e0c710e16828864379eef2487ace253f7c93dae0f72a9172b"
       },
       {
         "name": "zstd-1.5.5/examples/multiple_simple_compression.c",
@@ -2088,16 +2045,20 @@
         "sha256": "a993188a54c7d6c5d15ba65ae9e5cac269a956cd1b132e4edfe4836e7af4a393"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh.stderr.exact",
-        "sha256": "a9b519018c2920045071b900064466a29a5c34de66f23e92e32833d99bee42fb"
-      },
-      {
         "name": "zstd-1.5.5/build/VS2010/CompileAsCpp.props",
         "sha256": "aa9bb098a9b623ab0d2180645d73cac222030f4c72ba990502675bb4d7af4a41"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh",
         "sha256": "aab66168dcb5e6650201765516510df4a5813894355cc3cc16381d90ab958236"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/simple_round_trip.c",
+        "sha256": "ab1343d86a4f829c2c2a2e1cca3813ec805a19e3c155bff4d7ef83bbcc69893e"
+      },
+      {
+        "name": "zstd-1.5.5/tests/golden-decompression/empty-block.zst",
+        "sha256": "ab5463fa31429bf81ced9f05e99b96b2fe88b1da37235a233f6bc96242332fbc"
       },
       {
         "name": "zstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c",
@@ -2108,12 +2069,16 @@
         "sha256": "ac92f90b952a9546832b07fe33977254cc8f4ef251fede2236848d7b8dd0bf50"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/fuzz_data_producer.c",
+        "sha256": "aea175b90e7c210f87cc3d87775942606d8f2d2f3cc825307e2294d8ad5d1a43"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/dictionaries/golden.sh",
         "sha256": "aedcba193dbfe953fa0623af988bddfe6a07966a3c5f6b8f8d65beedcb1a6295"
       },
       {
-        "name": "zstd-1.5.5/lib/dll/example/fullbench-dll.sln",
-        "sha256": "af0c9152e1109cea3e7a997e59dc435f032526c238e95681741e2a2f12ad0a74"
+        "name": "zstd-1.5.5/tests/regression/method.c",
+        "sha256": "affd3b16d2baafb748110aafbb0f70dcac9e631201bc984cce17598be693d446"
       },
       {
         "name": "zstd-1.5.5/.buckconfig",
@@ -2140,16 +2105,16 @@
         "sha256": "b3685e8b987944206c9d92e5d3c773b73c1c03f4fbb970d8e62f0d6de2b16010"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/znew-k.sh",
+        "sha256": "b3f5003eeaa54ca5ce248e983f5b247d190974ec54ee0195179dbc63774f1be0"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh",
         "sha256": "b4669283eaa61a1d53b6b986ea51d7ffef286800268beaa54a1e6b5684c7f509"
       },
       {
         "name": "zstd-1.5.5/build/VS2010/fuzzer/fuzzer.vcxproj",
         "sha256": "b494a70b662d4666fdef7ab64bb467d1ef67946f5c414bbb6074739501885b0d"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stdout.exact",
-        "sha256": "b4de28182de7593dcf2be3dc0a9ed880e9c8e5c9db28b280fd31bb3a6c32b201"
       },
       {
         "name": "zstd-1.5.5/lib/legacy/zstd_v07.h",
@@ -2162,10 +2127,6 @@
       {
         "name": "zstd-1.5.5/programs/fileio_asyncio.h",
         "sha256": "b870a8bec1843cd796c7ee9ccf08debd6482b067e8761f453deaccd2fcb2b5ad"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh.stderr.exact",
-        "sha256": "b9998971ffc9b94191b2d33acf39aeb9a20d65fde6d66ad508ebe496567de930"
       },
       {
         "name": "zstd-1.5.5/.github/workflows/scorecards.yml",
@@ -2198,6 +2159,14 @@
       {
         "name": "zstd-1.5.5/build/single_file_libs/README.md",
         "sha256": "be517f8565c98f7d76c845f6ea150e8f31132723a2c9a4946f3ee22047f79e9d"
+      },
+      {
+        "name": "zstd-1.5.5/tests/regression/data.h",
+        "sha256": "beba40d6f1c335f9cbaea42a4d1043683df683121c4a31b0a28ef5862df3b9e9"
+      },
+      {
+        "name": "zstd-1.5.5/zlibWrapper/examples/fitblk_original.c",
+        "sha256": "bec64da6fc0c9a2a37a96722e8b88ca09059148e5be5ecbb486bdba5339e228a"
       },
       {
         "name": "zstd-1.5.5/lib/common/compiler.h",
@@ -2236,12 +2205,20 @@
         "sha256": "c1da7b0fcc26550286adeba28270127e8a114357e5d8146ac79131911151bad3"
       },
       {
-        "name": "zstd-1.5.5/tests/README.md",
-        "sha256": "c1ec46da2fe71e6177de4dfbf3b3259ef63977f127d94cd002f74ebfdf97b520"
+        "name": "zstd-1.5.5/tests/gzip/keep.sh",
+        "sha256": "c229a7b739a779b3bf29977202f3608fb8fa1fa3b337641a9a68b5b710b78d02"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_compress_literals.c",
         "sha256": "c38586b65c69a1906e750bea5a49785b3502b1f52698eee597a4d037b2d9080f"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/regression_driver.c",
+        "sha256": "c3eef0e06a0c7ba272d964be61b3c017b3c5f5bea8269d6535abb371a47cee35"
+      },
+      {
+        "name": "zstd-1.5.5/tests/regression/data.c",
+        "sha256": "c4b87a4b9a1cd93e15306fbcf42c281e55b1646d097ca87a3e1c800e22548eb0"
       },
       {
         "name": "zstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh",
@@ -2250,10 +2227,6 @@
       {
         "name": "zstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc",
         "sha256": "c5fdd8b7fcd01f11e3d24617fb3f4119f142e33e11676a118b4607c594a337da"
-      },
-      {
-        "name": "zstd-1.5.5/examples/README.md",
-        "sha256": "c60fdfb378558cf78535a1433375e8942a6b0c10a375a6cd5febc4570a552c1c"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh",
@@ -2304,20 +2277,16 @@
         "sha256": "cdff44d520cec7f84b39a8f48eb404de1269cff1e35d401401a34c1ee0f49c42"
       },
       {
-        "name": "zstd-1.5.5/programs/zstdcli_trace.h",
-        "sha256": "ce8cf46a929cea154baed72369116930e2c823e418bdb28c4c1939311e1a3938"
-      },
-      {
         "name": "zstd-1.5.5/lib/common/zstd_internal.h",
         "sha256": "cf31355503a0f7c4a1fe50f92c75e4e6029a7874bb1686d6fc626d9645a4d4bb"
       },
       {
-        "name": "zstd-1.5.5/doc/README.md",
-        "sha256": "cf8fec9d5c5ea6939e64af9f87b171bd22b6be0c937ffb0bb3906a17f0670e38"
+        "name": "zstd-1.5.5/tests/longmatch.c",
+        "sha256": "cf401cacc41d77c5384cf33aecc24be62179fbfd19b6fcbb5d2b8363b97c0a70"
       },
       {
-        "name": "zstd-1.5.5/build/single_file_libs/examples/testcard.png",
-        "sha256": "cfd95706d4bc826a524e212e686907a71a452e77a9ec2069e026f3bdf6359538"
+        "name": "zstd-1.5.5/doc/README.md",
+        "sha256": "cf8fec9d5c5ea6939e64af9f87b171bd22b6be0c937ffb0bb3906a17f0670e38"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh",
@@ -2332,12 +2301,20 @@
         "sha256": "d103ae8b3d85eedc01c3ac60ea08f24991826646e48c93f8ea5f2834a2e1b2f6"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/list.sh",
+        "sha256": "d13b1122c79329977c92f1ba1974c5c170219f34c31ccda76da07f885537d5d6"
+      },
+      {
         "name": "zstd-1.5.5/contrib/linux-kernel/zstd_common_module.c",
         "sha256": "d13fade9725dca9a6248e919073b23dff209a84d7dfe8566d79a97242bd79664"
       },
       {
         "name": "zstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h",
         "sha256": "d1d163306b780da4fed65fb27aa4717980ff7b446a1a40c059feaf412ec42338"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/fuzz.h",
+        "sha256": "d1f23c155ad8c78a09dd36aa3603b2c84e5dfb3d6792a84341dc4df32cd4744f"
       },
       {
         "name": "zstd-1.5.5/contrib/gen_html/Makefile",
@@ -2364,20 +2341,12 @@
         "sha256": "d4cb0c27c4d7cc9d705e153979db8a051c0a1beb0dc53dedd322949d3ae6ee38"
       },
       {
-        "name": "zstd-1.5.5/programs/zstdless.1.md",
-        "sha256": "d4dad3c4b56ab182251c7c096f176c06b81c7790a6a82e4515d1d45878b0a36a"
+        "name": "zstd-1.5.5/zlibWrapper/examples/zwrapbench.c",
+        "sha256": "d51bd002c7a185eb3430fd1cec524f4e6d96f53e8f009f81d723c91945bc4f5c"
       },
       {
         "name": "zstd-1.5.5/lib/deprecated/zbuff_decompress.c",
         "sha256": "d567f0df10c98c6751accc2d71338437e77682b1492aab6e8e4ed09d75df572c"
-      },
-      {
-        "name": "zstd-1.5.5/doc/zstd_compression_format.md",
-        "sha256": "d5cb7ba8503610981518c6486985a77797a6c32ba07a07645e6287681fb4d1fa"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stderr.exact",
-        "sha256": "d60edc041e9b922b2f319f106c7a83ba4af08052fcaa15ef90540212deb607b5"
       },
       {
         "name": "zstd-1.5.5/lib/common/xxhash.h",
@@ -2396,16 +2365,16 @@
         "sha256": "d764daa89b7a636d26fe96ff3536c5075e9867fb5dddbf8c9d57023a8ff4a155"
       },
       {
+        "name": "zstd-1.5.5/tests/libzstd_builds.sh",
+        "sha256": "d79c1d3065f7d2dd7ddb03ca620cc344e1eb8d57c5b5e509173409d9e7d35cc6"
+      },
+      {
         "name": "zstd-1.5.5/lib/legacy/zstd_v05.c",
         "sha256": "d7b57b8ed34f94052001ab5b13783b95658fc053185a69b790b8b05e3d7edc3c"
       },
       {
-        "name": "zstd-1.5.5/doc/images/dict-cr.png",
-        "sha256": "d81e32e43cd89fa301c4380edd59184672b71cfd40b153cbfd3502fb0585ae39"
-      },
-      {
-        "name": "zstd-1.5.5/lib/.gitignore",
-        "sha256": "d87b60fa535d8a097547b917bce231ee9cb1fa389bf05759b6fca4a61e7b2a3e"
+        "name": "zstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c",
+        "sha256": "d82c60f7fa7661d4be5ac0fbf519711281059177c71362626e28cb7419cf6e14"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/zstd-in.c",
@@ -2436,8 +2405,12 @@
         "sha256": "dd0b9c054e93ef80e300d76042a99c3f78c73937389513a7cab1b5dd8067b338"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.stderr.exact",
-        "sha256": "dd951c65cc75edf0c60f294980774b0f89901c7bed7c3db30499a19480b07c1d"
+        "name": "zstd-1.5.5/tests/golden-decompression/rle-first-block.zst",
+        "sha256": "dd31b3fa6bb8601710cbde2c625660763bf38adc5255501e3d3a681cc0e4e1a4"
+      },
+      {
+        "name": "zstd-1.5.5/tests/gzip/gzip-env.sh",
+        "sha256": "dd685261b1fe535f8a6aac10b0d3e04dfb43bd09512bf8fe33b915cf9c1ed950"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/examples/README.md",
@@ -2476,12 +2449,12 @@
         "sha256": "e13b66761ad24e06f63370c7b53d11ddb654d6706c7e2396a7611bca05ecf1b4"
       },
       {
-        "name": "zstd-1.5.5/lib/dll/example/Makefile",
-        "sha256": "e148160ca8dc220f5c6037f042380ef2eebee516497e23673289c87e2c96e264"
-      },
-      {
         "name": "zstd-1.5.5/programs/fileio_asyncio.c",
         "sha256": "e38667ab122cf2a8a5474b88fd9c69e24a3ee12d0bae6724c8dd57ce2dfa258b"
+      },
+      {
+        "name": "zstd-1.5.5/tests/regression/method.h",
+        "sha256": "e3d6e5a303c0e3707f629a40cc6a3b7704cdc2b01f729f146500d2090aaef449"
       },
       {
         "name": "zstd-1.5.5/build/cmake/README.md",
@@ -2496,8 +2469,12 @@
         "sha256": "e5d74bf145f6f9fffa090e235bfe692f74cfd0095fd2f3dba9f9b1315526e2d3"
       },
       {
-        "name": "zstd-1.5.5/lib/libzstd.mk",
-        "sha256": "e6577dcd9f636ad5e98856f4bbdd16ede95a674e6590817c79b2d706bcb740eb"
+        "name": "zstd-1.5.5/tests/fuzz/dictionary_decompress.c",
+        "sha256": "e6ecb0ef9e689c0a563555fc00899f87b173ec78065d9101d5cf461ce04abe74"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/stream_round_trip.c",
+        "sha256": "e736cf51914861cae2616851aa588244fab8ef60b3708297f2f1f89d13512bf2"
       },
       {
         "name": "zstd-1.5.5/tests/cli-tests/compression/setup",
@@ -2506,6 +2483,10 @@
       {
         "name": "zstd-1.5.5/Package.swift",
         "sha256": "e8115ff36b45c8ff2395ed3cfaac87eb8c913ade5b766818714f7e7d31b8fe01"
+      },
+      {
+        "name": "zstd-1.5.5/tests/seqgen.h",
+        "sha256": "e85dfeeffecce5d77310a6efecc6a49303f2e5781327f9004cbb231c00220a23"
       },
       {
         "name": "zstd-1.5.5/lib/legacy/zstd_v03.h",
@@ -2524,6 +2505,10 @@
         "sha256": "ead49f64b82039ce16d8a02514b5fee517d275d4f738415e6f0019c727826f8b"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/simple_compress.c",
+        "sha256": "eae2235fd92c5b5d3593ab76efdfd331b9844ac4625d142e3198e17de05861b7"
+      },
+      {
         "name": "zstd-1.5.5/lib/common/zstd_trace.h",
         "sha256": "eb1251bbb9091edb00b96987236b50bc11fb707807de3a83337f53fd6e231728"
       },
@@ -2540,16 +2525,20 @@
         "sha256": "ed21440aba993577a07bd7d282f36478dbfd12cd71d4081047cc436dfc236faa"
       },
       {
+        "name": "zstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c",
+        "sha256": "ed4f28e9f0862e7b368705461d62ded06a9ec3f23b47deb8bbf52cd0bbaf70cc"
+      },
+      {
         "name": "zstd-1.5.5/build/single_file_libs/create_single_file_library.sh",
         "sha256": "efd4967d751a9429b23b7b4b74e9cfc7bb6aa63d041c1645a746aad30a7ba960"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh.stdout.glob",
-        "sha256": "eff71becbde28294f7b8643e91c2b4c420ab609264193ae9447e5659610c9708"
-      },
-      {
         "name": "zstd-1.5.5/tests/cli-tests/compression/adapt.sh",
         "sha256": "f0176161716d6626b6577361dac00565e86e4b47a0c03ba0495c0a6429ee6937"
+      },
+      {
+        "name": "zstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c",
+        "sha256": "f03d14e27af3764fd0624af340a90023cbfee6cacb1ab82e260a97fb26f54986"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_ldm.h",
@@ -2560,6 +2549,10 @@
         "sha256": "f1051e13eec161fd907564b7688a6b24fa2f9fdf6ae4a7590f213de5a59efe6c"
       },
       {
+        "name": "zstd-1.5.5/tests/gzip/hufts-segv.gz",
+        "sha256": "f17d507a54c6816698890022e7684ac8800a417959e1a243ce296a29659a291d"
+      },
+      {
         "name": "zstd-1.5.5/build/meson/lib/meson.build",
         "sha256": "f1f8f5d61d3d7401357af01a616cda6567ab27e2eb142f5d06554111c81301c5"
       },
@@ -2568,8 +2561,8 @@
         "sha256": "f367ddbd58ef50f6a9a03a2222b0dbb97aa8bb73c17e7493a9e90cc791ae19e2"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/.gitignore",
-        "sha256": "f42bcefeff01e9353596fef6620223c100ada91eba44abd59319efbc79736d45"
+        "name": "zstd-1.5.5/tests/gzip/null-suffix-clobber.sh",
+        "sha256": "f42f14986e0c97adaedb7400e4b87a51019cb7065537efd7dfcbbc88b7057d9f"
       },
       {
         "name": "zstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh",
@@ -2580,16 +2573,24 @@
         "sha256": "f49eb8023a90d3de925373bd9ee0d36ed46b26c529840b64220397446cd73795"
       },
       {
+        "name": "zstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols",
+        "sha256": "f4c25620fc0fb4fd60b2a9e4834e822772bf795ce5dcaa99b8985315ac24ad8b"
+      },
+      {
         "name": "zstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake",
         "sha256": "f4fb42fc824549b8533d6f4c8c8a09667f97da59219cd1ed3f75959b818c15d7"
+      },
+      {
+        "name": "zstd-1.5.5/tests/seqgen.c",
+        "sha256": "f57190da11bca49821e099be7e516c674974cedab886b95670eabccedcae3a03"
       },
       {
         "name": "zstd-1.5.5/build/VS2010/fullbench/fullbench.vcxproj",
         "sha256": "f654c1379c51879ab383c145c71eee64c11921dc06412d93e834872a15632761"
       },
       {
-        "name": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stderr.exact",
-        "sha256": "f720b29b8bef2d7a84b3a78d797a331cd2752480b8097b34c555fe577ec47339"
+        "name": "zstd-1.5.5/tests/regression/config.h",
+        "sha256": "f7b7bb7ff018bd94a7589dcabff92079a47f3351284b43797075e3c12e1b1162"
       },
       {
         "name": "zstd-1.5.5/lib/dictBuilder/divsufsort.h",
@@ -2598,10 +2599,6 @@
       {
         "name": "zstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp",
         "sha256": "f945cc01845d0209c94d3284cc1c8c54901e33752eb1be9feb9701e1c98d390d"
-      },
-      {
-        "name": "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stderr.exact",
-        "sha256": "f94ad09d7717bea6bfda5e9cae4c560b6c5b23a08a577a2704d068e791b010f7"
       },
       {
         "name": "zstd-1.5.5/COPYING",
@@ -2622,6 +2619,10 @@
       {
         "name": "zstd-1.5.5/doc/educational_decoder/zstd_decompress.c",
         "sha256": "fb86387002e73a0577bf52d79e9cf33c4d366886c37be26906a733de8d8696f1"
+      },
+      {
+        "name": "zstd-1.5.5/zlibWrapper/gzlib.c",
+        "sha256": "fbdc8fb43292dee4a36831b004ce3cfea5a6877bd5895077fcac9b021d5b346e"
       },
       {
         "name": "zstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c",
@@ -2652,12 +2653,16 @@
         "sha256": "fe12c4ca928fd9c5e83d068ad0bfffab067faf4da044812f4d5a69c05bf17767"
       },
       {
+        "name": "zstd-1.5.5/tests/golden-compression/http",
+        "sha256": "ff02112301c842932531648f21911d6a47896df1c7bf484e8e2e5fec34fa91be"
+      },
+      {
         "name": "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh",
         "sha256": "ff69faa0ff1ea3ccaebe4afbd74c3a19bac634a97d9de40f21b45067bcc006aa"
       },
       {
-        "name": "zstd-1.5.5/doc/images/zstd_logo86.png",
-        "sha256": "ff7bf44b99d38d6c851720829cc8972aa8a364b3728cc7767b7f3e6120998a68"
+        "name": "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c",
+        "sha256": "ff6dfbb4621e716fe9cbfca711de048d5830733a5c7dd5194c2c885fca8bef10"
       },
       {
         "name": "zstd-1.5.5/build/VS_scripts/build.VS2017.cmd",
@@ -3251,11 +3256,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/build/single_file_libs/examples/testcard.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/build/single_file_libs/zstd-in.c"
         },
         {
@@ -3646,16 +3646,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/images/Cspeed.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/images/Dspeed.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/main.cpp"
         },
         {
@@ -3886,16 +3876,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/doc/educational_decoder/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/educational_decoder/README.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/doc/educational_decoder/harness.c"
         },
         {
@@ -3911,72 +3891,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/doc/images/CSpeed2.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/DCspeed5.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/DSpeed3.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/cdict_v136.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/dict-cr.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/dict-cs.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/dict-ds.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/zstd_cdict_v1_3_5.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/images/zstd_logo86.png"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/doc/zstd_compression_format.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/doc/zstd_manual.html"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/examples/.gitignore"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/examples/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/examples/README.md"
         },
         {
           "heur_id": 1,
@@ -4036,27 +3951,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/lib/.gitignore"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/BUCK"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/lib/Makefile"
         },
         {
           "heur_id": null,
           "signatures": [],
           "value": "zstd-1.5.5/lib/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/README.md"
         },
         {
           "heur_id": 1,
@@ -4086,22 +3986,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/lib/common/debug.c"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/lib/common/debug.h"
         },
         {
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/lib/common/entropy_common.c"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/common/error_private.c"
         },
         {
           "heur_id": 1,
@@ -4137,11 +4027,6 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/lib/common/pool.h"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/common/portability_macros.h"
         },
         {
           "heur_id": 1,
@@ -4366,11 +4251,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/lib/deprecated/zbuff_common.c"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/lib/deprecated/zbuff_compress.c"
         },
         {
@@ -4411,27 +4291,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/lib/dll/example/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/dll/example/README.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/lib/dll/example/build_package.bat"
         },
         {
           "heur_id": null,
           "signatures": [],
           "value": "zstd-1.5.5/lib/dll/example/build_package.bat"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/dll/example/fullbench-dll.sln"
         },
         {
           "heur_id": 1,
@@ -4516,21 +4381,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/lib/libzstd.mk"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/libzstd.pc.in"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/lib/module.modulemap"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/lib/zdict.h"
         },
         {
@@ -4546,27 +4396,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/programs/.gitignore"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/BUCK"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/programs/Makefile"
         },
         {
           "heur_id": null,
           "signatures": [],
           "value": "zstd-1.5.5/programs/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/README.md"
         },
         {
           "heur_id": 1,
@@ -4666,11 +4501,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/programs/windres/verrsrc.h"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/programs/windres/zstd.rc"
         },
         {
@@ -4686,21 +4516,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/programs/windres/zstd64.res"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/zstd.1"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/zstd.1.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/programs/zstdcli.c"
         },
         {
@@ -4711,42 +4526,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/programs/zstdcli_trace.h"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/programs/zstdgrep"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/programs/zstdgrep.1"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/zstdgrep.1.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/programs/zstdless"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/zstdless.1"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/programs/zstdless.1.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/.gitignore"
         },
         {
           "heur_id": 1,
@@ -4757,16 +4542,6 @@
           "heur_id": null,
           "signatures": [],
           "value": "zstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/README.md"
         },
         {
           "heur_id": 1,
@@ -4801,11 +4576,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/.gitignore"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/README.md"
         },
         {
@@ -4821,22 +4591,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/help.sh.stdout.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/memlimit.sh.stdout.exact"
         },
         {
           "heur_id": 1,
@@ -4846,22 +4601,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/output_dir.sh.stdout.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/basic/version.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/basic/version.sh.stdout.glob"
         },
         {
           "heur_id": 1,
@@ -4911,47 +4651,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.exit"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh.stdout.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh.stdout.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/common/format.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/common/mtime.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/common/permissions.sh"
         },
         {
           "heur_id": 1,
@@ -4996,11 +4701,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh"
         },
         {
@@ -5011,17 +4711,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh.stdout.exact"
         },
         {
           "heur_id": 1,
@@ -5046,22 +4736,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stderr.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh.stdout.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/compression/window-resize.sh.stdout.glob"
         },
         {
           "heur_id": 1,
@@ -5076,22 +4751,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/decompression/pass-through.sh.stdout.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5101,22 +4761,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.exit"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5141,17 +4786,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5161,17 +4796,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5181,17 +4806,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5201,17 +4816,7 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -5221,27 +4826,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh.stderr.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/progress/no-progress.sh.stderr.glob"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/progress/progress.sh"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/progress/progress.sh.stderr.glob"
         },
         {
           "heur_id": 1,
@@ -5266,22 +4856,12 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh.stdout.exact"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/tests/datagencli.c"
         },
         {
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/tests/decodecorpus.c"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/tests/dict-files/zero-weight-dict"
         },
         {
           "heur_id": 1,
@@ -5301,12 +4881,462 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/fuzz/.gitignore"
+          "value": "zstd-1.5.5/tests/fuzz/block_decompress.c"
         },
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/tests/fuzz/Makefile"
+          "value": "zstd-1.5.5/tests/fuzz/block_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/dictionary_decompress.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/dictionary_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fse_read_ncount.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz.py"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz_data_producer.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz_data_producer.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz_helpers.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/regression_driver.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/seekable_roundtrip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/sequence_compression_api.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/simple_compress.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/simple_decompress.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/simple_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/stream_decompress.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/stream_round_trip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/zstd_helpers.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzz/zstd_helpers.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/fuzzer.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/golden-compression/http"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/golden-compression/huffman-compressed-larger"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/golden-decompression/empty-block.zst"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/golden-decompression/rle-first-block.zst"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/gzip-env.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/helin-segv.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/help-version.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/hufts-segv.gz"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/hufts.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/init.sh"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/init.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/keep.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/list.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/memcpy-abuse.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/mixed.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/null-suffix-clobber.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/stdin.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/test-driver.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/trailing-nul.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/unpack-invalid.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/z-suffix.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/zdiff.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/zgrep-context.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/zgrep-f.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/zgrep-signal.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/gzip/znew-k.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/invalidDictionaries.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/legacy.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/libzstd_builds.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/longmatch.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/paramgrill.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/playTests.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/poolTests.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/rateLimiter.py"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/rateLimiter.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/config.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/config.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/data.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/data.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/method.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/method.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/result.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/regression/test.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/roundTripCrash.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/seqgen.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/seqgen.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/test-license.py"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/test-license.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/test-variants.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/test-zstd-versions.py"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/test-zstd-versions.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/zstreamtest.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/example.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/example_original.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/fitblk.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/fitblk_original.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/minigzip.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/examples/zwrapbench.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/gzclose.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/gzguts.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/gzlib.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/gzwrite.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h"
         }
       ]
     },
