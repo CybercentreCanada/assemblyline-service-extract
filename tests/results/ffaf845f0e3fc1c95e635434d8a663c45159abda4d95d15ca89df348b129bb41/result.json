@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "assets/aapt\nassets/aaptz\nassets/mycp\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nassets/http.zip\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/android.zip\nassets/editorkey.pk8\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nres/raw-v22/md_sans.ttf",
+        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -25,11 +25,10 @@
               "extracted": [
                 "assets/aapt",
                 "assets/aaptz",
-                "assets/mycp",
-                "lib/arm64-v8a/libsyscheck.so",
-                "lib/armeabi-v7a/libsyscheck.so",
-                "lib/armeabi/libsyscheck.so",
+                "assets/android.zip",
+                "assets/editorkey.pk8",
                 "assets/http.zip",
+                "assets/mycp",
                 "assets/patch_app_rename.zip",
                 "assets/patch_bypass_sigcheck.old.zip",
                 "assets/patch_bypass_sigcheck.zip",
@@ -39,12 +38,13 @@
                 "assets/patch_my_font.zip",
                 "assets/patch_new_entrance.zip",
                 "assets/patch_script_example.zip",
-                "assets/android.zip",
-                "assets/editorkey.pk8",
                 "assets/testkey.pk8",
                 "assets/viewsource.css",
                 "classes.dex",
                 "jadx/core/clsp/core.jcst",
+                "lib/arm64-v8a/libsyscheck.so",
+                "lib/armeabi-v7a/libsyscheck.so",
+                "lib/armeabi/libsyscheck.so",
                 "res/raw-v22/md_sans.ttf"
               ]
             }

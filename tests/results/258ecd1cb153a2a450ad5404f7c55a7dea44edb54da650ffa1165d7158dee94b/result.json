@@ -22,7 +22,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "app/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/ssleay32.dll\nembedded/decompressor.dll\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\nCompiledCode.txt\napp/file_id.diz\napp/license.txt\napp/mp3cdripperbeta.exe\napp/whatsnew.txt\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/english.isl\ninstall_script.iss\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp",
+        "body": "CompiledCode.txt\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/decompressor.dll\nembedded/english.isl\ninstall_script.iss",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -33,11 +33,7 @@
           "file": {
             "name": {
               "extracted": [
-                "app/libcrypto-1_1.dll",
-                "app/libeay32.dll",
-                "app/libssl-1_1.dll",
-                "app/ssleay32.dll",
-                "embedded/decompressor.dll",
+                "CompiledCode.txt",
                 "app/NetDiagram.chm",
                 "app/Visio/areas.vss",
                 "app/Visio/areas.vssx",
@@ -47,17 +43,21 @@
                 "app/Visio/lines.vssx",
                 "app/Visio/netdiagram.vst",
                 "app/Visio/netdiagram.vstx",
-                "CompiledCode.txt",
                 "app/file_id.diz",
+                "app/libcrypto-1_1.dll",
+                "app/libeay32.dll",
+                "app/libssl-1_1.dll",
                 "app/license.txt",
                 "app/mp3cdripperbeta.exe",
+                "app/ssleay32.dll",
                 "app/whatsnew.txt",
                 "embedded/CompiledCode.bin",
                 "embedded/License.txt",
-                "embedded/english.isl",
-                "install_script.iss",
                 "embedded/WizardImage0.bmp",
-                "embedded/WizardSmallImage0.bmp"
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/decompressor.dll",
+                "embedded/english.isl",
+                "install_script.iss"
               ]
             }
           },
@@ -72,7 +72,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "app/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/ssleay32.dll\nembedded/decompressor.dll\napp/NetDiagram.chm\napp/mp3cdripperbeta.exe",
+        "body": "app/NetDiagram.chm\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\nembedded/decompressor.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -86,13 +86,13 @@
             ],
             "name": {
               "extracted": [
+                "app/NetDiagram.chm",
                 "app/libcrypto-1_1.dll",
                 "app/libeay32.dll",
                 "app/libssl-1_1.dll",
+                "app/mp3cdripperbeta.exe",
                 "app/ssleay32.dll",
-                "embedded/decompressor.dll",
-                "app/NetDiagram.chm",
-                "app/mp3cdripperbeta.exe"
+                "embedded/decompressor.dll"
               ]
             }
           }

@@ -50,7 +50,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "tmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/ir07n7jvj59zw8tr4awv.exe\nCompiledCode.txt\nembedded/CompiledCode.bin\nembedded/russian.isl\ninstall_script.iss\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\ntmp/CBO.bmp\ntmp/video.mp4",
+        "body": "CompiledCode.txt\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico\napp/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico\nembedded/CompiledCode.bin\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/russian.isl\ninstall_script.iss\ntmp/4ymciq2rpquzvfdzpvnq.exe\ntmp/CBO.bmp\ntmp/ir07n7jvj59zw8tr4awv.exe\ntmp/video.mp4",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -61,19 +61,19 @@
           "file": {
             "name": {
               "extracted": [
-                "tmp/4ymciq2rpquzvfdzpvnq.exe",
-                "tmp/ir07n7jvj59zw8tr4awv.exe",
                 "CompiledCode.txt",
-                "embedded/CompiledCode.bin",
-                "embedded/russian.isl",
-                "install_script.iss",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/6b341118807f622c222362d463ff833b894fd1d2.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/708642840875f21bc964368121ec8c2aba26c387.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d154035b1f20bde2f2a2a14555e83b565189d264.ico",
                 "app/a7cefb09ed3ead31c627eb4c935dd47e9657d42f/d2220cd946c3b83a48603e691e101b4a16c09686.ico",
+                "embedded/CompiledCode.bin",
                 "embedded/WizardImage0.bmp",
                 "embedded/WizardSmallImage0.bmp",
+                "embedded/russian.isl",
+                "install_script.iss",
+                "tmp/4ymciq2rpquzvfdzpvnq.exe",
                 "tmp/CBO.bmp",
+                "tmp/ir07n7jvj59zw8tr4awv.exe",
                 "tmp/video.mp4"
               ]
             }

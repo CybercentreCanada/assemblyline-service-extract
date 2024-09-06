@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "AaaTeXMeterBilling.exe\nSetup.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt",
+        "body": "AaaTeXMeterBilling.exe\nOperations.pdf\nReadMe.pdf\nReleaseNotes.txt\nSetup.exe",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -24,10 +24,10 @@
             "name": {
               "extracted": [
                 "AaaTeXMeterBilling.exe",
-                "Setup.exe",
                 "Operations.pdf",
                 "ReadMe.pdf",
-                "ReleaseNotes.txt"
+                "ReleaseNotes.txt",
+                "Setup.exe"
               ]
             }
           }

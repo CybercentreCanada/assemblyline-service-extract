@@ -25,7 +25,7 @@
       },
       {
         "auto_collapse": false,
-        "body": ".data\n[0]\n\\x00\\xdd5\\xbc\n\u0492\\x85.pyc\nCERTIFICATE\n_RDATA",
+        "body": ".data\nCERTIFICATE\n[0]\n\\x00\\xdd5\\xbc\n\u0492\\x85.pyc\n_RDATA",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -44,9 +44,9 @@
             "name": {
               "extracted": [
                 ".data",
+                "CERTIFICATE",
                 "[0]",
                 "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc",
-                "CERTIFICATE",
                 "_RDATA"
               ]
             }

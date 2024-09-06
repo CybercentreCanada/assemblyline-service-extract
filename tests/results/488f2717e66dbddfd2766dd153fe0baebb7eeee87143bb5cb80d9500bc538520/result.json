@@ -57,7 +57,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "hit/overgoverning.dll\nhit/hanging.bat\ndocument.lnk",
+        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -75,9 +75,9 @@
           "file": {
             "name": {
               "extracted": [
-                "hit/overgoverning.dll",
+                "document.lnk",
                 "hit/hanging.bat",
-                "document.lnk"
+                "hit/overgoverning.dll"
               ]
             }
           }
@@ -87,7 +87,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "hit/overgoverning.dll\nhit/hanging.bat\ndocument.lnk",
+        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -108,9 +108,9 @@
             ],
             "name": {
               "extracted": [
-                "hit/overgoverning.dll",
+                "document.lnk",
                 "hit/hanging.bat",
-                "document.lnk"
+                "hit/overgoverning.dll"
               ]
             }
           }

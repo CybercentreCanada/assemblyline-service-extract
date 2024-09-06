@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "script.au3\nbezzo\nspringmaker",
+        "body": "bezzo\nscript.au3\nspringmaker",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,8 +23,8 @@
           "file": {
             "name": {
               "extracted": [
-                "script.au3",
                 "bezzo",
+                "script.au3",
                 "springmaker"
               ]
             }

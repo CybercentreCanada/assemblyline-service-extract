@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\nbz2.pyd\nselect.pyd\nunicodedata.pyd\nStringIO.pyc\nUserDict.pyc\n_LWPCookieJar.pyc\n_MozillaCookieJar.pyc\n__future__.pyc\n_abcoll.pyc\n_strptime.pyc\n_threading_local.pyc\n_weakrefset.pyc\nabc.pyc\natexit.pyc\nbase64.pyc\nbdb.pyc\nbisect.pyc\ncalendar.pyc\ncmd.pyc\ncodecs.pyc\ncollections.pyc\ncookielib.pyc\ncopy.pyc\ncopy_reg.pyc\nctypes/__init__.pyc\nctypes/_endian.pyc\ndifflib.pyc\ndis.pyc\ndllInjection.py\ndllInjection.pyc\ndoctest.pyc\ndummy_thread.pyc\ndummy_threading.pyc\nemail/__init__.pyc\nemail/_parseaddr.pyc\nemail/base64mime.pyc\nemail/charset.pyc\nemail/encoders.pyc\nemail/errors.pyc\nemail/feedparser.pyc\nemail/generator.pyc\nemail/header.pyc\nemail/iterators.pyc\nemail/message.pyc\nemail/mime/__init__.pyc\nemail/parser.pyc\nemail/quoprimime.pyc\nemail/utils.pyc\nencodings/__init__.pyc\nencodings/aliases.pyc\nencodings/ascii.pyc\nencodings/base64_codec.pyc\nencodings/big5.pyc\nencodings/big5hkscs.pyc\nencodings/bz2_codec.pyc\nencodings/charmap.pyc\nencodings/cp037.pyc\nencodings/cp1006.pyc\nencodings/cp1026.pyc\nencodings/cp1140.pyc\nencodings/cp1250.pyc\nencodings/cp1251.pyc\nencodings/cp1252.pyc\nencodings/cp1253.pyc\nencodings/cp1254.pyc\nencodings/cp1255.pyc\nencodings/cp1256.pyc\nencodings/cp1257.pyc\nencodings/cp1258.pyc\nencodings/cp424.pyc\nencodings/cp437.pyc\nencodings/cp500.pyc\nencodings/cp720.pyc\nencodings/cp737.pyc\nencodings/cp775.pyc\nencodings/cp850.pyc\nencodings/cp852.pyc\nencodings/cp855.pyc\nencodings/cp856.pyc\nencodings/cp857.pyc\nencodings/cp858.pyc\nencodings/cp860.pyc\nencodings/cp861.pyc\nencodings/cp862.pyc\nencodings/cp863.pyc\nencodings/cp864.pyc\nencodings/cp865.pyc\nencodings/cp866.pyc\nencodings/cp869.pyc\nencodings/cp874.pyc\nencodings/cp875.pyc\nencodings/cp932.pyc\nencodings/cp949.pyc\nencodings/cp950.pyc\nencodings/euc_jis_2004.pyc\nencodings/euc_jisx0213.pyc\nencodings/euc_jp.pyc\nencodings/euc_kr.pyc\nencodings/gb18030.pyc\nencodings/gb2312.pyc\nencodings/gbk.pyc\nencodings/hex_codec.pyc\nencodings/hp_roman8.pyc\nencodings/hz.pyc\nencodings/idna.pyc\nencodings/iso2022_jp.pyc\nencodings/iso2022_jp_1.pyc\nencodings/iso2022_jp_2.pyc\nencodings/iso2022_jp_2004.pyc\nencodings/iso2022_jp_3.pyc\nencodings/iso2022_jp_ext.pyc\nencodings/iso2022_kr.pyc\nencodings/iso8859_1.pyc\nencodings/iso8859_10.pyc\nencodings/iso8859_11.pyc\nencodings/iso8859_13.pyc\nencodings/iso8859_14.pyc\nencodings/iso8859_15.pyc\nencodings/iso8859_16.pyc\nencodings/iso8859_2.pyc\nencodings/iso8859_3.pyc\nencodings/iso8859_4.pyc\nencodings/iso8859_5.pyc\nencodings/iso8859_6.pyc\nencodings/iso8859_7.pyc\nencodings/iso8859_8.pyc\nencodings/iso8859_9.pyc\nencodings/johab.pyc\nencodings/koi8_r.pyc\nencodings/koi8_u.pyc\nencodings/latin_1.pyc\nencodings/mac_arabic.pyc\nencodings/mac_centeuro.pyc\nencodings/mac_croatian.pyc\nencodings/mac_cyrillic.pyc\nencodings/mac_farsi.pyc\nencodings/mac_greek.pyc\nencodings/mac_iceland.pyc\nencodings/mac_latin2.pyc\nencodings/mac_roman.pyc\nencodings/mac_romanian.pyc\nencodings/mac_turkish.pyc\nencodings/mbcs.pyc\nencodings/palmos.pyc\nencodings/ptcp154.pyc\nencodings/punycode.pyc\nencodings/quopri_codec.pyc\nencodings/raw_unicode_escape.pyc\nencodings/rot_13.pyc\nencodings/shift_jis.pyc\nencodings/shift_jis_2004.pyc\nencodings/shift_jisx0213.pyc\nencodings/string_escape.pyc\nencodings/tis_620.pyc\nencodings/undefined.pyc\nencodings/unicode_escape.pyc\nencodings/unicode_internal.pyc\nencodings/utf_16.pyc\nencodings/utf_16_be.pyc\nencodings/utf_16_le.pyc\nencodings/utf_32.pyc\nencodings/utf_32_be.pyc\nencodings/utf_32_le.pyc\nencodings/utf_7.pyc\nencodings/utf_8.pyc\nencodings/utf_8_sig.pyc\nencodings/uu_codec.pyc\nencodings/zlib_codec.pyc\nfnmatch.pyc\nftplib.pyc\nfunctools.pyc\ngenericpath.pyc\ngetopt.pyc\ngetpass.pyc\ngettext.pyc\nhashlib.pyc\nheapq.pyc\nhttplib.pyc\ninspect.pyc\nkeyword.pyc\nlinecache.pyc\nlocale.pyc\nlogging/__init__.pyc\nmimetools.pyc\nmimetypes.pyc\nntpath.pyc\nnturl2path.pyc\nopcode.pyc\noptparse.pyc\nos.pyc\nos2emxpath.pyc\npdb.pyc\npickle.pyc\nposixpath.pyc\npprint.pyc\nquopri.pyc\nrandom.pyc\nre.pyc\nrepr.pyc\nrfc822.pyc\nshlex.pyc\nsocket.pyc\nsre.pyc\nsre_compile.pyc\nsre_constants.pyc\nsre_parse.pyc\nssl.pyc\nstat.pyc\nstring.pyc\nstringprep.pyc\nstruct.pyc\nsubprocess.pyc\ntempfile.pyc\ntextwrap.pyc\nthreading.pyc\ntoken.pyc\ntokenize.pyc\ntraceback.pyc\ntypes.pyc\nunittest/__init__.pyc\nunittest/case.pyc\nunittest/loader.pyc\nunittest/main.pyc\nunittest/result.pyc\nunittest/runner.pyc\nunittest/signals.pyc\nunittest/suite.pyc\nunittest/util.pyc\nurllib.pyc\nurllib2.pyc\nurlparse.pyc\nuu.pyc\nwarnings.pyc\nweakref.pyc\nzipextimporter.pyc",
+        "body": "StringIO.pyc\nUserDict.pyc\n_LWPCookieJar.pyc\n_MozillaCookieJar.pyc\n__future__.pyc\n_abcoll.pyc\n_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\n_strptime.pyc\n_threading_local.pyc\n_weakrefset.pyc\nabc.pyc\natexit.pyc\nbase64.pyc\nbdb.pyc\nbisect.pyc\nbz2.pyd\ncalendar.pyc\ncmd.pyc\ncodecs.pyc\ncollections.pyc\ncookielib.pyc\ncopy.pyc\ncopy_reg.pyc\nctypes/__init__.pyc\nctypes/_endian.pyc\ndifflib.pyc\ndis.pyc\ndllInjection.py\ndllInjection.pyc\ndoctest.pyc\ndummy_thread.pyc\ndummy_threading.pyc\nemail/__init__.pyc\nemail/_parseaddr.pyc\nemail/base64mime.pyc\nemail/charset.pyc\nemail/encoders.pyc\nemail/errors.pyc\nemail/feedparser.pyc\nemail/generator.pyc\nemail/header.pyc\nemail/iterators.pyc\nemail/message.pyc\nemail/mime/__init__.pyc\nemail/parser.pyc\nemail/quoprimime.pyc\nemail/utils.pyc\nencodings/__init__.pyc\nencodings/aliases.pyc\nencodings/ascii.pyc\nencodings/base64_codec.pyc\nencodings/big5.pyc\nencodings/big5hkscs.pyc\nencodings/bz2_codec.pyc\nencodings/charmap.pyc\nencodings/cp037.pyc\nencodings/cp1006.pyc\nencodings/cp1026.pyc\nencodings/cp1140.pyc\nencodings/cp1250.pyc\nencodings/cp1251.pyc\nencodings/cp1252.pyc\nencodings/cp1253.pyc\nencodings/cp1254.pyc\nencodings/cp1255.pyc\nencodings/cp1256.pyc\nencodings/cp1257.pyc\nencodings/cp1258.pyc\nencodings/cp424.pyc\nencodings/cp437.pyc\nencodings/cp500.pyc\nencodings/cp720.pyc\nencodings/cp737.pyc\nencodings/cp775.pyc\nencodings/cp850.pyc\nencodings/cp852.pyc\nencodings/cp855.pyc\nencodings/cp856.pyc\nencodings/cp857.pyc\nencodings/cp858.pyc\nencodings/cp860.pyc\nencodings/cp861.pyc\nencodings/cp862.pyc\nencodings/cp863.pyc\nencodings/cp864.pyc\nencodings/cp865.pyc\nencodings/cp866.pyc\nencodings/cp869.pyc\nencodings/cp874.pyc\nencodings/cp875.pyc\nencodings/cp932.pyc\nencodings/cp949.pyc\nencodings/cp950.pyc\nencodings/euc_jis_2004.pyc\nencodings/euc_jisx0213.pyc\nencodings/euc_jp.pyc\nencodings/euc_kr.pyc\nencodings/gb18030.pyc\nencodings/gb2312.pyc\nencodings/gbk.pyc\nencodings/hex_codec.pyc\nencodings/hp_roman8.pyc\nencodings/hz.pyc\nencodings/idna.pyc\nencodings/iso2022_jp.pyc\nencodings/iso2022_jp_1.pyc\nencodings/iso2022_jp_2.pyc\nencodings/iso2022_jp_2004.pyc\nencodings/iso2022_jp_3.pyc\nencodings/iso2022_jp_ext.pyc\nencodings/iso2022_kr.pyc\nencodings/iso8859_1.pyc\nencodings/iso8859_10.pyc\nencodings/iso8859_11.pyc\nencodings/iso8859_13.pyc\nencodings/iso8859_14.pyc\nencodings/iso8859_15.pyc\nencodings/iso8859_16.pyc\nencodings/iso8859_2.pyc\nencodings/iso8859_3.pyc\nencodings/iso8859_4.pyc\nencodings/iso8859_5.pyc\nencodings/iso8859_6.pyc\nencodings/iso8859_7.pyc\nencodings/iso8859_8.pyc\nencodings/iso8859_9.pyc\nencodings/johab.pyc\nencodings/koi8_r.pyc\nencodings/koi8_u.pyc\nencodings/latin_1.pyc\nencodings/mac_arabic.pyc\nencodings/mac_centeuro.pyc\nencodings/mac_croatian.pyc\nencodings/mac_cyrillic.pyc\nencodings/mac_farsi.pyc\nencodings/mac_greek.pyc\nencodings/mac_iceland.pyc\nencodings/mac_latin2.pyc\nencodings/mac_roman.pyc\nencodings/mac_romanian.pyc\nencodings/mac_turkish.pyc\nencodings/mbcs.pyc\nencodings/palmos.pyc\nencodings/ptcp154.pyc\nencodings/punycode.pyc\nencodings/quopri_codec.pyc\nencodings/raw_unicode_escape.pyc\nencodings/rot_13.pyc\nencodings/shift_jis.pyc\nencodings/shift_jis_2004.pyc\nencodings/shift_jisx0213.pyc\nencodings/string_escape.pyc\nencodings/tis_620.pyc\nencodings/undefined.pyc\nencodings/unicode_escape.pyc\nencodings/unicode_internal.pyc\nencodings/utf_16.pyc\nencodings/utf_16_be.pyc\nencodings/utf_16_le.pyc\nencodings/utf_32.pyc\nencodings/utf_32_be.pyc\nencodings/utf_32_le.pyc\nencodings/utf_7.pyc\nencodings/utf_8.pyc\nencodings/utf_8_sig.pyc\nencodings/uu_codec.pyc\nencodings/zlib_codec.pyc\nfnmatch.pyc\nftplib.pyc\nfunctools.pyc\ngenericpath.pyc\ngetopt.pyc\ngetpass.pyc\ngettext.pyc\nhashlib.pyc\nheapq.pyc\nhttplib.pyc\ninspect.pyc\nkeyword.pyc\nlinecache.pyc\nlocale.pyc\nlogging/__init__.pyc\nmimetools.pyc\nmimetypes.pyc\nntpath.pyc\nnturl2path.pyc\nopcode.pyc\noptparse.pyc\nos.pyc\nos2emxpath.pyc\npdb.pyc\npickle.pyc\nposixpath.pyc\npprint.pyc\nquopri.pyc\nrandom.pyc\nre.pyc\nrepr.pyc\nrfc822.pyc\nselect.pyd\nshlex.pyc\nsocket.pyc\nsre.pyc\nsre_compile.pyc\nsre_constants.pyc\nsre_parse.pyc\nssl.pyc\nstat.pyc\nstring.pyc\nstringprep.pyc\nstruct.pyc\nsubprocess.pyc\ntempfile.pyc\ntextwrap.pyc\nthreading.pyc\ntoken.pyc\ntokenize.pyc\ntraceback.pyc\ntypes.pyc\nunicodedata.pyd\nunittest/__init__.pyc\nunittest/case.pyc\nunittest/loader.pyc\nunittest/main.pyc\nunittest/result.pyc\nunittest/runner.pyc\nunittest/signals.pyc\nunittest/suite.pyc\nunittest/util.pyc\nurllib.pyc\nurllib2.pyc\nurlparse.pyc\nuu.pyc\nwarnings.pyc\nweakref.pyc\nzipextimporter.pyc",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,19 +23,16 @@
           "file": {
             "name": {
               "extracted": [
-                "_ctypes.pyd",
-                "_hashlib.pyd",
-                "_socket.pyd",
-                "_ssl.pyd",
-                "bz2.pyd",
-                "select.pyd",
-                "unicodedata.pyd",
                 "StringIO.pyc",
                 "UserDict.pyc",
                 "_LWPCookieJar.pyc",
                 "_MozillaCookieJar.pyc",
                 "__future__.pyc",
                 "_abcoll.pyc",
+                "_ctypes.pyd",
+                "_hashlib.pyd",
+                "_socket.pyd",
+                "_ssl.pyd",
                 "_strptime.pyc",
                 "_threading_local.pyc",
                 "_weakrefset.pyc",
@@ -44,6 +41,7 @@
                 "base64.pyc",
                 "bdb.pyc",
                 "bisect.pyc",
+                "bz2.pyd",
                 "calendar.pyc",
                 "cmd.pyc",
                 "codecs.pyc",
@@ -227,6 +225,7 @@
                 "re.pyc",
                 "repr.pyc",
                 "rfc822.pyc",
+                "select.pyd",
                 "shlex.pyc",
                 "socket.pyc",
                 "sre.pyc",
@@ -246,6 +245,7 @@
                 "tokenize.pyc",
                 "traceback.pyc",
                 "types.pyc",
+                "unicodedata.pyd",
                 "unittest/__init__.pyc",
                 "unittest/case.pyc",
                 "unittest/loader.pyc",
@@ -271,7 +271,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\nbz2.pyd\nselect.pyd\nunicodedata.pyd\ndllInjection.py",
+        "body": "_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\nbz2.pyd\ndllInjection.py\nselect.pyd\nunicodedata.pyd",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -290,9 +290,9 @@
                 "_socket.pyd",
                 "_ssl.pyd",
                 "bz2.pyd",
+                "dllInjection.py",
                 "select.pyd",
-                "unicodedata.pyd",
-                "dllInjection.py"
+                "unicodedata.pyd"
               ]
             }
           }

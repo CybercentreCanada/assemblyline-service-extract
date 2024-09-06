@@ -50,7 +50,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Package/libglib-2.0-0.dll\nPackage/libgmodule-2.0-0.dll\nPackage/libintl-8.dll\nPackage/libwsutil.dll\nPackage/mergecap.exe\nPackage/msvcr100.dll\nPackage/wiretap-1.8.0.dll\nPackage/zlib1.dll\nPackage/burweed.ppt",
+        "body": "Package/burweed.ppt\nPackage/libglib-2.0-0.dll\nPackage/libgmodule-2.0-0.dll\nPackage/libintl-8.dll\nPackage/libwsutil.dll\nPackage/mergecap.exe\nPackage/msvcr100.dll\nPackage/wiretap-1.8.0.dll\nPackage/zlib1.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -61,6 +61,7 @@
           "file": {
             "name": {
               "extracted": [
+                "Package/burweed.ppt",
                 "Package/libglib-2.0-0.dll",
                 "Package/libgmodule-2.0-0.dll",
                 "Package/libintl-8.dll",
@@ -68,8 +69,7 @@
                 "Package/mergecap.exe",
                 "Package/msvcr100.dll",
                 "Package/wiretap-1.8.0.dll",
-                "Package/zlib1.dll",
-                "Package/burweed.ppt"
+                "Package/zlib1.dll"
               ]
             }
           },

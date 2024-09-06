@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Payload/PGDribbble.app/PGDribbble\nPayload/PGDribbble.app/_CodeSignature/CodeResources\niTunesMetadata.plist\nMETA-INF/com.apple.FixedZipMetadata.bin\nMETA-INF/com.apple.ZipMetadata.plist\nPayload/PGDribbble.app/Assets.car\nPayload/PGDribbble.app/PkgInfo\nPayload/PGDribbble.app/SC_Info/PGDribbble.sinf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supp\nPayload/PGDribbble.app/en.lproj/InfoPlist.strings\nPayload/PGDribbble.app/pgloader.x\nPayload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings\nPayload/PGDribbble.app/AppIcon29x29@2x.png\nPayload/PGDribbble.app/AppIcon29x29@2x~ipad.png\nPayload/PGDribbble.app/AppIcon29x29@3x.png\nPayload/PGDribbble.app/AppIcon29x29~ipad.png\nPayload/PGDribbble.app/AppIcon40x40@2x.png\nPayload/PGDribbble.app/AppIcon40x40@2x~ipad.png\nPayload/PGDribbble.app/AppIcon40x40@3x.png\nPayload/PGDribbble.app/AppIcon40x40~ipad.png\nPayload/PGDribbble.app/AppIcon60x60@2x.png\nPayload/PGDribbble.app/AppIcon60x60@3x.png\nPayload/PGDribbble.app/AppIcon76x76@2x~ipad.png\nPayload/PGDribbble.app/AppIcon76x76~ipad.png\nPayload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png\nPayload/PGDribbble.app/LaunchImage-700-568h@2x.png\nPayload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png\nPayload/PGDribbble.app/LaunchImage-700@2x.png\nPayload/PGDribbble.app/LaunchImage-800-667h@2x.png\nPayload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png\nPayload/PGDribbble.app/lookup.png\nPayload/PGDribbble.app/lookup_amatorka.png\nPayload/PGDribbble.app/lookup_miss_etikate.png\nPayload/PGDribbble.app/lookup_soft_elegance_1.png\nPayload/PGDribbble.app/lookup_soft_elegance_2.png\niTunesArtwork",
+        "body": "META-INF/com.apple.FixedZipMetadata.bin\nMETA-INF/com.apple.ZipMetadata.plist\nPayload/PGDribbble.app/AppIcon29x29@2x.png\nPayload/PGDribbble.app/AppIcon29x29@2x~ipad.png\nPayload/PGDribbble.app/AppIcon29x29@3x.png\nPayload/PGDribbble.app/AppIcon29x29~ipad.png\nPayload/PGDribbble.app/AppIcon40x40@2x.png\nPayload/PGDribbble.app/AppIcon40x40@2x~ipad.png\nPayload/PGDribbble.app/AppIcon40x40@3x.png\nPayload/PGDribbble.app/AppIcon40x40~ipad.png\nPayload/PGDribbble.app/AppIcon60x60@2x.png\nPayload/PGDribbble.app/AppIcon60x60@3x.png\nPayload/PGDribbble.app/AppIcon76x76@2x~ipad.png\nPayload/PGDribbble.app/AppIcon76x76~ipad.png\nPayload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png\nPayload/PGDribbble.app/Assets.car\nPayload/PGDribbble.app/LaunchImage-700-568h@2x.png\nPayload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png\nPayload/PGDribbble.app/LaunchImage-700@2x.png\nPayload/PGDribbble.app/LaunchImage-800-667h@2x.png\nPayload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png\nPayload/PGDribbble.app/PGDribbble\nPayload/PGDribbble.app/PkgInfo\nPayload/PGDribbble.app/SC_Info/PGDribbble.sinf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supf\nPayload/PGDribbble.app/SC_Info/PGDribbble.supp\nPayload/PGDribbble.app/_CodeSignature/CodeResources\nPayload/PGDribbble.app/en.lproj/InfoPlist.strings\nPayload/PGDribbble.app/lookup.png\nPayload/PGDribbble.app/lookup_amatorka.png\nPayload/PGDribbble.app/lookup_miss_etikate.png\nPayload/PGDribbble.app/lookup_soft_elegance_1.png\nPayload/PGDribbble.app/lookup_soft_elegance_2.png\nPayload/PGDribbble.app/pgloader.x\nPayload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings\niTunesArtwork\niTunesMetadata.plist",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,19 +23,8 @@
           "file": {
             "name": {
               "extracted": [
-                "Payload/PGDribbble.app/PGDribbble",
-                "Payload/PGDribbble.app/_CodeSignature/CodeResources",
-                "iTunesMetadata.plist",
                 "META-INF/com.apple.FixedZipMetadata.bin",
                 "META-INF/com.apple.ZipMetadata.plist",
-                "Payload/PGDribbble.app/Assets.car",
-                "Payload/PGDribbble.app/PkgInfo",
-                "Payload/PGDribbble.app/SC_Info/PGDribbble.sinf",
-                "Payload/PGDribbble.app/SC_Info/PGDribbble.supf",
-                "Payload/PGDribbble.app/SC_Info/PGDribbble.supp",
-                "Payload/PGDribbble.app/en.lproj/InfoPlist.strings",
-                "Payload/PGDribbble.app/pgloader.x",
-                "Payload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings",
                 "Payload/PGDribbble.app/AppIcon29x29@2x.png",
                 "Payload/PGDribbble.app/AppIcon29x29@2x~ipad.png",
                 "Payload/PGDribbble.app/AppIcon29x29@3x.png",
@@ -49,17 +38,28 @@
                 "Payload/PGDribbble.app/AppIcon76x76@2x~ipad.png",
                 "Payload/PGDribbble.app/AppIcon76x76~ipad.png",
                 "Payload/PGDribbble.app/AppIcon83.5x83.5@2x~ipad.png",
+                "Payload/PGDribbble.app/Assets.car",
                 "Payload/PGDribbble.app/LaunchImage-700-568h@2x.png",
                 "Payload/PGDribbble.app/LaunchImage-700-Portrait~ipad.png",
                 "Payload/PGDribbble.app/LaunchImage-700@2x.png",
                 "Payload/PGDribbble.app/LaunchImage-800-667h@2x.png",
                 "Payload/PGDribbble.app/LaunchImage-800-Portrait-736h@3x.png",
+                "Payload/PGDribbble.app/PGDribbble",
+                "Payload/PGDribbble.app/PkgInfo",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.sinf",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.supf",
+                "Payload/PGDribbble.app/SC_Info/PGDribbble.supp",
+                "Payload/PGDribbble.app/_CodeSignature/CodeResources",
+                "Payload/PGDribbble.app/en.lproj/InfoPlist.strings",
                 "Payload/PGDribbble.app/lookup.png",
                 "Payload/PGDribbble.app/lookup_amatorka.png",
                 "Payload/PGDribbble.app/lookup_miss_etikate.png",
                 "Payload/PGDribbble.app/lookup_soft_elegance_1.png",
                 "Payload/PGDribbble.app/lookup_soft_elegance_2.png",
-                "iTunesArtwork"
+                "Payload/PGDribbble.app/pgloader.x",
+                "Payload/PGDribbble.app/zh-Hans.lproj/InfoPlist.strings",
+                "iTunesArtwork",
+                "iTunesMetadata.plist"
               ]
             }
           }

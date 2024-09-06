@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "_966DB40C40F8C4EFBD4760B26A9605D6\n!AdminExecuteSequence\n!AdminUISequence\n!AdvtExecuteSequence\n!Binary\n!Component\n!Control\n!ControlCondition\n!ControlEvent\n!CustomAction\n!Dialog\n!Directory\n!EventMapping\n!Feature\n!FeatureComponents\n!File\n!InstallExecuteSequence\n!InstallUISequence\n!Media\n!ModuleSignature\n!Property\n!RadioButton\n!TextStyle\n!UIText\n!Upgrade\n!_Columns\n!_StringData\n!_StringPool\n!_Tables\n!_Validation\n[5]SummaryInformation\nBinary.DefBannerBitmap\nBinary.NewFldrBtn\nBinary.UpFldrBtn\nBinary._89A48033CC012E7E8A1968D0FFBDD699",
+        "body": "!AdminExecuteSequence\n!AdminUISequence\n!AdvtExecuteSequence\n!Binary\n!Component\n!Control\n!ControlCondition\n!ControlEvent\n!CustomAction\n!Dialog\n!Directory\n!EventMapping\n!Feature\n!FeatureComponents\n!File\n!InstallExecuteSequence\n!InstallUISequence\n!Media\n!ModuleSignature\n!Property\n!RadioButton\n!TextStyle\n!UIText\n!Upgrade\n!_Columns\n!_StringData\n!_StringPool\n!_Tables\n!_Validation\nBinary.DefBannerBitmap\nBinary.NewFldrBtn\nBinary.UpFldrBtn\nBinary._89A48033CC012E7E8A1968D0FFBDD699\n[5]SummaryInformation\n_966DB40C40F8C4EFBD4760B26A9605D6",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,7 +23,6 @@
           "file": {
             "name": {
               "extracted": [
-                "_966DB40C40F8C4EFBD4760B26A9605D6",
                 "!AdminExecuteSequence",
                 "!AdminUISequence",
                 "!AdvtExecuteSequence",
@@ -53,11 +52,12 @@
                 "!_StringPool",
                 "!_Tables",
                 "!_Validation",
-                "[5]SummaryInformation",
                 "Binary.DefBannerBitmap",
                 "Binary.NewFldrBtn",
                 "Binary.UpFldrBtn",
-                "Binary._89A48033CC012E7E8A1968D0FFBDD699"
+                "Binary._89A48033CC012E7E8A1968D0FFBDD699",
+                "[5]SummaryInformation",
+                "_966DB40C40F8C4EFBD4760B26A9605D6"
               ]
             }
           }

@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "VirtualRepairTool/VirtualRepairTool\nVirtualRepairTool/.DS_Store\nVirtualRepairTool/VirtualRepairTool:rsrc\nVirtualRepairTool/.background/background.png",
+        "body": "VirtualRepairTool/.DS_Store\nVirtualRepairTool/.background/background.png\nVirtualRepairTool/VirtualRepairTool\nVirtualRepairTool/VirtualRepairTool:rsrc",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,10 +23,10 @@
           "file": {
             "name": {
               "extracted": [
-                "VirtualRepairTool/VirtualRepairTool",
                 "VirtualRepairTool/.DS_Store",
-                "VirtualRepairTool/VirtualRepairTool:rsrc",
-                "VirtualRepairTool/.background/background.png"
+                "VirtualRepairTool/.background/background.png",
+                "VirtualRepairTool/VirtualRepairTool",
+                "VirtualRepairTool/VirtualRepairTool:rsrc"
               ]
             }
           }

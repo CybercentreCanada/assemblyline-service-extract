@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "local.dll\nScannedDocuments_4602944.lnk",
+        "body": "ScannedDocuments_4602944.lnk\nlocal.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,8 +23,8 @@
           "file": {
             "name": {
               "extracted": [
-                "local.dll",
-                "ScannedDocuments_4602944.lnk"
+                "ScannedDocuments_4602944.lnk",
+                "local.dll"
               ]
             }
           }
@@ -34,7 +34,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "local.dll\nScannedDocuments_4602944.lnk",
+        "body": "ScannedDocuments_4602944.lnk\nlocal.dll",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -55,8 +55,8 @@
             ],
             "name": {
               "extracted": [
-                "local.dll",
-                "ScannedDocuments_4602944.lnk"
+                "ScannedDocuments_4602944.lnk",
+                "local.dll"
               ]
             }
           }

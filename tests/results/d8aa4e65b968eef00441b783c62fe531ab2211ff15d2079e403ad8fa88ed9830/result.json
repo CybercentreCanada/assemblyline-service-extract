@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "main.pyc\n.data",
+        "body": ".data\nmain.pyc",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -23,8 +23,8 @@
           "file": {
             "name": {
               "extracted": [
-                "main.pyc",
-                ".data"
+                ".data",
+                "main.pyc"
               ]
             }
           }

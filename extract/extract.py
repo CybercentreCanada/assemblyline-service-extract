@@ -419,24 +419,44 @@ class Extract(ServiceBase):
             PRIORITY.VERY_LOW: [],
         }
         very_large_files = []
-        for child in sorted(extracted, key=lambda x: x[1]):
-            file_path = child[0]
-            if os.path.islink(file_path):
-                link_desc = f"{child[1]} -> {os.readlink(file_path)}"
-                symlinks.append(link_desc)
-            else:
-                # Start by stripping the file.
-                file_info = self.identify.fileinfo(file_path, generate_hashes=False)
-                file_size = file_info["size"]
-                if file_size > self.config.get("heur22_min_overlay_size", 31457280):
-                    file_path = self.strip_file(request, file_path, child[1])
+        if len(extracted) > request.max_extracted:
+            # Only execute fileinfo when it's really needed, to speed up the process
+            for child in sorted(extracted, key=lambda x: x[1]):
+                file_path = child[0]
+                if os.path.islink(file_path):
+                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                    symlinks.append(link_desc)
+                else:
+                    # Start by stripping the file.
+                    file_info = self.identify.fileinfo(file_path, generate_hashes=False)
+                    file_size = file_info["size"]
+                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
+                        file_path = self.strip_file(request, file_path, child[1])
+                        file_size = os.path.getsize(file_path)
+
+                    if file_size > MAX_INT:
+                        very_large_files.append((file_path, file_size))
+                        continue
+
+                    prioritized_files[get_file_priority(file_info["type"])].append([file_path, child[1], child[2]])
+        else:
+            for child in sorted(extracted, key=lambda x: x[1]):
+                file_path = child[0]
+                if os.path.islink(file_path):
+                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                    symlinks.append(link_desc)
+                else:
+                    # Start by stripping the file.
                     file_size = os.path.getsize(file_path)
+                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
+                        file_path = self.strip_file(request, file_path, child[1])
+                        file_size = os.path.getsize(file_path)
 
-                if file_size > MAX_INT:
-                    very_large_files.append((file_path, file_size))
-                    continue
+                    if file_size > MAX_INT:
+                        very_large_files.append((file_path, file_size))
+                        continue
 
-                prioritized_files[get_file_priority(file_info["type"])].append([file_path, child[1], child[2]])
+                    prioritized_files[PRIORITY.MEDIUM].append([file_path, child[1], child[2]])
 
         max_extracted_exceeded = False
         extracted_files = []

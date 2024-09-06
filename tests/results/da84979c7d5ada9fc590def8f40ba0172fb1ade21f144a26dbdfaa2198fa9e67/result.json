@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "$PLUGINSDIR/System.dll\nNeGACOM.dll\nSystem.Runtime.Serialization.Formatters.dll\nSystem.Threading.Channels.dll\nuHDDImporter.dll\nExSuiteExtWiz.msi\nshathree.c\nORDDELINGSSTREG.Tre\nSentensers.Beg8\nSwedish.ini\nbluetooth-disabled-symbolic.svg\nemblem-videos-symbolic.svg\nview-more-symbolic.svg\nGreen_Leaves_12.bmp\ndrive-removable-media.png\nsave.jpg\nuser-idle-symbolic.symbolic.png",
+        "body": "$PLUGINSDIR/System.dll\nExSuiteExtWiz.msi\nGreen_Leaves_12.bmp\nNeGACOM.dll\nORDDELINGSSTREG.Tre\nSentensers.Beg8\nSwedish.ini\nSystem.Runtime.Serialization.Formatters.dll\nSystem.Threading.Channels.dll\nbluetooth-disabled-symbolic.svg\ndrive-removable-media.png\nemblem-videos-symbolic.svg\nsave.jpg\nshathree.c\nuHDDImporter.dll\nuser-idle-symbolic.symbolic.png\nview-more-symbolic.svg",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -24,22 +24,22 @@
             "name": {
               "extracted": [
                 "$PLUGINSDIR/System.dll",
-                "NeGACOM.dll",
-                "System.Runtime.Serialization.Formatters.dll",
-                "System.Threading.Channels.dll",
-                "uHDDImporter.dll",
                 "ExSuiteExtWiz.msi",
-                "shathree.c",
+                "Green_Leaves_12.bmp",
+                "NeGACOM.dll",
                 "ORDDELINGSSTREG.Tre",
                 "Sentensers.Beg8",
                 "Swedish.ini",
+                "System.Runtime.Serialization.Formatters.dll",
+                "System.Threading.Channels.dll",
                 "bluetooth-disabled-symbolic.svg",
-                "emblem-videos-symbolic.svg",
-                "view-more-symbolic.svg",
-                "Green_Leaves_12.bmp",
                 "drive-removable-media.png",
+                "emblem-videos-symbolic.svg",
                 "save.jpg",
-                "user-idle-symbolic.symbolic.png"
+                "shathree.c",
+                "uHDDImporter.dll",
+                "user-idle-symbolic.symbolic.png",
+                "view-more-symbolic.svg"
               ]
             }
           }
