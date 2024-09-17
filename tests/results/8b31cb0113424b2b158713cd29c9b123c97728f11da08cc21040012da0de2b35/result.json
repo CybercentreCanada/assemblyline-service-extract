@@ -1,0 +1,185 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Version": "9.1"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/AmindPDFCore.dll\n%AppFolder%/GeekerPDF.exe\n%AppFolder%/files.docx\nIRIMG1.JPG\nIRIMG2.JPG\nirsetup.exe\nlua5.1.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "%AppFolder%/AmindPDFCore.dll",
+                "%AppFolder%/GeekerPDF.exe",
+                "%AppFolder%/files.docx",
+                "IRIMG1.JPG",
+                "IRIMG2.JPG",
+                "irsetup.exe",
+                "lua5.1.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 7 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/AmindPDFCore.dll\n%AppFolder%/GeekerPDF.exe\nirsetup.exe\nlua5.1.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "%AppFolder%/AmindPDFCore.dll",
+                "%AppFolder%/GeekerPDF.exe",
+                "irsetup.exe",
+                "lua5.1.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "%AppFolder%/files.docx",
+        "sha256": "07c3b7e553bf4a99ca419a83fc57f0875419ffad695c7901d74dd05b9e03fcf9"
+      },
+      {
+        "name": "%AppFolder%/AmindPDFCore.dll",
+        "sha256": "0bd114fecfd3c09820fa013d8cd8aadedee69906b6f81a2e827bba68ddf1023b"
+      },
+      {
+        "name": "%AppFolder%/GeekerPDF.exe",
+        "sha256": "107ba73ae05ec6ba6d814665923191f14757015557eeeff16206cc957da29be3"
+      },
+      {
+        "name": "lua5.1.dll",
+        "sha256": "3ea4a4c3c6dea44d8917b342e93d653f59d93e1f552ace16e97e43bb04e951d8"
+      },
+      {
+        "name": "irsetup.exe",
+        "sha256": "4187781bb28030ff61cfb41a840d1b3fa03607e21f41e676f2f692b3362b4f8b"
+      },
+      {
+        "name": "IRIMG1.JPG",
+        "sha256": "988cf422cbf400d41c48fbe491b425a827a1b70691f483679c1df02fb9352765"
+      },
+      {
+        "name": "IRIMG2.JPG",
+        "sha256": "f35985fe1e46a767be7dcea35f8614e1edd60c523442e6c2c2397d1e23dbd3ea"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "irsetup.dat",
+        "sha256": "12e0936c4e95df30121ceb9596bbc49666ea935822304fb231ddf0af8bf97994"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/AmindPDFCore.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/AmindPDFCore.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/GeekerPDF.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/GeekerPDF.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/files.docx"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG1.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG2.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lua5.1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "lua5.1.dll"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

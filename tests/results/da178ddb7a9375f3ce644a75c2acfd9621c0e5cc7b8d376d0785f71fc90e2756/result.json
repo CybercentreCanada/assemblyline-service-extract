@@ -1,0 +1,173 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Version": "7"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/Director.exe\nIRIMG1.JPG\nIRIMG2.JPG\nIRIMG3.JPG\nIRIMG4.JPG\nIRIMG5.JPG\nirsetup.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "%AppFolder%/Director.exe",
+                "IRIMG1.JPG",
+                "IRIMG2.JPG",
+                "IRIMG3.JPG",
+                "IRIMG4.JPG",
+                "IRIMG5.JPG",
+                "irsetup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 7 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/Director.exe\nirsetup.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "%AppFolder%/Director.exe",
+                "irsetup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "IRIMG2.JPG",
+        "sha256": "5018d55393f07ff9408d13f7155e317edb7e2e96bd215cea4b75fd5fbc4db0cd"
+      },
+      {
+        "name": "IRIMG1.JPG",
+        "sha256": "7f4687a992bb2b4fcd0eca09bbddc14679529b205106a5392100f3f68ae2d708"
+      },
+      {
+        "name": "irsetup.exe",
+        "sha256": "9e972707e89ac18989f9abbb2ae7858e0977b1c823d56a8a8064a9a702ae17bc"
+      },
+      {
+        "name": "%AppFolder%/Director.exe",
+        "sha256": "b173d9f1722225fcbb56e2b8801c4dca06a1fd626f2217182b32ac5b78e5d804"
+      },
+      {
+        "name": "IRIMG4.JPG",
+        "sha256": "e2ddf85b6df23e8ef7390be73505b2f58ed6ee9afafa771caac661fd46017486"
+      },
+      {
+        "name": "IRIMG5.JPG",
+        "sha256": "e2ddf85b6df23e8ef7390be73505b2f58ed6ee9afafa771caac661fd46017486"
+      },
+      {
+        "name": "IRIMG3.JPG",
+        "sha256": "f4ab9f31db4dac60d63b27ef461e7a9c405b89541905d4b411201f4db46acc5b"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "irsetup.dat",
+        "sha256": "9be374bbaf840e24cb090bcd572b5e4c25d41cb550e66989a3a729c61266b51e"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Director.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Director.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG1.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG2.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG3.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG4.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG5.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

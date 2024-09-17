@@ -1,0 +1,357 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Version": "8.0"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/Inspector Parker.exe\n%AppFolder%/Parker.bmp\n%AppFolder%/Parker.dcr\n%AppFolder%/Xtras/DirectSound.x32\n%AppFolder%/Xtras/Font Asset.x32\n%AppFolder%/Xtras/Font Xtra.x32\n%AppFolder%/Xtras/SWADCmpr.x32\n%AppFolder%/Xtras/Sound Control.x32\n%AppFolder%/Xtras/Text Asset.x32\n%AppFolder%/Xtras/TextXtra.x32\n%AppFolder%/Xtras/budapi.x32\n%AppFolder%/Xtras/resolution.x32\n%AppFolder%/xAssets.cct\n%AppFolder%/xObjects.cct\n%AppFolder%/xRooms.cct\n%AppFolder%/xScreens.cct\nIRIMG1.JPG\nIRIMG2.JPG\nIRIMG3.JPG\nirsetup.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "%AppFolder%/Inspector Parker.exe",
+                "%AppFolder%/Parker.bmp",
+                "%AppFolder%/Parker.dcr",
+                "%AppFolder%/Xtras/DirectSound.x32",
+                "%AppFolder%/Xtras/Font Asset.x32",
+                "%AppFolder%/Xtras/Font Xtra.x32",
+                "%AppFolder%/Xtras/SWADCmpr.x32",
+                "%AppFolder%/Xtras/Sound Control.x32",
+                "%AppFolder%/Xtras/Text Asset.x32",
+                "%AppFolder%/Xtras/TextXtra.x32",
+                "%AppFolder%/Xtras/budapi.x32",
+                "%AppFolder%/Xtras/resolution.x32",
+                "%AppFolder%/xAssets.cct",
+                "%AppFolder%/xObjects.cct",
+                "%AppFolder%/xRooms.cct",
+                "%AppFolder%/xScreens.cct",
+                "IRIMG1.JPG",
+                "IRIMG2.JPG",
+                "IRIMG3.JPG",
+                "irsetup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 20 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "%AppFolder%/Inspector Parker.exe\n%AppFolder%/Xtras/DirectSound.x32\n%AppFolder%/Xtras/Font Asset.x32\n%AppFolder%/Xtras/Font Xtra.x32\n%AppFolder%/Xtras/SWADCmpr.x32\n%AppFolder%/Xtras/Sound Control.x32\n%AppFolder%/Xtras/Text Asset.x32\n%AppFolder%/Xtras/TextXtra.x32\n%AppFolder%/Xtras/budapi.x32\n%AppFolder%/Xtras/resolution.x32\nirsetup.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "%AppFolder%/Inspector Parker.exe",
+                "%AppFolder%/Xtras/DirectSound.x32",
+                "%AppFolder%/Xtras/Font Asset.x32",
+                "%AppFolder%/Xtras/Font Xtra.x32",
+                "%AppFolder%/Xtras/SWADCmpr.x32",
+                "%AppFolder%/Xtras/Sound Control.x32",
+                "%AppFolder%/Xtras/Text Asset.x32",
+                "%AppFolder%/Xtras/TextXtra.x32",
+                "%AppFolder%/Xtras/budapi.x32",
+                "%AppFolder%/Xtras/resolution.x32",
+                "irsetup.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "%AppFolder%/Xtras/Sound Control.x32",
+        "sha256": "169b008438b8cbe9c083e51f9f1bae47714f8673e5c4107fc8eaf901692656f6"
+      },
+      {
+        "name": "%AppFolder%/Parker.dcr",
+        "sha256": "1ae2cfe5b71dcc7fa25504bc85573611ef809fdb0ca330540d3079160e3f051e"
+      },
+      {
+        "name": "%AppFolder%/Xtras/Text Asset.x32",
+        "sha256": "2864b897dc2eaadfccc71e0dc9672651c0c33388b21870e3dfb887dfda156425"
+      },
+      {
+        "name": "%AppFolder%/Xtras/Font Xtra.x32",
+        "sha256": "2dd54b208b279dad0a9aeb5f8ea55a0e1867ce9bed6c2fbd2aa1393f5a2f1e81"
+      },
+      {
+        "name": "irsetup.exe",
+        "sha256": "302544248196f0be3c1bba81a38c4413e8cfb07a719965460956b25f08e0d294"
+      },
+      {
+        "name": "%AppFolder%/Xtras/resolution.x32",
+        "sha256": "382ae7ed8802f3d081a1f8613444a3a829ff9f8fc65c7c4929a6a7d9702e1f2d"
+      },
+      {
+        "name": "%AppFolder%/Xtras/budapi.x32",
+        "sha256": "4a28869cc606787c60a91e01f49a1e79a1203f550031ed6cd955942cc3e0342d"
+      },
+      {
+        "name": "%AppFolder%/Inspector Parker.exe",
+        "sha256": "747bdf3e5bd70528f5989567eefb1f783b68a9261d9bffe2b6d2eb425855fe62"
+      },
+      {
+        "name": "%AppFolder%/xAssets.cct",
+        "sha256": "784cdac06ff4e3a87bdd94b40212feac7fb46528bdb677e8128e78e8db8b48c9"
+      },
+      {
+        "name": "%AppFolder%/xScreens.cct",
+        "sha256": "819cf9bac062ddad7bf0225010dde36794b8a34b5c39b4304240aff5bb8f9d0a"
+      },
+      {
+        "name": "IRIMG2.JPG",
+        "sha256": "83a6c1cb72abef36da0d4ed3de17f4f739c1889cc87cdced7081d5ce862972aa"
+      },
+      {
+        "name": "%AppFolder%/Parker.bmp",
+        "sha256": "99cab0abd34a7eed46f9366c5e89b8c9b0aa6304743e0bdc90733f728b197d1a"
+      },
+      {
+        "name": "%AppFolder%/xObjects.cct",
+        "sha256": "c1bbc45f03c70e360a0cf805ead2224de004809e2fc0436e75e1c0b0767921f1"
+      },
+      {
+        "name": "IRIMG1.JPG",
+        "sha256": "d3f6e5ee5ec2bd9db10fd8ca4fac02ab819013b4579c4180ae44e9c665d8c081"
+      },
+      {
+        "name": "%AppFolder%/Xtras/SWADCmpr.x32",
+        "sha256": "dd00493ddca594db4167efafba25cf124dfbb0a64c428bbee528e6e3a5933dcd"
+      },
+      {
+        "name": "IRIMG3.JPG",
+        "sha256": "dd1361385a49a263681b4a4b181aaa821cbb1ae8eb9533f9516a0d7b7b5be805"
+      },
+      {
+        "name": "%AppFolder%/Xtras/DirectSound.x32",
+        "sha256": "ddeae51512cbd39d3c4c4862f5d5cae228d88461a8a345a5859024f136522840"
+      },
+      {
+        "name": "%AppFolder%/xRooms.cct",
+        "sha256": "e8c8cd00bd642bf401613ceac1e583c9968b30bca65a24d23eda5bd6c3f28670"
+      },
+      {
+        "name": "%AppFolder%/Xtras/TextXtra.x32",
+        "sha256": "ed96d589e19f9247b2fef98eac0f2e509406c91a8667379724a765b34b53d6ee"
+      },
+      {
+        "name": "%AppFolder%/Xtras/Font Asset.x32",
+        "sha256": "f5804ece25a4fd063e7c73a51c75e90d3247eba7007bc7efe4fbeae2a910744b"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "irsetup.dat",
+        "sha256": "03134d93c15a5ab5ba3c5a5c3fdbcb319269fc86dab43e51fddb5b7f2ea5753d"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Inspector Parker.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Inspector Parker.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Parker.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Parker.dcr"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/DirectSound.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/DirectSound.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Font Asset.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Font Asset.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Font Xtra.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Font Xtra.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/SWADCmpr.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/SWADCmpr.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Sound Control.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Sound Control.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Text Asset.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/Text Asset.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/TextXtra.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/TextXtra.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/budapi.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/budapi.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/resolution.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/Xtras/resolution.x32"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/xAssets.cct"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/xObjects.cct"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/xRooms.cct"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "%AppFolder%/xScreens.cct"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG1.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG2.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "IRIMG3.JPG"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "irsetup.exe"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

@@ -26,6 +26,9 @@ import mobi
 import msoffcrypto
 import olefile
 import pefile
+import sfextract
+import sfextract.setupfactory7
+import sfextract.setupfactory8
 import zstandard
 from assemblyline.common import forge
 from assemblyline.common.constants import MAX_INT
@@ -342,6 +345,8 @@ class Extract(ServiceBase):
                 extracted = self.extract_autoit_executable(request)
                 if extracted:
                     summary_section_heuristic = 26
+
+                extracted.extend(self.extract_setup_factory(request))
 
             if request.file_type.startswith("executable/windows/pe"):
                 inno_extracted, password_protected = self.extract_innosetup(request)
@@ -926,6 +931,35 @@ class Extract(ServiceBase):
                     uri_section.add_tag("network.static.uri", u)
 
         return extracted, password_protected
+
+    def extract_setup_factory(self, request: ServiceRequest):
+        extracted = []
+        pe = pefile.PE(request.file_path, fast_load=True)
+
+        output_path = os.path.join(self.working_directory, "setup_factory")
+        if extractor := sfextract.setupfactory7.get_extractor(pe):
+            extractor.extract_files(output_path)
+        elif extractor := sfextract.setupfactory8.get_extractor(pe):
+            extractor.extract_files(output_path)
+
+        if extractor is not None and extractor.files:
+            section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            section.set_item("Version", ".".join([str(x) for x in extractor.version]))
+            for f in extractor.files:
+                if f.name == sfextract.SCRIPT_FILE_NAME:
+                    request.add_supplementary(
+                        f.local_path,
+                        f.name.decode('utf-8', errors='backslashreplace'),
+                        "Setup Factory compiled script data"
+                    )
+                    continue
+                extracted.append([
+                    f.local_path,
+                    f.name.decode('utf-8', errors='backslashreplace'),
+                    sys._getframe().f_code.co_name
+                ])
+
+        return extracted
 
     def extract_autoit_executable(self, request: ServiceRequest):
         """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
