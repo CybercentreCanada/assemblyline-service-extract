@@ -15,5 +15,5 @@ mobi
 uncompyle6==3.9.1
 xdis
 lief
-binary-refinery==0.7.0
+binary-refinery==0.7.3
 sfextract
