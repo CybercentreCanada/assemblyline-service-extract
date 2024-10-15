@@ -934,7 +934,10 @@ class Extract(ServiceBase):
 
     def extract_setup_factory(self, request: ServiceRequest):
         extracted = []
-        pe = pefile.PE(request.file_path, fast_load=True)
+        try:
+            pe = pefile.PE(request.file_path, fast_load=True)
+        except pefile.PEFormatError:
+            return extracted
 
         output_path = os.path.join(self.working_directory, "setup_factory")
         if extractor := sfextract.setupfactory7.get_extractor(pe):
