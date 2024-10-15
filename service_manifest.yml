@@ -32,6 +32,7 @@ config:
       "12345",
       "123456",
       "4321",
+      "DeskSoftBindData",
     ]
   small_size_bypass_drop: 10485760
   max_file_count_bypass_drop: 5

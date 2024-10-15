@@ -952,15 +952,13 @@ class Extract(ServiceBase):
                 if f.name == sfextract.SCRIPT_FILE_NAME:
                     request.add_supplementary(
                         f.local_path,
-                        f.name.decode('utf-8', errors='backslashreplace'),
-                        "Setup Factory compiled script data"
+                        f.name.decode("utf-8", errors="backslashreplace"),
+                        "Setup Factory compiled script data",
                     )
                     continue
-                extracted.append([
-                    f.local_path,
-                    f.name.decode('utf-8', errors='backslashreplace'),
-                    sys._getframe().f_code.co_name
-                ])
+                extracted.append(
+                    [f.local_path, f.name.decode("utf-8", errors="backslashreplace"), sys._getframe().f_code.co_name]
+                )
 
         return extracted
 
