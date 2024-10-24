@@ -219,7 +219,10 @@ class Extract(ServiceBase):
 
     def __init__(self, config=None):
         super().__init__(config)
-        autoit_ripper.autoit_unpack.log.addHandler(logging.NullHandler())
+        autoit_ripper.autoit_unpack.log.handlers = [logging.NullHandler()]
+        autoit_ripper.autoit_unpack.log.setLevel("CRITICAL")
+        gnupg.logger.handlers = [logging.NullHandler()]
+        gnupg.logger.setLevel("CRITICAL")
         self.identify = forge.get_identify(use_cache=os.environ.get("PRIVILEGED", "false").lower() == "true")
 
     def execute(self, request: ServiceRequest):
@@ -1432,7 +1435,14 @@ class Extract(ServiceBase):
         gpg = gnupg.GPG()
 
         for password in password_list:
-            crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+            try:
+                crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+            except UnicodeEncodeError:
+                prev_encoding = gpg.encoding
+                gpg.encoding = "utf-8"
+                crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+                gpg.encoding = prev_encoding
+
             if crypt_obj.returncode == 0:
                 self.password_used.append(password)
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
