@@ -21,7 +21,8 @@ def new_generalize_result(result, temp_submission_data=None):
     extracted = result.get("response", {}).get("extracted", [])
     for e in extracted:
         if e["name"] == "Responder.py":
-            print(base64.b64encode(open(e["path"], "rb").read()))
+            pass
+            # print(base64.b64encode(open(e["path"], "rb").read()))
     return ori_generalize_result(result, temp_submission_data)
 
 

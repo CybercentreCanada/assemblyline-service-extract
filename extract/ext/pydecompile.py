@@ -146,4 +146,12 @@ def decompile_pyc(filepath: str) -> str:
                 if not line.startswith("#"):
                     tf.write(line)
 
+    import hashlib
+
+    print(
+        "Decompyled",
+        hashlib.sha256(open(script, "rb").read()).hexdigest(),
+        "out of",
+        hashlib.sha256(open(filepath, "rb").read()).hexdigest(),
+    )
     return script, embedded_filename
