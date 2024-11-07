@@ -1,0 +1,87 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: /tmp/47d121087c05568fe90a25ef921f9e35d40bc6bec969e33e75337fc9b580f0e8",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Responder.py\nResponder.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Responder.py",
+                "Responder.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Responder.py",
+        "sha256": "6e52b2d8318179c3ba1ba4daabfbb7090e8cd5a6c3ed777521ffefe5dbdd0ee4"
+      },
+      {
+        "name": "Responder.pyc",
+        "sha256": "f2330efbac26d181662a98999dbc05645a89d83f4136d345d23f8e90fb631ffd"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Responder.py"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "Responder.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

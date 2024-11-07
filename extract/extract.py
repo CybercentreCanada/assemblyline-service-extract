@@ -191,6 +191,21 @@ class Extract(ServiceBase):
         ".wsh",
     ]
 
+    LAUNCHABLE_EXT_FP_FROM_SW = {
+        "executable/windows": [
+            ".py",  # Extracted from pyinstaller/py2exe executable, doesn't mean it's suspicious
+        ],
+        "java/jar": [
+            ".jar",
+        ],
+        "code/vbe": [
+            ".vbs",
+        ],
+        "resource/pyc": [
+            ".py",
+        ],
+    }
+
     LAUNCHABLE_TYPE = [
         "code/batch",
         "code/ps1",
@@ -205,6 +220,7 @@ class Extract(ServiceBase):
         "executable/windows": [
             "executable/windows/com",
             "executable/windows/dos",
+            "code/python",  # Extracted from pyinstaller/py2exe executable, doesn't mean it's suspicious
         ],
         "java/jar": [
             "java/jar",
@@ -1670,10 +1686,13 @@ class Extract(ServiceBase):
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data and file_type != "archive/rar":
+                if not data:
                     # No listing could be extracted.
-                    heur = Heuristic(24)
-                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
+                    # archive/rar are going to be retried with another tool.
+                    # executables doesn't have listing, so they would always raise it.
+                    if file_type != "archive/rar" and not file_type.startswith("executable"):
+                        heur = Heuristic(24)
+                        _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
                 else:
                     # Data should be:
                     # Date Time, Attr, Size, Compressed, Name
@@ -2143,18 +2162,26 @@ class Extract(ServiceBase):
             Al result object scoring VHIGH if executables detected in container, or None.
         """
 
-        def is_launchable_fp(file_type):
+        def is_launchable_fp_type(file_type):
             for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
                 if request.file_type.startswith(k) and file_type in v:
+                    return True
+            return False
+
+        def is_launchable_fp_ext(file_ext):
+            for k, v in Extract.LAUNCHABLE_EXT_FP_FROM_SW.items():
+                if request.file_type.startswith(k) and file_ext in v:
                     return True
             return False
 
         def is_launchable(file):
             file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
             if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
-                return not is_launchable_fp(file_type)
+                if not is_launchable_fp_ext(os.path.splitext(file["name"])[1].lower()):
+                    return True
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                return not is_launchable_fp(file_type)
+                if not is_launchable_fp_type(file_type):
+                    return True
             return False
 
         if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
