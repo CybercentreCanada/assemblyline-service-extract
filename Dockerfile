@@ -46,11 +46,11 @@ COPY --from=build /opt/al/support /opt/al/support
 COPY --chown=assemblyline:assemblyline --from=build /var/lib/assemblyline/.local /var/lib/assemblyline/.local
 
 # Install 7z
-ADD https://www.7-zip.org/a/7z2301-linux-x86.tar.xz /7z2301-linux-x86.tar.xz
+ADD https://www.7-zip.org/a/7z2408-linux-x64.tar.xz /7z-linux.tar.xz
 RUN mkdir /opt/7z \
-    && tar -xf /7z2301-linux-x86.tar.xz -C /opt/7z \
+    && tar -xf /7z-linux.tar.xz -C /opt/7z \
     && ln -s /opt/7z/7zzs /usr/bin/7zzs \
-    && rm /7z2301-linux-x86.tar.xz
+    && rm /7z-linux.tar.xz
 
 # Install innoextract
 ADD https://github.com/gdesmar/innoextract/releases/download/0.3.0/innoextract /usr/bin/innoextract
