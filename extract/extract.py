@@ -2201,13 +2201,23 @@ class Extract(ServiceBase):
                     return True
             return False
 
-        if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
-            new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
-            new_section.add_line(request.extracted[0]["name"])
-            new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
-            new_section.set_heuristic(13)
-            new_section.add_tag("file.behavior", "Archived Single Executable")
-            request.result.add_section(new_section)
+        if len(request.extracted) == 1:
+            if is_launchable(request.extracted[0]):
+                new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
+                new_section.add_line(request.extracted[0]["name"])
+                new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
+                new_section.set_heuristic(13)
+                new_section.add_tag("file.behavior", "Archived Single Executable")
+                request.result.add_section(new_section)
+            elif (
+                request.file_type.startswith("archive/")
+                and self.identify.fileinfo(request.extracted[0]["path"], generate_hashes=False)["type"] == "code/html"
+            ):
+                new_section = ResultTextSection("Archive file with single html file inside.")
+                new_section.add_line(request.extracted[0]["name"])
+                new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
+                new_section.add_tag("file.behavior", "Archived Single HTML File")
+                request.result.add_section(new_section)
         else:
             launchable_extracted = []
             for extracted in request.extracted:
