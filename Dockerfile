@@ -1,56 +1,43 @@
 ARG branch=latest
 FROM cccs/assemblyline-v4-service-base:$branch AS base
 
+# Set service to be run
 ENV SERVICE_PATH extract.extract.Extract
 
+# Switch to root user
 USER root
 
-RUN echo "deb http://http.us.debian.org/debian buster main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://http.us.debian.org/debian bookworm main contrib non-free non-free-firmware" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y libssl1.1 unace-nonfree python-lxml unrar gpg zpaq && rm -rf /var/lib/apt/lists/*
+# Install apt dependencies
+COPY pkglist.txt pkglist.txt
+RUN apt-get update && grep -vE '^#' pkglist.txt | xargs apt-get install -y && rm -rf /var/lib/apt/lists/*
 
+# Building nrs and pylzma in a secondary build so that we do not end up with uneeded dependencies
 FROM base AS build
-
-RUN apt-get update && apt-get install -y build-essential libssl-dev wget swig && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y build-essential swig && rm -rf /var/lib/apt/lists/*
 USER assemblyline
-
-# Install pip packages
-COPY requirements.txt /tmp/requirements.txt
+# Install python dependencies
+COPY requirements.txt requirements.txt
 RUN touch /tmp/before-pip
-RUN pip install --no-cache-dir --user -r /tmp/requirements.txt && \
-    # Force-reinstall the newer pefile since we can't force a single line of a requirements.txt
-    # and no new version were done since https://github.com/erocarrera/pefile/blob/v2023.2.7/pefile.py#L4071
-    pip install --no-cache-dir --user --force-reinstall https://github.com/erocarrera/pefile/archive/master.zip && \
-    rm -rf ~/.cache/pip
-
-# Download the support files from Amazon S3
-RUN wget -O /tmp/cybozulib.tar.gz https://assemblyline-support.s3.amazonaws.com/cybozulib.tar.gz
-
-# Extract the tar files and make msoffice
+RUN pip install --no-cache-dir --user -r requirements.txt && rm -rf ~/.cache/pip
 USER root
-RUN mkdir -p /opt/al/support/extract
-RUN tar -zxf /tmp/cybozulib.tar.gz -C /opt/al/support/extract
-
 # Remove files that existed before the pip install so that our copy command below doesn't take a snapshot of
 # files that already exist in the base image
 RUN find /var/lib/assemblyline/.local -type f ! -newer /tmp/before-pip -delete
-
 # change the ownership of the files to be copied due to bitbucket pipeline uid nonsense
 RUN chown root:root -R /var/lib/assemblyline/.local
-RUN chown root:root -R /opt/al/support
 
 FROM base
 
-COPY --from=build /opt/al/support /opt/al/support
 COPY --chown=assemblyline:assemblyline --from=build /var/lib/assemblyline/.local /var/lib/assemblyline/.local
 
 # Install 7z
 ADD https://www.7-zip.org/a/7z2408-linux-x64.tar.xz /7z-linux.tar.xz
-RUN mkdir /opt/7z \
-    && tar -xf /7z-linux.tar.xz -C /opt/7z \
-    && ln -s /opt/7z/7zzs /usr/bin/7zzs \
-    && rm /7z-linux.tar.xz
+RUN mkdir /opt/7z && \
+    tar -xf /7z-linux.tar.xz -C /opt/7z && \
+    ln -s /opt/7z/7zzs /usr/bin/7zzs && \
+    rm /7z-linux.tar.xz
 
 # Install innoextract
 ADD https://github.com/gdesmar/innoextract/releases/download/0.3.0/innoextract /usr/bin/innoextract
@@ -59,7 +46,7 @@ RUN chmod +x /usr/bin/innoextract
 # Switch to assemblyline user
 USER assemblyline
 
-# Clone Extract service code
+# Copy service code
 WORKDIR /opt/al_service
 COPY . .
 
