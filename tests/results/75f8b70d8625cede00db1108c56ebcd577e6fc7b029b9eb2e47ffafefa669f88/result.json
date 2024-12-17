@@ -5,19 +5,6 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "ERROR: /tmp/75f8b70d8625cede00db1108c56ebcd577e6fc7b029b9eb2e47ffafefa669f88",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Errors in 7z",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
         "body": "carchive.py\nmfag5.py",
         "body_config": {},
         "body_format": "TEXT",

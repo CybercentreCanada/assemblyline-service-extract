@@ -976,10 +976,13 @@ class Extract(ServiceBase):
             return extracted
 
         output_path = os.path.join(self.working_directory, "setup_factory")
-        if extractor := sfextract.setupfactory7.get_extractor(pe):
-            extractor.extract_files(output_path)
-        elif extractor := sfextract.setupfactory8.get_extractor(pe):
-            extractor.extract_files(output_path)
+        try:
+            if extractor := sfextract.setupfactory7.get_extractor(pe):
+                extractor.extract_files(output_path)
+            elif extractor := sfextract.setupfactory8.get_extractor(pe):
+                extractor.extract_files(output_path)
+        except sfextract.TruncatedFileError:
+            return extracted
 
         if extractor is not None and extractor.files:
             section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
@@ -1697,7 +1700,12 @@ class Extract(ServiceBase):
                         and not line.startswith(b"ERROR: CRC Failed in encrypted file. Wrong password? : ")
                     ):
                         if error_res is None:
-                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
+                            error_res = ResultTextSection(
+                                "Errors in 7z",
+                                # Populate the resultSection as it may be relied on later, but don't show it to the user
+                                # if the file is an executable
+                                parent=None if file_type.startswith("executable/") else request.result,
+                            )
                         error_res.add_line(line.replace(temp_dir.encode(), b"/TMP_DIR"))
 
                 popenargs[1] = "l"  # Change the command to list
