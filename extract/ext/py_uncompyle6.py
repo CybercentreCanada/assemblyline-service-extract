@@ -60,7 +60,7 @@ class XDisError(Exception):
     """The XDis library raised an error"""
 
 
-def decompile_pyc(filepath: str) -> str:
+def decompile_pyc(filepath: str, output_directory) -> str:
     """Decompile the given pyc file.
 
     Args:
@@ -140,7 +140,7 @@ def decompile_pyc(filepath: str) -> str:
         m = re.search("^# Embedded file name: (.*)$", out, re.MULTILINE)
         if m:
             embedded_filename = m.groups()[0]
-        with tempfile.NamedTemporaryFile("w", dir=os.path.dirname(filepath), delete=False) as tf:
+        with tempfile.NamedTemporaryFile("w", dir=output_directory, delete=False) as tf:
             script = tf.name
             for line in out.splitlines(keepends=True):
                 if not line.startswith("#"):

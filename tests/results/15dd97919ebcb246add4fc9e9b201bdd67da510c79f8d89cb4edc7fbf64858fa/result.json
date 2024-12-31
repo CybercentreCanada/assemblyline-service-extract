@@ -25,6 +25,19 @@
       },
       {
         "auto_collapse": false,
+        "body": "Error using normal pycdc:\nUnsupported opcode: BEFORE_WITH (108)\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": ".data\nCERTIFICATE\n[0]\n\\x00\\xdd5\\xbc\n\u0492\\x85.pyc\n_RDATA",
         "body_config": {},
         "body_format": "TEXT",
@@ -54,6 +67,19 @@
         },
         "title_text": "Successfully extracted 5 files",
         "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "loader-o.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1 file that was safelisted.",
+        "zeroize_on_tag_safe": false
       }
     ]
   },
@@ -80,7 +106,12 @@
         "sha256": "f004d43228d4089a536113e811594fa83038460c87c8282d6cd2c0c53a5266ec"
       }
     ],
-    "supplementary": []
+    "supplementary": [
+      {
+        "name": "loader-o.py.disass",
+        "sha256": "255ea889c7dd8403ad53a8709e5c1f935ec3e888cbf875b2cefea1bed3182354"
+      }
+    ]
   },
   "results": {
     "heuristics": [
