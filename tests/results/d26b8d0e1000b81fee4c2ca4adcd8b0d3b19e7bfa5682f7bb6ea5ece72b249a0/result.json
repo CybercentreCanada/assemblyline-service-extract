@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Error using normal pycdc:\nCreateObject: Got unsupported type 0x27\nError loading file /tmp/d26b8d0e1000b81fee4c2ca4adcd8b0d3b19e7bfa5682f7bb6ea5ece72b249a0: std::bad_cast\n",
+        "body": "Error using normal pycdc:\nCreateObject: Got unsupported type 0x27\nError loading file /TMP_DIR/INPUT.pyc: std::bad_cast\n",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

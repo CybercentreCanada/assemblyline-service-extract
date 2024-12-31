@@ -74,7 +74,7 @@
       },
       {
         "name": "simple39.py",
-        "sha256": "32cd6bdc751a06bde1556ee2fa0f81c898114d6c18873482ff24c0e064623966"
+        "sha256": "1f524a16a5f7ed2227227d50a5775ef48b01fd1532a813bf2870bb74c32177d8"
       },
       {
         "name": "simple39.pyc",
@@ -84,7 +84,7 @@
     "supplementary": [
       {
         "name": "simple39.py.disass",
-        "sha256": "098989bdc512fae5e11faa949e2afec09e070a77a33420b7720e9e6f1dd49f0b"
+        "sha256": "a7ea903c048822d7452ffba708df31e8826e36bca0ac9ccafd6811d6740234d4"
       }
     ]
   },

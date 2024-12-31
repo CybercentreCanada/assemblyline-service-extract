@@ -40,13 +40,11 @@ RUN mkdir pycdc && \
 # https://github.com/extremecoders-re/decompyle-builds/blob/main/.github/workflows/build.yaml
 # RUN sed -i '/target_link_libraries(pycdas pycxx)/c target_link_libraries(pycdas pycxx -static)' CMakeLists.txt
 # RUN sed -i '/target_link_libraries(pycdc pycxx)/c target_link_libraries(pycdc pycxx -static)' CMakeLists.txt
-RUN cd pycdc && cmake . && make
-RUN mv pycdc/pycdc /tmp/pycdc && mv pycdc/pycdas /tmp/pycdas
+RUN cd pycdc && cmake . && make && mv pycdc /tmp/pycdc && mv pycdas /tmp/pycdas
 # Patch pycdc to keep decompiling on unknown instructions as a last resort
 # https://research.openanalysis.net/python/pyinstaller/triage/creal-stealer/creal/2024/05/12/python-malware.html#Patched-Pycdc
 RUN sed -i '0,/return new ASTNodeList(defblock->nodes());/s/return new ASTNodeList(defblock->nodes());/break;/' pycdc/ASTree.cpp
-RUN cd pycdc && make
-RUN mv pycdc/pycdc /tmp/pycdc.patched
+RUN cd pycdc && make && mv pycdc /tmp/pycdc.patched
 
 FROM base
 
