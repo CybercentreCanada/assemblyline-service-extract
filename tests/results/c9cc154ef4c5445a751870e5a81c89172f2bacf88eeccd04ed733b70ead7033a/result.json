@@ -1,0 +1,69 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Error using normal pycdc:\nUnsupported opcode: JUMP_IF_NOT_EXC_MATCH (210)\nWarning: Stack history is not empty!\nWarning: block stack is not empty!\nUnsupported opcode: RERAISE (209)\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "C:\\Users\\intel\\Desktop\\Code\\A-Trash-Nuker\\Plugins\\nuking.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "C:\\Users\\intel\\Desktop\\Code\\A-Trash-Nuker\\Plugins\\nuking.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "C:\\Users\\intel\\Desktop\\Code\\A-Trash-Nuker\\Plugins\\nuking.py",
+        "sha256": "cbe28b3f3f87c5ae619ece9cf252231b4f1994c770fd63cad40a8f965c8e4711"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "C:\\Users\\intel\\Desktop\\Code\\A-Trash-Nuker\\Plugins\\nuking.py.disass",
+        "sha256": "cf27451cc7eddb557c0bd170ddd8e92ee37be6179f34547e83e1c7871ce70fc0"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "C:\\Users\\intel\\Desktop\\Code\\A-Trash-Nuker\\Plugins\\nuking.py"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

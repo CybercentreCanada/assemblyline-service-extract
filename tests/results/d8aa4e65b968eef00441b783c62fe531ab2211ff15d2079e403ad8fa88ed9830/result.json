@@ -5,6 +5,19 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "Error using normal pycdc:\nCreateObject: Got unsupported type 0x0\nError loading file /tmp/working_directory/tmp52cjwhgi/tmp3weuw9b_: std::bad_cast\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": ".data\nmain.pyc",
         "body_config": {},
         "body_format": "TEXT",
@@ -30,6 +43,19 @@
           }
         },
         "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "UnknownFilename.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1 file that was safelisted.",
         "zeroize_on_tag_safe": false
       }
     ]

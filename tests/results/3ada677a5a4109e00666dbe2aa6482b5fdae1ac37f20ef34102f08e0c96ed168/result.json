@@ -450,6 +450,10 @@
         "sha256": "26b86fe04aff943d6af016e05641f757ae549a5ed570abde0d8c91f9e3b9c2db"
       },
       {
+        "name": "dllInjection.pyc",
+        "sha256": "27a459c70770793b8c82ef725ff187ae4cf9f29d12526f23bcd09fc52b29db30"
+      },
+      {
         "name": "encodings/utf_32_be.pyc",
         "sha256": "297bbd59cc94b747dd6596d1bea2a620adf6b4e2ad31cb4e0af5d6de6d6e565a"
       },
@@ -508,10 +512,6 @@
       {
         "name": "encodings/cp1258.pyc",
         "sha256": "360c5490489d92bb6b66929c974f142ec181bfe3abd9d74ba3cefb0d4d8ffc7f"
-      },
-      {
-        "name": "dllInjection.py",
-        "sha256": "36608ef992273de45aa20ed9eb3a21c39bf8b6e3513ed93795f0261802de6885"
       },
       {
         "name": "encodings/raw_unicode_escape.pyc",
@@ -1250,10 +1250,6 @@
         "sha256": "f9ce9812284e65a772a6d186c30e908cb7bc621bcea23704f2045abc059e5166"
       },
       {
-        "name": "dllInjection.pyc",
-        "sha256": "fa478ef294e6178c9df6f921eae0592fb61a1aaf1ab0d2bf840ec0ba87499ba5"
-      },
-      {
         "name": "encodings/iso8859_1.pyc",
         "sha256": "faecd631b9365fa8dad260e012e6cf818db84ff15209272bc6325617cb997b75"
       },
@@ -1264,6 +1260,10 @@
       {
         "name": "encodings/iso2022_jp_2004.pyc",
         "sha256": "ff039c1d23b7662a162563c3778303b9021e4ef02cbce7944bbf8f7452943133"
+      },
+      {
+        "name": "dllInjection.py",
+        "sha256": "ff18649c8b23108e674af5ec7590ad940c63df71bb21f757661a6358e437dfcc"
       }
     ],
     "supplementary": []

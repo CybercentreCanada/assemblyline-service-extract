@@ -62,7 +62,7 @@ from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 from refinery.units.formats.ifps import IFPSFile
 
-from extract.ext import py2exe_extractor, pydecompile, pyinstaller
+from extract.ext import py2exe_extractor, py_decompylepp, py_uncompyle6, pyinstaller
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
@@ -2607,20 +2607,26 @@ class Extract(ServiceBase):
         """
         extracted = []
         try:
-            py_file, embedded_fiename = pydecompile.decompile_pyc(filepath)
+            py_file, embedded_filename = py_uncompyle6.decompile_pyc(filepath, self.working_directory)
             if py_file:
-                workdir_py_file = os.path.join(self.working_directory, os.path.basename(py_file))
-                shutil.move(py_file, workdir_py_file)
-                fname = embedded_fiename or os.path.basename(py_file)
-                extracted.append([workdir_py_file, fname, sys._getframe().f_code.co_name])
-        except pydecompile.Invalid:
+                fname = embedded_filename or os.path.basename(py_file)
+                extracted.append([py_file, fname, "extract_pyc_uncompyle6"])
+        except py_uncompyle6.Invalid:
             pass
-        except pydecompile.XDisError as e:
+        except py_uncompyle6.XDisError as e:
             error_res = ResultTextSection("Errors in xdis", parent=request.result)
             last_frame = traceback.extract_tb(e.__cause__.__traceback__)[-1]
             error_res.add_line(f"{e.__cause__.__class__.__name__}: {str(e.__cause__)}")
             error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
             error_res.add_line(f"{last_frame.line}")
+
+        if not extracted:
+            py_file, embedded_filename, disass_file = py_decompylepp.decompile_pyc(
+                request, filepath, self.working_directory
+            )
+            fname = embedded_filename or os.path.basename(py_file)
+            extracted.append([py_file, fname, "extract_pyc_pycdc"])
+            request.add_supplementary(disass_file, f"{fname}.disass", "Python disassembly from pycdas")
 
         return extracted
 
