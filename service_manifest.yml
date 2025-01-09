@@ -2,20 +2,24 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
+# Regex defining the types of files the service accepts and rejects
 accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|gpg/symmetric|resource/pyc
 rejects: empty|metadata/.*
 
+# At which stage the service should run (one of FILTER, EXTRACT, CORE, SECONDARY, POST, REVIEW)
+# NOTE: Stages are executed in the order defined in the list
 stage: EXTRACT
+# Which category the service is part of (one of Antivirus, Dynamic Analysis, External, Extraction, Filtering, Internet Connected, Networking, Static Analysis)
 category: Extraction
 
+# Does the service require access to the file to perform its task
+# If set to false, the service will only have access to the file metadata (e.g. Hashes, size, type, ...)
 file_required: true
+# Maximum execution time the service has before it's considered to be timed out
 timeout: 60
-disable_cache: false
 
+# is the service enabled by default
 enabled: true
-is_external: false
-licence_count: 0
-
 privileged: true
 uses_temp_submission_data: true
 
@@ -238,5 +242,5 @@ heuristics:
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
-  cpu_cores: 1
+  cpu_cores: 1.0
   ram_mb: 1024

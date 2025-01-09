@@ -1,17 +1,18 @@
 ARG branch=latest
 FROM cccs/assemblyline-v4-service-base:$branch AS base
 
-# Set service to be run
+# Python path to the service class from your service directory
 ENV SERVICE_PATH extract.extract.Extract
 
-# Switch to root user
-USER root
-
-RUN echo "deb http://http.us.debian.org/debian bookworm main contrib non-free non-free-firmware" >> /etc/apt/sources.list
-
 # Install apt dependencies
-COPY pkglist.txt pkglist.txt
-RUN apt-get update && grep -vE '^#' pkglist.txt | xargs apt-get install -y && rm -rf /var/lib/apt/lists/*
+USER root
+RUN echo "deb http://http.us.debian.org/debian bookworm main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+COPY pkglist.txt /tmp/setup/
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    $(grep -vE "^\s*(#|$)" /tmp/setup/pkglist.txt | tr "\n" " ") && \
+    rm -rf /tmp/setup/pkglist.txt /var/lib/apt/lists/*
 
 # Building nrs and pylzma in a secondary build so that we do not end up with uneeded dependencies
 FROM base AS build
@@ -72,7 +73,7 @@ WORKDIR /opt/al_service
 COPY . .
 
 # Patch version in manifest
-ARG version=4.0.0.dev1
+ARG version=1.0.0.dev1
 USER root
 RUN sed -i -e "s/\$SERVICE_TAG/$version/g" service_manifest.yml
 
