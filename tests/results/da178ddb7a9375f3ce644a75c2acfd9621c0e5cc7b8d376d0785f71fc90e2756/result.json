@@ -75,16 +75,16 @@
   "files": {
     "extracted": [
       {
+        "name": "irsetup.exe",
+        "sha256": "356d150d502d544539ca7a887b87fe7d0afef2d7e2c0d8e3f0fd4bd7d951700a"
+      },
+      {
         "name": "IRIMG2.JPG",
         "sha256": "5018d55393f07ff9408d13f7155e317edb7e2e96bd215cea4b75fd5fbc4db0cd"
       },
       {
         "name": "IRIMG1.JPG",
         "sha256": "7f4687a992bb2b4fcd0eca09bbddc14679529b205106a5392100f3f68ae2d708"
-      },
-      {
-        "name": "irsetup.exe",
-        "sha256": "9e972707e89ac18989f9abbb2ae7858e0977b1c823d56a8a8064a9a702ae17bc"
       },
       {
         "name": "%AppFolder%/Director.exe",

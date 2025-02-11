@@ -93,12 +93,12 @@
         "sha256": "3ea4a4c3c6dea44d8917b342e93d653f59d93e1f552ace16e97e43bb04e951d8"
       },
       {
-        "name": "irsetup.exe",
-        "sha256": "4187781bb28030ff61cfb41a840d1b3fa03607e21f41e676f2f692b3362b4f8b"
-      },
-      {
         "name": "IRIMG1.JPG",
         "sha256": "988cf422cbf400d41c48fbe491b425a827a1b70691f483679c1df02fb9352765"
+      },
+      {
+        "name": "irsetup.exe",
+        "sha256": "b9c5343bac47f2e8492ed75e2424a0789909ea822048232e16f5c270d6c5a2cf"
       },
       {
         "name": "IRIMG2.JPG",
