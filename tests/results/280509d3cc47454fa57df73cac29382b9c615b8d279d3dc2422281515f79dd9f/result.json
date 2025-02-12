@@ -113,10 +113,6 @@
         "sha256": "2dd54b208b279dad0a9aeb5f8ea55a0e1867ce9bed6c2fbd2aa1393f5a2f1e81"
       },
       {
-        "name": "irsetup.exe",
-        "sha256": "302544248196f0be3c1bba81a38c4413e8cfb07a719965460956b25f08e0d294"
-      },
-      {
         "name": "%AppFolder%/Xtras/resolution.x32",
         "sha256": "382ae7ed8802f3d081a1f8613444a3a829ff9f8fc65c7c4929a6a7d9702e1f2d"
       },
@@ -139,6 +135,10 @@
       {
         "name": "IRIMG2.JPG",
         "sha256": "83a6c1cb72abef36da0d4ed3de17f4f739c1889cc87cdced7081d5ce862972aa"
+      },
+      {
+        "name": "irsetup.exe",
+        "sha256": "940c60ed5847183b99b7381d2b1110fa4d37a30758bed0c9ec30662558240471"
       },
       {
         "name": "%AppFolder%/Parker.bmp",
