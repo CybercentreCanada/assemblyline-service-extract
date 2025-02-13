@@ -2624,6 +2624,12 @@ class Extract(ServiceBase):
             error_res.add_line(f"{e.__cause__.__class__.__name__}: {str(e.__cause__)}")
             error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
             error_res.add_line(f"{last_frame.line}")
+        except Exception as e:
+            error_res = ResultTextSection("Errors in uncompyle6", parent=request.result)
+            last_frame = traceback.extract_tb(e.__traceback__)[-1]
+            error_res.add_line(f"{type(e).__name__}: {', '.join(e.args)}")
+            error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
+            error_res.add_line(f"{last_frame.line}")
 
         if not extracted:
             py_file, embedded_filename, disass_file = py_decompylepp.decompile_pyc(
