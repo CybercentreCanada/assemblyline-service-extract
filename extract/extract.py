@@ -366,7 +366,9 @@ class Extract(ServiceBase):
                     heur = Heuristic(22)
                     heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
                     if overlay_size is not None:
-                        heur_section.add_line(f"Overlay Size: {overlay_size}")
+                        heur_section.add_line(
+                            f"Overlay Size: {overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                        )
                     if entropy is not None:
                         heur_section.add_line(f"Overlay Entropy: {entropy}")
                     if not added:
@@ -610,13 +612,18 @@ class Extract(ServiceBase):
                 heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
                 heur_section.add_item("Target file", file_name)
                 if overlay_size is not None:
-                    heur_section.add_item("Overlay Size", overlay_size)
+                    heur_section.add_item(
+                        "Overlay Size", f"{overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                    )
                 if entropy is not None:
                     heur_section.add_item("Overlay Entropy", entropy)
                 heur_section.add_item("SHA256", extracted_file_info["sha256"])
                 heur_section.add_item("SHA1", extracted_file_info["sha1"])
                 heur_section.add_item("MD5", extracted_file_info["md5"])
-                heur_section.add_item("Total Size", extracted_file_info["size"])
+                heur_section.add_item(
+                    "Total Size",
+                    f"{extracted_file_info['size']} ({debloat.processor.readable_size(extracted_file_info['size'])})",
+                )
         elif extracted_file_info["type"] == "document/installer/windows":
             ole = olefile.OleFileIO(file_path)
             for direntry in ole.direntries:
@@ -684,13 +691,21 @@ class Extract(ServiceBase):
                     heur = Heuristic(22)
                     heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
                     heur_section.add_item("Target file", file_name)
-                    heur_section.add_item("Overlay Size", overlay_size)
+                    heur_section.add_item(
+                        "Overlay Size", f"{overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                    )
                     heur_section.add_item("Overlay Entropy", entropy)
                     heur_section.add_item("Bloated byte", last_data[0])
                     heur_section.add_item("SHA256", extracted_file_info["sha256"])
                     heur_section.add_item("SHA1", extracted_file_info["sha1"])
                     heur_section.add_item("MD5", extracted_file_info["md5"])
-                    heur_section.add_item("Total Size", extracted_file_info["size"])
+                    heur_section.add_item(
+                        "Total Size",
+                        (
+                            f"{extracted_file_info['size']} "
+                            f"({debloat.processor.readable_size(extracted_file_info['size'])})"
+                        ),
+                    )
 
         return file_path
 
