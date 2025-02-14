@@ -333,22 +333,21 @@ class Extract(ServiceBase):
             # i.e. 3ada677a5a4109e00666dbe2aa6482b5fdae1ac37f20ef34102f08e0c96ed168
             self.attempt_extract_py2exe(request, extracted)
 
-            if request.file_type == "archive/zip":
-                try:
-                    # Check for appended data with zipfile
-                    with open(request.file_path, "rb") as f:
-                        endrec = zipfile._EndRecData(f)
+            try:
+                # Check for appended data with zipfile
+                with open(request.file_path, "rb") as f:
+                    endrec = zipfile._EndRecData(f)
 
-                    # "concat" is zero, unless zip was concatenated to another file
-                    # concat = Location - bytes in central directory - offset of central directory
-                    concat = endrec[9] - endrec[5] - endrec[6]
-                    if concat:
-                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
-                            with open(request.file_path, "rb") as f:
-                                tmp_f.write(f.read()[concat:])
-                        extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
-                except Exception:
-                    pass
+                # "concat" is zero, unless zip was concatenated to another file
+                # concat = Location - bytes in central directory - offset of central directory
+                concat = endrec[9] - endrec[5] - endrec[6]
+                if concat:
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                        with open(request.file_path, "rb") as f:
+                            tmp_f.write(f.read()[concat:])
+                    extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
+            except Exception:
+                pass
         elif request.file_type.startswith("executable/"):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
                 request.file_path
