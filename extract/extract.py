@@ -380,8 +380,10 @@ class Extract(ServiceBase):
                 request.file_type.startswith("executable/windows/dll")
                 or request.file_type.startswith("executable/windows/pe")
             ) and request.sha256 not in [
-                "321988427cd33f7195ef419427b17443bdfeeda27d296bd8ce0b495b51de60d8",
-                "612343b4c6fb91f5fa06cd7622b53005e89bc93746cd99a4325427e617c9a90b",
+                "321988427cd33f7195ef419427b17443bdfeeda27d296bd8ce0b495b51de60d8",  # aksdf.sys
+                "612343b4c6fb91f5fa06cd7622b53005e89bc93746cd99a4325427e617c9a90b",  # hardlock.sys
+                "aee970d59e9fb314b559cf0c41dd2cd3c9c9b5dd060a339368000f975f4cd389",  # aksdf.sys
+                "38db4590edd8cbe735ed0c072a03f4e619a3cda7b8d908fd1ca8e90728f077ef",  # aksfridge.sys
             ]:  # both extract_* function uses pefile, which crash on those .sys files
                 # https://github.com/erocarrera/pefile/pull/429
                 extracted = self.extract_autoit_executable(request)
