@@ -125,6 +125,10 @@
         "sha256": "043a355a498477b927070926bf24d965eda14bf8e20c1b40cf2c52ba67893d09"
       },
       {
+        "name": "CompiledCode.txt",
+        "sha256": "0ff930c322995f33f137e7ed598fec0c60bb088bd3a2c34aa9cbb066c03d7ed1"
+      },
+      {
         "name": "embedded/russian.isl",
         "sha256": "26d0444da0edece32c8cb327c2d1062e702b76b9b756e67c4a90b656f7c77b6a"
       },
@@ -135,10 +139,6 @@
       {
         "name": "embedded/CompiledCode.bin",
         "sha256": "56d381c9d898c92e921c80fffcbbcd50390a17ff80e3ee28c6259070c029418d"
-      },
-      {
-        "name": "CompiledCode.txt",
-        "sha256": "6b8120af41f97f9cb3eb9cbcf2cee912118736fde11c12ad922c2b53bd421453"
       },
       {
         "name": "tmp/ir07n7jvj59zw8tr4awv.exe",
