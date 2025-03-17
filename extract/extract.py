@@ -60,7 +60,9 @@ from msoffcrypto.format.ooxml import OOXMLFile
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
-from refinery.units.formats.ifps import IFPSFile
+from refinery.lib.inno.archive import InnoArchive
+from refinery.lib.inno.emulator import InnoSetupEmulator
+from refinery.lib.inno.ifps import IFPSFile
 
 from extract.ext import py2exe_extractor, py_decompylepp, py_uncompyle6, pyinstaller
 from extract.ext.repair_zip import BadZipfile, RepairZip
@@ -384,6 +386,7 @@ class Extract(ServiceBase):
                 "612343b4c6fb91f5fa06cd7622b53005e89bc93746cd99a4325427e617c9a90b",  # hardlock.sys
                 "aee970d59e9fb314b559cf0c41dd2cd3c9c9b5dd060a339368000f975f4cd389",  # aksdf.sys
                 "38db4590edd8cbe735ed0c072a03f4e619a3cda7b8d908fd1ca8e90728f077ef",  # aksfridge.sys
+                "57c8d300823e54ee7d77b7a30452519b459d32ff7bca340ed33ff181be093f04",  # aksdf.sys
             ]:  # both extract_* function uses pefile, which crash on those .sys files
                 # https://github.com/erocarrera/pefile/pull/429
                 extracted = self.extract_autoit_executable(request)
@@ -884,35 +887,64 @@ class Extract(ServiceBase):
 
         if re.search("Setup contains encrypted files, use the --password option to extract them".encode(), p.stderr):
             password_protected = True
-            p = subprocess.run(
-                ["innoextract", "--crack", request.file_path],
-                capture_output=True,
-                check=False,
-            )
-            password_found = r"Password found: (.*)"
-            password_found_m = re.search(password_found.encode(), p.stdout)
-            if password_found_m:
-                password = password_found_m.group(1).decode("UTF8", errors="backslashreplace")
-            else:
-                for possible_password in self.get_passwords(request):
-                    p = subprocess.run(
-                        [
-                            "innoextract",
-                            "--password",
-                            possible_password,
-                            "--compiledcode",
-                            "--iss-file",
-                            "--output-dir",
-                            output_path,
-                            request.file_path,
-                        ],
-                        capture_output=True,
-                        check=False,
-                    )
-                    if not re.search("Incorrect password provided".encode(), p.stderr):
-                        password = possible_password
+            password = None
+            innoemulator_crash = False
 
-            if password:
+            try:
+                inno = InnoArchive(request.file_contents, None)
+                file = inno.get_encrypted_sample()
+                iemu = InnoSetupEmulator(inno)
+                iemu.emulate_installation()
+
+                for possible_password in iemu.passwords:
+                    if inno.check_password(file, possible_password):
+                        password = possible_password
+                        break
+            except Exception:
+                innoemulator_crash = True
+
+            if password is None:
+                if innoemulator_crash:
+                    section = ResultTextSection(
+                        "Failed to extract innosetup password using emulator (crash)",
+                        auto_collapse=True,
+                        parent=request.result,
+                    )
+                else:
+                    section = ResultTextSection(
+                        "Failed to extract innosetup password using emulator", auto_collapse=True, parent=request.result
+                    )
+
+                p = subprocess.run(
+                    ["innoextract", "--crack", request.file_path],
+                    capture_output=True,
+                    check=False,
+                )
+                password_found = r"Password found: (.*)"
+                password_found_m = re.search(password_found.encode(), p.stdout)
+                if password_found_m:
+                    password = password_found_m.group(1).decode("UTF8", errors="backslashreplace")
+                else:
+                    for possible_password in self.get_passwords(request) or ["password"]:
+                        p = subprocess.run(
+                            [
+                                "innoextract",
+                                "--password",
+                                possible_password,
+                                "--compiledcode",
+                                "--iss-file",
+                                "--output-dir",
+                                output_path,
+                                request.file_path,
+                            ],
+                            capture_output=True,
+                            check=False,
+                        )
+                        if not re.search("Incorrect password provided".encode(), p.stderr):
+                            password = possible_password
+                            break
+
+            if password is not None:
                 p = subprocess.run(
                     [
                         "innoextract",

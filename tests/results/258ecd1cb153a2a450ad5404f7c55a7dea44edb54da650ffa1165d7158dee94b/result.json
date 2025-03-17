@@ -137,6 +137,10 @@
         "sha256": "517b1d1ed0470dd5a2e419e3cca10dd95d9e3f5059112733237f7f2b74f45204"
       },
       {
+        "name": "CompiledCode.txt",
+        "sha256": "53ec40e83414374cfa4f029ce0658acb3ab01f0344f7871cd29d1b08c412a8ba"
+      },
+      {
         "name": "app/Visio/areas.vssx",
         "sha256": "5612a57a73b168840eb7fbbca3981e244d349a121b082ee6cdd593119e4c8873"
       },
@@ -159,10 +163,6 @@
       {
         "name": "app/Visio/devices.vss",
         "sha256": "6871cb7ac5d9d3172cc48423d703b45b61cb8e0d3a6f894eba440773bcc831bc"
-      },
-      {
-        "name": "CompiledCode.txt",
-        "sha256": "6d96ad571bb486c0c2d6a5c86925911905246384d114dc0de9a127d1636bb125"
       },
       {
         "name": "app/libssl-1_1.dll",
