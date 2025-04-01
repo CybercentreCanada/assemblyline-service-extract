@@ -219,6 +219,9 @@ class Extract(ServiceBase):
     LAUNCHABLE_TYPE_SW = ["executable/"]
 
     LAUNCHABLE_TYPE_FP_FROM_SW = {
+        "executable/mach-o": [
+            "executable/mach-o",
+        ],
         "executable/windows": [
             "executable/windows/com",
             "executable/windows/dos",
