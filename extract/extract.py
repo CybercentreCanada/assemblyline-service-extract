@@ -61,7 +61,7 @@ from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
 from refinery.lib.inno.archive import InnoArchive
-from refinery.lib.inno.emulator import InnoSetupEmulator
+from refinery.lib.inno.emulator import InnoSetupEmulator, NewPassword
 from refinery.lib.inno.ifps import IFPSFile
 
 from extract.ext import py2exe_extractor, py_decompylepp, py_uncompyle6, pyinstaller
@@ -897,14 +897,15 @@ class Extract(ServiceBase):
                 inno = InnoArchive(request.file_contents, None)
                 file = inno.get_encrypted_sample()
                 iemu = InnoSetupEmulator(inno)
-                iemu.emulate_installation()
 
-                for possible_password in iemu.passwords:
-                    if inno.check_password(file, possible_password):
-                        password = possible_password
+                for event in iemu.emulate_installation():
+                    if not isinstance(event, NewPassword):
+                        continue
+                    if inno.check_password(file, event):
+                        password = str(event)
                         break
-            except Exception:
-                innoemulator_crash = True
+            except Exception as e:
+                innoemulator_crash = e
 
             if password is None:
                 if innoemulator_crash:
@@ -913,6 +914,7 @@ class Extract(ServiceBase):
                         auto_collapse=True,
                         parent=request.result,
                     )
+                    section.add_line(str(innoemulator_crash))
                 else:
                     section = ResultTextSection(
                         "Failed to extract innosetup password using emulator", auto_collapse=True, parent=request.result
