@@ -125,12 +125,12 @@
         "sha256": "043a355a498477b927070926bf24d965eda14bf8e20c1b40cf2c52ba67893d09"
       },
       {
-        "name": "CompiledCode.txt",
-        "sha256": "080f71fafcabbd2530f8752ee865bd3b41baee1341c5a238c834c99a4a81b6b5"
-      },
-      {
         "name": "embedded/russian.isl",
         "sha256": "26d0444da0edece32c8cb327c2d1062e702b76b9b756e67c4a90b656f7c77b6a"
+      },
+      {
+        "name": "CompiledCode.txt",
+        "sha256": "27ab474290311c5ee86112394ce657416bc0b2e362f591f0f59f0352cd0bc100"
       },
       {
         "name": "tmp/CBO.bmp",
