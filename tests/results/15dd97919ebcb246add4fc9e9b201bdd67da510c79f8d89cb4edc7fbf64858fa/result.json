@@ -1,0 +1,160 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 200,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "_RDATA is a non-standard section name for PEs, and the fact that it is extractable is trending towards suspicious.",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 28,
+          "score": 200,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Extractable _RDATA section found",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Error using normal pycdc:\nUnsupported opcode: BEFORE_WITH (108)\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": ".data\nCERTIFICATE\n[0]\n\\x00\\xdd5\\xbc\n\u0492\\x85.pyc\n_RDATA",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                ".data",
+                "CERTIFICATE",
+                "[0]",
+                "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc",
+                "_RDATA"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 5 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "loader-o.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1 file that was safelisted.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "CERTIFICATE",
+        "sha256": "090b03e1ff82d53fb90c3776be756465d6bc4dc04b164348eeab703a72bb2243"
+      },
+      {
+        "name": ".data",
+        "sha256": "0d0e6912c4f4c798c683719bd779ecbeb0fc136817076d9a906d589147378581"
+      },
+      {
+        "name": "_RDATA",
+        "sha256": "11f33a54887344c7e4966398bf3b4091bf66a39038eb294106e83b6fa5f27750"
+      },
+      {
+        "name": "[0]",
+        "sha256": "291059a46f5f785ffee1b703551f0c6d7edb21335358461ac81a9fa5815ac3ad"
+      },
+      {
+        "name": "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc",
+        "sha256": "f004d43228d4089a536113e811594fa83038460c87c8282d6cd2c0c53a5266ec"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "loader-o.py.disass",
+        "sha256": "255ea889c7dd8403ad53a8709e5c1f935ec3e888cbf875b2cefea1bed3182354"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 28,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".data"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "CERTIFICATE"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "[0]"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "\\x00\\xdd5\\xbc\n\u0492\\x85.pyc"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "_RDATA"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

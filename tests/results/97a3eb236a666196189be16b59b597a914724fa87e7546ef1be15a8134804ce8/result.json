@@ -1,0 +1,100 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "DHL AWB-_documents.html",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "DHL AWB-_documents.html"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "DHL AWB-_documents.html",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single HTML File"
+            ],
+            "name": {
+              "extracted": [
+                "DHL AWB-_documents.html"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single html file inside.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "DHL AWB-_documents.html",
+        "sha256": "3e0963c33c1a84a7f6585d3bdb6122db02d576ba1f89476f4deed4003c0f9191"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Archived Single HTML File"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "DHL AWB-_documents.html"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "DHL AWB-_documents.html"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

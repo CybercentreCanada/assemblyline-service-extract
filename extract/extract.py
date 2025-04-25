@@ -1,29 +1,42 @@
 import base64
+import binascii
 import hashlib
 import itertools
 import json
 import logging
 import os
+import pathlib
 import re
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
+import traceback
 import zipfile
 import zlib
-from copy import deepcopy
 from datetime import datetime
+from enum import Enum
 from io import BytesIO
 
+import autoit_ripper
 import debloat.processor
+import gnupg
+import mobi
+import msoffcrypto
 import olefile
 import pefile
+import sfextract
+import sfextract.setupfactory7
+import sfextract.setupfactory8
+import zstandard
 from assemblyline.common import forge
+from assemblyline.common.constants import MAX_INT
 from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.path import strip_path_inclusion
 from assemblyline.common.str_utils import safe_str
+from assemblyline.odm import FULL_URI, IP_ONLY_REGEX
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.request import MaxExtractedExceeded, ServiceRequest
 from assemblyline_v4_service.common.result import (
@@ -43,18 +56,93 @@ from assemblyline_v4_service.common.utils import PASSWORD_WORDS, extract_passwor
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 from cart import get_metadata_only, unpack_stream
-from msoffcrypto import exceptions as msoffcryptoexceptions
+from msoffcrypto.format.ooxml import OOXMLFile
 from nrs.nsi.extractor import Extractor as NSIExtractor
 from pikepdf import PasswordError as PDFPasswordError
 from pikepdf import Pdf, PdfError
+from refinery.lib.inno.archive import InnoArchive
+from refinery.lib.inno.emulator import InnoSetupEmulator, NewPassword
+from refinery.lib.inno.ifps import IFPSFile
 
-from extract.ext.office_extract import ExtractionError, PasswordError, extract_office_docs
+from extract.ext import py2exe_extractor, py_decompylepp, py_uncompyle6, pyinstaller
 from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
+
+
+def b64decode(b64data):
+    try:
+        data = base64.b64decode(b64data)
+    except binascii.Error as e:
+        if str(e) != "Incorrect padding":
+            raise e
+        try:
+            data = base64.b64decode(f"{b64data}=")
+        except binascii.Error as e:
+            if str(e) != "Incorrect padding":
+                raise e
+            data = base64.b64decode(f"{b64data}==")
+    return data
+
+
+class PRIORITY(Enum):
+    VERY_HIGH = 1
+    HIGH = 2
+    MEDIUM = 3
+    LOW = 4
+    VERY_LOW = 5
+
+
+EXTRACTION_PRIORITY = {
+    PRIORITY.VERY_HIGH: [
+        "executable/",
+    ],
+    PRIORITY.HIGH: [
+        "resource/pyc",
+        "code/",
+        "document/",
+        "archive/",
+    ],
+    PRIORITY.MEDIUM: [
+        "image/svg",
+        "text/plain",
+        "text/windows/registry",
+    ],
+    PRIORITY.LOW: [
+        "text/",
+        "resource/",
+    ],
+    PRIORITY.VERY_LOW: [
+        "image/",
+        "video/",
+        "audio/",
+    ],
+}
+
+__PRIORITY_EXACT = {
+    file_type: priority
+    for priority in PRIORITY
+    for file_type in EXTRACTION_PRIORITY[priority]
+    if not file_type.endswith("/")
+}
+__PRIORITY_SW = {
+    file_type: priority
+    for priority in PRIORITY
+    for file_type in EXTRACTION_PRIORITY[priority]
+    if file_type.endswith("/")
+}
+
+
+def get_file_priority(file_type: str):
+    if file_type in __PRIORITY_EXACT:
+        return __PRIORITY_EXACT[file_type]
+    for potential_match, priority in __PRIORITY_SW.items():
+        if file_type.startswith(potential_match):
+            return priority
+    return PRIORITY.MEDIUM
 
 
 class Extract(ServiceBase):
@@ -105,6 +193,21 @@ class Extract(ServiceBase):
         ".wsh",
     ]
 
+    LAUNCHABLE_EXT_FP_FROM_SW = {
+        "executable/windows": [
+            ".py",  # Extracted from pyinstaller/py2exe executable, doesn't mean it's suspicious
+        ],
+        "java/jar": [
+            ".jar",
+        ],
+        "code/vbe": [
+            ".vbs",
+        ],
+        "resource/pyc": [
+            ".py",
+        ],
+    }
+
     LAUNCHABLE_TYPE = [
         "code/batch",
         "code/ps1",
@@ -116,9 +219,13 @@ class Extract(ServiceBase):
     LAUNCHABLE_TYPE_SW = ["executable/"]
 
     LAUNCHABLE_TYPE_FP_FROM_SW = {
+        "executable/mach-o": [
+            "executable/mach-o",
+        ],
         "executable/windows": [
             "executable/windows/com",
             "executable/windows/dos",
+            "code/python",  # Extracted from pyinstaller/py2exe executable, doesn't mean it's suspicious
         ],
         "java/jar": [
             "java/jar",
@@ -126,11 +233,17 @@ class Extract(ServiceBase):
         "code/vbe": [
             "code/vbs",
         ],
+        "resource/pyc": [
+            "code/python",
+        ],
     }
 
     def __init__(self, config=None):
         super().__init__(config)
-        self.password_used = []
+        autoit_ripper.autoit_unpack.log.handlers = [logging.NullHandler()]
+        autoit_ripper.autoit_unpack.log.setLevel("CRITICAL")
+        gnupg.logger.handlers = [logging.NullHandler()]
+        gnupg.logger.setLevel("CRITICAL")
         self.identify = forge.get_identify(use_cache=os.environ.get("PRIVILEGED", "false").lower() == "true")
 
     def execute(self, request: ServiceRequest):
@@ -181,6 +294,10 @@ class Extract(ServiceBase):
         elif request.file_type == "document/pdf":
             extracted = self.extract_pdf(request)
             summary_section_heuristic = 7
+        elif request.file_type == "document/epub":
+            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+        elif request.file_type == "document/mobi":
+            extracted = self.extract_mobi(request)
         elif request.file_type in ["code/hta", "code/html"]:
             extracted = self.extract_jscript(request)
         elif request.file_type == "code/wsf":
@@ -191,6 +308,14 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/zlib":
             extracted = self.extract_zlib(request)
             summary_section_heuristic = 1
+        elif request.file_type == "archive/zstd":
+            extracted = self.extract_zstd(request)
+            summary_section_heuristic = 1
+        elif request.file_type == "archive/zpaq":
+            extracted, password_protected = self.extract_zpaq(request)
+            summary_section_heuristic = 1
+        elif request.file_type == "gpg/symmetric":
+            extracted, password_protected = self.extract_gpg_symmetric(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 9
@@ -208,28 +333,31 @@ class Extract(ServiceBase):
                 extracted, safelisted_extracted = self.jar_safelisting(extracted, safelisted_extracted)
         elif request.file_type.startswith("archive/"):
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
-            if request.file_type == "archive/gzip" and not password_protected and len(extracted) == 1:
-                subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True)
-                if subfile_info["type"] == "archive/tar":
-                    tgz_section = ResultMultiSection("GZipped Tar file extracted", parent=request.result)
-                    tgz_textbody = TextSectionBody(
-                        "The following tar file was extracted from the gzip, and further extracted"
-                    )
-                    tgz_section.add_section_part(tgz_textbody)
-                    tgz_kvbody = OrderedKVSectionBody()
-                    tgz_kvbody.add_item("Name", extracted[0][1])
-                    tgz_kvbody.add_item("SHA256", subfile_info["sha256"])
-                    tgz_kvbody.add_item("SHA1", subfile_info["sha1"])
-                    tgz_kvbody.add_item("MD5", subfile_info["md5"])
-                    tgz_kvbody.add_item("Total Size", subfile_info["size"])
-                    tgz_section.add_section_part(tgz_kvbody)
-                    extracted, password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
             summary_section_heuristic = 1
+            # due to bug with identify identifying some py2exe pe's as archives, attempt extraction to add additional.
+            # i.e. 3ada677a5a4109e00666dbe2aa6482b5fdae1ac37f20ef34102f08e0c96ed168
+            self.attempt_extract_py2exe(request, extracted)
+
+            try:
+                # Check for appended data with zipfile
+                with open(request.file_path, "rb") as f:
+                    endrec = zipfile._EndRecData(f)
+
+                # "concat" is zero, unless zip was concatenated to another file
+                # concat = Location - bytes in central directory - offset of central directory
+                concat = endrec[9] - endrec[5] - endrec[6]
+                if concat:
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                        with open(request.file_path, "rb") as f:
+                            tmp_f.write(f.read()[concat:])
+                    extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
+            except Exception:
+                pass
         elif request.file_type.startswith("executable/"):
             if request.file_type.startswith("executable/windows") and os.path.getsize(
                 request.file_path
             ) > self.config.get("heur22_min_overlay_size", 31457280):
-                strip_overlay_result = self.strip_overlay(request.file_path)
+                strip_overlay_result = self.strip_overlay(request, request.file_path)
                 if strip_overlay_result:
                     temp_path, overlay_size, entropy = strip_overlay_result
                     added = request.add_extracted(
@@ -242,7 +370,9 @@ class Extract(ServiceBase):
                     heur = Heuristic(22)
                     heur_section = ResultSection(heur.name, heuristic=heur, parent=request.result)
                     if overlay_size is not None:
-                        heur_section.add_line(f"Overlay Size: {overlay_size}")
+                        heur_section.add_line(
+                            f"Overlay Size: {overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                        )
                     if entropy is not None:
                         heur_section.add_line(f"Overlay Entropy: {entropy}")
                     if not added:
@@ -250,35 +380,149 @@ class Extract(ServiceBase):
                     # Drop the request so that no other module are going to analyze it.
                     request.drop()
                     return
-            extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
-            summary_section_heuristic = 2
+
+            if (
+                request.file_type.startswith("executable/windows/dll")
+                or request.file_type.startswith("executable/windows/pe")
+            ) and request.sha256 not in [
+                "321988427cd33f7195ef419427b17443bdfeeda27d296bd8ce0b495b51de60d8",  # aksdf.sys
+                "612343b4c6fb91f5fa06cd7622b53005e89bc93746cd99a4325427e617c9a90b",  # hardlock.sys
+                "aee970d59e9fb314b559cf0c41dd2cd3c9c9b5dd060a339368000f975f4cd389",  # aksdf.sys
+                "38db4590edd8cbe735ed0c072a03f4e619a3cda7b8d908fd1ca8e90728f077ef",  # aksfridge.sys
+                "57c8d300823e54ee7d77b7a30452519b459d32ff7bca340ed33ff181be093f04",  # aksdf.sys
+            ]:  # both extract_* function uses pefile, which crash on those .sys files
+                # https://github.com/erocarrera/pefile/pull/429
+                extracted = self.extract_autoit_executable(request)
+                if extracted:
+                    summary_section_heuristic = 26
+
+                extracted.extend(self.extract_setup_factory(request))
+
+            if request.file_type.startswith("executable/windows/pe"):
+                inno_extracted, password_protected = self.extract_innosetup(request)
+                extracted.extend(inno_extracted)
+
+            if not extracted:
+                extracted, zip_password_protected = self.extract_zip(request, request.file_path, request.file_type)
+                password_protected = password_protected or zip_password_protected
+                summary_section_heuristic = 2
+
+            if request.file_type.startswith("executable/windows") and any(
+                extracted_file[1] == "_RDATA" for extracted_file in extracted
+            ):
+                rdata_heur = Heuristic(28)
+                _ = ResultSection(rdata_heur.name, rdata_heur.description, heuristic=rdata_heur, parent=request.result)
+
+            # py2exe can only generate pe executables for windows
+            if request.file_type.startswith("executable/windows/pe"):
+                self.attempt_extract_py2exe(request, extracted)
+
+            # pyinstaller can generate executables for the following:
+            # Windows (32bit/64bit/ARM64), Linux (x86_64, aarch64, i686, ppc64le, s390x), macOS (x86_64 or arm64)
+            pyinstaller_types = ("executable/windows", "executable/linux", "executable/mach-o")
+            if any(request.file_type.startswith(x) for x in pyinstaller_types):
+                try:
+                    pyinstaller_files = self.extract_pyinstaller(request)
+                    if pyinstaller_files:
+                        # extract_zip can also extract some files from pyinstaller
+                        extracted.extend(pyinstaller_files)
+                except pyinstaller.Invalid:
+                    pass
+
+        elif request.file_type == "code/a3x":
+            extracted = self.extract_a3x(request)
+            if extracted:
+                summary_section_heuristic = 27
+        elif request.file_type == "resource/pyc":
+            extracted = self.extract_pyc(request, request.file_path)
         else:
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
             summary_section_heuristic = 19
 
+        if len(extracted) == 1:
+            subfile_info = self.identify.fileinfo(extracted[0][0], skip_fuzzy_hashes=True, calculate_entropy=False)
+            if subfile_info["type"] == "archive/tar":
+                internal_tar_section = ResultMultiSection(
+                    f"{request.file_type.replace('archive/', '')} tar file extracted", parent=request.result
+                )
+                internal_tar_textbody = TextSectionBody(
+                    (
+                        "The following tar file was extracted from the "
+                        f"{request.file_type.replace('archive/', '')}, and further extracted"
+                    )
+                )
+                internal_tar_section.add_section_part(internal_tar_textbody)
+                internal_tar_kvbody = OrderedKVSectionBody()
+                internal_tar_kvbody.add_item("Name", extracted[0][1])
+                internal_tar_kvbody.add_item("SHA256", subfile_info["sha256"])
+                internal_tar_kvbody.add_item("SHA1", subfile_info["sha1"])
+                internal_tar_kvbody.add_item("MD5", subfile_info["md5"])
+                internal_tar_kvbody.add_item("Total Size", subfile_info["size"])
+                internal_tar_section.add_section_part(internal_tar_kvbody)
+                extracted, tar_password_protected = self.extract_zip(request, extracted[0][0], subfile_info["type"])
+                password_protected = password_protected or tar_password_protected
+
         # For the time being, always try repair_zip, and see if we have any results
-        if not extracted:
+        if not extracted and not safelisted_extracted:
             extracted = self.repair_zip(request)
 
-        extracted_files = []
-        for child in sorted(extracted, key=lambda x: x[1]):
-            try:
+        prioritized_files = {
+            PRIORITY.VERY_HIGH: [],
+            PRIORITY.HIGH: [],
+            PRIORITY.MEDIUM: [],
+            PRIORITY.LOW: [],
+            PRIORITY.VERY_LOW: [],
+        }
+        very_large_files = []
+        if len(extracted) > request.max_extracted:
+            # Only execute fileinfo when it's really needed, to speed up the process
+            for child in sorted(extracted, key=lambda x: x[1]):
                 file_path = child[0]
                 if os.path.islink(file_path):
                     link_desc = f"{child[1]} -> {os.readlink(file_path)}"
                     symlinks.append(link_desc)
                 else:
-                    # Some files in a zip are not even readable, so make sure we can read them.
-                    # They had `oct(os.stat(file_path).st_mode) == 0o100000`
-                    if not os.access(file_path, os.R_OK):
-                        os.chmod(file_path, os.stat(file_path).st_mode | 0o444)
-
                     # Start by stripping the file.
-                    if os.path.getsize(file_path) > self.config.get("heur22_min_overlay_size", 31457280):
+                    file_info = self.identify.fileinfo(file_path, generate_hashes=False)
+                    file_size = file_info["size"]
+                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
                         file_path = self.strip_file(request, file_path, child[1])
+                        file_size = os.path.getsize(file_path)
 
+                    if file_size > MAX_INT:
+                        very_large_files.append((file_path, file_size))
+                        continue
+
+                    prioritized_files[get_file_priority(file_info["type"])].append([file_path, child[1], child[2]])
+        else:
+            for child in sorted(extracted, key=lambda x: x[1]):
+                file_path = child[0]
+                if os.path.islink(file_path):
+                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                    symlinks.append(link_desc)
+                else:
+                    # Start by stripping the file.
+                    file_size = os.path.getsize(file_path)
+                    if file_size > self.config.get("heur22_min_overlay_size", 31457280):
+                        file_path = self.strip_file(request, file_path, child[1])
+                        file_size = os.path.getsize(file_path)
+
+                    if file_size > MAX_INT:
+                        very_large_files.append((file_path, file_size))
+                        continue
+
+                    prioritized_files[PRIORITY.MEDIUM].append([file_path, child[1], child[2]])
+
+        max_extracted_exceeded = False
+        extracted_files = []
+        for priority in [PRIORITY.VERY_HIGH, PRIORITY.HIGH, PRIORITY.MEDIUM, PRIORITY.LOW, PRIORITY.VERY_LOW]:
+            if max_extracted_exceeded:
+                break
+
+            for child in prioritized_files[priority]:
+                try:
                     if request.add_extracted(
-                        path=file_path,
+                        path=child[0],
                         name=child[1],
                         description=f"Extracted using {child[2]}",
                         safelist_interface=self.api_interface,
@@ -286,48 +530,45 @@ class Extract(ServiceBase):
                         extracted_files.append(child[1])
                     else:
                         safelisted_extracted.append(child[1])
-            except MaxExtractedExceeded:
-                request.result.add_section(
-                    ResultSection(
-                        f"This file contains a total of {len(extracted)} extracted files, "
-                        f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
-                        "Some files where not extracted."
+                except MaxExtractedExceeded:
+                    request.result.add_section(
+                        ResultSection(
+                            f"This file contains a total of {len(extracted)} extracted files, "
+                            f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
+                            "Some files were not extracted."
+                        )
                     )
-                )
-                break
+                    max_extracted_exceeded = True
+                    break
+
+        if very_large_files:
+            res = ResultSection(
+                f"File{'s' if len(very_large_files) > 1 else ''} over {MAX_INT} bytes",
+                heuristic=Heuristic(22),
+                parent=request.result,
+            )
+            for very_large_file in very_large_files:
+                res.add_line(f"File '{os.path.basename(very_large_file[0])} is {very_large_file[1]} bytes")
 
         if extracted_files:
+            section_title = (
+                f"Successfully extracted {len(extracted_files)} file{'s' if len(extracted_files) > 1 else ''}"
+            )
+            # Change title if one or more known password found
+            # Some zip files are partially password protected, and we only got the non-protected
+            # files if we do not known the password
+            if password_protected and self.password_used:
+                pw_list = " | ".join(self.password_used)
+                section_title += f" using password{'s' if len(self.password_used) > 1 else ''}: {pw_list}"
+
+            section = ResultTextSection(section_title, parent=request.result)
+
             if password_protected:
                 if summary_section_heuristic == 1:
                     summary_section_heuristic = 10
-
-                # If successful known password
                 if self.password_used:
-                    pw_list = " | ".join(self.password_used)
-                    section = ResultSection(
-                        f"Successfully extracted {len(extracted_files)} "
-                        f"file{'s' if len(extracted_files) > 1 else ''} "
-                        f"using password{'s' if len(self.password_used) > 1 else ''}: {pw_list}",
-                        parent=request.result,
-                    )
                     for p in self.password_used:
                         section.add_tag("info.password", p)
-
-                # If successful unknown password ### Can this ever happen?
-                else:
-                    pw_list = " | ".join(self.get_passwords(request))
-                    section = ResultSection(
-                        f"Successfully extracted {len(extracted_files)} "
-                        f"file{'s' if len(extracted_files) > 1 else ''} "
-                        f"using one or more of the following passwords: {pw_list}",
-                        parent=request.result,
-                    )
-
-            else:
-                section = ResultTextSection(
-                    f"Successfully extracted {len(extracted_files)} file{'s' if len(extracted_files) > 1 else ''}",
-                    parent=request.result,
-                )
 
             if summary_section_heuristic:
                 section.set_heuristic(summary_section_heuristic)
@@ -350,7 +591,7 @@ class Extract(ServiceBase):
                 section.add_line("...")
 
         if symlinks:
-            section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found")
+            section = ResultTextSection(f"{len(symlinks)} Symlink(s) Found", parent=request.result)
             section.add_lines(symlinks)
             section.set_heuristic(15)
 
@@ -369,22 +610,27 @@ class Extract(ServiceBase):
         self.archive_with_executables(request)
 
     def strip_file(self, request: ServiceRequest, file_path, file_name):
-        extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True)
+        extracted_file_info = self.identify.fileinfo(file_path, skip_fuzzy_hashes=True, calculate_entropy=False)
         if extracted_file_info["type"].startswith("executable/windows"):
-            strip_overlay_result = self.strip_overlay(file_path)
+            strip_overlay_result = self.strip_overlay(request, file_path)
             if strip_overlay_result:
                 file_path, overlay_size, entropy = strip_overlay_result
                 heur = Heuristic(22)
                 heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
                 heur_section.add_item("Target file", file_name)
                 if overlay_size is not None:
-                    heur_section.add_item("Overlay Size", overlay_size)
+                    heur_section.add_item(
+                        "Overlay Size", f"{overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                    )
                 if entropy is not None:
                     heur_section.add_item("Overlay Entropy", entropy)
                 heur_section.add_item("SHA256", extracted_file_info["sha256"])
                 heur_section.add_item("SHA1", extracted_file_info["sha1"])
                 heur_section.add_item("MD5", extracted_file_info["md5"])
-                heur_section.add_item("Total Size", extracted_file_info["size"])
+                heur_section.add_item(
+                    "Total Size",
+                    f"{extracted_file_info['size']} ({debloat.processor.readable_size(extracted_file_info['size'])})",
+                )
         elif extracted_file_info["type"] == "document/installer/windows":
             ole = olefile.OleFileIO(file_path)
             for direntry in ole.direntries:
@@ -421,11 +667,19 @@ class Extract(ServiceBase):
                     f.seek(-1024 * last_position_jumps, os.SEEK_END)
                     while f.read(1024) == last_data:
                         last_position_jumps += 1
-                        f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                     # Time to find exactly where to stop the stripping
                     precise_offset = 1024
                     while precise_offset >= 0:
-                        f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        try:
+                            f.seek(-1024 * last_position_jumps + precise_offset, os.SEEK_END)
+                        except OSError:
+                            # The whole file is identical?
+                            break
                         data = f.read(1)
                         if data and data[0] != last_data[0]:
                             break
@@ -444,13 +698,21 @@ class Extract(ServiceBase):
                     heur = Heuristic(22)
                     heur_section = ResultOrderedKeyValueSection(heur.name, heuristic=heur, parent=request.result)
                     heur_section.add_item("Target file", file_name)
-                    heur_section.add_item("Overlay Size", overlay_size)
+                    heur_section.add_item(
+                        "Overlay Size", f"{overlay_size} ({debloat.processor.readable_size(overlay_size)})"
+                    )
                     heur_section.add_item("Overlay Entropy", entropy)
                     heur_section.add_item("Bloated byte", last_data[0])
                     heur_section.add_item("SHA256", extracted_file_info["sha256"])
                     heur_section.add_item("SHA1", extracted_file_info["sha1"])
                     heur_section.add_item("MD5", extracted_file_info["md5"])
-                    heur_section.add_item("Total Size", extracted_file_info["size"])
+                    heur_section.add_item(
+                        "Total Size",
+                        (
+                            f"{extracted_file_info['size']} "
+                            f"({debloat.processor.readable_size(extracted_file_info['size'])})"
+                        ),
+                    )
 
         return file_path
 
@@ -469,15 +731,28 @@ class Extract(ServiceBase):
         Returns:
             List of strings.
         """
-        passwords = deepcopy(self.config.get("default_pw_list", []))
+
         user_supplied = request.get_param("password")
         if user_supplied:
-            passwords.append(user_supplied)
+            passwords = [user_supplied]
+        else:
+            passwords = []
+
+        passwords.extend(self.config.get("default_pw_list", []))
 
         if "email_body" in request.temp_submission_data:
             passwords.extend(request.temp_submission_data["email_body"])
         if "passwords" in request.temp_submission_data:
             passwords.extend(request.temp_submission_data["passwords"])
+
+        if request.file_name:
+            partial = ""
+            for chunk in request.file_name.split("."):
+                if partial:
+                    partial = ".".join([partial, chunk])
+                else:
+                    partial = chunk
+                passwords.append(partial)
 
         return passwords
 
@@ -513,7 +788,7 @@ class Extract(ServiceBase):
                                     # Corrupted zip file, also expected
                                     self.log.debug(f"The zip file is corrupted due to '{e}'")
                                     pass
-                                except EOFError:
+                                except (EOFError, OSError):
                                     # Unable to read path
                                     pass
 
@@ -545,23 +820,277 @@ class Extract(ServiceBase):
             Boolean if encryption successful (indicating encryption detected).
         """
 
-        passwords = self.get_passwords(request)
         try:
-            res = extract_office_docs(request.file_path, passwords, self.working_directory)
-
-            if res is None:
-                raise ValueError()
-        except (ValueError, OSError, msoffcryptoexceptions.FileFormatError):
-            # Not a valid supported/valid file
+            file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
+        except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError, msoffcrypto.exceptions.DecryptionError):
+            # Not a supported/valid file
             return [], False
-        except (PasswordError, ExtractionError):
-            # Could not guess password
+
+        passwords = self.get_passwords(request)
+        password = None
+
+        for pass_try in passwords:
+            try:
+                if isinstance(file, OOXMLFile):
+                    file.load_key(password=pass_try, verify_password=True)
+                else:
+                    file.load_key(password=pass_try)
+                password = pass_try
+                break
+            except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
+                pass
+            except Exception as e:
+                if isinstance(e, IOError) and str(e) == "file not found":
+                    # Error happening usually when the 0Table or 1Table stream is not found in the olefile
+                    return [], True
+                if isinstance(e, ValueError) and str(e).startswith("Invalid key size") and str(e).endswith(" for RC4."):
+                    return [], True
+                raise Exception(f"Password tested was {pass_try}").with_traceback(e.__traceback__)
+
+        if password is None:
             self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
             return [], True
 
-        out_name, password = res
+        tf = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+        name = tf.name
+        try:
+            file.decrypt(open(name, "wb"))
+        except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError, ValueError) as e:
+            if isinstance(e, ValueError) and str(e) not in [
+                "write_stream: data must be the same size as the existing stream",
+                "The length of the provided data is not a multiple of the block length.",
+            ]:
+                raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
+            section = ResultTextSection(
+                "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
+            )
+            section.add_line(f"Password was {password} but the file has the following problem:")
+            section.add_line(str(e))
+            section.add_tag("info.password", password)
+            return [], True
+        except Exception as e:
+            raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
+        tf.close()
+
         self.password_used.append(password)
-        return [[out_name, request.file_name, sys._getframe().f_code.co_name]], True
+        return [[name, request.file_name, sys._getframe().f_code.co_name]], True
+
+    def extract_innosetup(self, request: ServiceRequest):
+        """Will attempt to use innoextract."""
+        extracted = []
+        password_protected = False
+        password = None
+
+        output_path = os.path.join(self.working_directory, "innoextract")
+        p = subprocess.run(
+            ["innoextract", "--compiledcode", "--iss-file", "--output-dir", output_path, request.file_path],
+            capture_output=True,
+            check=False,
+        )
+
+        if re.search("Setup contains encrypted files, use the --password option to extract them".encode(), p.stderr):
+            password_protected = True
+            password = None
+            innoemulator_crash = False
+
+            try:
+                inno = InnoArchive(request.file_contents, None)
+                file = inno.get_encrypted_sample()
+                iemu = InnoSetupEmulator(inno)
+
+                for event in iemu.emulate_installation():
+                    if not isinstance(event, NewPassword):
+                        continue
+                    if inno.check_password(file, event):
+                        password = str(event)
+                        break
+            except Exception as e:
+                innoemulator_crash = e
+
+            if password is None:
+                if innoemulator_crash:
+                    section = ResultTextSection(
+                        "Failed to extract innosetup password using emulator (crash)",
+                        auto_collapse=True,
+                        parent=request.result,
+                    )
+                    section.add_line(str(innoemulator_crash))
+                else:
+                    section = ResultTextSection(
+                        "Failed to extract innosetup password using emulator", auto_collapse=True, parent=request.result
+                    )
+
+                p = subprocess.run(
+                    ["innoextract", "--crack", request.file_path],
+                    capture_output=True,
+                    check=False,
+                )
+                password_found = r"Password found: (.*)"
+                password_found_m = re.search(password_found.encode(), p.stdout)
+                if password_found_m:
+                    password = password_found_m.group(1).decode("UTF8", errors="backslashreplace")
+                else:
+                    for possible_password in self.get_passwords(request) or ["password"]:
+                        p = subprocess.run(
+                            [
+                                "innoextract",
+                                "--password",
+                                possible_password,
+                                "--compiledcode",
+                                "--iss-file",
+                                "--output-dir",
+                                output_path,
+                                request.file_path,
+                            ],
+                            capture_output=True,
+                            check=False,
+                        )
+                        if not re.search("Incorrect password provided".encode(), p.stderr):
+                            password = possible_password
+                            break
+
+            if password is not None:
+                p = subprocess.run(
+                    [
+                        "innoextract",
+                        "--password",
+                        password,
+                        "--compiledcode",
+                        "--iss-file",
+                        "--output-dir",
+                        output_path,
+                        request.file_path,
+                    ],
+                    capture_output=True,
+                    check=False,
+                )
+                self.password_used.append(password)
+            else:
+                expected_files = [
+                    f[4:-13] for f in p.stdout.splitlines() if f.startswith(b' - "') and f.endswith(b'" - encrypted')
+                ]
+                self.raise_failed_passworded_extraction(request, request.file_type, [], expected_files, [])
+
+        first_line = r"Extracting \"(.*)\" - setup data version (.*)"
+        first_line_m = re.search(first_line.encode(), p.stdout)
+        section = None
+        if first_line_m or password is not None:
+            section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            if first_line_m:
+                section.set_item("Name", first_line_m.group(1).decode("UTF8", errors="backslashreplace"))
+                section.set_item("Version", first_line_m.group(2).decode())
+            if password:
+                section.set_item("Password", password)
+
+        if not os.path.exists(output_path):
+            return extracted, password_protected
+
+        extracted = self._submit_extracted(request, request.file_type, output_path, sys._getframe().f_code.co_name)
+
+        ip_found = []
+        uri_found = []
+        for file in extracted:
+            if file[1] != "embedded/CompiledCode.bin":
+                continue
+
+            with open(file[0], "rb") as f:
+                compiledcodetxt = IFPSFile(f.read())
+
+            compiledcodetxt_path = os.path.join(os.path.dirname(file[0]), "CompiledCode.txt")
+            with open(compiledcodetxt_path, "wb") as f:
+                f.write(str(compiledcodetxt).encode("UTF8"))
+            extracted.append([compiledcodetxt_path, "CompiledCode.txt", sys._getframe().f_code.co_name])
+
+            for s in compiledcodetxt.strings:
+                match = re.search(FULL_URI, s)
+                if match:
+                    uri_found.append(s)
+                    continue
+                match = re.search(IP_ONLY_REGEX, s)
+                if match:
+                    ip_found.append(s)
+
+        if ip_found or uri_found:
+            if section is None:
+                section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            if ip_found:
+                ip_section = ResultSection(f"IP{'s' if len(ip_found) > 1 else ''} Found", parent=section)
+                for i in ip_found:
+                    ip_section.add_line(i)
+                    ip_section.add_tag("network.static.ip", i)
+            if uri_found:
+                uri_section = ResultSection(f"URI{'s' if len(uri_found) > 1 else ''} Found", parent=section)
+                for u in uri_found:
+                    uri_section.add_line(u)
+                    uri_section.add_tag("network.static.uri", u)
+
+        return extracted, password_protected
+
+    def extract_setup_factory(self, request: ServiceRequest):
+        extracted = []
+        try:
+            pe = pefile.PE(request.file_path, fast_load=True)
+        except pefile.PEFormatError:
+            return extracted
+
+        output_path = os.path.join(self.working_directory, "setup_factory")
+        try:
+            if extractor := sfextract.setupfactory7.get_extractor(pe):
+                extractor.extract_files(output_path)
+            elif extractor := sfextract.setupfactory8.get_extractor(pe):
+                extractor.extract_files(output_path)
+        except sfextract.TruncatedFileError:
+            return extracted
+
+        if extractor is not None and extractor.files:
+            section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            section.set_item("Version", ".".join([str(x) for x in extractor.version]))
+            for f in extractor.files:
+                if f.name == sfextract.SCRIPT_FILE_NAME:
+                    request.add_supplementary(
+                        f.local_path,
+                        f.name.decode("utf-8", errors="backslashreplace"),
+                        "Setup Factory compiled script data",
+                    )
+                    continue
+                extracted.append(
+                    [f.local_path, f.name.decode("utf-8", errors="backslashreplace"), sys._getframe().f_code.co_name]
+                )
+
+        return extracted
+
+    def extract_autoit_executable(self, request: ServiceRequest):
+        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
+        extracted = []
+
+        try:
+            content_list = autoit_ripper.extract(data=request.file_contents) or []
+        except (AttributeError, UnicodeDecodeError, pefile.PEFormatError):
+            # If the PE file cannot be parsed, then we can do nothing with it
+            return extracted
+
+        for name, content in content_list:
+            fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+            fd.write(content)
+            extracted.append([fd.name, name, sys._getframe().f_code.co_name])
+
+        return extracted
+
+    def extract_a3x(self, request: ServiceRequest):
+        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script."""
+        extracted = []
+
+        unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
+        _ = subprocess.run(
+            [unautoit_bin_path, "extract-all", "--output-dir", self.working_directory, request.file_path],
+            capture_output=True,
+            check=False,
+        )
+        for f in os.listdir(self.working_directory):
+            if f.endswith(".au3"):
+                extracted.append([os.path.join(self.working_directory, f), f, sys._getframe().f_code.co_name])
+
+        return extracted
 
     def _submit_extracted(self, request: ServiceRequest, file_type: str, folder_path: str, caller: str):
         """Go over a folder, sanitize file/folder names and return a list of filtered files
@@ -608,20 +1137,26 @@ class Extract(ServiceBase):
                             )
                         shutil.move(file_path, new_file_path)
 
-        # Add Extracted
+        # Generate a unique subfolder for each call to _submit_extracted, in case different calls contain the same files
         extracted_path = os.path.join(self.working_directory, "extracted_files")
         if not os.path.exists(extracted_path):
             os.mkdir(extracted_path)
+        sub_folder = 1
+        while os.path.exists(os.path.join(extracted_path, str(sub_folder))):
+            sub_folder += 1
+        extracted_path = os.path.join(extracted_path, str(sub_folder))
+        os.mkdir(extracted_path)
 
         for root, _, files in os.walk(folder_path):
             for f in files:
-                if not os.path.getsize(os.path.join(root, f)):
+                file_path = os.path.join(root, f)
+                if not os.path.islink(file_path) and not os.path.getsize(file_path):
                     continue
 
                 skip = False
-                filename = safe_str(os.path.join(root, f).replace(folder_path, ""))
-                if filename.startswith("/"):
-                    filename = filename[1:]
+                filename = safe_str(file_path.replace(folder_path, ""))
+                if filename.startswith(os.path.sep):
+                    filename = filename[len(os.path.sep) :]
                 if not extract_executable_sections and file_type.startswith("executable"):
                     if "windows" in file_type:
                         for forbidden in self.FORBIDDEN_WIN:
@@ -643,10 +1178,14 @@ class Extract(ServiceBase):
                                 skip = True
                                 break
                 if not skip:
-                    target_folder = os.path.join(extracted_path, root.lstrip(folder_path))
+                    target_folder = os.path.join(extracted_path, root.removeprefix(folder_path).lstrip(os.path.sep))
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
-                    shutil.move(os.path.join(root, f), target_path)
+                    shutil.move(file_path, target_path)
+                    # Some files in a zip are not even readable, so make sure we can read them.
+                    # They had `oct(os.stat(file_path).st_mode) == 0o100000` (or 0o100100)
+                    if not os.path.islink(target_path) and not os.access(target_path, os.R_OK):
+                        os.chmod(target_path, os.stat(target_path).st_mode | 0o444)
                     extracted_children.append([target_path, safe_str(filename), caller])
                 else:
                     self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
@@ -686,6 +1225,15 @@ class Extract(ServiceBase):
             self.log.exception(f"While extracting {request.sha256} with unace")
 
         return []
+
+    def extract_mobi(self, request: ServiceRequest):
+        extracted_files = []
+        temp_dir, _ = mobi.extract(request.file_path)
+        extracted_files.extend(
+            self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
+        )
+        shutil.rmtree(temp_dir)
+        return extracted_files
 
     def extract_pdf_passwordprotected(self, request: ServiceRequest):
         """Will attempt to use pikepdf to extract embedded files from a passwordprotected PDF sample.
@@ -750,7 +1298,9 @@ class Extract(ServiceBase):
                     fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
                     fd.write(attachment_data)
                     fd.seek(0)
-                    extracted_children.append([fd.name, key, sys._getframe().f_code.co_name])
+                    extracted_children.append(
+                        [fd.name, key if key else "UnknownFilename", sys._getframe().f_code.co_name]
+                    )
         except (PdfError, ValueError) as e:
             # Damaged PDF, typically extracted from another service like OLETools
             self.log.warning(e)
@@ -879,7 +1429,122 @@ class Extract(ServiceBase):
         except Exception:
             pass
 
+        # Fallback to using extract_zip, but do not return if password-protected
+        return self.extract_zip(request, request.file_path, request.file_type)[0]
+
+    def extract_zstd(self, request: ServiceRequest):
+        with open(request.file_path, "rb") as fh:
+            data = fh.read()
+
+        try:
+            decoder = zstandard.ZstdDecompressor().decompressobj()
+            uncompress_data = decoder.decompress(data)
+            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
+            path = os.path.join(self.working_directory, sha256hash)
+            with open(path, "wb") as f:
+                f.write(uncompress_data)
+            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+        except Exception:
+            pass
+
         return []
+
+    def extract_zpaq(self, request: ServiceRequest):
+        password_protected = False
+        password_list = []
+        extracted_files = []
+        temp_path = os.path.join(self.working_directory, f"{request.file_path}.zpaq")
+        shutil.copy2(request.file_path, temp_path)
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            popenargs = ["zpaq", "x", temp_path, "-to", temp_dir]
+
+            try:
+                p = subprocess.run(popenargs, capture_output=True)
+                stdoutput, stderr = p.stdout, p.stderr
+
+                extracted_files.extend(
+                    self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
+                )
+
+                if b"password incorrect" in stderr:
+                    password_protected = True
+                    password_list = self.get_passwords(request)
+                    popenargs.extend(["-key", "password"])
+                    for password in password_list:
+                        try:
+                            popenargs[-1] = password
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                            p = subprocess.run(popenargs, capture_output=True)
+                            stdoutput = p.stdout + p.stderr
+                            extracted_children = self._submit_extracted(
+                                request, request.file_type, temp_dir, sys._getframe().f_code.co_name
+                            )
+                            if extracted_children:
+                                self.password_used.append(password)
+                                extracted_files.extend(extracted_children)
+                            if stdoutput and "password incorrect" not in stdoutput:
+                                break
+                        except OSError:
+                            pass
+
+                popenargs = ["zpaq", "l", temp_path]
+                p = subprocess.run(popenargs, capture_output=True)
+                data = []
+                for line in p.stdout.split(b"\n"):
+                    if line.startswith(b"- "):
+                        line = line[2:].split(b" ", 2)
+                        date = b" ".join(line[:2])
+                        line = line[-1].lstrip().split(b" ", 1)
+                        size = line[0]
+                        line = line[-1].lstrip().split(b" ", 1)
+                        attributes = line[0]
+                        filename = line[-1].lstrip()
+                        data.append([date, size, attributes, filename])
+
+                hidden_files = [x for x in data if b"H" in x[2]]
+                if hidden_files:
+                    heur = Heuristic(18)
+                    res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
+                    for hf in hidden_files:
+                        res.add_row(TableRow({"Date": hf[0], "Size": hf[1], "Attributes": hf[2], "Filename": hf[3]}))
+                        # Do not add Directories to filename extracted
+                        if "D" not in hf[2]:
+                            res.add_tag("file.name.extracted", hf[-1])
+
+                # Ignore empty files/folders
+                expected_files = [x[3] for x in data if b"D" not in x[2]]
+                if password_protected and len(extracted_files) != len(expected_files):
+                    self.raise_failed_passworded_extraction(
+                        request, request.file_type, extracted_files, expected_files, password_list
+                    )
+            finally:
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+
+        return extracted_files, password_protected
+
+    def extract_gpg_symmetric(self, request: ServiceRequest):
+        password_list = self.get_passwords(request)
+        gpg = gnupg.GPG()
+
+        for password in password_list:
+            try:
+                crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+            except UnicodeEncodeError:
+                prev_encoding = gpg.encoding
+                gpg.encoding = "utf-8"
+                crypt_obj = gpg.decrypt_file(request.file_path, passphrase=password)
+                gpg.encoding = prev_encoding
+
+            if crypt_obj.returncode == 0:
+                self.password_used.append(password)
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                    tmp_f.write(crypt_obj.data)
+                return [[tmp_f.name, "gnupgp content", sys._getframe().f_code.co_name]], True
+
+        self.raise_failed_passworded_extraction(request, request.file_type, [], [], password_list)
+        return [], False
 
     def extract_zip(self, request: ServiceRequest, file_path: str, file_type: str):
         """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive,
@@ -947,10 +1612,10 @@ class Extract(ServiceBase):
         header = [b" ".join(header[c[0] : c[1]].split()).decode() for c in col_len]
         parsed_data = []
         for d in data:
-            parsed_data.append([safe_str(d[c[0] : c[1]].strip()) for c in col_len])
+            parsed_data.append([safe_str(d[c[0] : c[1]].lstrip()) for c in col_len])
             if len(separator) < len(d):
                 parsed_data[-1][-1] = f"{parsed_data[-1][-1]}{safe_str(d[len(separator) :])}"
-            parsed_data[-1] = [x.strip() for x in parsed_data[-1]]
+            parsed_data[-1] = [x.lstrip() for x in parsed_data[-1]]
 
         return header, parsed_data
 
@@ -983,6 +1648,29 @@ class Extract(ServiceBase):
                 json.dump(password_tested, f)
             request.add_supplementary(password_tested_path, "password_tested.json", "Passwords used that failed")
 
+    @staticmethod
+    def filter_7zip_wrong_password(stderr, extracted_children):
+        if b"Wrong password? : " not in stderr:
+            return extracted_children, []
+
+        corrupted_files = []
+        for stderr_line in stderr.split(b"\n"):
+            if b"Wrong password? : " in stderr_line:
+                corrupted_files.append(stderr_line.rsplit(b"Wrong password? : ", 1)[-1])
+
+        if not corrupted_files:
+            return extracted_children, []
+
+        filtered_files = []
+        removed_files = []
+        for extracted_child in extracted_children:
+            if extracted_child[1].encode() not in corrupted_files:
+                filtered_files.append(extracted_child)
+            else:
+                removed_files.append(extracted_child)
+
+        return filtered_files, removed_files
+
     def extract_zip_7zip(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
         password_list = []
@@ -992,6 +1680,7 @@ class Extract(ServiceBase):
 
         with tempfile.TemporaryDirectory() as temp_dir:
             extracted_files = []
+            password_used = []
 
             popenargs = ["7zzs", "x", "-p", "-y", file_path, f"-o{temp_dir}"]
             # Some UDF samples were wrongly identified as plain ISO by 7z.
@@ -1000,15 +1689,23 @@ class Extract(ServiceBase):
             if file_type in ["archive/iso", "archive/udf"]:
                 temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
                 shutil.copy2(file_path, temp_path)
-                popenargs[4] = temp_path
+                popenargs[-2] = temp_path
 
             try:
                 p = subprocess.run(popenargs, env=env, capture_output=True)
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_files.extend(
-                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                extracted_children = self._submit_extracted(
+                    request, file_type, temp_dir, sys._getframe().f_code.co_name
                 )
+                wrong_password_items = []
+                passwordless_filtered_files, passwordless_wrong_password_files = self.filter_7zip_wrong_password(
+                    p.stderr, extracted_children
+                )
+                for f in passwordless_wrong_password_files:
+                    wrong_password_items.append(f"{f[1]} (No password)")
+                extracted_files.extend(passwordless_filtered_files)
+                passwordless_filtered_file_names = [x[1] for x in passwordless_filtered_files]
 
                 if b"Wrong password" in stderr:
                     password_protected = True
@@ -1023,29 +1720,63 @@ class Extract(ServiceBase):
                                 request, file_type, temp_dir, sys._getframe().f_code.co_name
                             )
                             if extracted_children:
-                                self.password_used.append(password)
-                                extracted_files.extend(extracted_children)
-                            if stdoutput and b"\nEverything is Ok\n" in stdoutput:
-                                break
+                                filtered_files, wrong_password_files = self.filter_7zip_wrong_password(
+                                    p.stderr, extracted_children
+                                )
+                                for f in wrong_password_files:
+                                    wrong_password_items.append(f"{f[1]} (Password:{password})")
+                                filtered_files = [
+                                    x for x in filtered_files if x[1] not in passwordless_filtered_file_names
+                                ]
+
+                                if filtered_files:
+                                    if b"\nEverything is Ok\n" in p.stdout:
+                                        wrong_password_items = []
+                                        password_used = [password]
+                                        extracted_files = passwordless_filtered_files + filtered_files
+                                        break
+                                    password_used.append(password)
+                                    extracted_files.extend(filtered_files)
                         except OSError:
                             pass
                 elif b"Can not open the file as archive" in stdoutput:
                     raise TypeError
 
+                if password_used:
+                    self.password_used.extend(password_used)
+
+                if wrong_password_items:
+                    section = ResultTextSection("Found corrupted files (Wrong password?)", parent=request.result)
+                    for item in wrong_password_items:
+                        section.add_line(item)
+
                 error_res = None
                 for line in itertools.chain(stdoutput.split(b"\n"), stderr.split(b"\n")):
-                    if line.startswith(b"ERROR:") and not line.startswith(b"ERROR: Wrong password :"):
+                    if (
+                        line.startswith(b"ERROR:")
+                        and not line.startswith(b"ERROR: Wrong password :")
+                        and not line.startswith(b"ERROR: Data Error in encrypted file. Wrong password? : ")
+                        and not line.startswith(b"ERROR: CRC Failed in encrypted file. Wrong password? : ")
+                    ):
                         if error_res is None:
-                            error_res = ResultTextSection("Errors in 7z", parent=request.result)
-                        error_res.add_line(line)
+                            error_res = ResultTextSection(
+                                "Errors in 7z",
+                                # Populate the resultSection as it may be relied on later, but don't show it to the user
+                                # if the file is an executable
+                                parent=None if file_type.startswith("executable/") else request.result,
+                            )
+                        error_res.add_line(line.replace(temp_dir.encode(), b"/TMP_DIR"))
 
                 popenargs[1] = "l"  # Change the command to list
                 popenargs = popenargs[:-1]  # Drop the destination output
                 header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data and file_type != "archive/rar":
+                if not data:
                     # No listing could be extracted.
-                    heur = Heuristic(24)
-                    _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
+                    # archive/rar are going to be retried with another tool.
+                    # executables doesn't have listing, so they would always raise it.
+                    if file_type != "archive/rar" and not file_type.startswith("executable"):
+                        heur = Heuristic(24)
+                        _ = ResultTextSection(heur.name, heuristic=heur, parent=request.result, body=heur.description)
                 else:
                     # Data should be:
                     # Date Time, Attr, Size, Compressed, Name
@@ -1096,6 +1827,34 @@ class Extract(ServiceBase):
                                     )
                                 )
 
+                    # Detection for CVE-2023-38831
+                    # Find all folders
+                    heur_section = ResultKeyValueSection("CVE-2023-38831")
+                    folders = [x[-1] for x in data if x[1][0] == "D"]
+                    hijacked_folders = set()
+                    for folder in folders:
+                        # Find if a file has the same name as any folder
+                        if any([True for x in data if x[-1] == folder and x[1][0] != "D"]):
+                            # Find if there is a file that starts with the name of the folder inside that folder
+                            for data_line in data:
+                                if data_line[-1].startswith(f"{folder}{os.sep}{folder}"):
+                                    heur_section.set_item(folder, data_line[-1])
+                                    hijacked_folders.add(folder)
+                    if heur_section.body:
+                        heur_section.add_tag("attribution.exploit", "CVE-2023-38831")
+                        heur_section.set_heuristic(25)
+                        request.result.add_section(heur_section)
+                        shutil.rmtree(temp_dir, ignore_errors=True)
+                        os.makedirs(temp_dir)
+                        for folder in hijacked_folders:
+                            os.makedirs(os.path.join(temp_dir, folder), exist_ok=True)
+                        popenargs[1] = "x"
+                        popenargs.append(f"-o{temp_dir}")
+                        popenargs[3] = "-aos"  # Remplace the "-y" with "-aos" to skip existing folders
+                        subprocess.run(popenargs, env=env, capture_output=True)
+                        extracted_files.extend(
+                            self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
+                        )
             except UnicodeEncodeError:
                 raise
             finally:
@@ -1415,7 +2174,7 @@ class Extract(ServiceBase):
             List of filtered file names and updated count of safelisted files.
         """
 
-        safelisted_tags_re = [
+        safelisted_type_re = [
             re.compile(r"android/(xml|resource)"),
             re.compile(r"audiovisual/.*"),
             re.compile(r"certificate/rsa"),
@@ -1455,7 +2214,7 @@ class Extract(ServiceBase):
         for cur_file in extracted:
             to_add = True
             file_info = self.identify.fileinfo(cur_file[0], generate_hashes=False)
-            for exp in safelisted_tags_re:
+            for exp in safelisted_type_re:
                 if exp.search(file_info["type"]):
                     to_add = False
                     safelisted_extracted.append(cur_file[1])
@@ -1487,24 +2246,45 @@ class Extract(ServiceBase):
             Al result object scoring VHIGH if executables detected in container, or None.
         """
 
-        def is_launchable(file):
-            if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
-                return True
-            file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
-            if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
-                for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
-                    if request.file_type.startswith(k) and file_type in v:
-                        return False
-                return True
+        def is_launchable_fp_type(file_type):
+            for k, v in Extract.LAUNCHABLE_TYPE_FP_FROM_SW.items():
+                if request.file_type.startswith(k) and file_type in v:
+                    return True
             return False
 
-        if len(request.extracted) == 1 and is_launchable(request.extracted[0]):
-            new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
-            new_section.add_line(request.extracted[0]["name"])
-            new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
-            new_section.set_heuristic(13)
-            new_section.add_tag("file.behavior", "Archived Single Executable")
-            request.result.add_section(new_section)
+        def is_launchable_fp_ext(file_ext):
+            for k, v in Extract.LAUNCHABLE_EXT_FP_FROM_SW.items():
+                if request.file_type.startswith(k) and file_ext in v:
+                    return True
+            return False
+
+        def is_launchable(file):
+            file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
+            if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
+                if not is_launchable_fp_ext(os.path.splitext(file["name"])[1].lower()):
+                    return True
+            if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
+                if not is_launchable_fp_type(file_type):
+                    return True
+            return False
+
+        if len(request.extracted) == 1:
+            if is_launchable(request.extracted[0]):
+                new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
+                new_section.add_line(request.extracted[0]["name"])
+                new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
+                new_section.set_heuristic(13)
+                new_section.add_tag("file.behavior", "Archived Single Executable")
+                request.result.add_section(new_section)
+            elif (
+                request.file_type.startswith("archive/")
+                and self.identify.fileinfo(request.extracted[0]["path"], generate_hashes=False)["type"] == "code/html"
+            ):
+                new_section = ResultTextSection("Archive file with single html file inside.")
+                new_section.add_line(request.extracted[0]["name"])
+                new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
+                new_section.add_tag("file.behavior", "Archived Single HTML File")
+                request.result.add_section(new_section)
         else:
             launchable_extracted = []
             for extracted in request.extracted:
@@ -1569,7 +2349,12 @@ class Extract(ServiceBase):
         with open(request.file_path, "rb") as f:
             data = f.read()
 
-        soup = BeautifulSoup(data, features="html5lib")
+        try:
+            soup = BeautifulSoup(data, features="html5lib")
+        except AssertionError:
+            # If this one gives us trouble too, we can try Python’s built-in HTML parser "html.parser"
+            soup = BeautifulSoup(data, features="lxml")
+
         scripts = soup.findAll("script")
         extracted = []
         for script in scripts:
@@ -1581,7 +2366,9 @@ class Extract(ServiceBase):
             if len(body) <= 2:  # We can treat 2 character scripts as empty
                 continue
 
-            if script.get("language", "").lower() == "jscript.encode":
+            script_language = script.get("language", None)
+            script_type = script.get("type", None)
+            if script_language and script_language.lower() == "jscript.encode":
                 try:
                     # The encoded VB technique can be used to encode javascript
                     evbe_present = re.search(EVBE_REGEX, body)
@@ -1603,9 +2390,11 @@ class Extract(ServiceBase):
                         out.write(encoded_script)
                     file_hash = hashlib.sha256(encoded_script).hexdigest()
                     extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
-            elif script.get("type", "").lower() not in ["", "text/javascript"]:
+            elif (script_language and script_language.lower() != "javascript") or (
+                script_type and script_type.lower() != "text/javascript"
+            ):
                 # If there is no "type" attribute specified in a script element, then the default assumption is
-                # that the body of the element is Javascript
+                # that the body of the element is Javascript. "" is also going to be assumed Javascript.
                 # We don't want to handle those, but any other special type, we can extract
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
@@ -1617,7 +2406,8 @@ class Extract(ServiceBase):
             if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
                 a_tag_parts = a_tag.get("href").split(",", 1)
                 if a_tag_parts[0].endswith("base64"):
-                    a_tag_content = base64.b64decode(a_tag_parts[1].strip())
+                    a_tag_content = b64decode(a_tag_parts[1].strip())
+
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(a_tag_content)
                     # Ignore files that should be handled by JsJaws
@@ -1663,7 +2453,7 @@ class Extract(ServiceBase):
                 # It is technically not required to sort them, but it makes the output of the module predictable
                 if "passwords" in request.temp_submission_data:
                     new_passwords.update(set(request.temp_submission_data["passwords"]))
-                request.temp_submission_data["passwords"] = sorted(list(new_passwords))
+                request.temp_submission_data["passwords"] = sorted(new_passwords)
 
         return extracted
 
@@ -1673,7 +2463,7 @@ class Extract(ServiceBase):
 
         soup = BeautifulSoup(data, features="lxml")
         scripts = soup.findAll("script")
-        languages = sorted(list(set([script.get("language", "").lower() for script in scripts])))
+        languages = sorted({script.get("language", "").lower() for script in scripts})
         if len(languages) > 1:
             heur = Heuristic(20)
             heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
@@ -1796,14 +2586,14 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_cart(self, request: ServiceRequest):
-        cart_name = get_metadata_only(request.file_path)["name"]
+        cart_name = get_metadata_only(request.file_path).get("name", f"uncarted_{request.sha256[:8]}")
         output_path = os.path.join(self.working_directory, strip_path_inclusion(cart_name, self.working_directory))
         with open(request.file_path, "rb") as ifile, open(output_path, "wb") as ofile:
             unpack_stream(ifile, ofile)
 
         return [[output_path, cart_name, sys._getframe().f_code.co_name]]
 
-    def strip_overlay(self, file_path):
+    def strip_overlay(self, request, file_path):
         try:
             binary = pefile.PE(file_path, fast_load=True)
         except Exception:
@@ -1813,7 +2603,6 @@ class Extract(ServiceBase):
         file_size = os.path.getsize(file_path)
         overlay_size = file_size - overlay_offset
         if overlay_offset != 0 and overlay_size >= self.config.get("heur22_min_overlay_size", 31457280):
-
             calculator = BufferedCalculator()
             with open(file_path, "rb") as f:
                 f.seek(overlay_offset)
@@ -1834,20 +2623,131 @@ class Extract(ServiceBase):
 
                 return (temp_path, overlay_size, entropy)
 
-        out_path = os.path.join(self.working_directory, "debloated")
-        debloat.processor.process_pe(
+        debloat_out_path = os.path.join(self.working_directory, "debloated")
+        if not os.path.exists(debloat_out_path):
+            os.mkdir(debloat_out_path)
+        sub_folder = 1
+        while os.path.exists(os.path.join(debloat_out_path, str(sub_folder))):
+            sub_folder += 1
+        debloat_extracted_path = os.path.join(debloat_out_path, str(sub_folder))
+
+        debloat_code = debloat.processor.process_pe(
             binary,
-            out_path=out_path,
+            out_path=debloat_extracted_path,
             last_ditch_processing=False,
+            cert_preservation=True,
             log_message=lambda *args, **kwargs: None,
             beginning_file_size=file_size,
         )
 
-        if not os.path.exists(out_path):
+        # If nothing was extracted, or it was a NSIS file that debloat wants to extract
+        if not os.path.exists(debloat_extracted_path) or os.path.isdir(debloat_extracted_path):
             return False
 
-        with open(out_path, "rb") as f:
+        debloat_section = ResultTextSection("Debloated using specific technique", parent=request.result)
+        debloat_section.add_line(debloat.processor.RESULT_CODES[debloat_code])
+
+        with open(debloat_extracted_path, "rb") as f:
             data = f.read()
         sha256hash = hashlib.sha256(data).hexdigest()
-        shutil.move(out_path, os.path.join(self.working_directory, sha256hash))
+        shutil.move(debloat_extracted_path, os.path.join(self.working_directory, sha256hash))
         return (os.path.join(self.working_directory, sha256hash), None, None)
+
+    def extract_pyc(self, request: ServiceRequest, filepath):
+        """Attempt to decompile the pyc file at the given filepath.
+
+        Successfully decomplied files will be written back to the `working_directory`.
+
+        Args:
+            filepath: path to pyc file
+
+        Returns:
+            The filepath to the decompiled script.
+        """
+        extracted = []
+        try:
+            py_file, embedded_filename = py_uncompyle6.decompile_pyc(filepath, self.working_directory)
+            if py_file:
+                fname = embedded_filename or os.path.basename(py_file)
+                extracted.append([py_file, fname, "extract_pyc_uncompyle6"])
+        except py_uncompyle6.Invalid:
+            pass
+        except py_uncompyle6.XDisError as e:
+            error_res = ResultTextSection("Errors in xdis", parent=request.result)
+            last_frame = traceback.extract_tb(e.__cause__.__traceback__)[-1]
+            error_res.add_line(f"{e.__cause__.__class__.__name__}: {str(e.__cause__)}")
+            error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
+            error_res.add_line(f"{last_frame.line}")
+        except Exception as e:
+            error_res = ResultTextSection("Errors in uncompyle6", parent=request.result)
+            last_frame = traceback.extract_tb(e.__traceback__)[-1]
+            error_res.add_line(f"{type(e).__name__}: {', '.join(e.args)}")
+            error_res.add_line(f'File "{last_frame.filename}", line {last_frame.lineno}, in {last_frame.name}')
+            error_res.add_line(f"{last_frame.line}")
+
+        if not extracted:
+            py_file, embedded_filename, disass_file = py_decompylepp.decompile_pyc(
+                request, filepath, self.working_directory
+            )
+            fname = embedded_filename or os.path.basename(py_file)
+            extracted.append([py_file, fname, "extract_pyc_pycdc"])
+            request.add_supplementary(disass_file, f"{fname}.disass", "Python disassembly from pycdas")
+
+        return extracted
+
+    def extract_py2exe(self, request: ServiceRequest):
+        """Extract embedded python byte code from a py2exe complied binary.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            list containing extracted information, including: extracted path, display name
+        """
+        extracted = []
+        with open(request.file_path, "rb") as f:
+            buf = f.read()
+        pycs = py2exe_extractor.extract(buf, outdir=pathlib.Path(self.working_directory))
+        for pyc_path, script_name in pycs.items():
+            extracted.append([pyc_path.as_posix(), script_name, sys._getframe().f_code.co_name])
+            extracted.extend(self.extract_pyc(request, pyc_path.as_posix()))
+
+        return extracted
+
+    def extract_pyinstaller(self, request: ServiceRequest):
+        """Extract embedded python byte code from a pyinstaller complied binary.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            List containing extracted information, including: extracted path, display name
+        """
+        extracted = []
+        with open(request.file_path, "rb") as f:
+            buf = f.read()
+        pycs = pyinstaller.extract_pyc(buf)
+        for name, pyc in pycs:
+            # always save py/pyc file
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tf:
+                tf.write(bytes(pyc))
+            extracted.append([tf.name, name, sys._getframe().f_code.co_name])
+
+            # in case of pyc, attempt to also decompile
+            if name.endswith(".pyc"):
+                extracted.extend(self.extract_pyc(request, tf.name))
+
+        return extracted
+
+    def attempt_extract_py2exe(self, request, extracted: list):
+        """Attempt to extract py2exe from the request.
+
+        Mutates the passed in `extracted`.
+        """
+        try:
+            py2exe_files = self.extract_py2exe(request)
+            if py2exe_files:
+                extracted.extend(py2exe_files)
+        except py2exe_extractor.Invalid:
+            pass
+        return extracted

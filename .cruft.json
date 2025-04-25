@@ -1,0 +1,23 @@
+{
+  "template": "git@github.com:CybercentreCanada/assemblyline-service-template.git",
+  "commit": "0b087951f5aa83414431a925ccd256f252875e32",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "service_name": "extract",
+      "__svc_name": "extract",
+      "__repository": "assemblyline-service-extract",
+      "__pkg_name": "extract",
+      "class_name": "Extract",
+      "short_description": "This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).",
+      "short_description_fr": "Ce service extrait les fichiers contenus dans d'autres archives (tel que ZIP, RAR, 7z, ...).",
+      "stage": "EXTRACT",
+      "category": "Extraction",
+      "org_name_full": "CybercentreCanada",
+      "org_name_short": "cccs",
+      "license": "mit",
+      "_template": "git@github.com:CybercentreCanada/assemblyline-service-template.git"
+    }
+  },
+  "directory": null
+}

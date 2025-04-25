@@ -1,0 +1,100 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Error using normal pycdc:\nCreateObject: Got unsupported type 0x0\nError loading file /TMP_DIR/INPUT.pyc: std::bad_cast\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": ".data\nmain.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                ".data",
+                "main.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "UnknownFilename.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Successfully extracted 1 file that was safelisted.",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "main.pyc",
+        "sha256": "6b5f6df9bbbedc43668777bee5657b961ec6c7271578b20d5ad89c0ac4029d40"
+      },
+      {
+        "name": ".data",
+        "sha256": "7d1fdc57f76a81a2f11ba0ccbb2819a47561139d1d778c1e401801dc6cedf240"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".data"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "main.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

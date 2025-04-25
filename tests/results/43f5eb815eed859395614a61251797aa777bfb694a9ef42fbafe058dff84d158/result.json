@@ -1,0 +1,1169 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 1000,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: Cannot create folder : errno=17 : File exists : /TMP_DIR/screenshot_06-2023.jpg \nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align right.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align right-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align right-3.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align right-4.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /arcobat.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /arrow first.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /arrow last.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /at.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /attach.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /autoformat document.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /autoformat grid.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /autoformat spreadsheet.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /back.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /background color.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /bar chart.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /bar chart-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /barcode.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /binoculars next.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /binoculars replace.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /binoculars-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /bold.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /bold-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border btm.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border dbl btm.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border grid.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border inner horiz.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border inner vert.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border inside.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border left.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border none.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border out.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border right.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border thick out.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border thick.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border top dbl.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border top thick.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border top.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /border top-btm.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /borders.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box open.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_checked.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_checked_all.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_checked_all_over.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_checked_over.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_grayed.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_grayed_over.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_select_all.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /box_unchecked.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /Strategies_zullets.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /Strategies_zullets-3.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox closedStrategies_.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_grayed_all_oveStrategies_r.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /Zbox_select_all_overStrategies_.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /Zbox_unchecked_all_overStrategies_.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets and numberingStrategies_.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /address book.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /adjust colour.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align center.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align center-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align center-3.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align center-4.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align full.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align full-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align full-3.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align full-4.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align left.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align left-2.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align left-3.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /align left-4.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. \nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over - Copy (2).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over - Copy (3).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over - Copy (4).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over - Copy (5).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zox_unchecked_over - Copy.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase - Copy (2).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase - Copy (3).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase - Copy (4).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase - Copy (5).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zriefcase - Copy.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies - Copy (2).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies - Copy (3).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies - Copy (4).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies - Copy (5).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zuildStrategies - Copy.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (2).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (3).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (4).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (5).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zullets 2Strategies_ - Copy.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (2).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (3).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (4).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (5).ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /zbox_unStrategies_all - Copy.ico\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/screenshot_06-2023.jpg /Images.com ",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": {
+          "screenshot_06-2023.jpg ": "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. "
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 25,
+          "score": 1000,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "attribution": {
+            "exploit": [
+              "CVE-2023-38831"
+            ]
+          }
+        },
+        "title_text": "CVE-2023-38831",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "screenshot_06-2023.jpg \nscreenshot_06-2023.jpg /Images.com \nscreenshot_06-2023.jpg /Strategies_zullets-3.ico\nscreenshot_06-2023.jpg /Strategies_zullets.ico\nscreenshot_06-2023.jpg /Zbox_select_all_overStrategies_.ico\nscreenshot_06-2023.jpg /Zbox_unchecked_all_overStrategies_.ico\nscreenshot_06-2023.jpg /address book.ico\nscreenshot_06-2023.jpg /adjust colour.ico\nscreenshot_06-2023.jpg /align center-2.ico\nscreenshot_06-2023.jpg /align center-3.ico\nscreenshot_06-2023.jpg /align center-4.ico\nscreenshot_06-2023.jpg /align center.ico\nscreenshot_06-2023.jpg /align full-2.ico\nscreenshot_06-2023.jpg /align full-3.ico\nscreenshot_06-2023.jpg /align full-4.ico\nscreenshot_06-2023.jpg /align full.ico\nscreenshot_06-2023.jpg /align left-2.ico\nscreenshot_06-2023.jpg /align left-3.ico\nscreenshot_06-2023.jpg /align left-4.ico\nscreenshot_06-2023.jpg /align left.ico\nscreenshot_06-2023.jpg /align right-2.ico\nscreenshot_06-2023.jpg /align right-3.ico\nscreenshot_06-2023.jpg /align right-4.ico\nscreenshot_06-2023.jpg /align right.ico\nscreenshot_06-2023.jpg /arcobat.ico\nscreenshot_06-2023.jpg /arrow first.ico\nscreenshot_06-2023.jpg /arrow last.ico\nscreenshot_06-2023.jpg /at.ico\nscreenshot_06-2023.jpg /attach.ico\nscreenshot_06-2023.jpg /autoformat document.ico\nscreenshot_06-2023.jpg /autoformat grid.ico\nscreenshot_06-2023.jpg /autoformat spreadsheet.ico\nscreenshot_06-2023.jpg /back.ico\nscreenshot_06-2023.jpg /background color.ico\nscreenshot_06-2023.jpg /bar chart-2.ico\nscreenshot_06-2023.jpg /bar chart.ico\nscreenshot_06-2023.jpg /barcode.ico\nscreenshot_06-2023.jpg /binoculars next.ico\nscreenshot_06-2023.jpg /binoculars replace.ico\nscreenshot_06-2023.jpg /binoculars-2.ico\nscreenshot_06-2023.jpg /bold-2.ico\nscreenshot_06-2023.jpg /bold.ico\nscreenshot_06-2023.jpg /border btm.ico\nscreenshot_06-2023.jpg /border dbl btm.ico\nscreenshot_06-2023.jpg /border grid.ico\nscreenshot_06-2023.jpg /border inner horiz.ico\nscreenshot_06-2023.jpg /border inner vert.ico\nscreenshot_06-2023.jpg /border inside.ico\nscreenshot_06-2023.jpg /border left.ico\nscreenshot_06-2023.jpg /border none.ico\nscreenshot_06-2023.jpg /border out.ico\nscreenshot_06-2023.jpg /border right.ico\nscreenshot_06-2023.jpg /border thick out.ico\nscreenshot_06-2023.jpg /border thick.ico\nscreenshot_06-2023.jpg /border top dbl.ico\nscreenshot_06-2023.jpg /border top thick.ico\nscreenshot_06-2023.jpg /border top-btm.ico\nscreenshot_06-2023.jpg /border top.ico\nscreenshot_06-2023.jpg /borders.ico\nscreenshot_06-2023.jpg /box open.ico\nscreenshot_06-2023.jpg /box_checked.ico\nscreenshot_06-2023.jpg /box_checked_all.ico\nscreenshot_06-2023.jpg /box_checked_all_over.ico\nscreenshot_06-2023.jpg /box_checked_over.ico\nscreenshot_06-2023.jpg /box_grayed.ico\nscreenshot_06-2023.jpg /box_grayed_over.ico\nscreenshot_06-2023.jpg /box_select_all.ico\nscreenshot_06-2023.jpg /box_unchecked.ico\nscreenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. \nscreenshot_06-2023.jpg /zbox closedStrategies_.ico\nscreenshot_06-2023.jpg /zbox_grayed_all_oveStrategies_r.ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all - Copy (2).ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all - Copy (3).ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all - Copy (4).ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all - Copy (5).ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all - Copy.ico\nscreenshot_06-2023.jpg /zbox_unStrategies_all.ico\nscreenshot_06-2023.jpg /zox_unchecked_over - Copy (2).ico\nscreenshot_06-2023.jpg /zox_unchecked_over - Copy (3).ico\nscreenshot_06-2023.jpg /zox_unchecked_over - Copy (4).ico\nscreenshot_06-2023.jpg /zox_unchecked_over - Copy (5).ico\nscreenshot_06-2023.jpg /zox_unchecked_over - Copy.ico\nscreenshot_06-2023.jpg /zox_unchecked_over.ico\nscreenshot_06-2023.jpg /zriefcase - Copy (2).ico\nscreenshot_06-2023.jpg /zriefcase - Copy (3).ico\nscreenshot_06-2023.jpg /zriefcase - Copy (4).ico\nscreenshot_06-2023.jpg /zriefcase - Copy (5).ico\nscreenshot_06-2023.jpg /zriefcase - Copy.ico\nscreenshot_06-2023.jpg /zriefcase.ico\nscreenshot_06-2023.jpg /zuildStrategies - Copy (2).ico\nscreenshot_06-2023.jpg /zuildStrategies - Copy (3).ico\nscreenshot_06-2023.jpg /zuildStrategies - Copy (4).ico\nscreenshot_06-2023.jpg /zuildStrategies - Copy (5).ico\nscreenshot_06-2023.jpg /zuildStrategies - Copy.ico\nscreenshot_06-2023.jpg /zuildStrategies.ico\nscreenshot_06-2023.jpg /zullets 2Strategies_ - Copy (2).ico\nscreenshot_06-2023.jpg /zullets 2Strategies_ - Copy (3).ico\nscreenshot_06-2023.jpg /zullets 2Strategies_ - Copy (4).ico\nscreenshot_06-2023.jpg /zullets 2Strategies_ - Copy (5).ico\nscreenshot_06-2023.jpg /zullets 2Strategies_ - Copy.ico\nscreenshot_06-2023.jpg /zullets 2Strategies_.ico\nscreenshot_06-2023.jpg /zullets and numberingStrategies_.ico",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "screenshot_06-2023.jpg ",
+                "screenshot_06-2023.jpg /Images.com ",
+                "screenshot_06-2023.jpg /Strategies_zullets-3.ico",
+                "screenshot_06-2023.jpg /Strategies_zullets.ico",
+                "screenshot_06-2023.jpg /Zbox_select_all_overStrategies_.ico",
+                "screenshot_06-2023.jpg /Zbox_unchecked_all_overStrategies_.ico",
+                "screenshot_06-2023.jpg /address book.ico",
+                "screenshot_06-2023.jpg /adjust colour.ico",
+                "screenshot_06-2023.jpg /align center-2.ico",
+                "screenshot_06-2023.jpg /align center-3.ico",
+                "screenshot_06-2023.jpg /align center-4.ico",
+                "screenshot_06-2023.jpg /align center.ico",
+                "screenshot_06-2023.jpg /align full-2.ico",
+                "screenshot_06-2023.jpg /align full-3.ico",
+                "screenshot_06-2023.jpg /align full-4.ico",
+                "screenshot_06-2023.jpg /align full.ico",
+                "screenshot_06-2023.jpg /align left-2.ico",
+                "screenshot_06-2023.jpg /align left-3.ico",
+                "screenshot_06-2023.jpg /align left-4.ico",
+                "screenshot_06-2023.jpg /align left.ico",
+                "screenshot_06-2023.jpg /align right-2.ico",
+                "screenshot_06-2023.jpg /align right-3.ico",
+                "screenshot_06-2023.jpg /align right-4.ico",
+                "screenshot_06-2023.jpg /align right.ico",
+                "screenshot_06-2023.jpg /arcobat.ico",
+                "screenshot_06-2023.jpg /arrow first.ico",
+                "screenshot_06-2023.jpg /arrow last.ico",
+                "screenshot_06-2023.jpg /at.ico",
+                "screenshot_06-2023.jpg /attach.ico",
+                "screenshot_06-2023.jpg /autoformat document.ico",
+                "screenshot_06-2023.jpg /autoformat grid.ico",
+                "screenshot_06-2023.jpg /autoformat spreadsheet.ico",
+                "screenshot_06-2023.jpg /back.ico",
+                "screenshot_06-2023.jpg /background color.ico",
+                "screenshot_06-2023.jpg /bar chart-2.ico",
+                "screenshot_06-2023.jpg /bar chart.ico",
+                "screenshot_06-2023.jpg /barcode.ico",
+                "screenshot_06-2023.jpg /binoculars next.ico",
+                "screenshot_06-2023.jpg /binoculars replace.ico",
+                "screenshot_06-2023.jpg /binoculars-2.ico",
+                "screenshot_06-2023.jpg /bold-2.ico",
+                "screenshot_06-2023.jpg /bold.ico",
+                "screenshot_06-2023.jpg /border btm.ico",
+                "screenshot_06-2023.jpg /border dbl btm.ico",
+                "screenshot_06-2023.jpg /border grid.ico",
+                "screenshot_06-2023.jpg /border inner horiz.ico",
+                "screenshot_06-2023.jpg /border inner vert.ico",
+                "screenshot_06-2023.jpg /border inside.ico",
+                "screenshot_06-2023.jpg /border left.ico",
+                "screenshot_06-2023.jpg /border none.ico",
+                "screenshot_06-2023.jpg /border out.ico",
+                "screenshot_06-2023.jpg /border right.ico",
+                "screenshot_06-2023.jpg /border thick out.ico",
+                "screenshot_06-2023.jpg /border thick.ico",
+                "screenshot_06-2023.jpg /border top dbl.ico",
+                "screenshot_06-2023.jpg /border top thick.ico",
+                "screenshot_06-2023.jpg /border top-btm.ico",
+                "screenshot_06-2023.jpg /border top.ico",
+                "screenshot_06-2023.jpg /borders.ico",
+                "screenshot_06-2023.jpg /box open.ico",
+                "screenshot_06-2023.jpg /box_checked.ico",
+                "screenshot_06-2023.jpg /box_checked_all.ico",
+                "screenshot_06-2023.jpg /box_checked_all_over.ico",
+                "screenshot_06-2023.jpg /box_checked_over.ico",
+                "screenshot_06-2023.jpg /box_grayed.ico",
+                "screenshot_06-2023.jpg /box_grayed_over.ico",
+                "screenshot_06-2023.jpg /box_select_all.ico",
+                "screenshot_06-2023.jpg /box_unchecked.ico",
+                "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. ",
+                "screenshot_06-2023.jpg /zbox closedStrategies_.ico",
+                "screenshot_06-2023.jpg /zbox_grayed_all_oveStrategies_r.ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (2).ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (3).ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (4).ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (5).ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy.ico",
+                "screenshot_06-2023.jpg /zbox_unStrategies_all.ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over - Copy (2).ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over - Copy (3).ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over - Copy (4).ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over - Copy (5).ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over - Copy.ico",
+                "screenshot_06-2023.jpg /zox_unchecked_over.ico",
+                "screenshot_06-2023.jpg /zriefcase - Copy (2).ico",
+                "screenshot_06-2023.jpg /zriefcase - Copy (3).ico",
+                "screenshot_06-2023.jpg /zriefcase - Copy (4).ico",
+                "screenshot_06-2023.jpg /zriefcase - Copy (5).ico",
+                "screenshot_06-2023.jpg /zriefcase - Copy.ico",
+                "screenshot_06-2023.jpg /zriefcase.ico",
+                "screenshot_06-2023.jpg /zuildStrategies - Copy (2).ico",
+                "screenshot_06-2023.jpg /zuildStrategies - Copy (3).ico",
+                "screenshot_06-2023.jpg /zuildStrategies - Copy (4).ico",
+                "screenshot_06-2023.jpg /zuildStrategies - Copy (5).ico",
+                "screenshot_06-2023.jpg /zuildStrategies - Copy.ico",
+                "screenshot_06-2023.jpg /zuildStrategies.ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (2).ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (3).ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (4).ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (5).ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy.ico",
+                "screenshot_06-2023.jpg /zullets 2Strategies_.ico",
+                "screenshot_06-2023.jpg /zullets and numberingStrategies_.ico"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 102 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "screenshot_06-2023.jpg /Images.com \nscreenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. ",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "screenshot_06-2023.jpg /Images.com ",
+                "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. "
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "screenshot_06-2023.jpg /box_checked_over.ico",
+        "sha256": "05b18de541e5e1b01508cef488dea3f9d0582acb6b13c82a625c9ad9e1982b40"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (2).ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (3).ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (4).ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (5).ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy.ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets 2Strategies_.ico",
+        "sha256": "05ef46fd6b4f6ffc8b2eb888e131273400cc52f50f22a56454369ddb063864ff"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /address book.ico",
+        "sha256": "05fefc1f82495f2b17d43b581a7012e4dd02de18263e0141ac710c606463a16c"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zullets and numberingStrategies_.ico",
+        "sha256": "060771e4ce7ed745ba927e21c9da3d915478600f87d7c35274b9b0a8862aca5a"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align left-2.ico",
+        "sha256": "0959fe031b20a6edac7475af8760abf23cfc2b5719e2471be94f09bcce4dbfd9"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /attach.ico",
+        "sha256": "163b1c29e3ba2f6865c5b16dc643f67fa1a6f24b69ef900d45f6ac199befefa7"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /barcode.ico",
+        "sha256": "1cbedcd88fb76bd3f8b00620979d30865ae77c88304c6c28b4a367823581ed7c"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /autoformat grid.ico",
+        "sha256": "20a6faea2001fe196cfa5746bd5186b296ec972508a7d7e105fc5762fb702137"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align full-2.ico",
+        "sha256": "20c3bfc8546a7173a4e2956edd33b53d92ddfe94d1fa7b956925dfc37adb5fa5"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. ",
+        "sha256": "228a3fe9be02f092b88f203970715b9fa6fd780d0d404f0ea8b4d4e1f72cbe53"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_checked_all_over.ico",
+        "sha256": "22b0b3acdc4c6d314443dbc87387b31581e617f0bcb06d8e1322bfe94a37e0c5"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /adjust colour.ico",
+        "sha256": "22cbaf22b10e6b753495ce34158be29c2ea4d8f3fe74ad1cf2f1b0e3b3061669"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /Strategies_zullets-3.ico",
+        "sha256": "275af44b6d7095e934fb4d453a1960aa1c926d2fbfb099bfaea9875679500cee"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /binoculars-2.ico",
+        "sha256": "2762ef6493b6d78cdf896023c0b049f3c40708e893664930df5703a399800694"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /arcobat.ico",
+        "sha256": "27654a6f03d747988cc22423f6f9092bcad4ba4b0b3ed225bf06fd31649bc154"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border thick out.ico",
+        "sha256": "2b331768c3df3a0525308992e8ed214cf59a407371e70ac47a6b8cfe6326aa18"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_grayed_over.ico",
+        "sha256": "379f27af907d4ba6b6f947711307b295cc373cb53280adf5ba4bef52950a03dc"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /bold.ico",
+        "sha256": "3a0d33775d4619a10e9f7ddabc3430a02fa820bb90513ef84bc5627697817fac"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border top dbl.ico",
+        "sha256": "3b2370d0ffcb33070e682e4ce7e2b29fc3d292acf07e3a9c6c5b40ab98497ad9"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border left.ico",
+        "sha256": "3b85da72ddb204530df04725f3fa98a74d8ed1054a0f351c99d274dd744809fa"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align center-4.ico",
+        "sha256": "3faf3113b1dfd1800d3ddb59628641490eb214b67f9c682e4ac93936c5aed72c"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /background color.ico",
+        "sha256": "401488c4ebf70c317450ccc0128e4c491d95aed1bdbd4969fb840ecaf8019124"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /bar chart-2.ico",
+        "sha256": "476ac51acd27fb4a6146fe11af5af9929f1130348f7d2b0feea38d9e9cc9a049"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_checked.ico",
+        "sha256": "4e3b1d2274210dc610ae6b51e184c38b9c5b75113f80ffd0ace43c6074b0915e"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /Strategies_zullets.ico",
+        "sha256": "55899c5ef546ee1bc839810cb616337e2488e7df31c809d30a0cce6bdcf830ce"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border top.ico",
+        "sha256": "5baea49249302e1167e318fef3200b22cb2d3b6d98d7d23832b51b24ca4b7411"
+      },
+      {
+        "name": "screenshot_06-2023.jpg ",
+        "sha256": "5ccc395717600be0b0d0b5e6f4c5138b0bebaaf27caaaeae2615b6d553ed0037"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /arrow last.ico",
+        "sha256": "5f2e37c7bd21994019414b04f4cf5ad1048f1f89a5e78dce220b4117015945ec"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border thick.ico",
+        "sha256": "5f48484d1b92ca3f72a442f46e139470ea16715f022bfd0ef188438dd5e4cfc8"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase - Copy (2).ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase - Copy (3).ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase - Copy (4).ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase - Copy (5).ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase - Copy.ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zriefcase.ico",
+        "sha256": "61e2398403b7276342c20465118416a8f98b735e1fef4e58964a3512ea286fbb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border out.ico",
+        "sha256": "62e83a90104d8e07921b610fb4c3d8abfcb450bb1b9dabafcf973a2a1fd05153"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border btm.ico",
+        "sha256": "68d4b4fe40777a2dbc6a926bc46f7c940a8ffcfe17177376df135850a76c6fb3"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_grayed_all_oveStrategies_r.ico",
+        "sha256": "6c9408e57e3f352de73e98a7f4fc2993be2c17b6a121766a903ba8733cc16fe2"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align center-2.ico",
+        "sha256": "6f7c1c85f0cbaf787083616035037fcb3455e334ad9bef0d94736b82bb9d86d2"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_checked_all.ico",
+        "sha256": "777422aa67e1ad1b8a9e9fb2f5de68ac43bd62edf6130199c40397281e654a38"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (2).ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (3).ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (4).ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (5).ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy.ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox_unStrategies_all.ico",
+        "sha256": "7da86f8947c7fb5d03c8190ba349848d7b89dccf6cb03d377d22fe4e5f42f095"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box open.ico",
+        "sha256": "82d893d96f70baff21120f9700bd651c057c73b59a7d0738787bef028e008adc"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border top-btm.ico",
+        "sha256": "847708a98f956f5cf4c0ca52773a7823d7dfa5546b80831aa0c17aec7f71b2f6"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align left-3.ico",
+        "sha256": "88b22ca1dea59c54eed0ea6a81aeeab7cd22ae1eaf6d66508deaf12a208f7efe"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align full-3.ico",
+        "sha256": "8eb838f64f7ccf919241643f2928b483bf29b8d72525f268eb28b8a26196a0fe"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align right.ico",
+        "sha256": "93fdb839b7459f96dec9c12fa0e5327d71d668a7f18e2caa0f2c5a88c525061d"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align left.ico",
+        "sha256": "948c62ddc472af7aa153851c30e67f071f929fae8856e4d49a57282786f0631a"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /borders.ico",
+        "sha256": "95befd2ca8b0df320ca4fd54f46652828fefc0cfce8a1a31d6f9777747d48610"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_unchecked.ico",
+        "sha256": "961e435b00dcc2c5ad5248f87cd2bb2a470729868ee7b26dc2070a0e33203340"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /Images.com ",
+        "sha256": "a3d684e52c893e64b30473ed408bd33ea8cdbec3f05df43edcea9489f3551d55"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align left-4.ico",
+        "sha256": "a49f16219e306e9aab342ca54e8d8beca9679462be0c812fe3d2a2cacadb9552"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /bar chart.ico",
+        "sha256": "a52d2315762cf60054b215210a35de0244a9f37201f388291b13b0f24fc509ad"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies - Copy (2).ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies - Copy (3).ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies - Copy (4).ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies - Copy (5).ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies - Copy.ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zuildStrategies.ico",
+        "sha256": "a8060fa406703a3e14ccc7559c7e730692a19d52e115aec05bdbf59bfabd9878"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /binoculars next.ico",
+        "sha256": "a8eae306a6a10d6e31c69e2dbfab373bfff0ae039d7bde6541fce213ad751d12"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border right.ico",
+        "sha256": "ab8ecec85045166e84b7e354eec7b307269019a897c0583eb8d909fa6b7eeeb6"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border top thick.ico",
+        "sha256": "ae3242cb59b948612ed246d66ec3614944d40a097c3ff27054e377d445799520"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border inner horiz.ico",
+        "sha256": "b0c91c03ccf2ccab8598e9a84e91ea3ed39c21e148f49646fbcd7dcfe7db72af"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_grayed.ico",
+        "sha256": "b13a9b886d121a5e03a2138a13bbe1698ada9d1efbd3bb0c6c9ea0545ceb4de3"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /bold-2.ico",
+        "sha256": "bb8d1b571b1a1aa6a0d77f4728287c5b66adf97856da5bc5c7f843c0c90defba"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align center-3.ico",
+        "sha256": "c16f023fa73e250d9ae6cd88b65607dd5738cfded8cbb78f69030b23068e514b"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /box_select_all.ico",
+        "sha256": "c5b4ba052a649868e506e222c676198e18e92254d3d9f8c8d16faa6be1f5e43f"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (2).ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (3).ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (4).ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (5).ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over - Copy.ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zox_unchecked_over.ico",
+        "sha256": "cffcd76991ecf7d9b8b545dfea9b0b6157d3c4cdfbfef1a68de9a72339e25980"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align full-4.ico",
+        "sha256": "d8b8acbe773c6aecdab396fd42e0642370f516c4a0f47091c4a4114cebb0b2f1"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align right-2.ico",
+        "sha256": "e07ad550ae1d64bc013624274fb934cd5ec5f6f5db4c0674a5aaadf4549a3fa2"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /autoformat document.ico",
+        "sha256": "e6a65430bf8d3ed0726f9015f4a2e61cfeaf11d930f6a12579004479ff110a39"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /arrow first.ico",
+        "sha256": "e6b63508bc1c0ae63d197915af25683288708c470c67170491970aa2b0a92a92"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /back.ico",
+        "sha256": "e943de57b50bf2edcd6611a5136036ed427b91a89b495330cf693cd9b37ab520"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border none.ico",
+        "sha256": "ea5f6a5d20666608d14a80c96c1fa1d8e64da840277a001d19e32b2b8ebfc37f"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /Zbox_unchecked_all_overStrategies_.ico",
+        "sha256": "eb1acce75ed681040fdb69f88e97a2cbba3691876d6dba7f81f01e41eb49d202"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align right-4.ico",
+        "sha256": "eb648450d760872024b8817aa0a5f665daba69ac73d8a477a9b6eaf88a590072"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border inner vert.ico",
+        "sha256": "ecd59d45965b6261945307d5f170b85f36f8909e9fde1c5841ea698433f043f2"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border grid.ico",
+        "sha256": "ed50ebfa6dd1f10dd7bde2ea90185f6c1dc31d8ab73fb378e3a66b39c11024f7"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /Zbox_select_all_overStrategies_.ico",
+        "sha256": "eed950415d2df84ebfc1b215de8bc99088b02ec3358860b1ee3423a73a1295e3"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /at.ico",
+        "sha256": "efe5b7e13fb310bca69765d06bb7765ec8c72d230ca430cab2e99b222addac83"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /binoculars replace.ico",
+        "sha256": "f31079a69079418bb1e8c26804c954a6d5e40b6dced2421ddd29ecf805b8ad99"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align full.ico",
+        "sha256": "f52435ddc0773b74fed68fcb94e3d8beedb9f4e0ce7b5ac4f10f9f14c49191bb"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border dbl btm.ico",
+        "sha256": "f5aa420e2d63a3c51a62a7ce8fb64049ae8d84af6f236745fead3e9c55a055f0"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /border inside.ico",
+        "sha256": "f9019c44a8a5d76fd5bff12684fa70ebd2dd8689aae6b6ecd9428d839054731c"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /autoformat spreadsheet.ico",
+        "sha256": "fbe1f046255e3cf5e647878d1b65632ba7e1a2226098482bf5095f6acc45cdaa"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align center.ico",
+        "sha256": "fdadb529fb66a82d18e1c101b65dbc7e822df09dfdccd56698ddcf6785bc9f89"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /zbox closedStrategies_.ico",
+        "sha256": "fe7530a758d75c34067f3b0c8d75e93407aa916031f4ca494f1267c796569bf8"
+      },
+      {
+        "name": "screenshot_06-2023.jpg /align right-3.ico",
+        "sha256": "ffd2c0285a89a007bf6252d256a00309058a5b8b5a36b0c02d985d135d480cfe"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 25,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "attribution.exploit": [
+        {
+          "heur_id": 25,
+          "signatures": [],
+          "value": "CVE-2023-38831"
+        }
+      ],
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg "
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Images.com "
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Images.com "
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Strategies_zullets-3.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Strategies_zullets.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Zbox_select_all_overStrategies_.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /Zbox_unchecked_all_overStrategies_.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /address book.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /adjust colour.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align center-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align center-3.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align center-4.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align center.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align full-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align full-3.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align full-4.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align full.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align left-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align left-3.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align left-4.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align left.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align right-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align right-3.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align right-4.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /align right.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /arcobat.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /arrow first.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /arrow last.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /at.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /attach.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /autoformat document.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /autoformat grid.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /autoformat spreadsheet.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /back.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /background color.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /bar chart-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /bar chart.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /barcode.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /binoculars next.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /binoculars replace.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /binoculars-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /bold-2.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /bold.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border btm.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border dbl btm.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border grid.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border inner horiz.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border inner vert.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border inside.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border left.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border none.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border out.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border right.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border thick out.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border thick.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border top dbl.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border top thick.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border top-btm.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /border top.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /borders.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box open.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_checked.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_checked_all.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_checked_all_over.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_checked_over.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_grayed.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_grayed_over.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_select_all.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /box_unchecked.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. "
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. "
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox closedStrategies_.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_grayed_all_oveStrategies_r.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (2).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (3).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (4).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy (5).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all - Copy.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zbox_unStrategies_all.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (2).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (3).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (4).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over - Copy (5).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over - Copy.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zox_unchecked_over.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase - Copy (2).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase - Copy (3).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase - Copy (4).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase - Copy (5).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase - Copy.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zriefcase.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies - Copy (2).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies - Copy (3).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies - Copy (4).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies - Copy (5).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies - Copy.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zuildStrategies.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (2).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (3).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (4).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy (5).ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_ - Copy.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets 2Strategies_.ico"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "screenshot_06-2023.jpg /zullets and numberingStrategies_.ico"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

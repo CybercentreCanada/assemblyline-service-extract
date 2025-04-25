@@ -1,0 +1,104 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "WSUSSCAN.cab\nWindows8.1-KB5011266-x64-NDP48-pkgProperties.txt\nWindows8.1-KB5011266-x64-NDP48.cab\nWindows8.1-KB5011266-x64-NDP48.xml\nzip_appended_data",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "WSUSSCAN.cab",
+                "Windows8.1-KB5011266-x64-NDP48-pkgProperties.txt",
+                "Windows8.1-KB5011266-x64-NDP48.cab",
+                "Windows8.1-KB5011266-x64-NDP48.xml",
+                "zip_appended_data"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 5 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Windows8.1-KB5011266-x64-NDP48.xml",
+        "sha256": "47ae6efdd97c069f2d6db8cf171f324d4f97dc8e5cb2fa179e8921d1259c6d0b"
+      },
+      {
+        "name": "Windows8.1-KB5011266-x64-NDP48-pkgProperties.txt",
+        "sha256": "869526aa68282a854f865dfa16aaa4cadeef8127b124e65723dcb272441fcd94"
+      },
+      {
+        "name": "Windows8.1-KB5011266-x64-NDP48.cab",
+        "sha256": "8b3879ddcff5cabb30b85205a5a971b41b2f2eb9c358554721bbbf8a7bede953"
+      },
+      {
+        "name": "zip_appended_data",
+        "sha256": "8f6c89dba5a6b326ba88f900fa91b298b504bb38488ad81238e39ac122dc11cb"
+      },
+      {
+        "name": "WSUSSCAN.cab",
+        "sha256": "95d8abc2408abf6b80648e1c8d36d852091bcf8470a81d67e03e17bf3b606744"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "WSUSSCAN.cab"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Windows8.1-KB5011266-x64-NDP48-pkgProperties.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Windows8.1-KB5011266-x64-NDP48.cab"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Windows8.1-KB5011266-x64-NDP48.xml"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zip_appended_data"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

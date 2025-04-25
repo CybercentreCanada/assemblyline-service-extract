@@ -2,20 +2,24 @@ name: Extract
 version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|android/apk|ios/ipa
+# Regex defining the types of files the service accepts and rejects
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|gpg/symmetric|resource/pyc
 rejects: empty|metadata/.*
 
+# At which stage the service should run (one of FILTER, EXTRACT, CORE, SECONDARY, POST, REVIEW)
+# NOTE: Stages are executed in the order defined in the list
 stage: EXTRACT
+# Which category the service is part of (one of Antivirus, Dynamic Analysis, External, Extraction, Filtering, Internet Connected, Networking, Static Analysis)
 category: Extraction
 
+# Does the service require access to the file to perform its task
+# If set to false, the service will only have access to the file metadata (e.g. Hashes, size, type, ...)
 file_required: true
+# Maximum execution time the service has before it's considered to be timed out
 timeout: 60
-disable_cache: false
 
+# is the service enabled by default
 enabled: true
-is_external: false
-licence_count: 0
-
 privileged: true
 uses_temp_submission_data: true
 monitored_keys:
@@ -24,8 +28,19 @@ monitored_keys:
 
 config:
   # Must be all strings
-  default_pw_list: [password, infected, VelvetSweatshop, '/01Hannes Ruescher/01',
-                    '123', '1234', '12345', '123456', '4321']
+  default_pw_list:
+    [
+      password,
+      infected,
+      VelvetSweatshop,
+      "/01Hannes Ruescher/01",
+      "123",
+      "1234",
+      "12345",
+      "123456",
+      "4321",
+      "DeskSoftBindData",
+    ]
   small_size_bypass_drop: 10485760
   max_file_count_bypass_drop: 5
   heur16_max_file_count: 5
@@ -187,7 +202,7 @@ heuristics:
     score: 500
     filetype: ".*"
     description: >-
-       The file is bloated in some way. Either a PE using a large overlay with low entropy, a PE with bloated sections or .rsrc, or a script with a lot null bytes padding at the end. It is usually an attempt to bypass certain detection techniques.
+      The file is bloated in some way. Either a PE using a large overlay with low entropy, a PE with bloated sections or .rsrc, or a script with a lot null bytes padding at the end. It is usually an attempt to bypass certain detection techniques.
 
   - heur_id: 23
     name: Executable File(s) found in Office Document
@@ -202,12 +217,33 @@ heuristics:
     description: File listing is probably stored in an encrypted header, so we can't recover the expected files.
 
   - heur_id: 25
-    name: CVE-2023-23397 exploit vector found
+    name: CVE exploit vector found
     score: 1000
-    filetype: "archive/tnef"
-    description: A tnef archive with the 0x851f extended attribute set could hide a password credential theft attempt.
+    filetype: ".*"
+    description: >-
+      A CVE exploit detection that was specifically coded in this module was raised. (i.e. CVE-2023-23397, CVE-2023-38831) This needs be investigated.
+
+  - heur_id: 26
+    name: Extracted AutoIt script from PE file
+    score: 100
+    filetype: executable/windows/(dll32|dll64|pe32|pe64)
+    description: AutoIt script extracted from a PE file
+
+  - heur_id: 27
+    name: Extracted AutoIt script from compiled script
+    score: 100
+    filetype: code/a3x
+    description: AutoIt script extracted from compiled script
+
+  - heur_id: 28
+    name: Extractable _RDATA section found
+    score: 200
+    filetype: executable/windows
+    description: >-
+      _RDATA is a non-standard section name for PEs, and the fact that it is extractable
+      is trending towards suspicious.
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-extract:$SERVICE_TAG
-  cpu_cores: 1
+  cpu_cores: 1.0
   ram_mb: 1024

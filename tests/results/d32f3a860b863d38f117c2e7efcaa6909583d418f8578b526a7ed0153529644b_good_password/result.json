@@ -1,0 +1,134 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Virus Maker.exe\nreadme.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Virus Maker.exe",
+                "readme.txt"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "BlackHost"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 2 files using password: BlackHost",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Virus Maker.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Virus Maker.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Virus Maker.exe",
+        "sha256": "16f14bd60c84a7838b99c34a791d5d334f08ee1e588c95162290ced38db8b092"
+      },
+      {
+        "name": "readme.txt",
+        "sha256": "ec059872ca0ab2a183c1e5539e76f926605ae2e7a60ced5247e5f0f72465d971"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Virus Maker.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Virus Maker.exe"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "readme.txt"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "BlackHost"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

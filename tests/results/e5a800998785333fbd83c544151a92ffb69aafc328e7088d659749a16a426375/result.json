@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "first.txt\nzip_appended_data",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "first.txt",
+                "zip_appended_data"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "first.txt",
+        "sha256": "30c307de099f581d344e4214f67c984c7d1d17192c600a47ac489e444bc0c267"
+      },
+      {
+        "name": "zip_appended_data",
+        "sha256": "7e10ff19f5e8cc43234e5536a5bd82c0de005708b90f05d728abdb48bfc9dffb"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "first.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zip_appended_data"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

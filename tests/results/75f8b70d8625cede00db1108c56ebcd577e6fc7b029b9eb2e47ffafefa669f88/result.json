@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "carchive.py\nmfag5.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "carchive.py",
+                "mfag5.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "mfag5.py",
+        "sha256": "6dd3910af1bd2d47e23d93ef9fc80fc542bd4f28c75abdae991a6ac53f6242b5"
+      },
+      {
+        "name": "carchive.py",
+        "sha256": "93c9e1a8fb15c631ca38ab0ef8a477893991215a036b19264b9b244490461ec4"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "carchive.py"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "mfag5.py"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

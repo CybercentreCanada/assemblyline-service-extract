@@ -1,0 +1,6 @@
+xz-utils
+unace-nonfree
+python3-lxml
+unrar
+gpg
+zpaq

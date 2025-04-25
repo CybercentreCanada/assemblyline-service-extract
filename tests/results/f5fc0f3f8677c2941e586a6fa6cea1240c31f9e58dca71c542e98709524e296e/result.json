@@ -5,24 +5,53 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "{\"Priority\": \"1\", \"Recipients\": \"[{'MAPI_RECIPIENT_TYPE': 1, 'MAPI_DISPLAY_NAME': 'Email Security', 'MAPI_EMAIL_ADDRESS': 'email.security@embered.com', 'MAPI_ADDRTYPE': 'SMTP', 'MAPI_RECIPIENT_ENTRYID': b'\\\\x00\\\\x00\\\\x00\\\\x00\\\\x81+\\\\x1f\\\\xa4\\\\xbe\\\\xa3\\\\x10\\\\x19\\\\x9dn\\\\x00\\\\xdd\\\\x01\\\\x0fT\\\\x02\\\\x00\\\\x00\\\\x01\\\\x80E\\\\x00m\\\\x00a\\\\x00i\\\\x00l\\\\x00 \\\\x00S\\\\x00e\\\\x00c\\\\x00u\\\\x00r\\\\x00i\\\\x00t\\\\x00y\\\\x00\\\\x00\\\\x00S\\\\x00M\\\\x00T\\\\x00P\\\\x00\\\\x00\\\\x00e\\\\x00m\\\\x00a\\\\x00i\\\\x00l\\\\x00.\\\\x00s\\\\x00e\\\\x00c\\\\x00u\\\\x00r\\\\x00i\\\\x00t\\\\x00y\\\\x00@\\\\x00e\\\\x00m\\\\x00b\\\\x00e\\\\x00r\\\\x00e\\\\x00d\\\\x00.\\\\x00c\\\\x00o\\\\x00m', 'MAPI_SMTP_ADDRESS': 'email.security@embered.com', 'MAPI_SIP_ADDRESS': ' ', '0xc24': b'\\\\x01\\\\x05\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x05\\\\x15\\\\x00\\\\x00\\\\x00\\\\xba`z.,\\\\xc1\\\\xa8.E\\\\xe5GX\\\\x8d\\\\xb6\\\\xcb', 'MAPI_TRANSMITABLE_DISPLAY_NAME': 'Email Security', '0x3905': 1073741824, 'MAPI_DISPLAY_TYPE': 0, 'MAPI_OBJECT_TYPE': 6, 'MAPI_SEND_RICH_INFO': False, 'MAPI_RECIPIENT_FLAGS': 1}]\"}",
+        "body": {
+          "Priority": "1",
+          "Recipients": "[{'MAPI_RECIPIENT_TYPE': 1, 'MAPI_DISPLAY_NAME': 'Email Security', 'MAPI_EMAIL_ADDRESS': 'email.security@embered.com', 'MAPI_ADDRTYPE': 'SMTP', 'MAPI_RECIPIENT_ENTRYID': b'\\x00\\x00\\x00\\x00\\x81+\\x1f\\xa4\\xbe\\xa3\\x10\\x19\\x9dn\\x00\\xdd\\x01\\x0fT\\x02\\x00\\x00\\x01\\x80E\\x00m\\x00a\\x00i\\x00l\\x00 \\x00S\\x00e\\x00c\\x00u\\x00r\\x00i\\x00t\\x00y\\x00\\x00\\x00S\\x00M\\x00T\\x00P\\x00\\x00\\x00e\\x00m\\x00a\\x00i\\x00l\\x00.\\x00s\\x00e\\x00c\\x00u\\x00r\\x00i\\x00t\\x00y\\x00@\\x00e\\x00m\\x00b\\x00e\\x00r\\x00e\\x00d\\x00.\\x00c\\x00o\\x00m', 'MAPI_SMTP_ADDRESS': 'email.security@embered.com', 'MAPI_SIP_ADDRESS': ' ', '0xc24': b'\\x01\\x05\\x00\\x00\\x00\\x00\\x00\\x05\\x15\\x00\\x00\\x00\\xba`z.,\\xc1\\xa8.E\\xe5GX\\x8d\\xb6\\xcb', 'MAPI_TRANSMITABLE_DISPLAY_NAME': 'Email Security', '0x3905': 1073741824, 'MAPI_DISPLAY_TYPE': 0, 'MAPI_OBJECT_TYPE': 6, 'MAPI_SEND_RICH_INFO': False, 'MAPI_RECIPIENT_FLAGS': 1}]"
+        },
         "body_config": {},
         "body_format": "KEY_VALUE",
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
         "title_text": "Attributes",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "{\"MAPI_TNEF_CORRELATION_KEY\": \"b'<73253e26-f68c-49ff-8833-988e3a0fc212-0@sjvc0.onmicrosoft.com>'\", \"MAPI_SENDER_NAME\": \"Microsoft Exchange\", \"MAPI_SENDER_EMAIL_ADDRESS\": \"SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}@sjvc0.onmicrosoft.com\", \"MAPI_SENDER_ADDRTYPE\": \"SMTP\", \"MAPI_SENDER_ENTRYID\": \"b'\\\\x00\\\\x00\\\\x00\\\\x00\\\\x81+\\\\x1f\\\\xa4\\\\xbe\\\\xa3\\\\x10\\\\x19\\\\x9dn\\\\x00\\\\xdd\\\\x01\\\\x0fT\\\\x02\\\\x00\\\\x00\\\\x01\\\\x80M\\\\x00i\\\\x00c\\\\x00r\\\\x00o\\\\x00s\\\\x00o\\\\x00f\\\\x00t\\\\x00 \\\\x00E\\\\x00x\\\\x00c\\\\x00h\\\\x00a\\\\x00n\\\\x00g\\\\x00e\\\\x00\\\\x00\\\\x00S\\\\x00M\\\\x00T\\\\x00P\\\\x00\\\\x00\\\\x00S\\\\x00y\\\\x00s\\\\x00t\\\\x00e\\\\x00m\\\\x00M\\\\x00a\\\\x00i\\\\x00l\\\\x00b\\\\x00o\\\\x00x\\\\x00{\\\\x00b\\\\x00b\\\\x005\\\\x005\\\\x008\\\\x00c\\\\x003\\\\x005\\\\x00-\\\\x009\\\\x007\\\\x00f\\\\x001\\\\x00-\\\\x004\\\\x00c\\\\x00b\\\\x009\\\\x00-\\\\x008\\\\x00f\\\\x00f\\\\x007\\\\x00-\\\\x00d\\\\x005\\\\x003\\\\x007\\\\x004\\\\x001\\\\x00d\\\\x00c\\\\x009\\\\x002\\\\x008\\\\x00c\\\\x00}\\\\x00@\\\\x00s\\\\x00j\\\\x00v\\\\x00c\\\\x000\\\\x00.\\\\x00o\\\\x00n\\\\x00m\\\\x00i\\\\x00c\\\\x00r\\\\x00o\\\\x00s\\\\x00o\\\\x00f\\\\x00t\\\\x00.\\\\x00c\\\\x00o\\\\x00m'\", \"MAPI_SENDER_SMTP_ADDRESS\": \"SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}@sjvc0.onmicrosoft.com\", \"MAPI_SUBJECT_PREFIX\": \"\", \"MAPI_SUBJECT\": \"Remittance Advice - payment reference: 2500568\", \"MAPI_MESSAGE_CLASS\": \"IPM.Note.Microsoft.Approval.Request\", \"MAPI_CONVERSATION_TOPIC\": \"Remittance Advice - payment reference: 2500568\", \"MAPI_PRIORITY\": \"0\", \"MAPI_IMPORTANCE\": \"1\", \"MAPI_INTERNET_REFERENCES\": \"<20221007051932.D13018A4D09FAF15@flsmidth.com> <5981845c-4f50-4e70-ad54-92ee81dda2cc@sjvc.edu>\", \"MAPI_CONVERSATION_INDEX\": \"b'\\\\x01\\\\x01\\\\xd8\\\\xdaG\\\\x1d\\\\xc4\\\\x94\\\\xe5\\\\xd5V\\\\xba\\\\x89@\\\\xb46\\\\xf1i(\\\\xbb\\\\x0f\\\\xb8\\\\xae\\\\x02\\\\xd9\\\\xad\\\\xc2'\", \"MAPI_MESSAGE_LOCALE_ID\": \"1033\", \"0x8520\": \"b'\\\\x02\\\\x01\\\\x06\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x05Reply\\\\x08IPM.Note\\\\x07Message\\\\x02RE\\\\x05\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00f\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x0cReply to All\\\\x08IPM.Note\\\\x07Message\\\\x02RE\\\\x05\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00g\\\\x00\\\\x00\\\\x00\\\\x03\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\x07Forward\\\\x08IPM.Note\\\\x07Message\\\\x02FW\\\\x05\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00h\\\\x00\\\\x00\\\\x00\\\\x04\\\\x00\\\\x00\\\\x00\\\\x03\\\\x00\\\\x00\\\\x00\\\\x0fReply to Folder\\\\x08IPM.Post\\\\x04Post\\\\x00\\\\x05\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00l\\\\x00\\\\x00\\\\x00\\\\x08\\\\x00\\\\x00\\\\x00\\\\x04\\\\x00\\\\x00\\\\x00\\\\x07Approve\\\\x08IPM.Note\\\\x00\\\\x07Approve\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\xff\\\\xff\\\\xff\\\\xff\\\\x04\\\\x00\\\\x00\\\\x00\\\\x06Reject\\\\x08IPM.Note\\\\x00\\\\x06Reject\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x01\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\x02\\\\x00\\\\x00\\\\x00\\\\xff\\\\xff\\\\xff\\\\xff\\\\x04\\\\x01\\\\x05R\\\\x00e\\\\x00p\\\\x00l\\\\x00y\\\\x00\\\\x02R\\\\x00E\\\\x00\\\\x0cR\\\\x00e\\\\x00p\\\\x00l\\\\x00y\\\\x00 \\\\x00t\\\\x00o\\\\x00 \\\\x00A\\\\x00l\\\\x00l\\\\x00\\\\x02R\\\\x00E\\\\x00\\\\x07F\\\\x00o\\\\x00r\\\\x00w\\\\x00a\\\\x00r\\\\x00d\\\\x00\\\\x02F\\\\x00W\\\\x00\\\\x0fR\\\\x00e\\\\x00p\\\\x00l\\\\x00y\\\\x00 \\\\x00t\\\\x00o\\\\x00 \\\\x00F\\\\x00o\\\\x00l\\\\x00d\\\\x00e\\\\x00r\\\\x00\\\\x00\\\\x07A\\\\x00p\\\\x00p\\\\x00r\\\\x00o\\\\x00v\\\\x00e\\\\x00\\\\x07A\\\\x00p\\\\x00p\\\\x00r\\\\x00o\\\\x00v\\\\x00e\\\\x00\\\\x06R\\\\x00e\\\\x00j\\\\x00e\\\\x00c\\\\x00t\\\\x00\\\\x06R\\\\x00e\\\\x00j\\\\x00e\\\\x00c\\\\x00t'\", \"MAPI_REPLY_REQUESTED\": \"True\", \"MAPI_RESPONSE_REQUESTED\": \"True\", \"MAPI_REPORT_TAG\": \"b'\\\\x1f-\\\\xbb[\\\\x96\\\\xfa\\\\xc4A\\\\x84}z\\\\xf9O\\\\xa2m\\\\\\\\'\", \"MAPI_SMTP_MESSAGE_ID\": \"<73253e26-f68c-49ff-8833-988e3a0fc212-0@sjvc0.onmicrosoft.com>\", \"MAPI_SMART_NO_ATTACH\": \"False\", \"MAPI_INTERNET_CODEPAGE\": \"20127\", \"MAPI_MESSAGE_CODEPAGE\": \"1252\"}",
+        "body": {
+          "0x8520": "b'\\x02\\x01\\x06\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x05Reply\\x08IPM.Note\\x07Message\\x02RE\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x00f\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x0cReply to All\\x08IPM.Note\\x07Message\\x02RE\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x00g\\x00\\x00\\x00\\x03\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x07Forward\\x08IPM.Note\\x07Message\\x02FW\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x00h\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x03\\x00\\x00\\x00\\x0fReply to Folder\\x08IPM.Post\\x04Post\\x00\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x02\\x00\\x00\\x00l\\x00\\x00\\x00\\x08\\x00\\x00\\x00\\x04\\x00\\x00\\x00\\x07Approve\\x08IPM.Note\\x00\\x07Approve\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\xff\\xff\\xff\\xff\\x04\\x00\\x00\\x00\\x06Reject\\x08IPM.Note\\x00\\x06Reject\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\x02\\x00\\x00\\x00\\xff\\xff\\xff\\xff\\x04\\x01\\x05R\\x00e\\x00p\\x00l\\x00y\\x00\\x02R\\x00E\\x00\\x0cR\\x00e\\x00p\\x00l\\x00y\\x00 \\x00t\\x00o\\x00 \\x00A\\x00l\\x00l\\x00\\x02R\\x00E\\x00\\x07F\\x00o\\x00r\\x00w\\x00a\\x00r\\x00d\\x00\\x02F\\x00W\\x00\\x0fR\\x00e\\x00p\\x00l\\x00y\\x00 \\x00t\\x00o\\x00 \\x00F\\x00o\\x00l\\x00d\\x00e\\x00r\\x00\\x00\\x07A\\x00p\\x00p\\x00r\\x00o\\x00v\\x00e\\x00\\x07A\\x00p\\x00p\\x00r\\x00o\\x00v\\x00e\\x00\\x06R\\x00e\\x00j\\x00e\\x00c\\x00t\\x00\\x06R\\x00e\\x00j\\x00e\\x00c\\x00t'",
+          "MAPI_CONVERSATION_INDEX": "b'\\x01\\x01\\xd8\\xdaG\\x1d\\xc4\\x94\\xe5\\xd5V\\xba\\x89@\\xb46\\xf1i(\\xbb\\x0f\\xb8\\xae\\x02\\xd9\\xad\\xc2'",
+          "MAPI_CONVERSATION_TOPIC": "Remittance Advice - payment reference: 2500568",
+          "MAPI_IMPORTANCE": "1",
+          "MAPI_INTERNET_CODEPAGE": "20127",
+          "MAPI_INTERNET_REFERENCES": "<20221007051932.D13018A4D09FAF15@flsmidth.com> <5981845c-4f50-4e70-ad54-92ee81dda2cc@sjvc.edu>",
+          "MAPI_MESSAGE_CLASS": "IPM.Note.Microsoft.Approval.Request",
+          "MAPI_MESSAGE_CODEPAGE": "1252",
+          "MAPI_MESSAGE_LOCALE_ID": "1033",
+          "MAPI_PRIORITY": "0",
+          "MAPI_REPLY_REQUESTED": "True",
+          "MAPI_REPORT_TAG": "b'\\x1f-\\xbb[\\x96\\xfa\\xc4A\\x84}z\\xf9O\\xa2m\\\\'",
+          "MAPI_RESPONSE_REQUESTED": "True",
+          "MAPI_SENDER_ADDRTYPE": "SMTP",
+          "MAPI_SENDER_EMAIL_ADDRESS": "SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}@sjvc0.onmicrosoft.com",
+          "MAPI_SENDER_ENTRYID": "b'\\x00\\x00\\x00\\x00\\x81+\\x1f\\xa4\\xbe\\xa3\\x10\\x19\\x9dn\\x00\\xdd\\x01\\x0fT\\x02\\x00\\x00\\x01\\x80M\\x00i\\x00c\\x00r\\x00o\\x00s\\x00o\\x00f\\x00t\\x00 \\x00E\\x00x\\x00c\\x00h\\x00a\\x00n\\x00g\\x00e\\x00\\x00\\x00S\\x00M\\x00T\\x00P\\x00\\x00\\x00S\\x00y\\x00s\\x00t\\x00e\\x00m\\x00M\\x00a\\x00i\\x00l\\x00b\\x00o\\x00x\\x00{\\x00b\\x00b\\x005\\x005\\x008\\x00c\\x003\\x005\\x00-\\x009\\x007\\x00f\\x001\\x00-\\x004\\x00c\\x00b\\x009\\x00-\\x008\\x00f\\x00f\\x007\\x00-\\x00d\\x005\\x003\\x007\\x004\\x001\\x00d\\x00c\\x009\\x002\\x008\\x00c\\x00}\\x00@\\x00s\\x00j\\x00v\\x00c\\x000\\x00.\\x00o\\x00n\\x00m\\x00i\\x00c\\x00r\\x00o\\x00s\\x00o\\x00f\\x00t\\x00.\\x00c\\x00o\\x00m'",
+          "MAPI_SENDER_NAME": "Microsoft Exchange",
+          "MAPI_SENDER_SMTP_ADDRESS": "SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}@sjvc0.onmicrosoft.com",
+          "MAPI_SMART_NO_ATTACH": "False",
+          "MAPI_SMTP_MESSAGE_ID": "<73253e26-f68c-49ff-8833-988e3a0fc212-0@sjvc0.onmicrosoft.com>",
+          "MAPI_SUBJECT": "Remittance Advice - payment reference: 2500568",
+          "MAPI_SUBJECT_PREFIX": "",
+          "MAPI_TNEF_CORRELATION_KEY": "b'<73253e26-f68c-49ff-8833-988e3a0fc212-0@sjvc0.onmicrosoft.com>'"
+        },
         "body_config": {},
         "body_format": "KEY_VALUE",
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
         "title_text": "Extended Attributes",
         "zeroize_on_tag_safe": false
@@ -42,6 +71,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {

@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Overlay Size: 357500072\nOverlay Entropy: 0.0033219519674815862",
+        "body": "Overlay Size: 357500072 (340.9 MB)\nOverlay Entropy: 0.0033219519674815862",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -18,6 +18,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {},
         "title_text": "Bloated file",
         "zeroize_on_tag_safe": false

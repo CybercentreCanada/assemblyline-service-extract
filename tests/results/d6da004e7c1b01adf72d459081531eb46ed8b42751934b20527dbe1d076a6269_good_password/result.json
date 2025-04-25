@@ -1,0 +1,176 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Config/Config Launcher.cfg\nLauncher.dll\nMain.dll\nPassword.txt\nSpaceLauncher.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Config/Config Launcher.cfg",
+                "Launcher.dll",
+                "Main.dll",
+                "Password.txt",
+                "SpaceLauncher.exe"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "2024"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 5 files using password: 2024",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Launcher.dll\nMain.dll\nSpaceLauncher.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Launcher.dll",
+                "Main.dll",
+                "SpaceLauncher.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Launcher.dll",
+        "sha256": "130e5fbdbec46b56b58b928c6d69723e71d61fcdcf2d5f7237be55e163f1acd6"
+      },
+      {
+        "name": "SpaceLauncher.exe",
+        "sha256": "982dd02c307eff0f4b77f78cbc97a0368ba7b67a9278469f1d7cec18f959b847"
+      },
+      {
+        "name": "Main.dll",
+        "sha256": "a21d3f4b703fd5195062887a3eb96060fd105d3991caea1150e9a67840568c04"
+      },
+      {
+        "name": "Password.txt",
+        "sha256": "a2baebb33d2e3d2a77ae79dbc01174eada9ae9d2e16f8f6df8d0394d6e112c95"
+      },
+      {
+        "name": "Config/Config Launcher.cfg",
+        "sha256": "fbf5e3b1bf4baa1fdf47b6f3ca0103dd45f1b358c70e4f5da77f379b960496b5"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Config/Config Launcher.cfg"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Launcher.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Launcher.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Main.dll"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Main.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Password.txt"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "SpaceLauncher.exe"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "SpaceLauncher.exe"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "2024"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

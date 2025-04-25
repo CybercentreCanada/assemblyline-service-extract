@@ -18,6 +18,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [
@@ -50,7 +51,7 @@
     "supplementary": [
       {
         "name": "password_tested.json",
-        "sha256": "0cfcecc2075bbf5e4b634a78f2499ef09f4b3d731d8581d8cdfacaa4c35d0da2"
+        "sha256": "92ee67f5c211d0b52d4d62ee1e88bd47c14f0f7282b7ad88c18470b4d21ac711"
       }
     ]
   },

@@ -1,0 +1,161 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: Data Error : shibokensupport/feature.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "qt_python_license.txt\nshibokensupport/__init__.py\nshibokensupport/__init__.pyc\nshibokensupport/feature.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "qt_python_license.txt",
+                "shibokensupport/__init__.py",
+                "shibokensupport/__init__.pyc",
+                "shibokensupport/feature.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 4 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "shibokensupport/__init__.py\nshibokensupport/feature.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "shibokensupport/__init__.py",
+                "shibokensupport/feature.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "shibokensupport/feature.py",
+        "sha256": "8fee5ec7bc136ca5f6775dd41fdade9dd0f702a66be261b44ef28e4537f8ca26"
+      },
+      {
+        "name": "qt_python_license.txt",
+        "sha256": "bea27410e09bbfeccd4b3c6e2fcc85b477855603c5d56ecc1a8a3ed73a857364"
+      },
+      {
+        "name": "shibokensupport/__init__.py",
+        "sha256": "ef61d9ed2eb60060b535d8218b8587e92b3543678ef3a31ee9302594ce4deec5"
+      },
+      {
+        "name": "shibokensupport/__init__.pyc",
+        "sha256": "eff72c4c79697565f0272f329f016847425d342fdb8ba5b0163ecbc2b15f5aed"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "qt_python_license.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "shibokensupport/__init__.py"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "shibokensupport/__init__.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "shibokensupport/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "shibokensupport/feature.py"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "shibokensupport/feature.py"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

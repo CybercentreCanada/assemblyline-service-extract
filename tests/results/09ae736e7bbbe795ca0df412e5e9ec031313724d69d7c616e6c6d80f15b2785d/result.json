@@ -5,14 +5,47 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"TEXT\", \"The following tar file was extracted from the gzip, and further extracted\", {}], [\"ORDERED_KEY_VALUE\", [[\"Name\", \"scan_doc_HP0029302.tar\"], [\"SHA256\", \"176acec88b25ce940c25db6f4f898d0a0382d27ad50a1b84e8f5c5850e61b9d5\"], [\"SHA1\", \"55a2e47480d7fe924c2ac38339b46797ae083f99\"], [\"MD5\", \"e851c3e8094f68bf033f8855d34b9732\"], [\"Total Size\", 972800]], {}]]",
+        "body": [
+          [
+            "TEXT",
+            "The following tar file was extracted from the gzip, and further extracted",
+            {}
+          ],
+          [
+            "ORDERED_KEY_VALUE",
+            [
+              [
+                "Name",
+                "scan_doc_HP0029302.tar"
+              ],
+              [
+                "SHA256",
+                "176acec88b25ce940c25db6f4f898d0a0382d27ad50a1b84e8f5c5850e61b9d5"
+              ],
+              [
+                "SHA1",
+                "55a2e47480d7fe924c2ac38339b46797ae083f99"
+              ],
+              [
+                "MD5",
+                "e851c3e8094f68bf033f8855d34b9732"
+              ],
+              [
+                "Total Size",
+                972800
+              ]
+            ],
+            {}
+          ]
+        ],
         "body_config": {},
         "body_format": "MULTI",
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
-        "title_text": "GZipped Tar file extracted",
+        "title_text": "gzip tar file extracted",
         "zeroize_on_tag_safe": false
       },
       {
@@ -30,6 +63,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -57,6 +91,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [

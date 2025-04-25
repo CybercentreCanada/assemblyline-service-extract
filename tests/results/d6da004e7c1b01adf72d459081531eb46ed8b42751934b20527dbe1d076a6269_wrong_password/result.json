@@ -1,0 +1,135 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Unextracted files in password protected archive:\nConfig/Config Launcher.cfg\nLauncher.dll\nMain.dll\nSpaceLauncher.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 12,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archive Unknown Password"
+            ],
+            "name": {
+              "extracted": [
+                "Config/Config Launcher.cfg",
+                "Launcher.dll",
+                "Main.dll",
+                "SpaceLauncher.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Failed to extract password protected file.",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Password.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 10,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Password.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Password.txt",
+        "sha256": "a2baebb33d2e3d2a77ae79dbc01174eada9ae9d2e16f8f6df8d0394d6e112c95"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "password_tested.json",
+        "sha256": "fac682be3f72ab0781f325b80f266d9c251f66c936c7d9772c6997d0705abdbf"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 10,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 12,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Archive Unknown Password"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Config/Config Launcher.cfg"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Launcher.dll"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "Main.dll"
+        },
+        {
+          "heur_id": 10,
+          "signatures": [],
+          "value": "Password.txt"
+        },
+        {
+          "heur_id": 12,
+          "signatures": [],
+          "value": "SpaceLauncher.exe"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

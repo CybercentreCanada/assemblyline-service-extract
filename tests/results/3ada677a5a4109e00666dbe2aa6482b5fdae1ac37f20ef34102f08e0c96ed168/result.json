@@ -1,0 +1,2532 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "StringIO.pyc\nUserDict.pyc\n_LWPCookieJar.pyc\n_MozillaCookieJar.pyc\n__future__.pyc\n_abcoll.pyc\n_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\n_strptime.pyc\n_threading_local.pyc\n_weakrefset.pyc\nabc.pyc\natexit.pyc\nbase64.pyc\nbdb.pyc\nbisect.pyc\nbz2.pyd\ncalendar.pyc\ncmd.pyc\ncodecs.pyc\ncollections.pyc\ncookielib.pyc\ncopy.pyc\ncopy_reg.pyc\nctypes/__init__.pyc\nctypes/_endian.pyc\ndifflib.pyc\ndis.pyc\ndllInjection.py\ndllInjection.pyc\ndoctest.pyc\ndummy_thread.pyc\ndummy_threading.pyc\nemail/__init__.pyc\nemail/_parseaddr.pyc\nemail/base64mime.pyc\nemail/charset.pyc\nemail/encoders.pyc\nemail/errors.pyc\nemail/feedparser.pyc\nemail/generator.pyc\nemail/header.pyc\nemail/iterators.pyc\nemail/message.pyc\nemail/mime/__init__.pyc\nemail/parser.pyc\nemail/quoprimime.pyc\nemail/utils.pyc\nencodings/__init__.pyc\nencodings/aliases.pyc\nencodings/ascii.pyc\nencodings/base64_codec.pyc\nencodings/big5.pyc\nencodings/big5hkscs.pyc\nencodings/bz2_codec.pyc\nencodings/charmap.pyc\nencodings/cp037.pyc\nencodings/cp1006.pyc\nencodings/cp1026.pyc\nencodings/cp1140.pyc\nencodings/cp1250.pyc\nencodings/cp1251.pyc\nencodings/cp1252.pyc\nencodings/cp1253.pyc\nencodings/cp1254.pyc\nencodings/cp1255.pyc\nencodings/cp1256.pyc\nencodings/cp1257.pyc\nencodings/cp1258.pyc\nencodings/cp424.pyc\nencodings/cp437.pyc\nencodings/cp500.pyc\nencodings/cp720.pyc\nencodings/cp737.pyc\nencodings/cp775.pyc\nencodings/cp850.pyc\nencodings/cp852.pyc\nencodings/cp855.pyc\nencodings/cp856.pyc\nencodings/cp857.pyc\nencodings/cp858.pyc\nencodings/cp860.pyc\nencodings/cp861.pyc\nencodings/cp862.pyc\nencodings/cp863.pyc\nencodings/cp864.pyc\nencodings/cp865.pyc\nencodings/cp866.pyc\nencodings/cp869.pyc\nencodings/cp874.pyc\nencodings/cp875.pyc\nencodings/cp932.pyc\nencodings/cp949.pyc\nencodings/cp950.pyc\nencodings/euc_jis_2004.pyc\nencodings/euc_jisx0213.pyc\nencodings/euc_jp.pyc\nencodings/euc_kr.pyc\nencodings/gb18030.pyc\nencodings/gb2312.pyc\nencodings/gbk.pyc\nencodings/hex_codec.pyc\nencodings/hp_roman8.pyc\nencodings/hz.pyc\nencodings/idna.pyc\nencodings/iso2022_jp.pyc\nencodings/iso2022_jp_1.pyc\nencodings/iso2022_jp_2.pyc\nencodings/iso2022_jp_2004.pyc\nencodings/iso2022_jp_3.pyc\nencodings/iso2022_jp_ext.pyc\nencodings/iso2022_kr.pyc\nencodings/iso8859_1.pyc\nencodings/iso8859_10.pyc\nencodings/iso8859_11.pyc\nencodings/iso8859_13.pyc\nencodings/iso8859_14.pyc\nencodings/iso8859_15.pyc\nencodings/iso8859_16.pyc\nencodings/iso8859_2.pyc\nencodings/iso8859_3.pyc\nencodings/iso8859_4.pyc\nencodings/iso8859_5.pyc\nencodings/iso8859_6.pyc\nencodings/iso8859_7.pyc\nencodings/iso8859_8.pyc\nencodings/iso8859_9.pyc\nencodings/johab.pyc\nencodings/koi8_r.pyc\nencodings/koi8_u.pyc\nencodings/latin_1.pyc\nencodings/mac_arabic.pyc\nencodings/mac_centeuro.pyc\nencodings/mac_croatian.pyc\nencodings/mac_cyrillic.pyc\nencodings/mac_farsi.pyc\nencodings/mac_greek.pyc\nencodings/mac_iceland.pyc\nencodings/mac_latin2.pyc\nencodings/mac_roman.pyc\nencodings/mac_romanian.pyc\nencodings/mac_turkish.pyc\nencodings/mbcs.pyc\nencodings/palmos.pyc\nencodings/ptcp154.pyc\nencodings/punycode.pyc\nencodings/quopri_codec.pyc\nencodings/raw_unicode_escape.pyc\nencodings/rot_13.pyc\nencodings/shift_jis.pyc\nencodings/shift_jis_2004.pyc\nencodings/shift_jisx0213.pyc\nencodings/string_escape.pyc\nencodings/tis_620.pyc\nencodings/undefined.pyc\nencodings/unicode_escape.pyc\nencodings/unicode_internal.pyc\nencodings/utf_16.pyc\nencodings/utf_16_be.pyc\nencodings/utf_16_le.pyc\nencodings/utf_32.pyc\nencodings/utf_32_be.pyc\nencodings/utf_32_le.pyc\nencodings/utf_7.pyc\nencodings/utf_8.pyc\nencodings/utf_8_sig.pyc\nencodings/uu_codec.pyc\nencodings/zlib_codec.pyc\nfnmatch.pyc\nftplib.pyc\nfunctools.pyc\ngenericpath.pyc\ngetopt.pyc\ngetpass.pyc\ngettext.pyc\nhashlib.pyc\nheapq.pyc\nhttplib.pyc\ninspect.pyc\nkeyword.pyc\nlinecache.pyc\nlocale.pyc\nlogging/__init__.pyc\nmimetools.pyc\nmimetypes.pyc\nntpath.pyc\nnturl2path.pyc\nopcode.pyc\noptparse.pyc\nos.pyc\nos2emxpath.pyc\npdb.pyc\npickle.pyc\nposixpath.pyc\npprint.pyc\nquopri.pyc\nrandom.pyc\nre.pyc\nrepr.pyc\nrfc822.pyc\nselect.pyd\nshlex.pyc\nsocket.pyc\nsre.pyc\nsre_compile.pyc\nsre_constants.pyc\nsre_parse.pyc\nssl.pyc\nstat.pyc\nstring.pyc\nstringprep.pyc\nstruct.pyc\nsubprocess.pyc\ntempfile.pyc\ntextwrap.pyc\nthreading.pyc\ntoken.pyc\ntokenize.pyc\ntraceback.pyc\ntypes.pyc\nunicodedata.pyd\nunittest/__init__.pyc\nunittest/case.pyc\nunittest/loader.pyc\nunittest/main.pyc\nunittest/result.pyc\nunittest/runner.pyc\nunittest/signals.pyc\nunittest/suite.pyc\nunittest/util.pyc\nurllib.pyc\nurllib2.pyc\nurlparse.pyc\nuu.pyc\nwarnings.pyc\nweakref.pyc\nzip_appended_data\nzipextimporter.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "StringIO.pyc",
+                "UserDict.pyc",
+                "_LWPCookieJar.pyc",
+                "_MozillaCookieJar.pyc",
+                "__future__.pyc",
+                "_abcoll.pyc",
+                "_ctypes.pyd",
+                "_hashlib.pyd",
+                "_socket.pyd",
+                "_ssl.pyd",
+                "_strptime.pyc",
+                "_threading_local.pyc",
+                "_weakrefset.pyc",
+                "abc.pyc",
+                "atexit.pyc",
+                "base64.pyc",
+                "bdb.pyc",
+                "bisect.pyc",
+                "bz2.pyd",
+                "calendar.pyc",
+                "cmd.pyc",
+                "codecs.pyc",
+                "collections.pyc",
+                "cookielib.pyc",
+                "copy.pyc",
+                "copy_reg.pyc",
+                "ctypes/__init__.pyc",
+                "ctypes/_endian.pyc",
+                "difflib.pyc",
+                "dis.pyc",
+                "dllInjection.py",
+                "dllInjection.pyc",
+                "doctest.pyc",
+                "dummy_thread.pyc",
+                "dummy_threading.pyc",
+                "email/__init__.pyc",
+                "email/_parseaddr.pyc",
+                "email/base64mime.pyc",
+                "email/charset.pyc",
+                "email/encoders.pyc",
+                "email/errors.pyc",
+                "email/feedparser.pyc",
+                "email/generator.pyc",
+                "email/header.pyc",
+                "email/iterators.pyc",
+                "email/message.pyc",
+                "email/mime/__init__.pyc",
+                "email/parser.pyc",
+                "email/quoprimime.pyc",
+                "email/utils.pyc",
+                "encodings/__init__.pyc",
+                "encodings/aliases.pyc",
+                "encodings/ascii.pyc",
+                "encodings/base64_codec.pyc",
+                "encodings/big5.pyc",
+                "encodings/big5hkscs.pyc",
+                "encodings/bz2_codec.pyc",
+                "encodings/charmap.pyc",
+                "encodings/cp037.pyc",
+                "encodings/cp1006.pyc",
+                "encodings/cp1026.pyc",
+                "encodings/cp1140.pyc",
+                "encodings/cp1250.pyc",
+                "encodings/cp1251.pyc",
+                "encodings/cp1252.pyc",
+                "encodings/cp1253.pyc",
+                "encodings/cp1254.pyc",
+                "encodings/cp1255.pyc",
+                "encodings/cp1256.pyc",
+                "encodings/cp1257.pyc",
+                "encodings/cp1258.pyc",
+                "encodings/cp424.pyc",
+                "encodings/cp437.pyc",
+                "encodings/cp500.pyc",
+                "encodings/cp720.pyc",
+                "encodings/cp737.pyc",
+                "encodings/cp775.pyc",
+                "encodings/cp850.pyc",
+                "encodings/cp852.pyc",
+                "encodings/cp855.pyc",
+                "encodings/cp856.pyc",
+                "encodings/cp857.pyc",
+                "encodings/cp858.pyc",
+                "encodings/cp860.pyc",
+                "encodings/cp861.pyc",
+                "encodings/cp862.pyc",
+                "encodings/cp863.pyc",
+                "encodings/cp864.pyc",
+                "encodings/cp865.pyc",
+                "encodings/cp866.pyc",
+                "encodings/cp869.pyc",
+                "encodings/cp874.pyc",
+                "encodings/cp875.pyc",
+                "encodings/cp932.pyc",
+                "encodings/cp949.pyc",
+                "encodings/cp950.pyc",
+                "encodings/euc_jis_2004.pyc",
+                "encodings/euc_jisx0213.pyc",
+                "encodings/euc_jp.pyc",
+                "encodings/euc_kr.pyc",
+                "encodings/gb18030.pyc",
+                "encodings/gb2312.pyc",
+                "encodings/gbk.pyc",
+                "encodings/hex_codec.pyc",
+                "encodings/hp_roman8.pyc",
+                "encodings/hz.pyc",
+                "encodings/idna.pyc",
+                "encodings/iso2022_jp.pyc",
+                "encodings/iso2022_jp_1.pyc",
+                "encodings/iso2022_jp_2.pyc",
+                "encodings/iso2022_jp_2004.pyc",
+                "encodings/iso2022_jp_3.pyc",
+                "encodings/iso2022_jp_ext.pyc",
+                "encodings/iso2022_kr.pyc",
+                "encodings/iso8859_1.pyc",
+                "encodings/iso8859_10.pyc",
+                "encodings/iso8859_11.pyc",
+                "encodings/iso8859_13.pyc",
+                "encodings/iso8859_14.pyc",
+                "encodings/iso8859_15.pyc",
+                "encodings/iso8859_16.pyc",
+                "encodings/iso8859_2.pyc",
+                "encodings/iso8859_3.pyc",
+                "encodings/iso8859_4.pyc",
+                "encodings/iso8859_5.pyc",
+                "encodings/iso8859_6.pyc",
+                "encodings/iso8859_7.pyc",
+                "encodings/iso8859_8.pyc",
+                "encodings/iso8859_9.pyc",
+                "encodings/johab.pyc",
+                "encodings/koi8_r.pyc",
+                "encodings/koi8_u.pyc",
+                "encodings/latin_1.pyc",
+                "encodings/mac_arabic.pyc",
+                "encodings/mac_centeuro.pyc",
+                "encodings/mac_croatian.pyc",
+                "encodings/mac_cyrillic.pyc",
+                "encodings/mac_farsi.pyc",
+                "encodings/mac_greek.pyc",
+                "encodings/mac_iceland.pyc",
+                "encodings/mac_latin2.pyc",
+                "encodings/mac_roman.pyc",
+                "encodings/mac_romanian.pyc",
+                "encodings/mac_turkish.pyc",
+                "encodings/mbcs.pyc",
+                "encodings/palmos.pyc",
+                "encodings/ptcp154.pyc",
+                "encodings/punycode.pyc",
+                "encodings/quopri_codec.pyc",
+                "encodings/raw_unicode_escape.pyc",
+                "encodings/rot_13.pyc",
+                "encodings/shift_jis.pyc",
+                "encodings/shift_jis_2004.pyc",
+                "encodings/shift_jisx0213.pyc",
+                "encodings/string_escape.pyc",
+                "encodings/tis_620.pyc",
+                "encodings/undefined.pyc",
+                "encodings/unicode_escape.pyc",
+                "encodings/unicode_internal.pyc",
+                "encodings/utf_16.pyc",
+                "encodings/utf_16_be.pyc",
+                "encodings/utf_16_le.pyc",
+                "encodings/utf_32.pyc",
+                "encodings/utf_32_be.pyc",
+                "encodings/utf_32_le.pyc",
+                "encodings/utf_7.pyc",
+                "encodings/utf_8.pyc",
+                "encodings/utf_8_sig.pyc",
+                "encodings/uu_codec.pyc",
+                "encodings/zlib_codec.pyc",
+                "fnmatch.pyc",
+                "ftplib.pyc",
+                "functools.pyc",
+                "genericpath.pyc",
+                "getopt.pyc",
+                "getpass.pyc",
+                "gettext.pyc",
+                "hashlib.pyc",
+                "heapq.pyc",
+                "httplib.pyc",
+                "inspect.pyc",
+                "keyword.pyc",
+                "linecache.pyc",
+                "locale.pyc",
+                "logging/__init__.pyc",
+                "mimetools.pyc",
+                "mimetypes.pyc",
+                "ntpath.pyc",
+                "nturl2path.pyc",
+                "opcode.pyc",
+                "optparse.pyc",
+                "os.pyc",
+                "os2emxpath.pyc",
+                "pdb.pyc",
+                "pickle.pyc",
+                "posixpath.pyc",
+                "pprint.pyc",
+                "quopri.pyc",
+                "random.pyc",
+                "re.pyc",
+                "repr.pyc",
+                "rfc822.pyc",
+                "select.pyd",
+                "shlex.pyc",
+                "socket.pyc",
+                "sre.pyc",
+                "sre_compile.pyc",
+                "sre_constants.pyc",
+                "sre_parse.pyc",
+                "ssl.pyc",
+                "stat.pyc",
+                "string.pyc",
+                "stringprep.pyc",
+                "struct.pyc",
+                "subprocess.pyc",
+                "tempfile.pyc",
+                "textwrap.pyc",
+                "threading.pyc",
+                "token.pyc",
+                "tokenize.pyc",
+                "traceback.pyc",
+                "types.pyc",
+                "unicodedata.pyd",
+                "unittest/__init__.pyc",
+                "unittest/case.pyc",
+                "unittest/loader.pyc",
+                "unittest/main.pyc",
+                "unittest/result.pyc",
+                "unittest/runner.pyc",
+                "unittest/signals.pyc",
+                "unittest/suite.pyc",
+                "unittest/util.pyc",
+                "urllib.pyc",
+                "urllib2.pyc",
+                "urlparse.pyc",
+                "uu.pyc",
+                "warnings.pyc",
+                "weakref.pyc",
+                "zip_appended_data",
+                "zipextimporter.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 240 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\nbz2.pyd\ndllInjection.py\nselect.pyd\nunicodedata.pyd",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "_ctypes.pyd",
+                "_hashlib.pyd",
+                "_socket.pyd",
+                "_ssl.pyd",
+                "bz2.pyd",
+                "dllInjection.py",
+                "select.pyd",
+                "unicodedata.pyd"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "socket.pyc",
+        "sha256": "02f049dd7c4b206e23ff1a17232e8c34de2892143d6f7728de40cc9d770c9779"
+      },
+      {
+        "name": "encodings/mac_turkish.pyc",
+        "sha256": "03b9af834e01901c2877e8672717202d4adbae2a3517847397e395cc67eaadfb"
+      },
+      {
+        "name": "encodings/cp869.pyc",
+        "sha256": "0506726e46c7ad5f96ce7df94532e5a275f7ef5c196cf64764cfd07ead0a1d61"
+      },
+      {
+        "name": "encodings/unicode_escape.pyc",
+        "sha256": "0527036199be69535d96e121334abc07ef2231542c2ccfa422e34e1defe35864"
+      },
+      {
+        "name": "encodings/ascii.pyc",
+        "sha256": "06284079657e7f06946180407739d203459c0283001c919c43c312bfbdcc7b1e"
+      },
+      {
+        "name": "mimetypes.pyc",
+        "sha256": "06c9c9bc2c10daf0a1929e1890c0f4edb7308b0ac92b4cd5428cb4f0b2fa2bb8"
+      },
+      {
+        "name": "encodings/iso8859_13.pyc",
+        "sha256": "07033ba9e0b04b28bc301686b0b0a4fe2b8417e2f5409e92b464a03af7b09dd6"
+      },
+      {
+        "name": "encodings/cp720.pyc",
+        "sha256": "08fd275a92b9783cf06db4317c9e18d94dd5fecf1128da4c045680973d5aac7b"
+      },
+      {
+        "name": "email/message.pyc",
+        "sha256": "0f9626a6f522b3d8276db1e6195366966c52a7584e6dbb9c4766989452761018"
+      },
+      {
+        "name": "_abcoll.pyc",
+        "sha256": "0fa34ccc4667d9680a36bdbdf25c1a8fdbe5952fd66f166d6f141fcfc1d7407d"
+      },
+      {
+        "name": "__future__.pyc",
+        "sha256": "0fa58708e1c82d4a290b62e9b71784b62d87ba53ab1753b24ad5d211a7e64bf4"
+      },
+      {
+        "name": "encodings/iso2022_jp.pyc",
+        "sha256": "1052cbf6b8c347ca4eda4de83da26e56a62896fa1c39f1f1d2be13259a1f83f9"
+      },
+      {
+        "name": "encodings/palmos.pyc",
+        "sha256": "1163413e6aa6c36fa45fcaf19564b0e699b15054db306d565ffeefeafb440c2e"
+      },
+      {
+        "name": "_ctypes.pyd",
+        "sha256": "11c739d28227773d70c3941d2e979b9d4cee12f1d53cc94daf77b62a4d3a0327"
+      },
+      {
+        "name": "opcode.pyc",
+        "sha256": "15373a84cf58abefaa7d005cc521d7b8bb504b83f9c3c7ef7f05abe455ca6900"
+      },
+      {
+        "name": "encodings/iso2022_jp_2.pyc",
+        "sha256": "1737cc293e2bdc869049a46f9fc28eb0298cd7222a9b3b57110bace5796f5f83"
+      },
+      {
+        "name": "encodings/base64_codec.pyc",
+        "sha256": "1a188d67a9526afa5dff9aff7823fbb0bbd3d55259cb588945f109c1d17f411f"
+      },
+      {
+        "name": "pickle.pyc",
+        "sha256": "1a1902a9cbd3e0c8763a810cffcce61311d71afeaf2f9689bb59e0f5bb4fbada"
+      },
+      {
+        "name": "re.pyc",
+        "sha256": "1a39e88425303a3546bd42af912b1a5bda8434e3b3ae071454bcd398d0a4ce0c"
+      },
+      {
+        "name": "email/_parseaddr.pyc",
+        "sha256": "1a4a358ef5ae1720f250fdd4f9e979d5de960176e802033845aace1256a20daf"
+      },
+      {
+        "name": "os2emxpath.pyc",
+        "sha256": "1a7a5dd1a39254be4c080b6b95469a76fc5b541cfda2ff874e0a2615a684ad1c"
+      },
+      {
+        "name": "atexit.pyc",
+        "sha256": "1dae375d048869000617469259b671545149dde1c9516d4981457061d1132a3c"
+      },
+      {
+        "name": "encodings/cp1255.pyc",
+        "sha256": "1de6d2a9ec16aa7fb9e57b28a955aaeef920ee3cd6bd2ef789ee4512c3eb7822"
+      },
+      {
+        "name": "dummy_threading.pyc",
+        "sha256": "1efff0028520c67880c8add67f1eadbade59f8b69ab07aa8a48474bfc93bf789"
+      },
+      {
+        "name": "traceback.pyc",
+        "sha256": "1f2e74fe1344a4d8e8aac170c97ce90269260e9513ce3b89312f68ef1e5bf347"
+      },
+      {
+        "name": "encodings/big5.pyc",
+        "sha256": "2026e8e955636dbb1165977c7999856d78158db2951102ab5c54400fdacae2db"
+      },
+      {
+        "name": "email/encoders.pyc",
+        "sha256": "20742d85c02119777fa10745c409d9ccd375d48a8353ac1e92571c463cb5deda"
+      },
+      {
+        "name": "encodings/cp1250.pyc",
+        "sha256": "20ee37f8205a182a8765743fbafd84d1946a7e7f5273c95dd667a7987ad384b2"
+      },
+      {
+        "name": "encodings/cp1256.pyc",
+        "sha256": "21b593c3a92a43c7100a7a967556af9d505b61188ef178e50a55a8c1c6521cc2"
+      },
+      {
+        "name": "encodings/cp949.pyc",
+        "sha256": "2248ed8a022b07de76ca17725d6f8f64e75d59eb96919e0e1a7516a5f1b65dc4"
+      },
+      {
+        "name": "email/feedparser.pyc",
+        "sha256": "2254c72ebbb970fe998c1cbe712ccaa22d0648526dc48eb64626297237bcd3b6"
+      },
+      {
+        "name": "encodings/cp856.pyc",
+        "sha256": "234d166e6cbeb1d49e5ff31ca8b2d927987fe7845a9fd12340ae8d599357b784"
+      },
+      {
+        "name": "inspect.pyc",
+        "sha256": "243f5e6ebff58165741eff4c44aa1c03b77d17bc5282700ce75f1265bcbc78d8"
+      },
+      {
+        "name": "encodings/mac_croatian.pyc",
+        "sha256": "24d55cd604ee464df9d7ccaacf94d5e02302d2edcdea8b3b68b322f548f77c91"
+      },
+      {
+        "name": "encodings/mac_latin2.pyc",
+        "sha256": "24e54a0f1cc65acf6e35888bb17fd2eabcf7576caef8d80b7dbbf1618355c93d"
+      },
+      {
+        "name": "pprint.pyc",
+        "sha256": "26b86fe04aff943d6af016e05641f757ae549a5ed570abde0d8c91f9e3b9c2db"
+      },
+      {
+        "name": "dllInjection.pyc",
+        "sha256": "27a459c70770793b8c82ef725ff187ae4cf9f29d12526f23bcd09fc52b29db30"
+      },
+      {
+        "name": "encodings/utf_32_be.pyc",
+        "sha256": "297bbd59cc94b747dd6596d1bea2a620adf6b4e2ad31cb4e0af5d6de6d6e565a"
+      },
+      {
+        "name": "encodings/cp865.pyc",
+        "sha256": "29c2a95e63cf63690c69fce997ef5af1ff930e0a53eb850afe1df409c6169631"
+      },
+      {
+        "name": "encodings/utf_8.pyc",
+        "sha256": "2abf3bcaa548887a478a22d00e91c0199ef8cdd110ec45fdbc113d4dd383d926"
+      },
+      {
+        "name": "encodings/euc_jisx0213.pyc",
+        "sha256": "2d6edaf3aa52df828efeb95b1f8841409d34d63f187e1670518721d4ecd329e1"
+      },
+      {
+        "name": "unittest/result.pyc",
+        "sha256": "2fdd7dc7ba89f19b2ac61aa87f2b99d6a2b06005bfd0b52612d33848dbb79106"
+      },
+      {
+        "name": "encodings/cp1026.pyc",
+        "sha256": "30689c6380fd44f3adf37c21c237e44500a280200e315acd5746dc295229bd31"
+      },
+      {
+        "name": "encodings/iso8859_14.pyc",
+        "sha256": "306eae6c7924623426c26862c4c704e054f4e4809e4af3bd57f80c87bb66ba13"
+      },
+      {
+        "name": "encodings/mac_greek.pyc",
+        "sha256": "30818213fcabe67ba1920c3edd3602221606354fe1f48e379e74f728b0686cc5"
+      },
+      {
+        "name": "encodings/iso8859_8.pyc",
+        "sha256": "30d71ecfa9a6c6b5f7d2bc41399457f98a7c0a2b9a7c723776a0460ee89bdf1c"
+      },
+      {
+        "name": "encodings/iso2022_jp_ext.pyc",
+        "sha256": "3120311c14fb5b3d2d46e4847699f2ddf304568a30488985a21dce4206dd7f25"
+      },
+      {
+        "name": "email/errors.pyc",
+        "sha256": "32a31758b31de9f8d578709333b0c46188476d64f5f689b8baf15ee7d3855f93"
+      },
+      {
+        "name": "stat.pyc",
+        "sha256": "346a5a1252d2be41f8a9bd47bb43eb9b3efedf53877a6b7b085d2d2ae366d461"
+      },
+      {
+        "name": "_MozillaCookieJar.pyc",
+        "sha256": "3475e6e6af063730141c83ef017acfbada69db2727bf4ebc47fd719e01e434af"
+      },
+      {
+        "name": "encodings/undefined.pyc",
+        "sha256": "350f86b0daaceeb154640237c6a455a403c786170f017346d9dd3af8ca9065e2"
+      },
+      {
+        "name": "encodings/cp1258.pyc",
+        "sha256": "360c5490489d92bb6b66929c974f142ec181bfe3abd9d74ba3cefb0d4d8ffc7f"
+      },
+      {
+        "name": "encodings/raw_unicode_escape.pyc",
+        "sha256": "36a6d7353b6df20868fef667192e2333408b9caa54f7f9acdaf9e331ffedce11"
+      },
+      {
+        "name": "encodings/mac_iceland.pyc",
+        "sha256": "36bfeb1de8be517be70c2f350de9d6b7bc8f0ad9171c0327431753caa169c879"
+      },
+      {
+        "name": "encodings/cp1254.pyc",
+        "sha256": "36c854cace3976463e038adaf533e2dc33441dd58b7cdadf18ada7bf0be3e63f"
+      },
+      {
+        "name": "genericpath.pyc",
+        "sha256": "38496441c7bb4267717ddcd7c2cc36dc70858ed4f6049781bfd152829e2c9415"
+      },
+      {
+        "name": "select.pyd",
+        "sha256": "385e7a3cf5dd7b65590b064e7bc09f901db7ddc8542396af6bb60048a30993f0"
+      },
+      {
+        "name": "encodings/cp1251.pyc",
+        "sha256": "3f02857c94c29973ca37601af688cb0c94c6ea681650a9deb00832c4cbada08d"
+      },
+      {
+        "name": "encodings/cp932.pyc",
+        "sha256": "3f335bc6984a5ea0b4e88133e0edd546f4f974a17f4eb042868b990fa9e33a5d"
+      },
+      {
+        "name": "email/mime/__init__.pyc",
+        "sha256": "401d066ee684afa67a792e33428c9a13222db091a6e671571a804185024486b8"
+      },
+      {
+        "name": "uu.pyc",
+        "sha256": "40629be3a4fb8a2beee8ef3d7f69c62655c2b58373b140b2f07f1088467f3210"
+      },
+      {
+        "name": "encodings/ptcp154.pyc",
+        "sha256": "41656f4b1686fe93d7764147435616951ac251253d6574cf986fd6d2bfdb7e2f"
+      },
+      {
+        "name": "encodings/quopri_codec.pyc",
+        "sha256": "41e41f35d3dcedeccd71b14ec50e2e3c66d3a8bfc4a90dccab57ff50b9c4c1ef"
+      },
+      {
+        "name": "tokenize.pyc",
+        "sha256": "420c84376afa67102f3fcfa0933a8fa14910754c6d0b139f71228ee677309adc"
+      },
+      {
+        "name": "encodings/iso8859_5.pyc",
+        "sha256": "428395204e2b477694adb85b6a9fe4d5e9cac40ddcf0ce0e2fb8207497a3ea2d"
+      },
+      {
+        "name": "encodings/utf_16_le.pyc",
+        "sha256": "44d47eeca6beaba4636ead3676873879ac2acb047917170830d85f4880a3688a"
+      },
+      {
+        "name": "difflib.pyc",
+        "sha256": "4531eddb98a76aff41f6fafda413988aa711a00726c0b32d4f8bd7badf0a37bb"
+      },
+      {
+        "name": "encodings/mac_romanian.pyc",
+        "sha256": "4769619e4f3e8892d79faa62f9e31d2a24aca8ed21851bab549b036ce912abe1"
+      },
+      {
+        "name": "encodings/iso8859_4.pyc",
+        "sha256": "48048e55750a2f428c0458b866b532cc8a645d73d8536eaf0301a43a78cfe08d"
+      },
+      {
+        "name": "encodings/cp860.pyc",
+        "sha256": "48fb9771fa3d40ad1f539c9bc0be45c1350081b03e469d2648ffdac1324918c4"
+      },
+      {
+        "name": "linecache.pyc",
+        "sha256": "49f249e8e10ccd00d682441df53c856346e57f9de5a7fcc306e83e8dcbedca13"
+      },
+      {
+        "name": "encodings/uu_codec.pyc",
+        "sha256": "4a2e355d4f209c8cd6fd58ab5339be63116fb35a4bf2be81ca5186023f6aea6e"
+      },
+      {
+        "name": "encodings/euc_jis_2004.pyc",
+        "sha256": "4a7d1326fda647b43c1fe5363def31392e728d94ebd8bd1fbd011892a4e62786"
+      },
+      {
+        "name": "_weakrefset.pyc",
+        "sha256": "4c880346f0fc96818541c730e1caf4ab95c92f1cdc155cc72655f1650dc46048"
+      },
+      {
+        "name": "email/header.pyc",
+        "sha256": "4e28f9d375c65a758114bcacb72c9cbbeb88e50f357bcd2b0f7b2393d54f8c79"
+      },
+      {
+        "name": "email/__init__.pyc",
+        "sha256": "4f4a9d8b99bf816df1125ba116fbb789b3959e38b53cd4d51b9e0b7b4051be2e"
+      },
+      {
+        "name": "encodings/cp950.pyc",
+        "sha256": "50efb059b21004f3463db88af05a3e08bcc4933841eff338f5600f7e58f13cab"
+      },
+      {
+        "name": "httplib.pyc",
+        "sha256": "514264a07890a84b175c3a0d893ae784bf998ccee8df234ab348b457e01363e3"
+      },
+      {
+        "name": "_hashlib.pyd",
+        "sha256": "51c47389782bc2de8e401d231233e2e7f1a4b3afce7df4ddf4ad533184dad407"
+      },
+      {
+        "name": "encodings/iso8859_11.pyc",
+        "sha256": "52a2c185abc92c6903aef3af1176836dfd956f738c022b804b79050219656ef9"
+      },
+      {
+        "name": "encodings/shift_jis_2004.pyc",
+        "sha256": "534959b0676c9e85f43ab9c532e02258bc56beba0b8ed773174d2fe0d0f1d6de"
+      },
+      {
+        "name": "unittest/util.pyc",
+        "sha256": "54d85220947065c7d459dc86241789cbaadd45dd05c1a506e90dd44a0a1bc940"
+      },
+      {
+        "name": "stringprep.pyc",
+        "sha256": "551b5eaf3f22923db1b62401ddb384c0071aead8779ba416b42e22cc5839f766"
+      },
+      {
+        "name": "doctest.pyc",
+        "sha256": "564d8a83de7e57fb07f8f7a55f312d0b3ea02c4f3013c99585e04db2bccde688"
+      },
+      {
+        "name": "mimetools.pyc",
+        "sha256": "5a15759766c5c4d3ad4dbd67481eed25ea02f30ecc05189201d83e74f807bb7a"
+      },
+      {
+        "name": "encodings/utf_8_sig.pyc",
+        "sha256": "5d2e167127f1543b244638e2077b563d263b37c00300b7e2dce40094656886be"
+      },
+      {
+        "name": "unittest/loader.pyc",
+        "sha256": "5dd44bcddecc16a2eb6bc51930b3a428bb18e052dcde380709d14c795c2d0be1"
+      },
+      {
+        "name": "encodings/utf_32.pyc",
+        "sha256": "5f50f033957fc24cbb37f240b9a2d7db5695d200951d599d4c84f0090733dfb1"
+      },
+      {
+        "name": "encodings/big5hkscs.pyc",
+        "sha256": "5f72d58fc907a915fb2308440b4774c8fdba6e4b4b692d0326ffcb74ea6891f7"
+      },
+      {
+        "name": "email/iterators.pyc",
+        "sha256": "5fcbc79af17d913539445c63c0b1d30b89ca923ccfc32e561378294a7f80128c"
+      },
+      {
+        "name": "encodings/iso8859_16.pyc",
+        "sha256": "6002c02c95f31388b017ceeef196eafe1b13b4d0fa558ab603e481b79e5f3505"
+      },
+      {
+        "name": "cmd.pyc",
+        "sha256": "60135cdcc03d8a1b1f894cb7b7d97252ddbd398956aa43e59615f35e82a6cc0c"
+      },
+      {
+        "name": "encodings/iso8859_3.pyc",
+        "sha256": "64c5eb703dc0a2894fe93f43e21573a46c15958a3870099f5aaa64d6ae9566cf"
+      },
+      {
+        "name": "unittest/signals.pyc",
+        "sha256": "66483eec385b3ef01f51efe4c7c9312793854a4a7d3df2d3ad6cd991c3d6dce9"
+      },
+      {
+        "name": "encodings/iso8859_2.pyc",
+        "sha256": "67452f60fbfbfc6acbd2ab07ce99e8a8c113aaf62b2f7f6741580ba0645da338"
+      },
+      {
+        "name": "email/charset.pyc",
+        "sha256": "68679ce448de2e0a220198ab04b8ce460afde5371777f4a90031e3e8195529dd"
+      },
+      {
+        "name": "encodings/cp1006.pyc",
+        "sha256": "69290f7c6516c698a34cadc836d753a2cc15135ab61dd5f0a5bb52967e92d91d"
+      },
+      {
+        "name": "_LWPCookieJar.pyc",
+        "sha256": "698711a4f0fd61905b02c89c201cfc911bc582f2a6b346764f97dbd3b94bb40f"
+      },
+      {
+        "name": "encodings/mbcs.pyc",
+        "sha256": "69905ac27bccd3f6c4edd2631574d66a1e8ab66d4a85d13f693496c70d9a7d4b"
+      },
+      {
+        "name": "encodings/iso2022_kr.pyc",
+        "sha256": "69d3b6dc73aabdf00afa351bbf722400e934c21862b2e5a413ffdb6c74ec1435"
+      },
+      {
+        "name": "bdb.pyc",
+        "sha256": "6e743ac9efc4ec465c614b7def6fff0ff2d7527d547f70aca5b14df4a79c6faa"
+      },
+      {
+        "name": "encodings/iso8859_7.pyc",
+        "sha256": "6f3299d5f1db48d7e9875b82e597a70c08f42d55891c811368e3a05b41737f81"
+      },
+      {
+        "name": "encodings/utf_16_be.pyc",
+        "sha256": "6f48ed5c55cc87967b2d85bfbfb4646767703855188f8e560827dca2bdb61332"
+      },
+      {
+        "name": "email/utils.pyc",
+        "sha256": "70537c26424e806534e0d34eecf5746f47f60258c25c62f397adb9582275feb7"
+      },
+      {
+        "name": "ftplib.pyc",
+        "sha256": "7176346d6f7bdc7637f823f51421f2c3ac7f0edbea1f879e6e90d09863590748"
+      },
+      {
+        "name": "encodings/euc_kr.pyc",
+        "sha256": "71b427a2a3d22bb4460517f4fe47895246519292dc583dde043451c468cb472b"
+      },
+      {
+        "name": "encodings/cp862.pyc",
+        "sha256": "72607c0ce2044a64e99fa0bcc9a86f7a045d19bae287faf550a864847143bcc2"
+      },
+      {
+        "name": "encodings/unicode_internal.pyc",
+        "sha256": "728ec71874e4a40389cfca7f115bf535c2f0b7b47be4c601ca063630cff74e47"
+      },
+      {
+        "name": "encodings/cp857.pyc",
+        "sha256": "729ea61eb36e6456878a0ae49d89d4eac4bdf93d857b7442b43b124b0a7fa59c"
+      },
+      {
+        "name": "encodings/iso8859_6.pyc",
+        "sha256": "750f1a6ac875ad211da22005c5ecdfc6b8910cee8e6450d2c217f86adbec0b6a"
+      },
+      {
+        "name": "bz2.pyd",
+        "sha256": "753ea279675eeb34fe58908f10cb15886955c865b49c01b533a5930e6b326038"
+      },
+      {
+        "name": "sre_constants.pyc",
+        "sha256": "779d702e7d4ad64f618f06ee7d6e8d69254ac1a871fe9fa0238fa3d3e4dfd78f"
+      },
+      {
+        "name": "encodings/cp874.pyc",
+        "sha256": "77e9d23771e2cfe95515f4011c130f16311ea4e5817133210c7cb1969b2f6f01"
+      },
+      {
+        "name": "urlparse.pyc",
+        "sha256": "78c2daa5fae2ac36d9f59483c6506ebcc87c9a5b7b3dc4354b91fc3ed31cd7d6"
+      },
+      {
+        "name": "encodings/zlib_codec.pyc",
+        "sha256": "7a537f4710510a9d304c59860266fa4d6091759d21581726d6a9b4419664dbee"
+      },
+      {
+        "name": "dummy_thread.pyc",
+        "sha256": "7ab41596134b33cd142f79c28c2ca844308f867fa9af41a4ec80894e0352a34f"
+      },
+      {
+        "name": "encodings/cp875.pyc",
+        "sha256": "7b638b68dbca09e29fb18f4f6df0e514fabe8d92f0e297527029ca70516c9871"
+      },
+      {
+        "name": "ssl.pyc",
+        "sha256": "82ef1d74f214f117bc7b919c7d4c6d2494b2f4d862c2107a745d58a7af688df6"
+      },
+      {
+        "name": "ctypes/_endian.pyc",
+        "sha256": "8317dd4f7da4a5ed3e7799a5295365b1648ca4bb659acdce01a0b6af28491c3c"
+      },
+      {
+        "name": "encodings/cp850.pyc",
+        "sha256": "83b513bb0f612f0fe30c8177b04821f93e9420d34cebd9d5a546e76089e73c7b"
+      },
+      {
+        "name": "encodings/gb18030.pyc",
+        "sha256": "856a8712a1e898c096a5281c06cc6c77a7b3ca80d7ebbf01e6c91498f19e86e8"
+      },
+      {
+        "name": "encodings/hex_codec.pyc",
+        "sha256": "8617c887096a3630447a6cfedf7a2ba976f709dcad497723a7fc8817318f2571"
+      },
+      {
+        "name": "quopri.pyc",
+        "sha256": "8646bd2d9d045b2e29cb5853d0c012cee9aaea8719eefccd20b47f76feea18f9"
+      },
+      {
+        "name": "ntpath.pyc",
+        "sha256": "8677659e8ccbfb216e1b495b4d44711f2c71ce3569d022af327110fadad26ec4"
+      },
+      {
+        "name": "encodings/cp866.pyc",
+        "sha256": "87a7b2af67b87f83593cac741b91226986e5f9fdc23e9d1afb866be991782538"
+      },
+      {
+        "name": "types.pyc",
+        "sha256": "89ad82639997ca622bc031996041c582f0085845cf9e80f2cf27986dc126c020"
+      },
+      {
+        "name": "email/parser.pyc",
+        "sha256": "8ac85bddeb9ccd970110a4c2526ff90ab9f4b638fb023415e66ab0f5348d0f02"
+      },
+      {
+        "name": "nturl2path.pyc",
+        "sha256": "8c2924320481b2bdfb9af9efc98ee369cfcf901045050ea0526ea31a01225a07"
+      },
+      {
+        "name": "encodings/charmap.pyc",
+        "sha256": "8ca994eca66f00e9f2b42cb29d318333258afb2b34f5d586d44c44ff29d5392e"
+      },
+      {
+        "name": "encodings/shift_jis.pyc",
+        "sha256": "8cab53ea573c7686285942fe2cf78f84a19db21172e3d5cd0a5339b8a31f9036"
+      },
+      {
+        "name": "unittest/suite.pyc",
+        "sha256": "8dd07272b43c3cf94d65548458ba7896cfe082435d6f444cf864d8cf0d4b940a"
+      },
+      {
+        "name": "encodings/utf_16.pyc",
+        "sha256": "8dfc6f43f5d246f0aea41aeb97a2679031077f7f8b7d393c53e2d5f8a8fd9ad1"
+      },
+      {
+        "name": "encodings/johab.pyc",
+        "sha256": "8f133c7d084356f93e5ed269f1f28fcdf68eede549ebe3b159cf3724d6685ab2"
+      },
+      {
+        "name": "encodings/cp863.pyc",
+        "sha256": "8f7d48e95a1c1bdc0284726997c552d357400de0a7b749fd3f84a7bb1bcafdc5"
+      },
+      {
+        "name": "_threading_local.pyc",
+        "sha256": "901179bf5f45db852d634082bc2ae258c3b0f5a123c7ab60c3051b76ea93ecfc"
+      },
+      {
+        "name": "abc.pyc",
+        "sha256": "9056daadce2a205a0ead1d31cfb919ed4e81356edf3368446cbb0823df1fa1ed"
+      },
+      {
+        "name": "pdb.pyc",
+        "sha256": "91fda0a36c24b26f957bf13c7ecd864534a107ab4856df6b6d455aadc28c7d96"
+      },
+      {
+        "name": "encodings/cp424.pyc",
+        "sha256": "921c9f19014aca1891e2746030a284396a5064624458222b374ed018b375fa4f"
+      },
+      {
+        "name": "codecs.pyc",
+        "sha256": "923dd0d0c250ee576c4cecd510babaa1d3b5267b8b29cdf0b622f73d944330e4"
+      },
+      {
+        "name": "encodings/iso8859_10.pyc",
+        "sha256": "9451dff48cf9e35593685a65b4904b0a7b481e252b0a542b23b6f720e875ccea"
+      },
+      {
+        "name": "encodings/koi8_u.pyc",
+        "sha256": "96d89d1a0df26f8a29465bc098d59e239f3441863696f0d4948eb9ab827aba3c"
+      },
+      {
+        "name": "encodings/euc_jp.pyc",
+        "sha256": "97704ef19d40a0ec4655b22caa7b96db30359375c1cda38886d5500cf2fb90bb"
+      },
+      {
+        "name": "encodings/utf_32_le.pyc",
+        "sha256": "97933b9b03ee1d51b04bc40b1ca6f5b0d48182abc50795fc55eb3e2743415137"
+      },
+      {
+        "name": "StringIO.pyc",
+        "sha256": "98cd88562ed4a35a4bd605a6e3b53b0cd9ecbe4b0b20744d87eb540926791ae9"
+      },
+      {
+        "name": "optparse.pyc",
+        "sha256": "9c5d097c4bfcb22240de95a2c003ed2fe853924916be578a4eaf51b2020faf10"
+      },
+      {
+        "name": "encodings/cp855.pyc",
+        "sha256": "9e379a963e6983fda05d8f1fadc249dee13afdd7829bd4f32709af8650954191"
+      },
+      {
+        "name": "encodings/cp775.pyc",
+        "sha256": "9e7d8c6ad2367ab82d783d35984a10599893d48129f67df27dadd875646a73b9"
+      },
+      {
+        "name": "email/quoprimime.pyc",
+        "sha256": "9f3e16a05cd928c93aa9638194d6b76c3bb8f8c7af63748ce189aefba954712f"
+      },
+      {
+        "name": "encodings/koi8_r.pyc",
+        "sha256": "a163a986fb7e4f647975d40ca4f67a89f111febc12041442f11e97876c825396"
+      },
+      {
+        "name": "encodings/cp1252.pyc",
+        "sha256": "a21a8a2dbc1ae261ca1ed7e91e597462f295c171b669119571b9fceb7409527e"
+      },
+      {
+        "name": "warnings.pyc",
+        "sha256": "a2f180e39ea9ae65fcf842007e28e83a865de159cf963edc9c2f1be4be8aa6b4"
+      },
+      {
+        "name": "encodings/cp1257.pyc",
+        "sha256": "a38021eba7a7567582be4db904c79c9797fd43e9f4b9d2ccbb10800b7a8bc5ef"
+      },
+      {
+        "name": "tempfile.pyc",
+        "sha256": "a3d5fa5f2985e3e7511f1f2f07e569b8bbc98b01f139aa5df33cc0d4fd983f80"
+      },
+      {
+        "name": "unittest/case.pyc",
+        "sha256": "a3e912ee9c5fbedfcee824196aa624bf3195d34c957d7607cb7b3f726b4ed272"
+      },
+      {
+        "name": "encodings/cp864.pyc",
+        "sha256": "a56e1d5079fa848446ce778a7d92e4c3add1ef24d6319fe0f70baaee5c4a112a"
+      },
+      {
+        "name": "encodings/iso8859_9.pyc",
+        "sha256": "a6cec2e1606df3aead831c5494c815a4543e062fd88251d0a9f6893bf708131b"
+      },
+      {
+        "name": "random.pyc",
+        "sha256": "a769e72b6b068f2d4f3e949df46482de2060c006a6b417882db61fa9664c907b"
+      },
+      {
+        "name": "encodings/mac_cyrillic.pyc",
+        "sha256": "a809c1fdbdaf7325727d0a2f8d0cda1d447232fb3ba08092d76af434777fbfbd"
+      },
+      {
+        "name": "sre_compile.pyc",
+        "sha256": "a827f47afb47928e22fca5d22bf442b6d1f25571772a636dabfb290a468a90de"
+      },
+      {
+        "name": "encodings/latin_1.pyc",
+        "sha256": "aafa4c6f1ce2550be5f98bb924b0842fd83102c2a9358322356a5008ff3e7184"
+      },
+      {
+        "name": "locale.pyc",
+        "sha256": "ac7f6f6748644d0bb5b878b53da8a46706a297f274cda649b3053395ac723376"
+      },
+      {
+        "name": "zip_appended_data",
+        "sha256": "ad4469f3dcae639a2a5d91236b44193089ecb0120e39d304fb9d8fc266004b20"
+      },
+      {
+        "name": "email/base64mime.pyc",
+        "sha256": "aeeddee9d2c8cf66b9586fddc6da559916122ede7a7b43a6a0f3793fe5afd440"
+      },
+      {
+        "name": "rfc822.pyc",
+        "sha256": "af1cf64c8aad8537b740aff2c9b9fd7a7f6ee2578f18afb046c0c19fec78f6f7"
+      },
+      {
+        "name": "dis.pyc",
+        "sha256": "b1a10eb137a6d916cf0044ca7dc9c48091f2b0983118f028e4d449ea5b45fdbe"
+      },
+      {
+        "name": "encodings/cp861.pyc",
+        "sha256": "b29d4f61eca547490a61dfc4db547f82f397b2faa1a1f3840dec8b3d0690c250"
+      },
+      {
+        "name": "encodings/string_escape.pyc",
+        "sha256": "b360b9ba7afc0f2af3e0039cfad4e43e69ddda55bf32c7ff7ce774159c76c028"
+      },
+      {
+        "name": "urllib2.pyc",
+        "sha256": "b3bdf82f4d51f29d3c3ad228238c44849984acfa4cc16d3624fabb191e32313d"
+      },
+      {
+        "name": "keyword.pyc",
+        "sha256": "b437d0c422b1c7e5f5c621d03131fd396931b7ecd0dbf8e62b8a9cf4ece4b157"
+      },
+      {
+        "name": "encodings/tis_620.pyc",
+        "sha256": "b53256ebcb7efa23855694dfe99710a2de0af623db95461ed24e148090896546"
+      },
+      {
+        "name": "encodings/gbk.pyc",
+        "sha256": "b5c58b8e354e1da04928eed3f2003376517b210d722ea115636036c845e4e4fd"
+      },
+      {
+        "name": "encodings/mac_roman.pyc",
+        "sha256": "b61f5093287e4fe207e2e448f2880fca74cfcd6f02a2572e3c5fbebd92804491"
+      },
+      {
+        "name": "encodings/mac_centeuro.pyc",
+        "sha256": "b6d96d4431dea9fe4f6cea0503c9f7b9cada7bdbe8db8d90992d1806d613eee5"
+      },
+      {
+        "name": "encodings/shift_jisx0213.pyc",
+        "sha256": "b6e662d44d315adf0023311a1a8c770cc55080e70d2747e8f3b024b1b5188921"
+      },
+      {
+        "name": "copy.pyc",
+        "sha256": "b847cca68a3059aa082c7aad125fc29a73f60b7f4760a871ecd74ef25c5b05eb"
+      },
+      {
+        "name": "cookielib.pyc",
+        "sha256": "b95d5f7c76e4f7239d8a6c2d8713d95d68f70d51295b4d810571898999b96b49"
+      },
+      {
+        "name": "encodings/cp737.pyc",
+        "sha256": "bb082c8ba24cc02a44913bec582d13e12549befa097808b82abc65b719dedf23"
+      },
+      {
+        "name": "encodings/cp1253.pyc",
+        "sha256": "bb253ba7873918ba1d2a28ce5815a200e9af8107c72e198a59afd74749917510"
+      },
+      {
+        "name": "encodings/aliases.pyc",
+        "sha256": "bc3350f414736ec0d9efb226e6af02bc6b4ae0dca9e494dfc8cd95fc5dcb3f52"
+      },
+      {
+        "name": "hashlib.pyc",
+        "sha256": "c25241961173ac2e3f5470467391d578641ed2775d9c86c9bccfe037cb59a624"
+      },
+      {
+        "name": "urllib.pyc",
+        "sha256": "c3062b92284a96074fdc212d5bb9975961f57ac59c7eaaec157b997c0d74803b"
+      },
+      {
+        "name": "encodings/punycode.pyc",
+        "sha256": "c30d8817fe2052a64171b395dbd66db05a64bff6ab921ee99adea9bafe2cee31"
+      },
+      {
+        "name": "encodings/utf_7.pyc",
+        "sha256": "c6503433cbbed62905f6412278a0204cd27ea875bf388312f02a25a46b3006d9"
+      },
+      {
+        "name": "zipextimporter.pyc",
+        "sha256": "c6d5e30845adfe57bc912aac834b47b692725b5d1769980bf1b7fcee813ebb57"
+      },
+      {
+        "name": "getopt.pyc",
+        "sha256": "c89912732116927c40ce56fdb878bd7578584a7653e9e49d2dea767c3760c8df"
+      },
+      {
+        "name": "gettext.pyc",
+        "sha256": "c8d0ca793b7ea36f1e43bce5a6efddff7658588a23253354e53c8c3205e0cb80"
+      },
+      {
+        "name": "encodings/idna.pyc",
+        "sha256": "c8f67ef1f4a8cc667e0a81c364ba9af9d9305583c2d0c32fd5753fafe8b28e9c"
+      },
+      {
+        "name": "encodings/hp_roman8.pyc",
+        "sha256": "c99f13195a1bfdca230a7f6819532811f7f67821188b011f27c17164e89f58f3"
+      },
+      {
+        "name": "encodings/mac_farsi.pyc",
+        "sha256": "c9c04697a9929f1ca7c00f86deac8d99c94f6d20fc6c0234d192c89c5f7b6858"
+      },
+      {
+        "name": "encodings/gb2312.pyc",
+        "sha256": "cab5c430e02b59325b02cff61555cbe2cafa8ef1b8b9caccfa6eac0617683688"
+      },
+      {
+        "name": "posixpath.pyc",
+        "sha256": "caf3cc4c6c86a555b6808ec3e8e74a1a535ca859a5125feb9f212d939667536b"
+      },
+      {
+        "name": "encodings/__init__.pyc",
+        "sha256": "caf68bed35ec9d2d44e6055f43bf532b6cbaf152a835c65e47581d21e24b1b08"
+      },
+      {
+        "name": "base64.pyc",
+        "sha256": "cc21377c1e0a2aafca79f9cb99edb648168dafc69d58c51df8f87c084c217dcf"
+      },
+      {
+        "name": "weakref.pyc",
+        "sha256": "ccf74e59670e28ac4352dc85ea377a0f19b17baa469995205c155a6cf6db7c8d"
+      },
+      {
+        "name": "logging/__init__.pyc",
+        "sha256": "d0034593e14df892dc11afe1260070bb3f45a4c4d78b91d3e11125b9e5fadee7"
+      },
+      {
+        "name": "encodings/hz.pyc",
+        "sha256": "d020c227fc47e3ca7508590269a05a67f453dc9164c537e6418ac132c8eac48d"
+      },
+      {
+        "name": "heapq.pyc",
+        "sha256": "d0477ab88cffcab850616f5ae3fda8b3301ad3214419176ea97d1f4ba5d98e75"
+      },
+      {
+        "name": "encodings/cp1140.pyc",
+        "sha256": "d1093d6426d5523a10a51c83adb3bc8140b483f8fad2b247a8a107f7c567a341"
+      },
+      {
+        "name": "shlex.pyc",
+        "sha256": "d21bf89453df58c80807b3ebd1beee96a499acce457d2553347d5f80f6bc7540"
+      },
+      {
+        "name": "encodings/cp858.pyc",
+        "sha256": "d3724652536405281375aedad7347f56ae6c4fb68a561e2c29ab40da2f7704a6"
+      },
+      {
+        "name": "string.pyc",
+        "sha256": "d375c9da135e39ee29554ba6244b6f15a1b3a299b010548fcf42252fa9dbaa8d"
+      },
+      {
+        "name": "fnmatch.pyc",
+        "sha256": "d3a3b4062f1ca9a4c5021a0a700c4f2f86cebe34394f16145ccccab8098d16fa"
+      },
+      {
+        "name": "sre_parse.pyc",
+        "sha256": "d49dd2d55e396d47344fc44df9d894b8a5e073178936af88885cbfbae4be4d0c"
+      },
+      {
+        "name": "encodings/cp037.pyc",
+        "sha256": "d4d9d851e75ba4664a92c17579d47c42e1cd4172a9118facf87bbefe089f8c91"
+      },
+      {
+        "name": "os.pyc",
+        "sha256": "d6c2a48f2a93812da6137e5a7bb8ee54a93524ff4c7c9838f9dcde6dde620775"
+      },
+      {
+        "name": "encodings/iso2022_jp_3.pyc",
+        "sha256": "d7ef58bbbf61328f81c1580b1fc172291b3ca40ac9bfd86f3feb1a9d29b0fc54"
+      },
+      {
+        "name": "unittest/runner.pyc",
+        "sha256": "d9e3aac93b962444f98d53d87831c00987ccb9c128a123491c15d07a75877305"
+      },
+      {
+        "name": "encodings/bz2_codec.pyc",
+        "sha256": "db7dec491a8586d3054fd69914a26145bb9fed283e313d8a41205231adbad15c"
+      },
+      {
+        "name": "token.pyc",
+        "sha256": "dba37e9fd6fe735a6094ce6fdf2046b291326568b20d7271616ef31c567faf9e"
+      },
+      {
+        "name": "textwrap.pyc",
+        "sha256": "dbb152875fb3285987dbfaf7cb0c55d7e94ec393f0af8b63744d7eba2353498b"
+      },
+      {
+        "name": "functools.pyc",
+        "sha256": "dcf91a42251ef8da31a18c16cb070eda825ac3f3949c3d2a2f50ecd224b2e1a0"
+      },
+      {
+        "name": "struct.pyc",
+        "sha256": "df586e362010436fd50ba23c22b8196ba74c457d08671626dc89344d1eeca84e"
+      },
+      {
+        "name": "encodings/iso2022_jp_1.pyc",
+        "sha256": "e0afab61d1ee9c9618d8e131d66f645122d0fc4b9447c168b117c5e2f0d367da"
+      },
+      {
+        "name": "sre.pyc",
+        "sha256": "e498a628ab263e866712febd3971ffe5500da06ca8f277235b43b7f6eb4da140"
+      },
+      {
+        "name": "copy_reg.pyc",
+        "sha256": "e4fdb65b842ab77d634eae72bd29f263280e92e73bf5eddf2c521541bad9bd29"
+      },
+      {
+        "name": "encodings/cp852.pyc",
+        "sha256": "e9265fb698f3d62ddb2e3a29df41b98815f9528fb11f57d7cf804f7d0609df72"
+      },
+      {
+        "name": "calendar.pyc",
+        "sha256": "e959bfc7ea7a39f1c4b22f095c373130edc005f5409cb945e83b8797bdaf2fe4"
+      },
+      {
+        "name": "_ssl.pyd",
+        "sha256": "ea0efcab32e6572f61a3c765356e283bd6a8f75ec2a4c8b12f1fb3db76ca68d4"
+      },
+      {
+        "name": "bisect.pyc",
+        "sha256": "ec971cf4235c749f4bab64a49769d6bf00c890765cb427c6815afaa7fe3199c2"
+      },
+      {
+        "name": "encodings/cp437.pyc",
+        "sha256": "eca98b43777115f1917b26e7d87539f116f6a339f47b4cc26a3596a95998dee2"
+      },
+      {
+        "name": "encodings/rot_13.pyc",
+        "sha256": "ed68c48e4e396041dc12e618a9aa198a93537df586702ef53ed33f7e58332a08"
+      },
+      {
+        "name": "unicodedata.pyd",
+        "sha256": "edec30653dc56df03eb40fa97c616950fd593c0b90c2950af722e66816eb70e9"
+      },
+      {
+        "name": "unittest/main.pyc",
+        "sha256": "ef3e1f10ddedf9c2d4626bb7cd3274987bd9ac6cddb6b46849ca20aac86866ca"
+      },
+      {
+        "name": "collections.pyc",
+        "sha256": "ef9817f7ef44704ebdf3e7af99d8581892f5fad1d86a02afc122da3b693b2570"
+      },
+      {
+        "name": "_socket.pyd",
+        "sha256": "f0781a1b879584f494d984e31869eab13f0535825f68862e6597b1639df708bd"
+      },
+      {
+        "name": "repr.pyc",
+        "sha256": "f26df429718e067e86ecfbc8b8e8d9f956bdf25532cc5e089a2b50583518c13c"
+      },
+      {
+        "name": "_strptime.pyc",
+        "sha256": "f275c4f696657475b5d315de1ab228457de38f10bae38d0a817d3477108d5cab"
+      },
+      {
+        "name": "email/generator.pyc",
+        "sha256": "f4c257b4991906ffc5cf5b641402fd3c0889f5118c3d35d3260ab510f4d93569"
+      },
+      {
+        "name": "threading.pyc",
+        "sha256": "f4fb502a05559809ef17ef844f2b4ca018cf205d401fe3208b2cf3be2e2724c2"
+      },
+      {
+        "name": "getpass.pyc",
+        "sha256": "f633c003a9d9c1ad7da4114f31e04b2f7b7e90d3ecb1765fc87d35892765bcef"
+      },
+      {
+        "name": "ctypes/__init__.pyc",
+        "sha256": "f644bcb64b20ef92c680ad0514ef556b427851d55d865005b172c1ae4c8586bb"
+      },
+      {
+        "name": "encodings/iso8859_15.pyc",
+        "sha256": "f6f9a0a1603c34fd6a4db8d21f24a9a6b0916b3fa97d7071f4e113d86c985c59"
+      },
+      {
+        "name": "unittest/__init__.pyc",
+        "sha256": "f81455aa2314cafa51509f3b3a57356d69b3610d7e1b1a8997112f213221a02e"
+      },
+      {
+        "name": "encodings/cp500.pyc",
+        "sha256": "f822e15f0988c1e781f59af3cf1a8ab7005d3a53543600289c0c1ad961f6df6a"
+      },
+      {
+        "name": "subprocess.pyc",
+        "sha256": "f93860a98a534c0e61c200eebb547aa91b193f34333546df6b1d322cc5ace128"
+      },
+      {
+        "name": "UserDict.pyc",
+        "sha256": "f9ce9812284e65a772a6d186c30e908cb7bc621bcea23704f2045abc059e5166"
+      },
+      {
+        "name": "encodings/iso8859_1.pyc",
+        "sha256": "faecd631b9365fa8dad260e012e6cf818db84ff15209272bc6325617cb997b75"
+      },
+      {
+        "name": "encodings/mac_arabic.pyc",
+        "sha256": "fb1b828207ace45531754ad77575886233fdff2233d60ad50cdd4aa7cc95cb26"
+      },
+      {
+        "name": "encodings/iso2022_jp_2004.pyc",
+        "sha256": "ff039c1d23b7662a162563c3778303b9021e4ef02cbce7944bbf8f7452943133"
+      },
+      {
+        "name": "dllInjection.py",
+        "sha256": "ff18649c8b23108e674af5ec7590ad940c63df71bb21f757661a6358e437dfcc"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "StringIO.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "UserDict.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_LWPCookieJar.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_MozillaCookieJar.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "__future__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_abcoll.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_ctypes.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "_ctypes.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_hashlib.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "_hashlib.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_socket.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "_socket.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_ssl.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "_ssl.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_strptime.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_threading_local.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "_weakrefset.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "abc.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "atexit.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "base64.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "bdb.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "bisect.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "bz2.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "bz2.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "calendar.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "cmd.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "codecs.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "collections.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "cookielib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "copy.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "copy_reg.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ctypes/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ctypes/_endian.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "difflib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "dis.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "dllInjection.py"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "dllInjection.py"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "dllInjection.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doctest.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "dummy_thread.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "dummy_threading.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/_parseaddr.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/base64mime.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/charset.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/encoders.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/errors.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/feedparser.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/generator.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/header.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/iterators.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/message.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/mime/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/parser.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/quoprimime.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "email/utils.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/aliases.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/ascii.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/base64_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/big5.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/big5hkscs.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/bz2_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/charmap.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp037.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1006.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1026.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1140.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1250.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1251.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1252.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1253.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1254.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1255.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1256.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1257.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp1258.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp424.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp437.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp500.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp720.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp737.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp775.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp850.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp852.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp855.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp856.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp857.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp858.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp860.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp861.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp862.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp863.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp864.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp865.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp866.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp869.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp874.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp875.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp932.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp949.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/cp950.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/euc_jis_2004.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/euc_jisx0213.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/euc_jp.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/euc_kr.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/gb18030.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/gb2312.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/gbk.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/hex_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/hp_roman8.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/hz.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/idna.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp_1.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp_2.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp_2004.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp_3.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_jp_ext.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso2022_kr.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_1.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_10.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_11.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_13.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_14.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_15.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_16.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_2.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_3.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_4.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_5.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_6.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_7.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_8.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/iso8859_9.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/johab.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/koi8_r.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/koi8_u.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/latin_1.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_arabic.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_centeuro.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_croatian.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_cyrillic.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_farsi.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_greek.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_iceland.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_latin2.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_roman.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_romanian.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mac_turkish.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/mbcs.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/palmos.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/ptcp154.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/punycode.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/quopri_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/raw_unicode_escape.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/rot_13.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/shift_jis.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/shift_jis_2004.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/shift_jisx0213.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/string_escape.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/tis_620.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/undefined.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/unicode_escape.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/unicode_internal.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_16.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_16_be.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_16_le.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_32.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_32_be.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_32_le.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_7.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_8.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/utf_8_sig.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/uu_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "encodings/zlib_codec.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "fnmatch.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ftplib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "functools.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "genericpath.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "getopt.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "getpass.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "gettext.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "hashlib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "heapq.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "httplib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "inspect.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "keyword.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "linecache.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "locale.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "logging/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "mimetools.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "mimetypes.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ntpath.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "nturl2path.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "opcode.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "optparse.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "os.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "os2emxpath.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pdb.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pickle.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "posixpath.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pprint.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "quopri.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "random.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "re.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "repr.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "rfc822.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "select.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "select.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "shlex.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "socket.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "sre.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "sre_compile.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "sre_constants.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "sre_parse.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "ssl.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "stat.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "string.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "stringprep.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "struct.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "subprocess.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "tempfile.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "textwrap.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "threading.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "token.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "tokenize.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "traceback.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "types.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unicodedata.pyd"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "unicodedata.pyd"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/__init__.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/case.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/loader.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/main.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/result.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/runner.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/signals.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/suite.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "unittest/util.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "urllib.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "urllib2.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "urlparse.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "uu.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "warnings.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "weakref.pyc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zip_appended_data"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zipextimporter.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

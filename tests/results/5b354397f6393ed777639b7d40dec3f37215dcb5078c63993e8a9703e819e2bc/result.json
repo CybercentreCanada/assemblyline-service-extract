@@ -1,0 +1,201 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Name": "VCF to CSV Converter",
+          "Version": "5.5.7 (unicode)"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 1,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "network": {
+            "static": {
+              "uri": [
+                "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
+              ]
+            }
+          }
+        },
+        "title_text": "URI Found",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CompiledCode.txt\napp/vcfconv.exe\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/english.isl\ninstall_script.iss",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CompiledCode.txt",
+                "app/vcfconv.exe",
+                "embedded/CompiledCode.bin",
+                "embedded/License.txt",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/english.isl",
+                "install_script.iss"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 8 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "app/vcfconv.exe",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "app/vcfconv.exe"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "app/vcfconv.exe",
+        "sha256": "1022785d3ba3d4c9befbbde7c20d4787ceac1aec3f66668023fc31dc2ce0c20e"
+      },
+      {
+        "name": "embedded/License.txt",
+        "sha256": "347a3d4dea9421672251735634195c824d1c0ea1b370b154e4868b6db9eaa51e"
+      },
+      {
+        "name": "install_script.iss",
+        "sha256": "77799878ec2a7cc77318a3a777daf02cded08b346c09e3ba0d5d8e065eae946c"
+      },
+      {
+        "name": "embedded/WizardSmallImage0.bmp",
+        "sha256": "a7e560d419e85daf80cce980baa124ef7c73197d0f51a59a19f1866ee8edfe8c"
+      },
+      {
+        "name": "CompiledCode.txt",
+        "sha256": "b0a951ab66f95b5890e87d82284be22baa42d043341ecfcdb72724b1b6c7b791"
+      },
+      {
+        "name": "embedded/CompiledCode.bin",
+        "sha256": "c9f5b1e33e00f32afe2d1d5a4547ee078412151800a2faa0ece914956496bdc6"
+      },
+      {
+        "name": "embedded/WizardImage0.bmp",
+        "sha256": "d148dc2569e9abc4b4da650b1920ef1ffdc10bbd6bc2e20a97ce44b1f9f78aea"
+      },
+      {
+        "name": "embedded/english.isl",
+        "sha256": "ecc448ce1df69915e5a311c41471523f00c3bdb9a91375fe2cae8243960c89ed"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/vcfconv.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/vcfconv.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/License.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardSmallImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/english.isl"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "install_script.iss"
+        }
+      ],
+      "network.static.uri": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "https://vovsoft.com/uninstall/?s=vcf-to-csv-converter"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

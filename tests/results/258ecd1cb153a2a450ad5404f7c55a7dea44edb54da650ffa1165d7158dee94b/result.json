@@ -1,0 +1,392 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": {
+          "Name": "MP3 CD Ripper Beta 1.1",
+          "Password": "A1ADB8BE8E677894E",
+          "Version": "5.1.2"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "InnoSetup executable extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CompiledCode.txt\napp/NetDiagram.chm\napp/Visio/areas.vss\napp/Visio/areas.vssx\napp/Visio/devices.vss\napp/Visio/devices.vssx\napp/Visio/lines.vss\napp/Visio/lines.vssx\napp/Visio/netdiagram.vst\napp/Visio/netdiagram.vstx\napp/file_id.diz\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/license.txt\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\napp/whatsnew.txt\nembedded/CompiledCode.bin\nembedded/License.txt\nembedded/WizardImage0.bmp\nembedded/WizardSmallImage0.bmp\nembedded/decompressor.dll\nembedded/english.isl\ninstall_script.iss",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CompiledCode.txt",
+                "app/NetDiagram.chm",
+                "app/Visio/areas.vss",
+                "app/Visio/areas.vssx",
+                "app/Visio/devices.vss",
+                "app/Visio/devices.vssx",
+                "app/Visio/lines.vss",
+                "app/Visio/lines.vssx",
+                "app/Visio/netdiagram.vst",
+                "app/Visio/netdiagram.vstx",
+                "app/file_id.diz",
+                "app/libcrypto-1_1.dll",
+                "app/libeay32.dll",
+                "app/libssl-1_1.dll",
+                "app/license.txt",
+                "app/mp3cdripperbeta.exe",
+                "app/ssleay32.dll",
+                "app/whatsnew.txt",
+                "embedded/CompiledCode.bin",
+                "embedded/License.txt",
+                "embedded/WizardImage0.bmp",
+                "embedded/WizardSmallImage0.bmp",
+                "embedded/decompressor.dll",
+                "embedded/english.isl",
+                "install_script.iss"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "A1ADB8BE8E677894E"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 25 files using password: A1ADB8BE8E677894E",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "app/NetDiagram.chm\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\nembedded/decompressor.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "app/NetDiagram.chm",
+                "app/libcrypto-1_1.dll",
+                "app/libeay32.dll",
+                "app/libssl-1_1.dll",
+                "app/mp3cdripperbeta.exe",
+                "app/ssleay32.dll",
+                "embedded/decompressor.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "app/Visio/netdiagram.vst",
+        "sha256": "0851ae8f561f49278c8ad81363f15481235ec3df0cf80c73408d3d226bcc9612"
+      },
+      {
+        "name": "app/NetDiagram.chm",
+        "sha256": "0dfabfc84209a1f6d0eccd764e1c8a6b26b25973d561c89318c6032bec48a945"
+      },
+      {
+        "name": "embedded/WizardImage0.bmp",
+        "sha256": "1b73df0b89a2943f34582cf81c2d8ed7b1ce4cfb54d86ce58ebd6dd0e1e05f5d"
+      },
+      {
+        "name": "app/Visio/areas.vss",
+        "sha256": "21889c505a0234524ac95081260329acee5100ed2d30278b52399d62d8aa801e"
+      },
+      {
+        "name": "app/libcrypto-1_1.dll",
+        "sha256": "2bdc115fb6d8c531fc7d8a7dd507948003b667c1d68b2d6b617ec9d044e746f9"
+      },
+      {
+        "name": "embedded/License.txt",
+        "sha256": "3327f310e89b9a589630aba28eccc0bd17b41e0a6db5bfe49cfc0aef3b14d174"
+      },
+      {
+        "name": "app/Visio/devices.vssx",
+        "sha256": "4e6e085089c471b6418195d056d8f32224d45273acc7abba3076d94ed9480434"
+      },
+      {
+        "name": "install_script.iss",
+        "sha256": "517b1d1ed0470dd5a2e419e3cca10dd95d9e3f5059112733237f7f2b74f45204"
+      },
+      {
+        "name": "CompiledCode.txt",
+        "sha256": "53ec40e83414374cfa4f029ce0658acb3ab01f0344f7871cd29d1b08c412a8ba"
+      },
+      {
+        "name": "app/Visio/areas.vssx",
+        "sha256": "5612a57a73b168840eb7fbbca3981e244d349a121b082ee6cdd593119e4c8873"
+      },
+      {
+        "name": "embedded/decompressor.dll",
+        "sha256": "58ee49d4b4f6def91c6561fc5a1b73bc86d8a01b23ce0c8ddbf0ed11f13d5ace"
+      },
+      {
+        "name": "app/Visio/lines.vssx",
+        "sha256": "59ae6c45a11933363d0ea6797854e09e0d0002d25f634a280467a4f805daec3a"
+      },
+      {
+        "name": "app/license.txt",
+        "sha256": "5af24498951e305fe55378c58808261359dc559cc11be72a56726aecd1f8676f"
+      },
+      {
+        "name": "app/libeay32.dll",
+        "sha256": "63aa600a7c914c2d59280069169cc93e750e42c9a1146e238c9128e073d578fd"
+      },
+      {
+        "name": "app/Visio/devices.vss",
+        "sha256": "6871cb7ac5d9d3172cc48423d703b45b61cb8e0d3a6f894eba440773bcc831bc"
+      },
+      {
+        "name": "app/libssl-1_1.dll",
+        "sha256": "7a16e6ed0c0a49aeb8ea4972600a7a1422c92550602a150634b1c221f79300b4"
+      },
+      {
+        "name": "app/mp3cdripperbeta.exe",
+        "sha256": "86a89c8eada9c1ce5a74be1372de9756cc3529011fa5d3989c2ce9d15fedb729"
+      },
+      {
+        "name": "embedded/WizardSmallImage0.bmp",
+        "sha256": "ae94cd61179bc1869d0082b1fa8c189f8487d106712b48a2a6c6a035d370bfb4"
+      },
+      {
+        "name": "app/ssleay32.dll",
+        "sha256": "b6192300d3c1476ef3c25a368d055aa401035e78f9f6dbe5f93c84d36ef1fa62"
+      },
+      {
+        "name": "app/file_id.diz",
+        "sha256": "cd18b928d2f2f1aae123c23cc934ef42e89e4cdeaecd2d0961d84a4b2eff09e7"
+      },
+      {
+        "name": "app/Visio/lines.vss",
+        "sha256": "cec8e2d6eea74362909edb714b8b9ebfa0e6b6bde893eb1f3b944a7a5b8310ba"
+      },
+      {
+        "name": "app/whatsnew.txt",
+        "sha256": "e98378b5f1fb11de06503b2143b593d1cb66b2b2e8f831fa39472f83afdaeb26"
+      },
+      {
+        "name": "embedded/english.isl",
+        "sha256": "ef3b95c037e50eb263b8788f4959b073a50794eb8a57b835f1869a9517d78ee9"
+      },
+      {
+        "name": "embedded/CompiledCode.bin",
+        "sha256": "fb0fc2e3c2059e6159540920a4ff7f75f92212639b318da7eb7fadece4a46ecc"
+      },
+      {
+        "name": "app/Visio/netdiagram.vstx",
+        "sha256": "fc4ea91c0b13cd0c437450ef1fb39c94c12af52a0b2b2d5c4c66e8c04d907afe"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "CompiledCode.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/NetDiagram.chm"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/NetDiagram.chm"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/areas.vss"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/areas.vssx"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/devices.vss"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/devices.vssx"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/lines.vss"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/lines.vssx"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/netdiagram.vst"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/Visio/netdiagram.vstx"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/file_id.diz"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libcrypto-1_1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libcrypto-1_1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libeay32.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libeay32.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libssl-1_1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/libssl-1_1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/license.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/mp3cdripperbeta.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/mp3cdripperbeta.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/ssleay32.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/ssleay32.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "app/whatsnew.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/CompiledCode.bin"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/License.txt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/WizardSmallImage0.bmp"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/decompressor.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/decompressor.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "embedded/english.isl"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "install_script.iss"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "A1ADB8BE8E677894E"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

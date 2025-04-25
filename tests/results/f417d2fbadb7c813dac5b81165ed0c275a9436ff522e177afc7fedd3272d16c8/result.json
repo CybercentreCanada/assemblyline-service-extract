@@ -1,0 +1,132 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "pydata\nsimple38.py\nsimple38.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "pydata",
+                "simple38.py",
+                "simple38.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "simple38.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "simple38.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "simple38.py",
+        "sha256": "1e992f074f757c6833918a7839da8211dd0afaa7ebc5b6737805fc1255d42807"
+      },
+      {
+        "name": "simple38.pyc",
+        "sha256": "86b4755db5c1b222e0957ab36761b4a91e486a38055b619d8fc58749a3082257"
+      },
+      {
+        "name": "pydata",
+        "sha256": "daaa8e7916bb324c1a252a2a072d492fac548c05fb9f61a05a3f2b34ff0e0e6d"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "pydata"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "simple38.py"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "simple38.py"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "simple38.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

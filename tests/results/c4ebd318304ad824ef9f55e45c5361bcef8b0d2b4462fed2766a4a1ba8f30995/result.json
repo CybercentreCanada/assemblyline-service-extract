@@ -5,19 +5,20 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "ERROR: Data Error in encrypted file. Wrong password? : DocumentsFolder 6987584 12202022.img",
+        "body": "DocumentsFolder 6987584 12202022.img (Password:s1835)",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
         "depth": 0,
         "heuristic": null,
+        "promote_to": null,
         "tags": {},
-        "title_text": "Errors in 7z",
+        "title_text": "Found corrupted files (Wrong password?)",
         "zeroize_on_tag_safe": false
       },
       {
         "auto_collapse": false,
-        "body": "DocumentsFolder 6987584 12202022.img",
+        "body": "Unextracted files in password protected archive:\nDocumentsFolder 6987584 12202022.img",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -25,60 +26,59 @@
         "heuristic": {
           "attack_ids": [],
           "frequency": 1,
-          "heur_id": 10,
+          "heur_id": 12,
           "score": 0,
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
+            "behavior": [
+              "Archive Unknown Password"
+            ],
             "name": {
               "extracted": [
                 "DocumentsFolder 6987584 12202022.img"
               ]
             }
-          },
-          "info": {
-            "password": [
-              "s1835"
-            ]
           }
         },
-        "title_text": "Successfully extracted 1 file using password: s1835",
+        "title_text": "Failed to extract password protected file.",
         "zeroize_on_tag_safe": false
       }
     ]
   },
   "files": {
-    "extracted": [
+    "extracted": [],
+    "supplementary": [
       {
-        "name": "DocumentsFolder 6987584 12202022.img",
-        "sha256": "839d3facf28a17e206fa682f639f77d86536de2f6bf1e33a8f62334000befd58"
+        "name": "password_tested.json",
+        "sha256": "d75024ad162e66ff8dd09e2084ccada07279d18bed5e12baccadf4886428da5e"
       }
-    ],
-    "supplementary": []
+    ]
   },
   "results": {
     "heuristics": [
       {
         "attack_ids": [],
-        "heur_id": 10,
+        "heur_id": 12,
         "signatures": []
       }
     ],
     "tags": {
-      "file.name.extracted": [
+      "file.behavior": [
         {
-          "heur_id": 10,
+          "heur_id": 12,
           "signatures": [],
-          "value": "DocumentsFolder 6987584 12202022.img"
+          "value": "Archive Unknown Password"
         }
       ],
-      "info.password": [
+      "file.name.extracted": [
         {
-          "heur_id": 10,
+          "heur_id": 12,
           "signatures": [],
-          "value": "s1835"
+          "value": "DocumentsFolder 6987584 12202022.img"
         }
       ]
     },

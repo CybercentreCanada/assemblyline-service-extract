@@ -134,9 +134,9 @@ class RepairZip(ZipFile):
         self.filelist = []  # List of ZipInfo instances for archive
         self.compression = compression  # Method of compression
         self.compresslevel = compresslevel
-        self.mode = key = mode.replace('b', '')[0]
+        self.mode = key = mode.replace("b", "")[0]
         self.pwd = None
-        self._comment = b''
+        self._comment = b""
         self.is_zip = True
 
         self._fileRefCnt = 1
@@ -144,33 +144,38 @@ class RepairZip(ZipFile):
         self._seekable = True
         self._writing = False
         self._strict_timestamps = True
+        self.metadata_encoding = None
+
+        # Check that we don't try to write with nonconforming codecs
+        if self.metadata_encoding and mode != "r":
+            raise ValueError("metadata_encoding is only supported for reading files")
 
         # Check if we were passed a file-like object
         if isinstance(filename, str):
             self._filePassed = 0
             self.filename = filename
-            mode_dict = {'r': 'rb', 'w': 'wb', 'a': 'r+b'}
+            mode_dict = {"r": "rb", "w": "wb", "a": "r+b"}
             try:
                 self.fp = open(filename, mode_dict[mode])
             except IOError:
-                if mode == 'a':
-                    mode = key = 'w'
+                if mode == "a":
+                    mode = key = "w"
                     self.fp = open(filename, mode_dict[mode])
                 else:
                     raise
         else:
             self._filePassed = 1
             self.fp = filename
-            self.filename = getattr(filename, 'name', None)
+            self.filename = getattr(filename, "name", None)
 
         # noinspection PyBroadException
         try:
-            if key == 'r':
+            if key == "r":
                 self.fp.seek(0)
                 if stringFileHeader not in self.fp.read(1024):
                     self.is_zip = False
                 self._RealGetContents()
-            elif key == 'w':
+            elif key == "w":
                 # set the modified flag so central directory gets written
                 # even if no files are added to the archive
                 self._didModify = True
@@ -187,7 +192,7 @@ class RepairZip(ZipFile):
                     except (AttributeError, OSError):
                         self._seekable = False
 
-            elif key == 'a':
+            elif key == "a":
                 try:
                     # See if file is a zip file
                     self._RealGetContents()
@@ -223,34 +228,41 @@ class RepairZip(ZipFile):
         cd_list = {}
 
         try:
-
             # pass one, parse the zip file
             while offset + 4 < file_len:
                 hdr_off = mm.find(b"PK", offset)
                 if hdr_off == -1:
                     break
-                hdr_type = mm[hdr_off:hdr_off + 4]
+                hdr_type = mm[hdr_off : hdr_off + 4]
                 if hdr_type == stringFileHeader:
                     # local file header
                     if hdr_off + sizeFileHeader > file_len:
                         break
-                    fheader = mm[hdr_off:hdr_off + sizeFileHeader]
+                    fheader = mm[hdr_off : hdr_off + sizeFileHeader]
                     fheader = struct.unpack(structFileHeader, fheader)
                     start = hdr_off
-                    size = sizeFileHeader + fheader[_FH_COMPRESSED_SIZE] + fheader[_FH_FILENAME_LENGTH] + \
-                        fheader[_FH_EXTRA_FIELD_LENGTH]
-                    name = mm[hdr_off + sizeFileHeader:hdr_off + sizeFileHeader + fheader[_FH_FILENAME_LENGTH]]
+                    size = (
+                        sizeFileHeader
+                        + fheader[_FH_COMPRESSED_SIZE]
+                        + fheader[_FH_FILENAME_LENGTH]
+                        + fheader[_FH_EXTRA_FIELD_LENGTH]
+                    )
+                    name = mm[hdr_off + sizeFileHeader : hdr_off + sizeFileHeader + fheader[_FH_FILENAME_LENGTH]]
                     file_list[name] = [start, size, fheader]
                     offset = hdr_off + size
                 elif hdr_type == stringCentralDir:
                     if hdr_off + sizeCentralDir > file_len:
                         break
-                    centdir = mm[hdr_off:hdr_off + sizeCentralDir]
+                    centdir = mm[hdr_off : hdr_off + sizeCentralDir]
                     centdir = struct.unpack(structCentralDir, centdir)
                     start = hdr_off
-                    size = sizeCentralDir + centdir[_CD_FILENAME_LENGTH] + centdir[_CD_EXTRA_FIELD_LENGTH] + \
-                        centdir[_CD_COMMENT_LENGTH]
-                    name = mm[hdr_off + sizeCentralDir: hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
+                    size = (
+                        sizeCentralDir
+                        + centdir[_CD_FILENAME_LENGTH]
+                        + centdir[_CD_EXTRA_FIELD_LENGTH]
+                        + centdir[_CD_COMMENT_LENGTH]
+                    )
+                    name = mm[hdr_off + sizeCentralDir : hdr_off + sizeCentralDir + centdir[_CD_FILENAME_LENGTH]]
                     cd_list[name] = [start, size, centdir]
                     offset = hdr_off + size
                 elif hdr_type == stringEndArchive:
@@ -270,32 +282,48 @@ class RepairZip(ZipFile):
                     continue
 
                 if isinstance(filename, bytes):
-                    x = ZipInfo(filename.decode('utf-8', 'backslashreplace'))
+                    x = ZipInfo(filename.decode("utf-8", "backslashreplace"))
                 else:
                     x = ZipInfo(filename)
                 extra_off = start + sizeCentralDir
-                x.extra = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
+                x.extra = mm[extra_off : extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
                 extra_off += centdir[_CD_EXTRA_FIELD_LENGTH]
-                x.comment = mm[extra_off: extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
+                x.comment = mm[extra_off : extra_off + centdir[_CD_EXTRA_FIELD_LENGTH]]
 
                 x.header_offset = file_list[filename][0]
 
-                (x.create_version, x.create_system, x.extract_version, x.reserved,
-                 x.flag_bits, x.compress_type, t, d,
-                 x.CRC, x.compress_size, x.file_size) = centdir[1:12]
+                (
+                    x.create_version,
+                    x.create_system,
+                    x.extract_version,
+                    x.reserved,
+                    x.flag_bits,
+                    x.compress_type,
+                    t,
+                    d,
+                    x.CRC,
+                    x.compress_size,
+                    x.file_size,
+                ) = centdir[1:12]
                 x.volume, x.internal_attr, x.external_attr = centdir[15:18]
                 # Convert date/time code to (year, month, day, hour, min, sec)
                 x._raw_time = t
-                x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F,
-                               t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
+                x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F, t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
 
                 last_ea = x.external_attr
                 last_cs = x.create_system
                 last_cv = x.create_version
                 last_dt = (d, t)
 
-                # noinspection PyProtectedMember
-                x._decodeExtra()
+                try:
+                    x._decodeExtra()
+                except TypeError:
+                    # This internal function changed between Python 3.11 and 3.12
+                    # It now takes an additional filename_crc parameter
+                    # TODO: Delete this try/except once moved to 3.12
+                    filename = mm.read(centdir[_CD_FILENAME_LENGTH])
+                    x._decodeExtra(zlib.crc32(filename))
+
                 # x.filename = x._decodeFilename()
                 self.filelist.append(x)
                 self.NameToInfo[x.filename] = x
@@ -304,7 +332,7 @@ class RepairZip(ZipFile):
                 if filename in cd_list:
                     continue
 
-                x = ZipInfo(filename.decode('utf-8', 'backslashreplace'))
+                x = ZipInfo(filename.decode("utf-8", "backslashreplace"))
                 x.extra = ""
                 x.comment = ""
 

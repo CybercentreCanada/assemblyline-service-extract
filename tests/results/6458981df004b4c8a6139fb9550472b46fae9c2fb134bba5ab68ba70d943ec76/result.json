@@ -1,0 +1,137 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "pydata\nsimple39.py\nsimple39.pyc",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "pydata",
+                "simple39.py",
+                "simple39.pyc"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "simple39.py",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "simple39.py"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "pydata",
+        "sha256": "003c7ec94b0e3826c0aa7d7b8153695177bd1bb90a87b2afda6fff181f3f4b21"
+      },
+      {
+        "name": "simple39.py",
+        "sha256": "1f524a16a5f7ed2227227d50a5775ef48b01fd1532a813bf2870bb74c32177d8"
+      },
+      {
+        "name": "simple39.pyc",
+        "sha256": "cccabba5c383a48c8594510ca70c12ac9cf341306720289f700dfc4b82c4d362"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "simple39.py.disass",
+        "sha256": "a7ea903c048822d7452ffba708df31e8826e36bca0ac9ccafd6811d6740234d4"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "pydata"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "simple39.py"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "simple39.py"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "simple39.pyc"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

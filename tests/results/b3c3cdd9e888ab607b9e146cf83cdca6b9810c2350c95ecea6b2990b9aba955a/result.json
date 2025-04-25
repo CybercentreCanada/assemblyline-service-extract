@@ -1,0 +1,109 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": ".data\nCERTIFICATE\nENCRYPT.py\nENCRYPT.pyc\n[0]",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                ".data",
+                "CERTIFICATE",
+                "ENCRYPT.py",
+                "ENCRYPT.pyc",
+                "[0]"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 5 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": ".data",
+        "sha256": "17a374764a97598eeb35b9f9e96bad505b780b2a64a325822e5c002f7fdc1966"
+      },
+      {
+        "name": "CERTIFICATE",
+        "sha256": "7e0f1badbf5e9a05606243cd7c2225b4b4c3c0caba8f52c8e1e0c01578b5449c"
+      },
+      {
+        "name": "ENCRYPT.pyc",
+        "sha256": "9df6f5c8b31c7329f7f255d671ddd0fdf4359b6b6b92d8312065607425b0f9fb"
+      },
+      {
+        "name": "ENCRYPT.py",
+        "sha256": "d2f6f5dee94f092ccbfef4b7d62ad2d331248aafd10bf5d68e0daef5a05930c5"
+      },
+      {
+        "name": "[0]",
+        "sha256": "fc7e3e8408af45d14816e0b8d0e08a71aedd4cea18ece0d9f56273d4511f7ad8"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "ENCRYPT.py.disass",
+        "sha256": "87f2344d7203f6f1e87ca35dfa1d2837c3f5c30d2b368086ac90c70bdb49fa1b"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": ".data"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "CERTIFICATE"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ENCRYPT.py"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "ENCRYPT.pyc"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "[0]"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

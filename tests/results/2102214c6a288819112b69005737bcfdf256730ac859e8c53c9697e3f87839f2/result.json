@@ -5,7 +5,22 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[{\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"D.HS.\", \"Size\": \"\", \"Compressed\": \"\", \"Name\": \"System Volume Information\"}, {\"Date Time\": \"2022-08-16 06:33:38\", \"Attr\": \"..H.A\", \"Size\": \"1986766\", \"Compressed\": \"1990656\", \"Name\": \"imagedata.ps1\"}]",
+        "body": [
+          {
+            "Attr": "D.HS.",
+            "Compressed": "",
+            "Date Time": "2022-08-16 06:33:38",
+            "Name": "System Volume Information",
+            "Size": ""
+          },
+          {
+            "Attr": "..H.A",
+            "Compressed": "1990656",
+            "Date Time": "2022-08-16 06:33:38",
+            "Name": "imagedata.ps1",
+            "Size": "1986766"
+          }
+        ],
         "body_config": {
           "column_order": [
             "Date Time",
@@ -26,6 +41,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -53,6 +69,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -82,6 +99,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [

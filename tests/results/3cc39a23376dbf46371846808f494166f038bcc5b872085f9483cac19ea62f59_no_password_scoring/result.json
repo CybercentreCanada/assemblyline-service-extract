@@ -20,6 +20,7 @@
             "raise_score": 1
           }
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [
@@ -37,7 +38,7 @@
     "supplementary": [
       {
         "name": "password_tested.json",
-        "sha256": "0cfcecc2075bbf5e4b634a78f2499ef09f4b3d731d8581d8cdfacaa4c35d0da2"
+        "sha256": "90eb39ffd04f6e048eac4f47cf235f5c718e0647ccdac43112b7eceda4450db4"
       }
     ]
   },

@@ -5,6 +5,19 @@
     "sections": [
       {
         "auto_collapse": false,
+        "body": "Bloat in PE resources",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Debloated using specific technique",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
         "body": null,
         "body_config": {},
         "body_format": "TEXT",
@@ -18,6 +31,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {},
         "title_text": "Bloated file",
         "zeroize_on_tag_safe": false
@@ -28,7 +42,7 @@
     "extracted": [
       {
         "name": "9892c1e9c834cf5f2c580baa34ba27d9f9d024cbac89bd2f226b1f723582bbb8",
-        "sha256": "807ea227798516850aa3072dc64f5b6bd4812481ccf5e873b882aa9227dbf719"
+        "sha256": "d122b83e5930d5d0caf4d7265ef5714ce36dbc583c093689f2284263b9d44f0b"
       }
     ],
     "supplementary": []

@@ -1,0 +1,266 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": [
+          [
+            "TEXT",
+            "The following tar file was extracted from the gpg/symmetric, and further extracted",
+            {}
+          ],
+          [
+            "ORDERED_KEY_VALUE",
+            [
+              [
+                "Name",
+                "gnupgp content"
+              ],
+              [
+                "SHA256",
+                "cff770639ce05d47d71ae36a81d07fb388cb810398bc3f51e69499979fe4e761"
+              ],
+              [
+                "SHA1",
+                "29c220be3b57e88566cf11af2a2d57e39d2bfad6"
+              ],
+              [
+                "MD5",
+                "f18ece45be29a1f706f347fc2d47e514"
+              ],
+              [
+                "Total Size",
+                3345408
+              ]
+            ],
+            {}
+          ]
+        ],
+        "body_config": {},
+        "body_format": "MULTI",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "gpg/symmetric tar file extracted",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Package/burweed.ppt\nPackage/libglib-2.0-0.dll\nPackage/libgmodule-2.0-0.dll\nPackage/libintl-8.dll\nPackage/libwsutil.dll\nPackage/mergecap.exe\nPackage/msvcr100.dll\nPackage/wiretap-1.8.0.dll\nPackage/zlib1.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "Package/burweed.ppt",
+                "Package/libglib-2.0-0.dll",
+                "Package/libgmodule-2.0-0.dll",
+                "Package/libintl-8.dll",
+                "Package/libwsutil.dll",
+                "Package/mergecap.exe",
+                "Package/msvcr100.dll",
+                "Package/wiretap-1.8.0.dll",
+                "Package/zlib1.dll"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "pendosi"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 9 files using password: pendosi",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Package/libglib-2.0-0.dll\nPackage/libgmodule-2.0-0.dll\nPackage/libintl-8.dll\nPackage/libwsutil.dll\nPackage/mergecap.exe\nPackage/msvcr100.dll\nPackage/wiretap-1.8.0.dll\nPackage/zlib1.dll",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Package/libglib-2.0-0.dll",
+                "Package/libgmodule-2.0-0.dll",
+                "Package/libintl-8.dll",
+                "Package/libwsutil.dll",
+                "Package/mergecap.exe",
+                "Package/msvcr100.dll",
+                "Package/wiretap-1.8.0.dll",
+                "Package/zlib1.dll"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "Package/wiretap-1.8.0.dll",
+        "sha256": "657c215af84f023ab69878ffddcb12ec15d177a84ec2820992f1821639ed2063"
+      },
+      {
+        "name": "Package/libglib-2.0-0.dll",
+        "sha256": "6a15b04430c503427cdd70c442389cbb66a2a0e1dd57f2d1535d3aa389df47b0"
+      },
+      {
+        "name": "Package/libintl-8.dll",
+        "sha256": "7937b5033cb3d3f05c8cb00837c98d1b6e44dd9ea84406f9201e5fbc2fb20e65"
+      },
+      {
+        "name": "Package/zlib1.dll",
+        "sha256": "8296b847f9aaef1ebc0296cf83c1db5b29d17aced1335ee16968d332cbf4854a"
+      },
+      {
+        "name": "Package/libwsutil.dll",
+        "sha256": "a4372a5f242c36ee97ea228c653b3ec1c866a928a6ada18f4c64fa2b23b873ee"
+      },
+      {
+        "name": "Package/libgmodule-2.0-0.dll",
+        "sha256": "a72cb7f636483c65fc027d09608a4b0a681d3665fcfa93e5e8258f1c96f5cc09"
+      },
+      {
+        "name": "Package/mergecap.exe",
+        "sha256": "ac7a321a7b00b4adb5863b9a7e91e69afe9ce1953317234a2bd1bee97de744da"
+      },
+      {
+        "name": "Package/msvcr100.dll",
+        "sha256": "ae3cb6c6afba9a4aa5c85f66023c35338ca579b30326dd02918f9d55259503d5"
+      },
+      {
+        "name": "Package/burweed.ppt",
+        "sha256": "c93ac9094db88772635e4f22bbba3a82ca4f56dce28cb6fd119ee0fa986c8e95"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/burweed.ppt"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libglib-2.0-0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libglib-2.0-0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libgmodule-2.0-0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libgmodule-2.0-0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libintl-8.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libintl-8.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libwsutil.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/libwsutil.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/mergecap.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/mergecap.exe"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/msvcr100.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/msvcr100.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/wiretap-1.8.0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/wiretap-1.8.0.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/zlib1.dll"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Package/zlib1.dll"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "pendosi"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

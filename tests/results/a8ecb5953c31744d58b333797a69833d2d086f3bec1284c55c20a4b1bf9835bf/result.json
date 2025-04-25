@@ -5,7 +5,41 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "[[\"Target file\", \"\\u430b\\u4131\\u4735\\u433e\\u41f9\\u4396\\u42ac\\u42ee\\u4823\"], [\"SHA256\", \"67b54f709895fa88b5153b568e62df5fb866237a1b3050502e7bee95a5a41738\"], [\"SHA1\", \"b1511d80ad998e523be746a56ae2212fadfc0d15\"], [\"MD5\", \"21bb60837d686b7d1ea9e1746f60c756\"], [\"Total Size\", 506018816]]",
+        "body": "Bloat in PE resources",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Debloated using specific technique",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": [
+          [
+            "Target file",
+            "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823"
+          ],
+          [
+            "SHA256",
+            "67b54f709895fa88b5153b568e62df5fb866237a1b3050502e7bee95a5a41738"
+          ],
+          [
+            "SHA1",
+            "b1511d80ad998e523be746a56ae2212fadfc0d15"
+          ],
+          [
+            "MD5",
+            "21bb60837d686b7d1ea9e1746f60c756"
+          ],
+          [
+            "Total Size",
+            "506018816 (482.6 MB)"
+          ]
+        ],
         "body_config": {},
         "body_format": "ORDERED_KEY_VALUE",
         "classification": "TLP:C",
@@ -18,6 +52,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {},
         "title_text": "Bloated file",
         "zeroize_on_tag_safe": false
@@ -37,6 +72,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "name": {
@@ -64,6 +100,7 @@
           "score_map": {},
           "signatures": {}
         },
+        "promote_to": null,
         "tags": {
           "file": {
             "behavior": [
