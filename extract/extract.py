@@ -1622,6 +1622,7 @@ class Extract(ServiceBase):
     def raise_failed_passworded_extraction(
         self, request: ServiceRequest, file_type: str, extracted_files, expected_files, password_tested
     ):
+        request.partial()
         section = ResultTextSection(
             "Failed to extract password protected file.", heuristic=Heuristic(12), parent=request.result
         )
