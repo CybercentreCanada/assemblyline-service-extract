@@ -1834,10 +1834,14 @@ class Extract(ServiceBase):
                     hijacked_folders = set()
                     for folder in folders:
                         # Find if a file has the same name as any folder
-                        if any([True for x in data if x[-1] == folder and x[1][0] != "D"]):
+                        if any([(x[-1] == folder and x[1][0] != "D") for x in data]):
                             # Find if there is a file that starts with the name of the folder inside that folder
                             for data_line in data:
-                                if data_line[-1].startswith(f"{folder}{os.sep}{folder}"):
+                                # The name of the file/folder is found inside the folder, but could be layers deep
+                                if (
+                                    data_line[-1].startswith(f"{folder}{os.sep}")
+                                    and folder in data_line[-1][len(f"{folder}{os.sep}") :]
+                                ):
                                     heur_section.set_item(folder, data_line[-1])
                                     hijacked_folders.add(folder)
                     if heur_section.body:

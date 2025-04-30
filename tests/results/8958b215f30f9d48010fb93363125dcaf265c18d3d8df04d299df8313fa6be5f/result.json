@@ -1,0 +1,191 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 1500,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "ERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp\nERROR: Cannot create folder : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg\nERROR: Cannot open output file : errno=20 : Not a directory : /TMP_DIR/M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Errors in 7z",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": {
+          "M6XA.pdf ": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk"
+        },
+        "body_config": {},
+        "body_format": "KEY_VALUE",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 25,
+          "score": 1000,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "attribution": {
+            "exploit": [
+              "CVE-2023-38831"
+            ]
+          }
+        },
+        "title_text": "CVE-2023-38831",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "M6XA.pdf \nM6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg\nM6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "M6XA.pdf ",
+                "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg",
+                "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 3 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg\nM6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 16,
+          "score": 500,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg",
+                "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "M6XA.pdf ",
+        "sha256": "52991fef986999d5cb23e1c5bf81c4a4cce1695b2e8aaa339e6ce3889465a1e3"
+      },
+      {
+        "name": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk",
+        "sha256": "ddc8afb9f1b9143e036c7044fdfd8aa639093f5b788696e3344b386bb6d5dad2"
+      },
+      {
+        "name": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg",
+        "sha256": "e194b89af6d5968f04af914885166d1e69845061d274d9ca8e9ddefd4e43888e"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 16,
+        "signatures": []
+      },
+      {
+        "attack_ids": [],
+        "heur_id": 25,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "attribution.exploit": [
+        {
+          "heur_id": 25,
+          "signatures": [],
+          "value": "CVE-2023-38831"
+        }
+      ],
+      "file.behavior": [
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "M6XA.pdf "
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk"
+        },
+        {
+          "heur_id": 16,
+          "signatures": [],
+          "value": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
