@@ -2,7 +2,7 @@ ARG branch=latest
 FROM cccs/assemblyline-v4-service-base:$branch AS base
 
 # Python path to the service class from your service directory
-ENV SERVICE_PATH extract.extract.Extract
+ENV SERVICE_PATH=extract.extract.Extract
 
 # Install apt dependencies
 USER root
