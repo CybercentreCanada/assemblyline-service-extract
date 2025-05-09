@@ -1,5 +1,5 @@
 {
-  "template": "git@github.com:CybercentreCanada/assemblyline-service-template.git",
+  "template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
   "commit": "c60a8ed86819416a005aeceec3c03b0e889a4ba3",
   "checkout": null,
   "context": {
@@ -16,7 +16,7 @@
       "org_name_full": "CybercentreCanada",
       "org_name_short": "cccs",
       "license": "mit",
-      "_template": "git@github.com:CybercentreCanada/assemblyline-service-template.git"
+      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git"
     }
   },
   "directory": null
