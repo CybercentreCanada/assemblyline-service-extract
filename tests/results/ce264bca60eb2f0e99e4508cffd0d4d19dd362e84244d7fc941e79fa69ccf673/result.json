@@ -63,7 +63,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS2008/fullbench/fullbench.vcproj\nzstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj\nzstd-1.5.5/build/VS2008/zstd/zstd.vcproj\nzstd-1.5.5/build/VS2008/zstdlib/zstdlib.vcproj\nzstd-1.5.5/build/VS2010/CompileAsCpp.props\nzstd-1.5.5/build/VS2010/datagen/datagen.vcxproj\nzstd-1.5.5/build/VS2010/fullbench-dll/fullbench-dll.vcxproj\nzstd-1.5.5/build/VS2010/fullbench/fullbench.vcxproj\nzstd-1.5.5/build/VS2010/fuzzer/fuzzer.vcxproj\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.vcxproj\nzstd-1.5.5/build/VS2010/libzstd/libzstd.vcxproj\nzstd-1.5.5/build/VS2010/zstd/zstd.rc\nzstd-1.5.5/build/VS2010/zstd/zstd.vcxproj\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/build_decoder_test.sh\nzstd-1.5.5/build/single_file_libs/build_library_test.sh\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/build/single_file_libs/combine.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_decoder.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_library.sh\nzstd-1.5.5/build/single_file_libs/examples/emscripten.c\nzstd-1.5.5/build/single_file_libs/examples/roundtrip.c\nzstd-1.5.5/build/single_file_libs/examples/shell.html\nzstd-1.5.5/build/single_file_libs/examples/simple.c\nzstd-1.5.5/build/single_file_libs/zstd-in.c\nzstd-1.5.5/build/single_file_libs/zstddeclib-in.c\nzstd-1.5.5/contrib/VS2005/fullbench/fullbench.vcproj\nzstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj\nzstd-1.5.5/contrib/VS2005/zstd/zstd.vcproj\nzstd-1.5.5/contrib/VS2005/zstdlib/zstdlib.vcproj\nzstd-1.5.5/contrib/cleanTabs\nzstd-1.5.5/contrib/diagnose_corruption/check_flipped_bits.c\nzstd-1.5.5/contrib/externalSequenceProducer/main.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh\nzstd-1.5.5/contrib/gen_html/gen_html.cpp\nzstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c\nzstd-1.5.5/contrib/linux-kernel/decompress_sources.h\nzstd-1.5.5/contrib/linux-kernel/linux_zstd.h\nzstd-1.5.5/contrib/linux-kernel/mem.h\nzstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/stddef.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h\nzstd-1.5.5/contrib/linux-kernel/test/static_test.c\nzstd-1.5.5/contrib/linux-kernel/test/test.c\nzstd-1.5.5/contrib/linux-kernel/zstd_common_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_compress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_decompress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_deps.h\nzstd-1.5.5/contrib/match_finders/zstd_edist.c\nzstd-1.5.5/contrib/match_finders/zstd_edist.h\nzstd-1.5.5/contrib/pzstd/ErrorHolder.h\nzstd-1.5.5/contrib/pzstd/Logging.h\nzstd-1.5.5/contrib/pzstd/Options.cpp\nzstd-1.5.5/contrib/pzstd/Options.h\nzstd-1.5.5/contrib/pzstd/Pzstd.cpp\nzstd-1.5.5/contrib/pzstd/Pzstd.h\nzstd-1.5.5/contrib/pzstd/SkippableFrame.cpp\nzstd-1.5.5/contrib/pzstd/SkippableFrame.h\nzstd-1.5.5/contrib/pzstd/main.cpp\nzstd-1.5.5/contrib/pzstd/test/OptionsTest.cpp\nzstd-1.5.5/contrib/pzstd/test/PzstdTest.cpp\nzstd-1.5.5/contrib/pzstd/test/RoundTrip.h\nzstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/Buffer.h\nzstd-1.5.5/contrib/pzstd/utils/FileSystem.h\nzstd-1.5.5/contrib/pzstd/utils/Likely.h\nzstd-1.5.5/contrib/pzstd/utils/Portability.h\nzstd-1.5.5/contrib/pzstd/utils/Range.h\nzstd-1.5.5/contrib/pzstd/utils/ResourcePool.h\nzstd-1.5.5/contrib/pzstd/utils/ScopeGuard.h\nzstd-1.5.5/contrib/pzstd/utils/ThreadPool.h\nzstd-1.5.5/contrib/pzstd/utils/WorkQueue.h\nzstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/WorkQueueTest.cpp\nzstd-1.5.5/contrib/recovery/recover_directory.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_processing.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression_mem.c\nzstd-1.5.5/contrib/seekable_format/tests/seekable_tests.c\nzstd-1.5.5/contrib/seekable_format/zstd_seekable.h\nzstd-1.5.5/contrib/seekable_format/zstdseek_compress.c\nzstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c\nzstd-1.5.5/contrib/seqBench/seqBench.c\nzstd-1.5.5/doc/educational_decoder/harness.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.h\nzstd-1.5.5/doc/zstd_manual.html\nzstd-1.5.5/examples/common.h\nzstd-1.5.5/examples/dictionary_compression.c\nzstd-1.5.5/examples/dictionary_decompression.c\nzstd-1.5.5/examples/multiple_simple_compression.c\nzstd-1.5.5/examples/multiple_streaming_compression.c\nzstd-1.5.5/examples/simple_compression.c\nzstd-1.5.5/examples/simple_decompression.c\nzstd-1.5.5/examples/streaming_compression.c\nzstd-1.5.5/examples/streaming_compression_thread_pool.c\nzstd-1.5.5/examples/streaming_decompression.c\nzstd-1.5.5/examples/streaming_memory_usage.c\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/common/allocations.h\nzstd-1.5.5/lib/common/bits.h\nzstd-1.5.5/lib/common/bitstream.h\nzstd-1.5.5/lib/common/compiler.h\nzstd-1.5.5/lib/common/cpu.h\nzstd-1.5.5/lib/common/debug.c\nzstd-1.5.5/lib/common/debug.h\nzstd-1.5.5/lib/common/entropy_common.c\nzstd-1.5.5/lib/common/error_private.c\nzstd-1.5.5/lib/common/error_private.h\nzstd-1.5.5/lib/common/fse.h\nzstd-1.5.5/lib/common/fse_decompress.c\nzstd-1.5.5/lib/common/huf.h\nzstd-1.5.5/lib/common/mem.h\nzstd-1.5.5/lib/common/pool.c\nzstd-1.5.5/lib/common/pool.h\nzstd-1.5.5/lib/common/portability_macros.h\nzstd-1.5.5/lib/common/threading.c\nzstd-1.5.5/lib/common/threading.h\nzstd-1.5.5/lib/common/xxhash.c\nzstd-1.5.5/lib/common/xxhash.h\nzstd-1.5.5/lib/common/zstd_common.c\nzstd-1.5.5/lib/common/zstd_deps.h\nzstd-1.5.5/lib/common/zstd_internal.h\nzstd-1.5.5/lib/common/zstd_trace.h\nzstd-1.5.5/lib/compress/clevels.h\nzstd-1.5.5/lib/compress/fse_compress.c\nzstd-1.5.5/lib/compress/hist.c\nzstd-1.5.5/lib/compress/hist.h\nzstd-1.5.5/lib/compress/huf_compress.c\nzstd-1.5.5/lib/compress/zstd_compress.c\nzstd-1.5.5/lib/compress/zstd_compress_internal.h\nzstd-1.5.5/lib/compress/zstd_compress_literals.c\nzstd-1.5.5/lib/compress/zstd_compress_literals.h\nzstd-1.5.5/lib/compress/zstd_compress_sequences.c\nzstd-1.5.5/lib/compress/zstd_compress_sequences.h\nzstd-1.5.5/lib/compress/zstd_compress_superblock.c\nzstd-1.5.5/lib/compress/zstd_compress_superblock.h\nzstd-1.5.5/lib/compress/zstd_cwksp.h\nzstd-1.5.5/lib/compress/zstd_double_fast.c\nzstd-1.5.5/lib/compress/zstd_double_fast.h\nzstd-1.5.5/lib/compress/zstd_fast.c\nzstd-1.5.5/lib/compress/zstd_fast.h\nzstd-1.5.5/lib/compress/zstd_lazy.c\nzstd-1.5.5/lib/compress/zstd_lazy.h\nzstd-1.5.5/lib/compress/zstd_ldm.c\nzstd-1.5.5/lib/compress/zstd_ldm.h\nzstd-1.5.5/lib/compress/zstd_ldm_geartab.h\nzstd-1.5.5/lib/compress/zstd_opt.c\nzstd-1.5.5/lib/compress/zstd_opt.h\nzstd-1.5.5/lib/compress/zstdmt_compress.c\nzstd-1.5.5/lib/compress/zstdmt_compress.h\nzstd-1.5.5/lib/decompress/huf_decompress.c\nzstd-1.5.5/lib/decompress/huf_decompress_amd64.S\nzstd-1.5.5/lib/decompress/zstd_ddict.c\nzstd-1.5.5/lib/decompress/zstd_ddict.h\nzstd-1.5.5/lib/decompress/zstd_decompress.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.h\nzstd-1.5.5/lib/decompress/zstd_decompress_internal.h\nzstd-1.5.5/lib/deprecated/zbuff.h\nzstd-1.5.5/lib/deprecated/zbuff_common.c\nzstd-1.5.5/lib/deprecated/zbuff_compress.c\nzstd-1.5.5/lib/deprecated/zbuff_decompress.c\nzstd-1.5.5/lib/dictBuilder/cover.c\nzstd-1.5.5/lib/dictBuilder/cover.h\nzstd-1.5.5/lib/dictBuilder/divsufsort.c\nzstd-1.5.5/lib/dictBuilder/divsufsort.h\nzstd-1.5.5/lib/dictBuilder/fastcover.c\nzstd-1.5.5/lib/dictBuilder/zdict.c\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj\nzstd-1.5.5/lib/legacy/zstd_legacy.h\nzstd-1.5.5/lib/legacy/zstd_v01.c\nzstd-1.5.5/lib/legacy/zstd_v01.h\nzstd-1.5.5/lib/legacy/zstd_v02.c\nzstd-1.5.5/lib/legacy/zstd_v02.h\nzstd-1.5.5/lib/legacy/zstd_v03.c\nzstd-1.5.5/lib/legacy/zstd_v03.h\nzstd-1.5.5/lib/legacy/zstd_v04.c\nzstd-1.5.5/lib/legacy/zstd_v04.h\nzstd-1.5.5/lib/legacy/zstd_v05.c\nzstd-1.5.5/lib/legacy/zstd_v05.h\nzstd-1.5.5/lib/legacy/zstd_v06.c\nzstd-1.5.5/lib/legacy/zstd_v06.h\nzstd-1.5.5/lib/legacy/zstd_v07.c\nzstd-1.5.5/lib/legacy/zstd_v07.h\nzstd-1.5.5/lib/zdict.h\nzstd-1.5.5/lib/zstd.h\nzstd-1.5.5/lib/zstd_errors.h\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/programs/benchfn.c\nzstd-1.5.5/programs/benchfn.h\nzstd-1.5.5/programs/benchzstd.c\nzstd-1.5.5/programs/benchzstd.h\nzstd-1.5.5/programs/datagen.c\nzstd-1.5.5/programs/datagen.h\nzstd-1.5.5/programs/dibio.c\nzstd-1.5.5/programs/dibio.h\nzstd-1.5.5/programs/fileio.c\nzstd-1.5.5/programs/fileio.h\nzstd-1.5.5/programs/fileio_asyncio.c\nzstd-1.5.5/programs/fileio_asyncio.h\nzstd-1.5.5/programs/fileio_common.h\nzstd-1.5.5/programs/fileio_types.h\nzstd-1.5.5/programs/platform.h\nzstd-1.5.5/programs/timefn.c\nzstd-1.5.5/programs/timefn.h\nzstd-1.5.5/programs/util.c\nzstd-1.5.5/programs/util.h\nzstd-1.5.5/programs/windres/zstd.rc\nzstd-1.5.5/programs/zstdcli.c\nzstd-1.5.5/programs/zstdcli_trace.c\nzstd-1.5.5/programs/zstdcli_trace.h\nzstd-1.5.5/programs/zstdgrep\nzstd-1.5.5/programs/zstdless\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/bigdict.c\nzstd-1.5.5/tests/checkTag.c\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/basic/help.sh\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh\nzstd-1.5.5/tests/cli-tests/basic/version.sh\nzstd-1.5.5/tests/cli-tests/bin/cmp_size\nzstd-1.5.5/tests/cli-tests/bin/datagen\nzstd-1.5.5/tests/cli-tests/bin/die\nzstd-1.5.5/tests/cli-tests/bin/println\nzstd-1.5.5/tests/cli-tests/bin/zstd\nzstd-1.5.5/tests/cli-tests/bin/zstdgrep\nzstd-1.5.5/tests/cli-tests/bin/zstdless\nzstd-1.5.5/tests/cli-tests/cltools/setup\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh\nzstd-1.5.5/tests/cli-tests/common/format.sh\nzstd-1.5.5/tests/cli-tests/common/platform.sh\nzstd-1.5.5/tests/cli-tests/compression/adapt.sh\nzstd-1.5.5/tests/cli-tests/compression/basic.sh\nzstd-1.5.5/tests/cli-tests/compression/compress-literals.sh\nzstd-1.5.5/tests/cli-tests/compression/format.sh\nzstd-1.5.5/tests/cli-tests/compression/golden.sh\nzstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh\nzstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh\nzstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh\nzstd-1.5.5/tests/cli-tests/compression/multiple-files.sh\nzstd-1.5.5/tests/cli-tests/compression/row-match-finder.sh\nzstd-1.5.5/tests/cli-tests/compression/setup\nzstd-1.5.5/tests/cli-tests/compression/stream-size.sh\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh\nzstd-1.5.5/tests/cli-tests/compression/window-resize.sh\nzstd-1.5.5/tests/cli-tests/decompression/golden.sh\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/golden.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/setup\nzstd-1.5.5/tests/cli-tests/dictionaries/setup_once\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/progress/no-progress.sh\nzstd-1.5.5/tests/cli-tests/progress/progress.sh\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/setup\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh\nzstd-1.5.5/tests/datagencli.c\nzstd-1.5.5/tests/decodecorpus.c\nzstd-1.5.5/tests/external_matchfinder.c\nzstd-1.5.5/tests/external_matchfinder.h\nzstd-1.5.5/tests/fullbench.c\nzstd-1.5.5/tests/fuzz/block_decompress.c\nzstd-1.5.5/tests/fuzz/block_round_trip.c\nzstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c\nzstd-1.5.5/tests/fuzz/dictionary_decompress.c\nzstd-1.5.5/tests/fuzz/dictionary_loader.c\nzstd-1.5.5/tests/fuzz/dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c\nzstd-1.5.5/tests/fuzz/fse_read_ncount.c\nzstd-1.5.5/tests/fuzz/fuzz.h\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.c\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.h\nzstd-1.5.5/tests/fuzz/fuzz_helpers.c\nzstd-1.5.5/tests/fuzz/fuzz_helpers.h\nzstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h\nzstd-1.5.5/tests/fuzz/huf_decompress.c\nzstd-1.5.5/tests/fuzz/huf_round_trip.c\nzstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/regression_driver.c\nzstd-1.5.5/tests/fuzz/seekable_roundtrip.c\nzstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c\nzstd-1.5.5/tests/fuzz/sequence_compression_api.c\nzstd-1.5.5/tests/fuzz/simple_compress.c\nzstd-1.5.5/tests/fuzz/simple_decompress.c\nzstd-1.5.5/tests/fuzz/simple_round_trip.c\nzstd-1.5.5/tests/fuzz/stream_decompress.c\nzstd-1.5.5/tests/fuzz/stream_round_trip.c\nzstd-1.5.5/tests/fuzz/zstd_frame_info.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.h\nzstd-1.5.5/tests/fuzzer.c\nzstd-1.5.5/tests/golden-compression/http\nzstd-1.5.5/tests/golden-compression/huffman-compressed-larger\nzstd-1.5.5/tests/golden-decompression/empty-block.zst\nzstd-1.5.5/tests/golden-decompression/rle-first-block.zst\nzstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols\nzstd-1.5.5/tests/gzip/gzip-env.sh\nzstd-1.5.5/tests/gzip/helin-segv.sh\nzstd-1.5.5/tests/gzip/help-version.sh\nzstd-1.5.5/tests/gzip/hufts-segv.gz\nzstd-1.5.5/tests/gzip/hufts.sh\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/gzip/keep.sh\nzstd-1.5.5/tests/gzip/list.sh\nzstd-1.5.5/tests/gzip/memcpy-abuse.sh\nzstd-1.5.5/tests/gzip/mixed.sh\nzstd-1.5.5/tests/gzip/null-suffix-clobber.sh\nzstd-1.5.5/tests/gzip/stdin.sh\nzstd-1.5.5/tests/gzip/test-driver.sh\nzstd-1.5.5/tests/gzip/trailing-nul.sh\nzstd-1.5.5/tests/gzip/unpack-invalid.sh\nzstd-1.5.5/tests/gzip/z-suffix.sh\nzstd-1.5.5/tests/gzip/zdiff.sh\nzstd-1.5.5/tests/gzip/zgrep-context.sh\nzstd-1.5.5/tests/gzip/zgrep-f.sh\nzstd-1.5.5/tests/gzip/zgrep-signal.sh\nzstd-1.5.5/tests/gzip/znew-k.sh\nzstd-1.5.5/tests/invalidDictionaries.c\nzstd-1.5.5/tests/legacy.c\nzstd-1.5.5/tests/libzstd_builds.sh\nzstd-1.5.5/tests/longmatch.c\nzstd-1.5.5/tests/paramgrill.c\nzstd-1.5.5/tests/playTests.sh\nzstd-1.5.5/tests/poolTests.c\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/regression/config.c\nzstd-1.5.5/tests/regression/config.h\nzstd-1.5.5/tests/regression/data.c\nzstd-1.5.5/tests/regression/data.h\nzstd-1.5.5/tests/regression/levels.h\nzstd-1.5.5/tests/regression/method.c\nzstd-1.5.5/tests/regression/method.h\nzstd-1.5.5/tests/regression/result.c\nzstd-1.5.5/tests/regression/result.h\nzstd-1.5.5/tests/regression/test.c\nzstd-1.5.5/tests/roundTripCrash.c\nzstd-1.5.5/tests/seqgen.c\nzstd-1.5.5/tests/seqgen.h\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-variants.sh\nzstd-1.5.5/tests/test-zstd-versions.py\nzstd-1.5.5/tests/zstreamtest.c\nzstd-1.5.5/zlibWrapper/examples/example.c\nzstd-1.5.5/zlibWrapper/examples/example_original.c\nzstd-1.5.5/zlibWrapper/examples/fitblk.c\nzstd-1.5.5/zlibWrapper/examples/fitblk_original.c\nzstd-1.5.5/zlibWrapper/examples/minigzip.c\nzstd-1.5.5/zlibWrapper/examples/zwrapbench.c\nzstd-1.5.5/zlibWrapper/gzclose.c\nzstd-1.5.5/zlibWrapper/gzcompatibility.h\nzstd-1.5.5/zlibWrapper/gzguts.h\nzstd-1.5.5/zlibWrapper/gzlib.c\nzstd-1.5.5/zlibWrapper/gzread.c\nzstd-1.5.5/zlibWrapper/gzwrite.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h\nzstd-1.5.5/.buckconfig\nzstd-1.5.5/.buckversion\nzstd-1.5.5/.circleci/config.yml\nzstd-1.5.5/.circleci/images/primary/Dockerfile\nzstd-1.5.5/.cirrus.yml\nzstd-1.5.5/.gitattributes\nzstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md\nzstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md\nzstd-1.5.5/.github/dependabot.yml\nzstd-1.5.5/.github/workflows/dev-long-tests.yml\nzstd-1.5.5/.github/workflows/dev-short-tests.yml\nzstd-1.5.5/.github/workflows/publish-release-artifacts.yml\nzstd-1.5.5/.github/workflows/scorecards.yml\nzstd-1.5.5/.github/workflows/windows-artifacts.yml\nzstd-1.5.5/.gitignore\nzstd-1.5.5/.travis.yml\nzstd-1.5.5/CHANGELOG\nzstd-1.5.5/CODE_OF_CONDUCT.md\nzstd-1.5.5/CONTRIBUTING.md\nzstd-1.5.5/COPYING\nzstd-1.5.5/LICENSE\nzstd-1.5.5/Makefile\nzstd-1.5.5/Package.swift\nzstd-1.5.5/README.md\nzstd-1.5.5/TESTING.md\nzstd-1.5.5/appveyor.yml\nzstd-1.5.5/build/.gitignore\nzstd-1.5.5/build/README.md\nzstd-1.5.5/build/VS2008/zstd.sln\nzstd-1.5.5/build/VS2010/zstd.sln\nzstd-1.5.5/build/VS_scripts/README.md\nzstd-1.5.5/build/cmake/.gitignore\nzstd-1.5.5/build/cmake/CMakeLists.txt\nzstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake\nzstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake\nzstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake\nzstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake\nzstd-1.5.5/build/cmake/README.md\nzstd-1.5.5/build/cmake/contrib/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/.gitignore\nzstd-1.5.5/build/cmake/lib/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in\nzstd-1.5.5/build/cmake/programs/.gitignore\nzstd-1.5.5/build/cmake/programs/CMakeLists.txt\nzstd-1.5.5/build/cmake/tests/.gitignore\nzstd-1.5.5/build/cmake/tests/CMakeLists.txt\nzstd-1.5.5/build/cmake/zstdConfig.cmake\nzstd-1.5.5/build/meson/README.md\nzstd-1.5.5/build/meson/contrib/gen_html/meson.build\nzstd-1.5.5/build/meson/contrib/meson.build\nzstd-1.5.5/build/meson/contrib/pzstd/meson.build\nzstd-1.5.5/build/meson/lib/meson.build\nzstd-1.5.5/build/meson/meson.build\nzstd-1.5.5/build/meson/meson_options.txt\nzstd-1.5.5/build/meson/programs/meson.build\nzstd-1.5.5/build/meson/tests/meson.build\nzstd-1.5.5/build/single_file_libs/.gitignore\nzstd-1.5.5/build/single_file_libs/README.md\nzstd-1.5.5/build/single_file_libs/examples/README.md\nzstd-1.5.5/contrib/VS2005/README.md\nzstd-1.5.5/contrib/VS2005/zstd.sln\nzstd-1.5.5/contrib/diagnose_corruption/.gitignore\nzstd-1.5.5/contrib/diagnose_corruption/Makefile\nzstd-1.5.5/contrib/docker/Dockerfile\nzstd-1.5.5/contrib/docker/README.md\nzstd-1.5.5/contrib/externalSequenceProducer/.gitignore\nzstd-1.5.5/contrib/externalSequenceProducer/Makefile\nzstd-1.5.5/contrib/externalSequenceProducer/README.md\nzstd-1.5.5/contrib/gen_html/.gitignore\nzstd-1.5.5/contrib/gen_html/Makefile\nzstd-1.5.5/contrib/gen_html/README.md\nzstd-1.5.5/contrib/largeNbDicts/.gitignore\nzstd-1.5.5/contrib/largeNbDicts/Makefile\nzstd-1.5.5/contrib/largeNbDicts/README.md\nzstd-1.5.5/contrib/linux-kernel/.gitignore\nzstd-1.5.5/contrib/linux-kernel/Makefile\nzstd-1.5.5/contrib/linux-kernel/README.md\nzstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/linux.mk\nzstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/test/Makefile\nzstd-1.5.5/contrib/linux-kernel/test/macro-test.sh\nzstd-1.5.5/contrib/match_finders/README.md\nzstd-1.5.5/contrib/premake/premake4.lua\nzstd-1.5.5/contrib/premake/zstd.lua\nzstd-1.5.5/contrib/pzstd/.gitignore\nzstd-1.5.5/contrib/pzstd/BUCK\nzstd-1.5.5/contrib/pzstd/Makefile\nzstd-1.5.5/contrib/pzstd/README.md\nzstd-1.5.5/contrib/pzstd/test/BUCK\nzstd-1.5.5/contrib/pzstd/utils/BUCK\nzstd-1.5.5/contrib/pzstd/utils/test/BUCK",
+        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS2008/fullbench/fullbench.vcproj\nzstd-1.5.5/build/VS2008/fuzzer/fuzzer.vcproj\nzstd-1.5.5/build/VS2008/zstd/zstd.vcproj\nzstd-1.5.5/build/VS2008/zstdlib/zstdlib.vcproj\nzstd-1.5.5/build/VS2010/CompileAsCpp.props\nzstd-1.5.5/build/VS2010/datagen/datagen.vcxproj\nzstd-1.5.5/build/VS2010/fullbench-dll/fullbench-dll.vcxproj\nzstd-1.5.5/build/VS2010/fullbench/fullbench.vcxproj\nzstd-1.5.5/build/VS2010/fuzzer/fuzzer.vcxproj\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.rc\nzstd-1.5.5/build/VS2010/libzstd-dll/libzstd-dll.vcxproj\nzstd-1.5.5/build/VS2010/libzstd/libzstd.vcxproj\nzstd-1.5.5/build/VS2010/zstd/zstd.rc\nzstd-1.5.5/build/VS2010/zstd/zstd.vcxproj\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/meson.build\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/build_decoder_test.sh\nzstd-1.5.5/build/single_file_libs/build_library_test.sh\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/build/single_file_libs/combine.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_decoder.sh\nzstd-1.5.5/build/single_file_libs/create_single_file_library.sh\nzstd-1.5.5/build/single_file_libs/examples/emscripten.c\nzstd-1.5.5/build/single_file_libs/examples/roundtrip.c\nzstd-1.5.5/build/single_file_libs/examples/shell.html\nzstd-1.5.5/build/single_file_libs/examples/simple.c\nzstd-1.5.5/build/single_file_libs/zstd-in.c\nzstd-1.5.5/build/single_file_libs/zstddeclib-in.c\nzstd-1.5.5/contrib/VS2005/fullbench/fullbench.vcproj\nzstd-1.5.5/contrib/VS2005/fuzzer/fuzzer.vcproj\nzstd-1.5.5/contrib/VS2005/zstd/zstd.vcproj\nzstd-1.5.5/contrib/VS2005/zstdlib/zstdlib.vcproj\nzstd-1.5.5/contrib/cleanTabs\nzstd-1.5.5/contrib/diagnose_corruption/check_flipped_bits.c\nzstd-1.5.5/contrib/externalSequenceProducer/main.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.c\nzstd-1.5.5/contrib/externalSequenceProducer/sequence_producer.h\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh\nzstd-1.5.5/contrib/gen_html/gen_html.cpp\nzstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c\nzstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/decompress_sources.h\nzstd-1.5.5/contrib/linux-kernel/linux_zstd.h\nzstd-1.5.5/contrib/linux-kernel/mem.h\nzstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh\nzstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/kernel.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/limits.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/math64.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/module.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/printk.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/stddef.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h\nzstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h\nzstd-1.5.5/contrib/linux-kernel/test/macro-test.sh\nzstd-1.5.5/contrib/linux-kernel/test/static_test.c\nzstd-1.5.5/contrib/linux-kernel/test/test.c\nzstd-1.5.5/contrib/linux-kernel/zstd_common_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_compress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_decompress_module.c\nzstd-1.5.5/contrib/linux-kernel/zstd_deps.h\nzstd-1.5.5/contrib/match_finders/zstd_edist.c\nzstd-1.5.5/contrib/match_finders/zstd_edist.h\nzstd-1.5.5/contrib/pzstd/ErrorHolder.h\nzstd-1.5.5/contrib/pzstd/Logging.h\nzstd-1.5.5/contrib/pzstd/Options.cpp\nzstd-1.5.5/contrib/pzstd/Options.h\nzstd-1.5.5/contrib/pzstd/Pzstd.cpp\nzstd-1.5.5/contrib/pzstd/Pzstd.h\nzstd-1.5.5/contrib/pzstd/SkippableFrame.cpp\nzstd-1.5.5/contrib/pzstd/SkippableFrame.h\nzstd-1.5.5/contrib/pzstd/main.cpp\nzstd-1.5.5/contrib/pzstd/test/OptionsTest.cpp\nzstd-1.5.5/contrib/pzstd/test/PzstdTest.cpp\nzstd-1.5.5/contrib/pzstd/test/RoundTrip.h\nzstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/Buffer.h\nzstd-1.5.5/contrib/pzstd/utils/FileSystem.h\nzstd-1.5.5/contrib/pzstd/utils/Likely.h\nzstd-1.5.5/contrib/pzstd/utils/Portability.h\nzstd-1.5.5/contrib/pzstd/utils/Range.h\nzstd-1.5.5/contrib/pzstd/utils/ResourcePool.h\nzstd-1.5.5/contrib/pzstd/utils/ScopeGuard.h\nzstd-1.5.5/contrib/pzstd/utils/ThreadPool.h\nzstd-1.5.5/contrib/pzstd/utils/WorkQueue.h\nzstd-1.5.5/contrib/pzstd/utils/test/BufferTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/RangeTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ResourcePoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ScopeGuardTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/ThreadPoolTest.cpp\nzstd-1.5.5/contrib/pzstd/utils/test/WorkQueueTest.cpp\nzstd-1.5.5/contrib/recovery/recover_directory.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/parallel_processing.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_compression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression.c\nzstd-1.5.5/contrib/seekable_format/examples/seekable_decompression_mem.c\nzstd-1.5.5/contrib/seekable_format/tests/seekable_tests.c\nzstd-1.5.5/contrib/seekable_format/zstd_seekable.h\nzstd-1.5.5/contrib/seekable_format/zstdseek_compress.c\nzstd-1.5.5/contrib/seekable_format/zstdseek_decompress.c\nzstd-1.5.5/contrib/seqBench/seqBench.c\nzstd-1.5.5/doc/educational_decoder/harness.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.c\nzstd-1.5.5/doc/educational_decoder/zstd_decompress.h\nzstd-1.5.5/doc/zstd_manual.html\nzstd-1.5.5/examples/common.h\nzstd-1.5.5/examples/dictionary_compression.c\nzstd-1.5.5/examples/dictionary_decompression.c\nzstd-1.5.5/examples/multiple_simple_compression.c\nzstd-1.5.5/examples/multiple_streaming_compression.c\nzstd-1.5.5/examples/simple_compression.c\nzstd-1.5.5/examples/simple_decompression.c\nzstd-1.5.5/examples/streaming_compression.c\nzstd-1.5.5/examples/streaming_compression_thread_pool.c\nzstd-1.5.5/examples/streaming_decompression.c\nzstd-1.5.5/examples/streaming_memory_usage.c\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/common/allocations.h\nzstd-1.5.5/lib/common/bits.h\nzstd-1.5.5/lib/common/bitstream.h\nzstd-1.5.5/lib/common/compiler.h\nzstd-1.5.5/lib/common/cpu.h\nzstd-1.5.5/lib/common/debug.c\nzstd-1.5.5/lib/common/debug.h\nzstd-1.5.5/lib/common/entropy_common.c\nzstd-1.5.5/lib/common/error_private.c\nzstd-1.5.5/lib/common/error_private.h\nzstd-1.5.5/lib/common/fse.h\nzstd-1.5.5/lib/common/fse_decompress.c\nzstd-1.5.5/lib/common/huf.h\nzstd-1.5.5/lib/common/mem.h\nzstd-1.5.5/lib/common/pool.c\nzstd-1.5.5/lib/common/pool.h\nzstd-1.5.5/lib/common/portability_macros.h\nzstd-1.5.5/lib/common/threading.c\nzstd-1.5.5/lib/common/threading.h\nzstd-1.5.5/lib/common/xxhash.c\nzstd-1.5.5/lib/common/xxhash.h\nzstd-1.5.5/lib/common/zstd_common.c\nzstd-1.5.5/lib/common/zstd_deps.h\nzstd-1.5.5/lib/common/zstd_internal.h\nzstd-1.5.5/lib/common/zstd_trace.h\nzstd-1.5.5/lib/compress/clevels.h\nzstd-1.5.5/lib/compress/fse_compress.c\nzstd-1.5.5/lib/compress/hist.c\nzstd-1.5.5/lib/compress/hist.h\nzstd-1.5.5/lib/compress/huf_compress.c\nzstd-1.5.5/lib/compress/zstd_compress.c\nzstd-1.5.5/lib/compress/zstd_compress_internal.h\nzstd-1.5.5/lib/compress/zstd_compress_literals.c\nzstd-1.5.5/lib/compress/zstd_compress_literals.h\nzstd-1.5.5/lib/compress/zstd_compress_sequences.c\nzstd-1.5.5/lib/compress/zstd_compress_sequences.h\nzstd-1.5.5/lib/compress/zstd_compress_superblock.c\nzstd-1.5.5/lib/compress/zstd_compress_superblock.h\nzstd-1.5.5/lib/compress/zstd_cwksp.h\nzstd-1.5.5/lib/compress/zstd_double_fast.c\nzstd-1.5.5/lib/compress/zstd_double_fast.h\nzstd-1.5.5/lib/compress/zstd_fast.c\nzstd-1.5.5/lib/compress/zstd_fast.h\nzstd-1.5.5/lib/compress/zstd_lazy.c\nzstd-1.5.5/lib/compress/zstd_lazy.h\nzstd-1.5.5/lib/compress/zstd_ldm.c\nzstd-1.5.5/lib/compress/zstd_ldm.h\nzstd-1.5.5/lib/compress/zstd_ldm_geartab.h\nzstd-1.5.5/lib/compress/zstd_opt.c\nzstd-1.5.5/lib/compress/zstd_opt.h\nzstd-1.5.5/lib/compress/zstdmt_compress.c\nzstd-1.5.5/lib/compress/zstdmt_compress.h\nzstd-1.5.5/lib/decompress/huf_decompress.c\nzstd-1.5.5/lib/decompress/huf_decompress_amd64.S\nzstd-1.5.5/lib/decompress/zstd_ddict.c\nzstd-1.5.5/lib/decompress/zstd_ddict.h\nzstd-1.5.5/lib/decompress/zstd_decompress.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.c\nzstd-1.5.5/lib/decompress/zstd_decompress_block.h\nzstd-1.5.5/lib/decompress/zstd_decompress_internal.h\nzstd-1.5.5/lib/deprecated/zbuff.h\nzstd-1.5.5/lib/deprecated/zbuff_common.c\nzstd-1.5.5/lib/deprecated/zbuff_compress.c\nzstd-1.5.5/lib/deprecated/zbuff_decompress.c\nzstd-1.5.5/lib/dictBuilder/cover.c\nzstd-1.5.5/lib/dictBuilder/cover.h\nzstd-1.5.5/lib/dictBuilder/divsufsort.c\nzstd-1.5.5/lib/dictBuilder/divsufsort.h\nzstd-1.5.5/lib/dictBuilder/fastcover.c\nzstd-1.5.5/lib/dictBuilder/zdict.c\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/lib/dll/example/fullbench-dll.vcxproj\nzstd-1.5.5/lib/legacy/zstd_legacy.h\nzstd-1.5.5/lib/legacy/zstd_v01.c\nzstd-1.5.5/lib/legacy/zstd_v01.h\nzstd-1.5.5/lib/legacy/zstd_v02.c\nzstd-1.5.5/lib/legacy/zstd_v02.h\nzstd-1.5.5/lib/legacy/zstd_v03.c\nzstd-1.5.5/lib/legacy/zstd_v03.h\nzstd-1.5.5/lib/legacy/zstd_v04.c\nzstd-1.5.5/lib/legacy/zstd_v04.h\nzstd-1.5.5/lib/legacy/zstd_v05.c\nzstd-1.5.5/lib/legacy/zstd_v05.h\nzstd-1.5.5/lib/legacy/zstd_v06.c\nzstd-1.5.5/lib/legacy/zstd_v06.h\nzstd-1.5.5/lib/legacy/zstd_v07.c\nzstd-1.5.5/lib/legacy/zstd_v07.h\nzstd-1.5.5/lib/zdict.h\nzstd-1.5.5/lib/zstd.h\nzstd-1.5.5/lib/zstd_errors.h\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/programs/benchfn.c\nzstd-1.5.5/programs/benchfn.h\nzstd-1.5.5/programs/benchzstd.c\nzstd-1.5.5/programs/benchzstd.h\nzstd-1.5.5/programs/datagen.c\nzstd-1.5.5/programs/datagen.h\nzstd-1.5.5/programs/dibio.c\nzstd-1.5.5/programs/dibio.h\nzstd-1.5.5/programs/fileio.c\nzstd-1.5.5/programs/fileio.h\nzstd-1.5.5/programs/fileio_asyncio.c\nzstd-1.5.5/programs/fileio_asyncio.h\nzstd-1.5.5/programs/fileio_common.h\nzstd-1.5.5/programs/fileio_types.h\nzstd-1.5.5/programs/platform.h\nzstd-1.5.5/programs/timefn.c\nzstd-1.5.5/programs/timefn.h\nzstd-1.5.5/programs/util.c\nzstd-1.5.5/programs/util.h\nzstd-1.5.5/programs/windres/verrsrc.h\nzstd-1.5.5/programs/windres/zstd.rc\nzstd-1.5.5/programs/zstdcli.c\nzstd-1.5.5/programs/zstdcli_trace.c\nzstd-1.5.5/programs/zstdcli_trace.h\nzstd-1.5.5/programs/zstdgrep\nzstd-1.5.5/programs/zstdless\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/bigdict.c\nzstd-1.5.5/tests/checkTag.c\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/basic/help.sh\nzstd-1.5.5/tests/cli-tests/basic/memlimit.sh\nzstd-1.5.5/tests/cli-tests/basic/output_dir.sh\nzstd-1.5.5/tests/cli-tests/basic/version.sh\nzstd-1.5.5/tests/cli-tests/bin/cmp_size\nzstd-1.5.5/tests/cli-tests/bin/datagen\nzstd-1.5.5/tests/cli-tests/bin/die\nzstd-1.5.5/tests/cli-tests/bin/println\nzstd-1.5.5/tests/cli-tests/bin/zstd\nzstd-1.5.5/tests/cli-tests/bin/zstdgrep\nzstd-1.5.5/tests/cli-tests/bin/zstdless\nzstd-1.5.5/tests/cli-tests/cltools/setup\nzstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh\nzstd-1.5.5/tests/cli-tests/cltools/zstdless.sh\nzstd-1.5.5/tests/cli-tests/common/format.sh\nzstd-1.5.5/tests/cli-tests/common/mtime.sh\nzstd-1.5.5/tests/cli-tests/common/permissions.sh\nzstd-1.5.5/tests/cli-tests/common/platform.sh\nzstd-1.5.5/tests/cli-tests/compression/adapt.sh\nzstd-1.5.5/tests/cli-tests/compression/basic.sh\nzstd-1.5.5/tests/cli-tests/compression/compress-literals.sh\nzstd-1.5.5/tests/cli-tests/compression/format.sh\nzstd-1.5.5/tests/cli-tests/compression/golden.sh\nzstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh\nzstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh\nzstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh\nzstd-1.5.5/tests/cli-tests/compression/multiple-files.sh\nzstd-1.5.5/tests/cli-tests/compression/row-match-finder.sh\nzstd-1.5.5/tests/cli-tests/compression/setup\nzstd-1.5.5/tests/cli-tests/compression/stream-size.sh\nzstd-1.5.5/tests/cli-tests/compression/verbose-wlog.sh\nzstd-1.5.5/tests/cli-tests/compression/window-resize.sh\nzstd-1.5.5/tests/cli-tests/decompression/golden.sh\nzstd-1.5.5/tests/cli-tests/decompression/pass-through.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh\nzstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact\nzstd-1.5.5/tests/cli-tests/dictionaries/golden.sh\nzstd-1.5.5/tests/cli-tests/dictionaries/setup\nzstd-1.5.5/tests/cli-tests/dictionaries/setup_once\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-dir-without-write-perm.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/compress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-file-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-file.sh\nzstd-1.5.5/tests/cli-tests/file-stat/decompress-stdin-to-stdout.sh\nzstd-1.5.5/tests/cli-tests/progress/no-progress.sh\nzstd-1.5.5/tests/cli-tests/progress/progress.sh\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/setup\nzstd-1.5.5/tests/cli-tests/zstd-symlinks/zstdcat.sh\nzstd-1.5.5/tests/datagencli.c\nzstd-1.5.5/tests/decodecorpus.c\nzstd-1.5.5/tests/external_matchfinder.c\nzstd-1.5.5/tests/external_matchfinder.h\nzstd-1.5.5/tests/fullbench.c\nzstd-1.5.5/tests/fuzz/block_decompress.c\nzstd-1.5.5/tests/fuzz/block_round_trip.c\nzstd-1.5.5/tests/fuzz/decompress_dstSize_tooSmall.c\nzstd-1.5.5/tests/fuzz/dictionary_decompress.c\nzstd-1.5.5/tests/fuzz/dictionary_loader.c\nzstd-1.5.5/tests/fuzz/dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/dictionary_stream_round_trip.c\nzstd-1.5.5/tests/fuzz/fse_read_ncount.c\nzstd-1.5.5/tests/fuzz/fuzz.h\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.c\nzstd-1.5.5/tests/fuzz/fuzz_data_producer.h\nzstd-1.5.5/tests/fuzz/fuzz_helpers.c\nzstd-1.5.5/tests/fuzz/fuzz_helpers.h\nzstd-1.5.5/tests/fuzz/fuzz_third_party_seq_prod.h\nzstd-1.5.5/tests/fuzz/huf_decompress.c\nzstd-1.5.5/tests/fuzz/huf_round_trip.c\nzstd-1.5.5/tests/fuzz/raw_dictionary_round_trip.c\nzstd-1.5.5/tests/fuzz/regression_driver.c\nzstd-1.5.5/tests/fuzz/seekable_roundtrip.c\nzstd-1.5.5/tests/fuzz/seq_prod_fuzz_example/example_seq_prod.c\nzstd-1.5.5/tests/fuzz/sequence_compression_api.c\nzstd-1.5.5/tests/fuzz/simple_compress.c\nzstd-1.5.5/tests/fuzz/simple_decompress.c\nzstd-1.5.5/tests/fuzz/simple_round_trip.c\nzstd-1.5.5/tests/fuzz/stream_decompress.c\nzstd-1.5.5/tests/fuzz/stream_round_trip.c\nzstd-1.5.5/tests/fuzz/zstd_frame_info.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.c\nzstd-1.5.5/tests/fuzz/zstd_helpers.h\nzstd-1.5.5/tests/fuzzer.c\nzstd-1.5.5/tests/golden-compression/http\nzstd-1.5.5/tests/golden-compression/huffman-compressed-larger\nzstd-1.5.5/tests/golden-decompression/empty-block.zst\nzstd-1.5.5/tests/golden-decompression/rle-first-block.zst\nzstd-1.5.5/tests/golden-dictionaries/http-dict-missing-symbols\nzstd-1.5.5/tests/gzip/gzip-env.sh\nzstd-1.5.5/tests/gzip/helin-segv.sh\nzstd-1.5.5/tests/gzip/help-version.sh\nzstd-1.5.5/tests/gzip/hufts-segv.gz\nzstd-1.5.5/tests/gzip/hufts.sh\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/gzip/keep.sh\nzstd-1.5.5/tests/gzip/list.sh\nzstd-1.5.5/tests/gzip/memcpy-abuse.sh\nzstd-1.5.5/tests/gzip/mixed.sh\nzstd-1.5.5/tests/gzip/null-suffix-clobber.sh\nzstd-1.5.5/tests/gzip/stdin.sh\nzstd-1.5.5/tests/gzip/test-driver.sh\nzstd-1.5.5/tests/gzip/trailing-nul.sh\nzstd-1.5.5/tests/gzip/unpack-invalid.sh\nzstd-1.5.5/tests/gzip/z-suffix.sh\nzstd-1.5.5/tests/gzip/zdiff.sh\nzstd-1.5.5/tests/gzip/zgrep-context.sh\nzstd-1.5.5/tests/gzip/zgrep-f.sh\nzstd-1.5.5/tests/gzip/zgrep-signal.sh\nzstd-1.5.5/tests/gzip/znew-k.sh\nzstd-1.5.5/tests/invalidDictionaries.c\nzstd-1.5.5/tests/legacy.c\nzstd-1.5.5/tests/libzstd_builds.sh\nzstd-1.5.5/tests/longmatch.c\nzstd-1.5.5/tests/paramgrill.c\nzstd-1.5.5/tests/playTests.sh\nzstd-1.5.5/tests/poolTests.c\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/regression/config.c\nzstd-1.5.5/tests/regression/config.h\nzstd-1.5.5/tests/regression/data.c\nzstd-1.5.5/tests/regression/data.h\nzstd-1.5.5/tests/regression/levels.h\nzstd-1.5.5/tests/regression/method.c\nzstd-1.5.5/tests/regression/method.h\nzstd-1.5.5/tests/regression/result.c\nzstd-1.5.5/tests/regression/result.h\nzstd-1.5.5/tests/regression/test.c\nzstd-1.5.5/tests/roundTripCrash.c\nzstd-1.5.5/tests/seqgen.c\nzstd-1.5.5/tests/seqgen.h\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-variants.sh\nzstd-1.5.5/tests/test-zstd-versions.py\nzstd-1.5.5/tests/zstreamtest.c\nzstd-1.5.5/zlibWrapper/examples/example.c\nzstd-1.5.5/zlibWrapper/examples/example_original.c\nzstd-1.5.5/zlibWrapper/examples/fitblk.c\nzstd-1.5.5/zlibWrapper/examples/fitblk_original.c\nzstd-1.5.5/zlibWrapper/examples/minigzip.c\nzstd-1.5.5/zlibWrapper/examples/zwrapbench.c\nzstd-1.5.5/zlibWrapper/gzclose.c\nzstd-1.5.5/zlibWrapper/gzcompatibility.h\nzstd-1.5.5/zlibWrapper/gzguts.h\nzstd-1.5.5/zlibWrapper/gzlib.c\nzstd-1.5.5/zlibWrapper/gzread.c\nzstd-1.5.5/zlibWrapper/gzwrite.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.c\nzstd-1.5.5/zlibWrapper/zstd_zlibwrapper.h\nzstd-1.5.5/.buckconfig\nzstd-1.5.5/.buckversion\nzstd-1.5.5/.circleci/config.yml\nzstd-1.5.5/.circleci/images/primary/Dockerfile\nzstd-1.5.5/.cirrus.yml\nzstd-1.5.5/.gitattributes\nzstd-1.5.5/.github/ISSUE_TEMPLATE/bug_report.md\nzstd-1.5.5/.github/ISSUE_TEMPLATE/feature_request.md\nzstd-1.5.5/.github/dependabot.yml\nzstd-1.5.5/.github/workflows/dev-long-tests.yml\nzstd-1.5.5/.github/workflows/dev-short-tests.yml\nzstd-1.5.5/.github/workflows/publish-release-artifacts.yml\nzstd-1.5.5/.github/workflows/scorecards.yml\nzstd-1.5.5/.github/workflows/windows-artifacts.yml\nzstd-1.5.5/.gitignore\nzstd-1.5.5/.travis.yml\nzstd-1.5.5/CHANGELOG\nzstd-1.5.5/CODE_OF_CONDUCT.md\nzstd-1.5.5/CONTRIBUTING.md\nzstd-1.5.5/COPYING\nzstd-1.5.5/LICENSE\nzstd-1.5.5/Makefile\nzstd-1.5.5/Package.swift\nzstd-1.5.5/README.md\nzstd-1.5.5/TESTING.md\nzstd-1.5.5/appveyor.yml\nzstd-1.5.5/build/.gitignore\nzstd-1.5.5/build/README.md\nzstd-1.5.5/build/VS2008/zstd.sln\nzstd-1.5.5/build/VS2010/zstd.sln\nzstd-1.5.5/build/VS_scripts/README.md\nzstd-1.5.5/build/cmake/.gitignore\nzstd-1.5.5/build/cmake/CMakeLists.txt\nzstd-1.5.5/build/cmake/CMakeModules/AddZstdCompilationFlags.cmake\nzstd-1.5.5/build/cmake/CMakeModules/FindLibLZ4.cmake\nzstd-1.5.5/build/cmake/CMakeModules/GetZstdLibraryVersion.cmake\nzstd-1.5.5/build/cmake/CMakeModules/JoinPaths.cmake\nzstd-1.5.5/build/cmake/README.md\nzstd-1.5.5/build/cmake/contrib/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/gen_html/CMakeLists.txt\nzstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/.gitignore\nzstd-1.5.5/build/cmake/lib/CMakeLists.txt\nzstd-1.5.5/build/cmake/lib/cmake_uninstall.cmake.in\nzstd-1.5.5/build/cmake/programs/.gitignore\nzstd-1.5.5/build/cmake/programs/CMakeLists.txt\nzstd-1.5.5/build/cmake/tests/.gitignore\nzstd-1.5.5/build/cmake/tests/CMakeLists.txt\nzstd-1.5.5/build/cmake/zstdConfig.cmake\nzstd-1.5.5/build/meson/README.md\nzstd-1.5.5/build/meson/contrib/gen_html/meson.build\nzstd-1.5.5/build/meson/contrib/meson.build\nzstd-1.5.5/build/meson/contrib/pzstd/meson.build\nzstd-1.5.5/build/meson/lib/meson.build\nzstd-1.5.5/build/meson/meson.build\nzstd-1.5.5/build/meson/meson_options.txt\nzstd-1.5.5/build/meson/programs/meson.build\nzstd-1.5.5/build/single_file_libs/.gitignore\nzstd-1.5.5/build/single_file_libs/README.md\nzstd-1.5.5/build/single_file_libs/examples/README.md\nzstd-1.5.5/contrib/VS2005/README.md\nzstd-1.5.5/contrib/VS2005/zstd.sln\nzstd-1.5.5/contrib/diagnose_corruption/.gitignore\nzstd-1.5.5/contrib/diagnose_corruption/Makefile\nzstd-1.5.5/contrib/docker/Dockerfile\nzstd-1.5.5/contrib/docker/README.md\nzstd-1.5.5/contrib/externalSequenceProducer/.gitignore\nzstd-1.5.5/contrib/externalSequenceProducer/Makefile\nzstd-1.5.5/contrib/externalSequenceProducer/README.md\nzstd-1.5.5/contrib/gen_html/.gitignore\nzstd-1.5.5/contrib/gen_html/Makefile\nzstd-1.5.5/contrib/gen_html/README.md\nzstd-1.5.5/contrib/largeNbDicts/.gitignore\nzstd-1.5.5/contrib/largeNbDicts/Makefile\nzstd-1.5.5/contrib/largeNbDicts/README.md\nzstd-1.5.5/contrib/linux-kernel/.gitignore\nzstd-1.5.5/contrib/linux-kernel/Makefile\nzstd-1.5.5/contrib/linux-kernel/README.md\nzstd-1.5.5/contrib/linux-kernel/linux.mk\nzstd-1.5.5/contrib/linux-kernel/test/Makefile\nzstd-1.5.5/contrib/match_finders/README.md\nzstd-1.5.5/contrib/premake/premake4.lua\nzstd-1.5.5/contrib/premake/zstd.lua\nzstd-1.5.5/contrib/pzstd/.gitignore\nzstd-1.5.5/contrib/pzstd/BUCK",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -107,6 +107,7 @@
                 "zstd-1.5.5/build/VS_scripts/build.generic.cmd",
                 "zstd-1.5.5/build/meson/GetZstdLibraryVersion.py",
                 "zstd-1.5.5/build/meson/InstallSymlink.py",
+                "zstd-1.5.5/build/meson/tests/meson.build",
                 "zstd-1.5.5/build/meson/tests/valgrindTest.py",
                 "zstd-1.5.5/build/single_file_libs/build_decoder_test.sh",
                 "zstd-1.5.5/build/single_file_libs/build_library_test.sh",
@@ -133,9 +134,12 @@
                 "zstd-1.5.5/contrib/gen_html/gen-zstd-manual.sh",
                 "zstd-1.5.5/contrib/gen_html/gen_html.cpp",
                 "zstd-1.5.5/contrib/largeNbDicts/largeNbDicts.c",
+                "zstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh",
+                "zstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh",
                 "zstd-1.5.5/contrib/linux-kernel/decompress_sources.h",
                 "zstd-1.5.5/contrib/linux-kernel/linux_zstd.h",
                 "zstd-1.5.5/contrib/linux-kernel/mem.h",
+                "zstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/asm/unaligned.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/compiler.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/errno.h",
@@ -148,6 +152,7 @@
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/swab.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/types.h",
                 "zstd-1.5.5/contrib/linux-kernel/test/include/linux/xxhash.h",
+                "zstd-1.5.5/contrib/linux-kernel/test/macro-test.sh",
                 "zstd-1.5.5/contrib/linux-kernel/test/static_test.c",
                 "zstd-1.5.5/contrib/linux-kernel/test/test.c",
                 "zstd-1.5.5/contrib/linux-kernel/zstd_common_module.c",
@@ -321,6 +326,7 @@
                 "zstd-1.5.5/programs/timefn.h",
                 "zstd-1.5.5/programs/util.c",
                 "zstd-1.5.5/programs/util.h",
+                "zstd-1.5.5/programs/windres/verrsrc.h",
                 "zstd-1.5.5/programs/windres/zstd.rc",
                 "zstd-1.5.5/programs/zstdcli.c",
                 "zstd-1.5.5/programs/zstdcli_trace.c",
@@ -348,6 +354,8 @@
                 "zstd-1.5.5/tests/cli-tests/cltools/zstdgrep.sh",
                 "zstd-1.5.5/tests/cli-tests/cltools/zstdless.sh",
                 "zstd-1.5.5/tests/cli-tests/common/format.sh",
+                "zstd-1.5.5/tests/cli-tests/common/mtime.sh",
+                "zstd-1.5.5/tests/cli-tests/common/permissions.sh",
                 "zstd-1.5.5/tests/cli-tests/common/platform.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/adapt.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/basic.sh",
@@ -356,6 +364,7 @@
                 "zstd-1.5.5/tests/cli-tests/compression/golden.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/gzip-compat.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/levels.sh",
+                "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/compression/long-distance-matcher.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/multi-threaded.sh",
                 "zstd-1.5.5/tests/cli-tests/compression/multiple-files.sh",
@@ -369,6 +378,7 @@
                 "zstd-1.5.5/tests/cli-tests/dict-builder/empty-input.sh",
                 "zstd-1.5.5/tests/cli-tests/dict-builder/no-inputs.sh",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh",
+                "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/golden.sh",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/setup",
                 "zstd-1.5.5/tests/cli-tests/dictionaries/setup_once",
@@ -544,7 +554,6 @@
                 "zstd-1.5.5/build/meson/meson.build",
                 "zstd-1.5.5/build/meson/meson_options.txt",
                 "zstd-1.5.5/build/meson/programs/meson.build",
-                "zstd-1.5.5/build/meson/tests/meson.build",
                 "zstd-1.5.5/build/single_file_libs/.gitignore",
                 "zstd-1.5.5/build/single_file_libs/README.md",
                 "zstd-1.5.5/build/single_file_libs/examples/README.md",
@@ -566,22 +575,13 @@
                 "zstd-1.5.5/contrib/linux-kernel/.gitignore",
                 "zstd-1.5.5/contrib/linux-kernel/Makefile",
                 "zstd-1.5.5/contrib/linux-kernel/README.md",
-                "zstd-1.5.5/contrib/linux-kernel/btrfs-benchmark.sh",
-                "zstd-1.5.5/contrib/linux-kernel/btrfs-extract-benchmark.sh",
                 "zstd-1.5.5/contrib/linux-kernel/linux.mk",
-                "zstd-1.5.5/contrib/linux-kernel/squashfs-benchmark.sh",
                 "zstd-1.5.5/contrib/linux-kernel/test/Makefile",
-                "zstd-1.5.5/contrib/linux-kernel/test/macro-test.sh",
                 "zstd-1.5.5/contrib/match_finders/README.md",
                 "zstd-1.5.5/contrib/premake/premake4.lua",
                 "zstd-1.5.5/contrib/premake/zstd.lua",
                 "zstd-1.5.5/contrib/pzstd/.gitignore",
-                "zstd-1.5.5/contrib/pzstd/BUCK",
-                "zstd-1.5.5/contrib/pzstd/Makefile",
-                "zstd-1.5.5/contrib/pzstd/README.md",
-                "zstd-1.5.5/contrib/pzstd/test/BUCK",
-                "zstd-1.5.5/contrib/pzstd/utils/BUCK",
-                "zstd-1.5.5/contrib/pzstd/utils/test/BUCK"
+                "zstd-1.5.5/contrib/pzstd/BUCK"
               ]
             }
           }
@@ -611,7 +611,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-zstd-versions.py",
+        "body": "zstd-1.5.5/programs/windres/zstd32.res\nzstd-1.5.5/build/VS_scripts/build.VS2010.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2012.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2013.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2015.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Community.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Enterprise.cmd\nzstd-1.5.5/build/VS_scripts/build.VS2017Professional.cmd\nzstd-1.5.5/build/VS_scripts/build.generic.cmd\nzstd-1.5.5/build/meson/GetZstdLibraryVersion.py\nzstd-1.5.5/build/meson/InstallSymlink.py\nzstd-1.5.5/build/meson/tests/meson.build\nzstd-1.5.5/build/meson/tests/valgrindTest.py\nzstd-1.5.5/build/single_file_libs/combine.py\nzstd-1.5.5/contrib/freestanding_lib/freestanding.py\nzstd-1.5.5/lib/Makefile\nzstd-1.5.5/lib/dll/example/build_package.bat\nzstd-1.5.5/programs/Makefile\nzstd-1.5.5/tests/DEPRECATED-test-zstd-speed.py\nzstd-1.5.5/tests/automated_benchmarking.py\nzstd-1.5.5/tests/check_size.py\nzstd-1.5.5/tests/cli-tests/README.md\nzstd-1.5.5/tests/cli-tests/run.py\nzstd-1.5.5/tests/fuzz/fuzz.py\nzstd-1.5.5/tests/gzip/init.sh\nzstd-1.5.5/tests/rateLimiter.py\nzstd-1.5.5/tests/test-license.py\nzstd-1.5.5/tests/test-zstd-versions.py",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -637,6 +637,7 @@
                 "zstd-1.5.5/build/VS_scripts/build.generic.cmd",
                 "zstd-1.5.5/build/meson/GetZstdLibraryVersion.py",
                 "zstd-1.5.5/build/meson/InstallSymlink.py",
+                "zstd-1.5.5/build/meson/tests/meson.build",
                 "zstd-1.5.5/build/meson/tests/valgrindTest.py",
                 "zstd-1.5.5/build/single_file_libs/combine.py",
                 "zstd-1.5.5/contrib/freestanding_lib/freestanding.py",
@@ -731,6 +732,10 @@
       {
         "name": "zstd-1.5.5/build/single_file_libs/build_library_test.sh",
         "sha256": "06aa93ecdf97130aa1d43b75350a3e26ac7a5cba1838762232b642a305b8115f"
+      },
+      {
+        "name": "zstd-1.5.5/programs/windres/verrsrc.h",
+        "sha256": "0827c5ac312268cd50a4517831cf28df55a681081b7a9459c27ea72aef26e875"
       },
       {
         "name": "zstd-1.5.5/tests/fuzz/fse_read_ncount.c",
@@ -1011,6 +1016,10 @@
       {
         "name": "zstd-1.5.5/tests/cli-tests/bin/cmp_size",
         "sha256": "268085ccb917a9a8eddb396313af7ce840d56bcbeeaff09deb417d48101e3bf2"
+      },
+      {
+        "name": "zstd-1.5.5/tests/cli-tests/common/permissions.sh",
+        "sha256": "271cf278133329411669842b43b0873c829806eb292ad291da48ba8df0aba273"
       },
       {
         "name": "zstd-1.5.5/build/cmake/contrib/pzstd/CMakeLists.txt",
@@ -1429,10 +1438,6 @@
         "sha256": "5b17879fb741e34891569bfa4a0b69a234826bfd0bd9332bc13f60babcee96f9"
       },
       {
-        "name": "zstd-1.5.5/contrib/pzstd/utils/test/BUCK",
-        "sha256": "5c30c6c41fb7caeb2ec916e3bfc63382e99ba084852934ae8f331708419500cb"
-      },
-      {
         "name": "zstd-1.5.5/examples/simple_compression.c",
         "sha256": "5d1eb4d0493c8737021dfc71ce9c3bca6140535206ec6f3a8553b4283fe8d5b5"
       },
@@ -1497,6 +1502,10 @@
         "sha256": "641c039061f4bd02e6ae68b4954359043af2265e11e1e1965e781ad1ebfcbe5c"
       },
       {
+        "name": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact",
+        "sha256": "64caf09d5b9b432708e1f57ab627af6eea5ef764185a5c630460a72a8b7c9910"
+      },
+      {
         "name": "zstd-1.5.5/tests/check_size.py",
         "sha256": "65242d4479da77e0cfd4bc0029b4fe75eb22df406aaa7908851b3892b5df15d5"
       },
@@ -1543,6 +1552,10 @@
       {
         "name": "zstd-1.5.5/build/cmake/lib/CMakeLists.txt",
         "sha256": "6e0b15394ac2218a78dab57afd50a04c51e919cede7c0a3daf6ee406952a5ba1"
+      },
+      {
+        "name": "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact",
+        "sha256": "6eab87182f9ba97423435b8ca2a2628949a7fc425c609de9f33ab5697f4e9044"
       },
       {
         "name": "zstd-1.5.5/lib/compress/zstd_double_fast.h",
@@ -1761,10 +1774,6 @@
         "sha256": "8777219624109da3b1c1332e2a6dd3f20ed84f64054cbbef144594fae5627e9d"
       },
       {
-        "name": "zstd-1.5.5/contrib/pzstd/Makefile",
-        "sha256": "877cddf940e1f2ad212dbd80fdb19704bf6bbf3fb125fdcc28dfac76c98c39af"
-      },
-      {
         "name": "zstd-1.5.5/.github/dependabot.yml",
         "sha256": "883b95e3be554fbadd92b315e4a8c6ea6ca688b64924e22dd61222b07f683507"
       },
@@ -1795,10 +1804,6 @@
       {
         "name": "zstd-1.5.5/tests/gzip/zgrep-signal.sh",
         "sha256": "901e32c058d8da47c5bdeafaab340c349d3089ed0e4be707aaaf34b8c23d96a8"
-      },
-      {
-        "name": "zstd-1.5.5/contrib/pzstd/test/BUCK",
-        "sha256": "90e6dac8346cb3fbde8c94af36feec3624988eb5ead750008e54568825688a6d"
       },
       {
         "name": "zstd-1.5.5/Makefile",
@@ -1843,6 +1848,10 @@
       {
         "name": "zstd-1.5.5/lib/compress/zstd_fast.c",
         "sha256": "95b0d5c110dff0d94a750615d9bcc3cd4a2b54b95e0064343d97a314ef991034"
+      },
+      {
+        "name": "zstd-1.5.5/tests/cli-tests/common/mtime.sh",
+        "sha256": "965c9dce94c55a57cf7de028f5d19fb0de0c1ba6118cb1f4dbd43d7c57e62dcf"
       },
       {
         "name": "zstd-1.5.5/contrib/seekable_format/examples/parallel_compression.c",
@@ -2143,10 +2152,6 @@
       {
         "name": "zstd-1.5.5/lib/common/mem.h",
         "sha256": "bb9caee6a6de5b58d0fac7492d6df06c881b6d87b580c03224df5e29a795ef7a"
-      },
-      {
-        "name": "zstd-1.5.5/contrib/pzstd/utils/BUCK",
-        "sha256": "bba6eab567073501cbd8c7d4a10cc9739bb6e29c40ff77bfe9777ee912c966ea"
       },
       {
         "name": "zstd-1.5.5/build/single_file_libs/zstddeclib-in.c",
@@ -2627,10 +2632,6 @@
       {
         "name": "zstd-1.5.5/lib/deprecated/zbuff.h",
         "sha256": "fcd83d7f05dc7bc6e52da6200878e05d7dc4906cf2ccfa70ce4c753e1fdc2422"
-      },
-      {
-        "name": "zstd-1.5.5/contrib/pzstd/README.md",
-        "sha256": "fdae0aae9a6b30289ed54ce8da34e2b145458b53d10908b51998375f861bcb39"
       },
       {
         "name": "zstd-1.5.5/programs/datagen.c",
@@ -3164,6 +3165,11 @@
           "value": "zstd-1.5.5/build/meson/tests/meson.build"
         },
         {
+          "heur_id": null,
+          "signatures": [],
+          "value": "zstd-1.5.5/build/meson/tests/meson.build"
+        },
+        {
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/build/meson/tests/valgrindTest.py"
@@ -3596,11 +3602,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/Makefile"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/Options.cpp"
         },
         {
@@ -3621,11 +3622,6 @@
         {
           "heur_id": 1,
           "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/README.md"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/SkippableFrame.cpp"
         },
         {
@@ -3637,11 +3633,6 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/main.cpp"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/test/BUCK"
         },
         {
           "heur_id": 1,
@@ -3662,11 +3653,6 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/test/RoundTripTest.cpp"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/utils/BUCK"
         },
         {
           "heur_id": 1,
@@ -3712,11 +3698,6 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/contrib/pzstd/utils/WorkQueue.h"
-        },
-        {
-          "heur_id": 1,
-          "signatures": [],
-          "value": "zstd-1.5.5/contrib/pzstd/utils/test/BUCK"
         },
         {
           "heur_id": 1,
@@ -4451,6 +4432,11 @@
         {
           "heur_id": 1,
           "signatures": [],
+          "value": "zstd-1.5.5/programs/windres/verrsrc.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
           "value": "zstd-1.5.5/programs/windres/zstd.rc"
         },
         {
@@ -4616,6 +4602,16 @@
         {
           "heur_id": 1,
           "signatures": [],
+          "value": "zstd-1.5.5/tests/cli-tests/common/mtime.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/cli-tests/common/permissions.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/common/platform.sh"
         },
         {
@@ -4652,6 +4648,11 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/compression/levels.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/cli-tests/compression/levels.sh.stderr.exact"
         },
         {
           "heur_id": 1,
@@ -4717,6 +4718,11 @@
           "heur_id": 1,
           "signatures": [],
           "value": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "zstd-1.5.5/tests/cli-tests/dictionaries/dictionary-mismatch.sh.stderr.exact"
         },
         {
           "heur_id": 1,

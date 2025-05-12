@@ -64,6 +64,30 @@
         },
         "title_text": "Successfully extracted 1 file",
         "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Password.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Archived Single HTML File"
+            ],
+            "name": {
+              "extracted": [
+                "Password.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Archive file with single html file inside.",
+        "zeroize_on_tag_safe": false
       }
     ]
   },
@@ -100,6 +124,11 @@
           "heur_id": 12,
           "signatures": [],
           "value": "Archive Unknown Password"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Archived Single HTML File"
         }
       ],
       "file.name.extracted": [
@@ -120,6 +149,11 @@
         },
         {
           "heur_id": 10,
+          "signatures": [],
+          "value": "Password.txt"
+        },
+        {
+          "heur_id": null,
           "signatures": [],
           "value": "Password.txt"
         },
