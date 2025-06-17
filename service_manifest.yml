@@ -70,6 +70,10 @@ submission_params:
     name: score_failed_password
     type: bool
     value: false
+  - default: false
+    name: heur_13_16_supression
+    type: bool
+    value: false
 
 heuristics:
   - heur_id: 1

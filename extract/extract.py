@@ -1043,7 +1043,7 @@ class Extract(ServiceBase):
             return extracted
 
         if extractor is not None and extractor.files:
-            section = ResultKeyValueSection("InnoSetup executable extracted", parent=request.result)
+            section = ResultKeyValueSection("Setup Factory executable extracted", parent=request.result)
             section.set_item("Version", ".".join([str(x) for x in extractor.version]))
             for f in extractor.files:
                 if f.name == sfextract.SCRIPT_FILE_NAME:
@@ -2277,7 +2277,8 @@ class Extract(ServiceBase):
                 new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
                 new_section.add_line(request.extracted[0]["name"])
                 new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
-                new_section.set_heuristic(13)
+                if not request.get_param("heur_13_16_supression"):
+                    new_section.set_heuristic(13)
                 new_section.add_tag("file.behavior", "Archived Single Executable")
                 request.result.add_section(new_section)
             elif (
@@ -2300,7 +2301,9 @@ class Extract(ServiceBase):
                 for extracted in launchable_extracted:
                     new_section.add_line(extracted["name"])
                     new_section.add_tag("file.name.extracted", extracted["name"])
-                if len(request.extracted) <= self.config.get("heur16_max_file_count", 5):
+                if len(request.extracted) <= self.config.get("heur16_max_file_count", 5) and not request.get_param(
+                    "heur_13_16_supression"
+                ):
                     new_section.set_heuristic(16)
 
                 if request.file_type.startswith("document/office/"):
