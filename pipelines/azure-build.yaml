@@ -33,4 +33,5 @@ extends:
     samples_repo: unittest-samples
     labels:
       classification: "UNCLASSIFIED"
+    timeout: "20"
     

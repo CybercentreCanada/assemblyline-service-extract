@@ -29,4 +29,5 @@ extends:
   parameters:
     samples_repo: unittest-samples
     test_container: "true"
+    timeout: "20"
     

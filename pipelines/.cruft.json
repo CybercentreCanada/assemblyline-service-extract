@@ -9,7 +9,7 @@
       "is_public": true,
       "test_in_container": true,
       "test_versions": "default",
-      "timeout": "default",
+      "timeout": "20",
       "__setupscript": "setup.bash",
       "_extensions": [
         "local_extensions.extract_versions"
