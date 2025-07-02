@@ -27,7 +27,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -38,7 +38,7 @@
           "file": {
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7"
               ]
             }
           }
@@ -48,7 +48,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
+        "body": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -69,7 +69,7 @@
             ],
             "name": {
               "extracted": [
-                "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+                "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7"
               ]
             }
           }
@@ -82,8 +82,8 @@
   "files": {
     "extracted": [
       {
-        "name": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8",
-        "sha256": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+        "name": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7",
+        "sha256": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7"
       }
     ],
     "supplementary": []
@@ -115,12 +115,12 @@
         {
           "heur_id": null,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7"
         },
         {
           "heur_id": 13,
           "signatures": [],
-          "value": "738e26cb89ce5b2bc473f1774f40213d6e19aba475ec4e1e52af052492bb31f8"
+          "value": "4bfb69d7078de82f56e8ae5c22c4b34767f95f1e6421d97d872338eb882954a7"
         }
       ]
     },
