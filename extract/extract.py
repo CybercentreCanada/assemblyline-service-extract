@@ -1399,13 +1399,13 @@ class Extract(ServiceBase):
         try:
             text = text.decode()
         except UnicodeDecodeError:
-            text = text.decode("ISO-8859-1")
+            text = text.decode("utf-16")
 
         try:
             # Ensure file format is correct via regex
             evbe_present = re.search(EVBE_REGEX, text)
             evbe_res = self.decode_vbe(evbe_present.groups()[0])
-            if evbe_res and evbe_present != text:
+            if evbe_res:
                 path = os.path.join(self.working_directory, "extracted_vbe")
                 with open(path, "w") as f:
                     f.write(evbe_res)
