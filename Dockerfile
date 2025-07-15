@@ -55,7 +55,7 @@ COPY --chown=assemblyline:assemblyline --from=build /tmp/pycdc.patched /usr/bin/
 COPY --chown=assemblyline:assemblyline --from=build /tmp/pycdas /usr/bin/pycdas
 
 # Install 7z
-ADD https://www.7-zip.org/a/7z2408-linux-x64.tar.xz /7z-linux.tar.xz
+ADD https://www.7-zip.org/a/7z2500-linux-x64.tar.xz /7z-linux.tar.xz
 RUN mkdir /opt/7z && \
     tar -xf /7z-linux.tar.xz -C /opt/7z && \
     ln -s /opt/7z/7zzs /usr/bin/7zzs && \
