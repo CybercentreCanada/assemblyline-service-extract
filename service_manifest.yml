@@ -3,7 +3,7 @@ version: $SERVICE_TAG
 description: This service extracts embedded files from file containers (like ZIP, RAR, 7z, ...).
 
 # Regex defining the types of files the service accepts and rejects
-accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|gpg/symmetric|resource/pyc
+accepts: (archive|executable|java)/.*|code/vbe|code/html|code/hta|code/wsf|code/a3x|document/installer/windows|document/pdf.*|document/office/onenote|document/office/passwordprotected|document/epub|document/mobi|android/apk|ios/ipa|(gpg|pgp)/symmetric|resource/pyc
 rejects: empty|metadata/.*|archive/asar
 
 # At which stage the service should run (one of FILTER, EXTRACT, CORE, SECONDARY, POST, REVIEW)

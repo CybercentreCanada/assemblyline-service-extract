@@ -1,0 +1,63 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "gnupgp content",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "gnupgp content"
+              ]
+            }
+          },
+          "info": {
+            "password": [
+              "I\u2019ll"
+            ]
+          }
+        },
+        "title_text": "Successfully extracted 1 file using password: I\u2019ll",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "gnupgp content",
+        "sha256": "f04fc9683bce68f042a28c7e71751aff1dfcdebd501be75786e7199bab9769d4"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "gnupgp content"
+        }
+      ],
+      "info.password": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "I\u2019ll"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

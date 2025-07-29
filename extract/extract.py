@@ -314,7 +314,7 @@ class Extract(ServiceBase):
         elif request.file_type == "archive/zpaq":
             extracted, password_protected = self.extract_zpaq(request)
             summary_section_heuristic = 1
-        elif request.file_type == "gpg/symmetric":
+        elif request.file_type == "gpg/symmetric" or request.file_type == "pgp/symmetric":
             extracted, password_protected = self.extract_gpg_symmetric(request)
         elif request.file_type == "ios/ipa":
             extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
