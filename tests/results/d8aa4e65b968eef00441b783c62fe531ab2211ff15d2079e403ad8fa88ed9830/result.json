@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": ".data\nmain.pyc\ntmpcs4mb6pl",
+        "body": ".data\nUnknownFilename\nmain.pyc",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -24,8 +24,8 @@
             "name": {
               "extracted": [
                 ".data",
-                "main.pyc",
-                "tmpcs4mb6pl"
+                "UnknownFilename",
+                "main.pyc"
               ]
             }
           }
@@ -38,7 +38,7 @@
   "files": {
     "extracted": [
       {
-        "name": "tmpcs4mb6pl",
+        "name": "UnknownFilename",
         "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
       },
       {
@@ -70,12 +70,12 @@
         {
           "heur_id": 2,
           "signatures": [],
-          "value": "main.pyc"
+          "value": "UnknownFilename"
         },
         {
           "heur_id": 2,
           "signatures": [],
-          "value": "tmpcs4mb6pl"
+          "value": "main.pyc"
         }
       ]
     },

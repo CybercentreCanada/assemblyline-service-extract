@@ -2675,7 +2675,7 @@ class Extract(ServiceBase):
         try:
             py_file, embedded_filename = py_uncompyle6.decompile_pyc(filepath, self.working_directory)
             if py_file:
-                fname = embedded_filename or os.path.basename(py_file)
+                fname = embedded_filename or "UnknownFilename"
                 extracted.append([py_file, fname, "extract_pyc_uncompyle6"])
         except py_uncompyle6.Invalid:
             pass
