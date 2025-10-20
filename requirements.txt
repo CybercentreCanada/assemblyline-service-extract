@@ -16,6 +16,6 @@ python-gnupg
 mobi
 uncompyle6==3.9.1
 xdis
-lief
+lief<0.17.0
 binary-refinery==0.8.14
 sfextract
