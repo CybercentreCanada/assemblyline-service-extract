@@ -647,7 +647,7 @@
       },
       {
         "name": "dllInjection.py",
-        "sha256": "5b1ae4bfd94b5fb5409c1cdbd0a99e66cddff130024bbcc0d29f88a09b31ff13"
+        "sha256": "5bf4669ac8bdf2b6d58c8cb37dbee7f840177be651320967aa6054ac2d862802"
       },
       {
         "name": "encodings/utf_8_sig.pyc",

@@ -1,47 +1,3 @@
-# Monkeypatch uncompyle6's print_doctstring function.
-# Unfortunately we can't get in early enough due to way __init__ is structured, so each use case must be patched.
-import uncompyle6
-from uncompyle6.semantics import customize38
-from uncompyle6.semantics.consts import TABLE_DIRECT
-
-orig_customize_for_version38 = customize38.customize_for_version38
-
-
-# TODO: Remove this when using a version of uncompyle6 newer than 3.9.1
-# Fixed in https://github.com/rocky/python-uncompyle6/issues/498
-def patched_customize_for_version38(self, version):
-    orig_customize_for_version38(self, version)
-    TABLE_DIRECT["whilestmt38"] = (
-        "%|while %c:\n%+%c%-\n\n",
-        (1, ("bool_op", "testexpr", "testexprc")),
-        (2, ("l_stmts", "l_stmts_opt", "pass", "_stmts")),
-    )
-
-
-customize38.customize_for_version38 = patched_customize_for_version38
-
-
-orig_print_docstring = uncompyle6.pysource.print_docstring
-
-
-def patched_print_docstring(self, indent, docstring):
-    """Function to monkey patch the handling of binary docstrings."""
-    if isinstance(docstring, bytes):
-        docstring = docstring.decode("utf8", errors="backslashreplace")
-    return orig_print_docstring(self, indent, docstring)
-
-
-uncompyle6.pysource.print_docstring = patched_print_docstring
-from uncompyle6.semantics import helper
-
-helper.print_docstring = patched_print_docstring
-from uncompyle6.semantics import make_function1, make_function2, make_function3
-
-make_function1.print_docstring = patched_print_docstring
-make_function2.print_docstring = patched_print_docstring
-make_function3.print_docstring = patched_print_docstring
-# end monkeypatch
-
 import os
 import re
 import sys
@@ -49,25 +5,33 @@ import tempfile
 import traceback
 from io import StringIO
 
+import uncompyle6.main
 import xdis.magics
 
 
 class Invalid(Exception):
-    """Not a valid pyc file"""
+    """Not a valid pyc file."""
 
 
 class XDisError(Exception):
-    """The XDis library raised an error"""
+    """The XDis library raised an error."""
 
 
-def decompile_pyc(filepath: str, output_directory) -> str:
+def decompile_pyc(filepath: str, output_directory: str) -> str:
     """Decompile the given pyc file.
 
     Args:
-        filepath: path to pyc file
+        filepath: path to pyc file.
+        output_directory: destination of extracted content.
 
     Returns:
         The filepath to the decompiled script.
+
+    Raises:
+        IndexError:
+        NameError:
+        Invalid:
+        XDisError:
     """
     script = None
     embedded_filename = None

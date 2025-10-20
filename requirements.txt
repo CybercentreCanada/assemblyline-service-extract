@@ -14,7 +14,7 @@ zstandard
 autoit-ripper
 python-gnupg
 mobi
-uncompyle6==3.9.1
+uncompyle6==3.9.3
 xdis
 lief<0.17.0
 binary-refinery==0.8.14

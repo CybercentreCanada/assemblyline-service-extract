@@ -5,20 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "Error using normal pycdc:\nError loading file /TMP_DIR/INPUT.pyc: std::bad_cast\n",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Fallback to patched pycdc",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": ".data\nmain.pyc",
+        "body": ".data\nmain.pyc\ntmpcs4mb6pl",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -37,31 +24,23 @@
             "name": {
               "extracted": [
                 ".data",
-                "main.pyc"
+                "main.pyc",
+                "tmpcs4mb6pl"
               ]
             }
           }
         },
-        "title_text": "Successfully extracted 2 files",
-        "zeroize_on_tag_safe": false
-      },
-      {
-        "auto_collapse": false,
-        "body": "UnknownFilename.py",
-        "body_config": {},
-        "body_format": "TEXT",
-        "classification": "TLP:C",
-        "depth": 0,
-        "heuristic": null,
-        "promote_to": null,
-        "tags": {},
-        "title_text": "Successfully extracted 1 file that was safelisted.",
+        "title_text": "Successfully extracted 3 files",
         "zeroize_on_tag_safe": false
       }
     ]
   },
   "files": {
     "extracted": [
+      {
+        "name": "tmpcs4mb6pl",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
       {
         "name": ".data",
         "sha256": "7d1fdc57f76a81a2f11ba0ccbb2819a47561139d1d778c1e401801dc6cedf240"
@@ -92,6 +71,11 @@
           "heur_id": 2,
           "signatures": [],
           "value": "main.pyc"
+        },
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "tmpcs4mb6pl"
         }
       ]
     },
