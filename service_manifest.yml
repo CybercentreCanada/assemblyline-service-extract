@@ -197,7 +197,7 @@ heuristics:
     score: 0
     signature_score_map:
       local: 0
-      web: 25
+      web: 500
     filetype: "code/wsf"
     description: A WSF script with multiple languages was found. Static analysis is going to be hard to apply on that sample.
 
