@@ -17,7 +17,6 @@ from xdis.unmarshal import load_code
 
 from .pyinstaller import generate_pyc_header
 
-
 PYTHON_DLL_RE = re.compile(b"python([0-9]{2,3})\.dll", re.IGNORECASE)
 SCRIPT_MAGIC = b"\x12\x34\x56\x78"
 
@@ -54,7 +53,6 @@ def get_pyver_from_archive(binary: lief.PE.Binary) -> tuple[int, int]:
     Returns:
         python version tuple
     """
-
     overlay = binary.overlay.tobytes()
     if not overlay or overlay[:4] != b"PK\x03\x04":
         return None
@@ -87,8 +85,11 @@ def extract_script(content: bytes) -> tuple[bytes, tuple[int, int]]:
 
     Returns:
         (extract PYTHONSCRIPT resource, detected python version)
-    """
 
+    Raises:
+        Invalid: If it is not a valid Py2EXE file.
+        NoVersion: If we cannot determine the compiled python version.
+    """
     binary = lief.parse(raw=content)
     if not binary or not isinstance(binary, lief.PE.Binary) or not binary.has_resources:
         raise Invalid
@@ -142,6 +143,10 @@ def extract_code_objects(script: bytes, py_version: tuple[int, int], outdir: Pat
 
     Returns:
         extracted file path to python script name mapping
+
+    Raises:
+        Invalid: If it is not a valid Py2EXE file.
+        NoVersion: If we cannot determine the compiled python version.
     """
     (
         magic,
@@ -201,10 +206,10 @@ def extract(content: bytes, outdir: Path = Path(tempfile.gettempdir())) -> dict[
 
     Args:
         content: data bytes buffer of py2exe file.
+        outdir: location to extract files to
 
     Returns:
         mapping of extracted filepath to embedded script name.
     """
-
     script, py_version = extract_script(content)
     return extract_code_objects(script, py_version, outdir)

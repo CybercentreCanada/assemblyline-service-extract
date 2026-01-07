@@ -1,10 +1,8 @@
 """Logic around identifcation and extraction of PyInstaller generated files.
 
-
 * Package, Cookie and TOC structures are taken directly from PyInstaller source.
 * Package, Cookie and TOC parsing based from PyInstaller reader:
   https://github.com/pyinstaller/pyinstaller/blob/develop/PyInstaller/archive/readers.py
-
 """
 
 import struct
@@ -15,8 +13,8 @@ from assemblyline.common.str_utils import safe_str
 
 PYZ_MAGIC: bytes = b"PYZ\x00"
 ZLIB_HEADERS: list[bytes] = [
-    b"\x78\xDA",
-    b"\x78\x9C",
+    b"\x78\xda",
+    b"\x78\x9c",
 ]
 
 COOKIE_MAGIC: bytes = b"MEI\014\013\012\013\016"
@@ -54,6 +52,9 @@ def find_carchive(contents: bytes) -> tuple[bytes, bytes]:
 
     Returns:
         (package content, cookie)
+
+    Raises:
+        Invalid: If it is not a valid PyInstaller file.
     """
     # magic is the start of TOC
     cookie_loc = contents.rfind(COOKIE_MAGIC)
@@ -105,26 +106,29 @@ def find_scripts(package: bytes, toc: dict) -> list[tuple[str, bytes]]:
 
 
 def parse_cookie(cookie: bytes) -> dict[str, bytes]:
-    """Parse the cookie structure returning a dict of field values.
+    r"""Parse the cookie structure returning a dict of field values.
 
     Current cookie struct:
         format: '!8sIIii64s'
 
         typedef struct _cookie {
-           char magic[8]; /* 'MEI\014\013\012\013\016' */
-           uint32_t len;  /* len of entire package */
-           uint32_t TOC;  /* pos (rel to start) of TableOfContents */
-           int  TOClen;   /* length of TableOfContents */
-           int  pyvers;   /* new in v4 */
-           char pylibname[64];    /* Filename of Python dynamic library. */
-        } COOKIE;
+            char magic[8];      // 'MEI\014\013\012\013\016'
+            uint32_t len;       // len of entire package
+            uint32_t TOC;       // pos (rel to start) of TableOfContents
+            int  TOClen;        // length of TableOfContents
+            int  pyvers;        // new in v4
+            char pylibname[64]; // Filename of Python dynamic library.
 
+        } COOKIE;
 
     Args:
         cookie: Cookie struct
 
     Returns:
         dict of parsed cookie
+
+    Raises:
+        Invalid: If it is not a valid PyInstaller file.
     """
     clen = len(cookie)
     for fmt, keys in COOKIE_FORMATS.items():
@@ -231,6 +235,9 @@ def extract_pyc(contents: bytes) -> list[tuple[str, bytes]]:
 
     Returns:
         extracted contents
+
+    Raises:
+        Invalid: If it is not a valid PyInstaller file.
     """
     package, cookie = find_carchive(contents)
 

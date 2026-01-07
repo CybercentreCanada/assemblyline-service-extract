@@ -113,7 +113,13 @@ class RepairZip(ZipFile):
 
     # noinspection PyMissingConstructor,PyPep8Naming
     def __init__(self, filename, mode="r", compression=ZIP_STORED, allowZip64=False, compresslevel=None, strict=True):
-        """Open the ZIP file with mode read "r", write "w" or append "a"."""
+        """Open the ZIP file with mode read "r", write "w" or append "a".
+
+        Raises:
+            RuntimeError: If the open mode is invalid or unsupported compression.
+            IOError: If the filename cannot be opened
+            ValueError: Never going to happen...
+        """
         # Mostly from zipfile.py
         if mode not in ("r", "w", "a"):
             raise RuntimeError('ZipFile() requires mode "r", "w", or "a"')

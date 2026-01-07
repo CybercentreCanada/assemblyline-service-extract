@@ -717,8 +717,7 @@ class Extract(ServiceBase):
         return file_path
 
     def get_passwords(self, request: ServiceRequest):
-        """
-        Create list of possible password strings to be used against AL sample if encryption is detected.
+        """Create list of possible password strings to be used against AL sample if encryption is detected.
 
         Uses service configuration variable 'DEFAULT_PW_LIST';
         submission parameter 'password' (if supplied);
@@ -731,7 +730,6 @@ class Extract(ServiceBase):
         Returns:
             List of strings.
         """
-
         user_supplied = request.get_param("password")
         if user_supplied:
             passwords = [user_supplied]
@@ -760,7 +758,7 @@ class Extract(ServiceBase):
         """Attempts to use modules in repair_zip.py when a possible corruption of ZIP archive has been detected.
 
         Args:
-            request AL request object.
+            request: AL request object.
 
         Returns:
             List containing repaired zip path, and display name "repaired_zip_file.zip", or a blank list if
@@ -819,7 +817,6 @@ class Extract(ServiceBase):
             List containing decoded file path and display name "[orig FH name]", or a blank list if decryption failed
             Boolean if encryption successful (indicating encryption detected).
         """
-
         try:
             file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
         except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError, msoffcrypto.exceptions.DecryptionError):
@@ -875,8 +872,18 @@ class Extract(ServiceBase):
         self.password_used.append(password)
         return [[name, request.file_name, sys._getframe().f_code.co_name]], True
 
-    def extract_innosetup(self, request: ServiceRequest):
-        """Will attempt to use innoextract."""
+    def extract_innosetup(self, request: ServiceRequest) -> tuple[list, bool]:
+        """Will attempt to use innoextract.
+
+        Args:
+            request: AL request object.
+
+        Returns:
+            A tuple with the following type: (list, bool)
+            The list contains decoded file information, including: decoded file path, encoding,
+            and display name or a blank list if decoding failed.
+            The boolean represent if the content was password protected.
+        """
         extracted = []
         password_protected = False
         password = None
@@ -1060,7 +1067,12 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_autoit_executable(self, request: ServiceRequest):
-        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable."""
+        """Will attempt to use autoit-ripper to extract a decompiled AutoIt script from an executable.
+
+        Returns:
+            List containing extracted file information, including: decoded file path, encoding,
+            and display name, or a blank list if extraction failed.
+        """
         extracted = []
 
         try:
@@ -1077,7 +1089,12 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_a3x(self, request: ServiceRequest):
-        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script."""
+        """Will attempt to use UnAutoIt.bin to extract a decompiled AutoIt script from a compiled AutoIt script.
+
+        Returns:
+            List containing extracted file information, including: decoded file path, encoding,
+            and display name, or a blank list if extraction failed.
+        """
         extracted = []
 
         unautoit_bin_path = os.path.join(os.getcwd(), "extract", "UnAutoIt.bin")
@@ -1093,18 +1110,21 @@ class Extract(ServiceBase):
         return extracted
 
     def _submit_extracted(self, request: ServiceRequest, file_type: str, folder_path: str, caller: str):
-        """Go over a folder, sanitize file/folder names and return a list of filtered files
+        """Go over a folder, sanitize file/folder names and return a list of filtered files.
 
         Args:
-            request AL request object.
+            request: AL request object.
+            file_type: The file type of the file that was extracted into folder_path.
             folder_path: Folder to look into.
             caller: the function calling this
 
         Returns:
             List containing extracted file information, including: extracted path and display name
             or a blank list if extraction failed.
-        """
 
+        Raises:
+            FileExistsError: A duplicate filename was discovered following sanitization of different files.
+        """
         if not any(os.path.getsize(os.path.join(folder_path, file)) for file in os.listdir(folder_path)):
             # No non-empty file found
             return []
@@ -1202,7 +1222,6 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path, encoding, and display name,
             or a blank list if extraction failed
         """
-
         try:
             with tempfile.TemporaryDirectory() as temp_dir:
                 with tempfile.NamedTemporaryFile(suffix=".ace", dir=temp_dir) as tf:
@@ -1246,7 +1265,6 @@ class Extract(ServiceBase):
             or a blank list if extraction failed or no embedded files are detected; and False as no passwords will
             ever be detected.
         """
-
         pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
         for password in self.get_passwords(request):
             try:
@@ -1269,7 +1287,7 @@ class Extract(ServiceBase):
 
         return [], False
 
-    def extract_pdf(self, request: ServiceRequest):
+    def extract_pdf(self, request: ServiceRequest) -> tuple[list, bool]:
         """Will attempt to use pikepdf to extract embedded files from a PDF sample.
 
         Args:
@@ -1308,7 +1326,9 @@ class Extract(ServiceBase):
         return extracted_children
 
     def decode_vbe(self, data):
-        """Will attempt to decode VBE script. Modified code that was written by Didier Stevens, found here:
+        """Will attempt to decode VBE script.
+
+        Modified code that was written by Didier Stevens, found here:
         https://blog.didierstevens.com/2016/03/29/decoding-vbe/
 
         Args:
@@ -1320,36 +1340,36 @@ class Extract(ServiceBase):
         try:
             # fmt: off
             d_decode = {
-                9: "\x57\x6E\x7B", 10: "\x4A\x4C\x41", 11: "\x0B\x0B\x0B", 12: "\x0C\x0C\x0C",
-                13: "\x4A\x4C\x41", 14: "\x0E\x0E\x0E", 15: "\x0F\x0F\x0F", 16: "\x10\x10\x10",
+                9: "\x57\x6e\x7b", 10: "\x4a\x4c\x41", 11: "\x0b\x0b\x0b", 12: "\x0c\x0c\x0c",
+                13: "\x4a\x4c\x41", 14: "\x0e\x0e\x0e", 15: "\x0f\x0f\x0f", 16: "\x10\x10\x10",
                 17: "\x11\x11\x11", 18: "\x12\x12\x12", 19: "\x13\x13\x13", 20: "\x14\x14\x14",
                 21: "\x15\x15\x15", 22: "\x16\x16\x16", 23: "\x17\x17\x17", 24: "\x18\x18\x18",
-                25: "\x19\x19\x19", 26: "\x1A\x1A\x1A", 27: "\x1B\x1B\x1B", 28: "\x1C\x1C\x1C",
-                29: "\x1D\x1D\x1D", 30: "\x1E\x1E\x1E", 31: "\x1F\x1F\x1F", 32: "\x2E\x2D\x32",
-                33: "\x47\x75\x30", 34: "\x7A\x52\x21", 35: "\x56\x60\x29", 36: "\x42\x71\x5B",
-                37: "\x6A\x5E\x38", 38: "\x2F\x49\x33", 39: "\x26\x5C\x3D", 40: "\x49\x62\x58",
-                41: "\x41\x7D\x3A", 42: "\x34\x29\x35", 43: "\x32\x36\x65", 44: "\x5B\x20\x39",
-                45: "\x76\x7C\x5C", 46: "\x72\x7A\x56", 47: "\x43\x7F\x73", 48: "\x38\x6B\x66",
-                49: "\x39\x63\x4E", 50: "\x70\x33\x45", 51: "\x45\x2B\x6B", 52: "\x68\x68\x62",
-                53: "\x71\x51\x59", 54: "\x4F\x66\x78", 55: "\x09\x76\x5E", 56: "\x62\x31\x7D",
-                57: "\x44\x64\x4A", 58: "\x23\x54\x6D", 59: "\x75\x43\x71", 60: "\x4A\x4C\x41",
-                61: "\x7E\x3A\x60", 62: "\x4A\x4C\x41", 63: "\x5E\x7E\x53", 64: "\x40\x4C\x40",
-                65: "\x77\x45\x42", 66: "\x4A\x2C\x27", 67: "\x61\x2A\x48", 68: "\x5D\x74\x72",
-                69: "\x22\x27\x75", 70: "\x4B\x37\x31", 71: "\x6F\x44\x37", 72: "\x4E\x79\x4D",
-                73: "\x3B\x59\x52", 74: "\x4C\x2F\x22", 75: "\x50\x6F\x54", 76: "\x67\x26\x6A",
-                77: "\x2A\x72\x47", 78: "\x7D\x6A\x64", 79: "\x74\x39\x2D", 80: "\x54\x7B\x20",
-                81: "\x2B\x3F\x7F", 82: "\x2D\x38\x2E", 83: "\x2C\x77\x4C", 84: "\x30\x67\x5D",
-                85: "\x6E\x53\x7E", 86: "\x6B\x47\x6C", 87: "\x66\x34\x6F", 88: "\x35\x78\x79",
-                89: "\x25\x5D\x74", 90: "\x21\x30\x43", 91: "\x64\x23\x26", 92: "\x4D\x5A\x76",
-                93: "\x52\x5B\x25", 94: "\x63\x6C\x24", 95: "\x3F\x48\x2B", 96: "\x7B\x55\x28",
-                97: "\x78\x70\x23", 98: "\x29\x69\x41", 99: "\x28\x2E\x34", 100: "\x73\x4C\x09",
-                101: "\x59\x21\x2A", 102: "\x33\x24\x44", 103: "\x7F\x4E\x3F", 104: "\x6D\x50\x77",
-                105: "\x55\x09\x3B", 106: "\x53\x56\x55", 107: "\x7C\x73\x69", 108: "\x3A\x35\x61",
-                109: "\x5F\x61\x63", 110: "\x65\x4B\x50", 111: "\x46\x58\x67", 112: "\x58\x3B\x51",
-                113: "\x31\x57\x49", 114: "\x69\x22\x4F", 115: "\x6C\x6D\x46", 116: "\x5A\x4D\x68",
-                117: "\x48\x25\x7C", 118: "\x27\x28\x36", 119: "\x5C\x46\x70", 120: "\x3D\x4A\x6E",
-                121: "\x24\x32\x7A", 122: "\x79\x41\x2F", 123: "\x37\x3D\x5F", 124: "\x60\x5F\x4B",
-                125: "\x51\x4F\x5A", 126: "\x20\x42\x2C", 127: "\x36\x65\x57",
+                25: "\x19\x19\x19", 26: "\x1a\x1a\x1a", 27: "\x1b\x1b\x1b", 28: "\x1c\x1c\x1c",
+                29: "\x1d\x1d\x1d", 30: "\x1e\x1e\x1e", 31: "\x1f\x1f\x1f", 32: "\x2e\x2d\x32",
+                33: "\x47\x75\x30", 34: "\x7a\x52\x21", 35: "\x56\x60\x29", 36: "\x42\x71\x5b",
+                37: "\x6a\x5e\x38", 38: "\x2f\x49\x33", 39: "\x26\x5c\x3d", 40: "\x49\x62\x58",
+                41: "\x41\x7d\x3a", 42: "\x34\x29\x35", 43: "\x32\x36\x65", 44: "\x5b\x20\x39",
+                45: "\x76\x7c\x5c", 46: "\x72\x7a\x56", 47: "\x43\x7f\x73", 48: "\x38\x6b\x66",
+                49: "\x39\x63\x4e", 50: "\x70\x33\x45", 51: "\x45\x2b\x6b", 52: "\x68\x68\x62",
+                53: "\x71\x51\x59", 54: "\x4f\x66\x78", 55: "\x09\x76\x5e", 56: "\x62\x31\x7d",
+                57: "\x44\x64\x4a", 58: "\x23\x54\x6d", 59: "\x75\x43\x71", 60: "\x4a\x4c\x41",
+                61: "\x7e\x3a\x60", 62: "\x4a\x4c\x41", 63: "\x5e\x7e\x53", 64: "\x40\x4c\x40",
+                65: "\x77\x45\x42", 66: "\x4a\x2c\x27", 67: "\x61\x2a\x48", 68: "\x5d\x74\x72",
+                69: "\x22\x27\x75", 70: "\x4b\x37\x31", 71: "\x6f\x44\x37", 72: "\x4e\x79\x4d",
+                73: "\x3b\x59\x52", 74: "\x4c\x2f\x22", 75: "\x50\x6f\x54", 76: "\x67\x26\x6a",
+                77: "\x2a\x72\x47", 78: "\x7d\x6a\x64", 79: "\x74\x39\x2d", 80: "\x54\x7b\x20",
+                81: "\x2b\x3f\x7f", 82: "\x2d\x38\x2e", 83: "\x2c\x77\x4c", 84: "\x30\x67\x5d",
+                85: "\x6e\x53\x7e", 86: "\x6b\x47\x6c", 87: "\x66\x34\x6f", 88: "\x35\x78\x79",
+                89: "\x25\x5d\x74", 90: "\x21\x30\x43", 91: "\x64\x23\x26", 92: "\x4d\x5a\x76",
+                93: "\x52\x5b\x25", 94: "\x63\x6c\x24", 95: "\x3f\x48\x2b", 96: "\x7b\x55\x28",
+                97: "\x78\x70\x23", 98: "\x29\x69\x41", 99: "\x28\x2e\x34", 100: "\x73\x4c\x09",
+                101: "\x59\x21\x2a", 102: "\x33\x24\x44", 103: "\x7f\x4e\x3f", 104: "\x6d\x50\x77",
+                105: "\x55\x09\x3b", 106: "\x53\x56\x55", 107: "\x7c\x73\x69", 108: "\x3a\x35\x61",
+                109: "\x5f\x61\x63", 110: "\x65\x4b\x50", 111: "\x46\x58\x67", 112: "\x58\x3b\x51",
+                113: "\x31\x57\x49", 114: "\x69\x22\x4f", 115: "\x6c\x6d\x46", 116: "\x5a\x4d\x68",
+                117: "\x48\x25\x7c", 118: "\x27\x28\x36", 119: "\x5c\x46\x70", 120: "\x3d\x4a\x6e",
+                121: "\x24\x32\x7a", 122: "\x79\x41\x2f", 123: "\x37\x3d\x5f", 124: "\x60\x5f\x4b",
+                125: "\x51\x4f\x5a", 126: "\x20\x42\x2c", 127: "\x36\x65\x57",
             }
 
             d_combination = {
@@ -1384,17 +1404,16 @@ class Extract(ServiceBase):
             result = None
             return result
 
-    def extract_vbe(self, request: ServiceRequest):
+    def extract_vbe(self, request: ServiceRequest) -> list:
         """Will attempt to decode VBA code data from a VBE container.
 
         Args:
             request: AL request object.
 
         Returns:
-            List containing decoded file information, including: decoded file path, encoding, and display name,
-            or a blank list if decode failed
+            List containing extracted file information, including: decoded file path, encoding,
+            and display name, or a blank list if extraction failed.
         """
-
         text = request.file_contents
         try:
             text = text.decode()
@@ -1547,10 +1566,17 @@ class Extract(ServiceBase):
         return [], False
 
     def extract_zip(self, request: ServiceRequest, file_path: str, file_type: str):
-        """Will attempt to use 7zip (or zipfile) and then unrar to extract content from an archive,
-        or sections from a Windows executable file.
-        """
+        """Will attempt to use multiple tools to handle zip archive.
 
+        This function will first try to use 7zip, zipfile, and then unrar to extract content from an archive,
+        or sections from a Windows executable file.
+
+        Returns:
+            A tuple with the following type: (list, bool)
+            The list containins decoded file information, including: decoded file path, encoding,
+            and display name or a blank list if decoding failed.
+            The boolean represent if the content was password protected.
+        """
         extracted_files = []
         password_protected = False
 
@@ -2004,7 +2030,6 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path and display name,
             or a blank list if extract failed
         """
-
         extracted_children = []
 
         output_path = os.path.join(self.working_directory, "extracted_swf")
@@ -2034,7 +2059,6 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path and display name,
             or a blank list if extract failed
         """
-
         output_path = os.path.join(self.working_directory, "SETUP.nsi")
         try:
             extractor = NSIExtractor.from_path(request.file_path)
@@ -2056,7 +2080,6 @@ class Extract(ServiceBase):
             List containing extracted file information, including: extracted path and display name,
             or a blank list if extract failed
         """
-
         children = []
 
         # noinspection PyBroadException
@@ -2141,12 +2164,11 @@ class Extract(ServiceBase):
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
-            safelisted_count: Current safelist count.
+            safelisted_extracted: Current list of safelisted extracted file information.
 
         Returns:
             List of filtered file names and updated count of safelisted files.
         """
-
         safelisted_fname_regex = [
             re.compile(r".app/.*\.plist$"),
             re.compile(r".app/.*\.nib$"),
@@ -2172,12 +2194,11 @@ class Extract(ServiceBase):
 
         Args:
             extracted: List of extracted file information, including: extracted path, encoding, and display name.
-            safelisted_count: Current safelist count.
+            safelisted_extracted: Current list of safelisted extracted file information.
 
         Returns:
             List of filtered file names and updated count of safelisted files.
         """
-
         safelisted_type_re = [
             re.compile(r"android/(xml|resource)"),
             re.compile(r"audiovisual/.*"),
@@ -2245,9 +2266,6 @@ class Extract(ServiceBase):
 
         Args:
             request: AL request object.
-
-        Returns:
-            Al result object scoring VHIGH if executables detected in container, or None.
         """
 
         def is_launchable_fp_type(file_type):
@@ -2313,7 +2331,7 @@ class Extract(ServiceBase):
                 request.result.add_section(new_section)
 
     def extract_onenote(self, request: ServiceRequest):
-        """Extract embedded files from OneNote (.one) files
+        """Extract embedded files from OneNote (.one) files.
 
         Args:
             request: AL request object.
@@ -2321,7 +2339,6 @@ class Extract(ServiceBase):
         Returns:
             List containing extracted attachment information, including: extracted path and display name
         """
-
         with open(request.file_path, "rb") as f:
             data = f.read()
         # From MS-ONESTORE FileDataStoreObject definition
@@ -2330,8 +2347,8 @@ class Extract(ServiceBase):
         # guidFooter:  {71FBA722-0F79-4A0B-BB13-899256426B24}
         # Note: the first 3 fields are stored little-endian so the bytes are in reverse order in the document.
         embedded_files: list[tuple[bytes, bytes]] = re.findall(
-            b"(?s)\xE7\x16\xE3\xBD\x65\x26\x11\x45\xA4\xC4\x8D\x4D\x0B\x7A\x9E\xAC"
-            b"(.{8}).{12}(.*?)\x22\xA7\xFB\x71\x79\x0F\x0B\x4A\xBB\x13\x89\x92\x56\x42\x6B\\\x24",
+            b"(?s)\xe7\x16\xe3\xbd\x65\x26\x11\x45\xa4\xc4\x8d\x4d\x0b\x7a\x9e\xac"
+            b"(.{8}).{12}(.*?)\x22\xa7\xfb\x71\x79\x0f\x0b\x4a\xbb\x13\x89\x92\x56\x42\x6b\\\x24",
             data,
         )
         extracted = []
@@ -2344,7 +2361,7 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_jscript(self, request: ServiceRequest):
-        """Extract embedded content from HTML documents
+        """Extract embedded content from HTML documents.
 
         Args:
             request: AL request object.
@@ -2352,7 +2369,6 @@ class Extract(ServiceBase):
         Returns:
             List containing extracted script information, including: extracted path and display name
         """
-
         with open(request.file_path, "rb") as f:
             data = f.read()
 
@@ -2551,7 +2567,7 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_xxe(self, request: ServiceRequest):
-        """Extract embedded scripts from XX encoded archives
+        """Extract embedded scripts from XX encoded archives.
 
         Args:
             request: AL request object.
@@ -2559,7 +2575,6 @@ class Extract(ServiceBase):
         Returns:
             List containing extracted information, including: extracted path, display name
         """
-
         files = xxuu_decode_from_file(request.file_path, xx_character)
         extracted = []
         for output_file, ans in files:
@@ -2572,7 +2587,7 @@ class Extract(ServiceBase):
         return extracted
 
     def extract_uue(self, request: ServiceRequest):
-        """Extract embedded scripts from UU encoded archives
+        """Extract embedded scripts from UU encoded archives.
 
         Args:
             request: AL request object.
@@ -2580,7 +2595,6 @@ class Extract(ServiceBase):
         Returns:
             List containing extracted information, including: extracted path, display name
         """
-
         files = xxuu_decode_from_file(request.file_path, uu_character)
         extracted = []
         for output_file, ans in files:
@@ -2666,6 +2680,7 @@ class Extract(ServiceBase):
         Successfully decomplied files will be written back to the `working_directory`.
 
         Args:
+            request: AL request object.
             filepath: path to pyc file
 
         Returns:
@@ -2757,4 +2772,3 @@ class Extract(ServiceBase):
                 extracted.extend(py2exe_files)
         except py2exe_extractor.Invalid:
             pass
-        return extracted
