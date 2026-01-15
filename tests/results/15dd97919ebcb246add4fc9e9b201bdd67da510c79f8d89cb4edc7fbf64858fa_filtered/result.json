@@ -1,0 +1,82 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Error using normal pycdc:\nUnsupported opcode: BEFORE_WITH (108)\n",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Fallback to patched pycdc",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CERTIFICATE",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 2,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CERTIFICATE"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 1 file",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "CERTIFICATE",
+        "sha256": "090b03e1ff82d53fb90c3776be756465d6bc4dc04b164348eeab703a72bb2243"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "loader-o.py.disass",
+        "sha256": "255ea889c7dd8403ad53a8709e5c1f935ec3e888cbf875b2cefea1bed3182354"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 2,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 2,
+          "signatures": [],
+          "value": "CERTIFICATE"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

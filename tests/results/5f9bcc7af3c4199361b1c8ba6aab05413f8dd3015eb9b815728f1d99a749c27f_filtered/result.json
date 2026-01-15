@@ -1,0 +1,74 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "__MACOSX/api/._go1.19.txt\n__MACOSX/api/._go1.9.txt",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "__MACOSX/api/._go1.19.txt",
+                "__MACOSX/api/._go1.9.txt"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 2 files",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "__MACOSX/api/._go1.19.txt",
+        "sha256": "8aa0c4b7f7234923225cbd748d784697bcdfb40671354bce088230f20d6a7193"
+      },
+      {
+        "name": "__MACOSX/api/._go1.9.txt",
+        "sha256": "bebd8c80346b2d26ed1ba9a9727b235abd1733bb1023db74665840ecd34b9462"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "__MACOSX/api/._go1.19.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "__MACOSX/api/._go1.9.txt"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

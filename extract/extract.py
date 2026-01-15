@@ -1,5 +1,6 @@
 import base64
 import binascii
+import fnmatch
 import hashlib
 import itertools
 import json
@@ -465,6 +466,9 @@ class Extract(ServiceBase):
         # For the time being, always try repair_zip, and see if we have any results
         if not extracted and not safelisted_extracted:
             extracted = self.repair_zip(request)
+
+        if pattern := request.get_param("extraction_glob_pattern"):
+            extracted = [child for child in extracted if fnmatch.fnmatch(child[0], pattern)]
 
         prioritized_files = {
             PRIORITY.VERY_HIGH: [],
@@ -1165,6 +1169,14 @@ class Extract(ServiceBase):
             sub_folder += 1
         extracted_path = os.path.join(extracted_path, str(sub_folder))
         os.mkdir(extracted_path)
+
+        if request.get_param("extraction_glob_pattern"):
+            for root, _, files in os.walk(folder_path):
+                for f in files:
+                    file_path = os.path.join(root, f)
+                    relative_path = os.path.relpath(file_path, folder_path)
+                    if not fnmatch.fnmatch(relative_path, request.get_param("extraction_glob_pattern")):
+                        os.remove(file_path)
 
         MAX_SUBFILES = max(1000, request.max_extracted * 3)
         # Find number of subfiles in folder_path:

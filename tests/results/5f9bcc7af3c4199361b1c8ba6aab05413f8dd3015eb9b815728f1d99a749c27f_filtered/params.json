@@ -1,0 +1,5 @@
+{
+    "submission_params": {
+        "extraction_glob_pattern": "**/api/._go*9.txt"
+    }
+}

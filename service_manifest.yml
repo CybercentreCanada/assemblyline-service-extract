@@ -74,6 +74,10 @@ submission_params:
     name: heur_13_16_supression
     type: bool
     value: false
+  - default: ""
+    name: extraction_glob_pattern
+    type: str
+    value: ""
 
 heuristics:
   - heur_id: 1

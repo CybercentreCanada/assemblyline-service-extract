@@ -46,6 +46,10 @@ Once this service has completed its processing, it will block samples from conti
 - `password`: An additional password can be provided to the service on submission to decode a container.
 - `extract_executable_sections`: Using the 7zip library, the service will extract sections from an executable file.
 - `continue_after_extract`: When true, Assemblyline will continue processing all samples with other services no matter the file type.
+- `use_custom_safelisting`: Use custom IPA and JAR safelisting when extracting files from those containers.
+- `score_failed_password`: Score 500pts on extraction failing because of unknown password.
+- `heur_13_16_supression`: Removes those heuristic from the result, reducing potential score.
+- `extraction_glob_pattern`: Filters results for files matching the glob pattern. Usage of **/ at the start is recommended.
 
 ### Configuration (set by administrator):
 
