@@ -533,9 +533,8 @@ class Extract(ServiceBase):
                 except MaxExtractedExceeded:
                     request.result.add_section(
                         ResultSection(
-                            f"This file contains a total of {len(extracted)} extracted files, "
-                            f"exceeding the maximum of {request.max_extracted} extracted files allowed. "
-                            "Some files were not extracted."
+                            f"This file contains at least {len(extracted)} files, exceeding the maximum of"
+                            f" {request.max_extracted} extracted files allowed. Some files were not extracted."
                         )
                     )
                     max_extracted_exceeded = True
@@ -1166,6 +1165,85 @@ class Extract(ServiceBase):
             sub_folder += 1
         extracted_path = os.path.join(extracted_path, str(sub_folder))
         os.mkdir(extracted_path)
+
+        MAX_SUBFILES = max(1000, request.max_extracted * 3)
+        # Find number of subfiles in folder_path:
+        num_subfiles = sum(len(files) for _, _, files in os.walk(folder_path))
+        removed_folders = []
+
+        def remove_folder(folder):
+            # Create a zip of the folder being removed to add as supplementary
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                shutil.make_archive(tmp_f.name, "zip", folder[0])
+            request.add_supplementary(
+                name=f"{os.path.relpath(folder[0], folder_path)}.zip",
+                description=os.path.relpath(folder[0], folder_path),
+                path=tmp_f.name + ".zip",
+            )
+            shutil.rmtree(folder[0])
+            removed_folders.append(folder)
+
+        if num_subfiles > MAX_SUBFILES:
+            # Generate a tree of the folders and files to add as a supplementary file
+            def write_tree(folder, out_file, indent=""):
+                for item in sorted(os.listdir(folder)):
+                    path = os.path.join(folder, item)
+                    out_file.write(f"{indent}{item}/\n" if os.path.isdir(path) else f"{indent}{item}\n")
+                    if os.path.isdir(path):
+                        write_tree(path, out_file, indent + "    ")
+
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, mode="w", delete=False) as tmp_f:
+                write_tree(folder_path, tmp_f)
+            request.add_supplementary(name="tree.txt", description="Full folder tree", path=tmp_f.name)
+
+        while num_subfiles > MAX_SUBFILES:
+            # Gather all folders and their file counts (including nested)
+            folder_file_counts = []
+            for root, dirs, files in os.walk(folder_path):
+                if folder_path == root:
+                    continue
+                folder_file_counts.append((root, sum(len(f) for _, _, f in os.walk(root))))
+
+            # Sort folders by file count descending
+            folder_file_counts.sort(key=lambda x: x[1], reverse=True)
+
+            # Remove the largest folder if it would not even reduce us below the limit
+            if num_subfiles - folder_file_counts[0][1] > MAX_SUBFILES:
+                try:
+                    remove_folder(folder_file_counts[0])
+                    num_subfiles -= folder_file_counts[0][1]
+                    continue
+                except Exception:
+                    pass
+
+            # Find the last folder that can be removed to get us below the limit
+            last_folder_to_remove = folder_file_counts[0]
+            for folder, count in folder_file_counts:
+                if num_subfiles - count > MAX_SUBFILES:
+                    break
+                last_folder_to_remove = (folder, count)
+
+            # Remove the last folder
+            try:
+                remove_folder(last_folder_to_remove)
+                num_subfiles -= last_folder_to_remove[1]
+                break
+            except Exception:
+                pass
+
+        if removed_folders:
+            section = ResultSection(
+                (
+                    f"{'A folder' if len(removed_folders) == 1 else f'{len(removed_folders)} folders'} were not"
+                    f" extracted but added as supplementary archive{'' if len(removed_folders) == 1 else 's'} "
+                    "due to excessive number of files"
+                ),
+                parent=request.result,
+            )
+            for folder, count in removed_folders:
+                section.add_line(
+                    f"Folder '{os.path.relpath(folder, folder_path)}' with {count} files was not extracted"
+                )
 
         for root, _, files in os.walk(folder_path):
             for f in files:
