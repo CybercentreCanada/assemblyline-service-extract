@@ -146,6 +146,19 @@ def get_file_priority(file_type: str):
     return PRIORITY.MEDIUM
 
 
+def create_deterministic_zip(output, folder_path):
+    def write_tree(full_folder_path, folder_path, out_file):
+        for item in sorted(os.listdir(full_folder_path)):
+            full_path = os.path.join(full_folder_path, item)
+            path = os.path.join(folder_path, item)
+            zipf.write(full_path, path)
+            if os.path.isdir(full_path):
+                write_tree(full_path, path, out_file)
+
+    with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as zipf:
+        write_tree(folder_path, "", zipf)
+
+
 class Extract(ServiceBase):
     FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
     FORBIDDEN_ELF = [str(x) for x in range(20)]
@@ -1186,11 +1199,11 @@ class Extract(ServiceBase):
         def remove_folder(folder):
             # Create a zip of the folder being removed to add as supplementary
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
-                shutil.make_archive(tmp_f.name, "zip", folder[0])
+                create_deterministic_zip(tmp_f.name, folder[0])
             request.add_supplementary(
                 name=f"{os.path.relpath(folder[0], folder_path)}.zip",
                 description=os.path.relpath(folder[0], folder_path),
-                path=tmp_f.name + ".zip",
+                path=tmp_f.name,
             )
             shutil.rmtree(folder[0])
             removed_folders.append(folder)

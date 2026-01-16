@@ -2597,19 +2597,19 @@
     "supplementary": [
       {
         "name": "test/fixedbugs.zip",
-        "sha256": "378b8cfe80e406319db8e83ec67fa84ad11ca8eca6ba820695ddbf397fe0926b"
+        "sha256": "60b87ff7efa051a16466564350fca6eea4a2facaf8d6fe42fc4da810f5dc41df"
+      },
+      {
+        "name": "src.zip",
+        "sha256": "661460ce34dc88838fb873ccd3b4a4460a5378add723ae62f0fb1684c889b2b0"
       },
       {
         "name": "__MACOSX.zip",
-        "sha256": "c355b241622099363dc7679a00ff077018cd45deeb2749b4f96e6543f6a0a2db"
+        "sha256": "9ab39d353de31c6aeaa39e901434fe846e69b423f8108a6c9da2e11cd3ad48e5"
       },
       {
         "name": "tree.txt",
         "sha256": "efff72b79bcd870cfaff9dab25725d4e6e849e5757dbe8f63e5ccacda5ca7c4e"
-      },
-      {
-        "name": "src.zip",
-        "sha256": "fe99ee543cf8c0e781e15a49ffc9856e018cba936f85e4604c7e511344dfba3b"
       }
     ]
   },
