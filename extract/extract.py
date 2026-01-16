@@ -1191,7 +1191,7 @@ class Extract(ServiceBase):
                     if not fnmatch.fnmatch(relative_path, request.get_param("extraction_glob_pattern")):
                         os.remove(file_path)
 
-        MAX_SUBFILES = max(1000, request.max_extracted * 3)
+        MAX_SUBFILES = max(300, request.max_extracted * 3)
         # Find number of subfiles in folder_path:
         num_subfiles = sum(len(files) for _, _, files in os.walk(folder_path))
         removed_folders = []
