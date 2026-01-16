@@ -1,0 +1,5167 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Folder '__MACOSX' with 14759 files was not extracted\nFolder 'src' with 9838 files was not extracted\nFolder 'test/fixedbugs' with 2220 files was not extracted",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "3 folders were not extracted but added as supplementary archives due to excessive number of files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "This file contains at least 1237 files, exceeding the maximum of 501 extracted files allowed. Some files were not extracted.",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "CONTRIBUTING.md\nLICENSE\nMakefile\nMyCamDriv.app/Contents/Info.plist\nMyCamDriv.app/Contents/PkgInfo\nMyCamDriv.app/Contents/Resources/AppIcon.icns\nMyCamDriv.app/Contents/Resources/Assets.car\nMyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/Info.plist\nMyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib\nMyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib\nMyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib\nMyCamDriv.app/Contents/_CodeSignature/CodeResources\nPATENTS\nREADME.md\nSECURITY.md\nVERSION\napi/README\napi/except.txt\napi/go1.1.txt\napi/go1.10.txt\napi/go1.11.txt\napi/go1.12.txt\napi/go1.13.txt\napi/go1.14.txt\napi/go1.15.txt\napi/go1.16.txt\napi/go1.17.txt\napi/go1.18.txt\napi/go1.19.txt\napi/go1.2.txt\napi/go1.20.txt\napi/go1.21.txt\napi/go1.22.txt\napi/go1.23.txt\napi/go1.3.txt\napi/go1.4.txt\napi/go1.5.txt\napi/go1.6.txt\napi/go1.7.txt\napi/go1.8.txt\napi/go1.9.txt\napi/go1.txt\nauto/base.go\nauto/basic.go\nauto/chrome_change_pref.go\nauto/chrome_cookie_darwin.go\nauto/chrome_cookie_other.go\nauto/chrome_cookie_win.go\nauto/chrome_gather.go\nauto/chrome_inject_ext.go\nbin/go\nbin/gofmt\ncloud.sh\ncodereview.cfg\ncommand/stackcmd.go\nconfig/constants.go\ncore/loop.go\ncore/loops.go\ncore/work.go\ndoc/README.md\ndoc/asm.html\ndoc/go1.17_spec.html\ndoc/go_mem.html\ndoc/go_spec.html\ndoc/godebug.md\ndoc/initial/1-intro.md\ndoc/initial/2-language.md\ndoc/initial/3-tools.md\ndoc/initial/4-runtime.md\ndoc/initial/5-toolchain.md\ndoc/initial/6-stdlib/0-heading.md\ndoc/initial/6-stdlib/99-minor/0-heading.md\ndoc/initial/6-stdlib/99-minor/README\ndoc/initial/7-ports.md\ngo.env\ngo.mod\ngo.sum\ninstance/check.go\ninstance/wincrypt.go\nlib/time/README\nlib/time/mkzip.go\nlib/time/update.bash\nlib/time/zoneinfo.zip\nmisc/cgo/gmp/fib.go\nmisc/cgo/gmp/gmp.go\nmisc/cgo/gmp/pi.go\nmisc/chrome/gophertool/README.txt\nmisc/chrome/gophertool/background.html\nmisc/chrome/gophertool/background.js\nmisc/chrome/gophertool/gopher.js\nmisc/chrome/gophertool/gopher.png\nmisc/chrome/gophertool/manifest.json\nmisc/chrome/gophertool/popup.html\nmisc/chrome/gophertool/popup.js\nmisc/editors\nmisc/go.mod\nmisc/go_android_exec/README\nmisc/go_android_exec/exitcode_test.go\nmisc/go_android_exec/main.go\nmisc/ios/README\nmisc/ios/clangwrap.sh\nmisc/ios/detect.go\nmisc/ios/go_ios_exec.go\nmisc/linkcheck/linkcheck.go\nmisc/wasm/go_js_wasm_exec\nmisc/wasm/go_wasip1_wasm_exec\nmisc/wasm/wasm_exec.html\nmisc/wasm/wasm_exec.js\nmisc/wasm/wasm_exec_node.js\npkg/include/asm_amd64.h\npkg/include/asm_ppc64x.h\npkg/include/funcdata.h\npkg/include/textflag.h\npkg/tool/darwin_arm64/addr2line\npkg/tool/darwin_arm64/asm\npkg/tool/darwin_arm64/buildid\npkg/tool/darwin_arm64/cgo\npkg/tool/darwin_arm64/compile\npkg/tool/darwin_arm64/covdata\npkg/tool/darwin_arm64/cover\npkg/tool/darwin_arm64/doc\npkg/tool/darwin_arm64/fix\npkg/tool/darwin_arm64/link\npkg/tool/darwin_arm64/nm\npkg/tool/darwin_arm64/objdump\npkg/tool/darwin_arm64/pack\npkg/tool/darwin_arm64/pprof\npkg/tool/darwin_arm64/preprofile\npkg/tool/darwin_arm64/test2json\npkg/tool/darwin_arm64/trace\npkg/tool/darwin_arm64/vet\ntest/.DS_Store\ntest/235.go\ntest/64bit.go\ntest/README.md\ntest/abi/bad_internal_offsets.go\ntest/abi/bad_select_crash.go\ntest/abi/convF_criteria.go\ntest/abi/convF_criteria.out\ntest/abi/convT64_criteria.go\ntest/abi/convT64_criteria.out\ntest/abi/defer_aggregate.go\ntest/abi/defer_recover_results.go\ntest/abi/double_nested_addressed_struct.go\ntest/abi/double_nested_struct.go\ntest/abi/f_ret_z_not.go\ntest/abi/f_ret_z_not.out\ntest/abi/fibish.go\ntest/abi/fibish.out\ntest/abi/fibish_closure.go\ntest/abi/fibish_closure.out\ntest/abi/fuzz_trailing_zero_field.go\ntest/abi/idata.go\ntest/abi/idata.out\ntest/abi/leaf.go\ntest/abi/leaf2.go\ntest/abi/many_int_input.go\ntest/abi/many_int_input.out\ntest/abi/many_intstar_input.go\ntest/abi/many_intstar_input.out\ntest/abi/map.go\ntest/abi/method_wrapper.go\ntest/abi/more_intstar_input.go\ntest/abi/more_intstar_input.out\ntest/abi/named_results.go\ntest/abi/named_results.out\ntest/abi/named_return_stuff.go\ntest/abi/named_return_stuff.out\ntest/abi/open_defer_1.go\ntest/abi/part_live.go\ntest/abi/part_live_2.go\ntest/abi/reg_not_ssa.go\ntest/abi/result_live.go\ntest/abi/result_regalloc.go\ntest/abi/return_stuff.go\ntest/abi/return_stuff.out\ntest/abi/s_sif_sif.go\ntest/abi/spills3.go\ntest/abi/spills4.go\ntest/abi/store_reg_args.go\ntest/abi/struct_3_string_input.go\ntest/abi/struct_3_string_input.out\ntest/abi/struct_lower_1.go\ntest/abi/struct_lower_1.out\ntest/abi/too_big_to_ssa.go\ntest/abi/too_big_to_ssa.out\ntest/abi/uglyfib.go\ntest/abi/uglyfib.out\ntest/abi/wrapdefer_largetmp.go\ntest/abi/wrapdefer_largetmp.out\ntest/abi/zombie_struct_select.go\ntest/alg.go\ntest/alias.go\ntest/alias1.go\ntest/alias2.go\ntest/alias3.dir/a.go\ntest/alias3.dir/b.go\ntest/alias3.dir/c.go\ntest/alias3.go\ntest/align.go\ntest/append.go\ntest/append1.go\ntest/arenas/smoke.go\ntest/args.go\ntest/armimm.go\ntest/asmhdr.dir/main.go\ntest/asmhdr.dir/main.s\ntest/asmhdr.go\ntest/assign.go\ntest/assign1.go\ntest/atomicload.go\ntest/bigalg.go\ntest/bigmap.go\ntest/blank.go\ntest/blank1.go\ntest/bom.go\ntest/bombad.go\ntest/bounds.go\ntest/cannotassign.go\ntest/chan/doubleselect.go\ntest/chan/fifo.go\ntest/chan/goroutines.go\ntest/chan/nonblock.go\ntest/chan/perm.go\ntest/chan/powser1.go\ntest/chan/powser2.go\ntest/chan/select.go\ntest/chan/select2.go\ntest/chan/select3.go\ntest/chan/select4.go\ntest/chan/select5.go\ntest/chan/select6.go\ntest/chan/select7.go\ntest/chan/select8.go\ntest/chan/sendstmt.go\ntest/chan/sieve1.go\ntest/chan/sieve2.go\ntest/chan/zerosize.go\ntest/chancap.go\ntest/chanlinear.go\ntest/char_lit.go\ntest/char_lit1.go\ntest/checkbce.go\ntest/clear.go\ntest/clearfat.go\ntest/closedchan.go\ntest/closure.go\ntest/closure1.go\ntest/closure2.go\ntest/closure3.dir/main.go\ntest/closure3.go\ntest/closure4.go\ntest/closure5.dir/a.go\ntest/closure5.dir/main.go\ntest/closure5.go\ntest/closure6.go\ntest/closure7.go\ntest/cmp.go\ntest/cmp6.go\ntest/cmplx.go\ntest/cmplxdivide.c\ntest/cmplxdivide.go\ntest/cmplxdivide1.go\ntest/codegen/README\ntest/codegen/addrcalc.go\ntest/codegen/alloc.go\ntest/codegen/arithmetic.go\ntest/codegen/atomics.go\ntest/codegen/bitfield.go\ntest/codegen/bits.go\ntest/codegen/bmi.go\ntest/codegen/bool.go\ntest/codegen/clobberdead.go\ntest/codegen/clobberdeadreg.go\ntest/codegen/compare_and_branch.go\ntest/codegen/comparisons.go\ntest/codegen/condmove.go\ntest/codegen/constants.go\ntest/codegen/copy.go\ntest/codegen/floats.go\ntest/codegen/fuse.go\ntest/codegen/ifaces.go\ntest/codegen/issue22703.go\ntest/codegen/issue25378.go\ntest/codegen/issue31618.go\ntest/codegen/issue33580.go\ntest/codegen/issue38554.go\ntest/codegen/issue42610.go\ntest/codegen/issue48054.go\ntest/codegen/issue52635.go\ntest/codegen/issue54467.go\ntest/codegen/issue56440.go\ntest/codegen/issue58166.go\ntest/codegen/issue60324.go\ntest/codegen/issue60673.go\ntest/codegen/issue61356.go\ntest/codegen/issue63332.go\ntest/codegen/issue66585.go\ntest/codegen/logic.go\ntest/codegen/mapaccess.go\ntest/codegen/maps.go\ntest/codegen/math.go\ntest/codegen/mathbits.go\ntest/codegen/memcombine.go\ntest/codegen/memops.go\ntest/codegen/memops_bigoffset.go\ntest/codegen/noextend.go\ntest/codegen/race.go\ntest/codegen/regabi_regalloc.go\ntest/codegen/retpoline.go\ntest/codegen/rotate.go\ntest/codegen/select.go\ntest/codegen/shift.go\ntest/codegen/shortcircuit.go\ntest/codegen/slices.go\ntest/codegen/smallintiface.go\ntest/codegen/spectre.go\ntest/codegen/stack.go\ntest/codegen/strings.go\ntest/codegen/structs.go\ntest/codegen/switch.go\ntest/codegen/writebarrier.go\ntest/codegen/zerosize.go\ntest/complit.go\ntest/complit1.go\ntest/compos.go\ntest/const.go\ntest/const1.go\ntest/const2.go\ntest/const3.go\ntest/const4.go\ntest/const5.go\ntest/const6.go\ntest/const7.go\ntest/const8.go\ntest/convT2X.go\ntest/convert.go\ntest/convert1.go\ntest/convert2.go\ntest/convert3.go\ntest/convert4.go\ntest/convinline.go\ntest/convlit.go\ntest/convlit1.go\ntest/copy.go\ntest/copy1.go\ntest/crlf.go\ntest/ddd.go\ntest/ddd1.go\ntest/ddd2.dir/ddd2.go\ntest/ddd2.dir/ddd3.go\ntest/ddd2.go\ntest/decl.go\ntest/declbad.go\ntest/defer.go\ntest/defererrcheck.go\ntest/deferfin.go\ntest/defernil.go\ntest/deferprint.go\ntest/deferprint.out\ntest/devirt.go\ntest/directive.go\ntest/directive2.go\ntest/divide.go\ntest/divmod.go\ntest/dwarf/dwarf.dir/main.go\ntest/dwarf/dwarf.dir/z1.go\ntest/dwarf/dwarf.dir/z10.go\ntest/dwarf/dwarf.dir/z11.go\ntest/dwarf/dwarf.dir/z12.go\ntest/dwarf/dwarf.dir/z13.go\ntest/dwarf/dwarf.dir/z14.go\ntest/dwarf/dwarf.dir/z15.go\ntest/dwarf/dwarf.dir/z16.go\ntest/dwarf/dwarf.dir/z17.go\ntest/dwarf/dwarf.dir/z18.go\ntest/dwarf/dwarf.dir/z19.go\ntest/dwarf/dwarf.dir/z2.go\ntest/dwarf/dwarf.dir/z20.go\ntest/dwarf/dwarf.dir/z3.go\ntest/dwarf/dwarf.dir/z4.go\ntest/dwarf/dwarf.dir/z5.go\ntest/dwarf/dwarf.dir/z6.go\ntest/dwarf/dwarf.dir/z7.go\ntest/dwarf/dwarf.dir/z8.go\ntest/dwarf/dwarf.dir/z9.go\ntest/dwarf/dwarf.go\ntest/dwarf/linedirectives.go\ntest/embedfunc.go\ntest/embedvers.go\ntest/empty.go\ntest/env.go\ntest/eof.go\ntest/eof1.go\ntest/escape.go\ntest/escape2.go\ntest/escape2n.go\ntest/escape3.go\ntest/escape4.go\ntest/escape5.go\ntest/escape_array.go\ntest/escape_calls.go\ntest/escape_closure.go\ntest/escape_field.go\ntest/escape_goto.go\ntest/escape_hash_maphash.go\ntest/escape_iface.go\ntest/escape_indir.go\ntest/escape_level.go\ntest/escape_map.go\ntest/escape_mutations.go\ntest/escape_param.go\ntest/escape_reflect.go\ntest/escape_runtime_atomic.go\ntest/escape_selfassign.go\ntest/escape_slice.go\ntest/escape_struct_param1.go\ntest/escape_struct_param2.go\ntest/escape_struct_return.go\ntest/escape_sync_atomic.go\ntest/escape_unsafe.go\ntest/fibo.go\ntest/finprofiled.go\ntest/float_lit.go\ntest/float_lit2.go\ntest/float_lit3.go\ntest/floatcmp.go\ntest/for.go\ntest/func.go\ntest/func1.go\ntest/func2.go\ntest/func3.go\ntest/func4.go\ntest/func5.go\ntest/func6.go\ntest/func7.go\ntest/func8.go\ntest/funcdup.go\ntest/funcdup2.go\ntest/fuse.go\ntest/gc.go\ntest/gc1.go\ntest/gc2.go\ntest/gcgort.go\ntest/gcstring.go\ntest/goprint.go\ntest/goprint.out\ntest/goto.go\ntest/heapsampling.go\ntest/helloworld.go\ntest/helloworld.out\ntest/if.go\ntest/import.go\ntest/import1.go\ntest/import2.dir/import2.go\ntest/import2.dir/import3.go\ntest/import2.go\ntest/import4.dir/empty.go\ntest/import4.dir/import4.go\ntest/import4.go\ntest/import5.go\ntest/import6.go\ntest/index.go\ntest/index0.go\ntest/index1.go\ntest/index2.go\ntest/indirect.go\ntest/indirect1.go\ntest/init.go\ntest/init1.go\ntest/initcomma.go\ntest/initexp.go\ntest/initialize.go\ntest/initializerr.go\ntest/initloop.go\ntest/inline.go\ntest/inline_big.go\ntest/inline_caller.go\ntest/inline_callers.go\ntest/inline_endian.go\ntest/inline_literal.go\ntest/inline_math_bits_rotate.go\ntest/inline_sync.go\ntest/inline_variadic.go\ntest/int_lit.go\ntest/intcvt.go\ntest/interface/assertinline.go\ntest/interface/bigdata.go\ntest/interface/convert.go\ntest/interface/convert1.go\ntest/interface/convert2.go\ntest/interface/embed.go\ntest/interface/embed1.dir/embed0.go\ntest/interface/embed1.dir/embed1.go\ntest/interface/embed1.go\ntest/interface/embed2.go\ntest/interface/embed3.dir/embed0.go\ntest/interface/embed3.dir/embed1.go\ntest/interface/embed3.go\ntest/interface/explicit.go\ntest/interface/fail.go",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 1,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "CONTRIBUTING.md",
+                "LICENSE",
+                "Makefile",
+                "MyCamDriv.app/Contents/Info.plist",
+                "MyCamDriv.app/Contents/PkgInfo",
+                "MyCamDriv.app/Contents/Resources/AppIcon.icns",
+                "MyCamDriv.app/Contents/Resources/Assets.car",
+                "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/Info.plist",
+                "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib",
+                "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib",
+                "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib",
+                "MyCamDriv.app/Contents/_CodeSignature/CodeResources",
+                "PATENTS",
+                "README.md",
+                "SECURITY.md",
+                "VERSION",
+                "api/README",
+                "api/except.txt",
+                "api/go1.1.txt",
+                "api/go1.10.txt",
+                "api/go1.11.txt",
+                "api/go1.12.txt",
+                "api/go1.13.txt",
+                "api/go1.14.txt",
+                "api/go1.15.txt",
+                "api/go1.16.txt",
+                "api/go1.17.txt",
+                "api/go1.18.txt",
+                "api/go1.19.txt",
+                "api/go1.2.txt",
+                "api/go1.20.txt",
+                "api/go1.21.txt",
+                "api/go1.22.txt",
+                "api/go1.23.txt",
+                "api/go1.3.txt",
+                "api/go1.4.txt",
+                "api/go1.5.txt",
+                "api/go1.6.txt",
+                "api/go1.7.txt",
+                "api/go1.8.txt",
+                "api/go1.9.txt",
+                "api/go1.txt",
+                "auto/base.go",
+                "auto/basic.go",
+                "auto/chrome_change_pref.go",
+                "auto/chrome_cookie_darwin.go",
+                "auto/chrome_cookie_other.go",
+                "auto/chrome_cookie_win.go",
+                "auto/chrome_gather.go",
+                "auto/chrome_inject_ext.go",
+                "bin/go",
+                "bin/gofmt",
+                "cloud.sh",
+                "codereview.cfg",
+                "command/stackcmd.go",
+                "config/constants.go",
+                "core/loop.go",
+                "core/loops.go",
+                "core/work.go",
+                "doc/README.md",
+                "doc/asm.html",
+                "doc/go1.17_spec.html",
+                "doc/go_mem.html",
+                "doc/go_spec.html",
+                "doc/godebug.md",
+                "doc/initial/1-intro.md",
+                "doc/initial/2-language.md",
+                "doc/initial/3-tools.md",
+                "doc/initial/4-runtime.md",
+                "doc/initial/5-toolchain.md",
+                "doc/initial/6-stdlib/0-heading.md",
+                "doc/initial/6-stdlib/99-minor/0-heading.md",
+                "doc/initial/6-stdlib/99-minor/README",
+                "doc/initial/7-ports.md",
+                "go.env",
+                "go.mod",
+                "go.sum",
+                "instance/check.go",
+                "instance/wincrypt.go",
+                "lib/time/README",
+                "lib/time/mkzip.go",
+                "lib/time/update.bash",
+                "lib/time/zoneinfo.zip",
+                "misc/cgo/gmp/fib.go",
+                "misc/cgo/gmp/gmp.go",
+                "misc/cgo/gmp/pi.go",
+                "misc/chrome/gophertool/README.txt",
+                "misc/chrome/gophertool/background.html",
+                "misc/chrome/gophertool/background.js",
+                "misc/chrome/gophertool/gopher.js",
+                "misc/chrome/gophertool/gopher.png",
+                "misc/chrome/gophertool/manifest.json",
+                "misc/chrome/gophertool/popup.html",
+                "misc/chrome/gophertool/popup.js",
+                "misc/editors",
+                "misc/go.mod",
+                "misc/go_android_exec/README",
+                "misc/go_android_exec/exitcode_test.go",
+                "misc/go_android_exec/main.go",
+                "misc/ios/README",
+                "misc/ios/clangwrap.sh",
+                "misc/ios/detect.go",
+                "misc/ios/go_ios_exec.go",
+                "misc/linkcheck/linkcheck.go",
+                "misc/wasm/go_js_wasm_exec",
+                "misc/wasm/go_wasip1_wasm_exec",
+                "misc/wasm/wasm_exec.html",
+                "misc/wasm/wasm_exec.js",
+                "misc/wasm/wasm_exec_node.js",
+                "pkg/include/asm_amd64.h",
+                "pkg/include/asm_ppc64x.h",
+                "pkg/include/funcdata.h",
+                "pkg/include/textflag.h",
+                "pkg/tool/darwin_arm64/addr2line",
+                "pkg/tool/darwin_arm64/asm",
+                "pkg/tool/darwin_arm64/buildid",
+                "pkg/tool/darwin_arm64/cgo",
+                "pkg/tool/darwin_arm64/compile",
+                "pkg/tool/darwin_arm64/covdata",
+                "pkg/tool/darwin_arm64/cover",
+                "pkg/tool/darwin_arm64/doc",
+                "pkg/tool/darwin_arm64/fix",
+                "pkg/tool/darwin_arm64/link",
+                "pkg/tool/darwin_arm64/nm",
+                "pkg/tool/darwin_arm64/objdump",
+                "pkg/tool/darwin_arm64/pack",
+                "pkg/tool/darwin_arm64/pprof",
+                "pkg/tool/darwin_arm64/preprofile",
+                "pkg/tool/darwin_arm64/test2json",
+                "pkg/tool/darwin_arm64/trace",
+                "pkg/tool/darwin_arm64/vet",
+                "test/.DS_Store",
+                "test/235.go",
+                "test/64bit.go",
+                "test/README.md",
+                "test/abi/bad_internal_offsets.go",
+                "test/abi/bad_select_crash.go",
+                "test/abi/convF_criteria.go",
+                "test/abi/convF_criteria.out",
+                "test/abi/convT64_criteria.go",
+                "test/abi/convT64_criteria.out",
+                "test/abi/defer_aggregate.go",
+                "test/abi/defer_recover_results.go",
+                "test/abi/double_nested_addressed_struct.go",
+                "test/abi/double_nested_struct.go",
+                "test/abi/f_ret_z_not.go",
+                "test/abi/f_ret_z_not.out",
+                "test/abi/fibish.go",
+                "test/abi/fibish.out",
+                "test/abi/fibish_closure.go",
+                "test/abi/fibish_closure.out",
+                "test/abi/fuzz_trailing_zero_field.go",
+                "test/abi/idata.go",
+                "test/abi/idata.out",
+                "test/abi/leaf.go",
+                "test/abi/leaf2.go",
+                "test/abi/many_int_input.go",
+                "test/abi/many_int_input.out",
+                "test/abi/many_intstar_input.go",
+                "test/abi/many_intstar_input.out",
+                "test/abi/map.go",
+                "test/abi/method_wrapper.go",
+                "test/abi/more_intstar_input.go",
+                "test/abi/more_intstar_input.out",
+                "test/abi/named_results.go",
+                "test/abi/named_results.out",
+                "test/abi/named_return_stuff.go",
+                "test/abi/named_return_stuff.out",
+                "test/abi/open_defer_1.go",
+                "test/abi/part_live.go",
+                "test/abi/part_live_2.go",
+                "test/abi/reg_not_ssa.go",
+                "test/abi/result_live.go",
+                "test/abi/result_regalloc.go",
+                "test/abi/return_stuff.go",
+                "test/abi/return_stuff.out",
+                "test/abi/s_sif_sif.go",
+                "test/abi/spills3.go",
+                "test/abi/spills4.go",
+                "test/abi/store_reg_args.go",
+                "test/abi/struct_3_string_input.go",
+                "test/abi/struct_3_string_input.out",
+                "test/abi/struct_lower_1.go",
+                "test/abi/struct_lower_1.out",
+                "test/abi/too_big_to_ssa.go",
+                "test/abi/too_big_to_ssa.out",
+                "test/abi/uglyfib.go",
+                "test/abi/uglyfib.out",
+                "test/abi/wrapdefer_largetmp.go",
+                "test/abi/wrapdefer_largetmp.out",
+                "test/abi/zombie_struct_select.go",
+                "test/alg.go",
+                "test/alias.go",
+                "test/alias1.go",
+                "test/alias2.go",
+                "test/alias3.dir/a.go",
+                "test/alias3.dir/b.go",
+                "test/alias3.dir/c.go",
+                "test/alias3.go",
+                "test/align.go",
+                "test/append.go",
+                "test/append1.go",
+                "test/arenas/smoke.go",
+                "test/args.go",
+                "test/armimm.go",
+                "test/asmhdr.dir/main.go",
+                "test/asmhdr.dir/main.s",
+                "test/asmhdr.go",
+                "test/assign.go",
+                "test/assign1.go",
+                "test/atomicload.go",
+                "test/bigalg.go",
+                "test/bigmap.go",
+                "test/blank.go",
+                "test/blank1.go",
+                "test/bom.go",
+                "test/bombad.go",
+                "test/bounds.go",
+                "test/cannotassign.go",
+                "test/chan/doubleselect.go",
+                "test/chan/fifo.go",
+                "test/chan/goroutines.go",
+                "test/chan/nonblock.go",
+                "test/chan/perm.go",
+                "test/chan/powser1.go",
+                "test/chan/powser2.go",
+                "test/chan/select.go",
+                "test/chan/select2.go",
+                "test/chan/select3.go",
+                "test/chan/select4.go",
+                "test/chan/select5.go",
+                "test/chan/select6.go",
+                "test/chan/select7.go",
+                "test/chan/select8.go",
+                "test/chan/sendstmt.go",
+                "test/chan/sieve1.go",
+                "test/chan/sieve2.go",
+                "test/chan/zerosize.go",
+                "test/chancap.go",
+                "test/chanlinear.go",
+                "test/char_lit.go",
+                "test/char_lit1.go",
+                "test/checkbce.go",
+                "test/clear.go",
+                "test/clearfat.go",
+                "test/closedchan.go",
+                "test/closure.go",
+                "test/closure1.go",
+                "test/closure2.go",
+                "test/closure3.dir/main.go",
+                "test/closure3.go",
+                "test/closure4.go",
+                "test/closure5.dir/a.go",
+                "test/closure5.dir/main.go",
+                "test/closure5.go",
+                "test/closure6.go",
+                "test/closure7.go",
+                "test/cmp.go",
+                "test/cmp6.go",
+                "test/cmplx.go",
+                "test/cmplxdivide.c",
+                "test/cmplxdivide.go",
+                "test/cmplxdivide1.go",
+                "test/codegen/README",
+                "test/codegen/addrcalc.go",
+                "test/codegen/alloc.go",
+                "test/codegen/arithmetic.go",
+                "test/codegen/atomics.go",
+                "test/codegen/bitfield.go",
+                "test/codegen/bits.go",
+                "test/codegen/bmi.go",
+                "test/codegen/bool.go",
+                "test/codegen/clobberdead.go",
+                "test/codegen/clobberdeadreg.go",
+                "test/codegen/compare_and_branch.go",
+                "test/codegen/comparisons.go",
+                "test/codegen/condmove.go",
+                "test/codegen/constants.go",
+                "test/codegen/copy.go",
+                "test/codegen/floats.go",
+                "test/codegen/fuse.go",
+                "test/codegen/ifaces.go",
+                "test/codegen/issue22703.go",
+                "test/codegen/issue25378.go",
+                "test/codegen/issue31618.go",
+                "test/codegen/issue33580.go",
+                "test/codegen/issue38554.go",
+                "test/codegen/issue42610.go",
+                "test/codegen/issue48054.go",
+                "test/codegen/issue52635.go",
+                "test/codegen/issue54467.go",
+                "test/codegen/issue56440.go",
+                "test/codegen/issue58166.go",
+                "test/codegen/issue60324.go",
+                "test/codegen/issue60673.go",
+                "test/codegen/issue61356.go",
+                "test/codegen/issue63332.go",
+                "test/codegen/issue66585.go",
+                "test/codegen/logic.go",
+                "test/codegen/mapaccess.go",
+                "test/codegen/maps.go",
+                "test/codegen/math.go",
+                "test/codegen/mathbits.go",
+                "test/codegen/memcombine.go",
+                "test/codegen/memops.go",
+                "test/codegen/memops_bigoffset.go",
+                "test/codegen/noextend.go",
+                "test/codegen/race.go",
+                "test/codegen/regabi_regalloc.go",
+                "test/codegen/retpoline.go",
+                "test/codegen/rotate.go",
+                "test/codegen/select.go",
+                "test/codegen/shift.go",
+                "test/codegen/shortcircuit.go",
+                "test/codegen/slices.go",
+                "test/codegen/smallintiface.go",
+                "test/codegen/spectre.go",
+                "test/codegen/stack.go",
+                "test/codegen/strings.go",
+                "test/codegen/structs.go",
+                "test/codegen/switch.go",
+                "test/codegen/writebarrier.go",
+                "test/codegen/zerosize.go",
+                "test/complit.go",
+                "test/complit1.go",
+                "test/compos.go",
+                "test/const.go",
+                "test/const1.go",
+                "test/const2.go",
+                "test/const3.go",
+                "test/const4.go",
+                "test/const5.go",
+                "test/const6.go",
+                "test/const7.go",
+                "test/const8.go",
+                "test/convT2X.go",
+                "test/convert.go",
+                "test/convert1.go",
+                "test/convert2.go",
+                "test/convert3.go",
+                "test/convert4.go",
+                "test/convinline.go",
+                "test/convlit.go",
+                "test/convlit1.go",
+                "test/copy.go",
+                "test/copy1.go",
+                "test/crlf.go",
+                "test/ddd.go",
+                "test/ddd1.go",
+                "test/ddd2.dir/ddd2.go",
+                "test/ddd2.dir/ddd3.go",
+                "test/ddd2.go",
+                "test/decl.go",
+                "test/declbad.go",
+                "test/defer.go",
+                "test/defererrcheck.go",
+                "test/deferfin.go",
+                "test/defernil.go",
+                "test/deferprint.go",
+                "test/deferprint.out",
+                "test/devirt.go",
+                "test/directive.go",
+                "test/directive2.go",
+                "test/divide.go",
+                "test/divmod.go",
+                "test/dwarf/dwarf.dir/main.go",
+                "test/dwarf/dwarf.dir/z1.go",
+                "test/dwarf/dwarf.dir/z10.go",
+                "test/dwarf/dwarf.dir/z11.go",
+                "test/dwarf/dwarf.dir/z12.go",
+                "test/dwarf/dwarf.dir/z13.go",
+                "test/dwarf/dwarf.dir/z14.go",
+                "test/dwarf/dwarf.dir/z15.go",
+                "test/dwarf/dwarf.dir/z16.go",
+                "test/dwarf/dwarf.dir/z17.go",
+                "test/dwarf/dwarf.dir/z18.go",
+                "test/dwarf/dwarf.dir/z19.go",
+                "test/dwarf/dwarf.dir/z2.go",
+                "test/dwarf/dwarf.dir/z20.go",
+                "test/dwarf/dwarf.dir/z3.go",
+                "test/dwarf/dwarf.dir/z4.go",
+                "test/dwarf/dwarf.dir/z5.go",
+                "test/dwarf/dwarf.dir/z6.go",
+                "test/dwarf/dwarf.dir/z7.go",
+                "test/dwarf/dwarf.dir/z8.go",
+                "test/dwarf/dwarf.dir/z9.go",
+                "test/dwarf/dwarf.go",
+                "test/dwarf/linedirectives.go",
+                "test/embedfunc.go",
+                "test/embedvers.go",
+                "test/empty.go",
+                "test/env.go",
+                "test/eof.go",
+                "test/eof1.go",
+                "test/escape.go",
+                "test/escape2.go",
+                "test/escape2n.go",
+                "test/escape3.go",
+                "test/escape4.go",
+                "test/escape5.go",
+                "test/escape_array.go",
+                "test/escape_calls.go",
+                "test/escape_closure.go",
+                "test/escape_field.go",
+                "test/escape_goto.go",
+                "test/escape_hash_maphash.go",
+                "test/escape_iface.go",
+                "test/escape_indir.go",
+                "test/escape_level.go",
+                "test/escape_map.go",
+                "test/escape_mutations.go",
+                "test/escape_param.go",
+                "test/escape_reflect.go",
+                "test/escape_runtime_atomic.go",
+                "test/escape_selfassign.go",
+                "test/escape_slice.go",
+                "test/escape_struct_param1.go",
+                "test/escape_struct_param2.go",
+                "test/escape_struct_return.go",
+                "test/escape_sync_atomic.go",
+                "test/escape_unsafe.go",
+                "test/fibo.go",
+                "test/finprofiled.go",
+                "test/float_lit.go",
+                "test/float_lit2.go",
+                "test/float_lit3.go",
+                "test/floatcmp.go",
+                "test/for.go",
+                "test/func.go",
+                "test/func1.go",
+                "test/func2.go",
+                "test/func3.go",
+                "test/func4.go",
+                "test/func5.go",
+                "test/func6.go",
+                "test/func7.go",
+                "test/func8.go",
+                "test/funcdup.go",
+                "test/funcdup2.go",
+                "test/fuse.go",
+                "test/gc.go",
+                "test/gc1.go",
+                "test/gc2.go",
+                "test/gcgort.go",
+                "test/gcstring.go",
+                "test/goprint.go",
+                "test/goprint.out",
+                "test/goto.go",
+                "test/heapsampling.go",
+                "test/helloworld.go",
+                "test/helloworld.out",
+                "test/if.go",
+                "test/import.go",
+                "test/import1.go",
+                "test/import2.dir/import2.go",
+                "test/import2.dir/import3.go",
+                "test/import2.go",
+                "test/import4.dir/empty.go",
+                "test/import4.dir/import4.go",
+                "test/import4.go",
+                "test/import5.go",
+                "test/import6.go",
+                "test/index.go",
+                "test/index0.go",
+                "test/index1.go",
+                "test/index2.go",
+                "test/indirect.go",
+                "test/indirect1.go",
+                "test/init.go",
+                "test/init1.go",
+                "test/initcomma.go",
+                "test/initexp.go",
+                "test/initialize.go",
+                "test/initializerr.go",
+                "test/initloop.go",
+                "test/inline.go",
+                "test/inline_big.go",
+                "test/inline_caller.go",
+                "test/inline_callers.go",
+                "test/inline_endian.go",
+                "test/inline_literal.go",
+                "test/inline_math_bits_rotate.go",
+                "test/inline_sync.go",
+                "test/inline_variadic.go",
+                "test/int_lit.go",
+                "test/intcvt.go",
+                "test/interface/assertinline.go",
+                "test/interface/bigdata.go",
+                "test/interface/convert.go",
+                "test/interface/convert1.go",
+                "test/interface/convert2.go",
+                "test/interface/embed.go",
+                "test/interface/embed1.dir/embed0.go",
+                "test/interface/embed1.dir/embed1.go",
+                "test/interface/embed1.go",
+                "test/interface/embed2.go",
+                "test/interface/embed3.dir/embed0.go",
+                "test/interface/embed3.dir/embed1.go",
+                "test/interface/embed3.go",
+                "test/interface/explicit.go",
+                "test/interface/fail.go"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 501 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "misc/chrome/gophertool/background.js\nmisc/chrome/gophertool/gopher.js\nmisc/chrome/gophertool/popup.js\nmisc/wasm/wasm_exec.js\nmisc/wasm/wasm_exec_node.js",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "misc/chrome/gophertool/background.js",
+                "misc/chrome/gophertool/gopher.js",
+                "misc/chrome/gophertool/popup.js",
+                "misc/wasm/wasm_exec.js",
+                "misc/wasm/wasm_exec_node.js"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "test/dwarf/dwarf.dir/z10.go",
+        "sha256": "00253171eae4923a580bac2753a6a0fbadb2e73184e5a467be36d2de8c444c9a"
+      },
+      {
+        "name": "test/gc1.go",
+        "sha256": "010781907db1149317f44fa4e543961a717c17b1c8a4e63eb773c46797399a64"
+      },
+      {
+        "name": "test/inline_endian.go",
+        "sha256": "019fbf976535e06ec8493ce13f03e820ebd8ccc5f9e6b14e4f54a6a44db733e7"
+      },
+      {
+        "name": "test/ddd2.dir/ddd2.go",
+        "sha256": "0290c8a39fb4ff4e5340b6c642940290c1d666d9f3238ffde013ec9f4c71332c"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/pack",
+        "sha256": "02a7b3716eb156b285a0bd9a955bea02d03bc90462610d837b9171d6c389983c"
+      },
+      {
+        "name": "test/abi/convT64_criteria.go",
+        "sha256": "02d30fafabe3a6e2d7409290fcd2a4b65249ccc6994bf52c24d6647e9eedc267"
+      },
+      {
+        "name": "test/abi/struct_lower_1.go",
+        "sha256": "033b2fd0dee6fe10c66bc778624b7b61149bd457b71cf04b7b2a1d3f6aab7d50"
+      },
+      {
+        "name": "test/abi/convT64_criteria.out",
+        "sha256": "035833f1d4d59203f9430a87d96d5355353da589af7bb9d31965f64b0e6af35c"
+      },
+      {
+        "name": "test/inline_variadic.go",
+        "sha256": "036c8ffa095b0aac97a29d20c98b583f34089bbad6f88ca9ea82eada210bc686"
+      },
+      {
+        "name": "test/gc.go",
+        "sha256": "036cc4b9c8681268ec4e9b1c401c99528edf7a6fb9837b9e37475b5f6cad97bd"
+      },
+      {
+        "name": "test/codegen/maps.go",
+        "sha256": "042f05e6b797f87a4b94a8b6a8918925f98cb96ab851bc67f37078160f0e2662"
+      },
+      {
+        "name": "test/convert1.go",
+        "sha256": "04cf1430fc35583e9b4c1e399ef30957054c29fa6ce98b0a117e67890ce6d430"
+      },
+      {
+        "name": "test/goto.go",
+        "sha256": "0607c284eed2c8ad6dc09c797f7f2c9f626acab8a5012ff3353ee7bc7192d634"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib",
+        "sha256": "07f7010653c642362a1091f11382349129fd66ad21e220d7fc9c70b40290777d"
+      },
+      {
+        "name": "test/chan/select.go",
+        "sha256": "0816e4829a66a716d99109d3130a8c6fd0fe7ace75755c52d8403a6cc5e5a55d"
+      },
+      {
+        "name": "test/chan/powser2.go",
+        "sha256": "08210c7c85c7153c8a1e6d4c8669c16c80d9ad4559b452b593e022cd1da808a1"
+      },
+      {
+        "name": "test/escape_closure.go",
+        "sha256": "08376db2e4fe6974b2c1670ff40ad4937baaca8b8e8f2d326ce082007a0143d8"
+      },
+      {
+        "name": "test/import1.go",
+        "sha256": "086ff5f32e31380a932659d092cc1d49efde3199e195e93f8777d9a71a359e91"
+      },
+      {
+        "name": "test/abi/convF_criteria.go",
+        "sha256": "08a7256ba7e53e6cf2fd8819c00683dd8a361eb599ae2285902113c75667b03e"
+      },
+      {
+        "name": "api/go1.8.txt",
+        "sha256": "08f93636ee8457b9c4e6010736ddfa449a0ef3c7cbaf719feb863aaf42bd9e70"
+      },
+      {
+        "name": "test/escape_sync_atomic.go",
+        "sha256": "091084b9be6166f3824e883d8ff64c5b4fac5242620793e5e0b195004e2cb8ef"
+      },
+      {
+        "name": "test/codegen/issue31618.go",
+        "sha256": "0916a6596aeb7ce4cffa73614c13e8fdf63293781d46cf6470d4c0bbf9319e21"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z8.go",
+        "sha256": "0917d3c3043aaac71ace7218fe8524a46a6b9a232d06af1324fb37553002b26e"
+      },
+      {
+        "name": "test/closedchan.go",
+        "sha256": "09ec92d01751821b98e30bdc0d6386126a9bb3862cee66f5fb7920c550b81344"
+      },
+      {
+        "name": "test/chan/sendstmt.go",
+        "sha256": "0a032fbfeb100cd6ebaea1d03701a563d9ca7c415d53bf8bb48c8d188d16a699"
+      },
+      {
+        "name": "test/closure5.dir/a.go",
+        "sha256": "0a6453f882e571b4b8e7443c0e7b03bcc4e7fea1c02cc0334700a3295f9a2f0c"
+      },
+      {
+        "name": "test/armimm.go",
+        "sha256": "0ddbbfbade920703dfd2ca69ed4cc812a6504c707eedc860f3994a656b4ca8f5"
+      },
+      {
+        "name": "test/compos.go",
+        "sha256": "0e5854f9ac7185d255bc729d69706e49ed956d3f297be7d5cb908ba339ea7f18"
+      },
+      {
+        "name": "test/alias3.go",
+        "sha256": "0fb71b53e9c13c0367ff2b3eaab8adc36a199877ee65a575ada43b53473849d6"
+      },
+      {
+        "name": "test/codegen/issue22703.go",
+        "sha256": "0ff76b546c7ac16123da5cacae8bfdaad310f6651c01ac57472e3fbbfe44cf5e"
+      },
+      {
+        "name": "test/interface/convert.go",
+        "sha256": "0ffb016cf3f129776037c8d323da70223c36f00d39ce65bf1719fbb672326b6a"
+      },
+      {
+        "name": "test/initloop.go",
+        "sha256": "108d20d579a946698d34a3eb857ee36509ec5a780c2072fd1774d94d50bf828a"
+      },
+      {
+        "name": "test/escape_struct_return.go",
+        "sha256": "10a764d444adeb74da949de99a440c09ce8b6f6592755fda5df3fdf9be02e5ec"
+      },
+      {
+        "name": "test/escape_map.go",
+        "sha256": "12bc8f6c50446e33c510ac68ae0b8993d6c274e94d6285b04c34263b54efddbe"
+      },
+      {
+        "name": "test/const6.go",
+        "sha256": "13785b04d806439852e444ddd660ca2ba723eafbe5dc59d6a345cafaa72889a2"
+      },
+      {
+        "name": "test/eof1.go",
+        "sha256": "1400da117b94ded47822c3c565488126ae82468876f1ffad5e6e20b9e23537c8"
+      },
+      {
+        "name": "test/blank.go",
+        "sha256": "1462492e6e7611e8286cf7739dbf3ea64de3e324e12248b6a8e3506766cba9ae"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/link",
+        "sha256": "14725804aefedafd28a39ae2980899580d872f34b6a4449bfa3ce49cff4354cf"
+      },
+      {
+        "name": "test/alias3.dir/c.go",
+        "sha256": "148513ac6afd7f84b0379cc3a8c5a557141ed995c42655fa6be30f712a619a27"
+      },
+      {
+        "name": "test/alg.go",
+        "sha256": "150ef88049de01a56f79ad1f43adb9f20bea0af45e176c9ee6b6a5e25a238225"
+      },
+      {
+        "name": "test/.DS_Store",
+        "sha256": "1549a6004133f624f85c3b2c07fe511ebe4e1d609bdab5608dd81157a1e7e4be"
+      },
+      {
+        "name": "test/abi/named_results.go",
+        "sha256": "15606ea005119ab88a37f8de28d9a6eea8a7246b4e39149ee4762f49ee66f244"
+      },
+      {
+        "name": "test/codegen/compare_and_branch.go",
+        "sha256": "15c8834d08f98dd396f191271b3c6be4f27912b778c48d899ea21aff64f3cc4d"
+      },
+      {
+        "name": "test/escape5.go",
+        "sha256": "16e6c2a416b0e7d524ac30eb477f8c9f068a09e9eaf05bdc7809f208fab04458"
+      },
+      {
+        "name": "README.md",
+        "sha256": "1703737e8678cfc71da6f938cbc2fffec75f03df2640e2e9ecfc21caab805603"
+      },
+      {
+        "name": "test/alias3.dir/a.go",
+        "sha256": "170a29a862e1b7e54d5d1fc850aad1f9f55d5e1218d8a6d3f5d37013287cf3e9"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/trace",
+        "sha256": "170c1a387e28700ceef521627fcf75bfefc0a0fb117a9762382460cf9a69c157"
+      },
+      {
+        "name": "test/char_lit.go",
+        "sha256": "1795c27c8ba751a8ba60375fd539ab9ba52c7483d12009368504fc7aaa92cad9"
+      },
+      {
+        "name": "test/escape3.go",
+        "sha256": "1888481e2deecd68aacff5cd42e745d406443f313d6dee1f6c38344d8ba0a5dc"
+      },
+      {
+        "name": "doc/initial/6-stdlib/99-minor/0-heading.md",
+        "sha256": "19c1b7723f10253193a5fc62c9dd643c5fe449c9046fe4698f5c7a54fc9e18cb"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/_CodeSignature/CodeResources",
+        "sha256": "19d8597a033b045033855429073f3641f54581a8a152c5e5a3b8a3200307460d"
+      },
+      {
+        "name": "test/chan/fifo.go",
+        "sha256": "19d9a226862549eb7c62950e5fb26d226d7778dedb51fa20a2d260edd5a37cc9"
+      },
+      {
+        "name": "misc/chrome/gophertool/background.html",
+        "sha256": "1a0089c277794febf94ed57f7a35b8d3e6d929853c44e237b115033087443993"
+      },
+      {
+        "name": "test/escape_field.go",
+        "sha256": "1a4bc96720df13c176ab22bea7a06379bfc638d597ab4228ede5c57ecae600a3"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/preprofile",
+        "sha256": "1a8bb5ab7b6f7563258db8361f2042f820fc851ecac65bafe33625a5271dc81e"
+      },
+      {
+        "name": "test/inline_sync.go",
+        "sha256": "1a9f3f88eb51d8bead1f5508654fb3ac0be921a4c48e4afe5abce911bee95722"
+      },
+      {
+        "name": "test/const4.go",
+        "sha256": "1aacbdf6fa21eacac27c1b5cc9be0eadc982eb240421906904a24696a71e4ffc"
+      },
+      {
+        "name": "api/go1.17.txt",
+        "sha256": "1b010c29026badd9ac252012f3095b369a4e4b8dd4c268a4ea209c7f70191737"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/pprof",
+        "sha256": "1b6547a2172d6634ea048d422715ca5cc64ab2c8a4abca2c97d7f8ff81b8c967"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z11.go",
+        "sha256": "1b71fd9f1d5dbf9e43aadda9f84a079b7e6b171ce95179ce2d256d6d606c3a53"
+      },
+      {
+        "name": "test/chan/select4.go",
+        "sha256": "1ba172546e8dca34beca9931a7c3af944e990aaffde158a43a64106486813279"
+      },
+      {
+        "name": "cloud.sh",
+        "sha256": "1c62ce5dc22171cb6dbfdd46ca0a16c8102ee558e78b4dc9ee69d89109d8ab9b"
+      },
+      {
+        "name": "test/env.go",
+        "sha256": "1cb4f85ede8672169a93d0c7043440681920108e93b8b2c0c1d8c054ae2ca920"
+      },
+      {
+        "name": "test/abi/wrapdefer_largetmp.out",
+        "sha256": "1dc579c9eb1f80b0ce412feea3a58686d0c8e918ba00edd275e9b82adb653bb6"
+      },
+      {
+        "name": "test/codegen/issue33580.go",
+        "sha256": "1e3569012060562a2a15a20611ca45b3f4a09597576fa47bcbc869792efeb3ca"
+      },
+      {
+        "name": "api/go1.18.txt",
+        "sha256": "1f2d9a39ff6c792fba0eba755c011bc92746e23fc7ffea2557c322ed27ae3049"
+      },
+      {
+        "name": "test/abi/bad_internal_offsets.go",
+        "sha256": "1f3676d67f69b98a68be159ce10717f65787c217f2c6b5fa609904159919a45a"
+      },
+      {
+        "name": "test/checkbce.go",
+        "sha256": "207468b6ddc1c988808ac2b822d4e8259d609c9b16dcdc4654296f23e3a59a0a"
+      },
+      {
+        "name": "api/go1.5.txt",
+        "sha256": "20a1ace7972724570dababaa77eadf85a6438836739416da406a54174555263b"
+      },
+      {
+        "name": "test/initialize.go",
+        "sha256": "20db4a990e025e67c24505a68cf7c28d5133995071cac251eecce9b94aebdedd"
+      },
+      {
+        "name": "lib/time/README",
+        "sha256": "210feb0cd847d9435f97ae956b7040a41d62b554eec095883abe95d91797bf70"
+      },
+      {
+        "name": "test/interface/embed1.dir/embed0.go",
+        "sha256": "214f90550c067cb76d40235007a5eaba400af04bf6668717c5c71e248619359a"
+      },
+      {
+        "name": "test/index1.go",
+        "sha256": "21a2ce511a65fd34cb8592c24545f8dec95d22e97cadd4fed865ceafa0817b48"
+      },
+      {
+        "name": "test/func5.go",
+        "sha256": "2267384b812589660cdfd7c9cdb7a59f9771a006fcf21b00d817ca7966514ff1"
+      },
+      {
+        "name": "pkg/include/asm_ppc64x.h",
+        "sha256": "231cefb758e414775589099778436848eeaf043d1b59e52dbd0e192e6a7c59f5"
+      },
+      {
+        "name": "test/fibo.go",
+        "sha256": "2357d5aac384d0d59e7055afdcd76c124305c03c0d9fd7c382b3305643e53e7e"
+      },
+      {
+        "name": "api/go1.4.txt",
+        "sha256": "2405070acf10bcf85c509be7e2c13eed30289542c8e62ecdb38e043916779c2a"
+      },
+      {
+        "name": "test/copy.go",
+        "sha256": "2485a99c32ec6fe1982b878841ef42cdc39a5785a561c5ba69504edbbd5a1474"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Info.plist",
+        "sha256": "24991c9b3d2a85de3135113d7218a8b1043ddd3a3e755a50952af3ec4b8841c5"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/cover",
+        "sha256": "2687f04357c306a0d516ea722ad4951eb8aa3af96270f3e0b486e8b3fded163f"
+      },
+      {
+        "name": "pkg/include/funcdata.h",
+        "sha256": "27073247cc80d4f7e0bfd07858bf0a5508c11f04e4989c418fc681d576dd5b94"
+      },
+      {
+        "name": "doc/go1.17_spec.html",
+        "sha256": "27895fccd054bd634d7822a8a5203609bdfbbb7508fdbda81a080f5e9d0fdd83"
+      },
+      {
+        "name": "test/args.go",
+        "sha256": "2816e9241013c8759e5c91c9ed1353e1785014a3d50b4d738be1311fefda3ce3"
+      },
+      {
+        "name": "auto/chrome_cookie_win.go",
+        "sha256": "28254b31674c14d6e6881fa9bc6a18ab75023b818ccd2b29e38e9e45b50496d8"
+      },
+      {
+        "name": "command/stackcmd.go",
+        "sha256": "2842a9ab223a27dbd42ad8bb89ee6c119ee6f5e21fcdb0051b6ef2f521d4031b"
+      },
+      {
+        "name": "test/abi/too_big_to_ssa.go",
+        "sha256": "28d7e5079f3b09ed4349897110486091a56facee837ae7bc345313605adc95d7"
+      },
+      {
+        "name": "test/convert3.go",
+        "sha256": "28f0f0eabcfd1cd105a0f925c7deb3d0924ec77296d197380541d8140ced1087"
+      },
+      {
+        "name": "test/fuse.go",
+        "sha256": "2979e3efec8edb233f0b8925675d7fe0aefe9eefac73d76ed33ac37306072523"
+      },
+      {
+        "name": "misc/ios/README",
+        "sha256": "2a03ca75005dd6b8f3d1f33be19a3f7004e06c6acd19a82bb1d40c12ea346192"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z18.go",
+        "sha256": "2a4d6bb474c98d1319ec216c1e82ecb9987554fada0988fa1a339cf30df8251e"
+      },
+      {
+        "name": "test/abi/leaf.go",
+        "sha256": "2b2c4f4d179f976c82d70e685c18b55383e79c3d1bde7d1b1baa13b76ad2ff19"
+      },
+      {
+        "name": "doc/asm.html",
+        "sha256": "2cf7c133b8821a94993d2936e00806b711ecaac5be23dacad991ca29aa3dd178"
+      },
+      {
+        "name": "test/abi/double_nested_struct.go",
+        "sha256": "2d048ead5d55f1e5da650bc9b2ce5b720775dbd084b1dfba56594999a1f0f70e"
+      },
+      {
+        "name": "test/codegen/floats.go",
+        "sha256": "2d3bc4ded584468edb1cdd1e3d1a2e5b1658486981f7efdf39e6d160c08a9155"
+      },
+      {
+        "name": "test/declbad.go",
+        "sha256": "2da3e602b2fe07b00c181d73f4dfb47a68d069cbffa367fe9993dc1626580905"
+      },
+      {
+        "name": "test/bom.go",
+        "sha256": "2de7d3be4dc902e600dddf4e297a8eb6c62ee6a9d0a89114e873a9330c2fe391"
+      },
+      {
+        "name": "test/chan/select7.go",
+        "sha256": "2f1ab822124a4045f8c3920bd98b09cb54ba9d7ccda47d93708bffbebf05e5ee"
+      },
+      {
+        "name": "misc/wasm/wasm_exec_node.js",
+        "sha256": "2f68b76edad12ee1335898fb698dd08fd87d2bf84064eab276cc8512c88fab0e"
+      },
+      {
+        "name": "pkg/include/textflag.h",
+        "sha256": "30779faaf8ad88530848ba7c3759ec30a19ed7d326dac351f9ed256e2840e7b2"
+      },
+      {
+        "name": "test/directive2.go",
+        "sha256": "322aa79dc35ad9a7809d8e88bcc2f0f01be64ce9002426aeb23ecc21dc2ea30e"
+      },
+      {
+        "name": "config/constants.go",
+        "sha256": "329a665501b1c18e67799b06b0e8c8246f0a8f3e8b4d0bfecd192332fef7a0d2"
+      },
+      {
+        "name": "test/chan/nonblock.go",
+        "sha256": "33d16b504e3fc7f07482e044e17d6f23460c759734c1190135796f63acbe1410"
+      },
+      {
+        "name": "doc/initial/6-stdlib/99-minor/README",
+        "sha256": "3400a5ee8d721ea82c1b2f331a48406b36255760833e1514970d78959d3582e0"
+      },
+      {
+        "name": "test/codegen/switch.go",
+        "sha256": "34641343f6b43009ee9f8ebfae7dce25392588b509e7ccc48865b5eef1475330"
+      },
+      {
+        "name": "test/interface/embed3.dir/embed0.go",
+        "sha256": "3486b340fa79d3700277c2dd9d42777d8c9ab243bd1648bf9cfd186f8924cfcc"
+      },
+      {
+        "name": "test/interface/fail.go",
+        "sha256": "359455c6a33b7701c1244ff70498d931f41d1804569bd324ba7a06b884220449"
+      },
+      {
+        "name": "test/defererrcheck.go",
+        "sha256": "35cd06fe32144538481c787880fd8549939ed940f8cea4e5aa8a9a3f3a62392d"
+      },
+      {
+        "name": "misc/go_android_exec/README",
+        "sha256": "36367528b45619502d28a071796c948556f1478932124d00006dd87e9daf4bec"
+      },
+      {
+        "name": "test/codegen/logic.go",
+        "sha256": "379aa92a6affad341def87bb344a292125371cd0d82eb7f4b9dd854e41f014d4"
+      },
+      {
+        "name": "test/abi/defer_aggregate.go",
+        "sha256": "38025cff51062586dfedbc46a866ebf30f925c81418b68692bcdd1e2d237aae7"
+      },
+      {
+        "name": "api/go1.2.txt",
+        "sha256": "388b810ca280ec2fcf19d584b92f576c62209b64a35704c813fd24d2a13550b0"
+      },
+      {
+        "name": "test/abi/struct_3_string_input.out",
+        "sha256": "3904c6dc0213872a10daf3b4b1eb1c176564a7fe494e22bb43bf2528f913d695"
+      },
+      {
+        "name": "core/loop.go",
+        "sha256": "392c554e23b2e9cd3f30ce316c727c534f219e5c7ff081c703270560ea03ba14"
+      },
+      {
+        "name": "test/abi/store_reg_args.go",
+        "sha256": "393f2ad764bd09dcbd52abb0e53fd92f6e2040abba7824f19657dd0e7818384a"
+      },
+      {
+        "name": "test/int_lit.go",
+        "sha256": "39fb7b98dc94aedf473e7000791ed9a1cb56ddd6d65c47dffe074502b28718cf"
+      },
+      {
+        "name": "test/assign.go",
+        "sha256": "3a3188edc7d3c1313714f57ea0eac20e2ded434592e94d435ce43c91d1588004"
+      },
+      {
+        "name": "test/codegen/clobberdead.go",
+        "sha256": "3a8004ae27f6129247400d4850930c933f6f565717f2ed19b810b0cb2387e882"
+      },
+      {
+        "name": "test/abi/named_return_stuff.go",
+        "sha256": "3b259872e78554a68403fb1441c9e256f4ef09ed5e2ac4bff645d950e733d7db"
+      },
+      {
+        "name": "test/codegen/retpoline.go",
+        "sha256": "3bee357db210a7f02dee3f08d705ddfcfadf995ab794228c58263c4b06bb27de"
+      },
+      {
+        "name": "test/abi/many_int_input.out",
+        "sha256": "3bf27b57cd627ea276fafe3b70bc34ebcce6ab5a4fd6cdcbe0153f63de42726b"
+      },
+      {
+        "name": "test/codegen/spectre.go",
+        "sha256": "3c8c51305b1fa264ffacc3a371458139682c9f0d8aa87d7a521f59dceb67ba05"
+      },
+      {
+        "name": "auto/chrome_gather.go",
+        "sha256": "3d0e3612092b239ec3ed5734da145abf941088cb6cd5a20717b1c6ea4b86e158"
+      },
+      {
+        "name": "test/cmplxdivide.go",
+        "sha256": "3df6c459e958dfc0f65b2579a902649516cc8d0b63b5a913ad719cb21e5ce5f4"
+      },
+      {
+        "name": "test/codegen/issue48054.go",
+        "sha256": "3e08949d71a872c74564ce926cea04ee0e84b6f88a2ee62b8357f7cd78e0f722"
+      },
+      {
+        "name": "test/deferfin.go",
+        "sha256": "3e3ef204cc4236ebe6873ab1da30c90f97354fb25a2dfbe5243494682c1de2fb"
+      },
+      {
+        "name": "doc/initial/7-ports.md",
+        "sha256": "3e774f01cdba873987b37b60669d751c5a1242218fbcb39b77a55250f1720544"
+      },
+      {
+        "name": "auto/chrome_cookie_darwin.go",
+        "sha256": "3ed28ff89b1eac3c8b76e3538dfc7020dccd34c08d8986d716b058195b8d2428"
+      },
+      {
+        "name": "test/interface/embed3.go",
+        "sha256": "3ef644fa44913c7c12d8537210076d856c3bdfc1e9ebf2e95f23c90e034b41bb"
+      },
+      {
+        "name": "test/abi/f_ret_z_not.go",
+        "sha256": "3f387264e0756512e2f3fc2afffdfb81a9d3669fea2242632a2c1bbfeec9a33b"
+      },
+      {
+        "name": "misc/cgo/gmp/fib.go",
+        "sha256": "3faa0e706d3eebc53d83752c0b79e244ce0b70288b738e9329df175a347d912e"
+      },
+      {
+        "name": "misc/wasm/wasm_exec.js",
+        "sha256": "40965f05385d56c61f87549bb7bc901fc636ed7d84609b4fc868a6f52a02c4ae"
+      },
+      {
+        "name": "misc/chrome/gophertool/background.js",
+        "sha256": "410d516723a4b8249335968eae435e4cee788032c229eee585e3556c254e86d3"
+      },
+      {
+        "name": "test/append1.go",
+        "sha256": "415aa6ccfb04ead74029fb122d3bd1c0deaac93f5317bb0298598b39e41421dd"
+      },
+      {
+        "name": "test/divide.go",
+        "sha256": "423defbda378248b485e668132aff62c573f56c6b275d98155a7b517874f6c39"
+      },
+      {
+        "name": "test/closure6.go",
+        "sha256": "426983a867bb1e2eb93054fcd7593f243553293436d84955a271db8f0b7efb3e"
+      },
+      {
+        "name": "api/except.txt",
+        "sha256": "434c63c6b409b947995be92d1502b8bc74723e65ebe82df24682006a60327554"
+      },
+      {
+        "name": "test/escape_reflect.go",
+        "sha256": "43ef6b360eb43012ec937c53c8d49113636c3fa428936fbfd64f59941ba13abe"
+      },
+      {
+        "name": "test/escape_struct_param2.go",
+        "sha256": "447a38b2d5bddac29b8b2b0d9b5bf814ee6242d9a2750a878b65496845ef1106"
+      },
+      {
+        "name": "test/goprint.go",
+        "sha256": "44ba0e7fd0dbe1efb5b1804984fb48f62abbbb43d3ca2623926d8c02c614250f"
+      },
+      {
+        "name": "test/codegen/shortcircuit.go",
+        "sha256": "44fbfa71b9d2e1dec6b2a0e950c76a0380435020ddb748492de7212510212b75"
+      },
+      {
+        "name": "test/const3.go",
+        "sha256": "45483ab900768d64d272adf63f9fc95c51a54ef171876f7d467385535c14de05"
+      },
+      {
+        "name": "test/cannotassign.go",
+        "sha256": "45acfc393ea598514f7fb01b5af5bf2f8ec90f72e37db6d9149d23fb930ca3d4"
+      },
+      {
+        "name": "test/inline_callers.go",
+        "sha256": "46158355d57e795d1ed4866966876e93aeb6e21e9372459b6506591422932d2d"
+      },
+      {
+        "name": "misc/go_android_exec/exitcode_test.go",
+        "sha256": "461c65e62451e98d35750c75de5021399dd4f1c6e356a571317566892065d0f8"
+      },
+      {
+        "name": "test/abi/uglyfib.go",
+        "sha256": "465111a63623a971ee6c586d57ef8b5fabde715131787837cebf711a894efaeb"
+      },
+      {
+        "name": "test/escape_unsafe.go",
+        "sha256": "46bb01c5fcaf27e82656b1f91c5d33ec3d4037c5fd8db05dc01fc85d9c3944df"
+      },
+      {
+        "name": "misc/chrome/gophertool/popup.js",
+        "sha256": "4776868e81cf73685387d4bdb4f23782dc32bf3f425103fc2b0f25a021404868"
+      },
+      {
+        "name": "test/clearfat.go",
+        "sha256": "4858c54df81e65d7dcd90e2711a183003070ba26945b3fc6032219832f762610"
+      },
+      {
+        "name": "misc/chrome/gophertool/gopher.js",
+        "sha256": "49472252da28683ac5d2e82b9303d476fe30835f758b5a1cc6bcd9c0b988d1b3"
+      },
+      {
+        "name": "test/inline_math_bits_rotate.go",
+        "sha256": "49aaf793228cf44adb2ce031798587bf4f6f5c3f8520b74325bbb30fbe96ca69"
+      },
+      {
+        "name": "test/goprint.out",
+        "sha256": "49f9eae51b3e6df1f07c7b4c22783507d97e6932552087872854d6322d7f463b"
+      },
+      {
+        "name": "VERSION",
+        "sha256": "4a2985771fd51d515af3e8fd99e9f9e443dd9eab7c32fc3e098adfce93899ebc"
+      },
+      {
+        "name": "test/codegen/bitfield.go",
+        "sha256": "4a5d8c0e2dbda5e940caa545b09816c6aace5ca3cd3d20da0d7f5ec9b0d971e6"
+      },
+      {
+        "name": "test/abi/zombie_struct_select.go",
+        "sha256": "4a8657c027ae451d582df535312af86c770b208521cd5cd11a13a8e3f886a42f"
+      },
+      {
+        "name": "test/codegen/issue38554.go",
+        "sha256": "4a93326dac53423aa898b8618db667763bcd5b8bcc51e0898f499cb70e2d4989"
+      },
+      {
+        "name": "test/deferprint.out",
+        "sha256": "4ad471713086d8fd8b5daf4d73a7d52585ada87f7a6b4e99b2488f96ef0cde69"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z12.go",
+        "sha256": "4b4c6cc8238496bf5d25a365cec89f695fc04d4782230c422cacf71edf84c4fb"
+      },
+      {
+        "name": "doc/initial/1-intro.md",
+        "sha256": "4b53070db374a000b0a64f9d6bc692bf0c823d9976412f01d632b9afa118873c"
+      },
+      {
+        "name": "test/chan/doubleselect.go",
+        "sha256": "4b54f3f4a6da92a3a4dadfc1f07788e70791996fbcfc75fd87ca15a9f0b54d20"
+      },
+      {
+        "name": "test/closure3.go",
+        "sha256": "4bed9b757db0bc2d01077a34d32e1de1b8c0fead8d333ebdbf909c73f4977e23"
+      },
+      {
+        "name": "test/abi/f_ret_z_not.out",
+        "sha256": "4bf9e2fcfe53d0b529a6119e399a91d2d98039e1f5ff777a16e17ae1b03c89bf"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/objdump",
+        "sha256": "4d0992eeeab864124b63f7778e21289d4c626c07ba34756bedbf9f0e2314e4ec"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z14.go",
+        "sha256": "4dbd2a05330b8a49d015e0495a5e15b1badc8102816e59fb03c3a00ea7f6b95b"
+      },
+      {
+        "name": "test/escape_runtime_atomic.go",
+        "sha256": "4dc20a38135c8cb964a793321df5f96fb77618c2ccc40c23d3dcdac6f1a6cacc"
+      },
+      {
+        "name": "test/devirt.go",
+        "sha256": "4e16ba9ace06bbbad4faf22ddcd01f64c9df2567f3ea56cebca5bed7e6cb2395"
+      },
+      {
+        "name": "test/char_lit1.go",
+        "sha256": "4e2a006663d3a6522e6abe72553b99db338b5c0407e52c8e9016ad38cdbc0084"
+      },
+      {
+        "name": "test/interface/embed1.go",
+        "sha256": "4e7f9946d665578dcb104df9f4642187a92f0815a9442a504b754ac3306898c9"
+      },
+      {
+        "name": "test/float_lit2.go",
+        "sha256": "4f3259ce28a106c29d681434e2a4e75d41768cc2158464acba566473afe64fdc"
+      },
+      {
+        "name": "misc/ios/go_ios_exec.go",
+        "sha256": "4f3994e5410ef98ef5f3bd9dfc93a8befafc839fa740953b36b18ab0e44f883f"
+      },
+      {
+        "name": "doc/initial/2-language.md",
+        "sha256": "4f497509ee8c0cf1bf986a4f54f112536c194c7eb8375cdababa3e4301f4ac28"
+      },
+      {
+        "name": "test/escape_array.go",
+        "sha256": "4f8c10d6d8aabb7c9a9134a365a83cb631bd56eaaa440e9a74f7451827b972ca"
+      },
+      {
+        "name": "test/asmhdr.dir/main.go",
+        "sha256": "4fb4ea65e67789da8c1021def513df3009b8fe153795e948ae1be6806dc44947"
+      },
+      {
+        "name": "test/chan/sieve2.go",
+        "sha256": "50caf307d5e91bcccd0130bbe5c49b8237cf7e340c1d7d6dc6e96549a6189186"
+      },
+      {
+        "name": "test/bigalg.go",
+        "sha256": "51708fa1e16f1a85ec5a8fe1dfbfbfe23e958a8a2f209f85658d0a9b2822323f"
+      },
+      {
+        "name": "test/float_lit3.go",
+        "sha256": "5172da367b225e875efa9632837d66710a53c596d77bdb491d8923dc7f789482"
+      },
+      {
+        "name": "test/alias2.go",
+        "sha256": "519f9108d24488f89bf4694073c5e2463e6f991411f28c534afde3f84c0a8e73"
+      },
+      {
+        "name": "test/abi/reg_not_ssa.go",
+        "sha256": "534b43d5e37b9825a21d50c3134b627b580bef39ba75df0b87b12123ddc342fb"
+      },
+      {
+        "name": "test/codegen/issue60324.go",
+        "sha256": "536ecdf02973b20b351d4860c6bf2266368243d05c95aff0f7fc30066dd7586c"
+      },
+      {
+        "name": "test/interface/embed1.dir/embed1.go",
+        "sha256": "539666242310725b347f7f8c0ed4e1c01710ed645cce649e39839088a0716c5e"
+      },
+      {
+        "name": "test/codegen/writebarrier.go",
+        "sha256": "539a5bed3781f0b3f0bc3cce4622b8f258d29738439faa7a498a9c17e5d65469"
+      },
+      {
+        "name": "api/go1.19.txt",
+        "sha256": "544da612bb52f857aec09026e0d25510e16cee4f0a204c90054c436346d17e33"
+      },
+      {
+        "name": "test/abi/uglyfib.out",
+        "sha256": "566f85b18cbe389df36d2a37e3e1d6e5ceb1f5a167fc43bc398793aa0128a1f5"
+      },
+      {
+        "name": "lib/time/zoneinfo.zip",
+        "sha256": "568346139c91bd7ceb79fc4d35083700b184e31b2a4c41079d2ae5635e0d806a"
+      },
+      {
+        "name": "misc/ios/detect.go",
+        "sha256": "573826188087a1c50d1957329f73ec092dd5464f60dad3a49d3e98243bc9d111"
+      },
+      {
+        "name": "api/go1.22.txt",
+        "sha256": "580f06fe91772bac6181861328128eb428bba926c86d05f04dfc8c690636b72c"
+      },
+      {
+        "name": "test/abi/bad_select_crash.go",
+        "sha256": "581a71cff2a3e2f80e6d64f595fdfcb7303a9f75626e8d260a8cc2e2432c212e"
+      },
+      {
+        "name": "test/convert2.go",
+        "sha256": "5915022524c343446a295956250bb3068d1448eb9ff1aa0d3cee9bead59c2b56"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/AppIcon.icns",
+        "sha256": "595a90e753da5d79453c902e605cbe63d3c549831fb35b44623b95e81ad0a54d"
+      },
+      {
+        "name": "test/abi/method_wrapper.go",
+        "sha256": "5a0698203d398d6eae0b7aae4a0d99cc16b4ef9b5610c6cafc8c2cb5c9ecf881"
+      },
+      {
+        "name": "test/codegen/clobberdeadreg.go",
+        "sha256": "5a97f5431f5c09b0311ca078f863c30cb62974c8663098e625150c48dbe73ef1"
+      },
+      {
+        "name": "test/codegen/constants.go",
+        "sha256": "5b306b0a6ccd371111afd609c3e24294e157a819cc3415c7575f4772ae38ea5e"
+      },
+      {
+        "name": "test/const.go",
+        "sha256": "5bc27744b6a778429f61e301d81664c46c7459096726f095f5ee278be32b0c92"
+      },
+      {
+        "name": "test/codegen/select.go",
+        "sha256": "5e2f3182ad2ca8beb8bceaf097c6e0d2278d7a9121a4181619b4fb1fc8263e75"
+      },
+      {
+        "name": "Makefile",
+        "sha256": "5ec0ba50d3646433415a248bb7f48bebc0f613b73d87be13c2d2c00289cb3c69"
+      },
+      {
+        "name": "test/codegen/shift.go",
+        "sha256": "5ee211ddd81b6b44d5eb363f0603dc00452303a7359b07f1cd7d20d53515d7f1"
+      },
+      {
+        "name": "test/escape_slice.go",
+        "sha256": "5f404dbf9943242d02c0e4191931e14dc7ef332538b0cae2fa7c24dc4870a0d9"
+      },
+      {
+        "name": "test/complit.go",
+        "sha256": "5f4e19148b9e8419099b294e66fe59061725235a553fab89ad25409b47a110ec"
+      },
+      {
+        "name": "test/convert4.go",
+        "sha256": "5f87ad43b374cfad443bb942f8be5d7abaf799b46af63317e98e06154080293f"
+      },
+      {
+        "name": "SECURITY.md",
+        "sha256": "5f9582eb3acf990da9a2764b91fc9aa0b608aa2aad8c13010d63582149c41a5c"
+      },
+      {
+        "name": "test/235.go",
+        "sha256": "61b2147d0cc8cb9db2b3311df32a36657d2acc280f15923885beb83725f95418"
+      },
+      {
+        "name": "test/abi/idata.go",
+        "sha256": "630fa760abf48e71757f4a2b6a439b60d6233583a4834b46caf171d36fdd9ae3"
+      },
+      {
+        "name": "test/escape_level.go",
+        "sha256": "63998e50aaba0422a4c7f74a01f4362bf6ddbb3b83669f838fd99f273d4dea0a"
+      },
+      {
+        "name": "test/abi/fibish_closure.out",
+        "sha256": "63cd5d1451fcb1c7e570523ea90835b510cf597979ea64f6ee224a9feb8d6a9b"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z9.go",
+        "sha256": "658741eeee2416009922483e7621f7b8d238ffd6a6da167b615f7e9e3a0f2e36"
+      },
+      {
+        "name": "test/bombad.go",
+        "sha256": "6587960d9d2e148aa322e324b1e01476a53b5899881e0d508e1eec2a7deac033"
+      },
+      {
+        "name": "test/codegen/addrcalc.go",
+        "sha256": "668e7b1b0154ba75e16083dcf64531abeddf76ed413f34318c59926cfd4f9893"
+      },
+      {
+        "name": "test/alias3.dir/b.go",
+        "sha256": "67106c03d1b97bdd70cab01ca26453b7c5c07e4f6de87c98b904118a8bf4afdd"
+      },
+      {
+        "name": "test/cmp.go",
+        "sha256": "67e357ae85b3f289baccfde30bbbb8365e4a4f92eaa97bf63e8948883230bbcc"
+      },
+      {
+        "name": "test/codegen/slices.go",
+        "sha256": "67ebdf05ae7f58b6c455fb02ab7ca1ecfcf6b74078957b3b0bade27b5ee3c626"
+      },
+      {
+        "name": "test/abi/fuzz_trailing_zero_field.go",
+        "sha256": "6899ba88f79fa9597bf3659f412e714908c86cc83a5be3076ea7aa54916ac423"
+      },
+      {
+        "name": "test/abi/fibish.out",
+        "sha256": "692335715ee1bf7596dab0957eb29e382b029f55fe596914b177f7d754d416e9"
+      },
+      {
+        "name": "test/codegen/mathbits.go",
+        "sha256": "692e064b0c8978327a74e0da74e32986c2b8dd7afc59ab41faf0ecfe49fe9c22"
+      },
+      {
+        "name": "test/directive.go",
+        "sha256": "69a7464c8a7a065dc85dd30f06b98b6904395e40e1d8bb460278b38448137964"
+      },
+      {
+        "name": "misc/wasm/wasm_exec.html",
+        "sha256": "69cd1d00cbe37c11d2026ab0815a6a4d0cc321dc2eb3e55812635598ffc02682"
+      },
+      {
+        "name": "test/if.go",
+        "sha256": "69ea1a9e1feee06d3249b81529a8805a67bc5053ecaf4536e84b19758b492310"
+      },
+      {
+        "name": "api/go1.10.txt",
+        "sha256": "6a50cf6848c89cc6368bd35da9077dd6d6ba15dac7c37248f6ecb646789989bf"
+      },
+      {
+        "name": "test/cmplxdivide.c",
+        "sha256": "6a895d3a6ab0eac9c205e045faa24fe2e238259872c87ed4bc60494eee6d0b12"
+      },
+      {
+        "name": "api/go1.6.txt",
+        "sha256": "6b250c07333323c2a4b2e5e30861d283f2122f4bffdb2a1266a753dbd614858b"
+      },
+      {
+        "name": "test/interface/explicit.go",
+        "sha256": "6b4824822bbf9b9b268d17158dfbc9feb7acb5c797033df6cf1d1612ace89708"
+      },
+      {
+        "name": "doc/initial/6-stdlib/0-heading.md",
+        "sha256": "6ba7aa0e7c5f4aafe871bed926a3b0fa2c54a1e9ae5f6a6cac59a0d1f43ca45b"
+      },
+      {
+        "name": "test/abi/double_nested_addressed_struct.go",
+        "sha256": "6be28d5d3d68c54965b3d7dc825e25871e151ac28c8971dfb10854ea3e2b188f"
+      },
+      {
+        "name": "test/escape_indir.go",
+        "sha256": "6c763ba1486cd0595cc0f26928c4f153b369b969ccbac87889d3d22cc08f8db6"
+      },
+      {
+        "name": "test/blank1.go",
+        "sha256": "6d988470cd9851b54f56e3a631139619df7c0af850af0cf392a8f7b3c5f83115"
+      },
+      {
+        "name": "test/embedvers.go",
+        "sha256": "6e1d73ca91f4f3121296124b8907cce33201b98acd7b286c42c28f767b1c6b58"
+      },
+      {
+        "name": "test/defer.go",
+        "sha256": "6e41f6a1b8bfde4ba475cd2a92aec2d5f9a9b2f66c6502112ef4e64ece5b522a"
+      },
+      {
+        "name": "PATENTS",
+        "sha256": "6e89b1e86d0b9f34bca0434cbcdf6109233ab5114106e9c4e7bbac89bd13b587"
+      },
+      {
+        "name": "test/abi/wrapdefer_largetmp.go",
+        "sha256": "6f5ddb89f8f606e993e2c49b11cd577bf9f9e9eacb177e13c582ff3ab5b62348"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z1.go",
+        "sha256": "6f998efb1e16697606c891e4dfdd6aa2170aafa8fbe3d82a1ea35e60c09c7d76"
+      },
+      {
+        "name": "test/gc2.go",
+        "sha256": "70055c52ddfe6c3d3d14f8eba3b2b9194384e5f046bb2860662c2395e8402dfd"
+      },
+      {
+        "name": "test/abi/too_big_to_ssa.out",
+        "sha256": "715cce1e2f0762adc2cb9abba981bc60739519d688ccb3bba16b58c5eabb3e68"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/addr2line",
+        "sha256": "722b117a43c8cb0bee578b8952c645e8b15a17084d1c4f63616391a4cefb8c30"
+      },
+      {
+        "name": "test/codegen/issue66585.go",
+        "sha256": "727836fe887b646487a0e5ed65b58d825aa1d8badb8d28e38902c18f97c74419"
+      },
+      {
+        "name": "doc/go_spec.html",
+        "sha256": "7285b13ec7fa26c5d9da3b7521a0b7485bb5ff18aa9ae978334430ecd824cf91"
+      },
+      {
+        "name": "test/abi/many_int_input.go",
+        "sha256": "7298ec45c9c95a4f52f53892d0a1ab656a885a8151e7aa7d6471c3616fa52f61"
+      },
+      {
+        "name": "doc/initial/4-runtime.md",
+        "sha256": "735504fbe41f28aaa7e941831ec0fafd92a2f12726166b5b5082885e5adde74d"
+      },
+      {
+        "name": "test/gcstring.go",
+        "sha256": "7385c37a7430cbb74e2d8825cc7b2baf5f6afbd6f506773ff3802c9b0f667510"
+      },
+      {
+        "name": "misc/chrome/gophertool/README.txt",
+        "sha256": "73e067ab4215bd7fb62896af60afcd3f8560226e7094080201b3693a88b24bdb"
+      },
+      {
+        "name": "test/asmhdr.dir/main.s",
+        "sha256": "743071681f4f4a10b81088a8ccb15a2ef6b82044515a09c96ee1302d0b8d7281"
+      },
+      {
+        "name": "test/abi/open_defer_1.go",
+        "sha256": "7430f54b33b45b36525db1bc57dd232aeeaf50ca80e3e9b1d6268d3889bad499"
+      },
+      {
+        "name": "test/codegen/memops_bigoffset.go",
+        "sha256": "7476e8fc93874f2070cdb5ae1d54ae444abc47020e5e15fef5809d79419e463e"
+      },
+      {
+        "name": "test/eof.go",
+        "sha256": "74d314b1cbe02bc43c0c0b729f7d6984fa49af1377bc9025708250b30519dec7"
+      },
+      {
+        "name": "test/codegen/structs.go",
+        "sha256": "74ed668dba3bd824d793b1d6750949687623aee88313e7ca0c9ef7d99c1d7c07"
+      },
+      {
+        "name": "instance/check.go",
+        "sha256": "7528bb8d55331d826efb83dd4527a37c8adb5887d2e822da6fa61ef66350186d"
+      },
+      {
+        "name": "test/align.go",
+        "sha256": "752fbcdfb0e38b4c274921400169c540c00b30272e27facd971831a5a8894dc4"
+      },
+      {
+        "name": "test/index.go",
+        "sha256": "75547c9e1299611a703b43d301fe8fccf158fb39b14ee7d16fdeaf598a7e6282"
+      },
+      {
+        "name": "test/interface/embed3.dir/embed1.go",
+        "sha256": "7606ffbd4deb98aeedcbfe52d40f393bacd005adf16a49c30086bd0020338a5d"
+      },
+      {
+        "name": "test/codegen/issue54467.go",
+        "sha256": "762b8c6cd140085493a201402192bcfe5d976affbdbef98e2c9c254dc3c68d30"
+      },
+      {
+        "name": "test/funcdup2.go",
+        "sha256": "77ca9ef89bb36d5593efd9699c62c5b00f1603e774abb31a904b36e73059411b"
+      },
+      {
+        "name": "test/import4.dir/empty.go",
+        "sha256": "77fcfd2c0ce276a02698cd2533a77471354de68128c9a26624381b012a937317"
+      },
+      {
+        "name": "instance/wincrypt.go",
+        "sha256": "78db72b7545a1223f7cae3369d38923fb914ed54454a2351501b30a7c9904aa5"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z3.go",
+        "sha256": "793c115ec59fb6c82d1be50557d7ab653b5787f2168c70fb94dbfbefc7fecdc6"
+      },
+      {
+        "name": "test/inline_caller.go",
+        "sha256": "79a78ca180093076df68823e23c4f6b5860066b12d78ab8b02533238ae238dbc"
+      },
+      {
+        "name": "test/func8.go",
+        "sha256": "7c9b23e1d73cead25d4214800578ff894aa8ff1afdae7e292d82e4dd42d3ba0d"
+      },
+      {
+        "name": "misc/wasm/go_js_wasm_exec",
+        "sha256": "7cf1fd839913d6d6df002743f40643f375b2d9933042d73937f7437335dc2812"
+      },
+      {
+        "name": "test/64bit.go",
+        "sha256": "7def62cc2f63c474b2b5e1e273bb39d21cae31cd913f27349386f42e4227a25c"
+      },
+      {
+        "name": "api/go1.11.txt",
+        "sha256": "7e2068e3f3f814c750977c522994ae8ce2385a8e437b1a32ecb965053b1df33a"
+      },
+      {
+        "name": "test/inline_big.go",
+        "sha256": "7fb70bd403f716b8427acc3cb9b7d7210d52523bd845df0212c33eff3201fa0e"
+      },
+      {
+        "name": "test/inline.go",
+        "sha256": "7fe63296f015d91cf3ac7e43e9710a403b22b809075e1570e3c0e7e22be89033"
+      },
+      {
+        "name": "test/chan/select2.go",
+        "sha256": "8015c306761f89cc41d6fd2312e82b921d320b91c4035af650cb0a0819a8d443"
+      },
+      {
+        "name": "test/codegen/alloc.go",
+        "sha256": "80b354b1414d2c1e9a0a774c2f23efcd469c880b70b26b5189937227c3a7678d"
+      },
+      {
+        "name": "test/abi/many_intstar_input.go",
+        "sha256": "830275ecdfbcd8dad545c8f54fd87670c49930160f75c9fe272cfd7a22f4d825"
+      },
+      {
+        "name": "doc/godebug.md",
+        "sha256": "84c251d6322c6d3b87bea625594b9598ab5a661789df273bc3adcd64ac1e1f47"
+      },
+      {
+        "name": "test/abi/leaf2.go",
+        "sha256": "854424fa782dc7aca8462150fd4ee94f6ac213f7a64ec33b799729947f79aed1"
+      },
+      {
+        "name": "test/bounds.go",
+        "sha256": "8672be7e3baa56b62484db6e0626a1cc5d49d13d1f3c76c5b4c3d5e8cd5401a2"
+      },
+      {
+        "name": "auto/chrome_cookie_other.go",
+        "sha256": "86d9f7c139e54902be4bb3db8674a576280725893a36e504909705f46525eefe"
+      },
+      {
+        "name": "test/floatcmp.go",
+        "sha256": "87437565815688c4be16bbebe75186264aa4a13743bbff5d7945b6e612cb346f"
+      },
+      {
+        "name": "test/codegen/condmove.go",
+        "sha256": "8749d84a5c7322906720228bf4fe174d31218ba2791807a98901a09a15bdfbfd"
+      },
+      {
+        "name": "test/indirect.go",
+        "sha256": "876ed174518fad1e80c77726c2a28c02109b3f449177f2da2358ba13609bbe14"
+      },
+      {
+        "name": "bin/gofmt",
+        "sha256": "884398f615511eff644b16f71a86d00db97ab17f438437393f230584fac00247"
+      },
+      {
+        "name": "test/chancap.go",
+        "sha256": "88596a680fd0c46ef6a5ce4f82329807447e6f0d53c42b57dd970ae30946777c"
+      },
+      {
+        "name": "test/const5.go",
+        "sha256": "889990e0021e7cbcc4f23e9cd63227f166e0fa04baaa8fc2f350bb62e2e4046a"
+      },
+      {
+        "name": "test/chan/select8.go",
+        "sha256": "89075c8fdc7515e9dee250eb9199a0bcae411ea8eeb4ea66eed1d9d20d5f8fdb"
+      },
+      {
+        "name": "bin/go",
+        "sha256": "8a2670c612099f4a19cddd2f3583817a0b8a5153ad944b7ba4cb88b8a854baa7"
+      },
+      {
+        "name": "test/index0.go",
+        "sha256": "8b027acd1ee6576fa7854a7ae82c6f2d2af95022ec650dbe9bf7120ecf43417e"
+      },
+      {
+        "name": "test/closure.go",
+        "sha256": "8b556c6baa6bec0240dee6f3d9c38829d77b3fb6ef419506595c5816ea1912a5"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/covdata",
+        "sha256": "8b625135f39cf277cb88535401355633142c90709bca3112e3993c196687acde"
+      },
+      {
+        "name": "test/const8.go",
+        "sha256": "8bbd175217d0811d90bbf92392734ecdbc87b22d23d2ff51fa0ec0afb14bf4c8"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/vet",
+        "sha256": "8d3581f1fe0ee1ef96674c024d94fcbc58dc1a062899f1cf7b5361e5e7dd9d26"
+      },
+      {
+        "name": "test/import5.go",
+        "sha256": "8d62efb4e80326abd40c26604f7488296b2854045d1a7b1c088e1b3f81b6bb1a"
+      },
+      {
+        "name": "doc/go_mem.html",
+        "sha256": "8e516220b8230af862edbd8b8de8954c9fd4a27c8cdd407a2365a9438fb6e2ca"
+      },
+      {
+        "name": "test/closure7.go",
+        "sha256": "8e9c8a08c8821b552f4c8c1c9011f444d24de0586a97dcf4defcec2d798c1133"
+      },
+      {
+        "name": "test/divmod.go",
+        "sha256": "8ea43637b80dec4500317f48af545756a84eb076d66404cab472a999592ffe70"
+      },
+      {
+        "name": "test/codegen/atomics.go",
+        "sha256": "8eabf08811e9fa4c0067d21470f784fe699e753af02d7bdc556ebeabcc33527a"
+      },
+      {
+        "name": "test/func1.go",
+        "sha256": "8f99db41849522491de0ee682f3551d307061a8e742ac779314e9cd4795b27a3"
+      },
+      {
+        "name": "test/abi/fibish.go",
+        "sha256": "90e2744fe0d18eab5c7117c11e32c8b975d4e4d65b5b4eee9a86f8aa717021f2"
+      },
+      {
+        "name": "misc/go.mod",
+        "sha256": "91964c9064bba42057a9e9dd7c36d2c3caaf53dffb6717023054e2e994837837"
+      },
+      {
+        "name": "test/codegen/issue58166.go",
+        "sha256": "91ef4f640f3f28fda9070f9bc0ef524725034e49fcf826702c2bd8cc0158dd6b"
+      },
+      {
+        "name": "test/embedfunc.go",
+        "sha256": "92084d9b291da11bb17376a14731fba44a5ed06c86df491f598b12a2fa8be8ab"
+      },
+      {
+        "name": "misc/wasm/go_wasip1_wasm_exec",
+        "sha256": "9214b3ba96aa48f15fdeb00c6d7213d2a260bf079729dbd4cdf6e0b27970ed3e"
+      },
+      {
+        "name": "api/go1.3.txt",
+        "sha256": "9221cdfb153874593342ecf216c9b77efabbb872110130f7622e69dc8815516e"
+      },
+      {
+        "name": "test/chan/select3.go",
+        "sha256": "92494ea371da378ea1fe0fa03870161609f0f396f39b316a31791d400c662881"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z2.go",
+        "sha256": "92683c740c5d4c775afeedbe98f053fa1c87ae4d6c1cdc52fe0dd32955d9214c"
+      },
+      {
+        "name": "test/codegen/bool.go",
+        "sha256": "92b3bc5e96869a1c23b00d03ba793ab335018e07da8b7f1d39afd1ddb7f5a872"
+      },
+      {
+        "name": "test/abi/struct_lower_1.out",
+        "sha256": "93b2cc50899baf8f4ddcb0403fbd898c7fe5d9006e9171c243e24ecb203cf705"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/cgo",
+        "sha256": "941000b0f8c9a205922b6473c8a34d6b3dc4c48ca6a5c3c53a3c4eec95a142b4"
+      },
+      {
+        "name": "test/interface/bigdata.go",
+        "sha256": "9434f8b25d8d74ffc521b3e590a49cb3c746de610560a7126d900f96fc2ccaec"
+      },
+      {
+        "name": "test/escape_struct_param1.go",
+        "sha256": "94805e4bfafdd9f745d2c5dafc141ab4d26fa6052be5e8af64cd99165dacd33c"
+      },
+      {
+        "name": "test/closure4.go",
+        "sha256": "94b44ce96e58b9bacfdf4b127b271f0ce9d634f227711c0e2fa5cf1deda4031b"
+      },
+      {
+        "name": "test/append.go",
+        "sha256": "9665ff4700523df7cf80e99c2246992055cad5204d98e22fca6bffd51b0d06a9"
+      },
+      {
+        "name": "test/abi/part_live.go",
+        "sha256": "974bf84948b07389bffd6fdadd5634bcb8809781c7695701e545cd315252c271"
+      },
+      {
+        "name": "test/codegen/comparisons.go",
+        "sha256": "975829e50d2a09af921333a33e020c2c0a5cf74634cb5f7aae13e48056308f20"
+      },
+      {
+        "name": "test/codegen/race.go",
+        "sha256": "97d5cd4eb8d7563ccf3c7226ae57e67b66e1cf969d1b8e6ee4d34b82c75909e8"
+      },
+      {
+        "name": "test/const2.go",
+        "sha256": "980653d0c0a9c510fd860b7fcf05e3a831d45a5dedd19a99d5202c070dd30279"
+      },
+      {
+        "name": "api/go1.16.txt",
+        "sha256": "98079ccadf1399ed027756dcad14a17d5f858100f16420bd6b7cef6cea009d7a"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib",
+        "sha256": "9859e43e11c2af532ebb9d7d5d8f79e48ebae48654fb47db7a0db7916db20962"
+      },
+      {
+        "name": "test/const7.go",
+        "sha256": "9994a3f3208373fe0d10a14989f16438130d3464fa47c2292bf58cbe0e8cdb6a"
+      },
+      {
+        "name": "test/abi/result_regalloc.go",
+        "sha256": "9a040774dae249bac9448f9fb3b1991bbb9016876e437ed744d0b74bb5d67d6b"
+      },
+      {
+        "name": "test/ddd2.dir/ddd3.go",
+        "sha256": "9a14846bc1f3fb9eb12cf5e7f803e606b882375386ebda3c8339b81a26f7ee96"
+      },
+      {
+        "name": "test/escape_iface.go",
+        "sha256": "9a66c8c98c9f4b368719bc5af13d60a8aca78d44febf55058744c658f6f61678"
+      },
+      {
+        "name": "test/ddd.go",
+        "sha256": "9a808edac4b30b9d245394e3cd0a415cfad5aef228bd8daa6aa42269eb5f5f9e"
+      },
+      {
+        "name": "test/codegen/issue25378.go",
+        "sha256": "9a8359f3ee8b0469c0034cbb44c735734f32f8fdd4fafe66d82c93e578a0e301"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z15.go",
+        "sha256": "9b138ed675cfb1e01e0d73f96122955b863e1cc7f2beb4693c6af6d095104f75"
+      },
+      {
+        "name": "test/abi/s_sif_sif.go",
+        "sha256": "9b19188035d8feac199c1072eac8f5417b9eb253ca189dbf5410d4014b8ccd6a"
+      },
+      {
+        "name": "test/atomicload.go",
+        "sha256": "9bc9fd20d3178babb4770d8ef1506ca04dca224c1bad62db1dcd3f17f90d950c"
+      },
+      {
+        "name": "test/func6.go",
+        "sha256": "9cbd9469d5e6cb3ebc4a0e0d9d293a5d437fe5896569179e51a46a5f35855f4a"
+      },
+      {
+        "name": "misc/ios/clangwrap.sh",
+        "sha256": "9cd6a048eefe5835e342c8287c2e47244564e1fc9fe4579845052b87ee70fa8b"
+      },
+      {
+        "name": "test/alias.go",
+        "sha256": "9d10bcbed241f7c325ae501f312d83286e2f86b8f2279df7ca005f189dfa8352"
+      },
+      {
+        "name": "test/closure1.go",
+        "sha256": "9e4f8cdc5f2061cb7f6e2fd2506b426f811daa4fc1d3a63c54c2b8b978abe262"
+      },
+      {
+        "name": "test/codegen/memops.go",
+        "sha256": "9e892cb3e7a308c3e95c9acc3275e45c6130c4f57e45064f00fcf05b41eb37a2"
+      },
+      {
+        "name": "misc/go_android_exec/main.go",
+        "sha256": "a0542ebf17609cc32565c0cbf4d4db316a11d83a671a9ae8eacaa0bd249b9542"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z13.go",
+        "sha256": "a09e82d7a425bd91abd31b6be5dc607c0db43571db790b8b984d075015d9fd8b"
+      },
+      {
+        "name": "api/README",
+        "sha256": "a1cc5ae754e3dcb51087581c924c52b77777a4fbd874fa66b8c6b26ac3ccee30"
+      },
+      {
+        "name": "test/import2.go",
+        "sha256": "a21d2ee1b10ecce85d5310b2ecb6e056dabd3d20fb69bd63bfac42164a68ebf9"
+      },
+      {
+        "name": "test/inline_literal.go",
+        "sha256": "a286298bfb5c244fb739ca0428d2f4b9c4a0ca11b531b3dc829c406f1726ea00"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib",
+        "sha256": "a2c537c3cdcc89f324cf64f0909cd9d3a326f36e4eabcfdff45efbaf59f9909e"
+      },
+      {
+        "name": "test/codegen/smallintiface.go",
+        "sha256": "a2fc430a0a93853925ed8f467b1b75c25b21b5b45be8d163c386c5250df551b0"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z20.go",
+        "sha256": "a308541635c0e5817a0d1e439bce44d2ba6af1b4d4fa36c9b8b46df589357840"
+      },
+      {
+        "name": "test/escape_param.go",
+        "sha256": "a3529af630fa36d878aec9f783aa52d816994515fada950b244dd0ec0bb3057f"
+      },
+      {
+        "name": "core/loops.go",
+        "sha256": "a37ed00112c4a17bc5d492660782e2ff901287fd31f56742837d25ed07f26a3e"
+      },
+      {
+        "name": "test/float_lit.go",
+        "sha256": "a3954a3facd098643514f4f012479686ffd160cef2afb727bede1b2cf0ca0452"
+      },
+      {
+        "name": "test/chan/sieve1.go",
+        "sha256": "a48f7c3a16ac1327a1adb7ba62f70232e882b6615178b942ad4e9e6334b9c4d5"
+      },
+      {
+        "name": "test/codegen/issue52635.go",
+        "sha256": "a4b72b44f8885d33c412f006a693ce08bd9c0a74288ca3d7859469c5f4de3b9c"
+      },
+      {
+        "name": "test/escape.go",
+        "sha256": "a50f2de71619fcecbe72b486ed73904078c85402e8e4756148cb6c92005e976d"
+      },
+      {
+        "name": "api/go1.13.txt",
+        "sha256": "a6050c656eb9f850665c9a888a43cf39d93e14c219dea3a2eaf1e839a4743047"
+      },
+      {
+        "name": "test/deferprint.go",
+        "sha256": "a6785fbc521e7a53c38caada0ee4cf980700f044c73b4a3b422a012f89962627"
+      },
+      {
+        "name": "test/abi/more_intstar_input.out",
+        "sha256": "a706850ecac901e826132b31bf460e647bf937a14b5ad350914d59eb49e0e710"
+      },
+      {
+        "name": "test/codegen/mapaccess.go",
+        "sha256": "a7711824a28409dfdb46191866b611cb0b0f1d5e7987e776a3be71a749835c39"
+      },
+      {
+        "name": "doc/initial/3-tools.md",
+        "sha256": "a7cb27fad36c7c5a7472aa720f571e965c781e9db68615dd8e0b9c00e915b5f3"
+      },
+      {
+        "name": "test/escape_hash_maphash.go",
+        "sha256": "a86ba24fa0be9ca82f4b8dcdc9caeff3f2108fad6b4b61019fbd900a1cae9416"
+      },
+      {
+        "name": "test/codegen/math.go",
+        "sha256": "a8783669a629be5be3f3f0d99d54197f46009440dd83fec68fd02ea283a06ea1"
+      },
+      {
+        "name": "test/codegen/issue56440.go",
+        "sha256": "a9a2c1899781de3c7fc149d636fdd537e224b7cc48127100634d79ec0623beed"
+      },
+      {
+        "name": "test/cmplxdivide1.go",
+        "sha256": "aa794f2ed59ffa36d44a830800ed9b4ad69db5534cf2726b04528ee11f66c8f1"
+      },
+      {
+        "name": "test/ddd1.go",
+        "sha256": "aad63437ebbc1a50f6398b7e71093e994242664b1ae610455cfad6eb3e6adda9"
+      },
+      {
+        "name": "auto/chrome_change_pref.go",
+        "sha256": "abd80d5b990295dab85da589f0b096d1892ce28f79985b0d081ebb4d9aa3a4cc"
+      },
+      {
+        "name": "LICENSE",
+        "sha256": "ad583f85546304a08fcba2d81cdf0607f3c2ab376e53f1d4fcc21e9e70d2c2a8"
+      },
+      {
+        "name": "core/work.go",
+        "sha256": "adf17f3a6158a3776d8ab977a746ea1d0862c1f5a3535dc5f21734723a09f761"
+      },
+      {
+        "name": "go.mod",
+        "sha256": "ae3a68ff2dbce32c2c38f9d1e4315963a213f372b6ab012b33d5646218f49447"
+      },
+      {
+        "name": "test/abi/named_return_stuff.out",
+        "sha256": "ae924ebd3cf6c151e991bd6ae43eba92ecd8525d02ebbf2e80f882390ffa1da7"
+      },
+      {
+        "name": "test/helloworld.out",
+        "sha256": "afd90f816c75c40a2d8fde66720167c9dcffbab3f1d1a0090f64bf08dc3bd40a"
+      },
+      {
+        "name": "test/codegen/README",
+        "sha256": "b00991c21831fd3f30fedb33d583c359c204a2ffe72c010b70ba9b02923159dd"
+      },
+      {
+        "name": "test/README.md",
+        "sha256": "b07b740c8a16c413ede11f16b260f2d4e8ef14f131c125707792f46adb3274c9"
+      },
+      {
+        "name": "doc/README.md",
+        "sha256": "b0bc4b05f3f62eb494af2de856f0879a36461281bdf3fc1f52b96faec0a5b08f"
+      },
+      {
+        "name": "test/for.go",
+        "sha256": "b0f3b26e5af1243220aecc5a25b880491eba0676e3a375e0dc7cec3963a7fd6c"
+      },
+      {
+        "name": "test/abi/many_intstar_input.out",
+        "sha256": "b1183172676da21e903906a3e02912d339cd63b0633f54d0a3a25e18cc9b4a6b"
+      },
+      {
+        "name": "test/codegen/rotate.go",
+        "sha256": "b243c8fc7c74c63e4fe4a037b7df83b0c215842b742865d73d4bc40e0cfe4497"
+      },
+      {
+        "name": "misc/cgo/gmp/pi.go",
+        "sha256": "b3cd4fb4cb7176877054cda956bc113918c0bfbae185fbe231ba1ea41b0f2554"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/Assets.car",
+        "sha256": "b3f86850f4b56d6aae7426c3fec87c3b100cfce42c1ed0a9c70768f139a0bfb8"
+      },
+      {
+        "name": "test/import2.dir/import3.go",
+        "sha256": "b45eb412e6302a8087bb28d407aa935f21fc201b787873ca11607ba32f3a4a63"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/compile",
+        "sha256": "b49d4d492c08e81d49117f814ef90b0c29130208d4a55947ea7df8a97b6add6b"
+      },
+      {
+        "name": "test/codegen/bmi.go",
+        "sha256": "b576694239ec9587944dcc632248af9993405e69e50b8ec0df7137a4e0d8fb2f"
+      },
+      {
+        "name": "test/initexp.go",
+        "sha256": "b57687483f3d282a4844222f8114e914dac41556b50291deb167686424e8f6c2"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/fix",
+        "sha256": "b5de6de2c026c0d9e84d0060f7c0beae3cd2d25d6465e84ab636c8893ad43590"
+      },
+      {
+        "name": "test/func4.go",
+        "sha256": "b681780c244142c585bf69151b6d382f7c18df6f8d3fce7aaf265bb9186cbb51"
+      },
+      {
+        "name": "test/initializerr.go",
+        "sha256": "b74e159b07c80683ec93180268d3a4e3e3b8fb47377dd5dac651830ae92a282f"
+      },
+      {
+        "name": "test/chan/select6.go",
+        "sha256": "b75fca30c8ad349077a7ff02f6be544a91994f5d502cf339deff13973e20ff07"
+      },
+      {
+        "name": "test/complit1.go",
+        "sha256": "b7707841b6a6c570f175bb0d2b836bd28ca61c4cd69143bf292a4025753ade46"
+      },
+      {
+        "name": "test/abi/struct_3_string_input.go",
+        "sha256": "b8302b215586b94886a529eb36d81ee5dc4bc7d15e04520f197bd6f5c4f6115e"
+      },
+      {
+        "name": "test/codegen/regabi_regalloc.go",
+        "sha256": "b83441582f7ae64c24922b90aeddb3ea3ccd3025a31d4ae39608582667207446"
+      },
+      {
+        "name": "test/codegen/arithmetic.go",
+        "sha256": "b85b042b99c0bd537a64ec5d0645d563a661d4c7bb5eeefc7a3f564e9068d300"
+      },
+      {
+        "name": "test/func.go",
+        "sha256": "b9246b82ec27bcd70cfc4631894550588a1818523735112505c1de8d7f9b3243"
+      },
+      {
+        "name": "test/abi/spills4.go",
+        "sha256": "ba4d2488459649bdd23d9f195c5dbddd90ee45e8e788f8f9669ae22db275d68e"
+      },
+      {
+        "name": "test/escape_mutations.go",
+        "sha256": "ba8576b41ed046001c1690996f73348145fabe0e6bdf2f066c6c185e26a981ef"
+      },
+      {
+        "name": "test/assign1.go",
+        "sha256": "bb6713230b9095664a636a6ee6f0116b1facadd9da4aee9ea3b3a32bef86026c"
+      },
+      {
+        "name": "test/import.go",
+        "sha256": "bd7282e1a8766b6b7fa3daedfe3301bae39651c65a0da51178113ed49fbd0491"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/Info.plist",
+        "sha256": "bd9a298663b9f84b35e97443f03be7fa5cf1161c889d62884472e6695aa28feb"
+      },
+      {
+        "name": "test/closure2.go",
+        "sha256": "bdf0a4bd1d6d9163b7eea6d28e7036496d25c4efcfc3d22dfcd54dbf69c8c838"
+      },
+      {
+        "name": "test/func7.go",
+        "sha256": "be290cd4e09ffcc246b0e4a21f706665a7984a3dee97274e659b967083c08784"
+      },
+      {
+        "name": "test/import6.go",
+        "sha256": "be4e75e1fc821f05ff815a8da8fa250518784e43858b12add275b87aab2dfbe2"
+      },
+      {
+        "name": "test/chan/zerosize.go",
+        "sha256": "bf3c5afb2b0eb17b2624c67b3ec8ffc415ad95de8d1cb0b6ca32e272de059481"
+      },
+      {
+        "name": "test/closure5.dir/main.go",
+        "sha256": "bf5354fe7a12986717721375c3bb2487a11ff97d964b403839e0b0e0348bd28d"
+      },
+      {
+        "name": "test/initcomma.go",
+        "sha256": "bfad6f338178eb2ae4be8232302a885a085124f8806bc4df7268c6388c12d23f"
+      },
+      {
+        "name": "auto/basic.go",
+        "sha256": "c0f616e9f949dd1b5c51a4cd587af0b642de63b20aea6647e7ce928719e210d9"
+      },
+      {
+        "name": "test/func3.go",
+        "sha256": "c11eb9eb86f4a7d6217394fcdebdfe85adf387805c92f26a30fa92be00eedadb"
+      },
+      {
+        "name": "test/alias1.go",
+        "sha256": "c18592a25ad8f94e6e3bd92cf209f3974ac4430020645ab5f44640d48c7dcfae"
+      },
+      {
+        "name": "test/convert.go",
+        "sha256": "c1fb3e20b79e12b818b12a18d8714829add92255f1a957780d0d96257964dce6"
+      },
+      {
+        "name": "codereview.cfg",
+        "sha256": "c2fd2841cf655c3aa56d2e201caedff6ec2dff2a73d0a6c88f92646e39a45fe2"
+      },
+      {
+        "name": "test/codegen/strings.go",
+        "sha256": "c35254ba7d313016bfc6c405dc43a2ee12c71ff55aa81fe6875523fce6de3e63"
+      },
+      {
+        "name": "test/import2.dir/import2.go",
+        "sha256": "c372e89a1bde62c43352bd4f154cfd1adec758a10c5ee6cbe25ea6c1409c043c"
+      },
+      {
+        "name": "test/codegen/memcombine.go",
+        "sha256": "c379156aaa9f9c4f7ea3c3540537562d5358f0025fead1a9cf4d9f1c628916fe"
+      },
+      {
+        "name": "test/abi/fibish_closure.go",
+        "sha256": "c4086a200132d7089f1807b44c15aacef0223bfce79f4ef0930957ab4bbfece0"
+      },
+      {
+        "name": "test/abi/part_live_2.go",
+        "sha256": "c468dc770cf3c00277934c2fb90928dd46bc10cd85b79740159cd4f6710660c2"
+      },
+      {
+        "name": "test/interface/convert2.go",
+        "sha256": "c56cf7958056700d21db5148ea1d133fb0fe78ec7aab87e6276d04610350dbf7"
+      },
+      {
+        "name": "api/go1.12.txt",
+        "sha256": "c5a2cfd9defc45f3497d00d4efbd8d203c2e87ff49b5b6cdd50507222850b64c"
+      },
+      {
+        "name": "api/go1.1.txt",
+        "sha256": "c5bc73a24a94fec3fe3281233f449caa43633bc07626a91b5aa11ae0abc30d2f"
+      },
+      {
+        "name": "api/go1.7.txt",
+        "sha256": "c68d8a06014619c15d1da41b8c937dfc273ebc9b9cd38c2908b83bf6109e8ba3"
+      },
+      {
+        "name": "test/intcvt.go",
+        "sha256": "c78287effef58c15b8b12a2dca0cca596f24b7962922824b0299e39371089e81"
+      },
+      {
+        "name": "test/dwarf/linedirectives.go",
+        "sha256": "c8c7f63465ce7ff07b6d26fd802122849ef7cb71f49be068df82ae05eb95b80a"
+      },
+      {
+        "name": "test/decl.go",
+        "sha256": "c959b0c14b320b5734691da6c2ff23f0d845e25c4e78d7086d3d444a42c601f9"
+      },
+      {
+        "name": "test/crlf.go",
+        "sha256": "c99b03c8add2ea0074b6341c59af9570b9e266f5f43b5bcfc683bad7f6dbc6de"
+      },
+      {
+        "name": "go.sum",
+        "sha256": "c9d1a4765ffc452cfe6978af8ae46740a460f6fcdff072c773d3cf4d56afadd9"
+      },
+      {
+        "name": "api/go1.9.txt",
+        "sha256": "c9d572a0801d46c9e246cffc7ab15b8ee396aa64ce2d28d0f7a6f7b956a4b948"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z7.go",
+        "sha256": "cace9466401f53cdc1888bd94ca08fc81bd5cfdd0aa1e0f83124a968f7cf968c"
+      },
+      {
+        "name": "test/defernil.go",
+        "sha256": "cba492be22bb20714b5559c46ce96b186ea05ebb74a914326abfc06dad12a70d"
+      },
+      {
+        "name": "test/convT2X.go",
+        "sha256": "cc7949e388a773e6c943ee61a750ead9b00a164befb66d78ebbc25c9e117441b"
+      },
+      {
+        "name": "test/codegen/issue60673.go",
+        "sha256": "cca4b8ec3c6bc5f3f431afa08b4a399f9fd61373d3dcba422ce351ea11627b9d"
+      },
+      {
+        "name": "test/abi/result_live.go",
+        "sha256": "cd3972e939293647f960a549ee50c782b64b27d5097a0b27dfaee8b70190ef93"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/buildid",
+        "sha256": "cdbe85b6d83ae4923f9311518cfff76f8b8b57273fd6aefa564deab90b0cb8c0"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z6.go",
+        "sha256": "ce154242475646e23e8f166822065737fb30c4b586a4e1072b50c646c09f277b"
+      },
+      {
+        "name": "test/interface/embed.go",
+        "sha256": "cea34c17be591f6702591284d644ab08d1c2d22a37e9b4305c9a9aa018314047"
+      },
+      {
+        "name": "misc/chrome/gophertool/manifest.json",
+        "sha256": "cec8e6d0b9c474fe0a8f448a61823829af64e370f2f84dc4d762b7a19fd516d5"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/asm",
+        "sha256": "cf1169743042a49ce0a0f17ee2ea1b9414243b511fe7317db02bd6ffeb9f3c5f"
+      },
+      {
+        "name": "test/const1.go",
+        "sha256": "d06a55323650417045c043228083052a40f807d79c75547d0f68ac0ee2000541"
+      },
+      {
+        "name": "test/abi/convF_criteria.out",
+        "sha256": "d1ba801cda128ab25bb46f3b75b81d99f0d18fbad6d2cad3b16d335304a77362"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z5.go",
+        "sha256": "d1d18f48d7587dd03a18fe0b72248acc8d3de6e6cb0a848061e8094270f0488a"
+      },
+      {
+        "name": "api/go1.20.txt",
+        "sha256": "d1e2ff47f6dac957b5a6f727191050168818970e248688c90a7846f7f8b391b1"
+      },
+      {
+        "name": "test/index2.go",
+        "sha256": "d1febf825d3e55b0712ae35d3e01e370c53840a9d442f37fbc97497d6c2023b8"
+      },
+      {
+        "name": "api/go1.21.txt",
+        "sha256": "d2070817ea3a51048e5af6f7601d4a19c36ee6d52f08aa4c77a77e836138cbd7"
+      },
+      {
+        "name": "test/abi/more_intstar_input.go",
+        "sha256": "d3736ca3bd90554e99f277706ec5aebdd543fa986ee216f9f0a2486eb21ca239"
+      },
+      {
+        "name": "test/codegen/ifaces.go",
+        "sha256": "d62745eed799587b983fe5b07a04b01a342256d9ff3e3b3448544c4b5c74631d"
+      },
+      {
+        "name": "test/convlit.go",
+        "sha256": "d679db72967acb3fa49a34a1f774951bd5fb8888cc62c15fdb24fc4c61fba3aa"
+      },
+      {
+        "name": "test/empty.go",
+        "sha256": "d6bd302cf36d86314d6ce5977495806f0fae5cc88c4ae6fefeff5342f97b5d32"
+      },
+      {
+        "name": "test/helloworld.go",
+        "sha256": "d6ec6633d5f3f860178b9249a131d7cdb7bfb6063b53aa0ab8f9229fe145cffc"
+      },
+      {
+        "name": "test/codegen/fuse.go",
+        "sha256": "d7bd771efb5bb81251fadf2d67a4aa3cf5c20a0abbc3bfedb89e3773de13303f"
+      },
+      {
+        "name": "test/closure3.dir/main.go",
+        "sha256": "d97bbd40cc811d92ced598df110d8d9697c0a883749e97b2758891f77d7c440a"
+      },
+      {
+        "name": "test/heapsampling.go",
+        "sha256": "da8c992922ff408d6b9024a59bc925f12c12bb9dc777f9e0e1b352ba562fcef8"
+      },
+      {
+        "name": "test/abi/return_stuff.out",
+        "sha256": "dad0e443fc8ee24481544a38ae6d2655bc7853a6883c8a0514c79188071692e1"
+      },
+      {
+        "name": "test/arenas/smoke.go",
+        "sha256": "db0b95a8d61a3741b637995b7bd945dcea97e849b3e4e7b9a6f947ccf96798b9"
+      },
+      {
+        "name": "test/abi/return_stuff.go",
+        "sha256": "db38ff240154e2a9cde0080d9930fa4deddb272f8365316de5780e06c99fbcaa"
+      },
+      {
+        "name": "doc/initial/5-toolchain.md",
+        "sha256": "db84bc57befd5a6ac0add4b60e0426f89860156798f55108d4b70fb90689cee0"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z4.go",
+        "sha256": "dbab34ee989f8e71b4f83199f798a03e9c533d9e8d2b39605bc877a1d1b4e6bd"
+      },
+      {
+        "name": "misc/editors",
+        "sha256": "dc26d155aa6ebea5f3cf515f18635156627e7ec5e2969ac2b673a8f7c852a17b"
+      },
+      {
+        "name": "lib/time/mkzip.go",
+        "sha256": "dc3f293f82b33799e9f5849b3c038c788bc3b9ecf547a6534a5c4d06f3ee2a00"
+      },
+      {
+        "name": "test/abi/idata.out",
+        "sha256": "de55ea5c1dafbb14edecb6f97ae40fd2157d81103b7e3a2caf0f1af4ff1cf1a8"
+      },
+      {
+        "name": "test/cmplx.go",
+        "sha256": "de6e66c72c0ab57005a0d50ccfd15f67d1606fc305f976725bf6cf57a664b169"
+      },
+      {
+        "name": "test/clear.go",
+        "sha256": "df151c905d3973d09cad317ffc14caafc110befe8f9cddda86a48db330de2504"
+      },
+      {
+        "name": "test/indirect1.go",
+        "sha256": "df9798bf7b86a405a71ce9de32558613e2eeb36c5ccd14a0982fc8ef5c4f9589"
+      },
+      {
+        "name": "test/interface/embed2.go",
+        "sha256": "dfbb425fae8cbbec85ffb4f7e134d710b61905ae0d1a24a17b3ccb4deef6504f"
+      },
+      {
+        "name": "test/codegen/issue61356.go",
+        "sha256": "dfe8de2f0e76415252ebf6567e067991eb5acf2b32b486997e43c5af983467b4"
+      },
+      {
+        "name": "test/abi/spills3.go",
+        "sha256": "e01812f69302361cadde861ac7de128f01a4ced477ba1713b8e358a74fb09bab"
+      },
+      {
+        "name": "test/interface/assertinline.go",
+        "sha256": "e08b2525d2104839b355b97b84be8d606bd42f0b3a6a058cb4ec35d25c425de5"
+      },
+      {
+        "name": "test/codegen/noextend.go",
+        "sha256": "e12f40a94eb002aab9f5581e2761e97f1ffb99282a42cb12044ae60b7111eab0"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z19.go",
+        "sha256": "e13254eb9f1b06dfa89ccb6d33bd95693b97faab4247e78f9806d5f61ba20893"
+      },
+      {
+        "name": "test/asmhdr.go",
+        "sha256": "e147c001758c4b65b8a3fba1f3286c92d6f8a9ced59324906b058134c74ae9bd"
+      },
+      {
+        "name": "test/init1.go",
+        "sha256": "e1c9e397f7c4fd38de9c437e8030ed44ad6d992a62a1ebfd31e58a108971eeb4"
+      },
+      {
+        "name": "misc/chrome/gophertool/popup.html",
+        "sha256": "e2536287226169717170b783753a56e5d89564adf83eef98c007cbae6c503d4a"
+      },
+      {
+        "name": "test/escape_selfassign.go",
+        "sha256": "e26faa861670182f19165f3454e9ef7e883280efc58bf8d7ebeb9550918f20b1"
+      },
+      {
+        "name": "auto/base.go",
+        "sha256": "e2f7837988da1551a6291e0baa0e7d4c434f21a8a4d48b8d9a1061a040e4546a"
+      },
+      {
+        "name": "test/import4.go",
+        "sha256": "e3463a6b1382481914f3d93fcd554ebb45e6f7574a726cb33964c35c4d99794c"
+      },
+      {
+        "name": "MyCamDriv.app/Contents/PkgInfo",
+        "sha256": "e3acc0a6c3cbcf9fabd646b8f80f3d888435cc5011bce5193cf703eeab6ca892"
+      },
+      {
+        "name": "test/codegen/copy.go",
+        "sha256": "e40aa472a4d108f8d827277250229da1c5f6c514e552583e28db4d0f735fd17b"
+      },
+      {
+        "name": "api/go1.txt",
+        "sha256": "e48116b7c50a8b692a8c44167eb5581bd1c4cd02bd5064bb8ce89631bcba6369"
+      },
+      {
+        "name": "CONTRIBUTING.md",
+        "sha256": "e48dbe7e4db29870d3031261aff13b8fc1b4f7c2814e5b13458b80e1e2a7952b"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/test2json",
+        "sha256": "e5dc8fb0b49fa2ab543ea88031d08028b1ddb11ec3d303b39569aaa1ffdb9b6b"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/nm",
+        "sha256": "e704018d0d2b338452fe907104df54932b48cf1799860578f25b64faa77920bc"
+      },
+      {
+        "name": "test/dwarf/dwarf.go",
+        "sha256": "e7439a498a1942b6b650885aa2f24d073cf092f6e655f50b77ff4871c468ae97"
+      },
+      {
+        "name": "go.env",
+        "sha256": "e835ffc7d7fd907a6173ae0da71d71b8811e0e2928bb1367caa47ba033eabab2"
+      },
+      {
+        "name": "pkg/tool/darwin_arm64/doc",
+        "sha256": "e8754d1d56576c935ff55cee0a42dc9c97cf3a486b7440d4a30c0459e9bddec5"
+      },
+      {
+        "name": "test/chan/perm.go",
+        "sha256": "e9164907509814f1d072d4e1b8a7e80a43756d5614415a3e44f7484bd0d9da37"
+      },
+      {
+        "name": "auto/chrome_inject_ext.go",
+        "sha256": "e94b0e7b8cc1748cafc168e247aa44bcf47df1243d0f5ff9bbb0c5d16b4fde79"
+      },
+      {
+        "name": "test/cmp6.go",
+        "sha256": "eab9aa89c00c222887e2f03a6264a8a84130faaa1fef20657d703070f8d2742b"
+      },
+      {
+        "name": "test/init.go",
+        "sha256": "ec2da0e5ca9a88e976069b0002612a77a871b45322d3e31f0791d7b7c125fb6f"
+      },
+      {
+        "name": "test/interface/convert1.go",
+        "sha256": "ec943a7a494a80fb227be617a9923bcf59b35e65837cf7102e0fbc10ceeb5a5e"
+      },
+      {
+        "name": "test/escape2.go",
+        "sha256": "ee3b9e317d726bfd96328ff79e611c928519cc3478dcef0cd99a9cc7812fd393"
+      },
+      {
+        "name": "misc/cgo/gmp/gmp.go",
+        "sha256": "ee41c9ddce47173d09a7a1ab2ac2d195ed790a32e609138303bd4949beb7b05c"
+      },
+      {
+        "name": "test/convlit1.go",
+        "sha256": "ee5881d416a11b4012cc57c7f972455e9b36ecf5a286e85d528aa6a933e9c6fe"
+      },
+      {
+        "name": "pkg/include/asm_amd64.h",
+        "sha256": "ef2fb4805840494e176049330622078694a4afb909b13552b8f59f1193d53a96"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z17.go",
+        "sha256": "ef723f302ba3349eb5b522204bd725e9f7908bd81f218d32ff3c2b5586d6607f"
+      },
+      {
+        "name": "lib/time/update.bash",
+        "sha256": "f12a4be4d3a7f51627ae816b0dc01e14112da392623cf6fadc96c0db828d5565"
+      },
+      {
+        "name": "test/func2.go",
+        "sha256": "f1600d22f46950434c7b1667cdc42e3d3f97112176c64fae3178a6ab87687a4f"
+      },
+      {
+        "name": "test/ddd2.go",
+        "sha256": "f16f0e38317d9fff1fbbea22cb17739788c8efe693192f80c94b404f6e2a953a"
+      },
+      {
+        "name": "test/convinline.go",
+        "sha256": "f21aac94dbeea3062ead8ca00c9d3d37f4d48e4c8d4e142318218fb80a6eb5fd"
+      },
+      {
+        "name": "test/codegen/stack.go",
+        "sha256": "f28e155bdc8446d0c5dfde35e3995650cdfffc5c83e7d3aaec4b325c88128f29"
+      },
+      {
+        "name": "test/chanlinear.go",
+        "sha256": "f37737d3145ffa9c03a3a3aae84a68c0e0bd8fba69f650bc62b73dd018782fd0"
+      },
+      {
+        "name": "test/gcgort.go",
+        "sha256": "f4242b3df95df6d11743a1cd3d14bea555fa07727f5bc4564298923005e93f92"
+      },
+      {
+        "name": "test/bigmap.go",
+        "sha256": "f44919559cc4e7b82c4b9f844c6a284210edc4b1834d3e045045b12919c07181"
+      },
+      {
+        "name": "test/chan/goroutines.go",
+        "sha256": "f46a4fc8277c596cb435f429a94b9f31ef87a0bdc5ddd42c181b194e8c65c013"
+      },
+      {
+        "name": "test/abi/defer_recover_results.go",
+        "sha256": "f4848bcf7ee505231be1ee919576bd0a431f25708d6dcc5b64325b97a7776b0f"
+      },
+      {
+        "name": "api/go1.23.txt",
+        "sha256": "f683bb293cd6942c753e403d1df792e260bab0acdcb52c6e14103976f1a5414c"
+      },
+      {
+        "name": "test/chan/select5.go",
+        "sha256": "f6d18af758f030b2bb9f8973b780d6599aebcde62f800bea97506f5e27ec578c"
+      },
+      {
+        "name": "api/go1.14.txt",
+        "sha256": "f7248b125701209c0583079301d94d62c57bf67846fc93608eecabec2f2d15d1"
+      },
+      {
+        "name": "test/finprofiled.go",
+        "sha256": "f7eeb5d7a43693a7e2155fb09711dcae1d3e843b0a23f67112924e65ea2b8541"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/main.go",
+        "sha256": "f823ae7762866e5eb5a768f41237319d2557f88861c38cfcc67689a332202e9a"
+      },
+      {
+        "name": "test/copy1.go",
+        "sha256": "f851d5ab76c6b5d6fdc3ddcc92d9753591497bcea28cc53e956efd52371d6680"
+      },
+      {
+        "name": "test/codegen/issue63332.go",
+        "sha256": "f891524438815d23598b7e5d4cf58eb73331be04f38d620bfae355a317e85659"
+      },
+      {
+        "name": "misc/linkcheck/linkcheck.go",
+        "sha256": "f8b0ab48e1e7b3c89a4b1a8ce6bb5f97845572f71a831d18a5d4ca4cc94687af"
+      },
+      {
+        "name": "test/escape4.go",
+        "sha256": "f959127310c54f4eaaf1acb28390e2e5fa88317d5b969b8c8f24cfb3f9b37bac"
+      },
+      {
+        "name": "api/go1.15.txt",
+        "sha256": "f95bcf6b2ecc8b5488bcbb3031430eec560ed75fd90fb80001851d9880c9473a"
+      },
+      {
+        "name": "test/funcdup.go",
+        "sha256": "f99647d915298bf5afc0066d9c6cec2d88ad6d977472de6b5f2e0610194ddf1e"
+      },
+      {
+        "name": "test/codegen/issue42610.go",
+        "sha256": "f9e10f81ff402239fbbfb1dc812fedb04d44103c523c408a2d542393a399f922"
+      },
+      {
+        "name": "test/escape_calls.go",
+        "sha256": "fa8efe8fd3ff81999d2463c02f6b792471f86825e5b467fe0c150ec7bdd23104"
+      },
+      {
+        "name": "test/dwarf/dwarf.dir/z16.go",
+        "sha256": "fb3633fa23768345e554e8c0793bd6ea880fb74f220a5524bd2540cb62f8a0f1"
+      },
+      {
+        "name": "test/closure5.go",
+        "sha256": "fb58ab628c74f979e99ccbca6df9f63b52620dd6c7c10c0c0d469f4446e19922"
+      },
+      {
+        "name": "test/abi/named_results.out",
+        "sha256": "fb5e31fe640712077b1c2acdb1097fb2e7ece9dd75669e5c0dd61e5da36a7200"
+      },
+      {
+        "name": "test/abi/map.go",
+        "sha256": "fbaba778403ccd780a9cd1a9f942248db281115963ea042ae43074ab1ce79db7"
+      },
+      {
+        "name": "test/escape_goto.go",
+        "sha256": "fbd09976c0753fce110fb0231973c8928e314f571d1508cf185873b1d1910327"
+      },
+      {
+        "name": "test/escape2n.go",
+        "sha256": "fd1766eaf4c797a9ec5461e769da3ab9eaa16ade478535304598956adf794a11"
+      },
+      {
+        "name": "test/codegen/bits.go",
+        "sha256": "fe1908ac54f2cd1524c52cfe1ac4edac0fadb551ba2136659b0121715e1ef259"
+      },
+      {
+        "name": "misc/chrome/gophertool/gopher.png",
+        "sha256": "feb4ba3a6262e581a69b01dd09d1c494002b5ed072b05eb69532524d3576df02"
+      },
+      {
+        "name": "test/chan/powser1.go",
+        "sha256": "ffa1dac56bf0cf96f4b1b940dcf16636cf836314d74ef7003e69069b2e1acf47"
+      },
+      {
+        "name": "test/import4.dir/import4.go",
+        "sha256": "ffb732f35d34bfc82940c75ed517d468b9fda356f6c8c584e8f2191788750cf2"
+      },
+      {
+        "name": "test/codegen/zerosize.go",
+        "sha256": "ffea3c090c538193f9bc1471eb27235c1a7153e0042cb808d3ec2c8e2fc8d2b7"
+      }
+    ],
+    "supplementary": [
+      {
+        "name": "test/fixedbugs.zip",
+        "sha256": "60b87ff7efa051a16466564350fca6eea4a2facaf8d6fe42fc4da810f5dc41df"
+      },
+      {
+        "name": "src.zip",
+        "sha256": "661460ce34dc88838fb873ccd3b4a4460a5378add723ae62f0fb1684c889b2b0"
+      },
+      {
+        "name": "__MACOSX.zip",
+        "sha256": "9ab39d353de31c6aeaa39e901434fe846e69b423f8108a6c9da2e11cd3ad48e5"
+      },
+      {
+        "name": "tree.txt",
+        "sha256": "efff72b79bcd870cfaff9dab25725d4e6e849e5757dbe8f63e5ccacda5ca7c4e"
+      }
+    ]
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 1,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "CONTRIBUTING.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "LICENSE"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "Makefile"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Info.plist"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/PkgInfo"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/AppIcon.icns"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/Assets.car"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/Info.plist"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/MainMenu.nib"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "MyCamDriv.app/Contents/_CodeSignature/CodeResources"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "PATENTS"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "README.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "SECURITY.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "VERSION"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/except.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.1.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.10.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.11.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.12.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.13.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.14.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.15.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.16.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.17.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.18.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.19.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.2.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.20.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.21.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.22.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.23.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.3.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.4.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.5.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.6.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.7.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.8.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.9.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "api/go1.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/base.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/basic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_change_pref.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_cookie_darwin.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_cookie_other.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_cookie_win.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_gather.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "auto/chrome_inject_ext.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "bin/go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "bin/gofmt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "cloud.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "codereview.cfg"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "command/stackcmd.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "config/constants.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "core/loop.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "core/loops.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "core/work.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/README.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/asm.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/go1.17_spec.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/go_mem.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/go_spec.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/godebug.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/1-intro.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/2-language.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/3-tools.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/4-runtime.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/5-toolchain.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/6-stdlib/0-heading.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/6-stdlib/99-minor/0-heading.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/6-stdlib/99-minor/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "doc/initial/7-ports.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "go.env"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "go.mod"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "go.sum"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "instance/check.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "instance/wincrypt.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "lib/time/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "lib/time/mkzip.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "lib/time/update.bash"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "lib/time/zoneinfo.zip"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/cgo/gmp/fib.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/cgo/gmp/gmp.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/cgo/gmp/pi.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/README.txt"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/background.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/background.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/background.js"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/gopher.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/gopher.js"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/gopher.png"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/manifest.json"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/popup.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/popup.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "misc/chrome/gophertool/popup.js"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/editors"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/go.mod"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/go_android_exec/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/go_android_exec/exitcode_test.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/go_android_exec/main.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/ios/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/ios/clangwrap.sh"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/ios/detect.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/ios/go_ios_exec.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/linkcheck/linkcheck.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/wasm/go_js_wasm_exec"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/wasm/go_wasip1_wasm_exec"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/wasm/wasm_exec.html"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/wasm/wasm_exec.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "misc/wasm/wasm_exec.js"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "misc/wasm/wasm_exec_node.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "misc/wasm/wasm_exec_node.js"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/include/asm_amd64.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/include/asm_ppc64x.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/include/funcdata.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/include/textflag.h"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/addr2line"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/asm"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/buildid"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/cgo"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/compile"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/covdata"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/cover"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/doc"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/fix"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/link"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/nm"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/objdump"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/pack"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/pprof"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/preprofile"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/test2json"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/trace"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "pkg/tool/darwin_arm64/vet"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/.DS_Store"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/235.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/64bit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/README.md"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/bad_internal_offsets.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/bad_select_crash.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/convF_criteria.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/convF_criteria.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/convT64_criteria.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/convT64_criteria.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/defer_aggregate.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/defer_recover_results.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/double_nested_addressed_struct.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/double_nested_struct.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/f_ret_z_not.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/f_ret_z_not.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/fibish.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/fibish.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/fibish_closure.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/fibish_closure.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/fuzz_trailing_zero_field.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/idata.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/idata.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/leaf.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/leaf2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/many_int_input.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/many_int_input.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/many_intstar_input.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/many_intstar_input.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/map.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/method_wrapper.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/more_intstar_input.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/more_intstar_input.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/named_results.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/named_results.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/named_return_stuff.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/named_return_stuff.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/open_defer_1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/part_live.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/part_live_2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/reg_not_ssa.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/result_live.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/result_regalloc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/return_stuff.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/return_stuff.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/s_sif_sif.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/spills3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/spills4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/store_reg_args.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/struct_3_string_input.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/struct_3_string_input.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/struct_lower_1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/struct_lower_1.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/too_big_to_ssa.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/too_big_to_ssa.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/uglyfib.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/uglyfib.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/wrapdefer_largetmp.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/wrapdefer_largetmp.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/abi/zombie_struct_select.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alg.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias3.dir/a.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias3.dir/b.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias3.dir/c.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/alias3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/align.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/append.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/append1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/arenas/smoke.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/args.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/armimm.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/asmhdr.dir/main.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/asmhdr.dir/main.s"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/asmhdr.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/assign.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/assign1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/atomicload.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/bigalg.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/bigmap.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/blank.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/blank1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/bom.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/bombad.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/bounds.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cannotassign.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/doubleselect.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/fifo.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/goroutines.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/nonblock.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/perm.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/powser1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/powser2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select7.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/select8.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/sendstmt.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/sieve1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/sieve2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chan/zerosize.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chancap.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/chanlinear.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/char_lit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/char_lit1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/checkbce.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/clear.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/clearfat.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closedchan.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure3.dir/main.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure5.dir/a.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure5.dir/main.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/closure7.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmp.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmp6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmplx.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmplxdivide.c"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmplxdivide.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/cmplxdivide1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/README"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/addrcalc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/alloc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/arithmetic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/atomics.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/bitfield.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/bits.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/bmi.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/bool.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/clobberdead.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/clobberdeadreg.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/compare_and_branch.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/comparisons.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/condmove.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/constants.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/copy.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/floats.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/fuse.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/ifaces.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue22703.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue25378.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue31618.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue33580.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue38554.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue42610.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue48054.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue52635.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue54467.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue56440.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue58166.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue60324.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue60673.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue61356.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue63332.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/issue66585.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/logic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/mapaccess.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/maps.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/math.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/mathbits.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/memcombine.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/memops.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/memops_bigoffset.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/noextend.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/race.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/regabi_regalloc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/retpoline.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/rotate.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/select.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/shift.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/shortcircuit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/slices.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/smallintiface.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/spectre.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/stack.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/strings.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/structs.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/switch.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/writebarrier.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/codegen/zerosize.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/complit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/complit1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/compos.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const7.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/const8.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convT2X.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convert.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convert1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convert2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convert3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convert4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convinline.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convlit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/convlit1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/copy.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/copy1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/crlf.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/ddd.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/ddd1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/ddd2.dir/ddd2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/ddd2.dir/ddd3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/ddd2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/decl.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/declbad.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/defer.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/defererrcheck.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/deferfin.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/defernil.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/deferprint.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/deferprint.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/devirt.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/directive.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/directive2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/divide.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/divmod.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/main.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z10.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z11.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z12.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z13.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z14.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z15.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z16.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z17.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z18.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z19.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z20.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z7.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z8.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.dir/z9.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/dwarf.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/dwarf/linedirectives.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/embedfunc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/embedvers.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/empty.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/env.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/eof.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/eof1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape2n.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_array.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_calls.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_closure.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_field.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_goto.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_hash_maphash.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_iface.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_indir.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_level.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_map.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_mutations.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_param.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_reflect.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_runtime_atomic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_selfassign.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_slice.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_struct_param1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_struct_param2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_struct_return.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_sync_atomic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/escape_unsafe.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/fibo.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/finprofiled.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/float_lit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/float_lit2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/float_lit3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/floatcmp.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/for.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func7.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/func8.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/funcdup.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/funcdup2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/fuse.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/gc.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/gc1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/gc2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/gcgort.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/gcstring.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/goprint.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/goprint.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/goto.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/heapsampling.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/helloworld.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/helloworld.out"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/if.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import2.dir/import2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import2.dir/import3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import4.dir/empty.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import4.dir/import4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import4.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import5.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/import6.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/index.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/index0.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/index1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/index2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/indirect.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/indirect1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/init.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/init1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/initcomma.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/initexp.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/initialize.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/initializerr.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/initloop.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_big.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_caller.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_callers.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_endian.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_literal.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_math_bits_rotate.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_sync.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/inline_variadic.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/int_lit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/intcvt.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/assertinline.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/bigdata.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/convert.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/convert1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/convert2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed1.dir/embed0.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed1.dir/embed1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed2.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed3.dir/embed0.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed3.dir/embed1.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/embed3.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/explicit.go"
+        },
+        {
+          "heur_id": 1,
+          "signatures": [],
+          "value": "test/interface/fail.go"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
