@@ -63,7 +63,12 @@
         "sha256": "bf367571f133f45c5427692d1156df0d5b54ee925bb1efba64b6da5b23b9ee6d"
       }
     ],
-    "supplementary": []
+    "supplementary": [
+      {
+        "name": "7z-listing.txt",
+        "sha256": "b1a48e07f18b2950cad628c9793f7a64dbf295e528bbfc8b52ffe86124629e57"
+      }
+    ]
   },
   "results": {
     "heuristics": [

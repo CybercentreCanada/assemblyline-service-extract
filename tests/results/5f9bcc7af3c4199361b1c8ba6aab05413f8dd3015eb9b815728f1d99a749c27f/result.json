@@ -13,7 +13,7 @@
         "heuristic": null,
         "promote_to": null,
         "tags": {},
-        "title_text": "3 folders were not extracted but added as supplementary archives due to excessive number of files",
+        "title_text": "3 folders were completely ignored due to excessive number of files",
         "zeroize_on_tag_safe": false
       },
       {
@@ -2596,20 +2596,8 @@
     ],
     "supplementary": [
       {
-        "name": "test/fixedbugs.zip",
-        "sha256": "60b87ff7efa051a16466564350fca6eea4a2facaf8d6fe42fc4da810f5dc41df"
-      },
-      {
-        "name": "src.zip",
-        "sha256": "661460ce34dc88838fb873ccd3b4a4460a5378add723ae62f0fb1684c889b2b0"
-      },
-      {
-        "name": "__MACOSX.zip",
-        "sha256": "9ab39d353de31c6aeaa39e901434fe846e69b423f8108a6c9da2e11cd3ad48e5"
-      },
-      {
-        "name": "tree.txt",
-        "sha256": "efff72b79bcd870cfaff9dab25725d4e6e849e5757dbe8f63e5ccacda5ca7c4e"
+        "name": "7z-listing.txt",
+        "sha256": "82d15bd2c3c48e6517348fc6419e4158c20deec6b986eda56fa98d3f6384a1d2"
       }
     ]
   },

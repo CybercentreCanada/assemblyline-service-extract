@@ -16,6 +16,7 @@ import tempfile
 import traceback
 import zipfile
 import zlib
+from collections import defaultdict
 from datetime import datetime
 from enum import Enum
 from io import BytesIO
@@ -1183,93 +1184,6 @@ class Extract(ServiceBase):
         extracted_path = os.path.join(extracted_path, str(sub_folder))
         os.mkdir(extracted_path)
 
-        if request.get_param("extraction_glob_pattern"):
-            for root, _, files in os.walk(folder_path):
-                for f in files:
-                    file_path = os.path.join(root, f)
-                    relative_path = os.path.relpath(file_path, folder_path)
-                    if not fnmatch.fnmatch(relative_path, request.get_param("extraction_glob_pattern")):
-                        os.remove(file_path)
-
-        MAX_SUBFILES = max(300, request.max_extracted * 3)
-        # Find number of subfiles in folder_path:
-        num_subfiles = sum(len(files) for _, _, files in os.walk(folder_path))
-        removed_folders = []
-
-        def remove_folder(folder):
-            # Create a zip of the folder being removed to add as supplementary
-            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
-                create_deterministic_zip(tmp_f.name, folder[0])
-            request.add_supplementary(
-                name=f"{os.path.relpath(folder[0], folder_path)}.zip",
-                description=os.path.relpath(folder[0], folder_path),
-                path=tmp_f.name,
-            )
-            shutil.rmtree(folder[0])
-            removed_folders.append(folder)
-
-        if num_subfiles > MAX_SUBFILES:
-            # Generate a tree of the folders and files to add as a supplementary file
-            def write_tree(folder, out_file, indent=""):
-                for item in sorted(os.listdir(folder)):
-                    path = os.path.join(folder, item)
-                    out_file.write(f"{indent}{item}/\n" if os.path.isdir(path) else f"{indent}{item}\n")
-                    if os.path.isdir(path):
-                        write_tree(path, out_file, indent + "    ")
-
-            with tempfile.NamedTemporaryFile(dir=self.working_directory, mode="w", delete=False) as tmp_f:
-                write_tree(folder_path, tmp_f)
-            request.add_supplementary(name="tree.txt", description="Full folder tree", path=tmp_f.name)
-
-        while num_subfiles > MAX_SUBFILES:
-            # Gather all folders and their file counts (including nested)
-            folder_file_counts = []
-            for root, dirs, files in os.walk(folder_path):
-                if folder_path == root:
-                    continue
-                folder_file_counts.append((root, sum(len(f) for _, _, f in os.walk(root))))
-
-            # Sort folders by file count descending
-            folder_file_counts.sort(key=lambda x: x[1], reverse=True)
-
-            # Remove the largest folder if it would not even reduce us below the limit
-            if num_subfiles - folder_file_counts[0][1] > MAX_SUBFILES:
-                try:
-                    remove_folder(folder_file_counts[0])
-                    num_subfiles -= folder_file_counts[0][1]
-                    continue
-                except Exception:
-                    pass
-
-            # Find the last folder that can be removed to get us below the limit
-            last_folder_to_remove = folder_file_counts[0]
-            for folder, count in folder_file_counts:
-                if num_subfiles - count > MAX_SUBFILES:
-                    break
-                last_folder_to_remove = (folder, count)
-
-            # Remove the last folder
-            try:
-                remove_folder(last_folder_to_remove)
-                num_subfiles -= last_folder_to_remove[1]
-                break
-            except Exception:
-                pass
-
-        if removed_folders:
-            section = ResultSection(
-                (
-                    f"{'A folder' if len(removed_folders) == 1 else f'{len(removed_folders)} folders'} were not"
-                    f" extracted but added as supplementary archive{'' if len(removed_folders) == 1 else 's'} "
-                    "due to excessive number of files"
-                ),
-                parent=request.result,
-            )
-            for folder, count in removed_folders:
-                section.add_line(
-                    f"Folder '{os.path.relpath(folder, folder_path)}' with {count} files was not extracted"
-                )
-
         for root, _, files in os.walk(folder_path):
             for f in files:
                 file_path = os.path.join(root, f)
@@ -1817,8 +1731,75 @@ class Extract(ServiceBase):
             # Our Identify was also identifying it as "iso", so we can't only rely on "archive/udf".
             if file_type in ["archive/iso", "archive/udf"]:
                 temp_path = os.path.join(self.working_directory, "renamed_iso.iso")
-                shutil.copy2(file_path, temp_path)
+                os.symlink(file_path, temp_path)
                 popenargs[-2] = temp_path
+
+            listing_header, listing_data = self.parse_archive_listing(
+                ["7zzs", "l", "-p", "-y", file_path], env, b"Date"
+            )
+            if request.get_param("extraction_glob_pattern"):
+                popenargs.insert(-1, request.get_param("extraction_glob_pattern"))
+            else:
+                sorted_listing_data = sorted([(d[-1], d[1][0] == "D") for d in listing_data])
+                # Get a count of files and directories
+                num_directory = len([d for d in sorted_listing_data if d[1]])
+                num_files = len(sorted_listing_data) - num_directory
+                if num_files > request.max_extracted:
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, mode="w", delete=False) as tmp_f:
+                        for d in sorted_listing_data:
+                            tmp_f.write(f"{d[0]}{'/' if d[1] else ''}\n")
+                    request.add_supplementary(
+                        name="7z-listing.txt", description="File listing from 7z", path=tmp_f.name
+                    )
+
+                MAX_SUBFILES = max(300, request.max_extracted * 3)
+                excluded_folders = []
+                if num_files > MAX_SUBFILES:
+                    folder_counts = defaultdict(int)
+                    # For each file, increment count for all its parent folders
+                    for entry in listing_data:
+                        path = entry[-1]
+                        if entry[1][0] != "D":
+                            parts = path.split(os.sep)
+                            for i in range(1, len(parts)):
+                                folder_counts[os.sep.join(parts[:i])] += 1
+                    # Convert to sorted list
+                    sorted_folder_counts = sorted(folder_counts.items(), key=lambda x: x[1], reverse=True)
+
+                    excluded_folders = []
+                    for folder, folder_count in sorted_folder_counts:
+                        if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
+                            # Parent folder already excluded
+                            continue
+                        if num_files - folder_count > MAX_SUBFILES:
+                            excluded_folders.append((folder, folder_count))
+                            num_files -= folder_count
+                            continue
+                        break
+
+                    last_folder_to_remove = None
+                    for folder, folder_count in sorted_folder_counts:
+                        if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
+                            continue
+
+                        # Find the last folder that can be removed to get us below the limit
+                        if num_files - folder_count > MAX_SUBFILES:
+                            break
+                        last_folder_to_remove = (folder, folder_count)
+                    if last_folder_to_remove:
+                        excluded_folders.append(last_folder_to_remove)
+
+                if excluded_folders:
+                    section = ResultSection(
+                        (
+                            f"{'A folder' if len(excluded_folders) == 1 else f'{len(excluded_folders)} folders'} were"
+                            " completely ignored due to excessive number of files"
+                        ),
+                        parent=request.result,
+                    )
+                    for folder, count in excluded_folders:
+                        popenargs.insert(-1, f"-x!{folder}{os.sep}*")
+                        section.add_line(f"Folder '{folder}' with {count} files was not extracted")
 
             try:
                 p = subprocess.run(popenargs, env=env, capture_output=True)
@@ -1896,10 +1877,7 @@ class Extract(ServiceBase):
                             )
                         error_res.add_line(line.replace(temp_dir.encode(), b"/TMP_DIR"))
 
-                popenargs[1] = "l"  # Change the command to list
-                popenargs = popenargs[:-1]  # Drop the destination output
-                header, data = self.parse_archive_listing(popenargs, env, b"Date")
-                if not data:
+                if not listing_data:
                     # No listing could be extracted.
                     # archive/rar are going to be retried with another tool.
                     # executables doesn't have listing, so they would always raise it.
@@ -1910,18 +1888,18 @@ class Extract(ServiceBase):
                     # Data should be:
                     # Date Time, Attr, Size, Compressed, Name
 
-                    hidden_files = [x for x in data if x[1][2] == "H"]
+                    hidden_files = [x for x in listing_data if x[1][2] == "H"]
                     if hidden_files:
                         heur = Heuristic(18)
                         res = ResultTableSection(heur.name, heuristic=heur, parent=request.result)
                         for hf in hidden_files:
-                            res.add_row(TableRow(dict(zip(header, hf))))
+                            res.add_row(TableRow(dict(zip(listing_header, hf))))
                             # Do not add Directories to filename extracted
                             if hf[1][0] != "D":
                                 res.add_tag("file.name.extracted", hf[-1])
 
                     # x[2] is the size, so ignore empty files/folders
-                    expected_files = [x[4] for x in data if x[2] != "0"]
+                    expected_files = [x[4] for x in listing_data if x[2] != "0"]
                     if password_protected and len(extracted_files) != len(expected_files):
                         # If we extracted no files, and it is an archive/rar,
                         # we'll rely on unrar to populate the section
@@ -1937,7 +1915,7 @@ class Extract(ServiceBase):
                         error_res or (password_protected and len(extracted_files) != len(expected_files))
                     ):
                         very_compressed = []
-                        for x in data:
+                        for x in listing_data:
                             if (
                                 x[2] not in ["0", ""]
                                 and x[3] != ""
@@ -1959,13 +1937,13 @@ class Extract(ServiceBase):
                     # Detection for CVE-2023-38831
                     # Find all folders
                     heur_section = ResultKeyValueSection("CVE-2023-38831")
-                    folders = [x[-1] for x in data if x[1][0] == "D"]
+                    folders = [x[-1] for x in listing_data if x[1][0] == "D"]
                     hijacked_folders = set()
                     for folder in folders:
                         # Find if a file has the same name as any folder
-                        if any([(x[-1] == folder and x[1][0] != "D") for x in data]):
+                        if any([(x[-1] == folder and x[1][0] != "D") for x in listing_data]):
                             # Find if there is a file that starts with the name of the folder inside that folder
-                            for data_line in data:
+                            for data_line in listing_data:
                                 # The name of the file/folder is found inside the folder, but could be layers deep
                                 if (
                                     data_line[-1].startswith(f"{folder}{os.sep}")
@@ -1982,7 +1960,6 @@ class Extract(ServiceBase):
                         for folder in hijacked_folders:
                             os.makedirs(os.path.join(temp_dir, folder), exist_ok=True)
                         popenargs[1] = "x"
-                        popenargs.append(f"-o{temp_dir}")
                         popenargs[3] = "-aos"  # Remplace the "-y" with "-aos" to skip existing folders
                         subprocess.run(popenargs, env=env, capture_output=True)
                         extracted_files.extend(

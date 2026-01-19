@@ -2553,7 +2553,12 @@
         "sha256": "ffdb47b70fde8d226cdcfe3c8fc75577a35b6a5bd797c3afb6c9a1259ffd630e"
       }
     ],
-    "supplementary": []
+    "supplementary": [
+      {
+        "name": "7z-listing.txt",
+        "sha256": "3aba85682024ba4f2dad1df41f46901cbadf5e9a881ef9c092d131c6bcf86c9a"
+      }
+    ]
   },
   "results": {
     "heuristics": [
