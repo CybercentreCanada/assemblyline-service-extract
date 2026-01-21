@@ -781,33 +781,30 @@ class Extract(ServiceBase):
             List containing repaired zip path, and display name "repaired_zip_file.zip", or a blank list if
             repair failed
         """
+        extracted_files = []
         try:
             with RepairZip(request.file_path, strict=False) as rz:
                 if not (rz.is_zip and rz.broken):
                     return []
                 rz.fix_zip()
 
-                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fh:
-                    out_name = fh.name
-                    with RepairZip(fh, "w") as zo:
-                        for path in rz.namelist():
-                            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=True) as tmp_f:
-                                try:
-                                    tmp_f.write(rz.read(path))
-                                    tmp_f.flush()
-                                    zo.write(tmp_f.name, path, rz.ZIP_DEFLATED)
-                                except zlib.error:
-                                    # Corrupted compression, which is expected
-                                    pass
-                                except BadZipfile as e:
-                                    # Corrupted zip file, also expected
-                                    self.log.debug(f"The zip file is corrupted due to '{e}'")
-                                    pass
-                                except (EOFError, OSError):
-                                    # Unable to read path
-                                    pass
-
-                return [[out_name, "repaired_zip_file.zip", sys._getframe().f_code.co_name]]
+                for path in rz.namelist():
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                        try:
+                            tmp_f.write(rz.read(path))
+                            tmp_f.flush()
+                            extracted_files.append([tmp_f.name, path, sys._getframe().f_code.co_name])
+                        except zlib.error:
+                            # Corrupted compression, which is expected
+                            pass
+                        except BadZipfile as e:
+                            # Corrupted zip file, also expected
+                            self.log.debug(f"The zip file is corrupted due to '{e}'")
+                            pass
+                        except (EOFError, OSError):
+                            # Unable to read path
+                            pass
+                return extracted_files
         except ValueError:
             return []
         except NotImplementedError:
