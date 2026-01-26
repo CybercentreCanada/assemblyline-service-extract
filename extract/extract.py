@@ -1735,7 +1735,7 @@ class Extract(ServiceBase):
                 ["7zzs", "l", "-p", "-y", file_path], env, b"Date"
             )
             if request.get_param("extraction_glob_pattern"):
-                popenargs.insert(-1, request.get_param("extraction_glob_pattern"))
+                popenargs.insert(-1, f"-ir!{request.get_param('extraction_glob_pattern')}")
             else:
                 sorted_listing_data = sorted([(d[-1], d[1][0] == "D") for d in listing_data])
                 # Get a count of files and directories
