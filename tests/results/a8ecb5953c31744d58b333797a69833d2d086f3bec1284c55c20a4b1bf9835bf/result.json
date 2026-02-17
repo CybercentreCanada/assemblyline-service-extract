@@ -87,7 +87,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823",
+        "body": "\u430b\u4131\u4735\u433e\u41f9\u4396\u42ac\u42ee\u4823: executable/windows/dll32 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -37,7 +37,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "AaaTeXMeterBilling.exe\nSetup.exe",
+        "body": "AaaTeXMeterBilling.exe: executable/windows/pe32 found inside executable/windows/pe32\nSetup.exe: executable/windows/pe32 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

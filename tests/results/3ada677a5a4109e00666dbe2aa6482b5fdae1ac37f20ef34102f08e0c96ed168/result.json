@@ -272,7 +272,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "_ctypes.pyd\n_hashlib.pyd\n_socket.pyd\n_ssl.pyd\nbz2.pyd\ndllInjection.py\nselect.pyd\nunicodedata.pyd",
+        "body": "_ctypes.pyd: executable/windows/dll32 found inside archive/zip\n_hashlib.pyd: executable/windows/dll32 found inside archive/zip\n_socket.pyd: executable/windows/dll32 found inside archive/zip\n_ssl.pyd: executable/windows/dll32 found inside archive/zip\nbz2.pyd: executable/windows/dll32 found inside archive/zip\ndllInjection.py: code/python found inside archive/zip\nselect.pyd: executable/windows/dll32 found inside archive/zip\nunicodedata.pyd: executable/windows/dll32 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

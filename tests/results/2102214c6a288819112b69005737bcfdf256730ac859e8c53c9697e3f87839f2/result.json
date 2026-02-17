@@ -86,7 +86,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Quote.lnk\nimagedata.ps1",
+        "body": "Quote.lnk: shortcut/windows found inside archive/vhd\nimagedata.ps1: code/ps1 found inside archive/vhd",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

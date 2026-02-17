@@ -35,7 +35,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "simple38.py",
+        "body": "simple38.py: code/python found inside executable/linux/elf64",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

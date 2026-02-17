@@ -59,7 +59,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Shipment Document BL,INV and Packing list Attached.exe",
+        "body": "Shipment Document BL,INV and Packing list Attached.exe: executable/windows/pe32 found inside archive/ace",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

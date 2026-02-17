@@ -60,7 +60,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "%AppFolder%/Inspector Parker.exe\n%AppFolder%/Xtras/DirectSound.x32\n%AppFolder%/Xtras/Font Asset.x32\n%AppFolder%/Xtras/Font Xtra.x32\n%AppFolder%/Xtras/SWADCmpr.x32\n%AppFolder%/Xtras/Sound Control.x32\n%AppFolder%/Xtras/Text Asset.x32\n%AppFolder%/Xtras/TextXtra.x32\n%AppFolder%/Xtras/budapi.x32\n%AppFolder%/Xtras/resolution.x32\nirsetup.exe",
+        "body": "%AppFolder%/Inspector Parker.exe: executable/windows/pe32 found inside executable/windows/pe32\n%AppFolder%/Xtras/DirectSound.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/Font Asset.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/Font Xtra.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/SWADCmpr.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/Sound Control.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/Text Asset.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/TextXtra.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/budapi.x32: executable/windows/dll32 found inside executable/windows/pe32\n%AppFolder%/Xtras/resolution.x32: executable/windows/dll32 found inside executable/windows/pe32\nirsetup.exe: executable/windows/pe32 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -67,7 +67,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Password.txt",
+        "body": "Password.txt: code/html found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -175,7 +175,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "screenshot_06-2023.jpg /Images.com \nscreenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. ",
+        "body": "screenshot_06-2023.jpg /Images.com : executable/windows/pe32 found inside archive/zip\nscreenshot_06-2023.jpg /screenshot_06-2023.jpg .cmd. : code/batch found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -40,7 +40,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "AxInterop.ShockwaveFlashObjects.dll\nInterop.ShockwaveFlashObjects.dll\nYouAreAnIdiot.exe",
+        "body": "AxInterop.ShockwaveFlashObjects.dll: executable/windows/dll32 found inside archive/zip\nInterop.ShockwaveFlashObjects.dll: executable/windows/dll32 found inside archive/zip\nYouAreAnIdiot.exe: executable/windows/pe32 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

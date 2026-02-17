@@ -47,7 +47,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "%AppFolder%/Director.exe\nirsetup.exe",
+        "body": "%AppFolder%/Director.exe: executable/windows/pe32 found inside executable/windows/pe32\nirsetup.exe: executable/windows/pe32 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

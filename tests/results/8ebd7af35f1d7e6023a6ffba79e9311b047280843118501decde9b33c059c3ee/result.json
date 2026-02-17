@@ -33,7 +33,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "7z1805-x64.exe",
+        "body": "7z1805-x64.exe: executable/windows/pe32 found inside archive/xxe",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

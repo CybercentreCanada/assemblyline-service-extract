@@ -82,7 +82,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "view.exe",
+        "body": "view.exe: executable/windows/pe64 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -82,7 +82,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Zfaggccwnm.exe",
+        "body": "Zfaggccwnm.exe: executable/windows/pe32 found inside archive/zpaq",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

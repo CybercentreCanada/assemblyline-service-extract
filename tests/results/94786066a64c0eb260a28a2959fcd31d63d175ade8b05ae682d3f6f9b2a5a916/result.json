@@ -35,7 +35,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Documents.dll\nReports.lnk",
+        "body": "Documents.dll: executable/windows/dll64 found inside archive/iso\nReports.lnk: shortcut/windows found inside archive/iso",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

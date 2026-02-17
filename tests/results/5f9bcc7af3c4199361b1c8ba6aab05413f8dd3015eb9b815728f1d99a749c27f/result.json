@@ -559,7 +559,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "misc/chrome/gophertool/background.js\nmisc/chrome/gophertool/gopher.js\nmisc/chrome/gophertool/popup.js\nmisc/wasm/wasm_exec.js\nmisc/wasm/wasm_exec_node.js",
+        "body": "misc/chrome/gophertool/background.js: text/plain found inside archive/zip\nmisc/chrome/gophertool/gopher.js: text/plain found inside archive/zip\nmisc/chrome/gophertool/popup.js: text/plain found inside archive/zip\nmisc/wasm/wasm_exec.js: text/plain found inside archive/zip\nmisc/wasm/wasm_exec_node.js: text/plain found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

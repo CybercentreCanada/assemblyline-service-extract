@@ -59,7 +59,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Order_list001.exe",
+        "body": "Order_list001.exe: executable/windows/pe32 found inside archive/ace",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

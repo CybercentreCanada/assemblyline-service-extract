@@ -34,7 +34,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "HSBC Customer Information.com\nHSBC Payment Advice.com",
+        "body": "HSBC Customer Information.com: executable/windows/pe32 found inside archive/iso\nHSBC Payment Advice.com: executable/windows/pe32 found inside archive/iso",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

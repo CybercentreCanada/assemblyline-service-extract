@@ -2370,7 +2370,8 @@ class Extract(ServiceBase):
         if len(request.extracted) == 1:
             if is_launchable(request.extracted[0]):
                 new_section = ResultTextSection("Archive file with single executable inside. Potentially malicious...")
-                new_section.add_line(request.extracted[0]["name"])
+                file_type = self.identify.fileinfo(request.extracted[0]["path"], generate_hashes=False)["type"]
+                new_section.add_line(f"{request.extracted[0]['name']}: {file_type} found inside {request.file_type}")
                 new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
                 if not request.get_param("heur_13_16_supression"):
                     new_section.set_heuristic(13)
@@ -2381,7 +2382,7 @@ class Extract(ServiceBase):
                 and self.identify.fileinfo(request.extracted[0]["path"], generate_hashes=False)["type"] == "code/html"
             ):
                 new_section = ResultTextSection("Archive file with single html file inside.")
-                new_section.add_line(request.extracted[0]["name"])
+                new_section.add_line(f"{request.extracted[0]['name']}: code/html found inside {request.file_type}")
                 new_section.add_tag("file.name.extracted", request.extracted[0]["name"])
                 new_section.add_tag("file.behavior", "Archived Single HTML File")
                 request.result.add_section(new_section)
@@ -2394,7 +2395,8 @@ class Extract(ServiceBase):
                 new_section = ResultTextSection("Executable Content in Archive. Potentially malicious...")
                 new_section.add_tag("file.behavior", "Executable Content in Archive")
                 for extracted in launchable_extracted:
-                    new_section.add_line(extracted["name"])
+                    file_type = self.identify.fileinfo(extracted["path"], generate_hashes=False)["type"]
+                    new_section.add_line(f"{extracted['name']}: {file_type} found inside {request.file_type}")
                     new_section.add_tag("file.name.extracted", extracted["name"])
                 if len(request.extracted) <= self.config.get("heur16_max_file_count", 5) and not request.get_param(
                     "heur_13_16_supression"

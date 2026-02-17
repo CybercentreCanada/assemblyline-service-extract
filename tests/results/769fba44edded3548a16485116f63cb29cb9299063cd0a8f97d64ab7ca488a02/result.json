@@ -49,7 +49,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "shibokensupport/__init__.py\nshibokensupport/feature.py",
+        "body": "shibokensupport/__init__.py: text/plain found inside archive/zlib\nshibokensupport/feature.py: code/python found inside archive/zlib",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -48,7 +48,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Plugin/cam.dll\nPlugin/ch.dll\nPlugin/mic.dll\nPlugin/plg.dll\nPlugin/pw.dll\nPlugin/sc2.dll\nWinMM.Net.dll\nnjRAT v0.7d.exe\nstub.il",
+        "body": "Plugin/cam.dll: executable/windows/dll32 found inside archive/zip\nPlugin/ch.dll: executable/windows/dll32 found inside archive/zip\nPlugin/mic.dll: executable/windows/dll32 found inside archive/zip\nPlugin/plg.dll: executable/windows/dll32 found inside archive/zip\nPlugin/pw.dll: executable/windows/dll32 found inside archive/zip\nPlugin/sc2.dll: executable/windows/dll32 found inside archive/zip\nWinMM.Net.dll: executable/windows/dll32 found inside archive/zip\nnjRAT v0.7d.exe: executable/windows/pe32 found inside archive/zip\nstub.il: code/ps1 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

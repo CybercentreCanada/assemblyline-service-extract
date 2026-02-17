@@ -40,7 +40,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Translation.Workspace.Xliff.Ed.serials.maker.exe",
+        "body": "Translation.Workspace.Xliff.Ed.serials.maker.exe: executable/windows/pe32 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

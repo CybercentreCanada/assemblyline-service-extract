@@ -76,7 +76,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg\nM6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk",
+        "body": "M6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/0.jpg: code/batch found inside archive/zip\nM6XA.pdf /~temp/~temp/~temp/~temp/~temp/~temp/~temp/~temp/M6XA.pdf .lnk: shortcut/windows found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

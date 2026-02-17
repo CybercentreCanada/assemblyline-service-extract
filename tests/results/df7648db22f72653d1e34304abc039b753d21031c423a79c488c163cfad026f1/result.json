@@ -36,7 +36,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "VirtualRepairTool/VirtualRepairTool",
+        "body": "VirtualRepairTool/VirtualRepairTool: executable/mach-o found inside archive/dmg",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -38,7 +38,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Re-LoaderByR@1n.exe\nSetupComplete.cmd",
+        "body": "Re-LoaderByR@1n.exe: executable/windows/pe32 found inside archive/7-zip\nSetupComplete.cmd: code/batch found inside archive/7-zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

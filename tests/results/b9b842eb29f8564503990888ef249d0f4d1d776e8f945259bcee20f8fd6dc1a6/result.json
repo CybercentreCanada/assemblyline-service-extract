@@ -55,7 +55,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll",
+        "body": "commonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win32/WavesLicenseEngine.dll: executable/windows/dll32 found inside executable/windows/pe32\ncommonappdata/Waves Audio/Modules/WavesLicenseEngine.bundle/Contents/Win64/WavesLicenseEngine.dll: executable/windows/dll64 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

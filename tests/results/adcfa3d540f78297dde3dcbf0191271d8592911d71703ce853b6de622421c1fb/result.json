@@ -82,7 +82,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Payload/PGDribbble.app/PGDribbble",
+        "body": "Payload/PGDribbble.app/PGDribbble: executable/mach-o found inside ios/ipa",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

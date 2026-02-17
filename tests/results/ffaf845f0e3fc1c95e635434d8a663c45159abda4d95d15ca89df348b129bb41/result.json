@@ -68,7 +68,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "assets/aapt\nassets/aaptz\nassets/mycp\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so",
+        "body": "assets/aapt: executable/linux/so32 found inside android/apk\nassets/aaptz: executable/linux/so32 found inside android/apk\nassets/mycp: executable/linux/so32 found inside android/apk\nlib/arm64-v8a/libsyscheck.so: executable/linux/so64 found inside android/apk\nlib/armeabi-v7a/libsyscheck.so: executable/linux/so32 found inside android/apk\nlib/armeabi/libsyscheck.so: executable/linux/so32 found inside android/apk",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

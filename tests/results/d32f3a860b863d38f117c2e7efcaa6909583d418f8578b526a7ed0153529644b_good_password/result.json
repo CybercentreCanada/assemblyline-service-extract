@@ -39,7 +39,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Virus Maker.exe",
+        "body": "Virus Maker.exe: executable/windows/pe32 found inside archive/rar",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

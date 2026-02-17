@@ -49,7 +49,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "$PLUGINSDIR/System.dll\nNeGACOM.dll\nSystem.Runtime.Serialization.Formatters.dll\nSystem.Threading.Channels.dll\nuHDDImporter.dll",
+        "body": "$PLUGINSDIR/System.dll: executable/windows/dll32 found inside executable/windows/pe32\nNeGACOM.dll: executable/windows/dll32 found inside executable/windows/pe32\nSystem.Runtime.Serialization.Formatters.dll: executable/windows/dll64 found inside executable/windows/pe32\nSystem.Threading.Channels.dll: executable/windows/dll64 found inside executable/windows/pe32\nuHDDImporter.dll: executable/windows/dll32 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

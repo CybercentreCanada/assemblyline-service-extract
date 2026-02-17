@@ -34,7 +34,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "_p5_0\n_p5_1",
+        "body": "_p5_0: executable/windows/pe32 found inside document/installer/windows\n_p5_1: code/ps1 found inside document/installer/windows",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

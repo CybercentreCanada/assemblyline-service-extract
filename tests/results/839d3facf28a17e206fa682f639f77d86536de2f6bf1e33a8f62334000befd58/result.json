@@ -46,7 +46,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "cursor.dat",
+        "body": "cursor.dat: executable/windows/dll32 found inside archive/udf",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

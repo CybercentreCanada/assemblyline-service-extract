@@ -87,7 +87,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "7za.dll\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe\nvcruntime140.dll",
+        "body": "7za.dll: executable/windows/dll64 found inside archive/zip\nnovember_schedul\u202d\u202e\u202e\u202efdp.exe: executable/windows/pe64 found inside archive/zip\nvcruntime140.dll: executable/windows/dll64 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

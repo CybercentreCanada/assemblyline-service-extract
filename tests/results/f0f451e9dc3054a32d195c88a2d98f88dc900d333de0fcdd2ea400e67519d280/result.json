@@ -33,7 +33,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Plata finala.exe",
+        "body": "Plata finala.exe: executable/windows/pe32 found inside archive/7-zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

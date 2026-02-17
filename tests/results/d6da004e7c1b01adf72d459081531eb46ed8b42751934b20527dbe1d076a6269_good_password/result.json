@@ -42,7 +42,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Launcher.dll\nMain.dll\nSpaceLauncher.exe",
+        "body": "Launcher.dll: code/html found inside archive/zip\nMain.dll: text/plain found inside archive/zip\nSpaceLauncher.exe: executable/windows/pe32 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -33,7 +33,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "hacker.exe",
+        "body": "hacker.exe: executable/windows/pe64 found inside archive/zpaq",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

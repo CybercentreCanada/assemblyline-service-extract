@@ -35,7 +35,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "Manag.exe\nmLib.cs",
+        "body": "Manag.exe: executable/windows/pe64 found inside executable/windows/pe64\nmLib.cs: executable/windows/pe found inside executable/windows/pe64",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -87,7 +87,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "document.lnk\nhit/hanging.bat\nhit/overgoverning.dll",
+        "body": "document.lnk: shortcut/windows found inside archive/zip\nhit/hanging.bat: code/batch found inside archive/zip\nhit/overgoverning.dll: executable/windows/dll64 found inside archive/zip",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",

@@ -72,7 +72,7 @@
       },
       {
         "auto_collapse": false,
-        "body": "app/NetDiagram.chm\napp/libcrypto-1_1.dll\napp/libeay32.dll\napp/libssl-1_1.dll\napp/mp3cdripperbeta.exe\napp/ssleay32.dll\nembedded/decompressor.dll",
+        "body": "app/NetDiagram.chm: archive/chm found inside executable/windows/pe32\napp/libcrypto-1_1.dll: executable/windows/dll32 found inside executable/windows/pe32\napp/libeay32.dll: executable/windows/dll32 found inside executable/windows/pe32\napp/libssl-1_1.dll: executable/windows/dll32 found inside executable/windows/pe32\napp/mp3cdripperbeta.exe: unknown found inside executable/windows/pe32\napp/ssleay32.dll: executable/windows/dll32 found inside executable/windows/pe32\nembedded/decompressor.dll: executable/windows/dll32 found inside executable/windows/pe32",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
