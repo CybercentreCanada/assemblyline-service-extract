@@ -1613,19 +1613,24 @@ class Extract(ServiceBase):
         password_protected = False
 
         try:
+            raise_failed_password = True
             # Attempt extraction of zip
             try:
                 # with 7z
                 extracted_files, password_protected = self.extract_zip_7zip(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
-            except (UnicodeDecodeError, UnicodeEncodeError) as e:
-                self.log.debug(f"While extracting {request.sha256} ({file_path}) with 7zip: {str(e)}")
+                # If 7zip did not error out, it probably created the failed password extraction section if needed.
+                raise_failed_password = False
             except TypeError:
                 self.log.debug(f"7zip could not open {request.sha256} ({file_path}) as archive")
+            except (UnicodeDecodeError, UnicodeEncodeError) as e:
+                self.log.debug(f"While extracting {request.sha256} ({file_path}) with 7zip: {str(e)}")
 
             # Fallback to zipfile if 7zip failed to extract anything
-            extracted_files, password_protected = self.extract_zip_zipfile(request, file_path, file_type)
+            extracted_files, password_protected = self.extract_zip_zipfile(
+                request, file_path, file_type, raise_failed_password=raise_failed_password
+            )
             if extracted_files:
                 return extracted_files, password_protected
 
@@ -2004,7 +2009,7 @@ class Extract(ServiceBase):
 
         return extracted_files, password_protected
 
-    def extract_zip_zipfile(self, request: ServiceRequest, file_path: str, file_type: str):
+    def extract_zip_zipfile(self, request: ServiceRequest, file_path: str, file_type: str, raise_failed_password=True):
         password_protected = False
         password_list = []
 
@@ -2037,12 +2042,13 @@ class Extract(ServiceBase):
                         except RuntimeError:
                             pass
 
-                    with zipfile.ZipFile(file_path, "r") as zipped_file:
-                        namelist = zipped_file.namelist()
-                    if len(extracted_files) != len(namelist):
-                        self.raise_failed_passworded_extraction(
-                            request, file_type, extracted_files, namelist, password_list
-                        )
+                    if raise_failed_password:
+                        with zipfile.ZipFile(file_path, "r") as zipped_file:
+                            namelist = zipped_file.namelist()
+                        if len(extracted_files) != len(namelist):
+                            self.raise_failed_passworded_extraction(
+                                request, file_type, extracted_files, namelist, password_list
+                            )
             except BadZipfile:
                 self.log.warning("A non-zip file was passed to zipfile library")
 
