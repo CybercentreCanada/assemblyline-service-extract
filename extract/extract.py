@@ -273,6 +273,9 @@ class Extract(ServiceBase):
 
         if request.file_type == "archive/nsis":
             extracted = self.extract_nsis(request)
+            # Also extract embedded payloads via 7zip (NSIS script alone is not enough)
+            zip_extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
+            extracted.extend(zip_extracted)
             summary_section_heuristic = 1
         elif request.file_type == "archive/tnef":
             extracted = self.extract_tnef(request)
@@ -358,14 +361,15 @@ class Extract(ServiceBase):
                 with open(request.file_path, "rb") as f:
                     endrec = zipfile._EndRecData(f)
 
-                # "concat" is zero, unless zip was concatenated to another file
-                # concat = Location - bytes in central directory - offset of central directory
-                concat = endrec[9] - endrec[5] - endrec[6]
-                if concat:
-                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
-                        with open(request.file_path, "rb") as f:
-                            tmp_f.write(f.read()[concat:])
-                    extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
+                if endrec is not None:
+                    # "concat" is zero, unless zip was concatenated to another file
+                    # concat = Location - bytes in central directory - offset of central directory
+                    concat = endrec[9] - endrec[5] - endrec[6]
+                    if concat:
+                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                            with open(request.file_path, "rb") as f:
+                                tmp_f.write(f.read()[concat:])
+                        extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
             except Exception:
                 pass
         elif request.file_type.startswith("executable/"):
@@ -832,59 +836,69 @@ class Extract(ServiceBase):
             Boolean if encryption successful (indicating encryption detected).
         """
         try:
-            file = msoffcrypto.OfficeFile(open(request.file_path, "rb"))
+            fh = open(request.file_path, "rb")
+            file = msoffcrypto.OfficeFile(fh)
         except (ValueError, OSError, msoffcrypto.exceptions.FileFormatError, msoffcrypto.exceptions.DecryptionError):
             # Not a supported/valid file
             return [], False
 
-        passwords = self.get_passwords(request)
-        password = None
-
-        for pass_try in passwords:
-            try:
-                if isinstance(file, OOXMLFile):
-                    file.load_key(password=pass_try, verify_password=True)
-                else:
-                    file.load_key(password=pass_try)
-                password = pass_try
-                break
-            except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
-                pass
-            except Exception as e:
-                if isinstance(e, IOError) and str(e) == "file not found":
-                    # Error happening usually when the 0Table or 1Table stream is not found in the olefile
-                    return [], True
-                if isinstance(e, ValueError) and str(e).startswith("Invalid key size") and str(e).endswith(" for RC4."):
-                    return [], True
-                raise Exception(f"Password tested was {pass_try}").with_traceback(e.__traceback__)
-
-        if password is None:
-            self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
-            return [], True
-
-        tf = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-        name = tf.name
         try:
-            file.decrypt(open(name, "wb"))
-        except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError, ValueError) as e:
-            if isinstance(e, ValueError) and str(e) not in [
-                "write_stream: data must be the same size as the existing stream",
-                "The length of the provided data is not a multiple of the block length.",
-            ]:
-                raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
-            section = ResultTextSection(
-                "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
-            )
-            section.add_line(f"Password was {password} but the file has the following problem:")
-            section.add_line(str(e))
-            section.add_tag("info.password", password)
-            return [], True
-        except Exception as e:
-            raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
-        tf.close()
+            passwords = self.get_passwords(request)
+            password = None
 
-        self.password_used.append(password)
-        return [[name, request.file_name, sys._getframe().f_code.co_name]], True
+            for pass_try in passwords:
+                try:
+                    if isinstance(file, OOXMLFile):
+                        file.load_key(password=pass_try, verify_password=True)
+                    else:
+                        file.load_key(password=pass_try)
+                    password = pass_try
+                    break
+                except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError):
+                    pass
+                except Exception as e:
+                    if isinstance(e, IOError) and str(e) == "file not found":
+                        # Error happening usually when the 0Table or 1Table stream is not found in the olefile
+                        return [], True
+                    if (
+                        isinstance(e, ValueError)
+                        and str(e).startswith("Invalid key size")
+                        and str(e).endswith(" for RC4.")
+                    ):
+                        return [], True
+                    raise Exception(f"Password tested was {pass_try}").with_traceback(e.__traceback__)
+
+            if password is None:
+                self.raise_failed_passworded_extraction(request, request.file_type, [], [], passwords)
+                return [], True
+
+            tf = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
+            name = tf.name
+            try:
+                with open(name, "wb") as out_fh:
+                    file.decrypt(out_fh)
+            except (msoffcrypto.exceptions.DecryptionError, msoffcrypto.exceptions.InvalidKeyError, ValueError) as e:
+                if isinstance(e, ValueError) and str(e) not in [
+                    "write_stream: data must be the same size as the existing stream",
+                    "The length of the provided data is not a multiple of the block length.",
+                ]:
+                    raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
+                section = ResultTextSection(
+                    "Password found but extraction failed.", heuristic=Heuristic(12), parent=request.result
+                )
+                section.add_line(f"Password was {password} but the file has the following problem:")
+                section.add_line(str(e))
+                section.add_tag("info.password", password)
+                return [], True
+            except Exception as e:
+                raise Exception(f"Password used was {password}").with_traceback(e.__traceback__)
+            finally:
+                tf.close()
+
+            self.password_used.append(password)
+            return [[name, request.file_name, sys._getframe().f_code.co_name]], True
+        finally:
+            fh.close()
 
     def extract_innosetup(self, request: ServiceRequest) -> tuple[list, bool]:
         """Will attempt to use innoextract.
@@ -1096,8 +1110,8 @@ class Extract(ServiceBase):
             return extracted
 
         for name, content in content_list:
-            fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-            fd.write(content)
+            with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fd:
+                fd.write(content)
             extracted.append([fd.name, name, sys._getframe().f_code.co_name])
 
         return extracted
@@ -1245,12 +1259,11 @@ class Extract(ServiceBase):
                         tf.flush()
 
                     subprocess.run(
-                        f"/usr/bin/unace e -y {tf.name}",
+                        ["/usr/bin/unace", "e", "-y", tf.name],
                         timeout=2 * self.service_attributes.timeout / 3,
                         capture_output=True,
                         cwd=temp_dir,
                         env=os.environ,
-                        shell=True,
                         preexec_fn=set_death_signal(),
                     )
                 return self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
@@ -1284,10 +1297,9 @@ class Extract(ServiceBase):
             try:
                 pdf = Pdf.open(BytesIO(pdf_content), password=password)
                 # If we're able to unlock the PDF, drop the unlocked version for analysis
-                fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                # We can't re-use the original IDs, but we'll use a static one (PI) for the last modified timestamp
-                pdf.save(fd, static_id=True)
-                fd.seek(0)
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fd:
+                    # We can't re-use the original IDs, but we'll use a static one (PI) for the last modified timestamp
+                    pdf.save(fd, static_id=True)
                 self.password_used.append(password)
                 return [[fd.name, request.file_name, sys._getframe().f_code.co_name]], True
             except (PDFPasswordError, RuntimeError):
@@ -1313,9 +1325,9 @@ class Extract(ServiceBase):
             ever be detected.
         """
         pdf_content = request.file_contents[request.file_contents.find(b"%PDF-") :]
+        extracted_children = []
 
         try:
-            extracted_children = []
             pdf = Pdf.open(BytesIO(pdf_content))
             # Extract embedded contents in PDF
             for key in pdf.attachments.keys():
@@ -1327,9 +1339,8 @@ class Extract(ServiceBase):
                         attachment_data = attachment.get_file().read_bytes()
                     except AttributeError:
                         continue
-                    fd = tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False)
-                    fd.write(attachment_data)
-                    fd.seek(0)
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fd:
+                        fd.write(attachment_data)
                     extracted_children.append(
                         [fd.name, key if key else "UnknownFilename", sys._getframe().f_code.co_name]
                     )
@@ -1493,7 +1504,10 @@ class Extract(ServiceBase):
             popenargs = ["zpaq", "x", temp_path, "-to", temp_dir]
 
             try:
-                p = subprocess.run(popenargs, capture_output=True)
+                p = subprocess.run(
+                    popenargs, capture_output=True,
+                    timeout=2 * self.service_attributes.timeout / 3,
+                )
                 stdoutput, stderr = p.stdout, p.stderr
 
                 extracted_files.extend(
@@ -1508,7 +1522,10 @@ class Extract(ServiceBase):
                         try:
                             popenargs[-1] = password
                             shutil.rmtree(temp_dir, ignore_errors=True)
-                            p = subprocess.run(popenargs, capture_output=True)
+                            p = subprocess.run(
+                                popenargs, capture_output=True,
+                                timeout=2 * self.service_attributes.timeout / 3,
+                            )
                             stdoutput = p.stdout + p.stderr
                             extracted_children = self._submit_extracted(
                                 request, request.file_type, temp_dir, sys._getframe().f_code.co_name
@@ -1522,7 +1539,10 @@ class Extract(ServiceBase):
                             pass
 
                 popenargs = ["zpaq", "l", temp_path]
-                p = subprocess.run(popenargs, capture_output=True)
+                p = subprocess.run(
+                    popenargs, capture_output=True,
+                    timeout=self.service_attributes.timeout,
+                )
                 data = []
                 for line in p.stdout.split(b"\n"):
                     if line.startswith(b"- "):
@@ -1603,20 +1623,23 @@ class Extract(ServiceBase):
                     return extracted_files, password_protected
             except (UnicodeDecodeError, UnicodeEncodeError) as e:
                 self.log.debug(f"While extracting {request.sha256} ({file_path}) with 7zip: {str(e)}")
-                # with zipfile
+            except TypeError:
+                self.log.debug(f"7zip could not open {request.sha256} ({file_path}) as archive")
+
+            # Fallback to zipfile if 7zip failed to extract anything
+            if not extracted_files:
                 extracted_files, password_protected = self.extract_zip_zipfile(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
-            except TypeError:
-                pass
 
-            # Try unrar if 7zip fails for rar archives
-            if file_type == "archive/rar":
+            # Try unrar if 7zip and zipfile fail for rar archives
+            if not extracted_files and file_type == "archive/rar":
                 extracted_files, password_protected = self.extract_zip_unrar(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
+
             # If we cannot extract the tar file, try a custom method
-            elif file_type == "archive/tar":
+            if not extracted_files and file_type == "archive/tar":
                 extracted_files, password_protected = self.extract_tarfile(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
@@ -1626,7 +1649,7 @@ class Extract(ServiceBase):
         return extracted_files, password_protected
 
     def parse_archive_listing(self, popenargs, env, first_header_title):
-        p = subprocess.run(popenargs, env=env, capture_output=True)
+        p = subprocess.run(popenargs, env=env, capture_output=True, timeout=self.service_attributes.timeout)
         separator = None
         header = None
         data = []
@@ -1749,7 +1772,7 @@ class Extract(ServiceBase):
                         name="7z-listing.txt", description="File listing from 7z", path=tmp_f.name
                     )
 
-                MAX_SUBFILES = max(300, request.max_extracted * 3)
+                MAX_SUBFILES = max(self.config.get("max_subfiles", 300), request.max_extracted * 3)
                 excluded_folders = []
                 if num_files > MAX_SUBFILES:
                     folder_counts = defaultdict(int)
@@ -1799,7 +1822,10 @@ class Extract(ServiceBase):
                         section.add_line(f"Folder '{folder}' with {count} files was not extracted")
 
             try:
-                p = subprocess.run(popenargs, env=env, capture_output=True)
+                p = subprocess.run(
+                    popenargs, env=env, capture_output=True,
+                    timeout=2 * self.service_attributes.timeout / 3,
+                )
                 stdoutput, stderr = p.stdout, p.stderr
 
                 extracted_children = self._submit_extracted(
@@ -1821,7 +1847,10 @@ class Extract(ServiceBase):
                         try:
                             popenargs[2] = f"-p{password}"
                             shutil.rmtree(temp_dir, ignore_errors=True)
-                            p = subprocess.run(popenargs, env=env, capture_output=True)
+                            p = subprocess.run(
+                                popenargs, env=env, capture_output=True,
+                                timeout=2 * self.service_attributes.timeout / 3,
+                            )
                             stdoutput = p.stdout + p.stderr
                             extracted_children = self._submit_extracted(
                                 request, file_type, temp_dir, sys._getframe().f_code.co_name
@@ -1958,10 +1987,15 @@ class Extract(ServiceBase):
                             os.makedirs(os.path.join(temp_dir, folder), exist_ok=True)
                         popenargs[1] = "x"
                         popenargs[3] = "-aos"  # Remplace the "-y" with "-aos" to skip existing folders
-                        subprocess.run(popenargs, env=env, capture_output=True)
+                        subprocess.run(
+                            popenargs, env=env, capture_output=True,
+                            timeout=2 * self.service_attributes.timeout / 3,
+                        )
                         extracted_files.extend(
                             self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
                         )
+            except subprocess.TimeoutExpired:
+                self.log.warning(f"7zip timed out while extracting {request.sha256}")
             except UnicodeEncodeError:
                 raise
             finally:
@@ -2025,8 +2059,14 @@ class Extract(ServiceBase):
             extracted_files = []
 
             try:
-                p = subprocess.run(["unrar", "x", "-y", "-p-", file_path, temp_dir], env=env, capture_output=True)
+                p = subprocess.run(
+                    ["unrar", "x", "-y", "-p-", file_path, temp_dir], env=env, capture_output=True,
+                    timeout=2 * self.service_attributes.timeout / 3,
+                )
                 stdout_rar, stderr_rar = p.stdout, p.stderr
+            except subprocess.TimeoutExpired:
+                self.log.warning(f"unrar timed out while extracting {request.sha256}")
+                return extracted_files, password_protected
             except OSError:
                 self.log.warning(f"Error running unrar on sample {request.sha256}. Extract service may be out of date.")
                 return extracted_files, password_protected
@@ -2047,6 +2087,7 @@ class Extract(ServiceBase):
                             ["unrar", "x", "-y", f"-p{password}", file_path, temp_dir],
                             env=env,
                             capture_output=True,
+                            timeout=2 * self.service_attributes.timeout / 3,
                         ).stdout
                         if b"All OK" in stdout:
                             extracted_children = self._submit_extracted(
@@ -2086,7 +2127,10 @@ class Extract(ServiceBase):
 
             try:
                 tar_obj = tarfile.open(file_path)
-                tar_obj.extractall(temp_dir)
+                if hasattr(tarfile, 'data_filter'):
+                    tar_obj.extractall(temp_dir, filter='data')
+                else:
+                    tar_obj.extractall(temp_dir)
                 tar_obj.close()
 
             except Exception as e:
