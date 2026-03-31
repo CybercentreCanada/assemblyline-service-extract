@@ -273,9 +273,6 @@ class Extract(ServiceBase):
 
         if request.file_type == "archive/nsis":
             extracted = self.extract_nsis(request)
-            # Also extract embedded payloads via 7zip (NSIS script alone is not enough)
-            zip_extracted, password_protected = self.extract_zip(request, request.file_path, request.file_type)
-            extracted.extend(zip_extracted)
             summary_section_heuristic = 1
         elif request.file_type == "archive/tnef":
             extracted = self.extract_tnef(request)
@@ -361,15 +358,13 @@ class Extract(ServiceBase):
                 with open(request.file_path, "rb") as f:
                     endrec = zipfile._EndRecData(f)
 
-                if endrec is not None:
-                    # "concat" is zero, unless zip was concatenated to another file
-                    # concat = Location - bytes in central directory - offset of central directory
-                    concat = endrec[9] - endrec[5] - endrec[6]
-                    if concat:
-                        with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
-                            with open(request.file_path, "rb") as f:
-                                tmp_f.write(f.read()[concat:])
-                        extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
+                # "concat" is zero, unless zip was concatenated to another file
+                # concat = Location - bytes in central directory - offset of central directory
+                if endrec is not None and (concat := endrec[9] - endrec[5] - endrec[6]):
+                    with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                        with open(request.file_path, "rb") as f:
+                            tmp_f.write(f.read()[concat:])
+                    extracted.append([tmp_f.name, "zip_appended_data", "zip_appended_data"])
             except Exception:
                 pass
         elif request.file_type.startswith("executable/"):
@@ -1505,7 +1500,8 @@ class Extract(ServiceBase):
 
             try:
                 p = subprocess.run(
-                    popenargs, capture_output=True,
+                    popenargs,
+                    capture_output=True,
                     timeout=2 * self.service_attributes.timeout / 3,
                 )
                 stdoutput, stderr = p.stdout, p.stderr
@@ -1523,7 +1519,8 @@ class Extract(ServiceBase):
                             popenargs[-1] = password
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             p = subprocess.run(
-                                popenargs, capture_output=True,
+                                popenargs,
+                                capture_output=True,
                                 timeout=2 * self.service_attributes.timeout / 3,
                             )
                             stdoutput = p.stdout + p.stderr
@@ -1540,8 +1537,9 @@ class Extract(ServiceBase):
 
                 popenargs = ["zpaq", "l", temp_path]
                 p = subprocess.run(
-                    popenargs, capture_output=True,
-                    timeout=self.service_attributes.timeout,
+                    popenargs,
+                    capture_output=True,
+                    timeout=2 * self.service_attributes.timeout / 3,
                 )
                 data = []
                 for line in p.stdout.split(b"\n"):
@@ -1627,19 +1625,17 @@ class Extract(ServiceBase):
                 self.log.debug(f"7zip could not open {request.sha256} ({file_path}) as archive")
 
             # Fallback to zipfile if 7zip failed to extract anything
-            if not extracted_files:
-                extracted_files, password_protected = self.extract_zip_zipfile(request, file_path, file_type)
-                if extracted_files:
-                    return extracted_files, password_protected
+            extracted_files, password_protected = self.extract_zip_zipfile(request, file_path, file_type)
+            if extracted_files:
+                return extracted_files, password_protected
 
             # Try unrar if 7zip and zipfile fail for rar archives
-            if not extracted_files and file_type == "archive/rar":
+            if file_type == "archive/rar":
                 extracted_files, password_protected = self.extract_zip_unrar(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
-
             # If we cannot extract the tar file, try a custom method
-            if not extracted_files and file_type == "archive/tar":
+            elif file_type == "archive/tar":
                 extracted_files, password_protected = self.extract_tarfile(request, file_path, file_type)
                 if extracted_files:
                     return extracted_files, password_protected
@@ -1649,7 +1645,7 @@ class Extract(ServiceBase):
         return extracted_files, password_protected
 
     def parse_archive_listing(self, popenargs, env, first_header_title):
-        p = subprocess.run(popenargs, env=env, capture_output=True, timeout=self.service_attributes.timeout)
+        p = subprocess.run(popenargs, env=env, capture_output=True, timeout=2 * self.service_attributes.timeout / 3)
         separator = None
         header = None
         data = []
@@ -1772,7 +1768,7 @@ class Extract(ServiceBase):
                         name="7z-listing.txt", description="File listing from 7z", path=tmp_f.name
                     )
 
-                MAX_SUBFILES = max(self.config.get("max_subfiles", 300), request.max_extracted * 3)
+                MAX_SUBFILES = max(300, request.max_extracted * 3)
                 excluded_folders = []
                 if num_files > MAX_SUBFILES:
                     folder_counts = defaultdict(int)
@@ -1823,7 +1819,9 @@ class Extract(ServiceBase):
 
             try:
                 p = subprocess.run(
-                    popenargs, env=env, capture_output=True,
+                    popenargs,
+                    env=env,
+                    capture_output=True,
                     timeout=2 * self.service_attributes.timeout / 3,
                 )
                 stdoutput, stderr = p.stdout, p.stderr
@@ -1848,7 +1846,9 @@ class Extract(ServiceBase):
                             popenargs[2] = f"-p{password}"
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             p = subprocess.run(
-                                popenargs, env=env, capture_output=True,
+                                popenargs,
+                                env=env,
+                                capture_output=True,
                                 timeout=2 * self.service_attributes.timeout / 3,
                             )
                             stdoutput = p.stdout + p.stderr
@@ -1988,14 +1988,14 @@ class Extract(ServiceBase):
                         popenargs[1] = "x"
                         popenargs[3] = "-aos"  # Remplace the "-y" with "-aos" to skip existing folders
                         subprocess.run(
-                            popenargs, env=env, capture_output=True,
+                            popenargs,
+                            env=env,
+                            capture_output=True,
                             timeout=2 * self.service_attributes.timeout / 3,
                         )
                         extracted_files.extend(
                             self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
                         )
-            except subprocess.TimeoutExpired:
-                self.log.warning(f"7zip timed out while extracting {request.sha256}")
             except UnicodeEncodeError:
                 raise
             finally:
@@ -2060,13 +2060,12 @@ class Extract(ServiceBase):
 
             try:
                 p = subprocess.run(
-                    ["unrar", "x", "-y", "-p-", file_path, temp_dir], env=env, capture_output=True,
+                    ["unrar", "x", "-y", "-p-", file_path, temp_dir],
+                    env=env,
+                    capture_output=True,
                     timeout=2 * self.service_attributes.timeout / 3,
                 )
                 stdout_rar, stderr_rar = p.stdout, p.stderr
-            except subprocess.TimeoutExpired:
-                self.log.warning(f"unrar timed out while extracting {request.sha256}")
-                return extracted_files, password_protected
             except OSError:
                 self.log.warning(f"Error running unrar on sample {request.sha256}. Extract service may be out of date.")
                 return extracted_files, password_protected
@@ -2127,8 +2126,9 @@ class Extract(ServiceBase):
 
             try:
                 tar_obj = tarfile.open(file_path)
-                if hasattr(tarfile, 'data_filter'):
-                    tar_obj.extractall(temp_dir, filter='data')
+                # Fix tarfile path traversal: use filter='data' on Python 3.12+ for when we will upgrade
+                if hasattr(tarfile, "data_filter"):
+                    tar_obj.extractall(temp_dir, filter="data")
                 else:
                     tar_obj.extractall(temp_dir)
                 tar_obj.close()
