@@ -10,7 +10,6 @@ import pathlib
 import re
 import shutil
 import subprocess
-import sys
 import tarfile
 import tempfile
 import traceback
@@ -792,7 +791,7 @@ class Extract(ServiceBase):
                         try:
                             tmp_f.write(rz.read(path))
                             tmp_f.flush()
-                            extracted_files.append([tmp_f.name, path, sys._getframe().f_code.co_name])
+                            extracted_files.append([tmp_f.name, path, "repair_zip"])
                         except zlib.error:
                             # Corrupted compression, which is expected
                             pass
@@ -891,7 +890,7 @@ class Extract(ServiceBase):
                 tf.close()
 
             self.password_used.append(password)
-            return [[name, request.file_name, sys._getframe().f_code.co_name]], True
+            return [[name, request.file_name, "extract_office"]], True
         finally:
             fh.close()
 
@@ -1015,7 +1014,7 @@ class Extract(ServiceBase):
         if not os.path.exists(output_path):
             return extracted, password_protected
 
-        extracted = self._submit_extracted(request, request.file_type, output_path, sys._getframe().f_code.co_name)
+        extracted = self._submit_extracted(request, request.file_type, output_path, "extract_innosetup")
 
         ip_found = []
         uri_found = []
@@ -1029,7 +1028,7 @@ class Extract(ServiceBase):
             compiledcodetxt_path = os.path.join(os.path.dirname(file[0]), "CompiledCode.txt")
             with open(compiledcodetxt_path, "wb") as f:
                 f.write(str(compiledcodetxt).encode("UTF8"))
-            extracted.append([compiledcodetxt_path, "CompiledCode.txt", sys._getframe().f_code.co_name])
+            extracted.append([compiledcodetxt_path, "CompiledCode.txt", "extract_innosetup"])
 
             for s in compiledcodetxt.strings:
                 match = re.search(FULL_URI, s)
@@ -1084,7 +1083,7 @@ class Extract(ServiceBase):
                     )
                     continue
                 extracted.append(
-                    [f.local_path, f.name.decode("utf-8", errors="backslashreplace"), sys._getframe().f_code.co_name]
+                    [f.local_path, f.name.decode("utf-8", errors="backslashreplace"), "extract_setup_factory"]
                 )
 
         return extracted
@@ -1107,7 +1106,7 @@ class Extract(ServiceBase):
         for name, content in content_list:
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fd:
                 fd.write(content)
-            extracted.append([fd.name, name, sys._getframe().f_code.co_name])
+            extracted.append([fd.name, name, "extract_autoit_executable"])
 
         return extracted
 
@@ -1125,10 +1124,11 @@ class Extract(ServiceBase):
             [unautoit_bin_path, "extract-all", "--output-dir", self.working_directory, request.file_path],
             capture_output=True,
             check=False,
+            timeout=2 * self.service_attributes.timeout / 3,
         )
         for f in os.listdir(self.working_directory):
             if f.endswith(".au3"):
-                extracted.append([os.path.join(self.working_directory, f), f, sys._getframe().f_code.co_name])
+                extracted.append([os.path.join(self.working_directory, f), f, "extract_a3x"])
 
         return extracted
 
@@ -1261,7 +1261,7 @@ class Extract(ServiceBase):
                         env=os.environ,
                         preexec_fn=set_death_signal(),
                     )
-                return self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
+                return self._submit_extracted(request, request.file_type, temp_dir, "extract_ace")
         except Exception:
             self.log.exception(f"While extracting {request.sha256} with unace")
 
@@ -1270,9 +1270,7 @@ class Extract(ServiceBase):
     def extract_mobi(self, request: ServiceRequest):
         extracted_files = []
         temp_dir, _ = mobi.extract(request.file_path)
-        extracted_files.extend(
-            self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
-        )
+        extracted_files.extend(self._submit_extracted(request, request.file_type, temp_dir, "extract_mobi"))
         shutil.rmtree(temp_dir)
         return extracted_files
 
@@ -1296,7 +1294,7 @@ class Extract(ServiceBase):
                     # We can't re-use the original IDs, but we'll use a static one (PI) for the last modified timestamp
                     pdf.save(fd, static_id=True)
                 self.password_used.append(password)
-                return [[fd.name, request.file_name, sys._getframe().f_code.co_name]], True
+                return [[fd.name, request.file_name, "extract_pdf_passwordprotected"]], True
             except (PDFPasswordError, RuntimeError):
                 continue
             except PdfError as e:
@@ -1336,9 +1334,7 @@ class Extract(ServiceBase):
                         continue
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as fd:
                         fd.write(attachment_data)
-                    extracted_children.append(
-                        [fd.name, key if key else "UnknownFilename", sys._getframe().f_code.co_name]
-                    )
+                    extracted_children.append([fd.name, key if key else "UnknownFilename", "extract_pdf"])
         except (PdfError, ValueError) as e:
             # Damaged PDF, typically extracted from another service like OLETools
             self.log.warning(e)
@@ -1448,7 +1444,7 @@ class Extract(ServiceBase):
                 path = os.path.join(self.working_directory, "extracted_vbe")
                 with open(path, "w") as f:
                     f.write(evbe_res)
-                return [[path, "vbe_decoded", sys._getframe().f_code.co_name]]
+                return [[path, "vbe_decoded", "extract_vbe"]]
         except Exception as e:
             self.log.warning(f"Error during vbe decoding: {str(e)}")
         return []
@@ -1464,7 +1460,7 @@ class Extract(ServiceBase):
             path = os.path.join(self.working_directory, sha256hash)
             with open(path, "wb") as f:
                 f.write(uncompress_data)
-            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+            return [[path, sha256hash, "extract_zlib"]]
         except Exception:
             pass
 
@@ -1482,7 +1478,7 @@ class Extract(ServiceBase):
             path = os.path.join(self.working_directory, sha256hash)
             with open(path, "wb") as f:
                 f.write(uncompress_data)
-            return [[path, sha256hash, sys._getframe().f_code.co_name]]
+            return [[path, sha256hash, "extract_zstd"]]
         except Exception:
             pass
 
@@ -1506,9 +1502,7 @@ class Extract(ServiceBase):
                 )
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_files.extend(
-                    self._submit_extracted(request, request.file_type, temp_dir, sys._getframe().f_code.co_name)
-                )
+                extracted_files.extend(self._submit_extracted(request, request.file_type, temp_dir, "extract_zpaq"))
 
                 if b"password incorrect" in stderr:
                     password_protected = True
@@ -1525,7 +1519,7 @@ class Extract(ServiceBase):
                             )
                             stdoutput = p.stdout + p.stderr
                             extracted_children = self._submit_extracted(
-                                request, request.file_type, temp_dir, sys._getframe().f_code.co_name
+                                request, request.file_type, temp_dir, "extract_zpaq"
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -1592,7 +1586,7 @@ class Extract(ServiceBase):
                 self.password_used.append(password)
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
                     tmp_f.write(crypt_obj.data)
-                return [[tmp_f.name, "gnupgp content", sys._getframe().f_code.co_name]], True
+                return [[tmp_f.name, "gnupgp content", "extract_gpg_symmetric"]], True
 
         self.raise_failed_passworded_extraction(request, request.file_type, [], [], password_list)
         return [], False
@@ -1831,9 +1825,7 @@ class Extract(ServiceBase):
                 )
                 stdoutput, stderr = p.stdout, p.stderr
 
-                extracted_children = self._submit_extracted(
-                    request, file_type, temp_dir, sys._getframe().f_code.co_name
-                )
+                extracted_children = self._submit_extracted(request, file_type, temp_dir, "extract_zip_7zip")
                 wrong_password_items = []
                 passwordless_filtered_files, passwordless_wrong_password_files = self.filter_7zip_wrong_password(
                     p.stderr, extracted_children
@@ -1858,7 +1850,7 @@ class Extract(ServiceBase):
                             )
                             stdoutput = p.stdout + p.stderr
                             extracted_children = self._submit_extracted(
-                                request, file_type, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, "extract_zip_7zip"
                             )
                             if extracted_children:
                                 filtered_files, wrong_password_files = self.filter_7zip_wrong_password(
@@ -1998,9 +1990,7 @@ class Extract(ServiceBase):
                             capture_output=True,
                             timeout=2 * self.service_attributes.timeout / 3,
                         )
-                        extracted_files.extend(
-                            self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
-                        )
+                        extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_zip_7zip"))
             except UnicodeEncodeError:
                 raise
             finally:
@@ -2019,9 +2009,7 @@ class Extract(ServiceBase):
             try:
                 with zipfile.ZipFile(file_path, "r") as zipped_file:
                     zipped_file.extractall(path=temp_dir)
-                extracted_files.extend(
-                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
-                )
+                extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_zip_zipfile"))
             except RuntimeError as e:
                 if any("password required for extraction" in event for event in e.args):
                     # Try with available passwords
@@ -2033,7 +2021,7 @@ class Extract(ServiceBase):
                             with zipfile.ZipFile(file_path, "r") as zipped_file:
                                 zipped_file.extractall(path=temp_dir, pwd=password.encode())
                             extracted_children = self._submit_extracted(
-                                request, file_type, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, "extract_zip_zipfile"
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -2077,9 +2065,7 @@ class Extract(ServiceBase):
                 return extracted_files, password_protected
 
             if b"All OK" in stdout_rar:
-                extracted_files.extend(
-                    self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name)
-                )
+                extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_zip_unrar"))
             # "password is incorrect" in unrar 5.6.6, "Incorrect password" in unrar 6.0.3
             elif b"password is incorrect" in stderr_rar or b"Incorrect password" in stderr_rar:
                 password_protected = True
@@ -2096,7 +2082,7 @@ class Extract(ServiceBase):
                         ).stdout
                         if b"All OK" in stdout:
                             extracted_children = self._submit_extracted(
-                                request, file_type, temp_dir, sys._getframe().f_code.co_name
+                                request, file_type, temp_dir, "extract_zip_unrar"
                             )
                             if extracted_children:
                                 self.password_used.append(password)
@@ -2143,7 +2129,7 @@ class Extract(ServiceBase):
                 self.log.exception(f"Error using tarfile to extract sample {request.sha256}: {str(e)}.")
                 return extracted_files, password_protected
 
-            extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, sys._getframe().f_code.co_name))
+            extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_tarfile"))
 
         return extracted_files, password_protected
 
@@ -2172,7 +2158,7 @@ class Extract(ServiceBase):
             self.log.exception("Error occurred while trying to decompress swf...")
 
         for child in files_found:
-            extracted_children.append([output_path + "/" + child, child, sys._getframe().f_code.co_name])
+            extracted_children.append([output_path + "/" + child, child, "extract_swf"])
 
         return extracted_children
 
@@ -2195,7 +2181,7 @@ class Extract(ServiceBase):
             # The NSIS Setup.nsi file extraction is a best effort
             return []
 
-        return [[output_path, "SETUP.nsi", sys._getframe().f_code.co_name]]
+        return [[output_path, "SETUP.nsi", "extract_nsis"]]
 
     def extract_tnef(self, request: ServiceRequest):
         """Will attempt to extract data from a TNEF container.
@@ -2278,7 +2264,7 @@ class Extract(ServiceBase):
 
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
                     tmp_f.write(data)
-                children.append([tmp_f.name, name, sys._getframe().f_code.co_name])
+                children.append([tmp_f.name, name, "extract_tnef"])
         except ImportError:
             self.log.exception("Import error: tnefparse library not installed:")
         except Exception:
@@ -2486,7 +2472,7 @@ class Extract(ServiceBase):
             embedded = embedded[:cb_length]  # Remove padding
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                 out.write(embedded)
-            extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), sys._getframe().f_code.co_name])
+            extracted.append([out.name, hashlib.sha256(embedded).hexdigest(), "extract_onenote"])
         return extracted
 
     def extract_jscript(self, request: ServiceRequest):
@@ -2530,7 +2516,7 @@ class Extract(ServiceBase):
                         with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                             out.write(encoded_evbe_res)
                         file_hash = hashlib.sha256(encoded_evbe_res).hexdigest()
-                        extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                        extracted.append([out.name, file_hash, "extract_jscript"])
                         heur = Heuristic(17)
                         heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
                         heur_section.add_line(f"{file_hash}")
@@ -2541,7 +2527,7 @@ class Extract(ServiceBase):
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(encoded_script)
                     file_hash = hashlib.sha256(encoded_script).hexdigest()
-                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                    extracted.append([out.name, file_hash, "extract_jscript"])
             elif (script_language and script_language.lower() != "javascript") or (
                 script_type and script_type.lower() != "text/javascript"
             ):
@@ -2551,7 +2537,7 @@ class Extract(ServiceBase):
                 encoded_script = body.encode()
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                     out.write(encoded_script)
-                extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), sys._getframe().f_code.co_name])
+                extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), "extract_jscript"])
 
         a_tags = soup.findAll("a")
         for a_tag in a_tags:
@@ -2571,7 +2557,7 @@ class Extract(ServiceBase):
                         name = a_tag.get("download")
                         if not name:
                             name = hashlib.sha256(a_tag_content).hexdigest()
-                        extracted.append([out.name, name, sys._getframe().f_code.co_name])
+                        extracted.append([out.name, name, "extract_jscript"])
 
         # Extraction of passwords was previously done in JsJaws, the analyzer for HTML/Javascript.
         # To speed up processing, Assemblyline is running services in phases. Each services from the same phase are
@@ -2647,7 +2633,7 @@ class Extract(ServiceBase):
                         with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                             out.write(encoded_evbe_res)
                         file_hash = hashlib.sha256(encoded_evbe_res).hexdigest()
-                        extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                        extracted.append([out.name, file_hash, "extract_wsf"])
                         heur = Heuristic(17)
                         heur_section = ResultTextSection(heur.name, heuristic=heur, parent=request.result)
                         heur_section.add_line(f"{file_hash}")
@@ -2658,7 +2644,7 @@ class Extract(ServiceBase):
                     with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out:
                         out.write(encoded_script)
                     file_hash = hashlib.sha256(encoded_script).hexdigest()
-                    extracted.append([out.name, file_hash, sys._getframe().f_code.co_name])
+                    extracted.append([out.name, file_hash, "extract_wsf"])
             elif script.get("language", "").lower() not in ["", "javascript", "jscript"]:
                 # If there is no "type" attribute specified in a script element, then the default assumption is
                 # that the body of the element is Javascript
@@ -2673,9 +2659,7 @@ class Extract(ServiceBase):
             file_hash = hashlib.sha256(aggregated_script).hexdigest()
             with open(os.path.join(self.working_directory, file_hash), "wb") as f:
                 f.write(aggregated_script)
-            extracted.append(
-                [os.path.join(self.working_directory, file_hash), file_hash, sys._getframe().f_code.co_name]
-            )
+            extracted.append([os.path.join(self.working_directory, file_hash), file_hash, "extract_wsf"])
 
         if external_loaded_script:
             local = None
@@ -2710,9 +2694,7 @@ class Extract(ServiceBase):
             output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-            extracted.append(
-                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            )
+            extracted.append([os.path.join(self.working_directory, output_file), output_file, "extract_xxe"])
         return extracted
 
     def extract_uue(self, request: ServiceRequest):
@@ -2730,9 +2712,7 @@ class Extract(ServiceBase):
             output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
-            extracted.append(
-                [os.path.join(self.working_directory, output_file), output_file, sys._getframe().f_code.co_name]
-            )
+            extracted.append([os.path.join(self.working_directory, output_file), output_file, "extract_uue"])
         return extracted
 
     def extract_cart(self, request: ServiceRequest):
@@ -2741,7 +2721,7 @@ class Extract(ServiceBase):
         with open(request.file_path, "rb") as ifile, open(output_path, "wb") as ofile:
             unpack_stream(ifile, ofile)
 
-        return [[output_path, cart_name, sys._getframe().f_code.co_name]]
+        return [[output_path, cart_name, "extract_cart"]]
 
     def strip_overlay(self, request, file_path):
         try:
@@ -2860,7 +2840,7 @@ class Extract(ServiceBase):
             buf = f.read()
         pycs = py2exe_extractor.extract(buf, outdir=pathlib.Path(self.working_directory))
         for pyc_path, script_name in pycs.items():
-            extracted.append([pyc_path.as_posix(), script_name, sys._getframe().f_code.co_name])
+            extracted.append([pyc_path.as_posix(), script_name, "extract_py2exe"])
             extracted.extend(self.extract_pyc(request, pyc_path.as_posix()))
 
         return extracted
@@ -2882,7 +2862,7 @@ class Extract(ServiceBase):
             # always save py/pyc file
             with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tf:
                 tf.write(bytes(pyc))
-            extracted.append([tf.name, name, sys._getframe().f_code.co_name])
+            extracted.append([tf.name, name, "extract_pyinstaller"])
 
             # in case of pyc, attempt to also decompile
             if name.endswith(".pyc"):
