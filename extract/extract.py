@@ -151,7 +151,7 @@ def create_deterministic_zip(output, folder_path):
         for item in sorted(os.listdir(full_folder_path)):
             full_path = os.path.join(full_folder_path, item)
             path = os.path.join(folder_path, item)
-            zipf.write(full_path, path)
+            out_file.write(full_path, path)
             if os.path.isdir(full_path):
                 write_tree(full_path, path, out_file)
 
@@ -746,10 +746,9 @@ class Extract(ServiceBase):
             List of strings.
         """
         user_supplied = request.get_param("password")
+        passwords = []
         if user_supplied:
-            passwords = [user_supplied]
-        else:
-            passwords = []
+            passwords.append(user_supplied)
 
         passwords.extend(self.config.get("default_pw_list", []))
 
@@ -761,10 +760,7 @@ class Extract(ServiceBase):
         if request.file_name:
             partial = ""
             for chunk in request.file_name.split("."):
-                if partial:
-                    partial = ".".join([partial, chunk])
-                else:
-                    partial = chunk
+                partial = f"{partial}.{chunk}" if partial else chunk
                 passwords.append(partial)
 
         return passwords
@@ -1450,34 +1446,54 @@ class Extract(ServiceBase):
         return []
 
     def extract_zlib(self, request: ServiceRequest):
-        with open(request.file_path, "rb") as fh:
-            data = fh.read()
-
-        try:
-            decoder = zlib.decompressobj()
-            uncompress_data = decoder.decompress(data)
-            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
-            path = os.path.join(self.working_directory, sha256hash)
-            with open(path, "wb") as f:
-                f.write(uncompress_data)
-            return [[path, sha256hash, "extract_zlib"]]
-        except Exception:
-            pass
+        with open(request.file_path, "rb") as in_f:
+            try:
+                decompressor = zlib.decompressobj()
+                sha256 = hashlib.sha256()
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out_f:
+                    while True:
+                        chunk = in_f.read(65536)
+                        if not chunk:
+                            break
+                        data = decompressor.decompress(chunk)
+                        if data:
+                            out_f.write(data)
+                            sha256.update(data)
+                    # flush any remaining buffered output
+                    tail = decompressor.flush()
+                    if tail:
+                        out_f.write(tail)
+                        sha256.update(tail)
+                    tmp_path = out_f.name
+                sha256hash = sha256.hexdigest()
+                path = os.path.join(self.working_directory, sha256hash)
+                shutil.move(tmp_path, path)
+                return [[path, sha256hash, "extract_zlib"]]
+            except Exception:
+                pass
 
         # Fallback to using extract_zip, but do not return if password-protected
         return self.extract_zip(request, request.file_path, request.file_type)[0]
 
     def extract_zstd(self, request: ServiceRequest):
-        with open(request.file_path, "rb") as fh:
-            data = fh.read()
-
         try:
-            decoder = zstandard.ZstdDecompressor().decompressobj()
-            uncompress_data = decoder.decompress(data)
-            sha256hash = hashlib.sha256(uncompress_data).hexdigest()
+            sha256 = hashlib.sha256()
+            with (
+                open(request.file_path, "rb") as in_f,
+                tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as out_f,
+            ):
+                dctx = zstandard.ZstdDecompressor()
+                with dctx.stream_reader(in_f) as reader:
+                    while True:
+                        chunk = reader.read(65536)
+                        if not chunk:
+                            break
+                        out_f.write(chunk)
+                        sha256.update(chunk)
+                tmp_path = out_f.name
+            sha256hash = sha256.hexdigest()
             path = os.path.join(self.working_directory, sha256hash)
-            with open(path, "wb") as f:
-                f.write(uncompress_data)
+            shutil.move(tmp_path, path)
             return [[path, sha256hash, "extract_zstd"]]
         except Exception:
             pass
@@ -2394,10 +2410,10 @@ class Extract(ServiceBase):
             return False
 
         def is_launchable(file):
-            file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
             if os.path.splitext(file["name"])[1].lower() in Extract.LAUNCHABLE_EXTENSIONS:
                 if not is_launchable_fp_ext(os.path.splitext(file["name"])[1].lower()):
                     return True
+            file_type = self.identify.fileinfo(file["path"], generate_hashes=False)["type"]
             if file_type in Extract.LAUNCHABLE_TYPE or any(file_type.startswith(x) for x in Extract.LAUNCHABLE_TYPE_SW):
                 if not is_launchable_fp_type(file_type):
                     return True
