@@ -70,6 +70,7 @@ from extract.ext.repair_zip import BadZipfile, RepairZip
 from extract.ext.xxuudecode import decode_from_file as xxuu_decode_from_file
 from extract.ext.xxuudecode import uu_character, xx_character
 from extract.ext.xxxswf import xxxswf
+from extract.ext.zip_smuggle import detect_zip_smuggling, extract_smuggled_data
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
 
@@ -351,6 +352,20 @@ class Extract(ServiceBase):
             # due to bug with identify identifying some py2exe pe's as archives, attempt extraction to add additional.
             # i.e. 3ada677a5a4109e00666dbe2aa6482b5fdae1ac37f20ef34102f08e0c96ed168
             self.attempt_extract_py2exe(request, extracted)
+
+            # Check for zip smuggling
+            if smuggle_result := detect_zip_smuggling(request.file_path):
+                with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
+                    smuggle_result_path = tmp_f.name
+                    if extract_smuggled_data(request.file_path, smuggle_result_path, detection_result=smuggle_result):
+                        extracted.append([smuggle_result_path, "zip_smuggled_data", "zip_smuggled_data"])
+                        section = ResultTextSection("Zip Smuggled Data", parent=request.result)
+                        section.add_line(
+                            (
+                                f"Smuggled data of size {smuggle_result['smuggled_size']} bytes detected"
+                                f" at offset {smuggle_result['smuggled_offset']}"
+                            )
+                        )
 
             try:
                 # Check for appended data with zipfile
