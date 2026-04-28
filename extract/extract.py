@@ -73,6 +73,10 @@ from extract.ext.xxxswf import xxxswf
 from extract.ext.zip_smuggle import detect_zip_smuggling, extract_smuggled_data
 
 EVBE_REGEX = re.compile(r"#@~\^......==(.+)......==\^#~@")
+FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
+FORBIDDEN_ELF = [str(x) for x in range(20)]
+FORBIDDEN_ELF_SW = ["."]
+FORBIDDEN_MACH = ["__DATA__", "__LINKEDIT", "__TEXT__", "__PAGEZERO"]
 
 
 def b64decode(b64data):
@@ -160,11 +164,25 @@ def create_deterministic_zip(output, folder_path):
         write_tree(folder_path, "", zipf)
 
 
+def is_executable_section_name(file_type, filename):
+    if "windows" in file_type:
+        for forbidden in FORBIDDEN_WIN:
+            if filename.startswith(forbidden):
+                return True
+    elif "linux" in file_type:
+        if filename in FORBIDDEN_ELF:
+            return True
+        for forbidden in FORBIDDEN_ELF_SW:
+            if filename.startswith(forbidden):
+                return True
+    elif "mach-o" in file_type:
+        for forbidden in FORBIDDEN_MACH:
+            if filename.startswith(forbidden):
+                return True
+    return False
+
+
 class Extract(ServiceBase):
-    FORBIDDEN_WIN = [".text", ".rsrc", ".rdata", ".reloc", ".pdata", ".idata", "UPX", "file"]
-    FORBIDDEN_ELF = [str(x) for x in range(20)]
-    FORBIDDEN_ELF_SW = ["."]
-    FORBIDDEN_MACH = ["__DATA__", "__LINKEDIT", "__TEXT__", "__PAGEZERO"]
     MAX_EXTRACT = 500
     MAX_EXTRACT_LIVE = 100
 
@@ -354,7 +372,7 @@ class Extract(ServiceBase):
             self.attempt_extract_py2exe(request, extracted)
 
             # Check for zip smuggling
-            if smuggle_result := detect_zip_smuggling(request.file_path):
+            if request.file_type == "archive/zip" and (smuggle_result := detect_zip_smuggling(request.file_path)):
                 with tempfile.NamedTemporaryFile(dir=self.working_directory, delete=False) as tmp_f:
                     smuggle_result_path = tmp_f.name
                     if extract_smuggled_data(request.file_path, smuggle_result_path, detection_result=smuggle_result):
@@ -926,6 +944,7 @@ class Extract(ServiceBase):
             ["innoextract", "--compiledcode", "--iss-file", "--output-dir", output_path, request.file_path],
             capture_output=True,
             check=False,
+            timeout=2 * self.service_attributes.timeout / 3,
         )
 
         if re.search("Setup contains encrypted files, use the --password option to extract them".encode(), p.stderr):
@@ -964,6 +983,7 @@ class Extract(ServiceBase):
                     ["innoextract", "--crack", request.file_path],
                     capture_output=True,
                     check=False,
+                    timeout=2 * self.service_attributes.timeout / 3,
                 )
                 password_found = r"Password found: (.*)"
                 password_found_m = re.search(password_found.encode(), p.stdout)
@@ -1003,6 +1023,7 @@ class Extract(ServiceBase):
                     ],
                     capture_output=True,
                     check=False,
+                    timeout=2 * self.service_attributes.timeout / 3,
                 )
                 self.password_used.append(password)
             else:
@@ -1207,31 +1228,17 @@ class Extract(ServiceBase):
                 if not os.path.islink(file_path) and not os.path.getsize(file_path):
                     continue
 
-                skip = False
                 filename = safe_str(file_path.replace(folder_path, ""))
                 if filename.startswith(os.path.sep):
                     filename = filename[len(os.path.sep) :]
-                if not extract_executable_sections and file_type.startswith("executable"):
-                    if "windows" in file_type:
-                        for forbidden in self.FORBIDDEN_WIN:
-                            if filename.startswith(forbidden):
-                                skip = True
-                                break
 
-                    elif "linux" in file_type:
-                        if filename in self.FORBIDDEN_ELF:
-                            skip = True
-                        for forbidden in self.FORBIDDEN_ELF_SW:
-                            if filename.startswith(forbidden):
-                                skip = True
-                                break
-
-                    elif "mach-o" in file_type:
-                        for forbidden in self.FORBIDDEN_MACH:
-                            if filename.startswith(forbidden):
-                                skip = True
-                                break
-                if not skip:
+                if (
+                    not extract_executable_sections
+                    and file_type.startswith("executable")
+                    and is_executable_section_name(file_type, filename)
+                ):
+                    self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
+                else:
                     target_folder = os.path.join(extracted_path, root.removeprefix(folder_path).lstrip(os.path.sep))
                     os.makedirs(target_folder, exist_ok=True)
                     target_path = os.path.join(target_folder, f)
@@ -1241,8 +1248,6 @@ class Extract(ServiceBase):
                     if not os.path.islink(target_path) and not os.access(target_path, os.R_OK):
                         os.chmod(target_path, os.stat(target_path).st_mode | 0o444)
                     extracted_children.append([target_path, safe_str(filename), caller])
-                else:
-                    self.log.debug(f"File '{filename}' skipped because extract_executable_sections is turned off")
 
         return extracted_children
 
@@ -2030,6 +2035,15 @@ class Extract(ServiceBase):
 
         return extracted_files, password_protected
 
+    @staticmethod
+    def _safe_zip_extractall(zf: zipfile.ZipFile, dest: str, pwd=None):
+        real_dest = os.path.realpath(dest)
+        for info in zf.infolist():
+            target = os.path.realpath(os.path.join(dest, info.filename))
+            if not target.startswith(real_dest + os.sep) and target != real_dest:
+                raise Exception(f"Path traversal detected in zip member: {info.filename}")
+        zf.extractall(path=dest, pwd=pwd)
+
     def extract_zip_zipfile(self, request: ServiceRequest, file_path: str, file_type: str, raise_failed_password=True):
         password_protected = False
         password_list = []
@@ -2039,7 +2053,7 @@ class Extract(ServiceBase):
 
             try:
                 with zipfile.ZipFile(file_path, "r") as zipped_file:
-                    zipped_file.extractall(path=temp_dir)
+                    self._safe_zip_extractall(zipped_file, temp_dir)
                 extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_zip_zipfile"))
             except RuntimeError as e:
                 if any("password required for extraction" in event for event in e.args):
@@ -2050,7 +2064,7 @@ class Extract(ServiceBase):
                         try:
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             with zipfile.ZipFile(file_path, "r") as zipped_file:
-                                zipped_file.extractall(path=temp_dir, pwd=password.encode())
+                                self._safe_zip_extractall(zipped_file, temp_dir, pwd=password.encode())
                             extracted_children = self._submit_extracted(
                                 request, file_type, temp_dir, "extract_zip_zipfile"
                             )
@@ -2141,6 +2155,19 @@ class Extract(ServiceBase):
 
         return extracted_files, password_protected
 
+    @staticmethod
+    def _safe_tar_members(tar_obj, dest_dir):
+        dest = os.path.realpath(dest_dir)
+        for member in tar_obj.getmembers():
+            member_path = os.path.realpath(os.path.join(dest, member.name))
+            if not member_path.startswith(dest + os.sep) and member_path != dest:
+                continue
+            if member.issym() or member.islnk():
+                link_target = os.path.realpath(os.path.join(dest, os.path.dirname(member.name), member.linkname))
+                if not link_target.startswith(dest + os.sep) and link_target != dest:
+                    continue
+            yield member
+
     def extract_tarfile(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
 
@@ -2153,7 +2180,7 @@ class Extract(ServiceBase):
                 if hasattr(tarfile, "data_filter"):
                     tar_obj.extractall(temp_dir, filter="data")
                 else:
-                    tar_obj.extractall(temp_dir)
+                    tar_obj.extractall(temp_dir, members=list(self._safe_tar_members(tar_obj, temp_dir)))
                 tar_obj.close()
 
             except Exception as e:
