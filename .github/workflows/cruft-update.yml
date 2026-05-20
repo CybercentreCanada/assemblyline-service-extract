@@ -18,11 +18,6 @@ jobs:
             branch: cruft/update
             commit-message: "chore: Accept new Cruft update."
             title: New updates detected with Cruft
-          - add-paths: .cruft.json
-            body: Use this to reject the changes in this repository.
-            branch: cruft/reject
-            commit-message: "chore: Reject new Cruft update."
-            title: Reject new updates detected with Cruft
     steps:
       - uses: actions/checkout@v6
 
