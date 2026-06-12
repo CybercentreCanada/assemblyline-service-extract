@@ -18,3 +18,5 @@ The files in this sample directory have been sourced in the following ways:
 | 9a39cb70f9cbf08737f004aedec61a7f6233607b5a411be908cc84eda39b5ef0 | Zip file with passwd pointing to /etc/passwd                                                                                    | Self generated |
 | e295acbc66db60e60d70bef07c9fe400f61d4bc843b03c2e840c83f096b9ce77 | Zip file with folder and link pointing to folder/                                                                               | Self generated |
 | e976ef43ac02bbb61344fdc77dde6397abe2212c0c3ff3a2c52fef5c38885217 | Zip file with temp/benign and a folder named temp declared after                                                                | Self generated |
+| 1323c824da51f46028f46f023827cbcd52fe5f852fc83c938de9263a8baacc1a | Zip file with 3000 files in one folder                                                                                          | Self generated |
+| 2357470e324fba4dbea25fa90409828758ea594fc7861738e82cb705f5ca7e1c | 7Z file with 3000 files in one folder                                                                                           | Self generated |

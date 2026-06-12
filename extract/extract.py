@@ -182,6 +182,48 @@ def is_executable_section_name(file_type, filename):
     return False
 
 
+def get_excluded_folders(max_extracted, listing_data, num_files):
+    MAX_SUBFILES = max(300, max_extracted * 3)
+    excluded_folders = []
+    if num_files > MAX_SUBFILES:
+        folder_counts = defaultdict(int)
+        # For each file, increment count for all its parent folders
+        for entry in listing_data:
+            path = entry[-1]
+            if entry[1][0] != "D":
+                parts = path.split(os.sep)
+                for i in range(1, len(parts)):
+                    folder_counts[os.sep.join(parts[:i])] += 1
+        # Convert to sorted list
+        sorted_folder_counts = sorted(folder_counts.items(), key=lambda x: x[1], reverse=True)
+
+        excluded_folders = []
+        for folder, folder_count in sorted_folder_counts:
+            if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
+                # Parent folder already excluded
+                continue
+            if num_files - folder_count > MAX_SUBFILES:
+                excluded_folders.append((folder, folder_count))
+                num_files -= folder_count
+                continue
+            break
+
+        last_folder_to_remove = None
+        for folder, folder_count in sorted_folder_counts:
+            if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
+                continue
+
+            # Find the last folder that can be removed to get us below the limit
+            # But not under the max extracted limit, as that would cause us to not extract anything in certain cases
+            if not (max_extracted <= num_files - folder_count <= MAX_SUBFILES):
+                break
+
+            last_folder_to_remove = (folder, folder_count)
+        if last_folder_to_remove:
+            excluded_folders.append(last_folder_to_remove)
+    return excluded_folders
+
+
 class Extract(ServiceBase):
     MAX_EXTRACT = 500
     MAX_EXTRACT_LIVE = 100
@@ -1830,43 +1872,7 @@ class Extract(ServiceBase):
                         name="7z-listing.txt", description="File listing from 7z", path=tmp_f.name
                     )
 
-                MAX_SUBFILES = max(300, request.max_extracted * 3)
-                excluded_folders = []
-                if num_files > MAX_SUBFILES:
-                    folder_counts = defaultdict(int)
-                    # For each file, increment count for all its parent folders
-                    for entry in listing_data:
-                        path = entry[-1]
-                        if entry[1][0] != "D":
-                            parts = path.split(os.sep)
-                            for i in range(1, len(parts)):
-                                folder_counts[os.sep.join(parts[:i])] += 1
-                    # Convert to sorted list
-                    sorted_folder_counts = sorted(folder_counts.items(), key=lambda x: x[1], reverse=True)
-
-                    excluded_folders = []
-                    for folder, folder_count in sorted_folder_counts:
-                        if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
-                            # Parent folder already excluded
-                            continue
-                        if num_files - folder_count > MAX_SUBFILES:
-                            excluded_folders.append((folder, folder_count))
-                            num_files -= folder_count
-                            continue
-                        break
-
-                    last_folder_to_remove = None
-                    for folder, folder_count in sorted_folder_counts:
-                        if any(folder.startswith(excluded + os.sep) for excluded, _ in excluded_folders):
-                            continue
-
-                        # Find the last folder that can be removed to get us below the limit
-                        if num_files - folder_count > MAX_SUBFILES:
-                            break
-                        last_folder_to_remove = (folder, folder_count)
-                    if last_folder_to_remove:
-                        excluded_folders.append(last_folder_to_remove)
-
+                excluded_folders = get_excluded_folders(request.max_extracted, listing_data, num_files)
                 if excluded_folders:
                     section = ResultSection(
                         (
