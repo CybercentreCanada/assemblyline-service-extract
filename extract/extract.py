@@ -528,7 +528,16 @@ class Extract(ServiceBase):
             for child in sorted(extracted, key=lambda x: x[1]):
                 file_path = child[0]
                 if os.path.islink(file_path):
-                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                    link_dest = os.readlink(file_path)
+                    if (
+                        link_dest.startswith("/tmp/tmp")
+                        and len(link_dest) > 16
+                        and link_dest[16] == os.path.sep
+                        and link_dest[8:16].replace("_", "").isalnum()
+                    ):
+                        # This looks like a symlink to a file in the working directory, truncate the start
+                        link_dest = link_dest[17:]
+                    link_desc = f"{child[1]} -> {link_dest}"
                     symlinks.append(link_desc)
                 else:
                     # Start by stripping the file.
@@ -547,7 +556,16 @@ class Extract(ServiceBase):
             for child in sorted(extracted, key=lambda x: x[1]):
                 file_path = child[0]
                 if os.path.islink(file_path):
-                    link_desc = f"{child[1]} -> {os.readlink(file_path)}"
+                    link_dest = os.readlink(file_path)
+                    if (
+                        link_dest.startswith("/tmp/tmp")
+                        and len(link_dest) > 16
+                        and link_dest[16] == os.path.sep
+                        and link_dest[8:16].replace("_", "").isalnum()
+                    ):
+                        # This looks like a symlink to a file in the working directory, truncate the start
+                        link_dest = link_dest[17:]
+                    link_desc = f"{child[1]} -> {link_dest}"
                     symlinks.append(link_desc)
                 else:
                     # Start by stripping the file.
@@ -1180,7 +1198,11 @@ class Extract(ServiceBase):
         Raises:
             FileExistsError: A duplicate filename was discovered following sanitization of different files.
         """
-        if not any(os.path.getsize(os.path.join(folder_path, file)) for file in os.listdir(folder_path)):
+        if not any(
+            os.path.getsize(os.path.join(folder_path, file))
+            for file in os.listdir(folder_path)
+            if os.path.exists(os.path.join(folder_path, file))
+        ):
             # No non-empty file found
             return []
         # If we extract anything into the destination directory, we consider it of interest
@@ -1222,10 +1244,15 @@ class Extract(ServiceBase):
         extracted_path = os.path.join(extracted_path, str(sub_folder))
         os.mkdir(extracted_path)
 
+        real_folder_with_sep = os.path.realpath(folder_path) + os.sep
         for root, _, files in os.walk(folder_path):
             for f in files:
                 file_path = os.path.join(root, f)
-                if not os.path.islink(file_path) and not os.path.getsize(file_path):
+                if os.path.islink(file_path):
+                    link_target = os.path.realpath(file_path)
+                    if not link_target.startswith(real_folder_with_sep):
+                        continue
+                elif not os.path.getsize(file_path):
                     continue
 
                 filename = safe_str(file_path.replace(folder_path, ""))
