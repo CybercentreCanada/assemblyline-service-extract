@@ -10,7 +10,6 @@ import pathlib
 import re
 import shutil
 import subprocess
-import tarfile
 import tempfile
 import traceback
 import zipfile
@@ -36,6 +35,7 @@ from assemblyline.common.constants import MAX_INT
 from assemblyline.common.entropy import BufferedCalculator
 from assemblyline.common.identify import cart_ident
 from assemblyline.common.path import strip_path_inclusion
+from assemblyline.common.safe_archive import safe_extract_tar, safe_extract_zip
 from assemblyline.common.str_utils import safe_str
 from assemblyline.odm import FULL_URI, IP_ONLY_REGEX
 from assemblyline_v4_service.common.base import ServiceBase
@@ -2068,15 +2068,6 @@ class Extract(ServiceBase):
 
         return extracted_files, password_protected
 
-    @staticmethod
-    def _safe_zip_extractall(zf: zipfile.ZipFile, dest: str, pwd=None):
-        real_dest = os.path.realpath(dest)
-        for info in zf.infolist():
-            target = os.path.realpath(os.path.join(dest, info.filename))
-            if not target.startswith(real_dest + os.sep) and target != real_dest:
-                raise Exception(f"Path traversal detected in zip member: {info.filename}")
-        zf.extractall(path=dest, pwd=pwd)
-
     def extract_zip_zipfile(self, request: ServiceRequest, file_path: str, file_type: str, raise_failed_password=True):
         password_protected = False
         password_list = []
@@ -2086,7 +2077,7 @@ class Extract(ServiceBase):
 
             try:
                 with zipfile.ZipFile(file_path, "r") as zipped_file:
-                    self._safe_zip_extractall(zipped_file, temp_dir)
+                    safe_extract_zip(zipped_file, temp_dir)
                 extracted_files.extend(self._submit_extracted(request, file_type, temp_dir, "extract_zip_zipfile"))
             except RuntimeError as e:
                 if any("password required for extraction" in event for event in e.args):
@@ -2097,7 +2088,7 @@ class Extract(ServiceBase):
                         try:
                             shutil.rmtree(temp_dir, ignore_errors=True)
                             with zipfile.ZipFile(file_path, "r") as zipped_file:
-                                self._safe_zip_extractall(zipped_file, temp_dir, pwd=password.encode())
+                                safe_extract_zip(zipped_file, temp_dir, pwd=password.encode())
                             extracted_children = self._submit_extracted(
                                 request, file_type, temp_dir, "extract_zip_zipfile"
                             )
@@ -2188,19 +2179,6 @@ class Extract(ServiceBase):
 
         return extracted_files, password_protected
 
-    @staticmethod
-    def _safe_tar_members(tar_obj, dest_dir):
-        dest = os.path.realpath(dest_dir)
-        for member in tar_obj.getmembers():
-            member_path = os.path.realpath(os.path.join(dest, member.name))
-            if not member_path.startswith(dest + os.sep) and member_path != dest:
-                continue
-            if member.issym() or member.islnk():
-                link_target = os.path.realpath(os.path.join(dest, os.path.dirname(member.name), member.linkname))
-                if not link_target.startswith(dest + os.sep) and link_target != dest:
-                    continue
-            yield member
-
     def extract_tarfile(self, request: ServiceRequest, file_path: str, file_type: str):
         password_protected = False
 
@@ -2208,14 +2186,7 @@ class Extract(ServiceBase):
             extracted_files = []
 
             try:
-                tar_obj = tarfile.open(file_path)
-                # Fix tarfile path traversal: use filter='data' on Python 3.12+ for when we will upgrade
-                if hasattr(tarfile, "data_filter"):
-                    tar_obj.extractall(temp_dir, filter="data")
-                else:
-                    tar_obj.extractall(temp_dir, members=list(self._safe_tar_members(tar_obj, temp_dir)))
-                tar_obj.close()
-
+                safe_extract_tar(file_path, temp_dir)
             except Exception as e:
                 self.log.exception(f"Error using tarfile to extract sample {request.sha256}: {str(e)}.")
                 return extracted_files, password_protected
