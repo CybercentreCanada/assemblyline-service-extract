@@ -1261,7 +1261,7 @@ class Extract(ServiceBase):
                 new_root = safe_str(root)
                 if new_root != root:
                     # Implies there was a correction made to path, copy contents to new directory
-                    shutil.copytree(root, new_root)
+                    shutil.copytree(root, new_root, symlinks=True)
                     shutil.rmtree(root)
                     changes_made = True
                     break
