@@ -1,0 +1,5056 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "COPYING\nChart.min.js\nREADME.md\nRELEASE_NOTES.md\n_locales/ar/messages.json\n_locales/bg/messages.json\n_locales/ca/messages.json\n_locales/cs/messages.json\n_locales/de/messages.json\n_locales/el/messages.json\n_locales/en_GB/messages.json\n_locales/en_US/messages.json\n_locales/es/messages.json\n_locales/fi/messages.json\n_locales/fr/messages.json\n_locales/gl/messages.json\n_locales/he/messages.json\n_locales/hr/messages.json\n_locales/hu/messages.json\n_locales/id/messages.json\n_locales/it/messages.json\n_locales/ja/messages.json\n_locales/ko/messages.json\n_locales/ms/messages.json\n_locales/nl/messages.json\n_locales/no/messages.json\n_locales/pl/messages.json\n_locales/pt_BR/messages.json\n_locales/pt_PT/messages.json\n_locales/ro/messages.json\n_locales/ru/messages.json\n_locales/sk/messages.json\n_locales/sl/messages.json\n_locales/sv/messages.json\n_locales/tr/messages.json\n_locales/uk/messages.json\n_locales/zh_CN/messages.json\n_locales/zh_TW/messages.json\n_metadata/verified_contents.json\nabp-background.js\nabp-background.js.map\nadblock-button-cookie-confirm.html\nadblock-button-distractions-confirm.html\nadblock-button-filtering-options.html\nadblock-button-popup.html\nadblock-button-undo-allow-confirm.html\nadblock-color-themes.css\nadblock-deny-push-notifications-requests.js\nadblock-deny-push-notifications-requests.js.map\nadblock-errorreporting.js\nadblock-functions.js\nadblock-getadblock.js\nadblock-onpage-dialog-user.css\nadblock-options-customize.html\nadblock-options-customize.js\nadblock-options-datacollectionproxy.js\nadblock-options-events.js\nadblock-options-filters.html\nadblock-options-filters.js\nadblock-options-filtersproxy.js\nadblock-options-general.html\nadblock-options-general.js\nadblock-options-index.js\nadblock-options-listenersupport.js\nadblock-options-localdatacollectionproxy.js\nadblock-options-mab-image-swap.html\nadblock-options-mab-image-swap.js\nadblock-options-mab-themes.html\nadblock-options-mab-themes.js\nadblock-options-mab.css\nadblock-options-mab.html\nadblock-options-mab.js\nadblock-options-options.css\nadblock-options-prefsproxy.js\nadblock-options-premium-filters.html\nadblock-options-premium-filters.js\nadblock-options-premium-payment.js\nadblock-options-premiumproxy.js\nadblock-options-settingsproxy.js\nadblock-options-stats-tabs.css\nadblock-options-stats-tabs.html\nadblock-options-stats-tabs.js\nadblock-options-subscriptionadapterproxy.js\nadblock-options-subscriptionsproxy.js\nadblock-options-support.html\nadblock-options-support.js\nadblock-options-tabs.css\nadblock-options-tabs.js\nadblock-options-themes.js\nadblock-picreplacement-image-sizes-map.js\nadblock-picreplacement-imageview.html\nadblock-picreplacement-imageview.js\nadblock-picreplacement-options-imageview.css\nadblock-picreplacement.js\nadblock-push-notification-cs.js\nadblock-push-notification-cs.js.map\nadblock-uiscripts-adblock-wizard.css\nadblock-uiscripts-blacklisting-blacklistui.js\nadblock-uiscripts-blacklisting-clickwatcher.js\nadblock-uiscripts-blacklisting-elementchain.js\nadblock-uiscripts-blacklisting-overlay.js\nadblock-uiscripts-load_wizard_resources.js\nadblock-uiscripts-rightclick_hook.js\nadblock-uiscripts-send_content_to_back.js\nadblock-uiscripts-top_open_blacklist_ui.js\nadblock-uiscripts-top_open_whitelist_completion_ui.js\nadblock-uiscripts-top_open_whitelist_ui.js\nadblock.css\nbutton/components/ActionButton.js\nbutton/components/CancelActionButton.js\nbutton/components/ConfirmText.js\nbutton/components/InlineLinkButton.js\nbutton/components/MenuLink.js\nbutton/components/MenuLinkButton.js\nbutton/components/PopupDetailStats.js\nbutton/components/PopupDetailText.js\nbutton/components/PopupSection.js\nbutton/components/SubNav.js\nbutton/components/Toggle.js\nbutton/components/components.css\nbutton/components/icons/adblock-logo.js\nbutton/components/icons/block-distractions.js\nbutton/components/icons/cookie-icon.js\nbutton/components/icons/lock-icon.js\nbutton/confirmation-page.js\nbutton/cookie-confirm.html\nbutton/distractions-confirm.html\nbutton/filtering-options.html\nbutton/filtering-options.js\nbutton/header.css\nbutton/header.html\nbutton/header.js\nbutton/help-action.js\nbutton/help-button.html\nbutton/help-map.json\nbutton/help-section.html\nbutton/help-segue.html\nbutton/help.css\nbutton/help.js\nbutton/popup-sections.css\nbutton/popup-sections.js\nbutton/popup-subpages.css\nbutton/popup.css\nbutton/popup.html\nbutton/popup.js\nbutton/undo-allow-confirm.html\nbutton/utils.js\nclose-tab.preload.js\nclose-tab.preload.js.map\nconflict-detection.preload.js\nconflict-detection.preload.js.map\ncontentscript-loader.js\ncookie-banner-detection.preload.js\ncookie-banner-detection.preload.js.map\ncroppie.css\ncroppie.js\ndata/rules/abp/07549D8B-F06F-4D9D-A567-929AA59E9D1D\ndata/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F\ndata/rules/abp/0A679439-445F-4DE7-84B9-88341F6DA520\ndata/rules/abp/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4\ndata/rules/abp/0CD3D105-D3B3-4652-8489-94163DE9A08F\ndata/rules/abp/14DF7BE6-9675-4E07-987A-D8A1000F9FEF\ndata/rules/abp/1B5F78CA-8B30-4BDF-B0A3-451CB2202984\ndata/rules/abp/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE\ndata/rules/abp/25A31255-AB36-48A4-9086-06192DE71119\ndata/rules/abp/2708BCB7-2E45-41BC-B517-1730CF532F89\ndata/rules/abp/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5\ndata/rules/abp/2CEA1481-C29C-44F1-A084-A2A019533797\ndata/rules/abp/361001BD-8F57-4736-97B1-F332C3D79E5D\ndata/rules/abp/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B\ndata/rules/abp/4B6CE485-30AB-4213-AD17-504B3F2D2825\ndata/rules/abp/588470E8-E163-4CD9-A909-521B2A3BE73F\ndata/rules/abp/5BD2BB73-459D-4A74-AF9D-A10157268350\ndata/rules/abp/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15\ndata/rules/abp/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9\ndata/rules/abp/8C13E995-8F06-4927-BEA7-6C845FB7EEBF\ndata/rules/abp/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A\ndata/rules/abp/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2\ndata/rules/abp/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9\ndata/rules/abp/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82\ndata/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD\ndata/rules/abp/B7D76369-DD19-4602-80E8-2E32DDB490AC\ndata/rules/abp/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B\ndata/rules/abp/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128\ndata/rules/abp/CBE50FA2-DE3F-480C-B1D7-04289391C033\ndata/rules/abp/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA\ndata/rules/abp/D4028CDD-3D39-4624-ACC7-8140F4EC3238\ndata/rules/abp/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC\ndata/rules/abp/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6\ndata/rules/abp/E22C3B40-DC90-49D7-8BF5-E60904AB159A\ndata/rules/abp/EEEF75EC-B2B4-49F4-BC49-17B08266F334\ndata/rules/abp/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8\ndata/rules/abp/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C\ndata/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D\ndata/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D.map\ndata/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F\ndata/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F.map\ndata/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520\ndata/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520.map\ndata/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4\ndata/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4.map\ndata/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F\ndata/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F.map\ndata/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF\ndata/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF.map\ndata/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984\ndata/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984.map\ndata/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE\ndata/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE.map\ndata/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119\ndata/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119.map\ndata/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89\ndata/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89.map\ndata/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5\ndata/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5.map\ndata/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797\ndata/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797.map\ndata/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D\ndata/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D.map\ndata/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B\ndata/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B.map\ndata/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825\ndata/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825.map\ndata/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F\ndata/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F.map\ndata/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350\ndata/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350.map\ndata/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15\ndata/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15.map\ndata/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9\ndata/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9.map\ndata/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF\ndata/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF.map\ndata/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A\ndata/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A.map\ndata/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2\ndata/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2.map\ndata/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9\ndata/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9.map\ndata/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82\ndata/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82.map\ndata/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD\ndata/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD.map\ndata/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC\ndata/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC.map\ndata/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B\ndata/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B.map\ndata/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128\ndata/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128.map\ndata/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033\ndata/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033.map\ndata/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA\ndata/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA.map\ndata/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238\ndata/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238.map\ndata/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC\ndata/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC.map\ndata/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6\ndata/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6.map\ndata/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A\ndata/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A.map\ndata/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334\ndata/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334.map\ndata/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8\ndata/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8.map\ndata/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C\ndata/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C.map\ndata/rules/index.json\ndevtools-panel.html\ndevtools-panel.js\ndevtools.html\ndevtools.js\next/background.js\next/common.js\next/content.js\nfonts/font-face.css\nfonts/lato-bold.woff\nfonts/lato-bolditalic.woff\nfonts/lato-ext-bold.woff\nfonts/lato-ext-bolditalic.woff\nfonts/lato-ext-italic.woff\nfonts/lato-ext-regular.woff\nfonts/lato-ext.woff\nfonts/lato-italic.woff\nfonts/lato-regular.woff\nfonts/lato.woff\nglobals-front.js\nglobals-front.js.map\ni18n.js\nicons/MaterialIcons-Regular.woff2\nicons/adblock-128.png\nicons/adblock-16-allowlisted.png\nicons/adblock-16.png\nicons/adblock-19-allowlisted.png\nicons/adblock-19.png\nicons/adblock-20-allowlisted.png\nicons/adblock-20.png\nicons/adblock-20.svg\nicons/adblock-32-allowlisted.png\nicons/adblock-32.png\nicons/adblock-38-allowlisted.png\nicons/adblock-38.png\nicons/adblock-40-allowlisted.png\nicons/adblock-40.png\nicons/adblock-48.png\nicons/adblock-64.png\nicons/adblock-icons.woff2\nicons/adblock-picreplacement-images-bird-grayscale.png\nicons/adblock-picreplacement-images-bird.png\nicons/adblock-picreplacement-images-cat-grayscale.png\nicons/adblock-picreplacement-images-cat.png\nicons/adblock-picreplacement-images-dog-grayscale.png\nicons/adblock-picreplacement-images-dog.png\nicons/adblock-picreplacement-images-food-grayscale.png\nicons/adblock-picreplacement-images-food.png\nicons/adblock-picreplacement-images-goat-grayscale.png\nicons/adblock-picreplacement-images-goat.png\nicons/adblock-picreplacement-images-landscape-grayscale.png\nicons/adblock-picreplacement-images-landscape.png\nicons/adblock-picreplacement-images-ocean-grayscale.png\nicons/adblock-picreplacement-images-ocean.png\nicons/adblock-vpn.svg\nicons/cookie-block-preview.svg\nicons/cookie_consent_cutter.svg\nicons/dark_theme/beta_logo.svg\nicons/dark_theme/logo.svg\nicons/dark_theme/minicard.svg\nicons/dark_theme/optionscard.svg\nicons/dark_theme/previewcard.svg\nicons/dark_theme/tinycard.svg\nicons/default_theme/beta_logo.svg\nicons/default_theme/logo.svg\nicons/default_theme/minicard.svg\nicons/default_theme/optionscard.svg\nicons/default_theme/previewcard.svg\nicons/default_theme/tinycard.svg\nicons/disable_site.svg\nicons/distraction-control-preview.svg\nicons/distraction-control-push.svg\nicons/distraction-control-video.svg\nicons/distraction-control.svg\nicons/dropdown_circle.svg\nicons/error_icon.svg\nicons/facebook-icon.svg\nicons/facebook-sprite.png\nicons/filled_heart.svg\nicons/format_list_bulletted_gray.svg\nicons/format_list_bulletted_red.svg\nicons/gplus-sprite.png\nicons/help.png\nicons/help@2x.png\nicons/icon16_grayscale.png\nicons/icon16_grayscale@2x.png\nicons/icon19-grayscale.png\nicons/icon24.png\nicons/icon38-grayscale.png\nicons/image-swap-preview.png\nicons/image-swap-preview.svg\nicons/image-swap-preview@2x.png\nicons/loader.gif\nicons/lock.png\nicons/lock.svg\nicons/lock@2x.png\nicons/logo.png\nicons/mail-cta-done.svg\nicons/ocean_theme/beta_logo.svg\nicons/ocean_theme/logo.svg\nicons/ocean_theme/minicard.svg\nicons/ocean_theme/previewcard.svg\nicons/ocean_theme/tinycard.svg\nicons/one-icon.svg\nicons/options.png\nicons/options@2x.png\nicons/options_page_dark.png\nicons/options_page_default.png\nicons/outline_heart.svg\nicons/photo.svg\nicons/popup_menu_dark.png\nicons/popup_menu_default.png\nicons/rebecca_purple_theme/beta_logo.svg\nicons/rebecca_purple_theme/logo.svg\nicons/rebecca_purple_theme/previewcard.svg\nicons/rebecca_purple_theme/tinycard.svg\nicons/red_dropdown_circle.svg\nicons/replaceads_heroimage.png\nicons/round_check.svg\nicons/search.svg\nicons/smiley.png\nicons/solarized_light_theme/beta_logo.svg\nicons/solarized_light_theme/logo.svg\nicons/solarized_light_theme/optionscard.svg\nicons/solarized_light_theme/previewcard.svg\nicons/solarized_light_theme/tinycard.svg\nicons/solarized_theme/beta_logo.svg\nicons/solarized_theme/logo.svg\nicons/solarized_theme/minicard.svg\nicons/solarized_theme/optionscard.svg\nicons/solarized_theme/previewcard.svg\nicons/solarized_theme/tinycard.svg\nicons/sunshine_theme/beta_logo.svg\nicons/sunshine_theme/logo.svg\nicons/sunshine_theme/minicard.svg\nicons/sunshine_theme/previewcard.svg\nicons/sunshine_theme/tinycard.svg\nicons/sync-preview.svg\nicons/themes-preview.svg\nicons/themes_darktext.svg\nicons/themes_lighttext.svg\nicons/twitter-icon.svg\nicons/twitter-sprite.png\nicons/watermelon_theme/beta_logo.svg\nicons/watermelon_theme/logo.svg\nicons/watermelon_theme/minicard.svg\nicons/watermelon_theme/previewcard.svg\nicons/watermelon_theme/tinycard.svg\nicons/white-bg.png\ninfo-injector.preload.js\ninfo-injector.preload.js.map\njquery-3.5.1.min.js\nmanaged-storage-schema.json\nmanifest.json\nonpage-dialog.postload.js\nonpage-dialog.postload.js.map\noptions.html\noptions.js\noptions.js.map\npolyfill.js\npolyfill.js.map\npopup.js\npopup.js.map\npremium.preload.js\nproxy.html\npublic-api.preload.js\npublic-api.preload.js.map\nreverse-trial.preload.js\nreverse-trial.preload.js.map\nskin/devtools-panel.css\ntranslators.json\nvendor/@eyeo/webext-ad-filtering-solution/content-main.js\nvendor/@eyeo/webext-ad-filtering-solution/content.js\nyt-auto-allowlist.preload.js\nyt-auto-allowlist.preload.js.map",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 19,
+          "score": 0,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "name": {
+              "extracted": [
+                "COPYING",
+                "Chart.min.js",
+                "README.md",
+                "RELEASE_NOTES.md",
+                "_locales/ar/messages.json",
+                "_locales/bg/messages.json",
+                "_locales/ca/messages.json",
+                "_locales/cs/messages.json",
+                "_locales/de/messages.json",
+                "_locales/el/messages.json",
+                "_locales/en_GB/messages.json",
+                "_locales/en_US/messages.json",
+                "_locales/es/messages.json",
+                "_locales/fi/messages.json",
+                "_locales/fr/messages.json",
+                "_locales/gl/messages.json",
+                "_locales/he/messages.json",
+                "_locales/hr/messages.json",
+                "_locales/hu/messages.json",
+                "_locales/id/messages.json",
+                "_locales/it/messages.json",
+                "_locales/ja/messages.json",
+                "_locales/ko/messages.json",
+                "_locales/ms/messages.json",
+                "_locales/nl/messages.json",
+                "_locales/no/messages.json",
+                "_locales/pl/messages.json",
+                "_locales/pt_BR/messages.json",
+                "_locales/pt_PT/messages.json",
+                "_locales/ro/messages.json",
+                "_locales/ru/messages.json",
+                "_locales/sk/messages.json",
+                "_locales/sl/messages.json",
+                "_locales/sv/messages.json",
+                "_locales/tr/messages.json",
+                "_locales/uk/messages.json",
+                "_locales/zh_CN/messages.json",
+                "_locales/zh_TW/messages.json",
+                "_metadata/verified_contents.json",
+                "abp-background.js",
+                "abp-background.js.map",
+                "adblock-button-cookie-confirm.html",
+                "adblock-button-distractions-confirm.html",
+                "adblock-button-filtering-options.html",
+                "adblock-button-popup.html",
+                "adblock-button-undo-allow-confirm.html",
+                "adblock-color-themes.css",
+                "adblock-deny-push-notifications-requests.js",
+                "adblock-deny-push-notifications-requests.js.map",
+                "adblock-errorreporting.js",
+                "adblock-functions.js",
+                "adblock-getadblock.js",
+                "adblock-onpage-dialog-user.css",
+                "adblock-options-customize.html",
+                "adblock-options-customize.js",
+                "adblock-options-datacollectionproxy.js",
+                "adblock-options-events.js",
+                "adblock-options-filters.html",
+                "adblock-options-filters.js",
+                "adblock-options-filtersproxy.js",
+                "adblock-options-general.html",
+                "adblock-options-general.js",
+                "adblock-options-index.js",
+                "adblock-options-listenersupport.js",
+                "adblock-options-localdatacollectionproxy.js",
+                "adblock-options-mab-image-swap.html",
+                "adblock-options-mab-image-swap.js",
+                "adblock-options-mab-themes.html",
+                "adblock-options-mab-themes.js",
+                "adblock-options-mab.css",
+                "adblock-options-mab.html",
+                "adblock-options-mab.js",
+                "adblock-options-options.css",
+                "adblock-options-prefsproxy.js",
+                "adblock-options-premium-filters.html",
+                "adblock-options-premium-filters.js",
+                "adblock-options-premium-payment.js",
+                "adblock-options-premiumproxy.js",
+                "adblock-options-settingsproxy.js",
+                "adblock-options-stats-tabs.css",
+                "adblock-options-stats-tabs.html",
+                "adblock-options-stats-tabs.js",
+                "adblock-options-subscriptionadapterproxy.js",
+                "adblock-options-subscriptionsproxy.js",
+                "adblock-options-support.html",
+                "adblock-options-support.js",
+                "adblock-options-tabs.css",
+                "adblock-options-tabs.js",
+                "adblock-options-themes.js",
+                "adblock-picreplacement-image-sizes-map.js",
+                "adblock-picreplacement-imageview.html",
+                "adblock-picreplacement-imageview.js",
+                "adblock-picreplacement-options-imageview.css",
+                "adblock-picreplacement.js",
+                "adblock-push-notification-cs.js",
+                "adblock-push-notification-cs.js.map",
+                "adblock-uiscripts-adblock-wizard.css",
+                "adblock-uiscripts-blacklisting-blacklistui.js",
+                "adblock-uiscripts-blacklisting-clickwatcher.js",
+                "adblock-uiscripts-blacklisting-elementchain.js",
+                "adblock-uiscripts-blacklisting-overlay.js",
+                "adblock-uiscripts-load_wizard_resources.js",
+                "adblock-uiscripts-rightclick_hook.js",
+                "adblock-uiscripts-send_content_to_back.js",
+                "adblock-uiscripts-top_open_blacklist_ui.js",
+                "adblock-uiscripts-top_open_whitelist_completion_ui.js",
+                "adblock-uiscripts-top_open_whitelist_ui.js",
+                "adblock.css",
+                "button/components/ActionButton.js",
+                "button/components/CancelActionButton.js",
+                "button/components/ConfirmText.js",
+                "button/components/InlineLinkButton.js",
+                "button/components/MenuLink.js",
+                "button/components/MenuLinkButton.js",
+                "button/components/PopupDetailStats.js",
+                "button/components/PopupDetailText.js",
+                "button/components/PopupSection.js",
+                "button/components/SubNav.js",
+                "button/components/Toggle.js",
+                "button/components/components.css",
+                "button/components/icons/adblock-logo.js",
+                "button/components/icons/block-distractions.js",
+                "button/components/icons/cookie-icon.js",
+                "button/components/icons/lock-icon.js",
+                "button/confirmation-page.js",
+                "button/cookie-confirm.html",
+                "button/distractions-confirm.html",
+                "button/filtering-options.html",
+                "button/filtering-options.js",
+                "button/header.css",
+                "button/header.html",
+                "button/header.js",
+                "button/help-action.js",
+                "button/help-button.html",
+                "button/help-map.json",
+                "button/help-section.html",
+                "button/help-segue.html",
+                "button/help.css",
+                "button/help.js",
+                "button/popup-sections.css",
+                "button/popup-sections.js",
+                "button/popup-subpages.css",
+                "button/popup.css",
+                "button/popup.html",
+                "button/popup.js",
+                "button/undo-allow-confirm.html",
+                "button/utils.js",
+                "close-tab.preload.js",
+                "close-tab.preload.js.map",
+                "conflict-detection.preload.js",
+                "conflict-detection.preload.js.map",
+                "contentscript-loader.js",
+                "cookie-banner-detection.preload.js",
+                "cookie-banner-detection.preload.js.map",
+                "croppie.css",
+                "croppie.js",
+                "data/rules/abp/07549D8B-F06F-4D9D-A567-929AA59E9D1D",
+                "data/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F",
+                "data/rules/abp/0A679439-445F-4DE7-84B9-88341F6DA520",
+                "data/rules/abp/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4",
+                "data/rules/abp/0CD3D105-D3B3-4652-8489-94163DE9A08F",
+                "data/rules/abp/14DF7BE6-9675-4E07-987A-D8A1000F9FEF",
+                "data/rules/abp/1B5F78CA-8B30-4BDF-B0A3-451CB2202984",
+                "data/rules/abp/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE",
+                "data/rules/abp/25A31255-AB36-48A4-9086-06192DE71119",
+                "data/rules/abp/2708BCB7-2E45-41BC-B517-1730CF532F89",
+                "data/rules/abp/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5",
+                "data/rules/abp/2CEA1481-C29C-44F1-A084-A2A019533797",
+                "data/rules/abp/361001BD-8F57-4736-97B1-F332C3D79E5D",
+                "data/rules/abp/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B",
+                "data/rules/abp/4B6CE485-30AB-4213-AD17-504B3F2D2825",
+                "data/rules/abp/588470E8-E163-4CD9-A909-521B2A3BE73F",
+                "data/rules/abp/5BD2BB73-459D-4A74-AF9D-A10157268350",
+                "data/rules/abp/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15",
+                "data/rules/abp/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9",
+                "data/rules/abp/8C13E995-8F06-4927-BEA7-6C845FB7EEBF",
+                "data/rules/abp/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A",
+                "data/rules/abp/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2",
+                "data/rules/abp/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9",
+                "data/rules/abp/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82",
+                "data/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD",
+                "data/rules/abp/B7D76369-DD19-4602-80E8-2E32DDB490AC",
+                "data/rules/abp/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B",
+                "data/rules/abp/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128",
+                "data/rules/abp/CBE50FA2-DE3F-480C-B1D7-04289391C033",
+                "data/rules/abp/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA",
+                "data/rules/abp/D4028CDD-3D39-4624-ACC7-8140F4EC3238",
+                "data/rules/abp/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC",
+                "data/rules/abp/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6",
+                "data/rules/abp/E22C3B40-DC90-49D7-8BF5-E60904AB159A",
+                "data/rules/abp/EEEF75EC-B2B4-49F4-BC49-17B08266F334",
+                "data/rules/abp/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8",
+                "data/rules/abp/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C",
+                "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D",
+                "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D.map",
+                "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F",
+                "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F.map",
+                "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520",
+                "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520.map",
+                "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4",
+                "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4.map",
+                "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F",
+                "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F.map",
+                "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF",
+                "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF.map",
+                "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984",
+                "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984.map",
+                "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE",
+                "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE.map",
+                "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119",
+                "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119.map",
+                "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89",
+                "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89.map",
+                "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5",
+                "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5.map",
+                "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797",
+                "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797.map",
+                "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D",
+                "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D.map",
+                "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B",
+                "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B.map",
+                "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825",
+                "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825.map",
+                "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F",
+                "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F.map",
+                "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350",
+                "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350.map",
+                "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15",
+                "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15.map",
+                "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9",
+                "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9.map",
+                "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF",
+                "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF.map",
+                "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A",
+                "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A.map",
+                "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2",
+                "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2.map",
+                "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9",
+                "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9.map",
+                "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82",
+                "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82.map",
+                "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD",
+                "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD.map",
+                "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC",
+                "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC.map",
+                "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B",
+                "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B.map",
+                "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128",
+                "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128.map",
+                "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033",
+                "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033.map",
+                "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA",
+                "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA.map",
+                "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238",
+                "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238.map",
+                "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC",
+                "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC.map",
+                "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6",
+                "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6.map",
+                "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A",
+                "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A.map",
+                "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334",
+                "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334.map",
+                "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8",
+                "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8.map",
+                "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C",
+                "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C.map",
+                "data/rules/index.json",
+                "devtools-panel.html",
+                "devtools-panel.js",
+                "devtools.html",
+                "devtools.js",
+                "ext/background.js",
+                "ext/common.js",
+                "ext/content.js",
+                "fonts/font-face.css",
+                "fonts/lato-bold.woff",
+                "fonts/lato-bolditalic.woff",
+                "fonts/lato-ext-bold.woff",
+                "fonts/lato-ext-bolditalic.woff",
+                "fonts/lato-ext-italic.woff",
+                "fonts/lato-ext-regular.woff",
+                "fonts/lato-ext.woff",
+                "fonts/lato-italic.woff",
+                "fonts/lato-regular.woff",
+                "fonts/lato.woff",
+                "globals-front.js",
+                "globals-front.js.map",
+                "i18n.js",
+                "icons/MaterialIcons-Regular.woff2",
+                "icons/adblock-128.png",
+                "icons/adblock-16-allowlisted.png",
+                "icons/adblock-16.png",
+                "icons/adblock-19-allowlisted.png",
+                "icons/adblock-19.png",
+                "icons/adblock-20-allowlisted.png",
+                "icons/adblock-20.png",
+                "icons/adblock-20.svg",
+                "icons/adblock-32-allowlisted.png",
+                "icons/adblock-32.png",
+                "icons/adblock-38-allowlisted.png",
+                "icons/adblock-38.png",
+                "icons/adblock-40-allowlisted.png",
+                "icons/adblock-40.png",
+                "icons/adblock-48.png",
+                "icons/adblock-64.png",
+                "icons/adblock-icons.woff2",
+                "icons/adblock-picreplacement-images-bird-grayscale.png",
+                "icons/adblock-picreplacement-images-bird.png",
+                "icons/adblock-picreplacement-images-cat-grayscale.png",
+                "icons/adblock-picreplacement-images-cat.png",
+                "icons/adblock-picreplacement-images-dog-grayscale.png",
+                "icons/adblock-picreplacement-images-dog.png",
+                "icons/adblock-picreplacement-images-food-grayscale.png",
+                "icons/adblock-picreplacement-images-food.png",
+                "icons/adblock-picreplacement-images-goat-grayscale.png",
+                "icons/adblock-picreplacement-images-goat.png",
+                "icons/adblock-picreplacement-images-landscape-grayscale.png",
+                "icons/adblock-picreplacement-images-landscape.png",
+                "icons/adblock-picreplacement-images-ocean-grayscale.png",
+                "icons/adblock-picreplacement-images-ocean.png",
+                "icons/adblock-vpn.svg",
+                "icons/cookie-block-preview.svg",
+                "icons/cookie_consent_cutter.svg",
+                "icons/dark_theme/beta_logo.svg",
+                "icons/dark_theme/logo.svg",
+                "icons/dark_theme/minicard.svg",
+                "icons/dark_theme/optionscard.svg",
+                "icons/dark_theme/previewcard.svg",
+                "icons/dark_theme/tinycard.svg",
+                "icons/default_theme/beta_logo.svg",
+                "icons/default_theme/logo.svg",
+                "icons/default_theme/minicard.svg",
+                "icons/default_theme/optionscard.svg",
+                "icons/default_theme/previewcard.svg",
+                "icons/default_theme/tinycard.svg",
+                "icons/disable_site.svg",
+                "icons/distraction-control-preview.svg",
+                "icons/distraction-control-push.svg",
+                "icons/distraction-control-video.svg",
+                "icons/distraction-control.svg",
+                "icons/dropdown_circle.svg",
+                "icons/error_icon.svg",
+                "icons/facebook-icon.svg",
+                "icons/facebook-sprite.png",
+                "icons/filled_heart.svg",
+                "icons/format_list_bulletted_gray.svg",
+                "icons/format_list_bulletted_red.svg",
+                "icons/gplus-sprite.png",
+                "icons/help.png",
+                "icons/help@2x.png",
+                "icons/icon16_grayscale.png",
+                "icons/icon16_grayscale@2x.png",
+                "icons/icon19-grayscale.png",
+                "icons/icon24.png",
+                "icons/icon38-grayscale.png",
+                "icons/image-swap-preview.png",
+                "icons/image-swap-preview.svg",
+                "icons/image-swap-preview@2x.png",
+                "icons/loader.gif",
+                "icons/lock.png",
+                "icons/lock.svg",
+                "icons/lock@2x.png",
+                "icons/logo.png",
+                "icons/mail-cta-done.svg",
+                "icons/ocean_theme/beta_logo.svg",
+                "icons/ocean_theme/logo.svg",
+                "icons/ocean_theme/minicard.svg",
+                "icons/ocean_theme/previewcard.svg",
+                "icons/ocean_theme/tinycard.svg",
+                "icons/one-icon.svg",
+                "icons/options.png",
+                "icons/options@2x.png",
+                "icons/options_page_dark.png",
+                "icons/options_page_default.png",
+                "icons/outline_heart.svg",
+                "icons/photo.svg",
+                "icons/popup_menu_dark.png",
+                "icons/popup_menu_default.png",
+                "icons/rebecca_purple_theme/beta_logo.svg",
+                "icons/rebecca_purple_theme/logo.svg",
+                "icons/rebecca_purple_theme/previewcard.svg",
+                "icons/rebecca_purple_theme/tinycard.svg",
+                "icons/red_dropdown_circle.svg",
+                "icons/replaceads_heroimage.png",
+                "icons/round_check.svg",
+                "icons/search.svg",
+                "icons/smiley.png",
+                "icons/solarized_light_theme/beta_logo.svg",
+                "icons/solarized_light_theme/logo.svg",
+                "icons/solarized_light_theme/optionscard.svg",
+                "icons/solarized_light_theme/previewcard.svg",
+                "icons/solarized_light_theme/tinycard.svg",
+                "icons/solarized_theme/beta_logo.svg",
+                "icons/solarized_theme/logo.svg",
+                "icons/solarized_theme/minicard.svg",
+                "icons/solarized_theme/optionscard.svg",
+                "icons/solarized_theme/previewcard.svg",
+                "icons/solarized_theme/tinycard.svg",
+                "icons/sunshine_theme/beta_logo.svg",
+                "icons/sunshine_theme/logo.svg",
+                "icons/sunshine_theme/minicard.svg",
+                "icons/sunshine_theme/previewcard.svg",
+                "icons/sunshine_theme/tinycard.svg",
+                "icons/sync-preview.svg",
+                "icons/themes-preview.svg",
+                "icons/themes_darktext.svg",
+                "icons/themes_lighttext.svg",
+                "icons/twitter-icon.svg",
+                "icons/twitter-sprite.png",
+                "icons/watermelon_theme/beta_logo.svg",
+                "icons/watermelon_theme/logo.svg",
+                "icons/watermelon_theme/minicard.svg",
+                "icons/watermelon_theme/previewcard.svg",
+                "icons/watermelon_theme/tinycard.svg",
+                "icons/white-bg.png",
+                "info-injector.preload.js",
+                "info-injector.preload.js.map",
+                "jquery-3.5.1.min.js",
+                "managed-storage-schema.json",
+                "manifest.json",
+                "onpage-dialog.postload.js",
+                "onpage-dialog.postload.js.map",
+                "options.html",
+                "options.js",
+                "options.js.map",
+                "polyfill.js",
+                "polyfill.js.map",
+                "popup.js",
+                "popup.js.map",
+                "premium.preload.js",
+                "proxy.html",
+                "public-api.preload.js",
+                "public-api.preload.js.map",
+                "reverse-trial.preload.js",
+                "reverse-trial.preload.js.map",
+                "skin/devtools-panel.css",
+                "translators.json",
+                "vendor/@eyeo/webext-ad-filtering-solution/content-main.js",
+                "vendor/@eyeo/webext-ad-filtering-solution/content.js",
+                "yt-auto-allowlist.preload.js",
+                "yt-auto-allowlist.preload.js.map"
+              ]
+            }
+          }
+        },
+        "title_text": "Successfully extracted 442 files",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Chart.min.js: code/javascript found inside application/chrome/extension\nabp-background.js: code/javascript found inside application/chrome/extension\nadblock-deny-push-notifications-requests.js: code/javascript found inside application/chrome/extension\nadblock-errorreporting.js: code/javascript found inside application/chrome/extension\nadblock-functions.js: code/javascript found inside application/chrome/extension\nadblock-getadblock.js: code/javascript found inside application/chrome/extension\nadblock-options-customize.js: code/javascript found inside application/chrome/extension\nadblock-options-datacollectionproxy.js: code/c++ found inside application/chrome/extension\nadblock-options-events.js: code/javascript found inside application/chrome/extension\nadblock-options-filters.js: code/javascript found inside application/chrome/extension\nadblock-options-filtersproxy.js: code/javascript found inside application/chrome/extension\nadblock-options-general.js: code/javascript found inside application/chrome/extension\nadblock-options-index.js: code/javascript found inside application/chrome/extension\nadblock-options-listenersupport.js: code/c++ found inside application/chrome/extension\nadblock-options-localdatacollectionproxy.js: code/c++ found inside application/chrome/extension\nadblock-options-mab-image-swap.js: code/html found inside application/chrome/extension\nadblock-options-mab-themes.js: code/javascript found inside application/chrome/extension\nadblock-options-mab.js: code/javascript found inside application/chrome/extension\nadblock-options-prefsproxy.js: code/javascript found inside application/chrome/extension\nadblock-options-premium-filters.js: code/javascript found inside application/chrome/extension\nadblock-options-premium-payment.js: code/javascript found inside application/chrome/extension\nadblock-options-premiumproxy.js: code/javascript found inside application/chrome/extension\nadblock-options-settingsproxy.js: code/javascript found inside application/chrome/extension\nadblock-options-stats-tabs.js: code/javascript found inside application/chrome/extension\nadblock-options-subscriptionadapterproxy.js: code/c++ found inside application/chrome/extension\nadblock-options-subscriptionsproxy.js: code/javascript found inside application/chrome/extension\nadblock-options-support.js: code/javascript found inside application/chrome/extension\nadblock-options-tabs.js: code/javascript found inside application/chrome/extension\nadblock-options-themes.js: code/javascript found inside application/chrome/extension\nadblock-picreplacement-image-sizes-map.js: code/javascript found inside application/chrome/extension\nadblock-picreplacement-imageview.js: code/javascript found inside application/chrome/extension\nadblock-picreplacement.js: code/javascript found inside application/chrome/extension\nadblock-push-notification-cs.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-blacklisting-blacklistui.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-blacklisting-clickwatcher.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-blacklisting-elementchain.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-blacklisting-overlay.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-load_wizard_resources.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-rightclick_hook.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-send_content_to_back.js: code/javascript found inside application/chrome/extension\nadblock-uiscripts-top_open_blacklist_ui.js: code/html found inside application/chrome/extension\nadblock-uiscripts-top_open_whitelist_completion_ui.js: code/html found inside application/chrome/extension\nadblock-uiscripts-top_open_whitelist_ui.js: code/html found inside application/chrome/extension\nbutton/components/ActionButton.js: code/javascript found inside application/chrome/extension\nbutton/components/CancelActionButton.js: code/javascript found inside application/chrome/extension\nbutton/components/ConfirmText.js: code/javascript found inside application/chrome/extension\nbutton/components/InlineLinkButton.js: code/javascript found inside application/chrome/extension\nbutton/components/MenuLink.js: code/javascript found inside application/chrome/extension\nbutton/components/MenuLinkButton.js: code/javascript found inside application/chrome/extension\nbutton/components/PopupDetailStats.js: code/javascript found inside application/chrome/extension\nbutton/components/PopupDetailText.js: code/javascript found inside application/chrome/extension\nbutton/components/PopupSection.js: code/javascript found inside application/chrome/extension\nbutton/components/SubNav.js: code/javascript found inside application/chrome/extension\nbutton/components/Toggle.js: code/javascript found inside application/chrome/extension\nbutton/components/icons/adblock-logo.js: code/javascript found inside application/chrome/extension\nbutton/components/icons/block-distractions.js: code/javascript found inside application/chrome/extension\nbutton/components/icons/cookie-icon.js: code/javascript found inside application/chrome/extension\nbutton/components/icons/lock-icon.js: code/javascript found inside application/chrome/extension\nbutton/confirmation-page.js: code/javascript found inside application/chrome/extension\nbutton/filtering-options.js: code/javascript found inside application/chrome/extension\nbutton/header.js: code/javascript found inside application/chrome/extension\nbutton/help-action.js: code/javascript found inside application/chrome/extension\nbutton/help.js: code/javascript found inside application/chrome/extension\nbutton/popup-sections.js: code/javascript found inside application/chrome/extension\nbutton/popup.js: code/javascript found inside application/chrome/extension\nbutton/utils.js: code/javascript found inside application/chrome/extension\nclose-tab.preload.js: code/javascript found inside application/chrome/extension\nconflict-detection.preload.js: code/javascript found inside application/chrome/extension\ncontentscript-loader.js: code/java found inside application/chrome/extension\ncookie-banner-detection.preload.js: code/javascript found inside application/chrome/extension\ncroppie.js: code/javascript found inside application/chrome/extension\ndata/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F: code/ps1 found inside application/chrome/extension\ndata/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD: code/ps1 found inside application/chrome/extension\ndevtools-panel.js: code/javascript found inside application/chrome/extension\ndevtools.js: code/javascript found inside application/chrome/extension\next/background.js: code/javascript found inside application/chrome/extension\next/common.js: code/javascript found inside application/chrome/extension\next/content.js: code/javascript found inside application/chrome/extension\nglobals-front.js: code/javascript found inside application/chrome/extension\ni18n.js: code/javascript found inside application/chrome/extension\ninfo-injector.preload.js: code/javascript found inside application/chrome/extension\njquery-3.5.1.min.js: code/javascript found inside application/chrome/extension\nonpage-dialog.postload.js: code/javascript found inside application/chrome/extension\noptions.js: code/javascript found inside application/chrome/extension\npolyfill.js: code/javascript found inside application/chrome/extension\npopup.js: code/javascript found inside application/chrome/extension\npremium.preload.js: code/javascript found inside application/chrome/extension\npublic-api.preload.js: code/javascript found inside application/chrome/extension\nreverse-trial.preload.js: code/javascript found inside application/chrome/extension\nvendor/@eyeo/webext-ad-filtering-solution/content-main.js: code/javascript found inside application/chrome/extension\nvendor/@eyeo/webext-ad-filtering-solution/content.js: code/javascript found inside application/chrome/extension\nyt-auto-allowlist.preload.js: code/javascript found inside application/chrome/extension",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "behavior": [
+              "Executable Content in Archive"
+            ],
+            "name": {
+              "extracted": [
+                "Chart.min.js",
+                "abp-background.js",
+                "adblock-deny-push-notifications-requests.js",
+                "adblock-errorreporting.js",
+                "adblock-functions.js",
+                "adblock-getadblock.js",
+                "adblock-options-customize.js",
+                "adblock-options-datacollectionproxy.js",
+                "adblock-options-events.js",
+                "adblock-options-filters.js",
+                "adblock-options-filtersproxy.js",
+                "adblock-options-general.js",
+                "adblock-options-index.js",
+                "adblock-options-listenersupport.js",
+                "adblock-options-localdatacollectionproxy.js",
+                "adblock-options-mab-image-swap.js",
+                "adblock-options-mab-themes.js",
+                "adblock-options-mab.js",
+                "adblock-options-prefsproxy.js",
+                "adblock-options-premium-filters.js",
+                "adblock-options-premium-payment.js",
+                "adblock-options-premiumproxy.js",
+                "adblock-options-settingsproxy.js",
+                "adblock-options-stats-tabs.js",
+                "adblock-options-subscriptionadapterproxy.js",
+                "adblock-options-subscriptionsproxy.js",
+                "adblock-options-support.js",
+                "adblock-options-tabs.js",
+                "adblock-options-themes.js",
+                "adblock-picreplacement-image-sizes-map.js",
+                "adblock-picreplacement-imageview.js",
+                "adblock-picreplacement.js",
+                "adblock-push-notification-cs.js",
+                "adblock-uiscripts-blacklisting-blacklistui.js",
+                "adblock-uiscripts-blacklisting-clickwatcher.js",
+                "adblock-uiscripts-blacklisting-elementchain.js",
+                "adblock-uiscripts-blacklisting-overlay.js",
+                "adblock-uiscripts-load_wizard_resources.js",
+                "adblock-uiscripts-rightclick_hook.js",
+                "adblock-uiscripts-send_content_to_back.js",
+                "adblock-uiscripts-top_open_blacklist_ui.js",
+                "adblock-uiscripts-top_open_whitelist_completion_ui.js",
+                "adblock-uiscripts-top_open_whitelist_ui.js",
+                "button/components/ActionButton.js",
+                "button/components/CancelActionButton.js",
+                "button/components/ConfirmText.js",
+                "button/components/InlineLinkButton.js",
+                "button/components/MenuLink.js",
+                "button/components/MenuLinkButton.js",
+                "button/components/PopupDetailStats.js",
+                "button/components/PopupDetailText.js",
+                "button/components/PopupSection.js",
+                "button/components/SubNav.js",
+                "button/components/Toggle.js",
+                "button/components/icons/adblock-logo.js",
+                "button/components/icons/block-distractions.js",
+                "button/components/icons/cookie-icon.js",
+                "button/components/icons/lock-icon.js",
+                "button/confirmation-page.js",
+                "button/filtering-options.js",
+                "button/header.js",
+                "button/help-action.js",
+                "button/help.js",
+                "button/popup-sections.js",
+                "button/popup.js",
+                "button/utils.js",
+                "close-tab.preload.js",
+                "conflict-detection.preload.js",
+                "contentscript-loader.js",
+                "cookie-banner-detection.preload.js",
+                "croppie.js",
+                "data/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F",
+                "data/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD",
+                "devtools-panel.js",
+                "devtools.js",
+                "ext/background.js",
+                "ext/common.js",
+                "ext/content.js",
+                "globals-front.js",
+                "i18n.js",
+                "info-injector.preload.js",
+                "jquery-3.5.1.min.js",
+                "onpage-dialog.postload.js",
+                "options.js",
+                "polyfill.js",
+                "popup.js",
+                "premium.preload.js",
+                "public-api.preload.js",
+                "reverse-trial.preload.js",
+                "vendor/@eyeo/webext-ad-filtering-solution/content-main.js",
+                "vendor/@eyeo/webext-ad-filtering-solution/content.js",
+                "yt-auto-allowlist.preload.js"
+              ]
+            }
+          }
+        },
+        "title_text": "Executable Content in Archive. Potentially malicious...",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [
+      {
+        "name": "adblock-options-subscriptionadapterproxy.js",
+        "sha256": "006dc85368abb41f25ed217425ef17959f3c25b06685c9e312db3737429be6ba"
+      },
+      {
+        "name": "Chart.min.js",
+        "sha256": "02a4f5a0b9e654bb7fa116c62d8863a3ec6ff8381543e97bc2be56d55ca9c077"
+      },
+      {
+        "name": "icons/format_list_bulletted_red.svg",
+        "sha256": "03370e5d879e75ce41e63b564b42612a1c8ad93559962538bc25a70f30371e13"
+      },
+      {
+        "name": "icons/one-icon.svg",
+        "sha256": "053fd5e31ab5c46931aecee0ef4b94f0bf371be42852a9b14af6a06284ea1bc9"
+      },
+      {
+        "name": "data/rules/abp/EEEF75EC-B2B4-49F4-BC49-17B08266F334",
+        "sha256": "058d627b927b36c3b575440400f522720a392aa08976fe45a00223e86b22409d"
+      },
+      {
+        "name": "icons/image-swap-preview@2x.png",
+        "sha256": "064439dcfe57d5d1c8332cca25ba014a1e7ae781add2fd080549c809c5ab4e8b"
+      },
+      {
+        "name": "popup.js.map",
+        "sha256": "066166f67e077b224201f665d901cd802fc9ad52baabb2fbb83294bd53583404"
+      },
+      {
+        "name": "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC",
+        "sha256": "06cf6ba5c1c851a480d96d33e93f0f28540865ec6385d6f1c3f36a9602eb7735"
+      },
+      {
+        "name": "data/rules/abp/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA",
+        "sha256": "06dd8842b6ccc1001a5495b64e0ebb6d484d0ad2d3912c914a1786ab0394d2be"
+      },
+      {
+        "name": "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797",
+        "sha256": "09b2b734fe56d6aefdaff1e9e5a6e31eec7e0482f36525029306cf50297117eb"
+      },
+      {
+        "name": "icons/dark_theme/beta_logo.svg",
+        "sha256": "09cf6b7e57974aba174e0bee934814cb5e98a1056d85eb549760490927efef7a"
+      },
+      {
+        "name": "icons/solarized_light_theme/logo.svg",
+        "sha256": "0a1e87b0b0718f9978906642723a1a088acf6033e007e1894fff67ef3e433023"
+      },
+      {
+        "name": "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF.map",
+        "sha256": "0a20047c6b193ee2cce5ab543af25e9dcb96a84436b0a2395477afa86749f7e3"
+      },
+      {
+        "name": "icons/adblock-19.png",
+        "sha256": "0a59c42166d3ce9f8959dd431ae9cb2383806fc3bde19610c4def23e9f16a536"
+      },
+      {
+        "name": "adblock-options-premium-filters.html",
+        "sha256": "0a8af58737ef5a387c0fd863492299695d4eabbb15b9e1a99a04db278fed0bd9"
+      },
+      {
+        "name": "data/rules/abp/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2",
+        "sha256": "0b7a39c6d6b9ee2822fc6be3261ee76d1b22d9fe15e7332a438995b423a45223"
+      },
+      {
+        "name": "icons/options@2x.png",
+        "sha256": "0be0163653f316de7105097311ba89f57946fb7d98ee42ab80cfb31eca528f2e"
+      },
+      {
+        "name": "icons/dark_theme/minicard.svg",
+        "sha256": "0c5845e2104309ad585a4bbf48afa8611262329ff1a204c0446cb05c6f1e721f"
+      },
+      {
+        "name": "public-api.preload.js.map",
+        "sha256": "0debbba13e0dab2d0bcb65f33b34150c74cf7d9da5bfb9c8f60e987b29e89a9c"
+      },
+      {
+        "name": "data/rules/abp/361001BD-8F57-4736-97B1-F332C3D79E5D",
+        "sha256": "0e53679fda681ba2e5cbea4e0d6aa17921de90b677a72d0aa29e3d4e0af01df2"
+      },
+      {
+        "name": "options.js.map",
+        "sha256": "0f81295e9ea9750f7d3e2feaa7b06321e90aaf8fbd700fb8869e65995abc97e9"
+      },
+      {
+        "name": "adblock-options-customize.js",
+        "sha256": "0fbf740a2a7f3c81923e7767d01bc46330e49abac175975d6e4916532b97a882"
+      },
+      {
+        "name": "adblock-options-mab.css",
+        "sha256": "11a322b1f18a354191d1aec72a31b3ec49c68ae9b586e7a145bf88a03bf92392"
+      },
+      {
+        "name": "icons/default_theme/minicard.svg",
+        "sha256": "11f9a5da3498232d0bbe771351933a384cf57abf8cecb3ddf0bfec75423a0e58"
+      },
+      {
+        "name": "_locales/hu/messages.json",
+        "sha256": "12b747f4bb319e0f1b7325e0880fb7ee571c76fadf2bc953eef9c7483b85c909"
+      },
+      {
+        "name": "button/popup-sections.css",
+        "sha256": "131cc220d5ebbebc0358efa2e68c9e251135878b4c3e8884edf6ed42fed648b6"
+      },
+      {
+        "name": "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825",
+        "sha256": "133b74aff40a349081f242c10324c02c16b4365a03dba0894c3988995bb7750e"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-landscape-grayscale.png",
+        "sha256": "14979957bb1bceba29b29189873a2b053674cef107704070edd951aeea796f00"
+      },
+      {
+        "name": "README.md",
+        "sha256": "14ac2ef3de3d479134a0c37a96f11fe72223e302cc7c2ae1be507407369f8170"
+      },
+      {
+        "name": "icons/adblock-38.png",
+        "sha256": "14c0937c0221bf579ecef592050a63c17134a810fdc54370f08703299ae5c5fe"
+      },
+      {
+        "name": "icons/replaceads_heroimage.png",
+        "sha256": "14cc522ed344a28d27e61d22b3e8a61554e600d96f04527d803afb1e9b160f26"
+      },
+      {
+        "name": "icons/solarized_theme/logo.svg",
+        "sha256": "15151f92e66e399fca548380ebbe3055a657534c8d6b6ba792ad4aad7a6215a1"
+      },
+      {
+        "name": "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334",
+        "sha256": "15d9c4e5a74b886bfde95ae778f6ffc7a406a418378e1842db8d881fafd3c415"
+      },
+      {
+        "name": "adblock-uiscripts-top_open_blacklist_ui.js",
+        "sha256": "1662b6a4722cc3ad40e45cea950bab0858c19e7540dfbb362ce21942d07792ec"
+      },
+      {
+        "name": "fonts/lato-ext.woff",
+        "sha256": "1670565574aab8aa0a287a4cd8f49cf0d8b0959ebe344f90ca8af696ede9c23b"
+      },
+      {
+        "name": "fonts/lato-regular.woff",
+        "sha256": "1670565574aab8aa0a287a4cd8f49cf0d8b0959ebe344f90ca8af696ede9c23b"
+      },
+      {
+        "name": "fonts/lato.woff",
+        "sha256": "1670565574aab8aa0a287a4cd8f49cf0d8b0959ebe344f90ca8af696ede9c23b"
+      },
+      {
+        "name": "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF",
+        "sha256": "168c79fe9994522eb27956bec302ac16506eee6b0d4fbf924cb673ecb9eec401"
+      },
+      {
+        "name": "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D.map",
+        "sha256": "16d0036ba493f4cf59d58873a83d5e69d58750311d4b5e2f5bd799df8a07650f"
+      },
+      {
+        "name": "icons/sunshine_theme/previewcard.svg",
+        "sha256": "17841b476cbc9f1d53dd770033e5f75c29d9803adae128eedc8ba1e5bb1c565f"
+      },
+      {
+        "name": "ext/content.js",
+        "sha256": "17b10e992ec5e181497b178357762a5f0e5502c60be9fed824f82528045d07ab"
+      },
+      {
+        "name": "adblock-options-settingsproxy.js",
+        "sha256": "18aff2cf0e15145f1accc0637a17426147b2ef2b43f8c57be85706ddb965d62e"
+      },
+      {
+        "name": "icons/adblock-20.png",
+        "sha256": "19273bcf4ae7a2d0cf554b4dda17d5195ec47783a98c2f2698f7d40f80e0b5ee"
+      },
+      {
+        "name": "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89.map",
+        "sha256": "193183a167f0b0af8bdbb6e6a70f7087338191b9d6e2c01b7eef4a6e60e386a3"
+      },
+      {
+        "name": "_locales/cs/messages.json",
+        "sha256": "199980b07de91ffa0af2c7764bea6b46a27ea2be0d07c37022338a4d8c7357c8"
+      },
+      {
+        "name": "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B.map",
+        "sha256": "19fea06363506df291940ddc21712112603fc2d74d22dea169dfa12d87c620ef"
+      },
+      {
+        "name": "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F.map",
+        "sha256": "1a230ab882793ab222695f7865f789c1787eca0419febab7fac15a12d7c2e99a"
+      },
+      {
+        "name": "button/components/CancelActionButton.js",
+        "sha256": "1a73b15f8ad4484b758d0ada228966861f4396c1d8eb96eb335c6a6b183e4b91"
+      },
+      {
+        "name": "adblock-options-mab.js",
+        "sha256": "1ae9a7e7d4769a0054a4d488748c9ed5fa64900e9cfbc9911ae109f502da5c11"
+      },
+      {
+        "name": "adblock-push-notification-cs.js.map",
+        "sha256": "1b07f24631e0eb8e38e624585b4a668661311a60e442d60d0ab7a15ce59296ef"
+      },
+      {
+        "name": "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9.map",
+        "sha256": "1b6154ecec108eb7b25d1903ff436d3b9e10d050328d67dac8bab3e29af85e3e"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-food.png",
+        "sha256": "1b93299878244519e7cb33ae87f36272ffb77ff7e2c4d22c034dfc5694554161"
+      },
+      {
+        "name": "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B",
+        "sha256": "1ba975b2b71c1e401336c1ad0c35e8381b163a4e180fe065987e22dc481adec2"
+      },
+      {
+        "name": "adblock-uiscripts-top_open_whitelist_completion_ui.js",
+        "sha256": "1c975c47bcd9bccff57d83eaab10d763dc8e38f364ec887aee766ee0dbe24816"
+      },
+      {
+        "name": "icons/adblock-64.png",
+        "sha256": "1cf96f405fcd9fa6a532cf75a5573bb7f595a2b600392ae5551bf5d4000dc4dd"
+      },
+      {
+        "name": "button/popup.js",
+        "sha256": "1e0340b064340d95f17b77c8033b19e8ad617b688cb8e517aec6aaa68a429f43"
+      },
+      {
+        "name": "icons/adblock-128.png",
+        "sha256": "1e7882803c7dd8bedb25226c31d02d6a75ce48425297cf22c7cd5375daf60a4a"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-dog.png",
+        "sha256": "1e7e04d5b60c44620be5c07a65ef12e2f65de0edf06f6df64e38ef161e85f77b"
+      },
+      {
+        "name": "icons/lock.png",
+        "sha256": "1eafd240b5199cacfe939773f1ba252abad3ac2ebe3d12067de5bff7e1a4ebbb"
+      },
+      {
+        "name": "icons/solarized_theme/beta_logo.svg",
+        "sha256": "202004e80e352c614b6f39af7690c5d3845dc1067edc8a41aedf0048bcfd91f2"
+      },
+      {
+        "name": "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520.map",
+        "sha256": "202b0a2e8b3bd5c2b3eb76ca2e23c439fd63ff4090720eb50f7641bbff2c1246"
+      },
+      {
+        "name": "icons/ocean_theme/beta_logo.svg",
+        "sha256": "20d0e3e403a8756196ce38bff6174e5fe124919cc3d84282a432cbc4bc2c2923"
+      },
+      {
+        "name": "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350.map",
+        "sha256": "218c6a1d451f6155577ab3e5c96a1f195584fc02611d00aa2a59c2e6b044dc6f"
+      },
+      {
+        "name": "onpage-dialog.postload.js",
+        "sha256": "21b12c3a6b2ce562e1e5a5d82472db09d49b476415e2054605d8dccfb791d185"
+      },
+      {
+        "name": "adblock-picreplacement-imageview.html",
+        "sha256": "21e786422a19a18c005c1466a3742ca521e0bd40bf5f78ae79e4836a4e6ba234"
+      },
+      {
+        "name": "cookie-banner-detection.preload.js",
+        "sha256": "229395d4e0fcaef4fdf7b946ff41e010f134bad4cdf895adc0d484b5b49941c3"
+      },
+      {
+        "name": "icons/loader.gif",
+        "sha256": "2298adc281fe82877d0d17a4bef71f6aebb5b76c06d76328e1529a68d57a4def"
+      },
+      {
+        "name": "button/confirmation-page.js",
+        "sha256": "22ba65309537161e06a1407d0f9bd76b9d358de2b2dd7320ffd484d4005568a3"
+      },
+      {
+        "name": "icons/adblock-vpn.svg",
+        "sha256": "22cf87e69686216251efc4393e0661eb2f388e9798bc7e3c313ee0571284d96e"
+      },
+      {
+        "name": "icons/adblock-48.png",
+        "sha256": "22dfc0d4ccef455042b51fee410f83af4f8e6e937ebc81b62751e2bba331f5ee"
+      },
+      {
+        "name": "reverse-trial.preload.js.map",
+        "sha256": "2304d01ed651ce87cadd5bbe7a2291b7021ddadcddd4c4a54faab1f4bb2851af"
+      },
+      {
+        "name": "_locales/ru/messages.json",
+        "sha256": "256d5e356298ad08fcd0cba2acb40de1608140d4b58c8dfeb0d210265f2590e2"
+      },
+      {
+        "name": "icons/dark_theme/logo.svg",
+        "sha256": "25ed54548f12751f69fb75f7fceb397307aa23eb1761b7d752764a39cb288053"
+      },
+      {
+        "name": "data/rules/abp/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5",
+        "sha256": "263747df7609066121aff0c81f11421c23a8ffed8b66c6600c680ee04ecfcffd"
+      },
+      {
+        "name": "data/rules/abp/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C",
+        "sha256": "2779c9ce5586ba9b752c2a3e01995dd60173f6899aad95c26b8cc295b02f61bf"
+      },
+      {
+        "name": "icons/disable_site.svg",
+        "sha256": "288a6cb68b62b4f728923a913268a61fc0cfea25379f91185d0cd01157c75983"
+      },
+      {
+        "name": "adblock-button-cookie-confirm.html",
+        "sha256": "29187c51b26d755513f5df165ac2dabf55fae31f95e6d16363528180d03e5575"
+      },
+      {
+        "name": "button/cookie-confirm.html",
+        "sha256": "29187c51b26d755513f5df165ac2dabf55fae31f95e6d16363528180d03e5575"
+      },
+      {
+        "name": "premium.preload.js",
+        "sha256": "29ad0f12ca0b0d933a9a404eb1d8f8fd40a2a7c5d6ac430fa073b9c264730616"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-dog-grayscale.png",
+        "sha256": "2a0fca1822d5e65bd7dd70a0abbf937d96cdb6b59bd3bc3b24a19b136fe249cf"
+      },
+      {
+        "name": "_locales/ko/messages.json",
+        "sha256": "2b5eec8fbc8b403c26405f4646113a9fa958ced7031a6fada82bc30817c8b9cb"
+      },
+      {
+        "name": "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128.map",
+        "sha256": "2cccde050569d40937a686107922d52c8c356f7906141f68a89fa562df95ad84"
+      },
+      {
+        "name": "conflict-detection.preload.js.map",
+        "sha256": "2cee748a109f8ef1f0325b7a3cd44b64716f835f76518a6dafe65ef838267959"
+      },
+      {
+        "name": "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238.map",
+        "sha256": "2d2ab083ac56d0cd8e528b69422f5cd4406abeef1133bd813f59966d33fabf67"
+      },
+      {
+        "name": "adblock-options-tabs.js",
+        "sha256": "2d6ee107f9ccde303fcb4c251056f9f2bbc04c8cfb84389585b181cf08acd600"
+      },
+      {
+        "name": "icons/cookie_consent_cutter.svg",
+        "sha256": "2e451c1d0236c742568d3ad1b38024fca68c09d98aca9a07c3256b9a5fa7da3f"
+      },
+      {
+        "name": "button/utils.js",
+        "sha256": "2f2e54e8e89ff1d9a47316010852b2449b74c9634fb0b6ed22e49ed78f6f8d70"
+      },
+      {
+        "name": "adblock-uiscripts-blacklisting-elementchain.js",
+        "sha256": "3038dfe44b3068561aed6a8af62b556da36db45cbd9f58bc44f32b78739b04c3"
+      },
+      {
+        "name": "_locales/sv/messages.json",
+        "sha256": "30a917187e997959a809c8ee5a94e89c6fd4b60a615543794e7b18cf50bbeaea"
+      },
+      {
+        "name": "adblock-options-premium-filters.js",
+        "sha256": "3118952f914c0f0ee2a37c6a50870d4e16a5b0b9b362e8352d7ad938820fdf4c"
+      },
+      {
+        "name": "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82",
+        "sha256": "3331d5bad899b774e65127b8a29a6ffa5708b35565e649da453aed6356a3303f"
+      },
+      {
+        "name": "adblock-uiscripts-blacklisting-clickwatcher.js",
+        "sha256": "343d8b167cf6fbbfd07dd000d6d7fd9ca120610bd83bdd7fd552465274d2d48c"
+      },
+      {
+        "name": "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F.map",
+        "sha256": "3475652a138c59bf2d3ff0a9445c0c75771b58e8baba8f4a43d4447c17cc375e"
+      },
+      {
+        "name": "adblock-options-filters.html",
+        "sha256": "357f7ce9f91c4638645407b541eed7e448f49ed939edc99a14e826813e38bd58"
+      },
+      {
+        "name": "icons/watermelon_theme/minicard.svg",
+        "sha256": "359e58c69a584ddeed1e642d8e59f6a4a3b348b51c4d7728081d2af48558bc72"
+      },
+      {
+        "name": "icons/ocean_theme/minicard.svg",
+        "sha256": "35a404fccd428e5caf7f4baed8baf5b9f438b556c81a50d39c241ae7cd66d0c9"
+      },
+      {
+        "name": "_locales/ms/messages.json",
+        "sha256": "35aaf400048719c28679cbeeaa219cb2e5e5464bb6fe73d6a73644b51827b1cc"
+      },
+      {
+        "name": "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D.map",
+        "sha256": "35b050c0d586d6e9a66d416407c73cfa4b7fac9ec695e5e31453ba9466ef9846"
+      },
+      {
+        "name": "_locales/nl/messages.json",
+        "sha256": "361da4b39bf95f59611ab3a721ed7f48a1eb4164524a3931d299c3112707d31f"
+      },
+      {
+        "name": "info-injector.preload.js",
+        "sha256": "378d9cf890cc040af499887b78004c80e8f533e734770554ac8d02eafd385233"
+      },
+      {
+        "name": "devtools-panel.html",
+        "sha256": "38cf09329037384ece570c16f16b85589502671f716b6d19277b02bd22aec8e5"
+      },
+      {
+        "name": "jquery-3.5.1.min.js",
+        "sha256": "3944ce9471675afed01ea651db06be115256d862d28b12f4060ed84e0e3fbae1"
+      },
+      {
+        "name": "COPYING",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "name": "adblock-uiscripts-blacklisting-overlay.js",
+        "sha256": "3a05446e691681c29a7d8f7755ce7764a0ef1f5c09564aaeec066db0ccf84c38"
+      },
+      {
+        "name": "button/components/icons/adblock-logo.js",
+        "sha256": "3a236c872872ccad753672795dccbb851bc5e8d0c88b30f53399b751a943713a"
+      },
+      {
+        "name": "_locales/pt_PT/messages.json",
+        "sha256": "3a39c92a0c9e58412a9f5ce4a3a55896d7e6c00fb46cd58d0ad284092c8f2779"
+      },
+      {
+        "name": "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15",
+        "sha256": "3a9b5b238baffe2e4fafc9ac71cbade15b9b91b07c11235c4e8a66fd616ae858"
+      },
+      {
+        "name": "adblock-options-options.css",
+        "sha256": "3abd3c095c224dd4804ec271c2e6d715f382c2b148c12d9e08447cc6854c1f31"
+      },
+      {
+        "name": "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C.map",
+        "sha256": "3bda1f27ecb3a9182e10e4db251c2470e72d13e2eb3389cd61971311b0fdffc9"
+      },
+      {
+        "name": "managed-storage-schema.json",
+        "sha256": "3c48287869b9566a658a9c21d4507bc056d405f6617d087eb7469e74a35d4585"
+      },
+      {
+        "name": "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A",
+        "sha256": "3c9f5db9c740be79ed78a3694c940e2834581e8b4ad44eef1b06fb3758d87ebf"
+      },
+      {
+        "name": "icons/default_theme/previewcard.svg",
+        "sha256": "3e0a7e578b6e3f7a7cd8ad01dcddcd0a316dfd4050353bd849e428646b7d330e"
+      },
+      {
+        "name": "adblock-uiscripts-top_open_whitelist_ui.js",
+        "sha256": "3e2f0d76e8194bd94e0614e40597b792af4307f55599b177a498d5a2996a849e"
+      },
+      {
+        "name": "icons/outline_heart.svg",
+        "sha256": "3e40b12c479d5c47f9ea32a3bb88de9555dbc1737f062093f5f392549c84d3cf"
+      },
+      {
+        "name": "icons/distraction-control-video.svg",
+        "sha256": "3e4814e7ef5f10749379d8004a6e1f1758fe1a96514663e44f9b52e31335eaad"
+      },
+      {
+        "name": "icons/search.svg",
+        "sha256": "3eb12f146e76cf2a3883c9aa0627a912e189718f364376acdbe8d3d4e0acfeab"
+      },
+      {
+        "name": "icons/solarized_theme/optionscard.svg",
+        "sha256": "3f46c89215a27c160d9958af1ac5b6fb161d7b85bde0db17fad44642155d3de6"
+      },
+      {
+        "name": "icons/adblock-16-allowlisted.png",
+        "sha256": "40506e9258c0a3f45e7f73f8aa09af43b99db26464e04ad01d5dc9ea4abb540b"
+      },
+      {
+        "name": "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520",
+        "sha256": "4132cec58e31681ed296074a2bf0c9dfc934c4d4174d6a74a7c7a1ad84852c9e"
+      },
+      {
+        "name": "adblock-options-localdatacollectionproxy.js",
+        "sha256": "416db222f44e04d8edd3050647fc3e2a8767fa41120b71e4632b72a6282a7457"
+      },
+      {
+        "name": "adblock-button-undo-allow-confirm.html",
+        "sha256": "432f9fad05a49e722fd5cfc8102efca5e4c51f8a3ed0a3cd3b35552f3f5a5d47"
+      },
+      {
+        "name": "button/undo-allow-confirm.html",
+        "sha256": "432f9fad05a49e722fd5cfc8102efca5e4c51f8a3ed0a3cd3b35552f3f5a5d47"
+      },
+      {
+        "name": "button/help-action.js",
+        "sha256": "43fd088f399b85d1667528e6cac29821c4a8904aca737f2ff24961e8b5138994"
+      },
+      {
+        "name": "reverse-trial.preload.js",
+        "sha256": "441580e186256eace381a41792a3d806faf4ee721f7b8095ac2c638a437e182e"
+      },
+      {
+        "name": "icons/solarized_light_theme/previewcard.svg",
+        "sha256": "4571a288b71b36aec93a3e9c55874a32662a17d38f90bd0cbc196d4ede267f15"
+      },
+      {
+        "name": "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD",
+        "sha256": "487286e875a1f41f0c7a13d1782bccd421ceb6709a381638d36d03a557c28e72"
+      },
+      {
+        "name": "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6",
+        "sha256": "4966d602f0247a1c1739ee64bb164315a1f3e0f643ee84359368f58da5bcf1c1"
+      },
+      {
+        "name": "adblock-uiscripts-send_content_to_back.js",
+        "sha256": "498e7af8cce1de8152ab6e81ee9ae80eff24f87f27226257e9806ab06eb32dbd"
+      },
+      {
+        "name": "icons/options.png",
+        "sha256": "4a44901b4be3e55b314c60d1edcb440d9927380dc425dc5d1bb405f5fe65fc0f"
+      },
+      {
+        "name": "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350",
+        "sha256": "4a9694241384d37f4d49ccfe3dd1bd600bacc51a30ed0528dbf3a9f6409de5f6"
+      },
+      {
+        "name": "icons/icon16_grayscale@2x.png",
+        "sha256": "4b21d210d7c49edb5efbacd4cabf1138a6a416ff6219c8a99ec4434dc622ccd3"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-ocean-grayscale.png",
+        "sha256": "4b9d3d942228aaace65c09a072132978177b59a9cfe6e482bbc747e499b032bf"
+      },
+      {
+        "name": "_locales/en_GB/messages.json",
+        "sha256": "4bdf935da4abf7653f396be292ccec74b135cb32ee51c1dc8aaf075de9dbfa50"
+      },
+      {
+        "name": "adblock-uiscripts-adblock-wizard.css",
+        "sha256": "4c10f71984ea0a80efa29b4059dbd2cfb11da06850c9219935bd094560e02bfb"
+      },
+      {
+        "name": "adblock.css",
+        "sha256": "4c4478fdae882326bdac49b208e3407b9ca19ef7a7b63fd94827ca3bb3495a37"
+      },
+      {
+        "name": "adblock-options-subscriptionsproxy.js",
+        "sha256": "4c4c3d71503012decd969260c27f39e64038772c0096d23ddcb7ce7fc7b5fb19"
+      },
+      {
+        "name": "icons/solarized_theme/tinycard.svg",
+        "sha256": "4de95723c5c8dc041145e38fdd73b3903cf1837dcac96620916001b0e5f09004"
+      },
+      {
+        "name": "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238",
+        "sha256": "4e7aa848a3ca95ec58f6e1042fd4d5e435870cd532a6c8881571b9126fe6e3b3"
+      },
+      {
+        "name": "adblock-picreplacement-image-sizes-map.js",
+        "sha256": "4eb1c6edc25f0a25473257ac314a94e68a5ebb1e18237d828acc151abc8e42fc"
+      },
+      {
+        "name": "data/rules/abp/E22C3B40-DC90-49D7-8BF5-E60904AB159A",
+        "sha256": "4ec841d0c7b76029a91dfd833dbd3416cd24be1a522285ce3a99fc383f520bf7"
+      },
+      {
+        "name": "icons/icon16_grayscale.png",
+        "sha256": "50aa3af0e71aa0a83a8c13a7076ef49549a2d7f44d68d90d61b29ce0681fdbb1"
+      },
+      {
+        "name": "data/rules/abp/07549D8B-F06F-4D9D-A567-929AA59E9D1D",
+        "sha256": "50aa3cf1fde2f83c4d41daaf35811a9c621bad4eae0473e0beb1afedbc062d7e"
+      },
+      {
+        "name": "i18n.js",
+        "sha256": "512871a6f32c571e13597ecd95c1b73a85991c683c91422fda0a5e4b14d456bf"
+      },
+      {
+        "name": "adblock-picreplacement-imageview.js",
+        "sha256": "520ca473b05c4b76e3f4930ba7546996485044afee61805d27c577bfe70d0d99"
+      },
+      {
+        "name": "adblock-getadblock.js",
+        "sha256": "52111b1fcc407314a49d0dca1f341823fb550f475fdffd5336ea2218d69a5ff9"
+      },
+      {
+        "name": "_locales/de/messages.json",
+        "sha256": "522690583e2647701c6602c5b94720b5f94e7559c9351551ea96102c917813d8"
+      },
+      {
+        "name": "icons/rebecca_purple_theme/tinycard.svg",
+        "sha256": "52797988af35924c2965739002c242da35205dd1fb8a79a387755c62fea66ef8"
+      },
+      {
+        "name": "icons/help@2x.png",
+        "sha256": "53215948c9fba902f6ec71a0857bea76a0e4c486f1f410dd69698f9217dd04a5"
+      },
+      {
+        "name": "icons/help.png",
+        "sha256": "548e27035c7402ecaab95d47b0e84f8bf0ca0f79bf02b9ff9eae492a60d8d7cf"
+      },
+      {
+        "name": "button/components/MenuLink.js",
+        "sha256": "555aa894108dfad2a0fe32e241519f257e8e8394255dbb857efc455bdf91a488"
+      },
+      {
+        "name": "vendor/@eyeo/webext-ad-filtering-solution/content.js",
+        "sha256": "561b2c3319a4d2cc7baa8459ad8429515acd925d2d1f2471897f57e32357a81e"
+      },
+      {
+        "name": "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4.map",
+        "sha256": "5873bc5e7cf6906fb5b2348da1579d972e33379e61b2cf535b2909b331c7e416"
+      },
+      {
+        "name": "proxy.html",
+        "sha256": "598127c09588d4e8c2587b219d264de2ba93cce4b7649d5b5400ff41ff5d48e4"
+      },
+      {
+        "name": "_locales/ar/messages.json",
+        "sha256": "59b6a4c86d3968691a1ac4768e9488a1a7341485579c22dd53b17a4e59ce64df"
+      },
+      {
+        "name": "_locales/tr/messages.json",
+        "sha256": "59ceff223b293c0e56d031dd5ad1fb24e093363a1827cea5e0698c8edabe977c"
+      },
+      {
+        "name": "icons/solarized_light_theme/tinycard.svg",
+        "sha256": "5a1432455971e29bbfe9a34f57845ef52b176ecaf5dd820bc6ad269e42765e81"
+      },
+      {
+        "name": "icons/adblock-20-allowlisted.png",
+        "sha256": "5afa72f8ff44367b5fa12ac4602b60dd6b90beb04c19d51e6d54ceb36264f154"
+      },
+      {
+        "name": "_locales/ca/messages.json",
+        "sha256": "5b3d706907e16266872c359fbd92f769c3e6564602f9e2784d9d76e9301aea98"
+      },
+      {
+        "name": "data/rules/abp/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6",
+        "sha256": "5bb6338bb806a00070895357da2f986fef914b0135feefd6b8b42ef005476c07"
+      },
+      {
+        "name": "icons/icon38-grayscale.png",
+        "sha256": "5dd61fb28476c87970bcdb17ee1ede83b53425010afc1b3b5b7c1ffe20091ca2"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-cat-grayscale.png",
+        "sha256": "5e25b3aa5091da2a81d1f0c23721a1ed550b00d65a1d7da67b4f552d1a822da7"
+      },
+      {
+        "name": "_metadata/verified_contents.json",
+        "sha256": "5e33e648dd32fb52fbcb4d3726ef86461d8c1937d47d906ab75d919d4c8ff35d"
+      },
+      {
+        "name": "data/rules/abp/8C13E995-8F06-4927-BEA7-6C845FB7EEBF",
+        "sha256": "5ed4b7a208fa91d0ddfdbec0cf75a389056435d97f9ceba2a64ec7cc8cfbc08a"
+      },
+      {
+        "name": "adblock-deny-push-notifications-requests.js.map",
+        "sha256": "5f099cc47469bdfbc3bec4234027f15a2453b3c4decad7e86e66e9e37384571d"
+      },
+      {
+        "name": "adblock-options-mab.html",
+        "sha256": "5fcc79d5e43b6d33a3e2b170d5afee7ec0aacfc2f5decb6e5c62d546661a1d4c"
+      },
+      {
+        "name": "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334.map",
+        "sha256": "609b322ca89a11cfc8159d5219156a5507cb7ee5ab8d55a412e337eb96cd5ea7"
+      },
+      {
+        "name": "icons/rebecca_purple_theme/previewcard.svg",
+        "sha256": "6156953aba99f904640d00944bfba20dfe05a3e8e438275765d5cecff1194130"
+      },
+      {
+        "name": "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD.map",
+        "sha256": "616d21f918608ac322b8c3839f46aebcd76d3a886ca2633e3a465e58c9e9f63b"
+      },
+      {
+        "name": "fonts/lato-bolditalic.woff",
+        "sha256": "61da7dac4b0f552e25b44adb91ee72ccd269d91a09e4555619bef5c2d9946d60"
+      },
+      {
+        "name": "data/rules/abp/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B",
+        "sha256": "62fd27cb870d3f7cd63e537e4cae828b326c76d9f328157f989433f87f997b74"
+      },
+      {
+        "name": "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE.map",
+        "sha256": "643e617ac2a45b0fe9e58db8af365b52c5f7ebf8b164d957faff3bd922dc76dc"
+      },
+      {
+        "name": "adblock-options-events.js",
+        "sha256": "656d45ea33295b77cc4beb66775bd60fd449982506b33371622ed0e2af4d5644"
+      },
+      {
+        "name": "adblock-options-support.js",
+        "sha256": "65a22f09587ae86f6c1645271c84b303eed735f662cd192a443bd362192c4743"
+      },
+      {
+        "name": "adblock-uiscripts-blacklisting-blacklistui.js",
+        "sha256": "670eb84f07cc75ca6d6d88c41d24fd8d7b13933341136a719e78dbbabc89ed58"
+      },
+      {
+        "name": "adblock-options-premiumproxy.js",
+        "sha256": "677989d408437a38db58f746246f9dc4a853e0175d9f1cd6cf89482c56e8deeb"
+      },
+      {
+        "name": "icons/popup_menu_dark.png",
+        "sha256": "67cddeb31fc28ce807b9cec45912424fbd2ac8ef1870eeeccb4d8f2bb02bb15d"
+      },
+      {
+        "name": "icons/adblock-icons.woff2",
+        "sha256": "67dcd2343af3f532efa6ee39db730ae5969757386ef186e39f9a284b5f4ce681"
+      },
+      {
+        "name": "adblock-errorreporting.js",
+        "sha256": "685271bd3ccb770323442f86caa871521200e6fef1d61e6ba9f25368c6ecdd1a"
+      },
+      {
+        "name": "adblock-options-index.js",
+        "sha256": "687cef4991d6b18473945e379fefc61f63fe5bf23e4d004959fc9953a49eac9d"
+      },
+      {
+        "name": "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8",
+        "sha256": "68c767499c2d5915c696b751d353b3cbeed670460da36997c5cffe4c559cd32f"
+      },
+      {
+        "name": "icons/options_page_dark.png",
+        "sha256": "68cdd9f25754608eb6ecd128eb1d61d1bce5a4978f52a77efca5eaa374f6da12"
+      },
+      {
+        "name": "_locales/gl/messages.json",
+        "sha256": "68d0bc922ac58639e725ac9c918124e60b398c548a51aa0d1da7fb5c8fe779b7"
+      },
+      {
+        "name": "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9",
+        "sha256": "690be8bd440c1ebae2a1b7da471d134cac23a9b6210d05a395eb0b9decfce153"
+      },
+      {
+        "name": "adblock-options-general.html",
+        "sha256": "693bc766410b630da09a7e3d0c200e34625aca1a84fb96818256c907826d2e56"
+      },
+      {
+        "name": "icons/ocean_theme/logo.svg",
+        "sha256": "69e6d7d92ec8d2871680141a85b71a50e35c5bfc1ef5e3d56a536cc99ff2f11f"
+      },
+      {
+        "name": "icons/rebecca_purple_theme/logo.svg",
+        "sha256": "69e6d7d92ec8d2871680141a85b71a50e35c5bfc1ef5e3d56a536cc99ff2f11f"
+      },
+      {
+        "name": "icons/sunshine_theme/logo.svg",
+        "sha256": "69e6d7d92ec8d2871680141a85b71a50e35c5bfc1ef5e3d56a536cc99ff2f11f"
+      },
+      {
+        "name": "icons/watermelon_theme/logo.svg",
+        "sha256": "69e6d7d92ec8d2871680141a85b71a50e35c5bfc1ef5e3d56a536cc99ff2f11f"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-food-grayscale.png",
+        "sha256": "6a36e3cb444341655fa73eddbead9d0c68d33eecaab7b61670b7eec801f724fd"
+      },
+      {
+        "name": "_locales/it/messages.json",
+        "sha256": "6abc04db18763e0b6678753d49479d314a8459b6124174e818223e7122974aa7"
+      },
+      {
+        "name": "vendor/@eyeo/webext-ad-filtering-solution/content-main.js",
+        "sha256": "6c75d8fcf268654faaa18dd8dab0a44e7bf900fc988908ee6f4a875c298024f6"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-cat.png",
+        "sha256": "6d32d6b9a968360512d22b911eda527b02dab3efd39d6f0045402096315a8a38"
+      },
+      {
+        "name": "button/help-button.html",
+        "sha256": "6d4c3fe6a64a0aa2df284f1770cad4b0762dae37b1da5d31e6df1772b1ed89ee"
+      },
+      {
+        "name": "icons/popup_menu_default.png",
+        "sha256": "6d8642a59dd05f5e3ad48b28eb157d5f9ce2fad0d209d9af1634b6e7a551c314"
+      },
+      {
+        "name": "close-tab.preload.js",
+        "sha256": "6dec23d18bbe00b5c7e4da372cf3bd05d5c54d80ecbc54a474701914424eabea"
+      },
+      {
+        "name": "abp-background.js",
+        "sha256": "6e0482f97e9a7c4e28fe34273a9a0905b0965de152bb3a8f3268c0df71f716a8"
+      },
+      {
+        "name": "icons/themes_darktext.svg",
+        "sha256": "6e1016d40ff079b7c863cd72e89f8b5f668f7522068b235916cdf9cee9e376a6"
+      },
+      {
+        "name": "_locales/id/messages.json",
+        "sha256": "6fbabb73d1baf8736cb5c5d836b78cbc9e28b3155fc520caabebdbf1426d0d34"
+      },
+      {
+        "name": "button/components/PopupDetailText.js",
+        "sha256": "70680479c501776c47f17ea5015f51939fdba835ae4be96ef646786c174c521a"
+      },
+      {
+        "name": "_locales/zh_TW/messages.json",
+        "sha256": "70ad4d2436bb24e81283276d871225a16c410ed3f891edbd5ad3afc048b7edc3"
+      },
+      {
+        "name": "data/rules/abp/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A",
+        "sha256": "70ce529fd3861ef632df15dba181aa39951ecebb27da3488ccf88f30e91de093"
+      },
+      {
+        "name": "adblock-options-datacollectionproxy.js",
+        "sha256": "70d26147dbbd70bec910e30ea78f42cd93fff57bb81c617fa4739445c6983a44"
+      },
+      {
+        "name": "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2.map",
+        "sha256": "7105663f4d8d0c020482247371ec29a7e9003a4ea1eeb31d7a31e282616f2dbd"
+      },
+      {
+        "name": "button/popup-sections.js",
+        "sha256": "711f569eaafb1fb82eaf85c2958d2294fd6c43b2691deeaa5640c08e439146d3"
+      },
+      {
+        "name": "_locales/uk/messages.json",
+        "sha256": "71f8075f7ce8c55f1a17fa061b6281b4ea801a0e7ec3b73398fafb227bfdd84d"
+      },
+      {
+        "name": "icons/facebook-icon.svg",
+        "sha256": "73b60fe878940f5a080acfc28ffa5d9ddde01ba33352bce02f2b207cbfe4efb0"
+      },
+      {
+        "name": "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A",
+        "sha256": "74e2abc040f5655975d8ac18293e56dd29fa5ac90d9cf2bcaead2f16f4a44935"
+      },
+      {
+        "name": "data/rules/abp/588470E8-E163-4CD9-A909-521B2A3BE73F",
+        "sha256": "75944f3c66884d591ee1a186816e201bbc8aec21b6ab3522c53b0d2b74953a34"
+      },
+      {
+        "name": "button/components/PopupDetailStats.js",
+        "sha256": "760327dc529aeaf90ce167c8b53aeb961951917f80bcf4eee3387eed28258e45"
+      },
+      {
+        "name": "data/rules/abp/2708BCB7-2E45-41BC-B517-1730CF532F89",
+        "sha256": "760762ad69203f13bd59f88f2bec6156dc69f9c2b371e39db86a217a17d9bdb1"
+      },
+      {
+        "name": "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984",
+        "sha256": "769f04f1bdd7e74e08fdc13c230295c8c50cfc25cb8ba85ac679938648a6ad65"
+      },
+      {
+        "name": "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797.map",
+        "sha256": "76a1675bf5d3d5b493e6b0e29f3436d31bbe3c413167dd7a249ea395b8f139c3"
+      },
+      {
+        "name": "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4",
+        "sha256": "7701bd22aa60a5aa46c863b4a435630cd300c6ae2838497efbb9a9bdb7b3ff91"
+      },
+      {
+        "name": "devtools-panel.js",
+        "sha256": "772e22f01987cdf9247a86cb2fbdaf99539e6d913f9da8fbdcbbf73d11d2cf9f"
+      },
+      {
+        "name": "button/filtering-options.js",
+        "sha256": "781611a148ac0ac37856044208fcbebbbf69f7fcf45cb12258ab082533b0573b"
+      },
+      {
+        "name": "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119.map",
+        "sha256": "78c50309aae9fdd513f40675fbbe259190975518ebbd7491a3e033de1bd2f6c9"
+      },
+      {
+        "name": "button/header.css",
+        "sha256": "7a342e98d00c7be07c8be50552d5f6de00e7a006f43a86351308eff649bd7b25"
+      },
+      {
+        "name": "globals-front.js.map",
+        "sha256": "7cbcecaec82ec30b120c51a72db64c2f49b0ce2348151bf694a9153b6617e5ec"
+      },
+      {
+        "name": "icons/watermelon_theme/previewcard.svg",
+        "sha256": "7e7454318957f2e323931affb371a61da502667ad36018cf2044a573b598754a"
+      },
+      {
+        "name": "adblock-options-tabs.css",
+        "sha256": "7e9ac220448b509a1dcb1bc0f704a2c352ea3bf8e94388dcc87dac1f5b595d16"
+      },
+      {
+        "name": "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC",
+        "sha256": "7e9c01560b39054625cddbd3a16424ff174fa36a1b1509f28b85cdbc0b906359"
+      },
+      {
+        "name": "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15.map",
+        "sha256": "7f9df197124b990686281d39d1d36447ab0c21219bf1c4ab39251beabacb5d1b"
+      },
+      {
+        "name": "icons/sync-preview.svg",
+        "sha256": "7fc0809dd3f382c8f9b1d43c3f612d238bf5e1fe245d48845c85454b5d1f5c37"
+      },
+      {
+        "name": "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119",
+        "sha256": "805a0aaafefdae46921fa31eee11606ed8aa5e47df3c8ef53cde899be3ce1b48"
+      },
+      {
+        "name": "adblock-picreplacement.js",
+        "sha256": "819183c259b071e07f66e4b815d2b8b7801d15665cb28ba49d3a88073a6d183c"
+      },
+      {
+        "name": "adblock-uiscripts-load_wizard_resources.js",
+        "sha256": "81ab82ecaf58cff3cbef8dcb23b8ed686778a4f1135faa046bd2fa25c4d1f05a"
+      },
+      {
+        "name": "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F",
+        "sha256": "81bc8ec3bddb746bb8f2a9add4bb557bef87023dba50cc7ed7fff8de9bfbac95"
+      },
+      {
+        "name": "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D",
+        "sha256": "82bdb9dedb350f0ce281e28ecacd3884c13318e77d30b1e6f82e92ac17669b6e"
+      },
+      {
+        "name": "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F",
+        "sha256": "82d9322b05a679b2502e5d71f3767e38d752a07849b958025405e037b184880c"
+      },
+      {
+        "name": "button/components/SubNav.js",
+        "sha256": "82eca9c257f6ecbd317834f4a924ec996b06dbaae229f42672a278b197d1b057"
+      },
+      {
+        "name": "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6.map",
+        "sha256": "832c8167bf691b0994b6141e24745d23ef459a3167959b4af91e5a6d366d9b7a"
+      },
+      {
+        "name": "contentscript-loader.js",
+        "sha256": "8616f0c10c5f6851830631aca112e0bedcd54572a16973b56b843ee747ebb2a9"
+      },
+      {
+        "name": "icons/red_dropdown_circle.svg",
+        "sha256": "86aebf9f5be4046c0d9818af65b26c8aca826e443b28e8d3b83f5359a3915833"
+      },
+      {
+        "name": "icons/solarized_theme/minicard.svg",
+        "sha256": "86b45de120e22593f91b4a769cd6a8abaf75fa41b7fd927036384479d196f198"
+      },
+      {
+        "name": "data/rules/abp/CBE50FA2-DE3F-480C-B1D7-04289391C033",
+        "sha256": "87edec42731a51f0a1f28eec39904741718863f81c3cb923044ae104fa4d9c56"
+      },
+      {
+        "name": "data/rules/abp/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8",
+        "sha256": "880fd45ce30d6a45b5ba58abedb065cef59dcce92d884459ea20cac7fc0420ef"
+      },
+      {
+        "name": "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF",
+        "sha256": "88865c02e58956166f9cdf7be074000a7ca72c57caad3ed456d793cc1b68ebea"
+      },
+      {
+        "name": "icons/filled_heart.svg",
+        "sha256": "88b6286feaa34876331462e76bc774947def3f0523e3db1977074665ce2a3fc4"
+      },
+      {
+        "name": "_locales/hr/messages.json",
+        "sha256": "88e9635fe3ad1bc7204cf27b337be33fee724e7c45c44d27d47f8e4650558f02"
+      },
+      {
+        "name": "_locales/he/messages.json",
+        "sha256": "88eb4a5cde81434a71adb2ba8028a209d1847adff8c084880c01f3a73b34d4b9"
+      },
+      {
+        "name": "fonts/lato-italic.woff",
+        "sha256": "88f15027c3aadf50ab39cea089b1f8aa3a18da7c47b30569c1f7489470c05292"
+      },
+      {
+        "name": "devtools.js",
+        "sha256": "894146b19bda7c27a955cd981cb5d4bd2d91739f0e419902bb9aa4fdad73e7ff"
+      },
+      {
+        "name": "icons/adblock-19-allowlisted.png",
+        "sha256": "89fbb7209d5eb1d649a1092621cfafd3e597f36913192c3da763bfe112018b46"
+      },
+      {
+        "name": "icons/logo.png",
+        "sha256": "8aac23eb849a90d6d1554a5cfc9d20a37853a345f48f728c61168a7bb54e27e0"
+      },
+      {
+        "name": "button/help.js",
+        "sha256": "8acf373194ee0250752f31220fa7911a1e70eb1b75389b292ec7f51536f62442"
+      },
+      {
+        "name": "adblock-deny-push-notifications-requests.js",
+        "sha256": "8b2f533651b94a93064c7749180e8baf906c60178bfaad5f23233ac527a5b814"
+      },
+      {
+        "name": "icons/twitter-icon.svg",
+        "sha256": "8cb813204d0339ee045561b4339ec49838e34ffcb4f18d5a17989aab1be5bf48"
+      },
+      {
+        "name": "_locales/ja/messages.json",
+        "sha256": "8cc820fbae48a9f40e1d9589117d3b1bad601dfa1c51e1926aab620d48947d77"
+      },
+      {
+        "name": "_locales/zh_CN/messages.json",
+        "sha256": "8dc733e3ff7b3728b90104617c817bfd2ca7cd085c2fa64442643fd1e91865f7"
+      },
+      {
+        "name": "icons/adblock-38-allowlisted.png",
+        "sha256": "8df8b9fd6ff715223064f055cf84c6fcb922a65921b1f9d026b191ea79fab439"
+      },
+      {
+        "name": "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA",
+        "sha256": "8ebfcb60a8f97516f9d380eb66b66a5cb61fd74a81a65bcf9886cbb8fb672c7c"
+      },
+      {
+        "name": "icons/adblock-20.svg",
+        "sha256": "8ed5cab33821b889490df61dc4671d8eea94826f30267f8c95f4b07d29cd0895"
+      },
+      {
+        "name": "data/rules/abp/D4028CDD-3D39-4624-ACC7-8140F4EC3238",
+        "sha256": "8ee69a8248cd4e8039cd33ea581661e43e7e665852cccdc204d45fffef2ff068"
+      },
+      {
+        "name": "data/rules/abp/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE",
+        "sha256": "8f3a1e350b7362d75d59f667c16b896ef4a4e046fb84d2c132275ec00be1516a"
+      },
+      {
+        "name": "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA.map",
+        "sha256": "8f9130d296791198c90df3173b3bfd5fddbd6534336219bcbc6dfd7a602ebdca"
+      },
+      {
+        "name": "icons/dropdown_circle.svg",
+        "sha256": "9055804929db40be65bb919c44986b8684cc656a2db93f13966bac0ebd0e4489"
+      },
+      {
+        "name": "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128",
+        "sha256": "90a43e875deddc6af9398df244bdfc1d7ec028854b7c3a23d4d9f8eb43557de4"
+      },
+      {
+        "name": "data/rules/abp/0A679439-445F-4DE7-84B9-88341F6DA520",
+        "sha256": "9127329c79cd6bcb402bc66cd9d917fbe2e3a87bd54c90e6eb780cfa330190c2"
+      },
+      {
+        "name": "data/rules/abp/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82",
+        "sha256": "9171b88283cb52d0d57718313243ad8c9a7567634e2191bda3e7d76f0aff0309"
+      },
+      {
+        "name": "adblock-options-premium-payment.js",
+        "sha256": "91e44441b196e19ad30990f9913e60b34390d061f9c68d30ece370a7c5525f55"
+      },
+      {
+        "name": "data/rules/abp/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4",
+        "sha256": "928183a0e7c53ed31a439544fb690b31da943387c32ea1052e8b3d37b0092097"
+      },
+      {
+        "name": "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F.map",
+        "sha256": "93866255db8e5aae30b455097449ff0deed0e586b28d3376e59eff28cec7bd8f"
+      },
+      {
+        "name": "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9",
+        "sha256": "93c9c1b81e94ebcd0e3b89a1913affd34cf6d70983d0e30a538839005fc25250"
+      },
+      {
+        "name": "croppie.js",
+        "sha256": "94108f3c557b0b3137419277a7f8459a91a41ea0e60e6940bd4d5987905402aa"
+      },
+      {
+        "name": "icons/solarized_light_theme/optionscard.svg",
+        "sha256": "95b4794399257c84e79a69b92c1c6b67b37a0d2f95afa25a9ec2d440bfd7aaeb"
+      },
+      {
+        "name": "adblock-options-mab-image-swap.js",
+        "sha256": "961f8b6a479ca6084926c3f212ef87f0f3379f32a8dd45be456e9c427aeae458"
+      },
+      {
+        "name": "icons/mail-cta-done.svg",
+        "sha256": "963f99667898e9fd2a80e951f70962faedf5c7f7e1a4020344bfe91058ed7c82"
+      },
+      {
+        "name": "icons/lock@2x.png",
+        "sha256": "964dc8b7ed334c199152cf97619e124dc7e5b1c2075892c1ab6d0728195fa9b2"
+      },
+      {
+        "name": "abp-background.js.map",
+        "sha256": "97cb21c57b0cde28c2b0ec94c01aa95e8e60d291403e9dd028539a24f6668b6a"
+      },
+      {
+        "name": "data/rules/abp/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC",
+        "sha256": "984b530209eea320957eef9a1f67a2bf295e625df9b8339ae963ba5958e85bd6"
+      },
+      {
+        "name": "button/components/ConfirmText.js",
+        "sha256": "995d31e37884e145f22bbde36b07c3aa30f58702895ce67c9b8f676fe0eb68dd"
+      },
+      {
+        "name": "button/components/icons/block-distractions.js",
+        "sha256": "9b723120624ff72a3467ad34d6c18647cf3d361780974d3b94164bd08250b3bf"
+      },
+      {
+        "name": "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B",
+        "sha256": "9c8fa0671ffcae7142962edfc25c7caec62835b25b0de0f5617428c35ff79135"
+      },
+      {
+        "name": "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825.map",
+        "sha256": "9de9049f30bcf10c14d23afa35602b82433062615c7f3935740925c64198f2ac"
+      },
+      {
+        "name": "button/help-map.json",
+        "sha256": "9df8bf99648d8ae59fc70ec2d76c14858591f259212452b858db8d5374cbdfc8"
+      },
+      {
+        "name": "ext/common.js",
+        "sha256": "9dfed1249a7e0491c3ac55481427f03d4fb2017d2e5d9ced6e15a5f6c0162e5f"
+      },
+      {
+        "name": "options.js",
+        "sha256": "a003e23a303bfa108a4266fce5c0e10a99177817d5259c07e14e789829e6d56b"
+      },
+      {
+        "name": "icons/smiley.png",
+        "sha256": "a17ca891e1f370936eb603bf93e244d5dbdb064e9953e1e18880962e790b0304"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-bird.png",
+        "sha256": "a2028ee32eab71048b3a609a3d95e0310a4b5d875aa91ff4ba21fd58d1d3dbb8"
+      },
+      {
+        "name": "adblock-options-customize.html",
+        "sha256": "a3774a47807b635be8b78f20fbaee585ae5435ae8b3b131bab77c25f683f83c4"
+      },
+      {
+        "name": "data/rules/abp/4B6CE485-30AB-4213-AD17-504B3F2D2825",
+        "sha256": "a3b90bc26117f06b73ca9a6ca132ba797ab15eddf573517d9e8481c0dd831abc"
+      },
+      {
+        "name": "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82.map",
+        "sha256": "a3bcecff6a369724bd9feef760b461f51ed079fed0c8b586b41595169f486119"
+      },
+      {
+        "name": "icons/twitter-sprite.png",
+        "sha256": "a4c91b271e887447b5a9d8675a88674818efc949aba41e4b5ffee9751f566a7c"
+      },
+      {
+        "name": "data/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F",
+        "sha256": "a52770f8d7550cf4ad9ff2d5b9101fd7dde7da3aded29a8dcc65e7a6f4f60eb7"
+      },
+      {
+        "name": "_locales/en_US/messages.json",
+        "sha256": "a58dbd2ca2e60fad97323a028ea7f2827403f34237003a6648718dda7046ac26"
+      },
+      {
+        "name": "icons/dark_theme/previewcard.svg",
+        "sha256": "a5f04135119b69ccc14c54860b63d147efbd5d933d2ce291903729bb1b1ba58f"
+      },
+      {
+        "name": "data/rules/abp/25A31255-AB36-48A4-9086-06192DE71119",
+        "sha256": "a625cf1b288f6dc5c4068a316b086c3be367c76f1be50046aaac1c476be2513c"
+      },
+      {
+        "name": "adblock-color-themes.css",
+        "sha256": "a778fa253f1a78bd30b27e925956e5bd6f15cdec5afc37c3a9bc3293da5c9fba"
+      },
+      {
+        "name": "icons/icon19-grayscale.png",
+        "sha256": "a79ee8cc1b887d74ce30cdff552f1774795300e6c72bbd4696d9c9490f3e95b6"
+      },
+      {
+        "name": "icons/default_theme/logo.svg",
+        "sha256": "a7f9442186139d02e3d644afb8ce05f9eb89c375bb7a92c666d2db39258c8365"
+      },
+      {
+        "name": "icons/MaterialIcons-Regular.woff2",
+        "sha256": "a87d66c91b2e7dc5530aef76c03bd6a3d25ea5826110bf4803b561b811cc8726"
+      },
+      {
+        "name": "_locales/no/messages.json",
+        "sha256": "a937853c5f28d8c38d25caf79867168139fc90d8bfe91267e4286903ef184576"
+      },
+      {
+        "name": "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984.map",
+        "sha256": "a971e9b4b762f59fa054082e6bd9045ad42c24a99a7597975140c259b33ed370"
+      },
+      {
+        "name": "icons/round_check.svg",
+        "sha256": "aa96f8a28196be8dfccbedc8e4546ccd534c0d83011a96aa0f3a8702cf3635a5"
+      },
+      {
+        "name": "_locales/el/messages.json",
+        "sha256": "aab7ba809611085663a82be9ddacf8d188b7c2cef14660b23f6ab4b463ffe494"
+      },
+      {
+        "name": "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A.map",
+        "sha256": "ab07a2af6073b8d8e425dd34c5ec377f7694ac6d4403566f84e68df76b658e10"
+      },
+      {
+        "name": "yt-auto-allowlist.preload.js.map",
+        "sha256": "ab08efe6e9374b7cd095426f28b6627c80fc37eadac4c9371b2d36b4a12eac25"
+      },
+      {
+        "name": "adblock-functions.js",
+        "sha256": "ab18936c1a6e5876de4bdb5212a154bfa8279878dfb69fe01724505a16a2d81a"
+      },
+      {
+        "name": "globals-front.js",
+        "sha256": "ab4de46837382d48e13ce159af995e6b9c8ad27994b5fb9ed005066868d48866"
+      },
+      {
+        "name": "icons/error_icon.svg",
+        "sha256": "ac9e36d5b014cdb63843877ce6f1af03d16b245638c1e21bc7794c79aa6cfe2b"
+      },
+      {
+        "name": "_locales/fi/messages.json",
+        "sha256": "ace741ac6bc3df8f613e06fc551335490d87b26f9e133b9ad7007702aaee0838"
+      },
+      {
+        "name": "data/rules/abp/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128",
+        "sha256": "ad12741b81eb769b07f850ca7eff052c5c3b4a61ff040b5316719df4b24920f0"
+      },
+      {
+        "name": "fonts/lato-ext-bold.woff",
+        "sha256": "ad93595f82034f011bb87221f4243af36205c6d5c871a167809c201c89bdd8dc"
+      },
+      {
+        "name": "info-injector.preload.js.map",
+        "sha256": "adc7360f8fb6a71880bd8f1cfd5ad77954ad7b01aaf248283e470401a2a84b1e"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-goat.png",
+        "sha256": "ae3b87776f145f4a8dadaaf591ae7cf69c4254fbe1fc2dbcce480466ddc3432f"
+      },
+      {
+        "name": "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C",
+        "sha256": "afd6b0140cdb31db0b6f7e0dafcf1fb0c75c41bc4cf67ad1a930d8ecbe73dbce"
+      },
+      {
+        "name": "button/components/Toggle.js",
+        "sha256": "b03282a350bd4657202c180b970f01915fca93d3b4327e85db5a203855411840"
+      },
+      {
+        "name": "adblock-options-filters.js",
+        "sha256": "b124b304f3bc8bbe0de3198ac5fc5c0f10e1c792c07080600bd7d4cad98d2d46"
+      },
+      {
+        "name": "_locales/ro/messages.json",
+        "sha256": "b198ba5e89a93b5abfac8104f1c033ce168a6eab04509db35b0c12901b1f4c26"
+      },
+      {
+        "name": "fonts/font-face.css",
+        "sha256": "b2333a1861525f47c5fb5ef9500f8ad0c62d7b0b39437f43546108c834af6a4e"
+      },
+      {
+        "name": "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A.map",
+        "sha256": "b34add6ea094b600f249d95b1e906a8ed44b358895f4645958f5b2394475b10b"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-bird-grayscale.png",
+        "sha256": "b3c35f5851894ce6889f034e9ccb32ba54f6eb5461cf28fee1e120a7a2681fca"
+      },
+      {
+        "name": "data/rules/abp/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9",
+        "sha256": "b56698203320f25106e71cc47a9b3fb6d9e1df462080b6d78d637151dea631d7"
+      },
+      {
+        "name": "translators.json",
+        "sha256": "b81a583cadf22d241c43f6d19c2eb14f54047cca21c10a97da4214bf4c70f7fc"
+      },
+      {
+        "name": "polyfill.js.map",
+        "sha256": "b84c00e18983dee9e71fa1a7309abf19869d302830fc473dd3bae57f39ca3ebb"
+      },
+      {
+        "name": "button/components/InlineLinkButton.js",
+        "sha256": "b8844f3825128bab6d13c8f1dd552e938a4641e091be2a3f67b15d50de971e33"
+      },
+      {
+        "name": "skin/devtools-panel.css",
+        "sha256": "b888e27a2ec57beca1beef748a8ccd49c2b63c7bfa478d0a170fcade9e505f7b"
+      },
+      {
+        "name": "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC.map",
+        "sha256": "b94ad87434afd9b203393fb92ae4a16ea725c180dfe2ad6ee12ff89b31614ab9"
+      },
+      {
+        "name": "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE",
+        "sha256": "b9ae073815bee755b652043430c7c0c19511a8bf3ff651e64704ac48b612b71c"
+      },
+      {
+        "name": "_locales/bg/messages.json",
+        "sha256": "bad87550694b66bdfa436988847074f9ccdf6b3201760aae09267ab481bade34"
+      },
+      {
+        "name": "icons/themes-preview.svg",
+        "sha256": "bb0e088dbf208b43489b388c28e3280343ac94932803363e609e2ff2e3f796f9"
+      },
+      {
+        "name": "button/components/icons/lock-icon.js",
+        "sha256": "bb48c8832a733290eb6f465d147a9299079e95dfd22012ad8ea4c77c4bcc1cfd"
+      },
+      {
+        "name": "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2",
+        "sha256": "bcb5cc4b8829378a6f6835f81170c968c2098cbd5c2b3ab67b852532eff6a428"
+      },
+      {
+        "name": "croppie.css",
+        "sha256": "bcda596dad082f18c1d6c0d7539366706a723b9b0807b74d08c83b041a0d393b"
+      },
+      {
+        "name": "button/help-segue.html",
+        "sha256": "bd1db3fbe847319d7dc4f8b82435aed5cfba956d8bb505bf7f7d541886dd8170"
+      },
+      {
+        "name": "public-api.preload.js",
+        "sha256": "bef4e658bc8ad8a76722f5a922759a50654ef1753903858d1d3b0f7376a1bffe"
+      },
+      {
+        "name": "icons/default_theme/tinycard.svg",
+        "sha256": "bf00455e680973ffc8c0f5d5fea65fcbf6e0a18a5ed6d7a2cd8b51605c5ae76e"
+      },
+      {
+        "name": "icons/solarized_theme/previewcard.svg",
+        "sha256": "bfb73cded68ff88722b4a34796271e3f3487ac2e5bd5adf543509eb1d2255008"
+      },
+      {
+        "name": "icons/icon24.png",
+        "sha256": "c06a5b485ca71289c86707c32c1ba47727dd22a343642febd882fa829f09d093"
+      },
+      {
+        "name": "icons/gplus-sprite.png",
+        "sha256": "c0f10d1e9ed64679aab5ac18d88db5700b68e462eb134e3c52ded826a7f0ad6b"
+      },
+      {
+        "name": "icons/facebook-sprite.png",
+        "sha256": "c1316e0a808e8df10e587a8ba84be554d309c2dc6561b59d6401f769cf1c4722"
+      },
+      {
+        "name": "adblock-options-prefsproxy.js",
+        "sha256": "c1406eb701fadb073f3a7a0c7a9f3a1570c088ea80412fdc20bc62f345086f7e"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-landscape.png",
+        "sha256": "c159c77730e6840b2824518abe290edca89ec609ad134a577fc26642db9c271f"
+      },
+      {
+        "name": "button/help.css",
+        "sha256": "c178776d07f145cebbe9a7af67a68b634325a251d37ce9276a2db64bada1b949"
+      },
+      {
+        "name": "adblock-options-support.html",
+        "sha256": "c2ba9beff2d181cc8e8b484b54815a961c63eec6ea3c362e243333c3f09f4784"
+      },
+      {
+        "name": "icons/adblock-32.png",
+        "sha256": "c30b7f65384eebdc5c696476180e7d6effa1b4708d5c68e75a1c1e23ce84c00c"
+      },
+      {
+        "name": "icons/adblock-40.png",
+        "sha256": "c3903fe7465778065cde00b3caa1d0cce6f4aeca8e2b7f1f89e8cb659398beec"
+      },
+      {
+        "name": "_locales/sl/messages.json",
+        "sha256": "c40c091388cee5c616e771e3af31e714602b3d46034030797395515286b52a26"
+      },
+      {
+        "name": "adblock-options-mab-image-swap.html",
+        "sha256": "c57f9daf4f522f9abce96ba5fc5dbf8ddf05d82b8c22f55ebeff1f8bdcb859a1"
+      },
+      {
+        "name": "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9.map",
+        "sha256": "c5f1407dd56b8fec4377039ccd9c0e5d2187560ef7a06656a2d107f3e3b74a67"
+      },
+      {
+        "name": "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B.map",
+        "sha256": "c66b95012fe70e53989521170102f6a8ee04c9a1f7b09d47365c86a981e5ad7f"
+      },
+      {
+        "name": "_locales/sk/messages.json",
+        "sha256": "c6b240ba0d2eab0950a5ddaef6612a6a5b5b2076c4120a03c29c3bd90667f93b"
+      },
+      {
+        "name": "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D",
+        "sha256": "c6fa9f17f0eb2a50a92028504740b5364e1790bf8bc2670ed6b258b14dae6f02"
+      },
+      {
+        "name": "adblock-push-notification-cs.js",
+        "sha256": "c78e63dda0fa608825ea04e1222f04b0f3a62e6becc869192ca3b513990a62bb"
+      },
+      {
+        "name": "icons/sunshine_theme/minicard.svg",
+        "sha256": "c84e2f5a0df4fb652e53299a09def0e2cedc07f48d158c3ada4d13845f3dbcc2"
+      },
+      {
+        "name": "yt-auto-allowlist.preload.js",
+        "sha256": "c877982b4f351294bf0ba6b7ec0d02a73f49616661862e75bb8e0bec510aa308"
+      },
+      {
+        "name": "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF.map",
+        "sha256": "c8ab6fce611215e191d709ad47991e67c004d9b7cd4d231cc9323a42be459253"
+      },
+      {
+        "name": "button/components/icons/cookie-icon.js",
+        "sha256": "c9674484755b3ad561fdf02cb3ae4e8eb082276819a1bf15abbd7677bdf261f4"
+      },
+      {
+        "name": "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F",
+        "sha256": "c9d2591b14a82363f9eb2caf719b874d66548f102310f85d6d3334cc1b652a30"
+      },
+      {
+        "name": "onpage-dialog.postload.js.map",
+        "sha256": "c9f86164e4f0e698a59ed6f838c6e92f3fa0f4b96bc1fe0fc2f13d5a1cf5cb6c"
+      },
+      {
+        "name": "icons/default_theme/optionscard.svg",
+        "sha256": "ca46a4040f02d7c1e55e419f700fc916ad681da6da96ddd696190f76000aa3f6"
+      },
+      {
+        "name": "adblock-button-distractions-confirm.html",
+        "sha256": "ca663807f876fd936560ffadba59d1081614d07c6aa0892b47ddfd69cd32552e"
+      },
+      {
+        "name": "button/distractions-confirm.html",
+        "sha256": "ca663807f876fd936560ffadba59d1081614d07c6aa0892b47ddfd69cd32552e"
+      },
+      {
+        "name": "icons/themes_lighttext.svg",
+        "sha256": "cafcd8d26f82609edebecf8f688b1c5373dbd3d109f0ada245a81e285093faa4"
+      },
+      {
+        "name": "adblock-options-listenersupport.js",
+        "sha256": "cc0b2cdc6ad933c37d4762ab9a34336b50dc704056a6f7fc70887aef91cb1028"
+      },
+      {
+        "name": "fonts/lato-ext-italic.woff",
+        "sha256": "cd2e97d284d1e0eab02606a8e535176d28732adb6b570b05393e466b07defd44"
+      },
+      {
+        "name": "options.html",
+        "sha256": "cd69d79a5dbbb1a544e652f94745844f36e176da9719282ac6e10ef07cd26be9"
+      },
+      {
+        "name": "popup.js",
+        "sha256": "cdcc2a46aa2c8988258fa982dfae84c8a33f591ef50878bd6e27339fe5188969"
+      },
+      {
+        "name": "adblock-options-mab-themes.js",
+        "sha256": "cdf5695ea0e51aeca877b23cb7e630104ff84cd39b0342f5618d22e058e6b613"
+      },
+      {
+        "name": "adblock-options-themes.js",
+        "sha256": "cdf5695ea0e51aeca877b23cb7e630104ff84cd39b0342f5618d22e058e6b613"
+      },
+      {
+        "name": "data/rules/abp/B7D76369-DD19-4602-80E8-2E32DDB490AC",
+        "sha256": "cdf745e31e60b2e63cd3f553f13b7aca4cafef3032ed68bf799683d42dcda55c"
+      },
+      {
+        "name": "polyfill.js",
+        "sha256": "cf75b09a8c8565adcd1567a69acbd91542525cfe9b1ace09aa103eccfd579c09"
+      },
+      {
+        "name": "data/rules/abp/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15",
+        "sha256": "cff1722489e84f64f52c6993080a6a5bb44240ea7193ba018064b01735aa0ab4"
+      },
+      {
+        "name": "cookie-banner-detection.preload.js.map",
+        "sha256": "d0334922978c3a3cc4dda48adeb90738fbc38b7d0288a566ecf003c34e594832"
+      },
+      {
+        "name": "adblock-onpage-dialog-user.css",
+        "sha256": "d0481dcf2260bd59615253912449ae31b9ecc1a2e388c39cf2109b26d193a924"
+      },
+      {
+        "name": "button/help-section.html",
+        "sha256": "d09fbfd14340fa767c93a16c4b6ce9c42501c9f2d1958915ff0d51eace41fe9e"
+      },
+      {
+        "name": "icons/ocean_theme/tinycard.svg",
+        "sha256": "d127604f40ab334a33596e56331600e1763844de5b56aee7b7fc9b185d5c404a"
+      },
+      {
+        "name": "adblock-uiscripts-rightclick_hook.js",
+        "sha256": "d12eb9430e3da70ab47ed11e8dcb4f1dd607a0c5630ff30ee734b7c5fde4f2b3"
+      },
+      {
+        "name": "icons/lock.svg",
+        "sha256": "d28c3f4e2bf4d36692edde6c7d09f282d6c7205f11962f7d962d5fca54e23a76"
+      },
+      {
+        "name": "icons/solarized_light_theme/beta_logo.svg",
+        "sha256": "d3c4dd79a010b1b1f638b513d2b54820cfa1651c59018fb5a7fd9b3c863a2b39"
+      },
+      {
+        "name": "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033.map",
+        "sha256": "d453a56eb2d200933828484aa7f0d43f68a48140075b4cd91c5496e5ef758064"
+      },
+      {
+        "name": "icons/photo.svg",
+        "sha256": "d4b85ab498b62c17dcaf35ee6e97eb6ebbcdba07ceea78ea3126c7a90793785b"
+      },
+      {
+        "name": "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5.map",
+        "sha256": "d4ff8c599513ad9ff5500f45a0f957eb4cc03633a2d9265f2e98d2a0d6dc395f"
+      },
+      {
+        "name": "data/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD",
+        "sha256": "d501d60e7e482809238fe17281651f4403af6f25a958cf65593f002972086d51"
+      },
+      {
+        "name": "adblock-button-filtering-options.html",
+        "sha256": "d5d4ee4c61b6f88859fb00ead8e14461d69355fa5c1832b5d86a2a43f9098a4a"
+      },
+      {
+        "name": "button/filtering-options.html",
+        "sha256": "d5d4ee4c61b6f88859fb00ead8e14461d69355fa5c1832b5d86a2a43f9098a4a"
+      },
+      {
+        "name": "icons/ocean_theme/previewcard.svg",
+        "sha256": "d789cd345dcb6f7873d652646d04ffe1a5ac534baeb12c24993c6aebf1209c7c"
+      },
+      {
+        "name": "fonts/lato-ext-bolditalic.woff",
+        "sha256": "d84a8eda6ce4b5e01e5e561e5e2de291b8f83ec236900d4ccb74debba795f5b5"
+      },
+      {
+        "name": "data/rules/abp/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B",
+        "sha256": "d865b0f8f55705e103160f1ad2eff649f20d3da0def0c5c0f18b18b1a171e213"
+      },
+      {
+        "name": "data/rules/abp/2CEA1481-C29C-44F1-A084-A2A019533797",
+        "sha256": "d88698fd7134b98a217d9f601e433a585576067d5f186b6c0a5914ac1604c313"
+      },
+      {
+        "name": "data/rules/index.json",
+        "sha256": "da4ac490f28918ae1773e427d31c0588a56dc9b7cfb28a4223157c5ae64249ec"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-ocean.png",
+        "sha256": "da83c6280b48f783e93ef458f144793edf6de39a80ea4a656272a18e0ac4d0c9"
+      },
+      {
+        "name": "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89",
+        "sha256": "dab7886d4c20332cdc8b819ce6ffe8b0d99239bfb0b84754a1efe3ad29b5cafd"
+      },
+      {
+        "name": "icons/sunshine_theme/tinycard.svg",
+        "sha256": "daf9d69089c98e5b1eba406c75710c2a425fbc2f68c9e24e06fc2cb9c75548f9"
+      },
+      {
+        "name": "RELEASE_NOTES.md",
+        "sha256": "db85f6b181353f5fbf7d4433aba31f1d198e886f03c12a2c8e5fda55c9721ab6"
+      },
+      {
+        "name": "icons/image-swap-preview.png",
+        "sha256": "dbd4bc8d7ae6892751ca3958f24b4ab0fb33432e6360b33f7d72f1b44ed50d79"
+      },
+      {
+        "name": "button/header.html",
+        "sha256": "dc179a5ce10f2c29c7e17490133179c61506defb114da3c5fab4cdec96765b46"
+      },
+      {
+        "name": "icons/distraction-control-push.svg",
+        "sha256": "dca89b348804cd8b08474d024dd50c15f02bee0387f6f02b7b70ac59a6f52901"
+      },
+      {
+        "name": "data/rules/abp/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9",
+        "sha256": "debea24315db3616c542018f94c11547c9cea6ccc88290182ead1c821daf3cbe"
+      },
+      {
+        "name": "_locales/pl/messages.json",
+        "sha256": "dfbf42ff476fb9bb3fa4b88e5d837490701a1c7a22e107857d493ec1119d675a"
+      },
+      {
+        "name": "adblock-options-stats-tabs.js",
+        "sha256": "e097285eff9cff10339122be0e3094a73dbdd518296515aa2caa72fe61d67f1e"
+      },
+      {
+        "name": "adblock-options-stats-tabs.css",
+        "sha256": "e1bb27775df858aa58b8f53e46a39b624826fdac55ecdf8be715d3b27422c1bb"
+      },
+      {
+        "name": "button/popup-subpages.css",
+        "sha256": "e24b2c7d6656dff77219efb135c2d19d2b23e9765aab592f891a62acd2a20338"
+      },
+      {
+        "name": "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5",
+        "sha256": "e27d6d9e3a86bc2af94eba664467b88541243575018c1a72856268adee3841c8"
+      },
+      {
+        "name": "icons/cookie-block-preview.svg",
+        "sha256": "e3c472f1c4b0e752a9981cea78249cddc195627706f474f3652a8148bb568b9f"
+      },
+      {
+        "name": "icons/white-bg.png",
+        "sha256": "e3da03171a77b716a89e7ff50802e3c1814cf94385a0bbb64889e2650fdb7c73"
+      },
+      {
+        "name": "conflict-detection.preload.js",
+        "sha256": "e5d982149614274ecc0e748a40a91e7f73a01b9096d97bdb08be2726f1d49722"
+      },
+      {
+        "name": "icons/distraction-control.svg",
+        "sha256": "e5dc335c5e91bc482d8414416083811c355a3ca24fc09679e4c4e8dfc65a98d5"
+      },
+      {
+        "name": "icons/adblock-picreplacement-images-goat-grayscale.png",
+        "sha256": "e774ca3a072405c90cc05fbc4e7144737032ecaf4add15a1f0aaf15a4865b268"
+      },
+      {
+        "name": "adblock-options-mab-themes.html",
+        "sha256": "e7cee370f96c329c0c124c0da5e0f7e32f82ae125c06fbde8f26920d9cef6a4a"
+      },
+      {
+        "name": "button/components/ActionButton.js",
+        "sha256": "e88c742a3491bfb183b49c967c77983500c71108cd40c6cec43858cdc631d10f"
+      },
+      {
+        "name": "icons/distraction-control-preview.svg",
+        "sha256": "e8b39144a8237cd92fc0d9f44dec843514d22fc845807ecad7bf17c55388825a"
+      },
+      {
+        "name": "fonts/lato-bold.woff",
+        "sha256": "ead13ccfbdea5462c3af37aa6ae04e64ed65a31c33f76e46da5e86ec85c52064"
+      },
+      {
+        "name": "button/popup.css",
+        "sha256": "ebe5c5fdfdaa18395d10bf69c79582b912e0842d0649202b1b340e06a2cf643f"
+      },
+      {
+        "name": "button/header.js",
+        "sha256": "ec8edc0a3d209e875fce322d83bf6302218d4a5573c6101e16822956123d8865"
+      },
+      {
+        "name": "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8.map",
+        "sha256": "ee0bbd45e6c2b43446adae11dac038d64c6db421e50073dac13cc9bf92c6f711"
+      },
+      {
+        "name": "adblock-options-filtersproxy.js",
+        "sha256": "ee5f273679e1b3fc8be3591d687bd7d38c22b683a1174d0f8b568d56936f7cd2"
+      },
+      {
+        "name": "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC.map",
+        "sha256": "eee66bec814440e60b2ae09bb3ae149e8db9d8e929f99fd9786378fe6ca770f6"
+      },
+      {
+        "name": "button/components/PopupSection.js",
+        "sha256": "ef24601e4659a4c93cf726932d1bbd2ce5c468a2a58a2968fac28ed471bb5de2"
+      },
+      {
+        "name": "adblock-button-popup.html",
+        "sha256": "ef420582e7dc43f4e7cb4247d34312489f5207621d0c4897103f77d68346f61f"
+      },
+      {
+        "name": "button/popup.html",
+        "sha256": "ef420582e7dc43f4e7cb4247d34312489f5207621d0c4897103f77d68346f61f"
+      },
+      {
+        "name": "icons/default_theme/beta_logo.svg",
+        "sha256": "efb53dacc47ac89f52da9750776cbf565ec406b2cd357a96c7202d0cc0997c77"
+      },
+      {
+        "name": "icons/rebecca_purple_theme/beta_logo.svg",
+        "sha256": "efb53dacc47ac89f52da9750776cbf565ec406b2cd357a96c7202d0cc0997c77"
+      },
+      {
+        "name": "icons/sunshine_theme/beta_logo.svg",
+        "sha256": "efb53dacc47ac89f52da9750776cbf565ec406b2cd357a96c7202d0cc0997c77"
+      },
+      {
+        "name": "icons/watermelon_theme/beta_logo.svg",
+        "sha256": "efb53dacc47ac89f52da9750776cbf565ec406b2cd357a96c7202d0cc0997c77"
+      },
+      {
+        "name": "button/components/MenuLinkButton.js",
+        "sha256": "f0da8ac1a4b06af6c2fc3f0a71fdf0957f8fbd8c5b65a693155ca478946eaaa4"
+      },
+      {
+        "name": "icons/dark_theme/tinycard.svg",
+        "sha256": "f188cdce3b7de165672290a36db799307840355e1aa606652909ee4e8709e3bb"
+      },
+      {
+        "name": "adblock-options-stats-tabs.html",
+        "sha256": "f2291e5a4e38420dd2d0c432d7752c3a206bac2cb9ad4559d81c14f01a1f778c"
+      },
+      {
+        "name": "ext/background.js",
+        "sha256": "f28131afeabf576ed7d8cdb982b77526dcf63dacba7bf0f6c920bb21c281d74d"
+      },
+      {
+        "name": "button/components/components.css",
+        "sha256": "f32fdaf825f6637c646ad41c52aea562502f6d4f57ca9bcd55082c0103cbf81c"
+      },
+      {
+        "name": "fonts/lato-ext-regular.woff",
+        "sha256": "f4d54be44d1dcbec1b66f6ca9ee9e505806dd415c086a12d77dbf752ef6f3994"
+      },
+      {
+        "name": "_locales/pt_BR/messages.json",
+        "sha256": "f4da9573b592916bd4d8c14dfbf8b6e0cf5d5a2727c53a198c5b256c80ff14a7"
+      },
+      {
+        "name": "icons/watermelon_theme/tinycard.svg",
+        "sha256": "f579899b5317a325947fba9851b9f10fd873acc232306555518fdaa2210584c3"
+      },
+      {
+        "name": "adblock-options-general.js",
+        "sha256": "f595669af7a491b13816099da9e0f8fd7428b5f0b587e4a6efdb7ccb08bdda40"
+      },
+      {
+        "name": "icons/adblock-16.png",
+        "sha256": "f5dba5f69575a01dd54d41f9fccee3b18104cfe7bd9ed1306d817d9d438e440e"
+      },
+      {
+        "name": "icons/image-swap-preview.svg",
+        "sha256": "f5e86139b1c8ff18f15c180e8386b5be66c8215c1f4bc52161f0aee07a29a08b"
+      },
+      {
+        "name": "icons/adblock-32-allowlisted.png",
+        "sha256": "f65209e2e4233f60fddd42c6679c54b9335860f113a789621f4bc4728513bb35"
+      },
+      {
+        "name": "data/rules/abp/0CD3D105-D3B3-4652-8489-94163DE9A08F",
+        "sha256": "f696b4cc2a3808e071fce3a0b850393207ea7755406ba14fd4fa49e5620b5394"
+      },
+      {
+        "name": "_locales/fr/messages.json",
+        "sha256": "f74c258ff63bbca74f1aac30f4a5cafd5fcb44a3597effdeacf03e8f4ba13f75"
+      },
+      {
+        "name": "_locales/es/messages.json",
+        "sha256": "f78fa23f360f20e1f2c5e2eb78acce247c35126fe03dd83a5d3cb701f7848df0"
+      },
+      {
+        "name": "manifest.json",
+        "sha256": "f7f1174633df67842ecdb5f1bc8e0f4b251a19f6fa832f313492d37e7a913332"
+      },
+      {
+        "name": "data/rules/abp/5BD2BB73-459D-4A74-AF9D-A10157268350",
+        "sha256": "f944e8f5295bce9008439c544717e9020910b1ac1a75b8e1ed234a9a7ea7b561"
+      },
+      {
+        "name": "data/rules/abp/1B5F78CA-8B30-4BDF-B0A3-451CB2202984",
+        "sha256": "fac4f60412f1f5d8e11475bdf918a42a4d1748320ec17c4ec6ef05cc2215821a"
+      },
+      {
+        "name": "icons/adblock-40-allowlisted.png",
+        "sha256": "fb0d83f7a614368643c6cff9f43a32b16f6cd6c403701f143053a94bac339864"
+      },
+      {
+        "name": "icons/format_list_bulletted_gray.svg",
+        "sha256": "fb1c4387e502697b7f756e6a9d0a9783ad0a207bade9646b484869a137afc2be"
+      },
+      {
+        "name": "adblock-picreplacement-options-imageview.css",
+        "sha256": "fbade11348f837266d493be92ea981a28a192a3706cbe32d0d2d1e32f8b3f60a"
+      },
+      {
+        "name": "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033",
+        "sha256": "fc19fa33e2a9ead0d47492096beab0604e3cf327fd70603278291ad9f75e54e2"
+      },
+      {
+        "name": "data/rules/abp/14DF7BE6-9675-4E07-987A-D8A1000F9FEF",
+        "sha256": "fcde60279b12da6c5ac565f47a8df2ca606d505c51d45d921f477c1ec28bdc1e"
+      },
+      {
+        "name": "close-tab.preload.js.map",
+        "sha256": "fd6fc06270e1842d684562a7769db9d700d7bdc3f7b04d89dd25d68331531cbe"
+      },
+      {
+        "name": "icons/options_page_default.png",
+        "sha256": "fdde64717ccdb3b4f248fad8b15a68585b34436cc15ae053f02091e72e814019"
+      },
+      {
+        "name": "icons/dark_theme/optionscard.svg",
+        "sha256": "fe7d79d9c985f37a3009cec30aa1e57359fc139684f97ab15df006cbc75a61a3"
+      },
+      {
+        "name": "devtools.html",
+        "sha256": "ff4b13d200d2734263a5df8b1af4caf7bfea70b7c856547eb6c92fd8cc990669"
+      }
+    ],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 19,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.behavior": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Executable Content in Archive"
+        }
+      ],
+      "file.name.extracted": [
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "COPYING"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "Chart.min.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "Chart.min.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "README.md"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "RELEASE_NOTES.md"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ar/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/bg/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ca/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/cs/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/de/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/el/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/en_GB/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/en_US/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/es/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/fi/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/fr/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/gl/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/he/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/hr/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/hu/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/id/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/it/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ja/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ko/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ms/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/nl/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/no/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/pl/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/pt_BR/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/pt_PT/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ro/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/ru/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/sk/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/sl/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/sv/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/tr/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/uk/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/zh_CN/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_locales/zh_TW/messages.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "_metadata/verified_contents.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "abp-background.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "abp-background.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "abp-background.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-button-cookie-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-button-distractions-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-button-filtering-options.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-button-popup.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-button-undo-allow-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-color-themes.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-deny-push-notifications-requests.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-deny-push-notifications-requests.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-deny-push-notifications-requests.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-errorreporting.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-errorreporting.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-functions.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-functions.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-getadblock.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-getadblock.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-onpage-dialog-user.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-customize.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-customize.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-customize.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-datacollectionproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-datacollectionproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-events.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-events.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-filters.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-filters.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-filters.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-filtersproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-filtersproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-general.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-general.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-general.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-index.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-index.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-listenersupport.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-listenersupport.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-localdatacollectionproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-localdatacollectionproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab-image-swap.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab-image-swap.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-mab-image-swap.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab-themes.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab-themes.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-mab-themes.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-mab.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-mab.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-options.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-prefsproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-prefsproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-premium-filters.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-premium-filters.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-premium-filters.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-premium-payment.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-premium-payment.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-premiumproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-premiumproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-settingsproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-settingsproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-stats-tabs.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-stats-tabs.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-stats-tabs.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-stats-tabs.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-subscriptionadapterproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-subscriptionadapterproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-subscriptionsproxy.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-subscriptionsproxy.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-support.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-support.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-support.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-tabs.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-tabs.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-tabs.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-options-themes.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-options-themes.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-picreplacement-image-sizes-map.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-picreplacement-image-sizes-map.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-picreplacement-imageview.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-picreplacement-imageview.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-picreplacement-imageview.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-picreplacement-options-imageview.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-picreplacement.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-picreplacement.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-push-notification-cs.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-push-notification-cs.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-push-notification-cs.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-adblock-wizard.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-blacklistui.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-blacklistui.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-clickwatcher.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-clickwatcher.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-elementchain.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-elementchain.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-overlay.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-blacklisting-overlay.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-load_wizard_resources.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-load_wizard_resources.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-rightclick_hook.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-rightclick_hook.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-send_content_to_back.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-send_content_to_back.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_blacklist_ui.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_blacklist_ui.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_whitelist_completion_ui.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_whitelist_completion_ui.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_whitelist_ui.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "adblock-uiscripts-top_open_whitelist_ui.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "adblock.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/ActionButton.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/ActionButton.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/CancelActionButton.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/CancelActionButton.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/ConfirmText.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/ConfirmText.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/InlineLinkButton.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/InlineLinkButton.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/MenuLink.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/MenuLink.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/MenuLinkButton.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/MenuLinkButton.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/PopupDetailStats.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/PopupDetailStats.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/PopupDetailText.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/PopupDetailText.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/PopupSection.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/PopupSection.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/SubNav.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/SubNav.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/Toggle.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/Toggle.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/components.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/icons/adblock-logo.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/icons/adblock-logo.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/icons/block-distractions.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/icons/block-distractions.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/icons/cookie-icon.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/icons/cookie-icon.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/components/icons/lock-icon.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/components/icons/lock-icon.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/confirmation-page.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/confirmation-page.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/cookie-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/distractions-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/filtering-options.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/filtering-options.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/filtering-options.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/header.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/header.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/header.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/header.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help-action.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/help-action.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help-button.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help-map.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help-section.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help-segue.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/help.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/help.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup-sections.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup-sections.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/popup-sections.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup-subpages.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/popup.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/popup.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/undo-allow-confirm.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "button/utils.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "button/utils.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "close-tab.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "close-tab.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "close-tab.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "conflict-detection.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "conflict-detection.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "conflict-detection.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "contentscript-loader.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "contentscript-loader.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "cookie-banner-detection.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "cookie-banner-detection.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "cookie-banner-detection.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "croppie.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "croppie.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "croppie.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/07549D8B-F06F-4D9D-A567-929AA59E9D1D"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "data/rules/abp/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/0A679439-445F-4DE7-84B9-88341F6DA520"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/0CD3D105-D3B3-4652-8489-94163DE9A08F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/14DF7BE6-9675-4E07-987A-D8A1000F9FEF"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/1B5F78CA-8B30-4BDF-B0A3-451CB2202984"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/25A31255-AB36-48A4-9086-06192DE71119"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/2708BCB7-2E45-41BC-B517-1730CF532F89"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/2CEA1481-C29C-44F1-A084-A2A019533797"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/361001BD-8F57-4736-97B1-F332C3D79E5D"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/4B6CE485-30AB-4213-AD17-504B3F2D2825"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/588470E8-E163-4CD9-A909-521B2A3BE73F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/5BD2BB73-459D-4A74-AF9D-A10157268350"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/8C13E995-8F06-4927-BEA7-6C845FB7EEBF"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "data/rules/abp/A4B88FB6-E5E5-417F-8A49-20B8244995FD"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/B7D76369-DD19-4602-80E8-2E32DDB490AC"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/CBE50FA2-DE3F-480C-B1D7-04289391C033"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/D4028CDD-3D39-4624-ACC7-8140F4EC3238"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/E22C3B40-DC90-49D7-8BF5-E60904AB159A"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/EEEF75EC-B2B4-49F4-BC49-17B08266F334"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/abp/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/07549D8B-F06F-4D9D-A567-929AA59E9D1D.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0798B6A2-94A4-4ADF-89ED-BEC112FC4C7F.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0A679439-445F-4DE7-84B9-88341F6DA520.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0B0296EB-1CC5-49CD-AD38-8AF27420B7E4.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/0CD3D105-D3B3-4652-8489-94163DE9A08F.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/14DF7BE6-9675-4E07-987A-D8A1000F9FEF.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/1B5F78CA-8B30-4BDF-B0A3-451CB2202984.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/1C571EC7-6E52-47CC-B04A-4B3008D0AEBE.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/25A31255-AB36-48A4-9086-06192DE71119.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/2708BCB7-2E45-41BC-B517-1730CF532F89.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/294D21F0-B3DC-11EF-9B01-F73C7F3A4DB5.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/2CEA1481-C29C-44F1-A084-A2A019533797.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/361001BD-8F57-4736-97B1-F332C3D79E5D.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/3D2C09D0-DF1C-4C8E-9947-A23DCEAF8F8B.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/4B6CE485-30AB-4213-AD17-504B3F2D2825.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/588470E8-E163-4CD9-A909-521B2A3BE73F.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/5BD2BB73-459D-4A74-AF9D-A10157268350.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/684A25C6-6B5D-458A-8A2B-BAC0A12B0B15.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/88D3F7EA-D99E-43C6-92E0-D89C8A0E7EA9.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/8C13E995-8F06-4927-BEA7-6C845FB7EEBF.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/950C88EA-2DD1-42E3-B2A2-2DF2ED15563A.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/96932CD9-6DDF-4D97-B92F-FDF747B6FAA2.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/9BD3EA2F-889D-4CC3-B680-CF484F2BD1B9.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/9CC3AF4D-EB89-4100-97C6-4EEE4F8A2E82.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/A4B88FB6-E5E5-417F-8A49-20B8244995FD.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/B7D76369-DD19-4602-80E8-2E32DDB490AC.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/BBC07C05-66F1-42EC-BD4D-7AD495FAC84B.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/C3D13A19-3E8D-41F5-AD64-0F3B36DDE128.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/CBE50FA2-DE3F-480C-B1D7-04289391C033.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/CDAD4CF5-2706-42CB-B404-F5B9B61B8CAA.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D4028CDD-3D39-4624-ACC7-8140F4EC3238.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D72B6F06-52B2-4FED-96A2-1BF59CDD7AEC.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/D99D3350-7F11-43E1-87CB-FDE0C78E8CD6.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/E22C3B40-DC90-49D7-8BF5-E60904AB159A.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/EEEF75EC-B2B4-49F4-BC49-17B08266F334.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/EF6F4884-47DB-46A5-AAF8-8EB819D8D4D8.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/dnr/F12E0801-A00B-49DE-B1E3-52C9C4F90C8C.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "data/rules/index.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "devtools-panel.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "devtools-panel.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "devtools-panel.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "devtools.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "devtools.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "devtools.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "ext/background.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "ext/background.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "ext/common.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "ext/common.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "ext/content.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "ext/content.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/font-face.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-bold.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-bolditalic.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-ext-bold.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-ext-bolditalic.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-ext-italic.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-ext-regular.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-ext.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-italic.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato-regular.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "fonts/lato.woff"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "globals-front.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "globals-front.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "globals-front.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "i18n.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "i18n.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/MaterialIcons-Regular.woff2"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-128.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-16-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-16.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-19-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-19.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-20-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-20.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-20.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-32-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-32.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-38-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-38.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-40-allowlisted.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-40.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-48.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-64.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-icons.woff2"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-bird-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-bird.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-cat-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-cat.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-dog-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-dog.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-food-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-food.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-goat-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-goat.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-landscape-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-landscape.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-ocean-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-picreplacement-images-ocean.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/adblock-vpn.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/cookie-block-preview.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/cookie_consent_cutter.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/optionscard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dark_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/optionscard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/default_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/disable_site.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/distraction-control-preview.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/distraction-control-push.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/distraction-control-video.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/distraction-control.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/dropdown_circle.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/error_icon.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/facebook-icon.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/facebook-sprite.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/filled_heart.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/format_list_bulletted_gray.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/format_list_bulletted_red.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/gplus-sprite.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/help.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/help@2x.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/icon16_grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/icon16_grayscale@2x.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/icon19-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/icon24.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/icon38-grayscale.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/image-swap-preview.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/image-swap-preview.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/image-swap-preview@2x.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/loader.gif"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/lock.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/lock.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/lock@2x.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/logo.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/mail-cta-done.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/ocean_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/ocean_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/ocean_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/ocean_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/ocean_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/one-icon.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/options.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/options@2x.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/options_page_dark.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/options_page_default.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/outline_heart.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/photo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/popup_menu_dark.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/popup_menu_default.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/rebecca_purple_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/rebecca_purple_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/rebecca_purple_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/rebecca_purple_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/red_dropdown_circle.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/replaceads_heroimage.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/round_check.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/search.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/smiley.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_light_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_light_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_light_theme/optionscard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_light_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_light_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/optionscard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/solarized_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sunshine_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sunshine_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sunshine_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sunshine_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sunshine_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/sync-preview.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/themes-preview.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/themes_darktext.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/themes_lighttext.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/twitter-icon.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/twitter-sprite.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/watermelon_theme/beta_logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/watermelon_theme/logo.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/watermelon_theme/minicard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/watermelon_theme/previewcard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/watermelon_theme/tinycard.svg"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "icons/white-bg.png"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "info-injector.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "info-injector.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "info-injector.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "jquery-3.5.1.min.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "jquery-3.5.1.min.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "managed-storage-schema.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "manifest.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "onpage-dialog.postload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "onpage-dialog.postload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "onpage-dialog.postload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "options.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "options.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "options.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "options.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "polyfill.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "polyfill.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "polyfill.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "popup.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "popup.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "popup.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "premium.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "premium.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "proxy.html"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "public-api.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "public-api.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "public-api.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "reverse-trial.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "reverse-trial.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "reverse-trial.preload.js.map"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "skin/devtools-panel.css"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "translators.json"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "vendor/@eyeo/webext-ad-filtering-solution/content-main.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "vendor/@eyeo/webext-ad-filtering-solution/content-main.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "vendor/@eyeo/webext-ad-filtering-solution/content.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "vendor/@eyeo/webext-ad-filtering-solution/content.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "yt-auto-allowlist.preload.js"
+        },
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "yt-auto-allowlist.preload.js"
+        },
+        {
+          "heur_id": 19,
+          "signatures": [],
+          "value": "yt-auto-allowlist.preload.js.map"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
