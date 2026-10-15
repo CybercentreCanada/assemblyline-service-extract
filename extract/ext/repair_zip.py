@@ -321,14 +321,8 @@ class RepairZip(ZipFile):
                 last_cv = x.create_version
                 last_dt = (d, t)
 
-                try:
-                    x._decodeExtra()
-                except TypeError:
-                    # This internal function changed between Python 3.11 and 3.12
-                    # It now takes an additional filename_crc parameter
-                    # TODO: Delete this try/except once moved to 3.12
-                    filename = mm.read(centdir[_CD_FILENAME_LENGTH])
-                    x._decodeExtra(zlib.crc32(filename))
+                filename = mm.read(centdir[_CD_FILENAME_LENGTH])
+                x._decodeExtra(zlib.crc32(filename))
 
                 # x.filename = x._decodeFilename()
                 self.filelist.append(x)
@@ -364,7 +358,7 @@ class RepairZip(ZipFile):
                 x.date_time = ((d >> 9) + 1980, (d >> 5) & 0xF, d & 0x1F, t >> 11, (t >> 5) & 0x3F, (t & 0x1F) * 2)
 
                 # noinspection PyProtectedMember
-                x._decodeExtra()
+                x._decodeExtra(zlib.crc32(filename))
                 # x.filename = x._decodeFilename()
                 self.filelist.append(x)
                 self.NameToInfo[x.filename] = x
