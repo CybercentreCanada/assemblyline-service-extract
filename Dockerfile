@@ -6,7 +6,7 @@ ENV SERVICE_PATH=extract.extract.Extract
 
 # Install apt dependencies
 USER root
-RUN echo "deb http://http.us.debian.org/debian bookworm main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+RUN echo "deb http://http.us.debian.org/debian trixie main contrib non-free non-free-firmware" >> /etc/apt/sources.list
 COPY pkglist.txt /tmp/setup/
 RUN apt-get update && \
     apt-get upgrade -y && \

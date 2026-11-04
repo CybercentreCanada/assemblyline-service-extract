@@ -5,7 +5,7 @@
     "sections": [
       {
         "auto_collapse": false,
-        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
+        "body": "assets/aapt\nassets/aaptz\nassets/android.zip\nassets/editorkey.pk8\nassets/editorkey.x509.pem\nassets/http.zip\nassets/mycp\nassets/patch_app_rename.zip\nassets/patch_bypass_sigcheck.old.zip\nassets/patch_bypass_sigcheck.zip\nassets/patch_data_editor.zip\nassets/patch_launcher_toast.zip\nassets/patch_mem_editor.zip\nassets/patch_my_font.zip\nassets/patch_new_entrance.zip\nassets/patch_script_example.zip\nassets/testkey.pk8\nassets/testkey.x509.pem\nassets/viewsource.css\nclasses.dex\njadx/core/clsp/core.jcst\nlib/arm64-v8a/libsyscheck.so\nlib/armeabi-v7a/libsyscheck.so\nlib/armeabi/libsyscheck.so\nres/raw-v22/md_sans.ttf",
         "body_config": {},
         "body_format": "TEXT",
         "classification": "TLP:C",
@@ -27,6 +27,7 @@
                 "assets/aaptz",
                 "assets/android.zip",
                 "assets/editorkey.pk8",
+                "assets/editorkey.x509.pem",
                 "assets/http.zip",
                 "assets/mycp",
                 "assets/patch_app_rename.zip",
@@ -39,6 +40,7 @@
                 "assets/patch_new_entrance.zip",
                 "assets/patch_script_example.zip",
                 "assets/testkey.pk8",
+                "assets/testkey.x509.pem",
                 "assets/viewsource.css",
                 "classes.dex",
                 "jadx/core/clsp/core.jcst",
@@ -50,7 +52,7 @@
             }
           }
         },
-        "title_text": "Successfully extracted 23 files",
+        "title_text": "Successfully extracted 25 files",
         "zeroize_on_tag_safe": false
       },
       {
@@ -63,7 +65,7 @@
         "heuristic": null,
         "promote_to": null,
         "tags": {},
-        "title_text": "Successfully extracted 1284 files that were safelisted.",
+        "title_text": "Successfully extracted 1282 files that were safelisted.",
         "zeroize_on_tag_safe": false
       },
       {
@@ -160,6 +162,10 @@
         "sha256": "985eb36c327c8e8a617df14e62b1bf46d0abe2895c5ca5f025e74be41285f0f3"
       },
       {
+        "name": "assets/testkey.x509.pem",
+        "sha256": "a4384ba815b9499a5ce349b4e33c1755278873fe2eac150a068823f526e6dbde"
+      },
+      {
         "name": "assets/patch_data_editor.zip",
         "sha256": "a454670e8a201a5c3257968e6c147e8853012a39527a68bd22f3d1eb50c3e9ce"
       },
@@ -174,6 +180,10 @@
       {
         "name": "assets/viewsource.css",
         "sha256": "abf2ba175851a4f777263960edc00f556a5bd32bc0bc4ecae375c217c55c870b"
+      },
+      {
+        "name": "assets/editorkey.x509.pem",
+        "sha256": "ac2ac90b3b2bb81277c88b505341b02a4eaa3908473078e2d5a90bebed397959"
       },
       {
         "name": "assets/patch_script_example.zip",
@@ -249,6 +259,11 @@
         {
           "heur_id": 4,
           "signatures": [],
+          "value": "assets/editorkey.x509.pem"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
           "value": "assets/http.zip"
         },
         {
@@ -310,6 +325,11 @@
           "heur_id": 4,
           "signatures": [],
           "value": "assets/testkey.pk8"
+        },
+        {
+          "heur_id": 4,
+          "signatures": [],
+          "value": "assets/testkey.x509.pem"
         },
         {
           "heur_id": 4,
