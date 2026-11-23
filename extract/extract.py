@@ -2555,7 +2555,7 @@ class Extract(ServiceBase):
             # If this one gives us trouble too, we can try Python’s built-in HTML parser "html.parser"
             soup = BeautifulSoup(data, features="lxml")
 
-        scripts = soup.findAll("script")
+        scripts = soup.find_all("script")
         extracted = []
         for script in scripts:
             # Make sure there is actually a body to the script
@@ -2601,7 +2601,7 @@ class Extract(ServiceBase):
                     out.write(encoded_script)
                 extracted.append([out.name, hashlib.sha256(encoded_script).hexdigest(), "extract_jscript"])
 
-        a_tags = soup.findAll("a")
+        a_tags = soup.find_all("a")
         for a_tag in a_tags:
             if a_tag.get("download", None) is not None and a_tag.get("href", "").startswith("data:"):
                 a_tag_parts = a_tag.get("href").split(",", 1)
@@ -2636,7 +2636,7 @@ class Extract(ServiceBase):
                 return False
             return True
 
-        visible_texts = [x for x in filter(tag_visible, soup.findAll(text=True))]
+        visible_texts = [x for x in filter(tag_visible, soup.find_all(text=True))]
 
         if any(any(WORD in line.lower() for WORD in PASSWORD_WORDS) for line in visible_texts):
             new_passwords = set()
@@ -2662,7 +2662,7 @@ class Extract(ServiceBase):
             data = f.read()
 
         soup = BeautifulSoup(data, features="lxml")
-        scripts = soup.findAll("script")
+        scripts = soup.find_all("script")
         languages = sorted({script.get("language", "").lower() for script in scripts})
         if len(languages) > 1:
             heur = Heuristic(20)
@@ -2748,14 +2748,23 @@ class Extract(ServiceBase):
             request: AL request object.
 
         Returns:
-            List containing extracted information, including: extracted path, display name
+            A list with one [extracted file path, display name, extraction method] entry
+            per file decoded from the sample.
         """
         files = xxuu_decode_from_file(request.file_path, xx_character)
         extracted = []
-        for output_file, ans in files:
+        for output_file, ans, errors in files:
             output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
+            if errors:
+                request.result.add_section(
+                    ResultSection(
+                        f"Malformed XXencoded data for {output_file}",
+                        body=f"{errors} invalid character(s) or line(s) were ignored while decoding; "
+                        "the extracted file may be incomplete or corrupted.",
+                    )
+                )
             extracted.append([os.path.join(self.working_directory, output_file), output_file, "extract_xxe"])
         return extracted
 
@@ -2766,14 +2775,23 @@ class Extract(ServiceBase):
             request: AL request object.
 
         Returns:
-            List containing extracted information, including: extracted path, display name
+            A list with one [extracted file path, display name, extraction method] entry
+            per file decoded from the sample.
         """
         files = xxuu_decode_from_file(request.file_path, uu_character)
         extracted = []
-        for output_file, ans in files:
+        for output_file, ans, errors in files:
             output_file = strip_path_inclusion(output_file, self.working_directory)
             with open(os.path.join(self.working_directory, output_file), "wb") as f:
                 f.write(bytes(ans))
+            if errors:
+                request.result.add_section(
+                    ResultSection(
+                        f"Malformed UUencoded data for {output_file}",
+                        body=f"{errors} invalid character(s) or line(s) were ignored while decoding; "
+                        "the extracted file may be incomplete or corrupted.",
+                    )
+                )
             extracted.append([os.path.join(self.working_directory, output_file), output_file, "extract_uue"])
         return extracted
 
